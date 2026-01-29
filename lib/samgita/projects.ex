@@ -4,6 +4,7 @@ defmodule Samgita.Projects do
   """
 
   import Ecto.Query
+  alias Samgita.Domain.AgentRun
   alias Samgita.Domain.Project
   alias Samgita.Domain.Task, as: TaskSchema
   alias Samgita.Repo
@@ -96,6 +97,20 @@ defmodule Samgita.Projects do
       task
       |> TaskSchema.changeset(%{status: :pending, attempts: 0, error: nil})
       |> Repo.update()
+    end
+  end
+
+  def list_agent_runs(project_id) do
+    AgentRun
+    |> where(project_id: ^project_id)
+    |> order_by(desc: :inserted_at)
+    |> Repo.all()
+  end
+
+  def get_agent_run(id) do
+    case Repo.get(AgentRun, id) do
+      nil -> {:error, :not_found}
+      agent_run -> {:ok, agent_run}
     end
   end
 

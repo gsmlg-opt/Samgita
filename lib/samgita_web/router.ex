@@ -32,6 +32,8 @@ defmodule SamgitaWeb.Router do
       resources "/tasks", TaskController, only: [:index, :show] do
         post "/retry", TaskController, :retry
       end
+
+      resources "/agents", AgentRunController, only: [:index, :show]
     end
 
     resources "/webhooks", WebhookController, only: [:index, :create, :delete]
