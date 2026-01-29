@@ -10,6 +10,9 @@ erl_crash.dump
 .elixir_ls/
 /loki-mode
 
+# Generated files
+app_tree.dot
+
 # Phoenix/Node
 /priv/static/
 /tmp/
