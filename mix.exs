@@ -57,7 +57,7 @@ defmodule Samgita.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.1.0"},
       {:lazy_html, ">= 0.1.0", only: :test},
-      {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
+      {:bun, "~> 1.6", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
@@ -97,11 +97,11 @@ defmodule Samgita.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["compile", "tailwind samgita", "esbuild samgita"],
+      "assets.setup": ["tailwind.install --if-missing", "bun.install --if-missing"],
+      "assets.build": ["tailwind samgita", "bun samgita"],
       "assets.deploy": [
         "tailwind samgita --minify",
-        "esbuild samgita --minify",
+        "bun samgita --minify",
         "phx.digest"
       ],
       precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "test"]

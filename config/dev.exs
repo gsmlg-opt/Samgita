@@ -18,13 +18,13 @@ config :samgita, Samgita.Repo,
 config :samgita, SamgitaWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 3101],
+  http: [ip: {127, 0, 0, 1}, port: 3110],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "Pj01A5h21DzggjKpnl3ezzFuxstdmjeKAAuyYMAM1nkKDzo5UF/oCYZnvE6i7nTk",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:samgita, ~w(--sourcemap=inline --watch)]},
+    bun: {Bun, :install_and_run, [:samgita, ~w(--watch)]},
     tailwind: {Tailwind, :install_and_run, [:samgita, ~w(--watch)]}
   ]
 

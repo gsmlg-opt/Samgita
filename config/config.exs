@@ -22,14 +22,12 @@ config :samgita, SamgitaWeb.Endpoint,
   pubsub_server: Samgita.PubSub,
   live_view: [signing_salt: "sVrxWKHP"]
 
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.25.4",
+# Configure bun (the version is required)
+config :bun,
+  version: "1.1.42",
   samgita: [
-    args:
-      ~w(js/app.js --bundle --target=es2022 --outdir=../priv/static/assets/js --external:/fonts/* --external:/images/* --alias:@=.),
-    cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => [Path.expand("../deps", __DIR__), Mix.Project.build_path()]}
+    args: ~w(build assets/js/app.ts --outdir=priv/static/assets/js --target=browser),
+    cd: Path.expand("..", __DIR__)
   ]
 
 # Configure tailwind (the version is required)
