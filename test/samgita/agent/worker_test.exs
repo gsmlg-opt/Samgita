@@ -1,7 +1,23 @@
 defmodule Samgita.Agent.WorkerTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
+
+  @moduletag timeout: 30_000
 
   alias Samgita.Agent.Worker
+
+  defp await_idle(pid, remaining_ms \\ 10_000) do
+    case Worker.get_state(pid) do
+      {:idle, data} ->
+        {:idle, data}
+
+      _ when remaining_ms <= 0 ->
+        flunk("Worker did not return to :idle within timeout")
+
+      _ ->
+        Process.sleep(100)
+        await_idle(pid, remaining_ms - 100)
+    end
+  end
 
   describe "start_link/1" do
     test "starts in idle state" do
@@ -51,10 +67,8 @@ defmodule Samgita.Agent.WorkerTest do
       task = %{id: "task-1", type: "implement", payload: %{}}
       Worker.assign_task(pid, task)
 
-      # Wait for RARV cycle to complete (using echo mock in test)
-      Process.sleep(500)
-
-      {state, data} = Worker.get_state(pid)
+      # Wait for RARV cycle to complete
+      {state, data} = await_idle(pid)
       assert state == :idle
       assert data.task_count == 1
 
@@ -73,18 +87,16 @@ defmodule Samgita.Agent.WorkerTest do
       # Assign first task
       task1 = %{id: "task-1", type: "implement", payload: %{feature: "auth"}}
       Worker.assign_task(pid, task1)
-      Process.sleep(500)
 
-      {state1, data1} = Worker.get_state(pid)
+      {state1, data1} = await_idle(pid)
       assert state1 == :idle
       assert data1.task_count == 1
 
       # Assign second task
       task2 = %{id: "task-2", type: "test", payload: %{coverage: 80}}
       Worker.assign_task(pid, task2)
-      Process.sleep(500)
 
-      {state2, data2} = Worker.get_state(pid)
+      {state2, data2} = await_idle(pid)
       assert state2 == :idle
       assert data2.task_count == 2
 
@@ -103,10 +115,7 @@ defmodule Samgita.Agent.WorkerTest do
       task = %{"id" => "task-1", "type" => "implement", "payload" => %{"data" => "test"}}
       Worker.assign_task(pid, task)
 
-      Process.sleep(500)
-
-      {state, data} = Worker.get_state(pid)
-      assert state == :idle
+      {:idle, data} = await_idle(pid)
       assert data.task_count == 1
 
       :gen_statem.stop(pid)
@@ -129,9 +138,7 @@ defmodule Samgita.Agent.WorkerTest do
       task = %{id: "task-1", type: "implement", payload: %{}}
       Worker.assign_task(pid, task)
 
-      # Wait for completion (RARV cycle completes quickly with echo mock)
-      Process.sleep(500)
-      {:idle, data} = Worker.get_state(pid)
+      {:idle, data} = await_idle(pid)
       assert data.task_count == 1
 
       :gen_statem.stop(pid)
@@ -149,10 +156,8 @@ defmodule Samgita.Agent.WorkerTest do
       task = %{id: "task-1", type: "implement", payload: %{}}
       Worker.assign_task(pid, task)
 
-      Process.sleep(500)
-
-      {:idle, data} = Worker.get_state(pid)
-      assert length(data.learnings) > 0
+      {:idle, data} = await_idle(pid)
+      assert data.learnings != []
 
       :gen_statem.stop(pid)
     end
@@ -169,9 +174,7 @@ defmodule Samgita.Agent.WorkerTest do
       task = %{id: "task-1", type: "implement", payload: %{}}
       Worker.assign_task(pid, task)
 
-      Process.sleep(500)
-
-      {:idle, data} = Worker.get_state(pid)
+      {:idle, data} = await_idle(pid)
       assert data.retry_count == 0
 
       :gen_statem.stop(pid)
@@ -212,9 +215,7 @@ defmodule Samgita.Agent.WorkerTest do
       task = %{id: "task-1", type: "test", payload: %{}}
       Worker.assign_task(pid, task)
 
-      Process.sleep(500)
-
-      {:idle, data} = Worker.get_state(pid)
+      {:idle, data} = await_idle(pid)
       assert data.task_count == 1
 
       :gen_statem.stop(pid)
@@ -241,9 +242,7 @@ defmodule Samgita.Agent.WorkerTest do
 
       Worker.assign_task(pid, task)
 
-      Process.sleep(500)
-
-      {:idle, data} = Worker.get_state(pid)
+      {:idle, data} = await_idle(pid)
       assert data.task_count == 1
 
       :gen_statem.stop(pid)
@@ -261,9 +260,7 @@ defmodule Samgita.Agent.WorkerTest do
       task = %{id: "task-1", payload: %{}}
       Worker.assign_task(pid, task)
 
-      Process.sleep(500)
-
-      {:idle, data} = Worker.get_state(pid)
+      {:idle, data} = await_idle(pid)
       assert data.task_count == 1
 
       :gen_statem.stop(pid)
@@ -281,9 +278,7 @@ defmodule Samgita.Agent.WorkerTest do
       task = %{id: "task-1", type: "implement"}
       Worker.assign_task(pid, task)
 
-      Process.sleep(500)
-
-      {:idle, data} = Worker.get_state(pid)
+      {:idle, data} = await_idle(pid)
       assert data.task_count == 1
 
       :gen_statem.stop(pid)

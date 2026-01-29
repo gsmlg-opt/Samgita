@@ -11,4 +11,8 @@ defmodule SamgitaWeb.ErrorHTMLTest do
   test "renders 500.html" do
     assert render_to_string(SamgitaWeb.ErrorHTML, "500", "html", []) == "Internal Server Error"
   end
+
+  test "renders 403.html" do
+    assert render_to_string(SamgitaWeb.ErrorHTML, "403", "html", []) == "Forbidden"
+  end
 end

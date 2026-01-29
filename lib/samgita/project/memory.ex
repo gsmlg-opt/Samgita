@@ -77,7 +77,7 @@ defmodule Samgita.Project.Memory do
   @impl true
   def handle_call(:get_context, _from, state) do
     context = %{
-      episodic: Enum.take(state.episodic, -10),
+      episodic: Enum.take(state.episodic, 10),
       semantic: state.semantic,
       procedural: state.procedural
     }
@@ -109,11 +109,11 @@ defmodule Samgita.Project.Memory do
   end
 
   defp add_to_state(state, :episodic, memory),
-    do: %{state | episodic: state.episodic ++ [memory]}
+    do: %{state | episodic: [memory | state.episodic]}
 
   defp add_to_state(state, :semantic, memory),
-    do: %{state | semantic: state.semantic ++ [memory]}
+    do: %{state | semantic: [memory | state.semantic]}
 
   defp add_to_state(state, :procedural, memory),
-    do: %{state | procedural: state.procedural ++ [memory]}
+    do: %{state | procedural: [memory | state.procedural]}
 end

@@ -5,8 +5,8 @@ defmodule Samgita.E2E.ProjectLifecycleTest do
 
   use Samgita.DataCase, async: false
 
+  alias Samgita.Domain.{AgentRun, Snapshot, Task}
   alias Samgita.Projects
-  alias Samgita.Domain.{Task, AgentRun, Snapshot}
   alias Samgita.Repo
 
   setup do
@@ -295,7 +295,8 @@ defmodule Samgita.E2E.ProjectLifecycleTest do
       {:ok, project} =
         Projects.create_project(%{
           name: "No Retry Pending",
-          git_url: "git@github.com:test/no-retry-pending-#{System.unique_integer([:positive])}.git"
+          git_url:
+            "git@github.com:test/no-retry-pending-#{System.unique_integer([:positive])}.git"
         })
 
       {:ok, task} = Projects.create_task(project.id, %{type: "test", priority: 1})

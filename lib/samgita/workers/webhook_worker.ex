@@ -37,8 +37,8 @@ defmodule Samgita.Workers.WebhookWorker do
       })
 
     headers = [
-      {"content-type", "application/json"},
-      {"x-webhook-event", event}
+      {~c"content-type", ~c"application/json"},
+      {~c"x-webhook-event", String.to_charlist(event)}
     ]
 
     headers =
@@ -46,14 +46,15 @@ defmodule Samgita.Workers.WebhookWorker do
         signature =
           :crypto.mac(:hmac, :sha256, webhook.secret, body) |> Base.encode16(case: :lower)
 
-        [{"x-webhook-signature", signature} | headers]
+        [{~c"x-webhook-signature", String.to_charlist(signature)} | headers]
       else
         headers
       end
 
     case :httpc.request(
            :post,
-           {String.to_charlist(webhook.url), headers, ~c"application/json", body},
+           {String.to_charlist(webhook.url), headers, ~c"application/json",
+            String.to_charlist(body)},
            [{:timeout, 10_000}],
            []
          ) do

@@ -12,9 +12,14 @@ defmodule Samgita.Agent.Claude do
     command = Application.get_env(:samgita, :claude_command, "claude")
     args = build_args(prompt, opts)
 
-    case System.cmd(command, args, stderr_to_stdout: true) do
-      {output, 0} -> {:ok, parse_output(output)}
-      {output, _} -> handle_error(output)
+    try do
+      case System.cmd(command, args, stderr_to_stdout: true) do
+        {output, 0} -> {:ok, parse_output(output)}
+        {output, _} -> handle_error(output)
+      end
+    rescue
+      e in ErlangError ->
+        {:error, "Command failed: #{inspect(e.original)}"}
     end
   end
 

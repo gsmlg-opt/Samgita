@@ -76,16 +76,11 @@ defmodule Samgita.Workers.SnapshotWorker do
   end
 
   defp cleanup_old_snapshots(project_id, keep \\ 10) do
-    snapshots =
-      Snapshot
-      |> where(project_id: ^project_id)
-      |> order_by(desc: :inserted_at)
-      |> Repo.all()
-
-    if length(snapshots) > keep do
-      snapshots
-      |> Enum.drop(keep)
-      |> Enum.each(&Repo.delete/1)
-    end
+    Snapshot
+    |> where(project_id: ^project_id)
+    |> order_by(desc: :inserted_at)
+    |> offset(^keep)
+    |> Repo.all()
+    |> Enum.each(&Repo.delete/1)
   end
 end
