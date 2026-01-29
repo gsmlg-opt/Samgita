@@ -366,7 +366,6 @@ Events:
 
 - libcluster for multi-node clustering
 - S3-compatible storage for large artifacts
-- Prometheus/Grafana for metrics
 
 ## Milestones
 

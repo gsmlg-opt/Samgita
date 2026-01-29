@@ -27,9 +27,8 @@
 2. **Phase 4**: Edit PRD triggers re-planning
 3. **Phase 5**: ExDoc API documentation generation
 4. **Phase 5**: OpenAPI spec generation
-5. **Phase 5**: Grafana dashboard template
-6. **Testing**: Snapshot recovery test fix (phase mismatch)
-7. **Testing**: Increase coverage to >80%
+5. **Testing**: Snapshot recovery test fix (phase mismatch)
+6. **Testing**: Increase coverage to >80%
 
 ---
 
@@ -885,7 +884,6 @@ end
 
 **Validation**:
 - [x] Metrics exported to Prometheus format
-- [ ] Grafana dashboard template works (not yet created)
 
 ### 5.4 Documentation
 
