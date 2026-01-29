@@ -1,5 +1,5 @@
 defmodule Samgita.EventsTest do
-  use ExUnit.Case, async: true
+  use Samgita.DataCase, async: true
 
   alias Samgita.Events
 

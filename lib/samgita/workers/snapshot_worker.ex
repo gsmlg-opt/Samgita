@@ -83,4 +83,38 @@ defmodule Samgita.Workers.SnapshotWorker do
     |> Repo.all()
     |> Enum.each(&Repo.delete/1)
   end
+
+  @doc """
+  Returns the latest snapshot for a project, if any.
+  """
+  def latest_snapshot(project_id) do
+    Snapshot
+    |> where(project_id: ^project_id)
+    |> order_by([s], desc: s.inserted_at, desc: s.id)
+    |> limit(1)
+    |> Repo.one()
+  end
+
+  @doc """
+  Restores a project to the state captured in a snapshot.
+  Updates the project phase and returns the snapshot data for
+  agent/task reconstruction.
+  """
+  def restore_from_snapshot(project_id) do
+    case latest_snapshot(project_id) do
+      nil ->
+        {:error, :no_snapshot}
+
+      snapshot ->
+        with {:ok, project} <- Samgita.Projects.get_project(project_id),
+             phase = String.to_existing_atom(snapshot.phase),
+             {:ok, project} <- Samgita.Projects.update_project(project, %{phase: phase}) do
+          Logger.info(
+            "Restored project #{project_id} to phase #{snapshot.phase} from snapshot #{snapshot.id}"
+          )
+
+          {:ok, %{project: project, snapshot: snapshot}}
+        end
+    end
+  end
 end

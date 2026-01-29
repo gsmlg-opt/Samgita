@@ -19,10 +19,12 @@ defmodule Samgita.Events do
 
   def task_completed(task) do
     Phoenix.PubSub.broadcast(@pubsub, "project:#{task.project_id}", {:task_completed, task})
+    Samgita.Webhooks.dispatch("task.completed", %{task_id: task.id, project_id: task.project_id})
   end
 
   def task_failed(task) do
     Phoenix.PubSub.broadcast(@pubsub, "project:#{task.project_id}", {:task_failed, task})
+    Samgita.Webhooks.dispatch("task.failed", %{task_id: task.id, project_id: task.project_id})
   end
 
   def agent_spawned(project_id, agent_id, agent_type) do
@@ -51,6 +53,7 @@ defmodule Samgita.Events do
     )
 
     Phoenix.PubSub.broadcast(@pubsub, "projects", {:project_updated, project_id, phase})
+    Samgita.Webhooks.dispatch("project.phase_changed", %{project_id: project_id, phase: phase})
   end
 
   def project_updated(project) do

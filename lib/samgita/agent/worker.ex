@@ -102,7 +102,9 @@ defmodule Samgita.Agent.Worker do
     Logger.info("[#{data.id}] REASON: Planning approach for task #{inspect(data.current_task)}")
 
     context = build_context(data)
-    data = %{data | act_result: nil, learnings: context.learnings}
+    memory_context = fetch_memory_context(data.project_id)
+    learnings = context.learnings ++ memory_learnings(memory_context)
+    data = %{data | act_result: nil, learnings: learnings}
 
     {:next_state, :act, data}
   end
@@ -176,6 +178,8 @@ defmodule Samgita.Agent.Worker do
       end
 
     data = %{data | learnings: [learning | data.learnings]}
+
+    persist_learning(data.project_id, learning)
 
     {:next_state, :verify, data}
   end
@@ -278,4 +282,28 @@ defmodule Samgita.Agent.Worker do
   defp task_payload(%{payload: payload}), do: payload
   defp task_payload(%{"payload" => payload}), do: payload
   defp task_payload(_), do: %{}
+
+  defp fetch_memory_context(project_id) do
+    try do
+      Samgita.Project.Memory.get_context(project_id)
+    catch
+      :exit, _ -> %{episodic: [], semantic: [], procedural: []}
+    end
+  end
+
+  defp memory_learnings(%{procedural: procedural, semantic: semantic}) do
+    procedures = Enum.map(procedural, fn m -> "Procedure: #{m.content}" end)
+    semantics = Enum.map(semantic, fn m -> "Knowledge: #{m.content}" end)
+    Enum.take(procedures ++ semantics, 5)
+  end
+
+  defp memory_learnings(_), do: []
+
+  defp persist_learning(project_id, learning) do
+    try do
+      Samgita.Project.Memory.add_memory(project_id, :episodic, learning)
+    catch
+      :exit, _ -> :ok
+    end
+  end
 end

@@ -48,4 +48,44 @@ defmodule Samgita.Project.OrchestratorTest do
     result = :gen_statem.start_link(Orchestrator, [project_id: Ecto.UUID.generate()], [])
     assert {:error, :project_not_found} = result
   end
+
+  test "tracks task completion count", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    :gen_statem.cast(pid, {:task_completed, "task-1"})
+    :gen_statem.cast(pid, {:task_completed, "task-2"})
+    Process.sleep(50)
+
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.task_count == 2
+
+    :gen_statem.stop(pid)
+  end
+
+  test "perpetual phase does not advance further", %{project: project} do
+    {:ok, _} = Projects.update_project(project, %{phase: :perpetual})
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    assert {:perpetual, _} = Orchestrator.get_state(pid)
+
+    Orchestrator.advance_phase(pid)
+    Process.sleep(50)
+
+    assert {:perpetual, _} = Orchestrator.get_state(pid)
+
+    :gen_statem.stop(pid)
+  end
+
+  test "sets agent statuses on phase entry", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(100)
+
+    {_phase, data} = Orchestrator.get_state(pid)
+    # Bootstrap phase has one agent: prod-pm
+    assert Map.has_key?(data.agents, "prod-pm")
+
+    :gen_statem.stop(pid)
+  end
 end

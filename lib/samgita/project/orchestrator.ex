@@ -112,7 +112,13 @@ defmodule Samgita.Project.Orchestrator do
         "Phase #{phase}: spawning agents #{inspect(agent_types)} for project #{data.project_id}"
       )
 
-      data = %{data | agents: Map.new(agent_types, &{&1, :pending})}
+      agent_statuses =
+        Map.new(agent_types, fn agent_type ->
+          status = spawn_phase_agent(data.project_id, agent_type)
+          {agent_type, status}
+        end)
+
+      data = %{data | agents: agent_statuses}
       {:keep_state, data}
     end
 
@@ -181,6 +187,32 @@ defmodule Samgita.Project.Orchestrator do
 
   defp agents_for_phase(:perpetual),
     do: ["eng-qa", "eng-perf", "ops-monitor", "review-code"]
+
+  defp spawn_phase_agent(project_id, agent_type) do
+    agent_id = "#{project_id}-#{agent_type}"
+
+    case Horde.Registry.lookup(Samgita.AgentRegistry, agent_id) do
+      [{_pid, _}] ->
+        :running
+
+      [] ->
+        spec =
+          {Samgita.Agent.Worker, id: agent_id, agent_type: agent_type, project_id: project_id}
+
+        case Horde.DynamicSupervisor.start_child(Samgita.AgentSupervisor, spec) do
+          {:ok, _pid} ->
+            Samgita.Events.agent_spawned(project_id, agent_id, agent_type)
+            :running
+
+          {:error, {:already_started, _pid}} ->
+            :running
+
+          {:error, reason} ->
+            Logger.warning("Failed to spawn agent #{agent_id}: #{inspect(reason)}")
+            :failed
+        end
+    end
+  end
 
   defp broadcast_phase_change(data, phase) do
     Phoenix.PubSub.broadcast(

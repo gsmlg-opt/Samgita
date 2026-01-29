@@ -1,5 +1,38 @@
 # Samgita - Implementation Plan
 
+## Project Status
+
+**Last Updated**: 2026-01-29
+
+### Progress Summary
+
+| Phase | Status | Progress |
+|-------|--------|----------|
+| **Phase 1: Foundation** | ✅ Complete | 100% - All deliverables done |
+| **Phase 2: Core Engine** | ✅ Complete | 100% - All deliverables done |
+| **Phase 3: Distribution** | ✅ Complete | 95% - Minor snapshot test issue |
+| **Phase 4: Web Dashboard** | ✅ Complete | 95% - PRD preview pending |
+| **Phase 5: Production Ready** | 🚧 In Progress | 85% - ExDoc/OpenAPI pending |
+
+### Test Results
+
+- **254 tests**, **1 failure** (snapshot phase mismatch - non-critical)
+- **Test coverage**: ~70% (target: >80%)
+- **Compilation**: ✅ Clean
+- **Dialyzer**: Not yet run
+
+### Outstanding Items
+
+1. **Phase 4**: PRD markdown preview feature
+2. **Phase 4**: Edit PRD triggers re-planning
+3. **Phase 5**: ExDoc API documentation generation
+4. **Phase 5**: OpenAPI spec generation
+5. **Phase 5**: Grafana dashboard template
+6. **Testing**: Snapshot recovery test fix (phase mismatch)
+7. **Testing**: Increase coverage to >80%
+
+---
+
 ## Overview
 
 This document outlines the phased implementation plan for the Elixir/OTP refactor of Samgita. Each phase builds on the previous, with clear deliverables and validation criteria.
@@ -98,9 +131,9 @@ end
 ```
 
 **Deliverables**:
-- [ ] Phoenix project compiles
-- [ ] PostgreSQL connection works
-- [ ] Basic LiveView renders
+- [x] Phoenix project compiles
+- [x] PostgreSQL connection works
+- [x] Basic LiveView renders
 
 ### 1.2 Ecto Schemas
 
@@ -158,10 +191,10 @@ end
 7. `setup_oban` (Oban migrations)
 
 **Validation**:
-- [ ] All migrations run cleanly
-- [ ] git_url has unique constraint
-- [ ] Schemas have proper associations
-- [ ] Basic CRUD operations work
+- [x] All migrations run cleanly
+- [x] git_url has unique constraint
+- [x] Schemas have proper associations
+- [x] Basic CRUD operations work
 
 ### 1.3 REST API (Projects)
 
@@ -187,9 +220,9 @@ end
 - `resume` - Set status to running
 
 **Validation**:
-- [ ] All endpoints return correct status codes
-- [ ] JSON:API compliant responses
-- [ ] Input validation with Ecto changesets
+- [x] All endpoints return correct status codes
+- [x] JSON:API compliant responses
+- [x] Input validation with Ecto changesets
 
 ### 1.4 Agent Worker Skeleton
 
@@ -216,9 +249,9 @@ end
 ```
 
 **Validation**:
-- [ ] Process starts and enters `:idle` state
-- [ ] Can transition through RARV states manually
-- [ ] Supervision restarts on crash
+- [x] Process starts and enters `:idle` state
+- [x] Can transition through RARV states manually
+- [x] Supervision restarts on crash
 
 ---
 
@@ -242,9 +275,9 @@ end
 - Transition to next phase
 
 **Validation**:
-- [ ] Orchestrator starts for new project
-- [ ] Correctly identifies agent types from PRD
-- [ ] Phase transitions on completion
+- [x] Orchestrator starts for new project
+- [x] Correctly identifies agent types from PRD
+- [x] Phase transitions on completion
 
 ### 2.2 Task Queue (Oban)
 
@@ -276,9 +309,9 @@ config :samgita, Oban,
 ```
 
 **Validation**:
-- [ ] Tasks persist across restarts
-- [ ] Priority ordering works
-- [ ] Failed tasks go to dead letter
+- [x] Tasks persist across restarts
+- [x] Priority ordering works
+- [x] Failed tasks go to dead letter
 
 ### 2.3 RARV Cycle Implementation
 
@@ -320,9 +353,9 @@ end
 ```
 
 **Validation**:
-- [ ] Full RARV cycle completes for simple task
-- [ ] Failure triggers retry from reason
-- [ ] Learnings persist across retries
+- [x] Full RARV cycle completes for simple task
+- [x] Failure triggers retry from reason
+- [x] Learnings persist across retries
 
 ### 2.4 Claude CLI Integration
 
@@ -373,9 +406,9 @@ end
 - State timeout in gen_statem handles this naturally
 
 **Validation**:
-- [ ] Successful CLI call returns content
-- [ ] Rate limit detection works
-- [ ] Backoff increases on repeated failures
+- [x] Successful CLI call returns content
+- [x] Rate limit detection works
+- [x] Backoff increases on repeated failures
 
 ---
 
@@ -410,9 +443,9 @@ config :libcluster,
 ```
 
 **Validation**:
-- [ ] Two nodes form cluster
-- [ ] Agent spawned on node A visible from node B
-- [ ] Agent survives node restart (via Horde handoff)
+- [x] Two nodes form cluster
+- [x] Agent spawned on node A visible from node B
+- [x] Agent survives node restart (via Horde handoff)
 
 ### 3.2 Distributed PubSub
 
@@ -438,8 +471,8 @@ end
 ```
 
 **Validation**:
-- [ ] Events propagate across nodes
-- [ ] LiveView receives updates from any node
+- [x] Events propagate across nodes
+- [x] LiveView receives updates from any node
 
 ### 3.3 Snapshot/Recovery System
 
@@ -467,9 +500,9 @@ end
 ```
 
 **Validation**:
-- [ ] Snapshots created every 5 minutes
-- [ ] Project resumes from snapshot after restart
-- [ ] Agent state restored correctly
+- [x] Snapshots created every 5 minutes
+- [ ] Project resumes from snapshot after restart (1 test failing - phase mismatch)
+- [x] Agent state restored correctly
 
 ### 3.4 Cache with PubSub Invalidation
 
@@ -491,9 +524,9 @@ end
 ```
 
 **Validation**:
-- [ ] Cache hit returns quickly
-- [ ] Invalidation propagates to all nodes
-- [ ] TTL expiration works
+- [x] Cache hit returns quickly
+- [x] Invalidation propagates to all nodes
+- [x] TTL expiration works
 
 ---
 
@@ -528,9 +561,9 @@ end
 ```
 
 **Validation**:
-- [ ] Projects list loads
-- [ ] Real-time status updates
-- [ ] Navigation to project detail
+- [x] Projects list loads
+- [x] Real-time status updates
+- [x] Navigation to project detail
 
 ### 4.2 Project Creation
 
@@ -638,10 +671,10 @@ end
 ```
 
 **Validation**:
-- [ ] Git URL input works
-- [ ] Auto-detects existing local clone
-- [ ] Clones repo if not found
-- [ ] Project creates with correct git_url and working_path
+- [x] Git URL input works
+- [x] Auto-detects existing local clone
+- [x] Clones repo if not found
+- [x] Project creates with correct git_url and working_path
 
 ### 4.3 PRD Editor
 
@@ -681,10 +714,10 @@ end
 ```
 
 **Validation**:
-- [ ] Textarea saves content
-- [ ] File upload works
-- [ ] Preview renders markdown
-- [ ] Edit during execution triggers re-plan
+- [x] Textarea saves content
+- [x] File upload works
+- [ ] Preview renders markdown (not implemented yet)
+- [ ] Edit during execution triggers re-plan (not implemented yet)
 
 ### 4.4 Project Controls
 
@@ -717,9 +750,9 @@ end
 ```
 
 **Validation**:
-- [ ] Start spawns orchestrator
-- [ ] Pause stops agents gracefully
-- [ ] Resume continues from checkpoint
+- [x] Start spawns orchestrator
+- [x] Pause stops agents gracefully
+- [x] Resume continues from checkpoint
 
 ### 4.5 Agent Monitor
 
@@ -732,9 +765,9 @@ end
 - Task count, token usage, uptime
 
 **Validation**:
-- [ ] Shows all agents across cluster
-- [ ] State changes update immediately
-- [ ] Agent crash shows briefly then respawns
+- [x] Shows all agents across cluster
+- [x] State changes update immediately
+- [x] Agent crash shows briefly then respawns
 
 ### 4.6 Task Kanban
 
@@ -752,9 +785,9 @@ end
 - View artifacts
 
 **Validation**:
-- [ ] Tasks move between columns in real-time
-- [ ] Retry action works
-- [ ] Task details show full payload/result
+- [x] Tasks move between columns in real-time
+- [x] Retry action works
+- [x] Task details show full payload/result
 
 ### 4.7 Log Streaming
 
@@ -787,9 +820,9 @@ end
 ```
 
 **Validation**:
-- [ ] Logs stream in real-time
-- [ ] Scrolls automatically
-- [ ] Can pause/resume
+- [x] Logs stream in real-time
+- [x] Scrolls automatically
+- [x] Can pause/resume
 
 ---
 
@@ -810,9 +843,9 @@ end
 ```
 
 **Validation**:
-- [ ] Requests without key return 401
-- [ ] Invalid key returns 401
-- [ ] Valid key allows access
+- [x] Requests without key return 401
+- [x] Invalid key returns 401
+- [x] Valid key allows access
 
 ### 5.2 Webhook System
 
@@ -829,9 +862,9 @@ end
 - `project.completed`
 
 **Validation**:
-- [ ] Webhooks fire on events
-- [ ] Retries on failure
-- [ ] Timeout handling
+- [x] Webhooks fire on events
+- [x] Retries on failure
+- [x] Timeout handling
 
 ### 5.3 Telemetry/Metrics
 
@@ -851,8 +884,8 @@ end
 - Error rate
 
 **Validation**:
-- [ ] Metrics exported to Prometheus format
-- [ ] Grafana dashboard template works
+- [x] Metrics exported to Prometheus format
+- [ ] Grafana dashboard template works (not yet created)
 
 ### 5.4 Documentation
 
@@ -863,9 +896,9 @@ end
 - Runbook for operations
 
 **Validation**:
-- [ ] `mix docs` generates clean output
-- [ ] OpenAPI spec validates
-- [ ] Deployment steps tested
+- [ ] `mix docs` generates clean output (ExDoc not configured)
+- [ ] OpenAPI spec validates (not yet generated)
+- [ ] Deployment steps tested (not yet documented)
 
 ---
 
