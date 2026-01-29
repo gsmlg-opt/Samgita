@@ -1,0 +1,23 @@
+# Bun configuration file
+# https://bun.sh/docs/runtime/bunfig
+
+[install]
+# Install dependencies from the local registry
+registry = "https://registry.npmjs.org"
+
+[install.cache]
+# Enable caching
+dir = ".bun-cache"
+
+[build]
+# Build configuration
+target = "browser"
+format = "esm"
+splitting = true
+sourcemap = "external"
+minify = false
+
+[build.naming]
+entry = "[dir]/[name]-[hash].[ext]"
+chunk = "[name]-[hash].[ext]"
+asset = "[name]-[hash].[ext]"

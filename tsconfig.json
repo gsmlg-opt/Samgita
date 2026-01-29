@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+      "phoenix": ["./deps/phoenix"],
+      "phoenix_html": ["./deps/phoenix_html"],
+      "phoenix_live_view": ["./deps/phoenix_live_view"]
+    },
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["assets/js/**/*"],
+  "exclude": ["node_modules"]
+}
