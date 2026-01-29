@@ -16,19 +16,19 @@ defmodule Samgita.Git do
       Path.expand("~/#{repo_name}")
     ]
 
-    Enum.find_value(search_paths, :not_found, fn path ->
-      if File.dir?(Path.join(path, ".git")) do
-        case get_remote_url(path) do
-          {:ok, remote} ->
-            if normalize_url(remote) == normalize_url(git_url) do
-              {:ok, path}
-            end
+    search_paths
+    |> Enum.filter(&File.dir?(Path.join(&1, ".git")))
+    |> Enum.find_value(:not_found, &match_remote(&1, git_url))
+  end
 
-          _ ->
-            nil
-        end
-      end
-    end)
+  defp match_remote(path, git_url) do
+    case get_remote_url(path) do
+      {:ok, remote} ->
+        if normalize_url(remote) == normalize_url(git_url), do: {:ok, path}
+
+      _ ->
+        nil
+    end
   end
 
   @doc "Clone a repo to default location"

@@ -1,4 +1,6 @@
 defmodule Samgita.Domain.AgentRun do
+  @moduledoc "Ecto schema for agent run records tracking RARV cycle execution."
+
   use Ecto.Schema
   import Ecto.Changeset
 

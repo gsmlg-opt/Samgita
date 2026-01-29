@@ -1,4 +1,6 @@
 defmodule Samgita.Domain.Task do
+  @moduledoc "Ecto schema for tasks dispatched to agents with priority and status tracking."
+
   use Ecto.Schema
   import Ecto.Changeset
 

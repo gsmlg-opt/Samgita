@@ -1,4 +1,6 @@
 defmodule Samgita.Domain.Webhook do
+  @moduledoc "Ecto schema for webhook subscriptions with URL and event validation."
+
   use Ecto.Schema
   import Ecto.Changeset
 

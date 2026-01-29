@@ -2,12 +2,13 @@ defmodule Samgita.Project.OrchestratorTest do
   # Cannot be async due to shared sandbox mode needed for gen_statem init
   use Samgita.DataCase, async: false
 
+  alias Ecto.Adapters.SQL.Sandbox
   alias Samgita.Project.Orchestrator
   alias Samgita.Projects
 
   setup do
     # Allow spawned processes to access the sandbox
-    Ecto.Adapters.SQL.Sandbox.mode(Samgita.Repo, {:shared, self()})
+    Sandbox.mode(Samgita.Repo, {:shared, self()})
 
     {:ok, project} =
       Projects.create_project(%{

@@ -1,4 +1,6 @@
 defmodule Samgita.Domain.Snapshot do
+  @moduledoc "Ecto schema for periodic state snapshots used in project recovery."
+
   use Ecto.Schema
   import Ecto.Changeset
 

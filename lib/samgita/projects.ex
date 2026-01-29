@@ -4,8 +4,10 @@ defmodule Samgita.Projects do
   """
 
   import Ecto.Query
-  alias Samgita.Repo
   alias Samgita.Domain.Project
+  alias Samgita.Domain.Task, as: TaskSchema
+  alias Samgita.Repo
+  alias Samgita.Workers.AgentTaskWorker
 
   def list_projects do
     Project
@@ -69,17 +71,13 @@ defmodule Samgita.Projects do
   end
 
   def create_task(project_id, attrs) do
-    alias Samgita.Domain.Task
-
-    %Task{}
-    |> Task.changeset(Map.put(attrs, :project_id, project_id))
+    %TaskSchema{}
+    |> TaskSchema.changeset(Map.put(attrs, :project_id, project_id))
     |> Repo.insert()
   end
 
   def list_tasks(project_id) do
-    alias Samgita.Domain.Task
-
-    Task
+    TaskSchema
     |> where(project_id: ^project_id)
     |> order_by(asc: :priority, asc: :inserted_at)
     |> Repo.all()
@@ -93,7 +91,7 @@ defmodule Samgita.Projects do
              queued_at: DateTime.utc_now()
            }) do
       Oban.insert(
-        Samgita.Workers.AgentTaskWorker.new(%{
+        AgentTaskWorker.new(%{
           task_id: task.id,
           project_id: project_id,
           agent_type: agent_type

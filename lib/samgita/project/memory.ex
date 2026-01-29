@@ -6,8 +6,8 @@ defmodule Samgita.Project.Memory do
 
   use GenServer
 
-  alias Samgita.Repo
   alias Samgita.Domain.Memory, as: MemorySchema
+  alias Samgita.Repo
 
   defstruct [:project_id, episodic: [], semantic: [], procedural: []]
 

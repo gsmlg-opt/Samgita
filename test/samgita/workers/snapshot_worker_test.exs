@@ -1,14 +1,16 @@
 defmodule Samgita.Workers.SnapshotWorkerTest do
   use Samgita.DataCase, async: false
 
-  alias Samgita.Workers.SnapshotWorker
-  alias Samgita.Projects
+  alias Ecto.Adapters.SQL.Sandbox
   alias Samgita.Domain.Snapshot
+  alias Samgita.Projects
+  alias Samgita.Repo
+  alias Samgita.Workers.SnapshotWorker
 
   import Ecto.Query
 
   setup do
-    Ecto.Adapters.SQL.Sandbox.mode(Samgita.Repo, {:shared, self()})
+    Sandbox.mode(Samgita.Repo, {:shared, self()})
 
     {:ok, project} =
       Projects.create_project(%{
@@ -28,7 +30,7 @@ defmodule Samgita.Workers.SnapshotWorkerTest do
       |> where(project_id: ^project.id)
       |> Repo.all()
 
-    assert length(snapshots) == 1
+    assert [_] = snapshots
     assert hd(snapshots).phase == "bootstrap"
   end
 
@@ -47,6 +49,6 @@ defmodule Samgita.Workers.SnapshotWorkerTest do
       |> where(project_id: ^project.id)
       |> Repo.all()
 
-    assert length(snapshots) == 0
+    assert snapshots == []
   end
 end

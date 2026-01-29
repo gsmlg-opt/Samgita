@@ -7,8 +7,10 @@ defmodule Samgita.Workers.SnapshotWorker do
 
   require Logger
 
-  alias Samgita.Repo
+  alias Samgita.Domain.AgentRun
   alias Samgita.Domain.{Project, Snapshot}
+  alias Samgita.Domain.Task, as: TaskSchema
+  alias Samgita.Repo
 
   import Ecto.Query
 
@@ -46,8 +48,6 @@ defmodule Samgita.Workers.SnapshotWorker do
   end
 
   defp get_agent_states(project_id) do
-    alias Samgita.Domain.AgentRun
-
     AgentRun
     |> where(project_id: ^project_id)
     |> where([a], a.status != :failed)
@@ -64,9 +64,7 @@ defmodule Samgita.Workers.SnapshotWorker do
   end
 
   defp get_task_queue_state(project_id) do
-    alias Samgita.Domain.Task
-
-    tasks = Task |> where(project_id: ^project_id) |> Repo.all()
+    tasks = TaskSchema |> where(project_id: ^project_id) |> Repo.all()
 
     %{
       pending: Enum.count(tasks, &(&1.status == :pending)),

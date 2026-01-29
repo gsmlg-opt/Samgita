@@ -1,4 +1,6 @@
 defmodule Samgita.Domain.Project do
+  @moduledoc "Ecto schema for projects with phase tracking and status management."
+
   use Ecto.Schema
   import Ecto.Changeset
 

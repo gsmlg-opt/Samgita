@@ -4,8 +4,9 @@ defmodule Samgita.Webhooks do
   """
 
   import Ecto.Query
-  alias Samgita.Repo
   alias Samgita.Domain.Webhook
+  alias Samgita.Repo
+  alias Samgita.Workers.WebhookWorker
 
   def list_webhooks do
     Webhook |> order_by(desc: :inserted_at) |> Repo.all()
@@ -38,7 +39,7 @@ defmodule Samgita.Webhooks do
     |> Enum.filter(&(event in &1.events))
     |> Enum.each(fn webhook ->
       Oban.insert(
-        Samgita.Workers.WebhookWorker.new(%{
+        WebhookWorker.new(%{
           webhook_id: webhook.id,
           event: event,
           payload: payload

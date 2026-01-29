@@ -11,8 +11,8 @@ defmodule Samgita.Workers.AgentTaskWorker do
 
   require Logger
 
-  alias Samgita.Repo
   alias Samgita.Domain.Task, as: TaskSchema
+  alias Samgita.Repo
 
   @impl true
   def perform(%Oban.Job{args: args}) do

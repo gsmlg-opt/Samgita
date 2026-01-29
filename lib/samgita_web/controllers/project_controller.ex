@@ -1,8 +1,8 @@
 defmodule SamgitaWeb.ProjectController do
   use SamgitaWeb, :controller
 
-  alias Samgita.Projects
   alias Samgita.Domain.Project
+  alias Samgita.Projects
 
   action_fallback SamgitaWeb.FallbackController
 

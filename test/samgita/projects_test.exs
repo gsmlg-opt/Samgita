@@ -1,8 +1,8 @@
 defmodule Samgita.ProjectsTest do
   use Samgita.DataCase, async: true
 
-  alias Samgita.Projects
   alias Samgita.Domain.Project
+  alias Samgita.Projects
 
   @valid_attrs %{name: "Test Project", git_url: "git@github.com:org/test.git"}
 

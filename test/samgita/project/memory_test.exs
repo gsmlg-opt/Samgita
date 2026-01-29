@@ -2,11 +2,12 @@ defmodule Samgita.Project.MemoryTest do
   # Cannot be async due to shared sandbox mode needed for GenServer init
   use Samgita.DataCase, async: false
 
+  alias Ecto.Adapters.SQL.Sandbox
   alias Samgita.Project.Memory
   alias Samgita.Projects
 
   setup do
-    Ecto.Adapters.SQL.Sandbox.mode(Samgita.Repo, {:shared, self()})
+    Sandbox.mode(Samgita.Repo, {:shared, self()})
 
     {:ok, project} =
       Projects.create_project(%{

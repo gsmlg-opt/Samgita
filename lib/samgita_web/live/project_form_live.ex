@@ -1,9 +1,9 @@
 defmodule SamgitaWeb.ProjectFormLive do
   use SamgitaWeb, :live_view
 
-  alias Samgita.Projects
   alias Samgita.Domain.Project
   alias Samgita.Git
+  alias Samgita.Projects
 
   @impl true
   def mount(_params, _session, socket) do

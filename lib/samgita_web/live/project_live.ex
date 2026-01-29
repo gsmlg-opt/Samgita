@@ -1,6 +1,7 @@
 defmodule SamgitaWeb.ProjectLive do
   use SamgitaWeb, :live_view
 
+  alias Samgita.Domain.Project
   alias Samgita.Projects
 
   @impl true
@@ -157,7 +158,7 @@ defmodule SamgitaWeb.ProjectLive do
         <h3 class="text-sm font-medium text-zinc-500 mb-3">Phase Progress</h3>
         <div class="flex gap-1">
           <div
-            :for={phase <- Samgita.Domain.Project.phases()}
+            :for={phase <- Project.phases()}
             class={"h-2 flex-1 rounded #{phase_color(phase, @project.phase)}"}
           >
           </div>
@@ -211,7 +212,7 @@ defmodule SamgitaWeb.ProjectLive do
   defp status_text_color(_), do: "text-zinc-900"
 
   defp phase_color(phase, current_phase) do
-    phases = Samgita.Domain.Project.phases()
+    phases = Project.phases()
     phase_idx = Enum.find_index(phases, &(&1 == phase))
     current_idx = Enum.find_index(phases, &(&1 == current_phase))
 

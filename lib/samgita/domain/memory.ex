@@ -1,4 +1,5 @@
 defmodule Samgita.Domain.Memory do
+  @moduledoc "Ecto schema for episodic, semantic, and procedural memory entries."
   use Ecto.Schema
   import Ecto.Changeset
 

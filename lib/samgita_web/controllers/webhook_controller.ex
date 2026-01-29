@@ -1,8 +1,8 @@
 defmodule SamgitaWeb.WebhookController do
   use SamgitaWeb, :controller
 
-  alias Samgita.Webhooks
   alias Samgita.Domain.Webhook
+  alias Samgita.Webhooks
 
   action_fallback SamgitaWeb.FallbackController
 
