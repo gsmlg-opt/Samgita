@@ -13,11 +13,13 @@ erl_crash.dump
 # Generated files
 app_tree.dot
 
-# Phoenix/Node
+# Phoenix/Node/Bun
 /priv/static/
 /tmp/
 npm-debug.log
-/assets/node_modules/
+/node_modules/
+.bun-cache/
+bun.lockb
 
 # Database
 *.db
