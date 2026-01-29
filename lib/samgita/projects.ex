@@ -55,4 +55,52 @@ defmodule Samgita.Projects do
   def update_prd(%Project{} = project, prd_content) do
     update_project(project, %{prd_content: prd_content})
   end
+
+  def start_project(id) do
+    with {:ok, project} <- get_project(id),
+         {:ok, project} <- update_project(project, %{status: :running}) do
+      Horde.DynamicSupervisor.start_child(
+        Samgita.AgentSupervisor,
+        {Samgita.Project.Supervisor, project_id: project.id}
+      )
+
+      {:ok, project}
+    end
+  end
+
+  def create_task(project_id, attrs) do
+    alias Samgita.Domain.Task
+
+    %Task{}
+    |> Task.changeset(Map.put(attrs, :project_id, project_id))
+    |> Repo.insert()
+  end
+
+  def list_tasks(project_id) do
+    alias Samgita.Domain.Task
+
+    Task
+    |> where(project_id: ^project_id)
+    |> order_by(asc: :priority, asc: :inserted_at)
+    |> Repo.all()
+  end
+
+  def enqueue_task(project_id, task_type, agent_type, payload \\ %{}) do
+    with {:ok, task} <-
+           create_task(project_id, %{
+             type: task_type,
+             payload: payload,
+             queued_at: DateTime.utc_now()
+           }) do
+      Oban.insert(
+        Samgita.Workers.AgentTaskWorker.new(%{
+          task_id: task.id,
+          project_id: project_id,
+          agent_type: agent_type
+        })
+      )
+
+      {:ok, task}
+    end
+  end
 end

@@ -23,7 +23,7 @@ defmodule Samgita.Agent.Claude do
   end
 
   defp build_args(prompt, opts) do
-    base = ["--print", "--no-input"]
+    base = ["--print"]
     model = if m = opts[:model], do: ["--model", m], else: []
     base ++ model ++ [prompt]
   end

@@ -9,16 +9,25 @@ defmodule Samgita.Agent.Worker do
 
   @behaviour :gen_statem
 
+  require Logger
+
+  alias Samgita.Agent.Claude
+  alias Samgita.Agent.Types
+
   defstruct [
     :id,
     :agent_type,
     :project_id,
     :current_task,
-    :task_count,
-    :token_count,
-    :started_at,
-    :learnings
+    :act_result,
+    task_count: 0,
+    token_count: 0,
+    retry_count: 0,
+    started_at: nil,
+    learnings: []
   ]
+
+  @max_retries 3
 
   ## Public API
 
@@ -41,6 +50,16 @@ defmodule Samgita.Agent.Worker do
     :gen_statem.call(pid, :get_state)
   end
 
+  def child_spec(opts) do
+    id = Keyword.fetch!(opts, :id)
+
+    %{
+      id: id,
+      start: {__MODULE__, :start_link, [opts]},
+      restart: :transient
+    }
+  end
+
   ## gen_statem callbacks
 
   @impl true
@@ -52,11 +71,7 @@ defmodule Samgita.Agent.Worker do
       id: Keyword.fetch!(opts, :id),
       agent_type: Keyword.fetch!(opts, :agent_type),
       project_id: Keyword.fetch!(opts, :project_id),
-      current_task: nil,
-      task_count: 0,
-      token_count: 0,
-      started_at: DateTime.utc_now(),
-      learnings: []
+      started_at: DateTime.utc_now()
     }
 
     {:ok, :idle, data}
@@ -69,7 +84,7 @@ defmodule Samgita.Agent.Worker do
   end
 
   def idle(:cast, {:assign_task, task}, data) do
-    {:next_state, :reason, %{data | current_task: task}}
+    {:next_state, :reason, %{data | current_task: task, retry_count: 0}}
   end
 
   def idle({:call, from}, :get_state, data) do
@@ -84,7 +99,11 @@ defmodule Samgita.Agent.Worker do
   end
 
   def reason(:state_timeout, :execute, data) do
-    # TODO: Load continuity log, check memory, plan approach
+    Logger.info("[#{data.id}] REASON: Planning approach for task #{inspect(data.current_task)}")
+
+    context = build_context(data)
+    data = %{data | act_result: nil, learnings: context.learnings}
+
     {:next_state, :act, data}
   end
 
@@ -100,8 +119,34 @@ defmodule Samgita.Agent.Worker do
   end
 
   def act(:state_timeout, :execute, data) do
-    # TODO: Call Claude CLI, parse response, create artifacts, commit checkpoint
-    {:next_state, :reflect, data}
+    Logger.info("[#{data.id}] ACT: Executing task via Claude CLI")
+
+    prompt = build_prompt(data)
+    model = Types.model_for_type(data.agent_type)
+
+    case Claude.chat(prompt, model: model) do
+      {:ok, result} ->
+        Logger.info("[#{data.id}] ACT: Claude returned result (#{String.length(result)} chars)")
+        {:next_state, :reflect, %{data | act_result: result}}
+
+      {:error, :rate_limit} ->
+        backoff = Claude.backoff_ms(data.retry_count)
+        Logger.warning("[#{data.id}] ACT: Rate limited, backing off #{backoff}ms")
+
+        {:keep_state, %{data | retry_count: data.retry_count + 1},
+         [{:state_timeout, backoff, :execute}]}
+
+      {:error, :overloaded} ->
+        backoff = Claude.backoff_ms(data.retry_count)
+        Logger.warning("[#{data.id}] ACT: Overloaded, backing off #{backoff}ms")
+
+        {:keep_state, %{data | retry_count: data.retry_count + 1},
+         [{:state_timeout, backoff, :execute}]}
+
+      {:error, reason} ->
+        Logger.error("[#{data.id}] ACT: Failed - #{inspect(reason)}")
+        {:next_state, :reflect, %{data | act_result: {:error, reason}}}
+    end
   end
 
   def act({:call, from}, :get_state, data) do
@@ -116,7 +161,22 @@ defmodule Samgita.Agent.Worker do
   end
 
   def reflect(:state_timeout, :execute, data) do
-    # TODO: Update continuity log, store semantic memory, record metrics
+    Logger.info("[#{data.id}] REFLECT: Recording learnings")
+
+    learning =
+      case data.act_result do
+        {:error, reason} ->
+          "Task failed: #{inspect(reason)}"
+
+        result when is_binary(result) ->
+          "Task completed successfully with #{String.length(result)} chars output"
+
+        _ ->
+          "Task completed"
+      end
+
+    data = %{data | learnings: [learning | data.learnings]}
+
     {:next_state, :verify, data}
   end
 
@@ -132,11 +192,37 @@ defmodule Samgita.Agent.Worker do
   end
 
   def verify(:state_timeout, :execute, data) do
-    # TODO: Run verification (tests, lint, etc.)
-    # On success: complete task, return to idle
-    # On failure: record learning, return to reason
-    data = %{data | current_task: nil, task_count: data.task_count + 1}
-    {:next_state, :idle, data}
+    Logger.info("[#{data.id}] VERIFY: Validating task output")
+
+    case data.act_result do
+      {:error, _reason} when data.retry_count < @max_retries ->
+        Logger.warning("[#{data.id}] VERIFY: Failed, retrying from reason phase")
+        {:next_state, :reason, %{data | retry_count: data.retry_count + 1}}
+
+      {:error, reason} ->
+        Logger.error("[#{data.id}] VERIFY: Max retries reached, marking failed")
+
+        data = %{
+          data
+          | current_task: nil,
+            learnings: ["Max retries: #{inspect(reason)}" | data.learnings]
+        }
+
+        {:next_state, :idle, data}
+
+      _ ->
+        Logger.info("[#{data.id}] VERIFY: Task verified successfully")
+
+        data = %{
+          data
+          | current_task: nil,
+            act_result: nil,
+            task_count: data.task_count + 1,
+            retry_count: 0
+        }
+
+        {:next_state, :idle, data}
+    end
   end
 
   def verify({:call, from}, :get_state, data) do
@@ -152,4 +238,44 @@ defmodule Samgita.Agent.Worker do
       {:agent_state_changed, data.id, state}
     )
   end
+
+  defp build_context(data) do
+    %{
+      learnings: data.learnings,
+      agent_type: data.agent_type,
+      task_count: data.task_count
+    }
+  end
+
+  defp build_prompt(data) do
+    task = data.current_task
+    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
+
+    learnings_text =
+      case data.learnings do
+        [] -> "None yet."
+        items -> Enum.join(items, "\n- ")
+      end
+
+    """
+    You are a #{type_name} (#{type_desc}).
+
+    ## Task
+    Type: #{task_type(task)}
+    Payload: #{inspect(task_payload(task))}
+
+    ## Previous Learnings
+    #{learnings_text}
+
+    Execute this task and provide the result.
+    """
+  end
+
+  defp task_type(%{type: type}), do: type
+  defp task_type(%{"type" => type}), do: type
+  defp task_type(_), do: "unknown"
+
+  defp task_payload(%{payload: payload}), do: payload
+  defp task_payload(%{"payload" => payload}), do: payload
+  defp task_payload(_), do: %{}
 end

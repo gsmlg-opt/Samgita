@@ -22,6 +22,9 @@ config :samgita, SamgitaWeb.Endpoint,
 # Disable Oban queues during test
 config :samgita, Oban, testing: :inline
 
+# Use echo as a mock for Claude CLI in tests
+config :samgita, :claude_command, "echo"
+
 # Print only warnings and errors during test
 config :logger, level: :warning
 
