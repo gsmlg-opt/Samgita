@@ -1,10 +1,18 @@
 # Samgita (संगीत)
 
-[![GitHub](https://img.shields.io/badge/GitHub-gsmlg--dev%2FSamgita-blue?logo=github)](https://github.com/gsmlg-dev/Samgita)
-[![Elixir](https://img.shields.io/badge/Elixir-1.17%2B-purple?logo=elixir)](https://elixir-lang.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+<p align="center">
+  <img src="assets/static/images/icon.png" alt="Samgita Icon" width="200" />
+</p>
 
+<p align="center">
+  <a href="https://github.com/gsmlg-dev/Samgita"><img src="https://img.shields.io/badge/GitHub-gsmlg--dev%2FSamgita-blue?logo=github" alt="GitHub" /></a>
+  <a href="https://elixir-lang.org/"><img src="https://img.shields.io/badge/Elixir-1.17%2B-purple?logo=elixir" alt="Elixir" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" /></a>
+</p>
+
+<p align="center">
 Distributed multi-agent orchestration system for autonomous software development, built on Elixir/OTP.
+</p>
 
 > **संगीत** (Saṅgīta) - Sanskrit for "music" or "symphony". Just as a symphony coordinates many instruments into harmony, Samgita orchestrates AI agents into cohesive software development.
 
