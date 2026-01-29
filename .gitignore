@@ -9,3 +9,13 @@ erl_crash.dump
 /config/*.secret.exs
 .elixir_ls/
 /loki-mode
+
+# Phoenix/Node
+/priv/static/assets/
+/tmp/
+npm-debug.log
+/assets/node_modules/
+
+# Database
+*.db
+*.sqlite3
