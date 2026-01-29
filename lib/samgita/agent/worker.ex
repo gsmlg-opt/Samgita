@@ -13,6 +13,7 @@ defmodule Samgita.Agent.Worker do
 
   alias Samgita.Agent.Claude
   alias Samgita.Agent.Types
+  alias Samgita.Project.Memory
 
   defstruct [
     :id,
@@ -284,11 +285,9 @@ defmodule Samgita.Agent.Worker do
   defp task_payload(_), do: %{}
 
   defp fetch_memory_context(project_id) do
-    try do
-      Samgita.Project.Memory.get_context(project_id)
-    catch
-      :exit, _ -> %{episodic: [], semantic: [], procedural: []}
-    end
+    Memory.get_context(project_id)
+  catch
+    :exit, _ -> %{episodic: [], semantic: [], procedural: []}
   end
 
   defp memory_learnings(%{procedural: procedural, semantic: semantic}) do
@@ -300,10 +299,8 @@ defmodule Samgita.Agent.Worker do
   defp memory_learnings(_), do: []
 
   defp persist_learning(project_id, learning) do
-    try do
-      Samgita.Project.Memory.add_memory(project_id, :episodic, learning)
-    catch
-      :exit, _ -> :ok
-    end
+    Memory.add_memory(project_id, :episodic, learning)
+  catch
+    :exit, _ -> :ok
   end
 end
