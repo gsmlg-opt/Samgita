@@ -122,7 +122,7 @@ mix deps.get
 mix ecto.setup
 
 # Development
-mix phx.server         # Start server (default port: 3101)
+mix phx.server         # Start server (default port: 3110)
 iex -S mix phx.server  # Start with IEx
 
 # Testing

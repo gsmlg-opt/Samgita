@@ -44,7 +44,7 @@ defmodule Samgita.Domain.WebhookTest do
     test "accepts http URL" do
       changeset =
         Webhook.changeset(%Webhook{}, %{
-          url: "http://localhost:4000/hook",
+          url: "http://localhost:3110/hook",
           events: ["task.completed"]
         })
 

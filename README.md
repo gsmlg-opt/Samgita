@@ -167,7 +167,7 @@ mix ecto.setup
 mix phx.server
 ```
 
-Open http://localhost:3101
+Open http://localhost:3110
 
 ### Configuration
 
@@ -179,9 +179,9 @@ config :samgita,
   max_concurrent_agents: 100,
   task_timeout_ms: 300_000
 
-# HTTP port for web dashboard (default: 3101)
+# HTTP port for web dashboard (default: 3110)
 config :samgita, SamgitaWeb.Endpoint,
-  http: [port: String.to_integer(System.get_env("PORT") || "3101")]
+  http: [port: String.to_integer(System.get_env("PORT") || "3110")]
 ```
 
 ### Usage
@@ -300,7 +300,7 @@ mix dialyzer
 iex -S mix phx.server
 
 # Open dashboard
-open http://localhost:3101
+open http://localhost:3110
 ```
 
 ### Production
