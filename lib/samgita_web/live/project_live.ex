@@ -1,0 +1,238 @@
+defmodule SamgitaWeb.ProjectLive do
+  use SamgitaWeb, :live_view
+
+  alias Samgita.Projects
+
+  @impl true
+  def mount(%{"id" => id}, _session, socket) do
+    case Projects.get_project(id) do
+      {:ok, project} ->
+        if connected?(socket) do
+          Samgita.Events.subscribe_project(project.id)
+        end
+
+        tasks = Projects.list_tasks(project.id)
+
+        {:ok,
+         assign(socket,
+           page_title: project.name,
+           project: project,
+           tasks: tasks,
+           agents: []
+         )}
+
+      {:error, :not_found} ->
+        {:ok,
+         socket
+         |> put_flash(:error, "Project not found")
+         |> push_navigate(to: ~p"/")}
+    end
+  end
+
+  @impl true
+  def handle_event("start", _, socket) do
+    case Projects.start_project(socket.assigns.project.id) do
+      {:ok, project} ->
+        {:noreply, assign(socket, project: project)}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, "Failed to start project")}
+    end
+  end
+
+  @impl true
+  def handle_event("pause", _, socket) do
+    case Projects.pause_project(socket.assigns.project.id) do
+      {:ok, project} ->
+        {:noreply, assign(socket, project: project)}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, "Failed to pause project")}
+    end
+  end
+
+  @impl true
+  def handle_event("resume", _, socket) do
+    case Projects.resume_project(socket.assigns.project.id) do
+      {:ok, project} ->
+        {:noreply, assign(socket, project: project)}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, "Failed to resume project")}
+    end
+  end
+
+  @impl true
+  def handle_info({:phase_changed, _project_id, phase}, socket) do
+    project = %{socket.assigns.project | phase: phase}
+    {:noreply, assign(socket, project: project)}
+  end
+
+  @impl true
+  def handle_info({:agent_state_changed, agent_id, state}, socket) do
+    agents =
+      socket.assigns.agents
+      |> Enum.reject(&(&1.id == agent_id))
+      |> Kernel.++([%{id: agent_id, state: state}])
+
+    {:noreply, assign(socket, agents: agents)}
+  end
+
+  @impl true
+  def handle_info({:task_completed, _task}, socket) do
+    tasks = Projects.list_tasks(socket.assigns.project.id)
+    {:noreply, assign(socket, tasks: tasks)}
+  end
+
+  @impl true
+  def handle_info({:agent_spawned, agent_id, agent_type}, socket) do
+    agents = [%{id: agent_id, type: agent_type, state: :idle} | socket.assigns.agents]
+    {:noreply, assign(socket, agents: agents)}
+  end
+
+  @impl true
+  def handle_info(_, socket), do: {:noreply, socket}
+
+  @impl true
+  def render(assigns) do
+    ~H"""
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <.link navigate={~p"/"} class="text-sm text-zinc-500 hover:text-zinc-700">
+            &larr; Dashboard
+          </.link>
+          <h1 class="text-3xl font-bold text-zinc-900 mt-2">{@project.name}</h1>
+          <p class="text-sm text-zinc-500">{@project.git_url}</p>
+        </div>
+        <div class="flex gap-2">
+          <button
+            :if={@project.status == :pending}
+            phx-click="start"
+            class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+          >
+            Start
+          </button>
+          <button
+            :if={@project.status == :running}
+            phx-click="pause"
+            class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700"
+          >
+            Pause
+          </button>
+          <button
+            :if={@project.status == :paused}
+            phx-click="resume"
+            class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+          >
+            Resume
+          </button>
+        </div>
+      </div>
+
+      <%!-- Status Bar --%>
+      <div class="bg-white rounded-lg shadow p-4 mb-6">
+        <div class="flex gap-8">
+          <div>
+            <span class="text-sm text-zinc-500">Status</span>
+            <p class={"font-semibold #{status_text_color(@project.status)}"}>{@project.status}</p>
+          </div>
+          <div>
+            <span class="text-sm text-zinc-500">Phase</span>
+            <p class="font-semibold text-zinc-900">{@project.phase}</p>
+          </div>
+          <div>
+            <span class="text-sm text-zinc-500">Agents</span>
+            <p class="font-semibold text-zinc-900">{length(@agents)}</p>
+          </div>
+          <div>
+            <span class="text-sm text-zinc-500">Tasks</span>
+            <p class="font-semibold text-zinc-900">{length(@tasks)}</p>
+          </div>
+        </div>
+      </div>
+
+      <%!-- Phase Progress --%>
+      <div class="bg-white rounded-lg shadow p-4 mb-6">
+        <h3 class="text-sm font-medium text-zinc-500 mb-3">Phase Progress</h3>
+        <div class="flex gap-1">
+          <div
+            :for={phase <- Samgita.Domain.Project.phases()}
+            class={"h-2 flex-1 rounded #{phase_color(phase, @project.phase)}"}
+          >
+          </div>
+        </div>
+        <div class="flex justify-between mt-1 text-xs text-zinc-400">
+          <span>bootstrap</span>
+          <span>perpetual</span>
+        </div>
+      </div>
+
+      <%!-- Agents Grid --%>
+      <div :if={@agents != []} class="bg-white rounded-lg shadow p-4 mb-6">
+        <h3 class="text-sm font-medium text-zinc-500 mb-3">Active Agents</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div
+            :for={agent <- @agents}
+            class="border rounded-lg p-3"
+          >
+            <p class="text-sm font-medium">{agent.id}</p>
+            <p class={"text-xs #{agent_state_color(agent.state)}"}>{agent.state}</p>
+          </div>
+        </div>
+      </div>
+
+      <%!-- Tasks --%>
+      <div class="bg-white rounded-lg shadow p-4">
+        <h3 class="text-sm font-medium text-zinc-500 mb-3">Tasks</h3>
+        <div :if={@tasks == []} class="text-center py-8 text-zinc-400">
+          No tasks yet
+        </div>
+        <div
+          :for={task <- @tasks}
+          class="border-b last:border-b-0 py-3 flex justify-between items-center"
+        >
+          <div>
+            <p class="text-sm font-medium">{task.type}</p>
+            <p class="text-xs text-zinc-500">Priority: {task.priority}</p>
+          </div>
+          <span class={"px-2 py-1 text-xs rounded-full #{task_status_color(task.status)}"}>
+            {task.status}
+          </span>
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  defp status_text_color(:running), do: "text-green-600"
+  defp status_text_color(:paused), do: "text-orange-600"
+  defp status_text_color(:failed), do: "text-red-600"
+  defp status_text_color(_), do: "text-zinc-900"
+
+  defp phase_color(phase, current_phase) do
+    phases = Samgita.Domain.Project.phases()
+    phase_idx = Enum.find_index(phases, &(&1 == phase))
+    current_idx = Enum.find_index(phases, &(&1 == current_phase))
+
+    cond do
+      phase_idx < current_idx -> "bg-green-500"
+      phase_idx == current_idx -> "bg-blue-500"
+      true -> "bg-zinc-200"
+    end
+  end
+
+  defp agent_state_color(:idle), do: "text-zinc-500"
+  defp agent_state_color(:reason), do: "text-purple-600"
+  defp agent_state_color(:act), do: "text-blue-600"
+  defp agent_state_color(:reflect), do: "text-yellow-600"
+  defp agent_state_color(:verify), do: "text-green-600"
+  defp agent_state_color(_), do: "text-zinc-500"
+
+  defp task_status_color(:pending), do: "bg-yellow-100 text-yellow-800"
+  defp task_status_color(:running), do: "bg-blue-100 text-blue-800"
+  defp task_status_color(:completed), do: "bg-green-100 text-green-800"
+  defp task_status_color(:failed), do: "bg-red-100 text-red-800"
+  defp task_status_color(:dead_letter), do: "bg-zinc-100 text-zinc-800"
+  defp task_status_color(_), do: "bg-zinc-100 text-zinc-600"
+end

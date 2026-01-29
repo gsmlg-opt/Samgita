@@ -17,7 +17,9 @@ defmodule SamgitaWeb.Router do
   scope "/", SamgitaWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", DashboardLive, :index
+    live "/projects/new", ProjectFormLive, :new
+    live "/projects/:id", ProjectLive, :show
   end
 
   scope "/api", SamgitaWeb do
