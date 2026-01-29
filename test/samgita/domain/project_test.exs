@@ -53,5 +53,46 @@ defmodule Samgita.Domain.ProjectTest do
 
       assert changeset.valid?
     end
+
+    test "validates git_url format - accepts git@ URLs" do
+      changeset =
+        Project.changeset(%Project{}, %{
+          name: "Test",
+          git_url: "git@github.com:org/repo.git"
+        })
+
+      assert changeset.valid?
+    end
+
+    test "validates git_url format - accepts https URLs" do
+      changeset =
+        Project.changeset(%Project{}, %{
+          name: "Test",
+          git_url: "https://github.com/org/repo.git"
+        })
+
+      assert changeset.valid?
+    end
+
+    test "validates git_url format - accepts local paths" do
+      changeset =
+        Project.changeset(%Project{}, %{
+          name: "Test",
+          git_url: "/Users/test/project"
+        })
+
+      assert changeset.valid?
+    end
+
+    test "validates git_url format - rejects invalid URLs" do
+      changeset =
+        Project.changeset(%Project{}, %{
+          name: "Test",
+          git_url: "not-a-valid-url"
+        })
+
+      refute changeset.valid?
+      assert %{git_url: [_]} = errors_on(changeset)
+    end
   end
 end

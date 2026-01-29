@@ -44,7 +44,24 @@ defmodule Samgita.Domain.Project do
     project
     |> cast(attrs, [:name, :git_url, :working_path, :prd_content, :phase, :status, :config])
     |> validate_required([:name, :git_url])
+    |> validate_git_url()
     |> unique_constraint(:git_url)
+  end
+
+  defp validate_git_url(changeset) do
+    validate_change(changeset, :git_url, fn :git_url, url ->
+      # Allow git@, https://, http:// URLs or local paths for development
+      cond do
+        String.starts_with?(url, "/") ->
+          []
+
+        String.match?(url, ~r/^(git@|https?:\/\/).+/) ->
+          []
+
+        true ->
+          [git_url: "must be a valid git URL (git@..., https://..., or local path)"]
+      end
+    end)
   end
 
   def phases, do: @phases

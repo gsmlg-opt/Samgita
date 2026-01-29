@@ -251,15 +251,15 @@ defmodule Samgita.E2E.ProjectLifecycleTest do
   end
 
   describe "error scenarios" do
-    test "handles invalid git URL gracefully" do
+    test "rejects invalid git URL" do
       result =
         Projects.create_project(%{
           name: "Invalid Git",
           git_url: "not-a-valid-url"
         })
 
-      assert {:ok, project} = result
-      assert project.git_url == "not-a-valid-url"
+      assert {:error, changeset} = result
+      assert changeset.errors[:git_url]
     end
 
     test "handles missing PRD content" do
