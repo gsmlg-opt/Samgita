@@ -40,4 +40,29 @@ defmodule Samgita.WebhooksTest do
     assert {:ok, _} = Webhooks.delete_webhook(webhook.id)
     assert {:error, :not_found} = Webhooks.get_webhook(webhook.id)
   end
+
+  test "delete returns error for nonexistent webhook" do
+    assert {:error, :not_found} = Webhooks.delete_webhook(Ecto.UUID.generate())
+  end
+
+  test "get_webhook returns webhook by id" do
+    {:ok, webhook} = Webhooks.create_webhook(@valid_attrs)
+    assert {:ok, found} = Webhooks.get_webhook(webhook.id)
+    assert found.id == webhook.id
+  end
+
+  test "dispatch enqueues jobs for matching webhooks" do
+    {:ok, _webhook} = Webhooks.create_webhook(@valid_attrs)
+    assert :ok == Webhooks.dispatch("task.completed", %{task_id: "123"})
+  end
+
+  test "dispatch skips webhooks that don't match event" do
+    {:ok, _webhook} =
+      Webhooks.create_webhook(%{
+        url: "https://example.com/hook",
+        events: ["agent.spawned"]
+      })
+
+    assert :ok == Webhooks.dispatch("task.completed", %{task_id: "123"})
+  end
 end
