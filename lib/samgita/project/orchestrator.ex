@@ -12,7 +12,6 @@ defmodule Samgita.Project.Orchestrator do
   require Logger
 
   alias Samgita.Projects
-  alias Samgita.Domain.Project
 
   defstruct [
     :project_id,

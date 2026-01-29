@@ -29,5 +29,7 @@ defmodule SamgitaWeb.Router do
       post "/pause", ProjectController, :pause
       post "/resume", ProjectController, :resume
     end
+
+    resources "/webhooks", WebhookController, only: [:index, :create, :delete]
   end
 end

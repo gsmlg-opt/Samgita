@@ -55,6 +55,9 @@ config :samgita, Oban,
 # Configure Claude CLI command
 config :samgita, :claude_command, "claude"
 
+# API keys (override in runtime.exs for production)
+config :samgita, :api_keys, []
+
 # Configure Elixir's Logger
 config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",
