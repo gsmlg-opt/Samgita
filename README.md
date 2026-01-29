@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/gsmlg-dev/Samgita"><img src="https://img.shields.io/badge/GitHub-gsmlg--dev%2FSamgita-blue?logo=github" alt="GitHub" /></a>
+  <a href="https://github.com/gsmlg-opt/Samgita"><img src="https://img.shields.io/badge/GitHub-gsmlg--dev%2FSamgita-blue?logo=github" alt="GitHub" /></a>
   <a href="https://elixir-lang.org/"><img src="https://img.shields.io/badge/Elixir-1.17%2B-purple?logo=elixir" alt="Elixir" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" /></a>
 </p>
@@ -154,7 +154,7 @@ Each agent executes a Reason-Act-Reflect-Verify cycle:
 
 ```bash
 # Clone repository
-git clone https://github.com/gsmlg-dev/Samgita.git
+git clone https://github.com/gsmlg-opt/Samgita.git
 cd Samgita
 
 # Install dependencies
