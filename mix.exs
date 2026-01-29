@@ -67,6 +67,7 @@ defmodule Samgita.MixProject do
       # Distribution & Task Queue
       {:oban, "~> 2.18"},
       {:horde, "~> 0.9"},
+      {:libcluster, "~> 3.4"},
 
       # Dev/Test
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},

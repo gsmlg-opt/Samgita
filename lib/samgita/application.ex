@@ -7,11 +7,15 @@ defmodule Samgita.Application do
 
   @impl true
   def start(_type, _args) do
+    topologies = Application.get_env(:libcluster, :topologies, [])
+
     children = [
       SamgitaWeb.Telemetry,
       Samgita.Repo,
       {DNSCluster, query: Application.get_env(:samgita, :dns_cluster_query) || :ignore},
+      {Cluster.Supervisor, [topologies, [name: Samgita.ClusterSupervisor]]},
       {Phoenix.PubSub, name: Samgita.PubSub},
+      Samgita.Cache,
       {Horde.Registry, name: Samgita.AgentRegistry, keys: :unique, members: :auto},
       {Horde.DynamicSupervisor,
        name: Samgita.AgentSupervisor, strategy: :one_for_one, members: :auto},
