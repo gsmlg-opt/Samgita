@@ -11,7 +11,7 @@ erl_crash.dump
 /loki-mode
 
 # Phoenix/Node
-/priv/static/assets/
+/priv/static/
 /tmp/
 npm-debug.log
 /assets/node_modules/
