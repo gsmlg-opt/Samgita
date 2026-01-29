@@ -22,6 +22,13 @@ defmodule SamgitaWeb.FallbackController do
     |> render(:"422", message: "Project is not paused")
   end
 
+  def call(conn, {:error, :not_retriable}) do
+    conn
+    |> put_status(:unprocessable_entity)
+    |> put_view(json: SamgitaWeb.ErrorJSON)
+    |> render(:"422", message: "Task is not in a retriable state")
+  end
+
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)

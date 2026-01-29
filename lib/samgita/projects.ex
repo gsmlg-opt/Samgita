@@ -83,6 +83,22 @@ defmodule Samgita.Projects do
     |> Repo.all()
   end
 
+  def get_task(id) do
+    case Repo.get(TaskSchema, id) do
+      nil -> {:error, :not_found}
+      task -> {:ok, task}
+    end
+  end
+
+  def retry_task(id) do
+    with {:ok, task} <- get_task(id),
+         true <- task.status in [:failed, :dead_letter] || {:error, :not_retriable} do
+      task
+      |> TaskSchema.changeset(%{status: :pending, attempts: 0, error: nil})
+      |> Repo.update()
+    end
+  end
+
   def enqueue_task(project_id, task_type, agent_type, payload \\ %{}) do
     with {:ok, task} <-
            create_task(project_id, %{

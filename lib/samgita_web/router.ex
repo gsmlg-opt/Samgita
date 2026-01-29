@@ -28,6 +28,10 @@ defmodule SamgitaWeb.Router do
     resources "/projects", ProjectController, except: [:new, :edit] do
       post "/pause", ProjectController, :pause
       post "/resume", ProjectController, :resume
+
+      resources "/tasks", TaskController, only: [:index, :show] do
+        post "/retry", TaskController, :retry
+      end
     end
 
     resources "/webhooks", WebhookController, only: [:index, :create, :delete]
