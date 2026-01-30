@@ -21,6 +21,12 @@ defmodule SamgitaWeb.Router do
     live "/", DashboardLive.Index, :index
     live "/projects/new", ProjectFormLive.Index, :new
     live "/projects/:id", ProjectLive.Index, :show
+
+    live "/agents", AgentsLive.Index, :index
+    live "/mcp", McpLive.Index, :index
+    live "/skills", SkillsLive.Index, :index
+    live "/references", ReferencesLive.Index, :index
+    live "/references/*filename", ReferencesLive.Show, :show
   end
 
   scope "/api", SamgitaWeb do

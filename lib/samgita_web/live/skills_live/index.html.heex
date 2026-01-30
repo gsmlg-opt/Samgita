@@ -1,0 +1,83 @@
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-8">
+    <div>
+      <h1 class="text-3xl font-bold text-zinc-900">Claude Skills</h1>
+      <p class="text-zinc-600 mt-2">Manage Claude Code skills and extensions</p>
+    </div>
+    <div class="flex gap-3">
+      <button
+        phx-click="refresh"
+        class="bg-white border border-zinc-300 text-zinc-700 px-4 py-2 rounded-lg hover:bg-zinc-50"
+      >
+        Refresh
+      </button>
+      <.link
+        navigate={~p"/"}
+        class="text-blue-600 hover:text-blue-700 font-medium"
+      >
+        ← Back to Dashboard
+      </.link>
+    </div>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+    <div class="flex items-start gap-3">
+      <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <div class="flex-1">
+        <p class="font-medium text-blue-800">Skills Directory</p>
+        <p class="text-sm text-blue-800 mt-1">
+          Skills are located in <code class="bg-blue-100 px-1 rounded">~/.claude/skills/</code>
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <.link
+            navigate={~p"/references/quality-control.md"}
+            class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-white border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Quality Control Patterns</span>
+          </.link>
+          <.link
+            navigate={~p"/references/openai-patterns.md"}
+            class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-white border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>OpenAI Patterns</span>
+          </.link>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid gap-4">
+    <div
+      :for={skill <- @skills}
+      class="bg-white rounded-lg shadow p-6 border border-zinc-200 hover:shadow-md transition-shadow"
+    >
+      <div class="flex items-start gap-4">
+        <%= status_icon(skill.status) %>
+        <div class="flex-1">
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="text-lg font-semibold text-zinc-900 font-mono">/<%= skill.name %></h3>
+              <p class="text-sm text-zinc-600 mt-1"><%= skill.description %></p>
+            </div>
+            <span class={"px-3 py-1 text-xs rounded-full font-medium #{category_color(skill.category)}"}>
+              <%= skill.category %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div :if={@skills == []} class="text-center py-16 text-zinc-500">
+    <p class="text-lg">No skills found.</p>
+    <p class="mt-2">Add skills to <code class="bg-zinc-100 px-2 py-1 rounded">~/.claude/skills/</code></p>
+  </div>
+</div>
