@@ -72,6 +72,7 @@ defmodule Samgita.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
+      {:earmark, "~> 1.4"},
 
       # Distribution & Task Queue
       {:oban, "~> 2.18"},

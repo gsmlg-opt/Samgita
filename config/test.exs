@@ -15,7 +15,7 @@ config :samgita, Samgita.Repo,
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :samgita, SamgitaWeb.Endpoint,
-  http: [ip: {127, 0, 0, 1}, port: 4002],
+  http: [ip: {127, 0, 0, 1}, port: 3112],
   secret_key_base: "R0hndBwWd37pDBs+AZIvydzVXqPXTZ8xDoMZPS0QTcdFbUSGfEdgXKyDJhJRtpBW",
   server: false
 

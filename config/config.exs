@@ -1,9 +1,3 @@
-# This file is responsible for configuring your application
-# and its dependencies with the aid of the Config module.
-#
-# This configuration file is loaded before any dependency and
-# is restricted to this project.
-
 # General application configuration
 import Config
 
@@ -13,7 +7,8 @@ config :samgita,
 
 # Configure the endpoint
 config :samgita, SamgitaWeb.Endpoint,
-  url: [host: "localhost"],
+  check_origin: false,
+  url: [host: "samgita.local"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: SamgitaWeb.ErrorHTML, json: SamgitaWeb.ErrorJSON],

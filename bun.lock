@@ -6,6 +6,7 @@
       "name": "samgita",
       "dependencies": {
         "@heroicons/react": "^2.2.0",
+        "marked": "^12.0.0",
         "phoenix": "file:./deps/phoenix",
         "phoenix_html": "file:./deps/phoenix_html",
         "phoenix_live_view": "file:./deps/phoenix_live_view",
@@ -986,6 +987,8 @@
     "map-cache": ["map-cache@0.2.2", "", {}, "sha512-8y/eV9QQZCiyn1SprXSrCmqJN0yNRATe+PO8ztwqrvrbdRLA3eYJF0yaR0YayLWkMbsQSKWS9N2gPcGEc4UsZg=="],
 
     "markdown-table": ["markdown-table@3.0.4", "", {}, "sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw=="],
+
+    "marked": ["marked@12.0.2", "", { "bin": { "marked": "bin/marked.js" } }, "sha512-qXUm7e/YKFoqFPYPa3Ukg9xlI5cyAtGmyEIzMfW//m6kXwCy2Ps9DYf5ioijFKQ8qyuscrHoY04iJGctu2Kg0Q=="],
 
     "mdast-util-definitions": ["mdast-util-definitions@5.1.2", "", { "dependencies": { "@types/mdast": "^3.0.0", "@types/unist": "^2.0.0", "unist-util-visit": "^4.0.0" } }, "sha512-8SVPMuHqlPME/z3gqVwWY4zVXn8lqKv/pAhC57FuJ40ImXyBpmO5ukh98zB2v7Blql2FiHjHv9LVztSIqjY+MA=="],
 
