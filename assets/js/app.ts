@@ -9,6 +9,9 @@ import { Socket } from "phoenix"
 import { LiveSocket, type LiveSocketInstanceInterface } from "phoenix_live_view"
 import topbar from "topbar"
 
+// Import markdown custom element
+import "./custom-elements"
+
 // Extend Window interface for custom properties
 declare global {
   interface Window {
