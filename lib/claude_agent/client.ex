@@ -11,6 +11,9 @@ defmodule ClaudeAgent.Client do
 
   require Logger
 
+  # Suppress compile-time warnings for HTTP module from http_fetch dependency
+  @compile {:no_warn_undefined, [HTTP, HTTP.Promise]}
+
   @api_base_url "https://api.anthropic.com/v1"
   @default_model "claude-sonnet-4-5-20250929"
   @anthropic_version "2023-06-01"
@@ -62,7 +65,7 @@ defmodule ClaudeAgent.Client do
   """
   @spec message(list(message()), options()) :: {:ok, map()} | {:error, term()}
   def message(messages, opts \\ []) do
-    api_key = get_api_key()
+    {auth_type, auth_value} = get_auth()
 
     body =
       %{
@@ -76,7 +79,7 @@ defmodule ClaudeAgent.Client do
       |> maybe_add(:stream, opts[:stream])
 
     headers = [
-      {"x-api-key", api_key},
+      auth_header(auth_type, auth_value),
       {"anthropic-version", @anthropic_version},
       {"content-type", "application/json"}
     ]
@@ -88,10 +91,10 @@ defmodule ClaudeAgent.Client do
     )
 
     case HTTP.Promise.await(promise) do
-      {:ok, %{status: 200, body: response_body}} ->
+      {:ok, %HTTP.Response{status: 200, body: response_body}} ->
         {:ok, Jason.decode!(response_body)}
 
-      {:ok, %{status: status, body: response_body}} ->
+      {:ok, %HTTP.Response{status: status, body: response_body}} ->
         Logger.error("Claude API error: #{status} - #{response_body}")
         {:error, {:api_error, status, response_body}}
 
@@ -117,7 +120,7 @@ defmodule ClaudeAgent.Client do
   """
   @spec stream(list(message()), options()) :: Enumerable.t()
   def stream(messages, opts \\ []) do
-    api_key = get_api_key()
+    {auth_type, auth_value} = get_auth()
 
     body =
       %{
@@ -131,7 +134,7 @@ defmodule ClaudeAgent.Client do
       |> maybe_add(:tools, opts[:tools])
 
     headers = [
-      {"x-api-key", api_key},
+      auth_header(auth_type, auth_value),
       {"anthropic-version", @anthropic_version},
       {"content-type", "application/json"}
     ]
@@ -147,8 +150,11 @@ defmodule ClaudeAgent.Client do
         )
 
         case HTTP.Promise.await(promise) do
-          {:ok, %{status: 200, body: response_body}} ->
+          {:ok, %HTTP.Response{status: 200, body: response_body}} ->
             {:ok, Jason.decode!(response_body)}
+
+          {:ok, %HTTP.Response{status: status, body: response_body}} ->
+            {:error, {:api_error, status, response_body}}
 
           {:error, reason} ->
             {:error, reason}
@@ -202,13 +208,27 @@ defmodule ClaudeAgent.Client do
 
   # Private helpers
 
-  defp get_api_key do
-    System.get_env("CLAUDE_CODE_OAUTH_TOKEN") ||
-      System.get_env("ANTHROPIC_API_KEY") ||
-      Application.get_env(:samgita, :claude_code_oauth_token) ||
-      Application.get_env(:samgita, :anthropic_api_key) ||
-      raise "CLAUDE_CODE_OAUTH_TOKEN or ANTHROPIC_API_KEY not configured"
+  defp get_auth do
+    cond do
+      token = System.get_env("CLAUDE_CODE_OAUTH_TOKEN") ->
+        {:oauth, token}
+
+      token = Application.get_env(:samgita, :claude_code_oauth_token) ->
+        {:oauth, token}
+
+      key = System.get_env("ANTHROPIC_API_KEY") ->
+        {:api_key, key}
+
+      key = Application.get_env(:samgita, :anthropic_api_key) ->
+        {:api_key, key}
+
+      true ->
+        raise "CLAUDE_CODE_OAUTH_TOKEN or ANTHROPIC_API_KEY not configured"
+    end
   end
+
+  defp auth_header(:oauth, token), do: {"authorization", "Bearer #{token}"}
+  defp auth_header(:api_key, key), do: {"x-api-key", key}
 
   defp maybe_add(map, _key, nil), do: map
   defp maybe_add(map, key, value), do: Map.put(map, key, value)
