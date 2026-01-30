@@ -224,6 +224,23 @@ See `loki-mode/references/agent-types.md` for detailed agent definitions.
 - Phoenix.PubSub for real-time updates
 - LiveView for dashboard (not polling)
 
+## Frontend & UI Conventions
+
+### UI Component Library
+- **Always use UI components from the `@duskmoon-dev` npm group**
+- Prefer `@duskmoon-dev` packages for frontend UI elements (markdown rendering, custom elements, etc.)
+- Example: `@duskmoon-dev/el-markdown` for markdown rendering
+
+### Custom Elements
+- Use web components (Custom Elements) for reusable UI functionality
+- Register custom elements with semantic naming (e.g., `<el-dm-markdown>`)
+- Import and initialize custom elements in `assets/js/app.ts`
+
+### Styling
+- Use Tailwind CSS for all styling
+- Follow Tailwind Typography (`prose` classes) for content formatting
+- Maintain consistent color schemes across components
+
 ## Research Foundation
 
 Samgita inherits patterns from loki-mode's research foundation:
