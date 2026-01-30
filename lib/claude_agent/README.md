@@ -17,17 +17,25 @@ The ClaudeAgent is built into Samgita. No additional installation needed.
 
 ## Configuration
 
-Set your Anthropic API key:
+Set your authentication token (supports both Claude Code OAuth token and Anthropic API key):
 
 ```bash
+# Option 1: Claude Code OAuth token (preferred if using Claude Code)
+export CLAUDE_CODE_OAUTH_TOKEN=your-oauth-token
+
+# Option 2: Anthropic API key
 export ANTHROPIC_API_KEY=sk-ant-api03-...
 ```
 
 Or in `config/runtime.exs`:
 
 ```elixir
-config :samgita, anthropic_api_key: System.get_env("ANTHROPIC_API_KEY")
+config :samgita,
+  claude_code_oauth_token: System.get_env("CLAUDE_CODE_OAUTH_TOKEN"),
+  anthropic_api_key: System.get_env("ANTHROPIC_API_KEY")
 ```
+
+The client will check for `CLAUDE_CODE_OAUTH_TOKEN` first, then fall back to `ANTHROPIC_API_KEY`.
 
 ## Quick Start
 

@@ -203,9 +203,11 @@ defmodule ClaudeAgent.Client do
   # Private helpers
 
   defp get_api_key do
-    System.get_env("ANTHROPIC_API_KEY") ||
+    System.get_env("CLAUDE_CODE_OAUTH_TOKEN") ||
+      System.get_env("ANTHROPIC_API_KEY") ||
+      Application.get_env(:samgita, :claude_code_oauth_token) ||
       Application.get_env(:samgita, :anthropic_api_key) ||
-      raise "ANTHROPIC_API_KEY not configured"
+      raise "CLAUDE_CODE_OAUTH_TOKEN or ANTHROPIC_API_KEY not configured"
   end
 
   defp maybe_add(map, _key, nil), do: map

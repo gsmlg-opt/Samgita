@@ -1,7 +1,9 @@
 import Config
 
 # Claude Agent API configuration
+# Supports both Claude Code OAuth token and Anthropic API key
 config :samgita,
+  claude_code_oauth_token: System.get_env("CLAUDE_CODE_OAUTH_TOKEN"),
   anthropic_api_key: System.get_env("ANTHROPIC_API_KEY")
 
 config :samgita, SamgitaWeb.Endpoint,

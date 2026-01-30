@@ -22,12 +22,16 @@ defmodule ClaudeAgent do
 
   ## Configuration
 
-  Set your Anthropic API key:
+  Set your authentication (supports both Claude Code OAuth and Anthropic API key):
 
       # In config/runtime.exs
-      config :samgita, anthropic_api_key: System.get_env("ANTHROPIC_API_KEY")
+      config :samgita,
+        claude_code_oauth_token: System.get_env("CLAUDE_CODE_OAUTH_TOKEN"),
+        anthropic_api_key: System.get_env("ANTHROPIC_API_KEY")
 
       # Or export in shell
+      export CLAUDE_CODE_OAUTH_TOKEN=your-token
+      # or
       export ANTHROPIC_API_KEY=sk-ant-...
 
   ## Available Tools
