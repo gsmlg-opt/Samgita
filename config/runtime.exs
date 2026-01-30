@@ -1,5 +1,9 @@
 import Config
 
+# Claude Agent API configuration
+config :samgita,
+  anthropic_api_key: System.get_env("ANTHROPIC_API_KEY")
+
 config :samgita, SamgitaWeb.Endpoint,
   http: [port: String.to_integer(System.get_env("PORT", "3110"))]
 

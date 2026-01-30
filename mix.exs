@@ -73,6 +73,7 @@ defmodule Samgita.MixProject do
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
       {:earmark, "~> 1.4"},
+      {:http_fetch, "~> 0.8.0"},
 
       # Distribution & Task Queue
       {:oban, "~> 2.18"},
