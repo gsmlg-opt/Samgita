@@ -39,10 +39,14 @@ if (!csrfToken) {
   throw new Error("CSRF token not found in meta tags")
 }
 
+// LiveView hooks need to be registered before LiveSocket initialization
+// They will be defined in the window object by the template scripts
+const Hooks = (window as any).PlaygroundHooks || {}
+
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
-  hooks: {},
+  hooks: Hooks,
 })
 
 // Show progress bar on live navigation and form submits
