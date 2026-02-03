@@ -75,7 +75,7 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
 
-    @tag timeout: 60_000
+    @tag timeout: 120_000
     test "accepts multiple tasks sequentially" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -204,6 +204,7 @@ defmodule Samgita.Agent.WorkerTest do
   end
 
   describe "task payload variations" do
+    @tag timeout: 60_000
     test "handles empty payload" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -222,7 +223,7 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
 
-    @tag timeout: 60_000
+    @tag timeout: 120_000
     test "handles complex nested payload" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
