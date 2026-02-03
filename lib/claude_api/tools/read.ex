@@ -1,4 +1,4 @@
-defmodule ClaudeAgent.Tools.Read do
+defmodule ClaudeAPI.Tools.Read do
   @moduledoc """
   Read files from the filesystem.
   """
@@ -8,10 +8,10 @@ defmodule ClaudeAgent.Tools.Read do
 
   ## Examples
 
-      iex> ClaudeAgent.Tools.Read.execute(%{"file_path" => "/tmp/test.txt"})
+      iex> ClaudeAPI.Tools.Read.execute(%{"file_path" => "/tmp/test.txt"})
       {:ok, "     1→line one\\n     2→line two"}
 
-      iex> ClaudeAgent.Tools.Read.execute(%{
+      iex> ClaudeAPI.Tools.Read.execute(%{
       ...>   "file_path" => "/tmp/test.txt",
       ...>   "offset" => 10,
       ...>   "limit" => 5

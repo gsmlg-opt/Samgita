@@ -1,4 +1,4 @@
-defmodule ClaudeAgent do
+defmodule ClaudeAPI do
   @moduledoc """
   Claude Agent SDK for Elixir.
 
@@ -12,13 +12,13 @@ defmodule ClaudeAgent do
   ## Quick Start
 
       # Initialize an agent
-      agent = ClaudeAgent.new("You are a helpful coding assistant")
+      agent = ClaudeAPI.new("You are a helpful coding assistant")
 
       # Run a task
-      {:ok, response} = ClaudeAgent.ask(agent, "List all .ex files in lib/")
+      {:ok, response} = ClaudeAPI.ask(agent, "List all .ex files in lib/")
 
       # Continue the conversation
-      {:ok, response} = ClaudeAgent.ask(agent, "Now read the first file")
+      {:ok, response} = ClaudeAPI.ask(agent, "Now read the first file")
 
   ## Configuration
 
@@ -45,19 +45,19 @@ defmodule ClaudeAgent do
 
   ## Example: File Operations
 
-      agent = ClaudeAgent.new("You help manage files")
+      agent = ClaudeAPI.new("You help manage files")
 
-      {:ok, response} = ClaudeAgent.ask(agent, \"\"\"
+      {:ok, response} = ClaudeAPI.ask(agent, \"\"\"
       Read the mix.exs file and tell me what dependencies are listed.
       \"\"\")
 
   ## Example: Code Generation
 
-      agent = ClaudeAgent.new(\"\"\"
+      agent = ClaudeAPI.new(\"\"\"
       You are an Elixir code generator. Write clean, idiomatic code.
       \"\"\")
 
-      {:ok, response} = ClaudeAgent.ask(agent, \"\"\"
+      {:ok, response} = ClaudeAPI.ask(agent, \"\"\"
       Create a GenServer module called MyApp.Worker that maintains a counter.
       Write it to lib/my_app/worker.ex
       \"\"\")
@@ -70,15 +70,15 @@ defmodule ClaudeAgent do
       # 3. Reflect - Review results
       # 4. Verify - Check success
 
-      agent = ClaudeAgent.new("You are a test-driven developer")
+      agent = ClaudeAPI.new("You are a test-driven developer")
 
-      {:ok, response} = ClaudeAgent.ask(agent, \"\"\"
+      {:ok, response} = ClaudeAPI.ask(agent, \"\"\"
       Create a function to calculate fibonacci numbers,
       write tests for it, and verify they pass.
       \"\"\")
   """
 
-  alias ClaudeAgent.Agent
+  alias ClaudeAPI.Agent
 
   @type t :: Agent.conversation_state()
 
@@ -92,9 +92,9 @@ defmodule ClaudeAgent do
 
   ## Examples
 
-      iex> agent = ClaudeAgent.new("You are a helpful assistant")
+      iex> agent = ClaudeAPI.new("You are a helpful assistant")
 
-      iex> agent = ClaudeAgent.new(
+      iex> agent = ClaudeAPI.new(
       ...>   "You are a code reviewer",
       ...>   model: "claude-opus-4-5-20251101"
       ...> )
@@ -115,12 +115,12 @@ defmodule ClaudeAgent do
 
   ## Examples
 
-      iex> agent = ClaudeAgent.new("You help with files")
-      iex> {:ok, response, agent} = ClaudeAgent.ask(agent, "List .ex files")
+      iex> agent = ClaudeAPI.new("You help with files")
+      iex> {:ok, response, agent} = ClaudeAPI.ask(agent, "List .ex files")
       iex> IO.puts(response)
 
-      iex> agent = ClaudeAgent.new("You are a calculator")
-      iex> {:ok, "42", _agent} = ClaudeAgent.ask(agent, "What is 6 * 7?")
+      iex> agent = ClaudeAPI.new("You are a calculator")
+      iex> {:ok, "42", _agent} = ClaudeAPI.ask(agent, "What is 6 * 7?")
   """
   @spec ask(t(), String.t(), keyword()) :: {:ok, String.t(), t()} | {:error, term()}
   def ask(agent, message, opts \\ []) do
@@ -134,7 +134,7 @@ defmodule ClaudeAgent do
 
   ## Examples
 
-      iex> {:ok, response} = ClaudeAgent.query(
+      iex> {:ok, response} = ClaudeAPI.query(
       ...>   "You are a calculator",
       ...>   "What is 2 + 2?"
       ...> )
@@ -155,5 +155,5 @@ defmodule ClaudeAgent do
   Get all available tools.
   """
   @spec tools() :: list(map())
-  def tools, do: ClaudeAgent.Tools.all()
+  def tools, do: ClaudeAPI.Tools.all()
 end

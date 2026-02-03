@@ -1,4 +1,4 @@
-defmodule ClaudeAgent.Agent do
+defmodule ClaudeAPI.Agent do
   @moduledoc """
   Agent orchestration for RARV cycle (Reason-Act-Reflect-Verify).
 
@@ -20,15 +20,15 @@ defmodule ClaudeAgent.Agent do
 
   ## Examples
 
-      iex> state = ClaudeAgent.Agent.init("You are a helpful coding assistant")
-      iex> ClaudeAgent.Agent.run(state, "List all .ex files")
+      iex> state = ClaudeAPI.Agent.init("You are a helpful coding assistant")
+      iex> ClaudeAPI.Agent.run(state, "List all .ex files")
   """
   @spec init(String.t(), keyword()) :: conversation_state()
   def init(system_prompt, opts \\ []) do
     %{
       messages: [],
       system_prompt: system_prompt,
-      tools: opts[:tools] || ClaudeAgent.Tools.all(),
+      tools: opts[:tools] || ClaudeAPI.Tools.all(),
       model: opts[:model] || "claude-sonnet-4-5-20250929"
     }
   end
@@ -41,8 +41,8 @@ defmodule ClaudeAgent.Agent do
 
   ## Examples
 
-      iex> state = ClaudeAgent.Agent.init("You are a file assistant")
-      iex> {:ok, response, new_state} = ClaudeAgent.Agent.run(state, "Read config.exs")
+      iex> state = ClaudeAPI.Agent.init("You are a file assistant")
+      iex> {:ok, response, new_state} = ClaudeAPI.Agent.run(state, "Read config.exs")
       iex> IO.puts(response)
   """
   @spec run(conversation_state(), String.t(), keyword()) ::
@@ -65,7 +65,7 @@ defmodule ClaudeAgent.Agent do
   defp execute_loop(state, max_turns, turn) do
     Logger.debug("Agent turn #{turn + 1}/#{max_turns}")
 
-    case ClaudeAgent.Client.message(state.messages,
+    case ClaudeAPI.Client.message(state.messages,
            system: state.system_prompt,
            tools: state.tools,
            model: state.model
@@ -98,7 +98,7 @@ defmodule ClaudeAgent.Agent do
       |> Enum.filter(&(&1["type"] == "tool_use"))
       |> Enum.map(fn tool_use ->
         Logger.debug("Executing tool: #{tool_use["name"]}")
-        {:ok, result} = ClaudeAgent.Client.execute_tool(tool_use)
+        {:ok, result} = ClaudeAPI.Client.execute_tool(tool_use)
         result
       end)
 

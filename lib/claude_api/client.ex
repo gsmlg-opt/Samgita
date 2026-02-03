@@ -1,4 +1,4 @@
-defmodule ClaudeAgent.Client do
+defmodule ClaudeAPI.Client do
   @moduledoc """
   Claude API client using http_fetch.
 
@@ -52,14 +52,14 @@ defmodule ClaudeAgent.Client do
 
   ## Examples
 
-      iex> ClaudeAgent.Client.message([
+      iex> ClaudeAPI.Client.message([
       ...>   %{role: "user", content: "Hello!"}
       ...> ])
       {:ok, %{content: [%{"type" => "text", "text" => "Hello! How can I help?"}]}}
 
-      iex> ClaudeAgent.Client.message(
+      iex> ClaudeAPI.Client.message(
       ...>   [%{role: "user", content: "Read file.txt"}],
-      ...>   tools: ClaudeAgent.Tools.all()
+      ...>   tools: ClaudeAPI.Tools.all()
       ...> )
       {:ok, %{content: [%{"type" => "tool_use", ...}]}}
   """
@@ -91,10 +91,10 @@ defmodule ClaudeAgent.Client do
     )
 
     case HTTP.Promise.await(promise) do
-      {:ok, %HTTP.Response{status: 200, body: response_body}} ->
+      %HTTP.Response{status: 200, body: response_body} ->
         {:ok, Jason.decode!(response_body)}
 
-      {:ok, %HTTP.Response{status: status, body: response_body}} ->
+      %HTTP.Response{status: status, body: response_body} ->
         Logger.error("Claude API error: #{status} - #{response_body}")
         {:error, {:api_error, status, response_body}}
 
@@ -112,7 +112,7 @@ defmodule ClaudeAgent.Client do
 
   ## Examples
 
-      iex> ClaudeAgent.Client.stream([
+      iex> ClaudeAPI.Client.stream([
       ...>   %{role: "user", content: "Write a story"}
       ...> ])
       ...> |> Stream.each(&IO.inspect/1)
@@ -183,12 +183,12 @@ defmodule ClaudeAgent.Client do
       ...>   "name" => "read_file",
       ...>   "input" => %{"path" => "/tmp/file.txt"}
       ...> }
-      iex> ClaudeAgent.Client.execute_tool(tool_use)
+      iex> ClaudeAPI.Client.execute_tool(tool_use)
       {:ok, %{tool_use_id: "toolu_123", content: "file contents"}}
   """
   @spec execute_tool(map()) :: {:ok, map()} | {:error, term()}
   def execute_tool(%{"type" => "tool_use", "id" => id, "name" => name, "input" => input}) do
-    case ClaudeAgent.Tools.execute(name, input) do
+    case ClaudeAPI.Tools.execute(name, input) do
       {:ok, result} ->
         {:ok, %{
           type: "tool_result",

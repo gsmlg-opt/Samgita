@@ -1,4 +1,4 @@
-defmodule ClaudeAgent.Tools.Bash do
+defmodule ClaudeAPI.Tools.Bash do
   @moduledoc """
   Execute bash commands.
   """
@@ -11,10 +11,10 @@ defmodule ClaudeAgent.Tools.Bash do
 
   ## Examples
 
-      iex> ClaudeAgent.Tools.Bash.execute(%{"command" => "echo 'hello'"})
+      iex> ClaudeAPI.Tools.Bash.execute(%{"command" => "echo 'hello'"})
       {:ok, "hello\\n"}
 
-      iex> ClaudeAgent.Tools.Bash.execute(%{
+      iex> ClaudeAPI.Tools.Bash.execute(%{
       ...>   "command" => "sleep 5 && echo done",
       ...>   "timeout" => 10000
       ...> })

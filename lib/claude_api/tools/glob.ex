@@ -1,4 +1,4 @@
-defmodule ClaudeAgent.Tools.Glob do
+defmodule ClaudeAPI.Tools.Glob do
   @moduledoc """
   Find files matching glob patterns.
   """
@@ -8,10 +8,10 @@ defmodule ClaudeAgent.Tools.Glob do
 
   ## Examples
 
-      iex> ClaudeAgent.Tools.Glob.execute(%{"pattern" => "**/*.ex"})
+      iex> ClaudeAPI.Tools.Glob.execute(%{"pattern" => "**/*.ex"})
       {:ok, "lib/samgita.ex\\nlib/samgita/application.ex\\n..."}
 
-      iex> ClaudeAgent.Tools.Glob.execute(%{
+      iex> ClaudeAPI.Tools.Glob.execute(%{
       ...>   "pattern" => "*.exs",
       ...>   "path" => "test"
       ...> })

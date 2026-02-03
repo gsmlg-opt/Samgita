@@ -1,4 +1,4 @@
-# ClaudeAgent for Elixir
+# ClaudeAPI for Elixir
 
 An Elixir implementation of Claude Code's capabilities using the Anthropic Messages API.
 
@@ -13,7 +13,7 @@ An Elixir implementation of Claude Code's capabilities using the Anthropic Messa
 
 ## Installation
 
-The ClaudeAgent is built into Samgita. No additional installation needed.
+The ClaudeAPI is built into Samgita. No additional installation needed.
 
 ## Configuration
 
@@ -42,7 +42,7 @@ The client will check for `CLAUDE_CODE_OAUTH_TOKEN` first, then fall back to `AN
 ### Simple Query (Stateless)
 
 ```elixir
-{:ok, response} = ClaudeAgent.query(
+{:ok, response} = ClaudeAPI.query(
   "You are a calculator",
   "What is 42 * 137?"
 )
@@ -55,13 +55,13 @@ IO.puts(response)
 
 ```elixir
 # Create an agent
-agent = ClaudeAgent.new("You are a helpful coding assistant")
+agent = ClaudeAPI.new("You are a helpful coding assistant")
 
 # Ask a question
-{:ok, response, agent} = ClaudeAgent.ask(agent, "List all .ex files")
+{:ok, response, agent} = ClaudeAPI.ask(agent, "List all .ex files")
 
 # Continue the conversation
-{:ok, response, agent} = ClaudeAgent.ask(agent, "Read the first file")
+{:ok, response, agent} = ClaudeAPI.ask(agent, "Read the first file")
 ```
 
 ## Available Tools
@@ -73,9 +73,9 @@ agent = ClaudeAgent.new("You are a helpful coding assistant")
 # write_file - Create/overwrite file
 # edit_file - Exact string replacement
 
-agent = ClaudeAgent.new("You help manage files")
+agent = ClaudeAPI.new("You help manage files")
 
-{:ok, response, agent} = ClaudeAgent.ask(
+{:ok, response, agent} = ClaudeAPI.ask(
   agent,
   "Read config/config.exs and show me the first 20 lines"
 )
@@ -86,9 +86,9 @@ agent = ClaudeAgent.new("You help manage files")
 ```elixir
 # bash - Execute shell commands
 
-agent = ClaudeAgent.new("You help with git operations")
+agent = ClaudeAPI.new("You help with git operations")
 
-{:ok, response, _agent} = ClaudeAgent.ask(
+{:ok, response, _agent} = ClaudeAPI.ask(
   agent,
   "Show me the git status and recent commits"
 )
@@ -100,9 +100,9 @@ agent = ClaudeAgent.new("You help with git operations")
 # glob - Find files by pattern
 # grep - Search content with regex
 
-agent = ClaudeAgent.new("You help find files")
+agent = ClaudeAPI.new("You help find files")
 
-{:ok, response, _agent} = ClaudeAgent.ask(
+{:ok, response, _agent} = ClaudeAPI.ask(
   agent,
   "Find all files containing 'defmodule' in lib/"
 )
@@ -113,12 +113,12 @@ agent = ClaudeAgent.new("You help find files")
 ### Example 1: Code Review
 
 ```elixir
-agent = ClaudeAgent.new("""
+agent = ClaudeAPI.new("""
 You are a code reviewer. Read files, identify issues,
 and suggest improvements.
 """)
 
-{:ok, review, _agent} = ClaudeAgent.ask(
+{:ok, review, _agent} = ClaudeAPI.ask(
   agent,
   "Review lib/samgita_web/router.ex and suggest improvements"
 )
@@ -129,12 +129,12 @@ IO.puts(review)
 ### Example 2: File Refactoring
 
 ```elixir
-agent = ClaudeAgent.new("""
+agent = ClaudeAPI.new("""
 You are an Elixir refactoring expert.
 Read code, make improvements, and write the changes.
 """)
 
-{:ok, response, _agent} = ClaudeAgent.ask(
+{:ok, response, _agent} = ClaudeAPI.ask(
   agent,
   """
   Read lib/claude_agent/client.ex and:
@@ -155,7 +155,7 @@ The agent automatically follows the RARV cycle:
 4. **Verify**: Check success and iterate if needed
 
 ```elixir
-agent = ClaudeAgent.new("""
+agent = ClaudeAPI.new("""
 You are a test-driven developer. Follow TDD practices:
 1. Write tests first
 2. Implement code to pass tests
@@ -163,7 +163,7 @@ You are a test-driven developer. Follow TDD practices:
 4. Refactor if needed
 """)
 
-{:ok, response, _agent} = ClaudeAgent.ask(
+{:ok, response, _agent} = ClaudeAPI.ask(
   agent,
   """
   Create a Calculator module with add/2 and multiply/2 functions.
@@ -175,11 +175,11 @@ You are a test-driven developer. Follow TDD practices:
 ## Architecture
 
 ```
-ClaudeAgent
-├── ClaudeAgent.Client      # HTTP client using http_fetch
-├── ClaudeAgent.Agent       # RARV cycle orchestration
-├── ClaudeAgent.Tools       # Tool registry
-└── ClaudeAgent.Tools.*     # Tool implementations
+ClaudeAPI
+├── ClaudeAPI.Client      # HTTP client using http_fetch
+├── ClaudeAPI.Agent       # RARV cycle orchestration
+├── ClaudeAPI.Tools       # Tool registry
+└── ClaudeAPI.Tools.*     # Tool implementations
     ├── Read                # File reading
     ├── Write               # File writing
     ├── Edit                # String replacement
@@ -192,16 +192,16 @@ ClaudeAgent
 
 ```elixir
 # Use Opus for complex reasoning
-agent = ClaudeAgent.new(
+agent = ClaudeAPI.new(
   "You are an architect",
   model: "claude-opus-4-5-20251101"
 )
 
 # Use Sonnet for general development (default)
-agent = ClaudeAgent.new("You are a developer")
+agent = ClaudeAPI.new("You are a developer")
 
 # Use Haiku for simple tasks (coming soon)
-agent = ClaudeAgent.new(
+agent = ClaudeAPI.new(
   "You run tests",
   model: "claude-haiku-4-0-20250710"
 )
@@ -209,7 +209,7 @@ agent = ClaudeAgent.new(
 
 ## Integration with Samgita
 
-The ClaudeAgent integrates with Samgita's agent system:
+The ClaudeAPI integrates with Samgita's agent system:
 
 ```elixir
 # In your agent worker (gen_statem)
@@ -217,9 +217,9 @@ defmodule Samgita.Agent.Worker do
   # RARV cycle states: :reason -> :act -> :reflect -> :verify
 
   def reason(agent_type, task) do
-    claude_agent = ClaudeAgent.new(agent_system_prompt(agent_type))
+    claude_agent = ClaudeAPI.new(agent_system_prompt(agent_type))
 
-    {:ok, plan, claude_agent} = ClaudeAgent.ask(
+    {:ok, plan, claude_agent} = ClaudeAPI.ask(
       claude_agent,
       "Analyze this task: #{task.description}"
     )
@@ -229,7 +229,7 @@ defmodule Samgita.Agent.Worker do
   end
 
   def act(state) do
-    {:ok, result, claude_agent} = ClaudeAgent.ask(
+    {:ok, result, claude_agent} = ClaudeAPI.ask(
       state.claude_agent,
       "Execute the plan: #{state.plan}"
     )
@@ -246,10 +246,10 @@ end
 See module documentation:
 
 ```elixir
-h ClaudeAgent
-h ClaudeAgent.Client
-h ClaudeAgent.Agent
-h ClaudeAgent.Tools
+h ClaudeAPI
+h ClaudeAPI.Client
+h ClaudeAPI.Agent
+h ClaudeAPI.Tools
 ```
 
 ## Testing
@@ -263,13 +263,13 @@ mix run examples/claude_agent_example.exs
 
 # Interactive testing
 iex -S mix
-iex> agent = ClaudeAgent.new("You are helpful")
-iex> ClaudeAgent.ask(agent, "Hello!")
+iex> agent = ClaudeAPI.new("You are helpful")
+iex> ClaudeAPI.ask(agent, "Hello!")
 ```
 
 ## Comparison to Claude Code CLI
 
-| Feature | Claude Code CLI | ClaudeAgent |
+| Feature | Claude Code CLI | ClaudeAPI |
 |---------|-----------------|-------------|
 | File Read/Write/Edit | ✅ | ✅ |
 | Bash execution | ✅ | ✅ |

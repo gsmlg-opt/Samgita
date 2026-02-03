@@ -1,4 +1,4 @@
-defmodule ClaudeAgent.Tools.Write do
+defmodule ClaudeAPI.Tools.Write do
   @moduledoc """
   Write files to the filesystem.
   """
@@ -8,7 +8,7 @@ defmodule ClaudeAgent.Tools.Write do
 
   ## Examples
 
-      iex> ClaudeAgent.Tools.Write.execute(%{
+      iex> ClaudeAPI.Tools.Write.execute(%{
       ...>   "file_path" => "/tmp/test.txt",
       ...>   "content" => "Hello, world!"
       ...> })

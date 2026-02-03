@@ -1,4 +1,4 @@
-defmodule ClaudeAgent.Tools.Grep do
+defmodule ClaudeAPI.Tools.Grep do
   @moduledoc """
   Search for patterns in files using regex.
   """
@@ -8,10 +8,10 @@ defmodule ClaudeAgent.Tools.Grep do
 
   ## Examples
 
-      iex> ClaudeAgent.Tools.Grep.execute(%{"pattern" => "defmodule"})
+      iex> ClaudeAPI.Tools.Grep.execute(%{"pattern" => "defmodule"})
       {:ok, "lib/samgita.ex\\nlib/samgita/application.ex\\n..."}
 
-      iex> ClaudeAgent.Tools.Grep.execute(%{
+      iex> ClaudeAPI.Tools.Grep.execute(%{
       ...>   "pattern" => "def\\s+\\w+",
       ...>   "glob" => "*.ex",
       ...>   "output_mode" => "content",

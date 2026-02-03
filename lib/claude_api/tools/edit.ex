@@ -1,4 +1,4 @@
-defmodule ClaudeAgent.Tools.Edit do
+defmodule ClaudeAPI.Tools.Edit do
   @moduledoc """
   Edit files with exact string replacement.
   """
@@ -8,14 +8,14 @@ defmodule ClaudeAgent.Tools.Edit do
 
   ## Examples
 
-      iex> ClaudeAgent.Tools.Edit.execute(%{
+      iex> ClaudeAPI.Tools.Edit.execute(%{
       ...>   "file_path" => "/tmp/test.txt",
       ...>   "old_string" => "old text",
       ...>   "new_string" => "new text"
       ...> })
       {:ok, "File edited: /tmp/test.txt"}
 
-      iex> ClaudeAgent.Tools.Edit.execute(%{
+      iex> ClaudeAPI.Tools.Edit.execute(%{
       ...>   "file_path" => "/tmp/test.txt",
       ...>   "old_string" => "replace me",
       ...>   "new_string" => "replaced",

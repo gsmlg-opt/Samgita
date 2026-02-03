@@ -1,4 +1,4 @@
-defmodule ClaudeAgent.Tools do
+defmodule ClaudeAPI.Tools do
   @moduledoc """
   Tool registry and execution for Claude Agent.
 
@@ -29,12 +29,12 @@ defmodule ClaudeAgent.Tools do
   Execute a tool by name with the given input.
   """
   @spec execute(String.t(), map()) :: {:ok, String.t()} | {:error, term()}
-  def execute("read_file", input), do: ClaudeAgent.Tools.Read.execute(input)
-  def execute("write_file", input), do: ClaudeAgent.Tools.Write.execute(input)
-  def execute("edit_file", input), do: ClaudeAgent.Tools.Edit.execute(input)
-  def execute("bash", input), do: ClaudeAgent.Tools.Bash.execute(input)
-  def execute("glob", input), do: ClaudeAgent.Tools.Glob.execute(input)
-  def execute("grep", input), do: ClaudeAgent.Tools.Grep.execute(input)
+  def execute("read_file", input), do: ClaudeAPI.Tools.Read.execute(input)
+  def execute("write_file", input), do: ClaudeAPI.Tools.Write.execute(input)
+  def execute("edit_file", input), do: ClaudeAPI.Tools.Edit.execute(input)
+  def execute("bash", input), do: ClaudeAPI.Tools.Bash.execute(input)
+  def execute("glob", input), do: ClaudeAPI.Tools.Glob.execute(input)
+  def execute("grep", input), do: ClaudeAPI.Tools.Grep.execute(input)
   def execute(name, _input), do: {:error, "Unknown tool: #{name}"}
 
   # Tool definitions
