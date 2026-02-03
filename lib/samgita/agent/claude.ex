@@ -1,7 +1,7 @@
 defmodule Samgita.Agent.Claude do
   @moduledoc """
-  Claude CLI wrapper using System.cmd.
-  Uses host's existing authentication.
+  Claude integration using ClaudeAgentSDK with full tool support.
+  Provides read_file, write_file, edit_file, bash, glob, and grep tools.
   """
 
   require Logger
@@ -9,17 +9,39 @@ defmodule Samgita.Agent.Claude do
   @max_backoff_ms 3_600_000
 
   def chat(prompt, opts \\ []) do
-    command = Application.get_env(:samgita, :claude_command, "claude")
-    args = build_args(prompt, opts)
+    model = to_string(opts[:model] || "sonnet")
+
+    # Build options with tools enabled and permissions bypassed
+    sdk_opts = %ClaudeAgentSDK.Options{
+      model: model,
+      max_turns: 10,
+      permission_mode: :bypass_permissions,
+      system_prompt: "You are a helpful AI assistant with access to file operations and shell commands."
+    }
 
     try do
-      case System.cmd(command, args, stderr_to_stdout: true) do
-        {output, 0} -> {:ok, parse_output(output)}
-        {output, _} -> handle_error(output)
-      end
+      # Execute query and collect all assistant responses
+      response =
+        ClaudeAgentSDK.query(prompt, sdk_opts, nil)
+        |> Enum.reduce("", fn msg, acc ->
+          case msg.type do
+            :assistant ->
+              text = ClaudeAgentSDK.ContentExtractor.extract_text(msg)
+              # Unescape newlines for proper formatting
+              unescaped = String.replace(text || "", "\\n", "\n")
+              acc <> unescaped
+
+            _ ->
+              acc
+          end
+        end)
+        |> String.trim()
+
+      {:ok, response}
     rescue
-      e in ErlangError ->
-        {:error, "Command failed: #{inspect(e.original)}"}
+      e ->
+        Logger.error("Claude SDK error: #{inspect(e)}")
+        handle_error(Exception.message(e))
     end
   end
 
@@ -27,21 +49,16 @@ defmodule Samgita.Agent.Claude do
     min((60_000 * :math.pow(2, attempt)) |> round(), @max_backoff_ms)
   end
 
-  defp build_args(prompt, opts) do
-    base = ["--print"]
-    model = if m = opts[:model], do: ["--model", m], else: []
-    base ++ model ++ [prompt]
-  end
-
-  defp handle_error(output) do
+  defp handle_error(message) do
     cond do
-      String.contains?(output, "rate limit") -> {:error, :rate_limit}
-      String.contains?(output, "overloaded") -> {:error, :overloaded}
-      true -> {:error, output}
-    end
-  end
+      String.contains?(message, "rate limit") or String.contains?(message, "rate_limit") ->
+        {:error, :rate_limit}
 
-  defp parse_output(output) do
-    String.trim(output)
+      String.contains?(message, "overloaded") ->
+        {:error, :overloaded}
+
+      true ->
+        {:error, message}
+    end
   end
 end

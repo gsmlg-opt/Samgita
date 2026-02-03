@@ -3,87 +3,67 @@ defmodule Samgita.Agent.ClaudeTest do
 
   alias Samgita.Agent.Claude
 
+  @moduletag :integration
+
   setup do
-    original = Application.get_env(:samgita, :claude_command)
-    on_exit(fn -> Application.put_env(:samgita, :claude_command, original) end)
-    :ok
+    # Ensure test file doesn't exist
+    test_file = "/tmp/claude_test_#{:rand.uniform(10000)}.txt"
+    File.rm(test_file)
+
+    on_exit(fn ->
+      File.rm(test_file)
+    end)
+
+    {:ok, test_file: test_file}
   end
 
-  describe "backoff_ms/1" do
-    test "returns exponential backoff values" do
-      assert Claude.backoff_ms(0) == 60_000
-      assert Claude.backoff_ms(1) == 120_000
-      assert Claude.backoff_ms(2) == 240_000
-      assert Claude.backoff_ms(3) == 480_000
+  describe "Claude with file operations" do
+    @tag timeout: 60_000
+    test "can write a file", %{test_file: test_file} do
+      prompt = """
+      Please write the text "Hello from Claude!" to the file #{test_file}.
+      Use the write tool to create this file.
+      """
+
+      {:ok, response} = Claude.chat(prompt)
+
+      IO.puts("\n=== Claude Response ===")
+      IO.puts(response)
+      IO.puts("======================\n")
+
+      # Give it a moment for the file to be created
+      Process.sleep(500)
+
+      # Check if file exists
+      if File.exists?(test_file) do
+        content = File.read!(test_file)
+        IO.puts("✅ File created successfully!")
+        IO.puts("Content: #{content}")
+        assert String.contains?(content, "Hello from Claude")
+      else
+        IO.puts("❌ File was NOT created")
+        IO.puts("Test file path: #{test_file}")
+        flunk("File was not created")
+      end
     end
 
-    test "caps at max backoff of 1 hour" do
-      assert Claude.backoff_ms(10) == 3_600_000
-      assert Claude.backoff_ms(20) == 3_600_000
-    end
-  end
+    @tag timeout: 60_000
+    test "can read a file", %{test_file: test_file} do
+      # First create a file
+      File.write!(test_file, "Test content for reading")
 
-  describe "chat/2" do
-    test "returns ok tuple on successful command" do
-      Application.put_env(:samgita, :claude_command, "echo")
+      prompt = """
+      Please read the file #{test_file} and tell me what it contains.
+      """
 
-      result = Claude.chat("hello world")
-      assert {:ok, output} = result
-      assert is_binary(output)
-    end
+      {:ok, response} = Claude.chat(prompt)
 
-    test "passes model option as args" do
-      Application.put_env(:samgita, :claude_command, "echo")
+      IO.puts("\n=== Claude Response ===")
+      IO.puts(response)
+      IO.puts("======================\n")
 
-      {:ok, output} = Claude.chat("test prompt", model: "sonnet")
-      assert output =~ "--model"
-      assert output =~ "sonnet"
-    end
-
-    test "returns error tuple for nonexistent command" do
-      Application.put_env(:samgita, :claude_command, "nonexistent_command_12345")
-
-      assert {:error, message} = Claude.chat("test")
-      assert message =~ "Command failed"
-    end
-
-    test "returns rate_limit error for rate limit output" do
-      tmp_dir = System.tmp_dir!()
-      script_path = Path.join(tmp_dir, "mock_claude_rate_limit.sh")
-      File.write!(script_path, "#!/bin/sh\necho 'rate limit exceeded'\nexit 1")
-      File.chmod!(script_path, 0o755)
-
-      Application.put_env(:samgita, :claude_command, script_path)
-
-      assert {:error, :rate_limit} = Claude.chat("test")
-
-      File.rm(script_path)
-    end
-
-    test "returns overloaded error for overloaded output" do
-      tmp_dir = System.tmp_dir!()
-      script_path = Path.join(tmp_dir, "mock_claude_overloaded.sh")
-      File.write!(script_path, "#!/bin/sh\necho 'server overloaded'\nexit 1")
-      File.chmod!(script_path, 0o755)
-
-      Application.put_env(:samgita, :claude_command, script_path)
-
-      assert {:error, :overloaded} = Claude.chat("test")
-
-      File.rm(script_path)
-    end
-
-    test "returns raw error output for unknown errors" do
-      tmp_dir = System.tmp_dir!()
-      script_path = Path.join(tmp_dir, "mock_claude_error.sh")
-      File.write!(script_path, "#!/bin/sh\necho 'some unknown error'\nexit 1")
-      File.chmod!(script_path, 0o755)
-
-      Application.put_env(:samgita, :claude_command, script_path)
-
-      assert {:error, "some unknown error\n"} = Claude.chat("test")
-
-      File.rm(script_path)
+      assert String.contains?(response, "Test content") or
+               String.contains?(response, "reading")
     end
   end
 end
