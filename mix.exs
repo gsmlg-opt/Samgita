@@ -74,6 +74,7 @@ defmodule Samgita.MixProject do
       {:bandit, "~> 1.5"},
       {:earmark, "~> 1.4"},
       {:http_fetch, "~> 0.8.0"},
+      {:claude_agent_sdk, "~> 0.9.2"},
 
       # Distribution & Task Queue
       {:oban, "~> 2.18"},

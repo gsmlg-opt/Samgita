@@ -241,6 +241,37 @@ See `loki-mode/references/agent-types.md` for detailed agent definitions.
 - Follow Tailwind Typography (`prose` classes) for content formatting
 - Maintain consistent color schemes across components
 
+## Claude Integration Modules
+
+Samgita provides two ways to interact with Claude:
+
+### ClaudeAgent (lib/claude_agent.ex)
+- **Wrapper for Claude Code CLI** - spawns CLI as subprocess
+- **Authentication**: Uses Claude Code's built-in auth (OAuth or API key)
+- **Tools**: All Claude Code tools available automatically
+- **Use case**: Rapid prototyping, development, quick testing
+- **Matches**: `@anthropic-ai/claude-agent-sdk` architecture
+- **Aligns with**: ADR-004 (Use Claude CLI via Erlang Port)
+
+### ClaudeAPI (lib/claude_api.ex)
+- **Direct HTTP API calls** - uses Anthropic Messages API
+- **Authentication**: Manual ANTHROPIC_API_KEY or CLAUDE_CODE_OAUTH_TOKEN
+- **Tools**: Custom tool implementations (Read, Write, Edit, Bash, etc.)
+- **Use case**: Production systems, fine-grained control, minimal dependencies
+- **Matches**: Direct API integration pattern
+
+**When to use ClaudeAgent:**
+- Prototyping and development
+- Need all Claude Code tools immediately
+- Already using Claude Code CLI
+- Want CLI-managed authentication
+
+**When to use ClaudeAPI:**
+- Production systems
+- Fine-grained control over API calls
+- Minimize external dependencies
+- Custom tool implementations
+
 ## Research Foundation
 
 Samgita inherits patterns from loki-mode's research foundation:

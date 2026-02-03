@@ -139,8 +139,76 @@ Each agent executes a Reason-Act-Reflect-Verify cycle:
 | Database | PostgreSQL 16+ | Persistent state, Oban backend |
 | Task Queue | Oban 2.18+ | Distributed job processing |
 | Process Distribution | Horde | Cross-node registry/supervisor |
-| LLM | Claude CLI | Uses host's authenticated `claude` command |
+| LLM | Claude CLI / API | ClaudeAgent (CLI) or ClaudeAPI (HTTP) |
 | Caching | ETS + PubSub | Local cache with cluster invalidation |
+
+## Claude Integration
+
+Samgita provides two modules for Claude integration:
+
+### ClaudeAgent (`lib/claude_agent.ex`)
+
+Wraps Claude Code CLI as a subprocess, matching the architecture of `@anthropic-ai/claude-agent-sdk`.
+
+**Features:**
+- Uses Claude Code's built-in authentication (OAuth or API key)
+- All Claude Code tools available automatically (Read, Write, Edit, Bash, Glob, Grep, etc.)
+- Stateful conversation support
+- Aligns with ADR-004 (Use Claude CLI via Erlang Port)
+
+**Use when:**
+- Rapid prototyping and development
+- You need all Claude Code tools immediately
+- You already use Claude Code CLI
+- You want CLI-managed authentication
+
+**Example:**
+```elixir
+# Simple query
+{:ok, response} = ClaudeAgent.query(
+  "You are a calculator",
+  "What is 42 * 137?"
+)
+
+# Conversational agent
+agent = ClaudeAgent.new("You are a helpful coding assistant")
+{:ok, response, agent} = ClaudeAgent.ask(agent, "List all .ex files")
+{:ok, response, agent} = ClaudeAgent.ask(agent, "Read the first file")
+```
+
+See `lib/claude_agent/README.md` and `examples/claude_agent_example.exs` for details.
+
+### ClaudeAPI (`lib/claude_api.ex`)
+
+Direct HTTP client for Anthropic Messages API with custom tool implementations.
+
+**Features:**
+- Fine-grained control over API calls
+- Custom tool implementations (Read, Write, Edit, Bash, Glob, Grep)
+- No external dependencies (besides API key)
+- RARV cycle orchestration built-in
+
+**Use when:**
+- Building production systems
+- You need precise control over API calls
+- You want to minimize external dependencies
+- You need custom tool implementations
+
+**Example:**
+```elixir
+# Simple query
+{:ok, response} = ClaudeAPI.query(
+  "You are a calculator",
+  "What is 42 * 137?"
+)
+
+# Conversational agent
+agent = ClaudeAPI.new("You are a helpful coding assistant")
+{:ok, response, agent} = ClaudeAPI.ask(agent, "List all .ex files")
+{:ok, response, agent} = ClaudeAPI.ask(agent, "Read the first file")
+```
+
+See `lib/claude_api/README.md` and `examples/claude_api_example.exs` for details.
 
 ## Getting Started
 
@@ -148,7 +216,7 @@ Each agent executes a Reason-Act-Reflect-Verify cycle:
 
 - Elixir 1.17+
 - PostgreSQL 16+
-- Claude CLI (authenticated - run `claude` to verify)
+- Claude CLI (install: `curl -fsSL https://claude.ai/install.sh | bash`)
 
 ### Installation
 
