@@ -20,7 +20,7 @@
         required
       />
       <p :if={@detected_path} class="text-sm text-green-600 mt-1">
-        Found local clone: <%= @detected_path %>
+        Found local clone: {@detected_path}
       </p>
       <p :if={@clone_needed} class="text-sm text-yellow-600 mt-1">
         Repo not found locally. Will clone on project start.

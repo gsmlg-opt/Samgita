@@ -4,8 +4,8 @@
       <.link navigate={~p"/"} class="text-sm text-zinc-500 hover:text-zinc-700">
         &larr; Dashboard
       </.link>
-      <h1 class="text-3xl font-bold text-zinc-900 mt-2"><%= @project.name %></h1>
-      <p class="text-sm text-zinc-500"><%= @project.git_url %></p>
+      <h1 class="text-3xl font-bold text-zinc-900 mt-2">{@project.name}</h1>
+      <p class="text-sm text-zinc-500">{@project.git_url}</p>
     </div>
     <div class="flex gap-2">
       <button
@@ -37,19 +37,19 @@
     <div class="flex gap-8">
       <div>
         <span class="text-sm text-zinc-500">Status</span>
-        <p class={"font-semibold #{status_text_color(@project.status)}"}><%= @project.status %></p>
+        <p class={"font-semibold #{status_text_color(@project.status)}"}>{@project.status}</p>
       </div>
       <div>
         <span class="text-sm text-zinc-500">Phase</span>
-        <p class="font-semibold text-zinc-900"><%= @project.phase %></p>
+        <p class="font-semibold text-zinc-900">{@project.phase}</p>
       </div>
       <div>
         <span class="text-sm text-zinc-500">Agents</span>
-        <p class="font-semibold text-zinc-900"><%= length(@agents) %></p>
+        <p class="font-semibold text-zinc-900">{length(@agents)}</p>
       </div>
       <div>
         <span class="text-sm text-zinc-500">Tasks</span>
-        <p class="font-semibold text-zinc-900"><%= length(@tasks) %></p>
+        <p class="font-semibold text-zinc-900">{length(@tasks)}</p>
       </div>
     </div>
   </div>
@@ -78,8 +78,8 @@
         :for={agent <- @agents}
         class="border rounded-lg p-3"
       >
-        <p class="text-sm font-medium"><%= agent.id %></p>
-        <p class={"text-xs #{agent_state_color(agent.state)}"}><%= agent.state %></p>
+        <p class="text-sm font-medium">{agent.id}</p>
+        <p class={"text-xs #{agent_state_color(agent.state)}"}>{agent.state}</p>
       </div>
     </div>
   </div>
@@ -95,11 +95,11 @@
       class="border-b last:border-b-0 py-3 flex justify-between items-center"
     >
       <div>
-        <p class="text-sm font-medium"><%= task.type %></p>
-        <p class="text-xs text-zinc-500">Priority: <%= task.priority %></p>
+        <p class="text-sm font-medium">{task.type}</p>
+        <p class="text-xs text-zinc-500">Priority: {task.priority}</p>
       </div>
       <span class={"px-2 py-1 text-xs rounded-full #{task_status_color(task.status)}"}>
-        <%= task.status %>
+        {task.status}
       </span>
     </div>
   </div>

@@ -11,12 +11,22 @@
       ← Back to Dashboard
     </.link>
   </div>
-
-  <!-- Related References -->
+  
+<!-- Related References -->
   <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
     <div class="flex items-start gap-3">
-      <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      <svg
+        class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        />
       </svg>
       <div class="flex-1">
         <p class="text-sm font-medium text-blue-800 mb-2">Related Documentation</p>
@@ -26,7 +36,12 @@
             class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-white border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
             </svg>
             <span>Agent Type Definitions</span>
           </.link>
@@ -35,7 +50,12 @@
             class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-white border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
             </svg>
             <span>Agent Types Reference</span>
           </.link>
@@ -44,7 +64,12 @@
             class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-white border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
             </svg>
             <span>RARV Workflow</span>
           </.link>
@@ -69,13 +94,13 @@
       phx-value-swarm={swarm_name}
       class={"block text-left bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow border-2 #{swarm_color(swarm_name)}"}
     >
-      <h3 class="text-lg font-semibold mb-2"><%= swarm_name %></h3>
-      <p class="text-sm opacity-75"><%= length(agents) %> agents</p>
+      <h3 class="text-lg font-semibold mb-2">{swarm_name}</h3>
+      <p class="text-sm opacity-75">{length(agents)} agents</p>
     </button>
   </div>
 
   <div :if={@selected_swarm} class="space-y-4">
-    <h2 class="text-2xl font-bold text-zinc-900 mb-4"><%= @selected_swarm %></h2>
+    <h2 class="text-2xl font-bold text-zinc-900 mb-4">{@selected_swarm}</h2>
     <div class="grid gap-4">
       <div
         :for={agent <- @agent_types[@selected_swarm]}
@@ -85,12 +110,14 @@
           <div class="flex items-start justify-between">
             <div class="flex-1">
               <div class="flex items-center gap-3">
-                <h3 class="text-lg font-semibold text-zinc-900 font-mono"><%= agent.name %></h3>
+                <h3 class="text-lg font-semibold text-zinc-900 font-mono">{agent.name}</h3>
                 <button
                   phx-click="toggle_agent"
                   phx-value-agent={agent.name}
                   class="text-zinc-400 hover:text-zinc-600 transition-colors"
-                  title={if is_expanded?(@expanded_agents, agent.name), do: "Collapse", else: "Expand"}
+                  title={
+                    if is_expanded?(@expanded_agents, agent.name), do: "Collapse", else: "Expand"
+                  }
                 >
                   <svg
                     class={"w-5 h-5 transition-transform #{if is_expanded?(@expanded_agents, agent.name), do: "rotate-180", else: ""}"}
@@ -98,14 +125,19 @@
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </button>
               </div>
-              <p class="text-sm text-zinc-600 mt-2"><%= agent.description %></p>
+              <p class="text-sm text-zinc-600 mt-2">{agent.description}</p>
             </div>
             <span class={"px-3 py-1 text-xs rounded-full font-medium #{swarm_color(@selected_swarm)}"}>
-              <%= @selected_swarm |> String.split(" ") |> hd() %>
+              {@selected_swarm |> String.split(" ") |> hd()}
             </span>
           </div>
 
@@ -117,7 +149,12 @@
             <div>
               <h4 class="text-sm font-semibold text-zinc-700 mb-2 flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
                 </svg>
                 Agent Definition (Markdown)
               </h4>
@@ -125,21 +162,24 @@
                 <pre class="text-xs text-zinc-100 font-mono leading-relaxed"><%= agent_markdown(agent, @selected_swarm) %></pre>
               </div>
             </div>
-
-            <!-- Capabilities -->
+            
+<!-- Capabilities -->
             <div>
               <h4 class="text-sm font-semibold text-zinc-700 mb-2">Capabilities</h4>
               <div class="bg-zinc-50 rounded-lg p-4">
                 <ul class="space-y-1">
-                  <li :for={capability <- agent.capabilities} class="text-sm text-zinc-700 flex items-start">
+                  <li
+                    :for={capability <- agent.capabilities}
+                    class="text-sm text-zinc-700 flex items-start"
+                  >
                     <span class="text-zinc-400 mr-2">•</span>
-                    <span><%= capability %></span>
+                    <span>{capability}</span>
                   </li>
                 </ul>
               </div>
             </div>
-
-            <!-- Task Types -->
+            
+<!-- Task Types -->
             <div>
               <h4 class="text-sm font-semibold text-zinc-700 mb-2">Task Types</h4>
               <div class="flex flex-wrap gap-2">
@@ -147,36 +187,43 @@
                   :for={task_type <- agent.task_types}
                   class="px-2 py-1 text-xs bg-blue-50 text-blue-700 rounded border border-blue-200 font-mono"
                 >
-                  <%= task_type %>
+                  {task_type}
                 </span>
               </div>
             </div>
-
-            <!-- Quality Checks -->
+            
+<!-- Quality Checks -->
             <div>
               <h4 class="text-sm font-semibold text-zinc-700 mb-2">Quality Checks</h4>
               <div class="bg-green-50 rounded-lg p-4">
                 <ul class="space-y-1">
-                  <li :for={check <- agent.quality_checks} class="text-sm text-green-800 flex items-start">
-                    <svg class="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <li
+                    :for={check <- agent.quality_checks}
+                    class="text-sm text-green-800 flex items-start"
+                  >
+                    <svg
+                      class="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 text-green-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path
                         fill-rule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                         clip-rule="evenodd"
                       />
                     </svg>
-                    <span><%= check %></span>
+                    <span>{check}</span>
                   </li>
                 </ul>
               </div>
             </div>
-
-            <!-- Model (if specified) -->
+            
+<!-- Model (if specified) -->
             <div :if={Map.get(agent, :model)}>
               <h4 class="text-sm font-semibold text-zinc-700 mb-2">Recommended Model</h4>
               <div class="bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <span class="text-sm font-mono text-purple-800">
-                  <%= Map.get(agent, :model) %>
+                  {Map.get(agent, :model)}
                 </span>
                 <span class="text-xs text-purple-600 ml-2">(required for deep analysis)</span>
               </div>

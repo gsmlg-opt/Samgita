@@ -17,7 +17,11 @@ defmodule SamgitaWeb.PlaygroundLive.Index do
   end
 
   @impl true
-  def handle_event("restore_conversations", %{"conversations" => conv_data, "current_id" => current_id}, socket) do
+  def handle_event(
+        "restore_conversations",
+        %{"conversations" => conv_data, "current_id" => current_id},
+        socket
+      ) do
     conversations = Enum.map(conv_data, &deserialize_conversation/1)
 
     {:noreply,

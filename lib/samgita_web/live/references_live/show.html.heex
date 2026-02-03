@@ -8,16 +8,18 @@
     </.link>
     <div class="flex items-start justify-between">
       <div>
-        <h1 class="text-3xl font-bold text-zinc-900"><%= @reference.title %></h1>
-        <p class="text-zinc-600 mt-2"><%= @reference.description %></p>
+        <h1 class="text-3xl font-bold text-zinc-900">{@reference.title}</h1>
+        <p class="text-zinc-600 mt-2">{@reference.description}</p>
       </div>
       <span class={"px-3 py-1.5 text-sm rounded-lg font-medium border #{References.category_color(@reference.category)}"}>
-        <%= @reference.category %>
+        {@reference.category}
       </span>
     </div>
   </div>
 
   <div class="bg-white rounded-lg shadow-lg border border-zinc-200 overflow-hidden">
-    <el-dm-markdown class="prose prose-zinc prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-code:bg-zinc-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-zinc-900 prose-pre:text-zinc-100 max-w-none p-8 block"><%= @reference.content %></el-dm-markdown>
+    <el-dm-markdown class="prose prose-zinc prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-code:bg-zinc-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-zinc-900 prose-pre:text-zinc-100 max-w-none p-8 block">
+      {@reference.content}
+    </el-dm-markdown>
   </div>
 </div>

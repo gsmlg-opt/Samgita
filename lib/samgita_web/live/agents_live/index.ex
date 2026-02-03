@@ -14,7 +14,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Accessibility (WCAG 2.1 AA)",
           "Performance optimization (Core Web Vitals)"
         ],
-        task_types: ["ui-component", "page-layout", "styling", "accessibility-fix", "frontend-perf"],
+        task_types: [
+          "ui-component",
+          "page-layout",
+          "styling",
+          "accessibility-fix",
+          "frontend-perf"
+        ],
         quality_checks: [
           "Lighthouse score > 90",
           "No console errors",
@@ -71,7 +77,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Offline-first, local storage",
           "App store deployment"
         ],
-        task_types: ["mobile-screen", "native-feature", "offline-sync", "push-notification", "app-store"],
+        task_types: [
+          "mobile-screen",
+          "native-feature",
+          "offline-sync",
+          "push-notification",
+          "app-store"
+        ],
         quality_checks: [
           "60fps smooth scrolling",
           "App size < 50MB",
@@ -149,7 +161,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Multi-stage builds",
           "Resource limits and requests"
         ],
-        task_types: ["dockerfile", "k8s-manifest", "helm-chart", "iac-review", "container-security"],
+        task_types: [
+          "dockerfile",
+          "k8s-manifest",
+          "helm-chart",
+          "iac-review",
+          "container-security"
+        ],
         quality_checks: [
           "Images use minimal base",
           "No secrets in images",
@@ -208,7 +226,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Penetration testing",
           "Compliance (SOC2, GDPR, HIPAA)"
         ],
-        task_types: ["security-scan", "vulnerability-fix", "penetration-test", "compliance-check", "security-policy"],
+        task_types: [
+          "security-scan",
+          "vulnerability-fix",
+          "penetration-test",
+          "compliance-check",
+          "security-policy"
+        ],
         quality_checks: [
           "Zero high/critical vulnerabilities",
           "All secrets in vault",
@@ -285,7 +309,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Cost allocation tags",
           "Budget alerts"
         ],
-        task_types: ["cost-analysis", "right-size", "spot-strategy", "budget-alert", "cost-report"],
+        task_types: [
+          "cost-analysis",
+          "right-size",
+          "spot-strategy",
+          "budget-alert",
+          "cost-report"
+        ],
         quality_checks: [
           "Monthly cost within budget",
           "No unused resources",
@@ -305,7 +335,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Audit preparation",
           "Policy documentation"
         ],
-        task_types: ["compliance-assess", "policy-write", "control-implement", "audit-prep", "evidence-collect"],
+        task_types: [
+          "compliance-assess",
+          "policy-write",
+          "control-implement",
+          "audit-prep",
+          "evidence-collect"
+        ],
         quality_checks: [
           "All required policies documented",
           "Controls implemented and tested",
@@ -422,7 +458,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Employee handbook",
           "Performance review templates"
         ],
-        task_types: ["job-post", "recruiting-setup", "interview-design", "onboarding-docs", "culture-docs"],
+        task_types: [
+          "job-post",
+          "recruiting-setup",
+          "interview-design",
+          "onboarding-docs",
+          "culture-docs"
+        ],
         quality_checks: [
           "Job posts are inclusive and clear",
           "Interview process documented",
@@ -462,7 +504,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Partner documentation",
           "Revenue sharing models"
         ],
-        task_types: ["partner-outreach", "integration-partner", "co-marketing", "partner-docs", "partner-program"],
+        task_types: [
+          "partner-outreach",
+          "integration-partner",
+          "co-marketing",
+          "partner-docs",
+          "partner-program"
+        ],
         quality_checks: [
           "Partners aligned with strategy",
           "Agreements documented",
@@ -484,7 +532,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Model monitoring",
           "LLM integration and prompting"
         ],
-        task_types: ["model-train", "model-deploy", "feature-eng", "model-monitor", "llm-integrate"],
+        task_types: [
+          "model-train",
+          "model-deploy",
+          "feature-eng",
+          "model-monitor",
+          "llm-integrate"
+        ],
         quality_checks: [
           "Model performance meets threshold",
           "Training reproducible",
@@ -504,7 +558,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Schema design",
           "Data governance"
         ],
-        task_types: ["etl-pipeline", "dbt-model", "data-quality", "warehouse-design", "pipeline-monitor"],
+        task_types: [
+          "etl-pipeline",
+          "dbt-model",
+          "data-quality",
+          "warehouse-design",
+          "pipeline-monitor"
+        ],
         quality_checks: [
           "Pipelines idempotent",
           "Data freshness SLA met",
@@ -607,7 +667,13 @@ defmodule SamgitaWeb.AgentsLive.Index do
           "Churn prediction",
           "PLG (Product-Led Growth) tactics"
         ],
-        task_types: ["growth-experiment", "viral-loop", "referral-program", "activation", "retention"],
+        task_types: [
+          "growth-experiment",
+          "viral-loop",
+          "referral-program",
+          "activation",
+          "retention"
+        ],
         quality_checks: [
           "Experiments statistically valid",
           "Metrics tracked",
