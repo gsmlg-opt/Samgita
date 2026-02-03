@@ -55,7 +55,6 @@ defmodule Samgita.Agent.WorkerTest do
   end
 
   describe "assign_task/2" do
-    @tag timeout: 180_000
     test "transitions through RARV cycle and returns to idle" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -76,7 +75,6 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
 
-    @tag timeout: 240_000
     test "accepts multiple tasks sequentially" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -105,7 +103,6 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
 
-    @tag timeout: 180_000
     test "handles task with string keys" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -126,7 +123,6 @@ defmodule Samgita.Agent.WorkerTest do
   end
 
   describe "RARV state transitions" do
-    @tag timeout: 180_000
     test "transitions from idle -> reason -> act -> reflect -> verify -> idle" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -148,7 +144,6 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
 
-    @tag timeout: 180_000
     test "accumulates learnings through RARV cycle" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -167,7 +162,6 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
 
-    @tag timeout: 180_000
     test "resets retry_count after successful task" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -209,7 +203,6 @@ defmodule Samgita.Agent.WorkerTest do
   end
 
   describe "task payload variations" do
-    @tag timeout: 60_000
     test "handles empty payload" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -228,7 +221,6 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
 
-    @tag timeout: 180_000
     test "handles complex nested payload" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -256,7 +248,6 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
 
-    @tag timeout: 180_000
     test "handles missing type field" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
@@ -275,7 +266,6 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
 
-    @tag timeout: 180_000
     test "handles missing payload field" do
       opts = [
         id: "test-worker-#{System.unique_integer([:positive])}",
