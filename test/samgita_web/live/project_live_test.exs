@@ -143,6 +143,7 @@ defmodule SamgitaWeb.ProjectLiveTest do
 
   test "handles task_completed message refreshes tasks", %{conn: conn} do
     project = create_project()
+
     {:ok, task} =
       Projects.create_task(project.id, %{
         type: "test_task",

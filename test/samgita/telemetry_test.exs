@@ -94,8 +94,7 @@ defmodule Samgita.TelemetryTest do
 
     Samgita.Telemetry.agent_task_failure(metadata, measurements)
 
-    assert_received {[:samgita, :agent, :task_failure], ^ref,
-                     %{duration_ms: 0, retry_count: 0},
+    assert_received {[:samgita, :agent, :task_failure], ^ref, %{duration_ms: 0, retry_count: 0},
                      %{agent_type: "ops-sre", error: "connection_refused"}}
   end
 end
