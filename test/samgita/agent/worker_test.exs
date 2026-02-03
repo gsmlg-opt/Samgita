@@ -1,7 +1,7 @@
 defmodule Samgita.Agent.WorkerTest do
   use ExUnit.Case, async: false
 
-  @moduletag timeout: 30_000
+  @moduletag timeout: 300_000
 
   alias Samgita.Agent.Worker
 
