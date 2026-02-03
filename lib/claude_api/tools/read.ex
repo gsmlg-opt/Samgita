@@ -47,12 +47,15 @@ defmodule ClaudeAPI.Tools.Read do
   end
 
   defp maybe_slice(lines, 0, nil), do: lines
+
   defp maybe_slice(lines, offset, nil) when offset > 0 do
     Enum.drop(lines, offset)
   end
+
   defp maybe_slice(lines, 0, limit) when is_integer(limit) do
     Enum.take(lines, limit)
   end
+
   defp maybe_slice(lines, offset, limit) when is_integer(limit) do
     lines
     |> Enum.drop(offset)

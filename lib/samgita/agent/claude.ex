@@ -16,7 +16,8 @@ defmodule Samgita.Agent.Claude do
       model: model,
       max_turns: 10,
       permission_mode: :bypass_permissions,
-      system_prompt: "You are a helpful AI assistant with access to file operations and shell commands."
+      system_prompt:
+        "You are a helpful AI assistant with access to file operations and shell commands."
     }
 
     try do

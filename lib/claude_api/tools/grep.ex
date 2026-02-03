@@ -61,6 +61,7 @@ defmodule ClaudeAPI.Tools.Grep do
 
   defp get_files(path, glob_pattern) when is_binary(glob_pattern) do
     base = if File.dir?(path), do: path, else: Path.dirname(path)
+
     Path.wildcard(Path.join(base, glob_pattern))
     |> Enum.filter(&File.regular?/1)
   end

@@ -84,11 +84,12 @@ defmodule ClaudeAPI.Client do
       {"content-type", "application/json"}
     ]
 
-    promise = HTTP.fetch("#{@api_base_url}/messages",
-      method: :post,
-      headers: headers,
-      body: Jason.encode!(body)
-    )
+    promise =
+      HTTP.fetch("#{@api_base_url}/messages",
+        method: :post,
+        headers: headers,
+        body: Jason.encode!(body)
+      )
 
     case HTTP.Promise.await(promise) do
       %HTTP.Response{status: 200, body: response_body} ->
@@ -143,11 +144,12 @@ defmodule ClaudeAPI.Client do
     # For now, return a stream that makes a single request
     Stream.resource(
       fn ->
-        promise = HTTP.fetch("#{@api_base_url}/messages",
-          method: :post,
-          headers: headers,
-          body: Jason.encode!(body)
-        )
+        promise =
+          HTTP.fetch("#{@api_base_url}/messages",
+            method: :post,
+            headers: headers,
+            body: Jason.encode!(body)
+          )
 
         case HTTP.Promise.await(promise) do
           {:ok, %HTTP.Response{status: 200, body: response_body}} ->
@@ -190,19 +192,21 @@ defmodule ClaudeAPI.Client do
   def execute_tool(%{"type" => "tool_use", "id" => id, "name" => name, "input" => input}) do
     case ClaudeAPI.Tools.execute(name, input) do
       {:ok, result} ->
-        {:ok, %{
-          type: "tool_result",
-          tool_use_id: id,
-          content: result
-        }}
+        {:ok,
+         %{
+           type: "tool_result",
+           tool_use_id: id,
+           content: result
+         }}
 
       {:error, reason} ->
-        {:ok, %{
-          type: "tool_result",
-          tool_use_id: id,
-          content: "Error: #{inspect(reason)}",
-          is_error: true
-        }}
+        {:ok,
+         %{
+           type: "tool_result",
+           tool_use_id: id,
+           content: "Error: #{inspect(reason)}",
+           is_error: true
+         }}
     end
   end
 
