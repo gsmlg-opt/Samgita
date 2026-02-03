@@ -15,6 +15,7 @@ defmodule Samgita.Application do
       {DNSCluster, query: Application.get_env(:samgita, :dns_cluster_query) || :ignore},
       {Cluster.Supervisor, [topologies, [name: Samgita.ClusterSupervisor]]},
       {Phoenix.PubSub, name: Samgita.PubSub},
+      {Finch, name: Samgita.Finch},
       Samgita.Cache,
       {Horde.Registry, name: Samgita.AgentRegistry, keys: :unique, members: :auto},
       {Horde.DynamicSupervisor,

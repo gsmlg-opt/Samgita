@@ -1,6 +1,19 @@
 # General application configuration
 import Config
 
+config :samgita, :scopes,
+  user: [
+    default: true,
+    module: Samgita.Accounts.Scope,
+    assign_key: :current_scope,
+    access_path: [:user, :id],
+    schema_key: :user_id,
+    schema_type: :id,
+    schema_table: :users,
+    test_data_fixture: Samgita.AccountsFixtures,
+    test_setup_helper: :register_and_log_in_user
+  ]
+
 config :samgita,
   ecto_repos: [Samgita.Repo],
   generators: [timestamp_type: :utc_datetime]
@@ -35,6 +48,10 @@ config :tailwind,
     ),
     cd: Path.expand("..", __DIR__)
   ]
+
+# Configure Swoosh to use Finch
+config :swoosh, :api_client, Swoosh.ApiClient.Finch
+config :swoosh, :finch_name, Samgita.Finch
 
 # Configure Oban
 config :samgita, Oban,

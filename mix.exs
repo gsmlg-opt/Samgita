@@ -49,6 +49,7 @@ defmodule Samgita.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 3.0"},
       {:phoenix, "~> 1.8.3"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.13"},
@@ -75,6 +76,8 @@ defmodule Samgita.MixProject do
       {:earmark, "~> 1.4"},
       {:http_fetch, "~> 0.8.0"},
       {:claude_agent_sdk, "~> 0.9.2"},
+      {:swoosh, "~> 1.16"},
+      {:finch, "~> 0.19"},
 
       # Distribution & Task Queue
       {:oban, "~> 2.18"},
