@@ -22,6 +22,28 @@ Samgita transforms a Product Requirements Document (PRD) into a fully built, tes
 
 The system orchestrates 37 specialized agent types across 6 swarms (Engineering, Operations, Business, Data, Product, Growth), each running as supervised processes that can crash, recover, and migrate across nodes transparently.
 
+## Security & Access Model
+
+**⚠️ Important: Samgita has NO authentication or account system by design.**
+
+**Anyone who can access this application is an administrator with full privileges.**
+
+This is an intentional architectural decision for the following reasons:
+
+- **Self-Hosted Tool**: Designed for personal or team deployment, not multi-tenant SaaS
+- **Infrastructure-Level Security**: Access control via firewall, VPN, SSH keys, or localhost binding
+- **Zero Configuration**: No user registration, passwords, or permission management
+- **Simplicity**: Focus on orchestration, not access control
+
+**Deployment Security:**
+- Run on `localhost` for personal use
+- Use firewall rules to restrict network access
+- Deploy behind VPN for team access
+- Use reverse proxy with authentication if needed
+- Never expose directly to public internet without additional security layers
+
+See [docs/CONSTITUTION.md](./docs/CONSTITUTION.md) for the full rationale and security model.
+
 ## UI Workflow
 
 ```
@@ -412,6 +434,7 @@ iex --sname node2 --cookie samgita -S mix phx.server
 
 ## Documentation
 
+- **[docs/CONSTITUTION.md](./docs/CONSTITUTION.md)** - Core architectural principles and design decisions
 - [PRD.md](./PRD.md) - Product requirements
 - [PLAN.md](./PLAN.md) - Implementation plan
 - [docs/architecture/](./docs/architecture/) - Technical architecture
