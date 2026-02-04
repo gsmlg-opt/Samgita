@@ -234,8 +234,8 @@ defmodule Samgita.Agent.WorkerTest do
         id: "task-1",
         type: "implement",
         payload: %{
-          feature: "auth",
-          requirements: ["oauth2", "jwt"],
+          feature: "api-endpoint",
+          requirements: ["rest", "validation", "error-handling"],
           config: %{timeout: 30, retries: 3}
         }
       }

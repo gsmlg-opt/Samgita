@@ -24,3 +24,8 @@ bun.lockb
 # Database
 *.db
 *.sqlite3
+
+# commands and skills
+!.claude/commands
+!.claude/skills
+

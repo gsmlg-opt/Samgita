@@ -34,12 +34,11 @@ defmodule SamgitaWeb.AgentsLive.Index do
         capabilities: [
           "Node.js, Python, Go, Rust, Java",
           "REST API, GraphQL, gRPC",
-          "Authentication (OAuth, JWT, sessions)",
-          "Authorization (RBAC, ABAC)",
+          "Database design and optimization",
           "Caching (Redis, Memcached)",
           "Message queues (RabbitMQ, SQS, Kafka)"
         ],
-        task_types: ["api-endpoint", "service", "integration", "auth", "business-logic"],
+        task_types: ["api-endpoint", "service", "integration", "business-logic"],
         quality_checks: [
           "API response < 100ms p99",
           "Input validation on all endpoints",
