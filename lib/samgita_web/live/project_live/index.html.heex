@@ -74,13 +74,22 @@
   <div class="bg-white rounded-lg shadow p-4 mb-6">
     <div class="flex justify-between items-center mb-3">
       <h3 class="text-sm font-medium text-zinc-500">Product Requirements Document</h3>
-      <button
-        :if={!@editing_prd}
-        phx-click="edit_prd"
-        class="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
-      >
-        Edit PRD
-      </button>
+      <div class="flex gap-2">
+        <button
+          :if={!@editing_prd && (!@project.prd_content || @project.prd_content == "")}
+          phx-click="create_plan"
+          class="text-xs bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 flex items-center gap-1"
+        >
+          <span>🤖</span> Create Plan with AI
+        </button>
+        <button
+          :if={!@editing_prd}
+          phx-click="edit_prd"
+          class="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+        >
+          Edit PRD
+        </button>
+      </div>
     </div>
 
     <div :if={!@editing_prd}>
@@ -122,13 +131,14 @@
   <%!-- Available Agents --%>
   <div class="bg-white rounded-lg shadow p-4 mb-6">
     <h3 class="text-sm font-medium text-zinc-500 mb-3">Available Agent Types</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
       <div
         :for={agent <- @available_agents}
-        class="border rounded-lg p-3 hover:bg-zinc-50"
+        class="border rounded-lg p-3 hover:bg-zinc-50 transition-colors"
       >
-        <p class="text-xs font-medium text-zinc-900">{agent.name}</p>
+        <p class="text-sm font-medium text-zinc-900">{agent.name}</p>
         <p class="text-xs text-zinc-500">{agent.category}</p>
+        <p class="text-xs text-zinc-400 mt-1">{agent.description}</p>
       </div>
     </div>
   </div>

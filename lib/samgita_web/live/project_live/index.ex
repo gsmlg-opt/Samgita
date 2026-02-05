@@ -70,6 +70,28 @@ defmodule SamgitaWeb.ProjectLive.Index do
   end
 
   # PRD Management events
+  def handle_event("create_plan", _, socket) do
+    case Projects.enqueue_task(
+      socket.assigns.project.id,
+      "generate-prd",
+      "prod-pm",
+      %{
+        project_name: socket.assigns.project.name,
+        git_url: socket.assigns.project.git_url,
+        working_path: socket.assigns.project.working_path,
+        existing_prd: socket.assigns.project.prd_content
+      }
+    ) do
+      {:ok, _task} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "PRD generation task queued. The product manager agent will analyze your project and create a PRD.")}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, "Failed to queue PRD generation task")}
+    end
+  end
+
   def handle_event("edit_prd", _, socket) do
     {:noreply, assign(socket, editing_prd: true, prd_content: socket.assigns.project.prd_content || "")}
   end
@@ -167,26 +189,40 @@ defmodule SamgitaWeb.ProjectLive.Index do
   end
 
   @impl true
+  def handle_info({:prd_generated, _project_id}, socket) do
+    case Projects.get_project(socket.assigns.project.id) do
+      {:ok, project} ->
+        {:noreply,
+         socket
+         |> assign(project: project, prd_content: project.prd_content || "")
+         |> put_flash(:info, "PRD has been generated successfully!")}
+
+      {:error, _} ->
+        {:noreply, socket}
+    end
+  end
+
+  @impl true
   def handle_info(_, socket), do: {:noreply, socket}
 
   # Helper functions
   defp get_available_agent_types do
     [
-      %{name: "eng-frontend", category: "Engineering"},
-      %{name: "eng-backend", category: "Engineering"},
-      %{name: "eng-database", category: "Engineering"},
-      %{name: "eng-mobile", category: "Engineering"},
-      %{name: "eng-api", category: "Engineering"},
-      %{name: "eng-qa", category: "Engineering"},
-      %{name: "eng-perf", category: "Engineering"},
-      %{name: "eng-infra", category: "Engineering"},
-      %{name: "ops-devops", category: "Operations"},
-      %{name: "ops-sre", category: "Operations"},
-      %{name: "ops-security", category: "Operations"},
-      %{name: "data-ml", category: "Data"},
-      %{name: "data-eng", category: "Data"},
-      %{name: "prod-pm", category: "Product"},
-      %{name: "prod-design", category: "Product"}
+      %{name: "prod-pm", category: "Product", description: "Product planning, PRD creation"},
+      %{name: "prod-design", category: "Product", description: "UX/UI design"},
+      %{name: "eng-frontend", category: "Engineering", description: "Frontend development"},
+      %{name: "eng-backend", category: "Engineering", description: "Backend services"},
+      %{name: "eng-database", category: "Engineering", description: "Database design"},
+      %{name: "eng-mobile", category: "Engineering", description: "Mobile apps"},
+      %{name: "eng-api", category: "Engineering", description: "API development"},
+      %{name: "eng-qa", category: "Engineering", description: "Quality assurance"},
+      %{name: "eng-perf", category: "Engineering", description: "Performance optimization"},
+      %{name: "eng-infra", category: "Engineering", description: "Infrastructure"},
+      %{name: "ops-devops", category: "Operations", description: "DevOps automation"},
+      %{name: "ops-sre", category: "Operations", description: "Site reliability"},
+      %{name: "ops-security", category: "Operations", description: "Security"},
+      %{name: "data-ml", category: "Data", description: "Machine learning"},
+      %{name: "data-eng", category: "Data", description: "Data engineering"}
     ]
   end
 

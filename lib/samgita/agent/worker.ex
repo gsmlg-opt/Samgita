@@ -218,6 +218,9 @@ defmodule Samgita.Agent.Worker do
       _ ->
         Logger.info("[#{data.id}] VERIFY: Task verified successfully")
 
+        # Handle post-task actions
+        handle_task_completion(data)
+
         data = %{
           data
           | current_task: nil,
@@ -253,6 +256,101 @@ defmodule Samgita.Agent.Worker do
   end
 
   defp build_prompt(data) do
+    task = data.current_task
+    task_type = task_type(task)
+
+    case task_type do
+      "generate-prd" -> build_prd_prompt(data)
+      _ -> build_generic_prompt(data)
+    end
+  end
+
+  defp build_prd_prompt(data) do
+    task = data.current_task
+    payload = task_payload(task)
+    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
+
+    project_name = payload["project_name"] || "Unnamed Project"
+    git_url = payload["git_url"] || ""
+    working_path = payload["working_path"] || ""
+    existing_prd = payload["existing_prd"]
+
+    context_info =
+      if working_path && working_path != "" do
+        "Working directory: #{working_path}"
+      else
+        "Repository: #{git_url}"
+      end
+
+    existing_context =
+      if existing_prd && existing_prd != "" do
+        """
+
+        ## Existing PRD (refine/expand this)
+        #{existing_prd}
+        """
+      else
+        ""
+      end
+
+    """
+    You are a #{type_name} (#{type_desc}).
+
+    ## Task: Generate Product Requirements Document
+
+    Create a comprehensive Product Requirements Document (PRD) for the project "#{project_name}".
+
+    #{context_info}
+
+    #{existing_context}
+
+    ## PRD Structure
+
+    Please analyze the project and create a PRD with the following sections:
+
+    1. **Project Overview**
+       - Brief description
+       - Problem statement
+       - Target users/audience
+
+    2. **Goals & Objectives**
+       - Primary goals
+       - Success metrics
+       - Out of scope
+
+    3. **User Stories / Use Cases**
+       - Key user flows
+       - Core functionality requirements
+
+    4. **Technical Requirements**
+       - Technology stack recommendations
+       - Architecture considerations
+       - Integration points
+
+    5. **Non-Functional Requirements**
+       - Performance targets
+       - Security requirements
+       - Scalability considerations
+
+    6. **Milestones & Phases**
+       - Development phases
+       - Key deliverables
+       - Timeline estimates
+
+    ## Instructions
+
+    - If there's a git repository, analyze the existing code/docs to understand the project
+    - If there's an existing PRD, enhance and expand it with more details
+    - Be specific and actionable
+    - Focus on what needs to be built, not how to build it
+    - Output only the PRD content in markdown format
+    - Do not include any meta-commentary or explanations outside the PRD
+
+    Generate the PRD now:
+    """
+  end
+
+  defp build_generic_prompt(data) do
     task = data.current_task
     {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
 
@@ -297,6 +395,48 @@ defmodule Samgita.Agent.Worker do
   end
 
   defp memory_learnings(_), do: []
+
+  defp handle_task_completion(data) do
+    task = data.current_task
+    task_type = task_type(task)
+
+    case task_type do
+      "generate-prd" ->
+        save_generated_prd(data)
+
+      _ ->
+        :ok
+    end
+  end
+
+  defp save_generated_prd(data) do
+    case data.act_result do
+      result when is_binary(result) ->
+        Logger.info("[#{data.id}] Saving generated PRD to project #{data.project_id}")
+
+        case Samgita.Projects.get_project(data.project_id) do
+          {:ok, project} ->
+            case Samgita.Projects.update_prd(project, result) do
+              {:ok, _} ->
+                Logger.info("[#{data.id}] PRD saved successfully")
+                Phoenix.PubSub.broadcast(
+                  Samgita.PubSub,
+                  "project:#{data.project_id}",
+                  {:prd_generated, data.project_id}
+                )
+
+              {:error, reason} ->
+                Logger.error("[#{data.id}] Failed to save PRD: #{inspect(reason)}")
+            end
+
+          {:error, reason} ->
+            Logger.error("[#{data.id}] Failed to get project: #{inspect(reason)}")
+        end
+
+      _ ->
+        Logger.warning("[#{data.id}] No PRD content to save")
+    end
+  end
 
   defp persist_learning(project_id, learning) do
     Memory.add_memory(project_id, :episodic, learning)
