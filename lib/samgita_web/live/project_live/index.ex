@@ -15,6 +15,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
         tasks = Projects.list_tasks(project.id)
         agent_runs = Projects.list_agent_runs(project.id)
         available_agents = get_available_agent_types()
+        prds = Samgita.Prds.list_prds(project.id)
 
         {:ok,
          assign(socket,
@@ -23,6 +24,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
            tasks: tasks,
            agent_runs: agent_runs,
            available_agents: available_agents,
+           prds: prds,
            editing_prd: false,
            prd_content: project.prd_content || "",
            show_task_form: false,
@@ -257,4 +259,17 @@ defmodule SamgitaWeb.ProjectLive.Index do
   def task_status_color(:failed), do: "bg-red-100 text-red-800"
   def task_status_color(:dead_letter), do: "bg-zinc-100 text-zinc-800"
   def task_status_color(_), do: "bg-zinc-100 text-zinc-600"
+
+  def relative_time(datetime) do
+    now = DateTime.utc_now()
+    diff = DateTime.diff(now, datetime, :second)
+
+    cond do
+      diff < 60 -> "just now"
+      diff < 3600 -> "#{div(diff, 60)}m ago"
+      diff < 86400 -> "#{div(diff, 3600)}h ago"
+      diff < 604800 -> "#{div(diff, 86400)}d ago"
+      true -> Calendar.strftime(datetime, "%b %d, %Y")
+    end
+  end
 end

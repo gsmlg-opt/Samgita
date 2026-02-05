@@ -73,58 +73,52 @@
   <%!-- PRD Management --%>
   <div class="bg-white rounded-lg shadow p-4 mb-6">
     <div class="flex justify-between items-center mb-3">
-      <h3 class="text-sm font-medium text-zinc-500">Product Requirements Document</h3>
-      <div class="flex gap-2">
-        <button
-          :if={!@editing_prd && (!@project.prd_content || @project.prd_content == "")}
-          phx-click="create_plan"
-          class="text-xs bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 flex items-center gap-1"
-        >
-          <span>🤖</span> Create Plan with AI
-        </button>
-        <button
-          :if={!@editing_prd}
-          phx-click="edit_prd"
-          class="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
-        >
-          Edit PRD
-        </button>
-      </div>
+      <h3 class="text-sm font-medium text-zinc-500">Product Requirements Documents</h3>
+      <.link
+        navigate={~p"/projects/#{@project.id}/prds/new"}
+        class="text-xs bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 flex items-center gap-1"
+      >
+        <span>💬</span> Create PRD with AI Chat
+      </.link>
     </div>
 
-    <div :if={!@editing_prd}>
-      <div :if={@project.prd_content && @project.prd_content != ""} class="prose prose-sm max-w-none">
-        <pre class="whitespace-pre-wrap text-sm text-zinc-700 bg-zinc-50 p-4 rounded">{@project.prd_content}</pre>
-      </div>
-      <div :if={!@project.prd_content || @project.prd_content == ""} class="text-center py-8 text-zinc-400">
-        No PRD content. Click "Edit PRD" to add one.
-      </div>
+    <div :if={@prds == []} class="text-center py-8 text-zinc-400">
+      <p class="mb-2">No PRDs yet</p>
+      <p class="text-xs">Start an interactive conversation with our AI Product Manager to create comprehensive requirements.</p>
     </div>
 
-    <div :if={@editing_prd}>
-      <textarea
-        phx-hook="AutoResize"
-        phx-update="ignore"
-        id="prd-editor"
-        rows="15"
-        class="w-full border rounded-lg p-3 text-sm font-mono"
-        phx-change="update_prd_content"
-      >{@prd_content}</textarea>
-      <div class="flex gap-2 mt-3">
-        <button
-          phx-click="save_prd"
-          phx-value-prd_content={@prd_content}
-          class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
-        >
-          Save PRD
-        </button>
-        <button
-          phx-click="cancel_prd"
-          class="bg-zinc-300 text-zinc-700 px-4 py-2 rounded-lg hover:bg-zinc-400"
-        >
-          Cancel
-        </button>
-      </div>
+    <div :if={@prds != []} class="space-y-3">
+      <.link
+        :for={prd <- @prds}
+        navigate={~p"/projects/#{@project.id}/prds/#{prd.id}"}
+        class="block border rounded-lg p-4 hover:bg-zinc-50 transition-colors"
+      >
+        <div class="flex justify-between items-start mb-2">
+          <h4 class="font-medium text-zinc-900">{prd.title}</h4>
+          <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800">
+            {prd.status}
+          </span>
+        </div>
+        <div class="flex items-center gap-4 text-xs text-zinc-500">
+          <span>Version {prd.version}</span>
+          <span>Updated {relative_time(prd.updated_at)}</span>
+          <span :if={prd.content}>
+            {String.length(prd.content)} characters
+          </span>
+        </div>
+      </.link>
+    </div>
+
+    <%!-- Legacy PRD (if exists) --%>
+    <div :if={@project.prd_content && @project.prd_content != ""} class="mt-4 pt-4 border-t">
+      <details class="cursor-pointer">
+        <summary class="text-sm font-medium text-zinc-600 hover:text-zinc-900">
+          Legacy PRD Content (Old Format)
+        </summary>
+        <div class="mt-2 prose prose-sm max-w-none">
+          <pre class="whitespace-pre-wrap text-sm text-zinc-700 bg-zinc-50 p-4 rounded">{@project.prd_content}</pre>
+        </div>
+      </details>
     </div>
   </div>
 
