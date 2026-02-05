@@ -44,8 +44,8 @@
         <p class="font-semibold text-zinc-900">{@project.phase}</p>
       </div>
       <div>
-        <span class="text-sm text-zinc-500">Agents</span>
-        <p class="font-semibold text-zinc-900">{length(@agents)}</p>
+        <span class="text-sm text-zinc-500">Working Agents</span>
+        <p class="font-semibold text-zinc-900">{length(@agent_runs)}</p>
       </div>
       <div>
         <span class="text-sm text-zinc-500">Tasks</span>
@@ -70,23 +70,154 @@
     </div>
   </div>
 
-  <%!-- Agents Grid --%>
-  <div :if={@agents != []} class="bg-white rounded-lg shadow p-4 mb-6">
-    <h3 class="text-sm font-medium text-zinc-500 mb-3">Active Agents</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+  <%!-- PRD Management --%>
+  <div class="bg-white rounded-lg shadow p-4 mb-6">
+    <div class="flex justify-between items-center mb-3">
+      <h3 class="text-sm font-medium text-zinc-500">Product Requirements Document</h3>
+      <button
+        :if={!@editing_prd}
+        phx-click="edit_prd"
+        class="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+      >
+        Edit PRD
+      </button>
+    </div>
+
+    <div :if={!@editing_prd}>
+      <div :if={@project.prd_content && @project.prd_content != ""} class="prose prose-sm max-w-none">
+        <pre class="whitespace-pre-wrap text-sm text-zinc-700 bg-zinc-50 p-4 rounded">{@project.prd_content}</pre>
+      </div>
+      <div :if={!@project.prd_content || @project.prd_content == ""} class="text-center py-8 text-zinc-400">
+        No PRD content. Click "Edit PRD" to add one.
+      </div>
+    </div>
+
+    <div :if={@editing_prd}>
+      <textarea
+        phx-hook="AutoResize"
+        phx-update="ignore"
+        id="prd-editor"
+        rows="15"
+        class="w-full border rounded-lg p-3 text-sm font-mono"
+        phx-change="update_prd_content"
+      >{@prd_content}</textarea>
+      <div class="flex gap-2 mt-3">
+        <button
+          phx-click="save_prd"
+          phx-value-prd_content={@prd_content}
+          class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+        >
+          Save PRD
+        </button>
+        <button
+          phx-click="cancel_prd"
+          class="bg-zinc-300 text-zinc-700 px-4 py-2 rounded-lg hover:bg-zinc-400"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <%!-- Available Agents --%>
+  <div class="bg-white rounded-lg shadow p-4 mb-6">
+    <h3 class="text-sm font-medium text-zinc-500 mb-3">Available Agent Types</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
       <div
-        :for={agent <- @agents}
+        :for={agent <- @available_agents}
+        class="border rounded-lg p-3 hover:bg-zinc-50"
+      >
+        <p class="text-xs font-medium text-zinc-900">{agent.name}</p>
+        <p class="text-xs text-zinc-500">{agent.category}</p>
+      </div>
+    </div>
+  </div>
+
+  <%!-- Working Agents --%>
+  <div class="bg-white rounded-lg shadow p-4 mb-6">
+    <h3 class="text-sm font-medium text-zinc-500 mb-3">Working Agents</h3>
+    <div :if={@agent_runs == []} class="text-center py-8 text-zinc-400">
+      No agents running yet
+    </div>
+    <div :if={@agent_runs != []} class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div
+        :for={agent <- @agent_runs}
         class="border rounded-lg p-3"
       >
-        <p class="text-sm font-medium">{agent.id}</p>
-        <p class={"text-xs #{agent_state_color(agent.state)}"}>{agent.state}</p>
+        <p class="text-sm font-medium truncate">{agent.agent_type}</p>
+        <p class={"text-xs #{agent_state_color(agent.status)}"}>{agent.status}</p>
+        <p class="text-xs text-zinc-400">Node: {agent.node || "local"}</p>
       </div>
     </div>
   </div>
 
   <%!-- Tasks --%>
   <div class="bg-white rounded-lg shadow p-4">
-    <h3 class="text-sm font-medium text-zinc-500 mb-3">Tasks</h3>
+    <div class="flex justify-between items-center mb-3">
+      <h3 class="text-sm font-medium text-zinc-500">Tasks</h3>
+      <button
+        :if={!@show_task_form}
+        phx-click="show_task_form"
+        class="text-xs bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
+      >
+        + New Task
+      </button>
+    </div>
+
+    <%!-- Task Form --%>
+    <div :if={@show_task_form} class="border rounded-lg p-4 mb-4 bg-zinc-50">
+      <form phx-submit="create_task">
+        <div class="grid grid-cols-2 gap-4 mb-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Task Type</label>
+            <input
+              type="text"
+              name="task[type]"
+              required
+              placeholder="e.g., implement-feature"
+              class="w-full border rounded px-3 py-2 text-sm"
+            />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Priority (1-10)</label>
+            <input
+              type="number"
+              name="task[priority]"
+              min="1"
+              max="10"
+              value="5"
+              required
+              class="w-full border rounded px-3 py-2 text-sm"
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="block text-xs font-medium text-zinc-700 mb-1">Payload (JSON)</label>
+          <textarea
+            name="task[payload]"
+            rows="3"
+            placeholder='{"description": "Task details here"}'
+            class="w-full border rounded px-3 py-2 text-sm font-mono"
+          >{"{}"}</textarea>
+        </div>
+        <div class="flex gap-2">
+          <button
+            type="submit"
+            class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm"
+          >
+            Create Task
+          </button>
+          <button
+            type="button"
+            phx-click="hide_task_form"
+            class="bg-zinc-300 text-zinc-700 px-4 py-2 rounded hover:bg-zinc-400 text-sm"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
     <div :if={@tasks == []} class="text-center py-8 text-zinc-400">
       No tasks yet
     </div>
@@ -94,13 +225,24 @@
       :for={task <- @tasks}
       class="border-b last:border-b-0 py-3 flex justify-between items-center"
     >
-      <div>
+      <div class="flex-1">
         <p class="text-sm font-medium">{task.type}</p>
-        <p class="text-xs text-zinc-500">Priority: {task.priority}</p>
+        <p class="text-xs text-zinc-500">Priority: {task.priority} | Attempts: {task.attempts || 0}</p>
+        <p :if={task.error} class="text-xs text-red-600 mt-1">{task.error}</p>
       </div>
-      <span class={"px-2 py-1 text-xs rounded-full #{task_status_color(task.status)}"}>
-        {task.status}
-      </span>
+      <div class="flex items-center gap-2">
+        <span class={"px-2 py-1 text-xs rounded-full #{task_status_color(task.status)}"}>
+          {task.status}
+        </span>
+        <button
+          :if={task.status in [:failed, :dead_letter]}
+          phx-click="retry_task"
+          phx-value-id={task.id}
+          class="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
+        >
+          Retry
+        </button>
+      </div>
     </div>
   </div>
 </div>
