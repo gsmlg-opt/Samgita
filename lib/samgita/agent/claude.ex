@@ -10,14 +10,18 @@ defmodule Samgita.Agent.Claude do
 
   def chat(prompt, opts \\ []) do
     model = to_string(opts[:model] || "sonnet")
+    max_turns = opts[:max_turns] || 10
+
+    system_prompt =
+      opts[:system_prompt] ||
+        "You are a helpful AI assistant with access to file operations and shell commands."
 
     # Build options with tools enabled and permissions bypassed
     sdk_opts = %ClaudeAgentSDK.Options{
       model: model,
-      max_turns: 10,
+      max_turns: max_turns,
       permission_mode: :bypass_permissions,
-      system_prompt:
-        "You are a helpful AI assistant with access to file operations and shell commands."
+      system_prompt: system_prompt
     }
 
     try do

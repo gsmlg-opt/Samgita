@@ -1,8 +1,10 @@
 defmodule SamgitaWeb.PrdChatLive.Index do
   use SamgitaWeb, :live_view
 
+  require Logger
+
   alias Samgita.{Projects, Prds}
-  alias ClaudeAPI.Client
+  alias Samgita.Agent.Claude, as: ClaudeAgent
 
   @impl true
   def mount(%{"project_id" => project_id, "prd_id" => prd_id}, _session, socket) do
@@ -16,7 +18,8 @@ defmodule SamgitaWeb.PrdChatLive.Index do
          messages: prd.chat_messages,
          input: "",
          streaming_message: nil,
-         generating: false
+         generating: false,
+         show_new_prd_form: false
        )}
     else
       {:error, :not_found} ->
@@ -88,24 +91,31 @@ defmodule SamgitaWeb.PrdChatLive.Index do
     prd_id = socket.assigns.prd.id
 
     # Save user message
-    {:ok, user_msg} = Prds.add_user_message(prd_id, content)
-    messages = socket.assigns.messages ++ [user_msg]
+    case Prds.add_user_message(prd_id, content) do
+      {:ok, user_msg} ->
+        messages = socket.assigns.messages ++ [user_msg]
 
-    # Start generating AI response
-    send(self(), :generate_ai_response)
+        # Start generating AI response
+        send(self(), :generate_ai_response)
 
-    {:noreply,
-     assign(socket,
-       messages: messages,
-       input: "",
-       generating: true,
-       streaming_message: ""
-     )}
+        {:noreply,
+         assign(socket,
+           messages: messages,
+           input: "",
+           generating: true,
+           streaming_message: ""
+         )}
+
+      {:error, reason} ->
+        Logger.error("Failed to save user message: #{inspect(reason)}")
+        {:noreply, put_flash(socket, :error, "Failed to save message")}
+    end
   end
 
   def handle_event("send_message", _, socket), do: {:noreply, socket}
 
-  def handle_event("update_input", %{"value" => value}, socket) do
+  def handle_event("update_input", params, socket) do
+    value = params["message"] || params["value"] || ""
     {:noreply, assign(socket, input: value)}
   end
 
@@ -128,15 +138,16 @@ defmodule SamgitaWeb.PrdChatLive.Index do
     prd_id = socket.assigns.prd.id
     messages = socket.assigns.messages
 
-    # Build conversation history (exclude system messages for Claude API)
-    conversation =
+    # Format conversation history into a prompt string for the Claude Agent SDK
+    prompt =
       messages
       |> Enum.reject(&(&1.role == :system))
       |> Enum.map(fn msg ->
-        %{role: to_string(msg.role), content: msg.content}
+        label = if msg.role == :user, do: "User", else: "Assistant"
+        "#{label}: #{msg.content}"
       end)
+      |> Enum.join("\n\n")
 
-    # Add context about PRD generation
     system_prompt = """
     You are an expert Product Manager helping create a Product Requirements Document (PRD).
 
@@ -147,6 +158,7 @@ defmodule SamgitaWeb.PrdChatLive.Index do
     - Use markdown formatting for better readability
     - Keep responses concise but informative
     - Guide the conversation naturally, asking follow-up questions
+    - Do NOT use any tools - respond conversationally only
 
     PRD should eventually cover:
     1. Project Overview (problem, solution, target users)
@@ -155,32 +167,46 @@ defmodule SamgitaWeb.PrdChatLive.Index do
     4. Technical Requirements (stack, architecture)
     5. Non-Functional Requirements (performance, security)
     6. Milestones & Timeline
+
+    Continue the conversation below. Only provide the next assistant response.
     """
 
-    # Call Claude API
-    case Client.message(conversation,
-           model: "claude-sonnet-4-5-20250929",
-           system: system_prompt,
-           max_tokens: 2048
-         ) do
-      {:ok, response} ->
-        # Extract text from response
-        text =
-          response["content"]
-          |> Enum.filter(&(&1["type"] == "text"))
-          |> Enum.map(& &1["text"])
-          |> Enum.join("\n\n")
+    # Use Claude Agent SDK (CLI-based auth) instead of direct API
+    result =
+      ClaudeAgent.chat(prompt,
+        model: "sonnet",
+        system_prompt: system_prompt,
+        max_turns: 1
+      )
 
+    case result do
+      {:ok, text} when text != "" ->
         # Save assistant message
-        {:ok, assistant_msg} = Prds.add_assistant_message(prd_id, text)
-        messages = socket.assigns.messages ++ [assistant_msg]
+        case Prds.add_assistant_message(prd_id, text) do
+          {:ok, assistant_msg} ->
+            messages = socket.assigns.messages ++ [assistant_msg]
 
+            {:noreply,
+             assign(socket,
+               messages: messages,
+               generating: false,
+               streaming_message: nil
+             )}
+
+          {:error, reason} ->
+            Logger.error("Failed to save assistant message: #{inspect(reason)}")
+
+            {:noreply,
+             socket
+             |> assign(generating: false, streaming_message: nil)
+             |> put_flash(:error, "Failed to save AI response")}
+        end
+
+      {:ok, _} ->
         {:noreply,
-         assign(socket,
-           messages: messages,
-           generating: false,
-           streaming_message: nil
-         )}
+         socket
+         |> assign(generating: false, streaming_message: nil)
+         |> put_flash(:error, "AI returned an empty response. Please try again.")}
 
       {:error, reason} ->
         {:noreply,

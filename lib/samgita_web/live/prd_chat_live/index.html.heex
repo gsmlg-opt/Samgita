@@ -1,4 +1,8 @@
 <div class="h-screen flex flex-col bg-zinc-50">
+  <%!-- Flash Messages --%>
+  <.flash :if={Phoenix.Flash.get(@flash, :info)} kind={:info} title="Info" flash={@flash} />
+  <.flash :if={Phoenix.Flash.get(@flash, :error)} kind={:error} title="Error" flash={@flash} />
+
   <%!-- Header --%>
   <div class="bg-white border-b px-6 py-4">
     <div class="max-w-4xl mx-auto flex justify-between items-center">
