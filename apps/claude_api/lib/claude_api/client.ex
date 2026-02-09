@@ -12,7 +12,7 @@ defmodule ClaudeAPI.Client do
   require Logger
 
   # Suppress compile-time warnings for HTTP module from http_fetch dependency
-  @compile {:no_warn_undefined, [HTTP, HTTP.Promise]}
+  @compile {:no_warn_undefined, [HTTP, HTTP.Promise, HTTP.Response]}
 
   @api_base_url "https://api.anthropic.com/v1"
   @default_model "claude-sonnet-4-5-20250929"
