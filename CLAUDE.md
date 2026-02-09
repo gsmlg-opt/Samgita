@@ -14,10 +14,11 @@ No authentication system by design — single-tenant, access controlled at infra
 apps/
 ├── claude_api/      # Standalone Claude API client (no deps on samgita)
 ├── samgita/         # Core business logic, Repo, Oban, Horde, PubSub
+├── samgita_memory/  # Memory system with pgvector, PRD tracking, thinking chains
 └── samgita_web/     # Phoenix web layer, LiveView, REST API
 ```
 
-**Dependency graph**: `claude_api` (standalone) ← `samgita` ← `samgita_web`
+**Dependency graph**: `claude_api` (standalone) ← `samgita` ← `samgita_web`; `samgita_memory` (standalone)
 
 ## Development Commands
 
@@ -36,9 +37,11 @@ mix format --check-formatted          # CI check
 mix credo --strict                    # Linting
 mix dialyzer                          # Type checking
 
-mix ecto.gen.migration name -r Samgita.Repo   # New migration (in samgita app)
-mix ecto.migrate                      # Run migrations
-mix ecto.rollback -r Samgita.Repo     # Rollback
+mix ecto.gen.migration name -r Samgita.Repo          # New migration (samgita app)
+mix ecto.gen.migration name -r SamgitaMemory.Repo    # New migration (memory app)
+mix ecto.migrate                      # Run migrations (both repos)
+mix ecto.rollback -r Samgita.Repo     # Rollback samgita
+mix ecto.rollback -r SamgitaMemory.Repo  # Rollback memory
 ```
 
 ## Architecture
@@ -48,9 +51,12 @@ mix ecto.rollback -r Samgita.Repo     # Rollback
 | Config key | OTP app | Purpose |
 |---|---|---|
 | `config :samgita, Samgita.Repo` | `:samgita` | Database |
-| `config :samgita, Oban` | `:samgita` | Job queues |
+| `config :samgita, Oban` | `:samgita` | Job queues (agent_tasks, orchestration, snapshots) |
 | `config :samgita, :claude_command` | `:samgita` | Claude CLI path |
 | `config :samgita, :api_keys` | `:samgita` | REST API keys |
+| `config :samgita_memory, SamgitaMemory.Repo` | `:samgita_memory` | Memory database (same PG, needs `PostgrexTypes`) |
+| `config :samgita_memory, Oban` | `:samgita_memory` | Memory jobs (name: `SamgitaMemory.Oban`) |
+| `config :samgita_memory, :embedding_provider` | `:samgita_memory` | `:mock` (test) / `:anthropic` (prod) |
 | `config :samgita_web, SamgitaWeb.Endpoint` | `:samgita_web` | Endpoint/port |
 | `config :samgita_web, dev_routes:` | `:samgita_web` | Dev dashboard |
 | `config :claude_api, :claude_code_oauth_token` | `:claude_api` | OAuth auth |
@@ -71,6 +77,16 @@ Samgita.Cache (ETS with TTL + PubSub invalidation)
 Horde.Registry (Samgita.AgentRegistry)
 Horde.DynamicSupervisor (Samgita.AgentSupervisor)
 Oban (queues: agent_tasks:100, orchestration:10, snapshots:5)
+```
+
+**SamgitaMemory.Application** (memory app):
+```
+SamgitaMemory.Repo (separate Repo, same Postgres DB)
+SamgitaMemory.Cache.Supervisor
+├── MemoryTable (ETS LRU, max 10k entries)
+└── PrdTable (ETS LRU, max 100 entries)
+SamgitaMemory.Formation.Supervisor (telemetry handlers)
+Oban (name: SamgitaMemory.Oban, queues: embeddings:5, compaction:2, summarization:3)
 ```
 
 **SamgitaWeb.Application** (web app):
@@ -110,15 +126,21 @@ Manages project lifecycle phases and coordinates agent spawning.
 
 ### Oban Workers
 
+**samgita app:**
 - **AgentTaskWorker** — queue: `agent_tasks`, max attempts: 5. Dispatches tasks to agent workers via Horde.
 - **SnapshotWorker** — queue: `snapshots`, max attempts: 3. Periodic state snapshots, retains last 10.
 - **WebhookWorker** — queue: `agent_tasks`, max attempts: 5. Delivers webhooks with HMAC-SHA256 signatures.
+
+**samgita_memory app** (uses named Oban instance `SamgitaMemory.Oban`):
+- **Embedding** — queue: `embeddings`. Generates vector embeddings (mock or Anthropic Voyage API).
+- **Compaction** — queue: `compaction`, cron: daily 3 AM. Confidence decay (episodic 0.98/day, semantic 0.995, procedural 0.999) and pruning below 0.1.
+- **Summarize** — queue: `summarization`. Thinking chain summaries + PRD execution compaction.
 
 ### Web Layer
 
 **LiveView pages** (10): Dashboard, ProjectForm, Project detail, PrdChat, Agents, MCP, Skills, References (index+show), Playground
 
-**REST API**: `/api/projects` (CRUD + pause/resume), `/api/projects/:id/tasks`, `/api/projects/:id/agents`, `/api/webhooks`. Rate limited (100 req/60s via `SamgitaWeb.Plugs.RateLimit`).
+**REST API**: `/api/projects` (CRUD + pause/resume), `/api/projects/:id/tasks`, `/api/projects/:id/agents`, `/api/webhooks`, `/api/notifications`, `/api/features` (CRUD + enable/disable/archive). Rate limited (100 req/60s via `SamgitaWeb.Plugs.RateLimit`).
 
 ### Data Model
 
@@ -127,10 +149,39 @@ Core Ecto schemas in `apps/samgita/lib/samgita/domain/`:
 - **Task** — hierarchical (parent_task_id), tracks attempts/tokens/duration
 - **AgentRun** — tracks node, pid, metrics across 37 agent types
 - **Artifact** — generated code/docs/configs
-- **Memory** — episodic/semantic/procedural (no pgvector yet)
+- **Memory** — legacy (superseded by samgita_memory)
 - **Snapshot** — periodic state checkpoints
 - **Webhook** — event subscriptions
 - **Prd** / **ChatMessage** — interactive PRD creation via chat
+- **Feature** — feature flags with enable/disable/archive lifecycle
+- **Notification** — system notifications with status transitions
+
+**samgita_memory schemas** (table prefix `sm_` to avoid collision):
+- **Memories.Memory** — episodic/semantic/procedural with 1536-dim pgvector embeddings
+- **Memories.ThinkingChain** — reasoning chain capture with revision tracking
+- **PRD.Execution** — PRD execution state tracking
+- **PRD.Event** — event sourcing (12 event types)
+- **PRD.Decision** — decision records with alternatives
+
+### Memory System (`samgita_memory`)
+
+Standalone app providing persistent memory with vector similarity search.
+
+**Hybrid Retrieval Pipeline** (7 stages): scope filter → type filter → tag filter → semantic search (cosine similarity) → recency boost → confidence threshold → deduplication.
+
+Configurable weights: semantic 0.7, recency 0.2, access frequency 0.1.
+
+**MCP Tools** (10 tools defined in `SamgitaMemory.MCP.Tools`):
+- `remember` / `recall` / `forget` — memory CRUD
+- `prd_context` / `prd_event` / `prd_decision` — PRD execution tracking
+- `start_thinking` / `think` / `finish_thinking` / `recall_reasoning` — thinking chains
+
+Token budget truncation (default 4000 tokens) prevents oversized MCP responses.
+
+**pgvector Notes:**
+- Requires `Postgrex.Types.define/3` with `Pgvector.Extensions.Vector` in `SamgitaMemory.PostgrexTypes`
+- pgvector extension must be built from source for PostgreSQL 14 (brew packages cover 17/18 only)
+- Ecto `update_all` can't do multiplicative updates — use raw SQL for confidence decay
 
 ## Critical Constraints
 
