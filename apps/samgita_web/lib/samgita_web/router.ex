@@ -12,6 +12,7 @@ defmodule SamgitaWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug SamgitaWeb.Plugs.ApiAuth
     plug SamgitaWeb.Plugs.RateLimit, limit: 100, window_ms: 60_000
   end
 
@@ -30,6 +31,10 @@ defmodule SamgitaWeb.Router do
     live "/references", ReferencesLive.Index, :index
     live "/references/*filename", ReferencesLive.Show, :show
     live "/playground", PlaygroundLive.Index, :index
+  end
+
+  scope "/api", SamgitaWeb do
+    get "/health", HealthController, :index
   end
 
   scope "/api", SamgitaWeb do
