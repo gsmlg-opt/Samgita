@@ -14,12 +14,14 @@ erl_crash.dump
 app_tree.dot
 
 # Phoenix/Node/Bun
-/priv/static/
 /tmp/
 npm-debug.log
-/node_modules/
 .bun-cache/
 bun.lockb
+
+# Per-app static and node_modules
+apps/samgita_web/priv/static/
+apps/samgita_web/node_modules/
 
 # Database
 *.db
@@ -28,4 +30,3 @@ bun.lockb
 # commands and skills
 !.claude/commands
 !.claude/skills
-

@@ -6,7 +6,7 @@ config :samgita,
   generators: [timestamp_type: :utc_datetime]
 
 # Configure the endpoint
-config :samgita, SamgitaWeb.Endpoint,
+config :samgita_web, SamgitaWeb.Endpoint,
   check_origin: false,
   url: [host: "samgita.local"],
   adapter: Bandit.PhoenixAdapter,
@@ -20,20 +20,20 @@ config :samgita, SamgitaWeb.Endpoint,
 # Configure bun (the version is required)
 config :bun,
   version: "1.1.42",
-  samgita: [
+  samgita_web: [
     args: ~w(build assets/js/app.ts --outdir=priv/static/assets/js --target=browser),
-    cd: Path.expand("..", __DIR__)
+    cd: Path.expand("../apps/samgita_web", __DIR__)
   ]
 
 # Configure tailwind (the version is required)
 config :tailwind,
   version: "4.1.12",
-  samgita: [
+  samgita_web: [
     args: ~w(
       --input=assets/css/app.css
       --output=priv/static/assets/css/app.css
     ),
-    cd: Path.expand("..", __DIR__)
+    cd: Path.expand("../apps/samgita_web", __DIR__)
   ]
 
 # Configure Swoosh to use Finch

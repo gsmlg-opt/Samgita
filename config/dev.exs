@@ -9,33 +9,33 @@ config :samgita, Samgita.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
-config :samgita, SamgitaWeb.Endpoint,
+config :samgita_web, SamgitaWeb.Endpoint,
   http: [ip: {0, 0, 0, 0, 0, 0, 0, 0}, port: 3110],
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "Pj01A5h21DzggjKpnl3ezzFuxstdmjeKAAuyYMAM1nkKDzo5UF/oCYZnvE6i7nTk",
   watchers: [
-    bun: {Bun, :install_and_run, [:samgita, ~w(--watch)]},
-    tailwind: {Tailwind, :install_and_run, [:samgita, ~w(--watch)]}
+    bun: {Bun, :install_and_run, [:samgita_web, ~w(--watch)]},
+    tailwind: {Tailwind, :install_and_run, [:samgita_web, ~w(--watch)]}
   ]
 
 # Reload browser tabs when matching files change.
-config :samgita, SamgitaWeb.Endpoint,
+config :samgita_web, SamgitaWeb.Endpoint,
   live_reload: [
     web_console_logger: true,
     patterns: [
       # Static assets, except user uploads
-      ~r"priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)$"E,
+      ~r"apps/samgita_web/priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)$"E,
       # Gettext translations
-      ~r"priv/gettext/.*\.po$"E,
+      ~r"apps/samgita_web/priv/gettext/.*\.po$"E,
       # Router, Controllers, LiveViews and LiveComponents
-      ~r"lib/samgita_web/router\.ex$"E,
-      ~r"lib/samgita_web/(controllers|live|components)/.*\.(ex|heex)$"E
+      ~r"apps/samgita_web/lib/samgita_web/router\.ex$"E,
+      ~r"apps/samgita_web/lib/samgita_web/(controllers|live|components)/.*\.(ex|heex)$"E
     ]
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :samgita, dev_routes: true
+config :samgita_web, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :default_formatter, format: "[$level] $message\n"

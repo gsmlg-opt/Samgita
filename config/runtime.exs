@@ -2,11 +2,11 @@ import Config
 
 # Claude Agent API configuration
 # Supports both Claude Code OAuth token and Anthropic API key
-config :samgita,
+config :claude_api,
   claude_code_oauth_token: System.get_env("CLAUDE_CODE_OAUTH_TOKEN"),
   anthropic_api_key: System.get_env("ANTHROPIC_API_KEY")
 
-config :samgita, SamgitaWeb.Endpoint,
+config :samgita_web, SamgitaWeb.Endpoint,
   http: [port: String.to_integer(System.get_env("PORT", "3110"))]
 
 if config_env() == :prod do
@@ -37,7 +37,7 @@ if config_env() == :prod do
 
   config :samgita, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
-  config :samgita, SamgitaWeb.Endpoint,
+  config :samgita_web, SamgitaWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
     http: [
       ip: {0, 0, 0, 0, 0, 0, 0, 0}
