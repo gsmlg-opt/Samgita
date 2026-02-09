@@ -67,6 +67,13 @@ config :samgita_memory, Oban,
     embeddings: [limit: 5],
     compaction: [limit: 2],
     summarization: [limit: 3]
+  ],
+  plugins: [
+    {Oban.Plugins.Cron,
+     crontab: [
+       # Run confidence decay + pruning daily at 3 AM
+       {"0 3 * * *", SamgitaMemory.Workers.Compaction, args: %{action: "decay_and_prune"}}
+     ]}
   ]
 
 # Configure SamgitaMemory defaults

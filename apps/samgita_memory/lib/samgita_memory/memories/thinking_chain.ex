@@ -76,9 +76,15 @@ defmodule SamgitaMemory.Memories.ThinkingChain do
         {:error, :not_found}
 
       chain ->
-        chain
-        |> changeset(%{status: :completed})
-        |> Repo.update()
+        case chain |> changeset(%{status: :completed}) |> Repo.update() do
+          {:ok, completed_chain} ->
+            # Enqueue async summarization
+            SamgitaMemory.Workers.Summarize.enqueue_chain_summarization(completed_chain.id)
+            {:ok, completed_chain}
+
+          error ->
+            error
+        end
     end
   end
 

@@ -135,6 +135,12 @@ defmodule SamgitaMemory.PRD do
         case result do
           {:ok, updated} ->
             PRDTable.invalidate(prd_id)
+
+            # Trigger compaction when PRD is completed
+            if status == :completed do
+              SamgitaMemory.Workers.Summarize.enqueue_prd_compaction(updated.id)
+            end
+
             {:ok, updated}
 
           error ->

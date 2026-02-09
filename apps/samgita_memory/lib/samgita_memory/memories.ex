@@ -35,9 +35,15 @@ defmodule SamgitaMemory.Memories do
       accessed_at: DateTime.utc_now() |> DateTime.truncate(:second)
     }
 
-    %Memory{}
-    |> Memory.changeset(attrs)
-    |> Repo.insert()
+    case %Memory{} |> Memory.changeset(attrs) |> Repo.insert() do
+      {:ok, memory} ->
+        # Enqueue async embedding generation
+        SamgitaMemory.Workers.Embedding.enqueue(memory.id)
+        {:ok, memory}
+
+      error ->
+        error
+    end
   end
 
   @doc """
@@ -50,31 +56,8 @@ defmodule SamgitaMemory.Memories do
     * `:limit` - max results (default from config)
     * `:min_confidence` - minimum confidence threshold
   """
-  def retrieve(_query, opts \\ []) do
-    limit =
-      Keyword.get(
-        opts,
-        :limit,
-        Application.get_env(:samgita_memory, :retrieval_default_limit, 10)
-      )
-
-    min_confidence =
-      Keyword.get(
-        opts,
-        :min_confidence,
-        Application.get_env(:samgita_memory, :retrieval_min_confidence, 0.3)
-      )
-
-    base_query =
-      Memory
-      |> where([m], m.confidence >= ^min_confidence)
-      |> maybe_filter_scope(opts)
-      |> maybe_filter_type(opts)
-      |> maybe_filter_tags(opts)
-      |> order_by([m], desc: m.confidence, desc: m.updated_at)
-      |> limit(^limit)
-
-    results = Repo.all(base_query)
+  def retrieve(query, opts \\ []) do
+    results = SamgitaMemory.Retrieval.Pipeline.execute(query, opts)
 
     # Update access tracking for returned memories
     Enum.each(results, &touch_access/1)
@@ -126,39 +109,10 @@ defmodule SamgitaMemory.Memories do
 
   # Private helpers
 
-  defp maybe_filter_scope(query, opts) do
-    case Keyword.get(opts, :scope) do
-      {scope_type, scope_id} when not is_nil(scope_id) ->
-        where(query, [m], m.scope_type == ^scope_type and m.scope_id == ^scope_id)
-
-      {scope_type, nil} ->
-        where(query, [m], m.scope_type == ^scope_type)
-
-      _ ->
-        query
-    end
-  end
-
-  defp maybe_filter_type(query, opts) do
-    case Keyword.get(opts, :type) do
-      nil -> query
-      type -> where(query, [m], m.memory_type == ^type)
-    end
-  end
-
-  defp maybe_filter_tags(query, opts) do
-    case Keyword.get(opts, :tags) do
-      nil -> query
-      [] -> query
-      tags -> where(query, [m], fragment("? @> ?", m.tags, ^tags))
-    end
-  end
-
   defp touch_access(memory) do
     now = DateTime.utc_now() |> DateTime.truncate(:second)
 
-    Memory
-    |> where([m], m.id == ^memory.id)
+    from(m in Memory, where: m.id == ^memory.id)
     |> Repo.update_all(set: [accessed_at: now], inc: [access_count: 1])
   end
 

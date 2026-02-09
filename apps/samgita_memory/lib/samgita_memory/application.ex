@@ -8,6 +8,7 @@ defmodule SamgitaMemory.Application do
     children = [
       SamgitaMemory.Repo,
       SamgitaMemory.Cache.Supervisor,
+      SamgitaMemory.Formation.Supervisor,
       {Oban, Application.fetch_env!(:samgita_memory, Oban)}
     ]
 
