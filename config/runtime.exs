@@ -26,6 +26,13 @@ if config_env() == :prod do
     # pool_count: 4,
     socket_options: maybe_ipv6
 
+  # SamgitaMemory shares the same database in production
+  config :samgita_memory, SamgitaMemory.Repo,
+    url: database_url,
+    pool_size: String.to_integer(System.get_env("MEMORY_POOL_SIZE") || "5"),
+    socket_options: maybe_ipv6,
+    types: SamgitaMemory.PostgrexTypes
+
   secret_key_base =
     System.get_env("SECRET_KEY_BASE") ||
       raise """

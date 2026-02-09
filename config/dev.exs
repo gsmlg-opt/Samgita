@@ -9,6 +9,15 @@ config :samgita, Samgita.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
+config :samgita_memory, SamgitaMemory.Repo,
+  username: "gao",
+  hostname: "localhost",
+  database: "samgita_dev",
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 5,
+  types: SamgitaMemory.PostgrexTypes
+
 config :samgita_web, SamgitaWeb.Endpoint,
   http: [ip: {0, 0, 0, 0, 0, 0, 0, 0}, port: 3110],
   code_reloader: true,

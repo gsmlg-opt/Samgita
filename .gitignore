@@ -1,5 +1,6 @@
 /_build
 /cover
+**/cover/
 /deps
 /doc
 /.fetch
@@ -12,6 +13,7 @@ erl_crash.dump
 
 # Generated files
 app_tree.dot
+*.bak
 
 # Phoenix/Node/Bun
 /tmp/

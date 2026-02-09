@@ -13,7 +13,15 @@ config :samgita, Samgita.Repo,
   hostname: "localhost",
   database: "samgita_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
-  pool_size: System.schedulers_online() * 2
+  pool_size: 10
+
+config :samgita_memory, SamgitaMemory.Repo,
+  username: "gao",
+  hostname: "localhost",
+  database: "samgita_test#{System.get_env("MIX_TEST_PARTITION")}",
+  pool: Ecto.Adapters.SQL.Sandbox,
+  pool_size: 10,
+  types: SamgitaMemory.PostgrexTypes
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
@@ -24,6 +32,7 @@ config :samgita_web, SamgitaWeb.Endpoint,
 
 # Disable Oban queues during test
 config :samgita, Oban, testing: :inline
+config :samgita_memory, Oban, testing: :inline
 
 # Use echo as a mock for Claude CLI in tests
 config :samgita, :claude_command, "echo"
