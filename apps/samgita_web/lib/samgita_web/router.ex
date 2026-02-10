@@ -35,6 +35,7 @@ defmodule SamgitaWeb.Router do
 
   scope "/api", SamgitaWeb do
     get "/health", HealthController, :index
+    get "/info", InfoController, :index
   end
 
   scope "/api", SamgitaWeb do
