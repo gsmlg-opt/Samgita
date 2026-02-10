@@ -33,4 +33,10 @@ defmodule SamgitaWeb.Plugs.ApiAuthTest do
     assert conn.halted
     assert conn.status == 401
   end
+
+  test "allows all requests when no API keys configured", %{conn: conn} do
+    Application.put_env(:samgita, :api_keys, [])
+    conn = ApiAuth.call(conn, [])
+    refute conn.halted
+  end
 end

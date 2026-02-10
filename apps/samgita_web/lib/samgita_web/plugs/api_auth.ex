@@ -9,19 +9,16 @@ defmodule SamgitaWeb.Plugs.ApiAuth do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    case get_req_header(conn, "x-api-key") do
-      [key] -> verify_api_key(conn, key)
-      _ -> unauthorized(conn)
-    end
-  end
-
-  defp verify_api_key(conn, key) do
     valid_keys = Application.get_env(:samgita, :api_keys, [])
 
-    if key in valid_keys do
+    if valid_keys == [] do
+      # No keys configured — open access (dev/test)
       conn
     else
-      unauthorized(conn)
+      case get_req_header(conn, "x-api-key") do
+        [key] -> if key in valid_keys, do: conn, else: unauthorized(conn)
+        _ -> unauthorized(conn)
+      end
     end
   end
 
