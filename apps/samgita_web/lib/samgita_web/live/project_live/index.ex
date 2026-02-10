@@ -23,6 +23,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
            project: project,
            tasks: tasks,
            agent_runs: agent_runs,
+           active_agents: %{},
            available_agents: available_agents,
            prds: prds,
            editing_prd: false,
@@ -180,9 +181,10 @@ defmodule SamgitaWeb.ProjectLive.Index do
   end
 
   @impl true
-  def handle_info({:agent_state_changed, _agent_id, _state}, socket) do
+  def handle_info({:agent_state_changed, agent_id, state}, socket) do
     agent_runs = Projects.list_agent_runs(socket.assigns.project.id)
-    {:noreply, assign(socket, agent_runs: agent_runs)}
+    active_agents = Map.put(socket.assigns.active_agents, agent_id, %{state: state})
+    {:noreply, assign(socket, agent_runs: agent_runs, active_agents: active_agents)}
   end
 
   @impl true
@@ -192,9 +194,13 @@ defmodule SamgitaWeb.ProjectLive.Index do
   end
 
   @impl true
-  def handle_info({:agent_spawned, _agent_id, _agent_type}, socket) do
+  def handle_info({:agent_spawned, agent_id, agent_type}, socket) do
     agent_runs = Projects.list_agent_runs(socket.assigns.project.id)
-    {:noreply, assign(socket, agent_runs: agent_runs)}
+
+    active_agents =
+      Map.put(socket.assigns.active_agents, agent_id, %{state: :idle, type: agent_type})
+
+    {:noreply, assign(socket, agent_runs: agent_runs, active_agents: active_agents)}
   end
 
   @impl true
