@@ -6,6 +6,17 @@ config :claude_api,
   claude_code_oauth_token: System.get_env("CLAUDE_CODE_OAUTH_TOKEN"),
   anthropic_api_key: System.get_env("ANTHROPIC_API_KEY")
 
+# API Authentication
+# Configure valid API keys for REST API access
+# Multiple keys can be provided as comma-separated values
+api_keys_string = System.get_env("SAMGITA_API_KEYS", "")
+
+config :samgita, :api_keys,
+  if(api_keys_string == "",
+    do: [],
+    else: String.split(api_keys_string, ",") |> Enum.map(&String.trim/1)
+  )
+
 config :samgita_web, SamgitaWeb.Endpoint,
   http: [port: String.to_integer(System.get_env("PORT", "3110"))]
 
