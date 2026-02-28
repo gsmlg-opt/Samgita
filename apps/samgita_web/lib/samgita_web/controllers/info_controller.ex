@@ -15,7 +15,7 @@ defmodule SamgitaWeb.InfoController do
   end
 
   defp umbrella_apps do
-    for app <- [:claude_api, :samgita, :samgita_memory, :samgita_web],
+    for app <- [:samgita_provider, :samgita, :samgita_memory, :samgita_web],
         vsn = Application.spec(app, :vsn) do
       %{name: app, version: to_string(vsn)}
     end

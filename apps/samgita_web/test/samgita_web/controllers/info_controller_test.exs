@@ -16,7 +16,7 @@ defmodule SamgitaWeb.InfoControllerTest do
       assert length(json["umbrella_apps"]) == 4
 
       app_names = Enum.map(json["umbrella_apps"], & &1["name"])
-      assert "claude_api" in app_names
+      assert "samgita_provider" in app_names
       assert "samgita" in app_names
       assert "samgita_memory" in app_names
       assert "samgita_web" in app_names

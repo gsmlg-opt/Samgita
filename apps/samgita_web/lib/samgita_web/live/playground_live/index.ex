@@ -128,34 +128,12 @@ defmodule SamgitaWeb.PlaygroundLive.Index do
     conversation_id = conversation.id
 
     Task.async(fn ->
-      try do
-        # Build options with system prompt
-        opts = %ClaudeAgentSDK.Options{
-          system_prompt: system_prompt,
-          max_turns: 5
-        }
+      case SamgitaProvider.query(message, system_prompt: system_prompt, max_turns: 5) do
+        {:ok, response} ->
+          send(pid, {:agent_response, conversation_id, response})
 
-        # Call SDK and collect response
-        response =
-          ClaudeAgentSDK.query(message, opts, nil)
-          |> Enum.reduce("", fn msg, acc ->
-            case msg.type do
-              :assistant ->
-                text = ClaudeAgentSDK.ContentExtractor.extract_text(msg)
-                acc <> (text || "")
-
-              _ ->
-                acc
-            end
-          end)
-          |> String.trim()
-
-        # Unescape newlines for proper markdown rendering
-        unescaped_response = String.replace(response, "\\n", "\n")
-        send(pid, {:agent_response, conversation_id, unescaped_response})
-      rescue
-        error ->
-          send(pid, {:agent_error, conversation_id, error})
+        {:error, reason} ->
+          send(pid, {:agent_error, conversation_id, reason})
       end
     end)
 
