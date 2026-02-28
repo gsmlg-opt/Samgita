@@ -71,7 +71,7 @@ defmodule SamgitaMemory.Workers.Embedding do
 
   defp generate_anthropic_embedding(content) do
     # Uses Voyage API for embeddings (Anthropic-recommended)
-    api_key = Application.get_env(:claude_api, :anthropic_api_key)
+    api_key = Application.get_env(:samgita_provider, :anthropic_api_key)
     model = Application.get_env(:samgita_memory, :embedding_model, "voyage-3")
 
     body =
