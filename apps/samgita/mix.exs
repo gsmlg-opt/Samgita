@@ -30,7 +30,7 @@ defmodule Samgita.MixProject do
 
   defp deps do
     [
-      {:claude_api, in_umbrella: true},
+      {:samgita_provider, in_umbrella: true},
       {:bcrypt_elixir, "~> 3.0"},
       {:ecto_sql, "~> 3.13"},
       {:postgrex, ">= 0.0.0"},
@@ -39,7 +39,6 @@ defmodule Samgita.MixProject do
       {:oban, "~> 2.18"},
       {:horde, "~> 0.9"},
       {:libcluster, "~> 3.4"},
-      {:claude_agent_sdk, "~> 0.9.2"},
       {:earmark, "~> 1.4"},
       {:swoosh, "~> 1.16"},
       {:finch, "~> 0.19"},
