@@ -56,6 +56,9 @@ config :samgita, Oban,
 # Configure Claude CLI command
 config :samgita, :claude_command, "claude"
 
+# Configure SamgitaProvider
+config :samgita_provider, provider: SamgitaProvider.ClaudeCode
+
 # API keys (override in runtime.exs for production)
 config :samgita, :api_keys, []
 

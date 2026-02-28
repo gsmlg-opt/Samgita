@@ -1,9 +1,8 @@
 import Config
 
-# Claude Agent API configuration
-# Supports both Claude Code OAuth token and Anthropic API key
-config :claude_api,
-  claude_code_oauth_token: System.get_env("CLAUDE_CODE_OAUTH_TOKEN"),
+# SamgitaProvider configuration
+# Anthropic API key used by samgita_memory for Voyage embeddings
+config :samgita_provider,
   anthropic_api_key: System.get_env("ANTHROPIC_API_KEY")
 
 # API Authentication
