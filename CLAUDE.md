@@ -12,13 +12,13 @@ No authentication system by design — single-tenant, access controlled at infra
 
 ```
 apps/
-├── claude_api/      # Standalone Claude API client (no deps on samgita)
-├── samgita/         # Core business logic, Repo, Oban, Horde, PubSub
-├── samgita_memory/  # Memory system with pgvector, PRD tracking, thinking chains
-└── samgita_web/     # Phoenix web layer, LiveView, REST API
+├── samgita_provider/ # Provider abstraction wrapping Claude Code CLI via ClaudeAgentSDK
+├── samgita/          # Core business logic, Repo, Oban, Horde, PubSub
+├── samgita_memory/   # Memory system with pgvector, PRD tracking, thinking chains
+└── samgita_web/      # Phoenix web layer, LiveView, REST API
 ```
 
-**Dependency graph**: `claude_api` (standalone) ← `samgita` ← `samgita_web`; `samgita_memory` (standalone)
+**Dependency graph**: `samgita_provider` (standalone) ← `samgita` ← `samgita_web`; `samgita_memory` (standalone)
 
 ## Development Commands
 
@@ -59,8 +59,8 @@ mix ecto.rollback -r SamgitaMemory.Repo  # Rollback memory
 | `config :samgita_memory, :embedding_provider` | `:samgita_memory` | `:mock` (test) / `:anthropic` (prod) |
 | `config :samgita_web, SamgitaWeb.Endpoint` | `:samgita_web` | Endpoint/port |
 | `config :samgita_web, dev_routes:` | `:samgita_web` | Dev dashboard |
-| `config :claude_api, :claude_code_oauth_token` | `:claude_api` | OAuth auth |
-| `config :claude_api, :anthropic_api_key` | `:claude_api` | API key auth |
+| `config :samgita_provider, :provider` | `:samgita_provider` | Provider module or `:mock` |
+| `config :samgita_provider, :anthropic_api_key` | `:samgita_provider` | API key (for Voyage embeddings) |
 | `config :bun, samgita_web:` | `:bun` | JS bundler |
 | `config :tailwind, samgita_web:` | `:tailwind` | CSS |
 
@@ -112,17 +112,15 @@ Uses Horde.Registry for distributed naming. RARV cycle is the core execution mod
 ```
 Manages project lifecycle phases and coordinates agent spawning.
 
-### Claude Integration (Two Approaches)
+### Claude Integration (SamgitaProvider)
 
-**ClaudeAgentSDK** (via `claude_agent_sdk` dep) — used by actual agent workers:
-- Wraps Claude Code CLI as subprocess
-- Used by `Samgita.Agent.Claude` and `PrdChatLive`
-- All Claude Code tools available automatically
-
-**ClaudeAPI** (the `claude_api` umbrella app) — standalone library:
-- Direct HTTP calls to Anthropic Messages API via `http_fetch`
-- Custom tool implementations: Read, Write, Edit, Bash, Glob, Grep
-- Auth: checks `CLAUDE_CODE_OAUTH_TOKEN` env → `:claude_api` config → `ANTHROPIC_API_KEY` env → `:claude_api` config
+**SamgitaProvider** (`apps/samgita_provider/`) — provider abstraction:
+- Invokes `claude` CLI directly via `System.cmd/3` in print mode with JSON output
+- Used by `Samgita.Agent.Claude`, `PlaygroundLive`, and `PrdChatLive`
+- All Claude Code tools available automatically (CLI manages its own tools)
+- `:mock` atom provider for tests (returns `"mock response"`)
+- CLI command configurable via `config :samgita_provider, :claude_command`
+- See `docs/claude-integration.md` for full documentation
 
 ### Oban Workers
 
@@ -221,4 +219,4 @@ Reference docs in `apps/samgita/priv/references/` (20 markdown files from loki-m
 - **PLAN.md** — 5-phase implementation plan
 - **docs/CONSTITUTION.md** — Security model and architectural constraints
 - **loki-mode/** — Original implementation (gitignored, for reference)
-- **examples/** — ClaudeAgent and ClaudeAPI usage examples
+- **examples/** — SamgitaProvider usage examples
