@@ -23,7 +23,7 @@ defmodule SamgitaWeb.Router do
     live "/projects/new", ProjectFormLive.Index, :new
     live "/projects/:id", ProjectLive.Index, :show
     live "/projects/:project_id/prds/new", PrdChatLive.Index, :new
-    live "/projects/:project_id/prds/:prd_id", PrdChatLive.Index, :chat
+    live "/projects/:project_id/prds/:prd_id", PrdChatLive.Index, :edit
 
     live "/agents", AgentsLive.Index, :index
     live "/mcp", McpLive.Index, :index

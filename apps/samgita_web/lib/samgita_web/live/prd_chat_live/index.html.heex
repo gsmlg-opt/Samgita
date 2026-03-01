@@ -1,135 +1,75 @@
-<div class="h-screen flex flex-col bg-zinc-50">
-  <%!-- Flash Messages --%>
-  <.flash :if={Phoenix.Flash.get(@flash, :info)} kind={:info} title="Info" flash={@flash} />
-  <.flash :if={Phoenix.Flash.get(@flash, :error)} kind={:error} title="Error" flash={@flash} />
-
+<div class="max-w-4xl mx-auto px-4 py-8">
   <%!-- Header --%>
-  <div class="bg-white border-b px-6 py-4">
-    <div class="max-w-4xl mx-auto flex justify-between items-center">
-      <div>
-        <.link
-          navigate={~p"/projects/#{@project.id}"}
-          class="text-sm text-zinc-500 hover:text-zinc-700"
-        >
-          &larr; Back to Project
-        </.link>
-        <h1 class="text-xl font-bold text-zinc-900 mt-1">
-          {if @prd, do: @prd.title, else: "New PRD"}
-        </h1>
-        <p class="text-sm text-zinc-500">{@project.name}</p>
-      </div>
-      <div class="flex gap-2">
-        <button
-          :if={@prd && length(@messages) > 1}
-          phx-click="finalize_prd"
-          class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm"
-        >
-          ✓ Finalize PRD
-        </button>
-      </div>
-    </div>
+  <div class="mb-6">
+    <.link
+      navigate={~p"/projects/#{@project.id}"}
+      class="text-sm text-zinc-500 hover:text-zinc-700"
+    >
+      &larr; Back to Project
+    </.link>
+    <h1 class="text-2xl font-bold text-zinc-900 mt-2">
+      {if @prd, do: "Edit PRD", else: "New PRD"}
+    </h1>
+    <p class="text-sm text-zinc-500">{@project.name}</p>
   </div>
 
-  <%!-- New PRD Form --%>
-  <div :if={@show_new_prd_form} class="flex-1 flex items-center justify-center p-6">
-    <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
-      <h2 class="text-2xl font-bold text-zinc-900 mb-4">Create New PRD</h2>
-      <p class="text-sm text-zinc-600 mb-6">
-        Give your Product Requirements Document a title to start the interactive creation process.
-      </p>
-      <form phx-submit="create_prd">
-        <label class="block text-sm font-medium text-zinc-700 mb-2">PRD Title</label>
-        <input
-          type="text"
-          name="title"
-          required
-          autofocus
-          placeholder="e.g., Mobile App MVP Requirements"
-          class="w-full border border-zinc-300 rounded-lg px-4 py-3 mb-4 text-zinc-900 bg-white placeholder:text-zinc-400 focus:ring-2 focus:ring-purple-500"
-        />
-        <button
-          type="submit"
-          class="w-full bg-purple-600 text-white px-4 py-3 rounded-lg hover:bg-purple-700 font-medium"
-        >
-          Start Chat with AI Product Manager
-        </button>
-      </form>
+  <form phx-submit="save" phx-change="validate">
+    <%!-- Title --%>
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-zinc-700 mb-1">Title</label>
+      <input
+        type="text"
+        name="prd[title]"
+        value={@title}
+        required
+        placeholder="e.g., Mobile App MVP Requirements"
+        class="w-full border border-zinc-300 rounded-lg px-4 py-2 text-zinc-900 bg-white placeholder:text-zinc-400 focus:ring-2 focus:ring-purple-500"
+      />
     </div>
-  </div>
 
-  <%!-- Chat Messages --%>
-  <div :if={@prd} class="flex-1 overflow-y-auto px-6 py-6">
-    <div class="max-w-4xl mx-auto space-y-4" id="chat-messages">
-      <div
-        :for={msg <- @messages}
-        class={"rounded-lg px-4 py-3 max-w-2xl #{role_class(msg.role)}"}
+    <%!-- Toolbar --%>
+    <div class="flex items-center justify-between mb-2">
+      <label class="text-sm font-medium text-zinc-700">Content (Markdown)</label>
+      <button
+        type="button"
+        phx-click="toggle_preview"
+        class="text-sm px-3 py-1 rounded border border-zinc-300 text-zinc-600 hover:bg-zinc-100"
       >
-        <div class="text-xs font-medium mb-1 opacity-75">{role_label(msg.role)}</div>
-        <div class="prose prose-sm max-w-none">
-          <div class="whitespace-pre-wrap">{msg.content}</div>
-        </div>
-      </div>
-
-      <%!-- Streaming message (if generating) --%>
-      <div :if={@generating} class={"rounded-lg px-4 py-3 max-w-2xl #{role_class(:assistant)}"}>
-        <div class="text-xs font-medium mb-1 opacity-75">AI Product Manager</div>
-        <div class="flex items-center gap-2">
-          <div class="animate-pulse">Thinking...</div>
-          <div class="flex gap-1">
-            <div
-              class="w-2 h-2 bg-zinc-400 rounded-full animate-bounce"
-              style="animation-delay: 0ms"
-            >
-            </div>
-            <div
-              class="w-2 h-2 bg-zinc-400 rounded-full animate-bounce"
-              style="animation-delay: 150ms"
-            >
-            </div>
-            <div
-              class="w-2 h-2 bg-zinc-400 rounded-full animate-bounce"
-              style="animation-delay: 300ms"
-            >
-            </div>
-          </div>
-        </div>
-      </div>
+        {if @preview, do: "Edit", else: "Preview"}
+      </button>
     </div>
-  </div>
 
-  <%!-- Input Area --%>
-  <div :if={@prd} class="bg-white border-t px-6 py-4">
-    <div class="max-w-4xl mx-auto">
-      <form phx-submit="send_message" class="flex gap-3">
-        <input
-          type="text"
-          name="message"
-          value={@input}
-          phx-change="update_input"
-          disabled={@generating}
-          placeholder="Ask about requirements, features, users, goals..."
-          class="flex-1 border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 bg-white placeholder:text-zinc-400 focus:ring-2 focus:ring-purple-500 disabled:bg-zinc-100"
-          autofocus
-        />
-        <button
-          type="submit"
-          disabled={@generating || @input == ""}
-          class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-medium disabled:bg-zinc-300 disabled:cursor-not-allowed"
-        >
-          Send
-        </button>
-      </form>
-      <p class="text-xs text-zinc-500 mt-2">
-        💡 Tip: Be specific about your product vision, target users, and key features. The AI will guide you through creating a comprehensive PRD.
-      </p>
+    <%!-- Editor / Preview --%>
+    <div :if={!@preview} class="mb-6">
+      <textarea
+        name="prd[content]"
+        rows="24"
+        placeholder="# Project Overview&#10;&#10;## Problem Statement&#10;&#10;## Goals & Objectives&#10;&#10;## User Stories&#10;&#10;## Technical Requirements&#10;&#10;## Milestones"
+        class="w-full border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 bg-white placeholder:text-zinc-400 font-mono text-sm focus:ring-2 focus:ring-purple-500"
+      >{@content}</textarea>
     </div>
-  </div>
+
+    <div :if={@preview} class="mb-6 border border-zinc-300 rounded-lg p-6 bg-white min-h-[24rem]">
+      <div :if={@content == ""} class="text-zinc-400 italic">Nothing to preview</div>
+      <el-markdown :if={@content != ""} class="prose prose-zinc max-w-none">
+        {@content}
+      </el-markdown>
+    </div>
+
+    <%!-- Actions --%>
+    <div class="flex justify-end gap-3">
+      <.link
+        navigate={~p"/projects/#{@project.id}"}
+        class="px-4 py-2 text-zinc-600 hover:text-zinc-900"
+      >
+        Cancel
+      </.link>
+      <button
+        type="submit"
+        class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 font-medium"
+      >
+        {if @prd, do: "Update PRD", else: "Create PRD"}
+      </button>
+    </div>
+  </form>
 </div>
-
-<script>
-  // Auto-scroll to bottom when new messages arrive
-  const chatContainer = document.getElementById('chat-messages');
-  if (chatContainer) {
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-  }
-</script>
