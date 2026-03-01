@@ -101,6 +101,12 @@ defmodule Samgita.Project.Orchestrator do
       broadcast_phase_change(data, phase)
       persist_phase(data, phase)
 
+      broadcast_activity(
+        data,
+        :phase_change,
+        "Entering phase: #{phase} (from #{old_state})"
+      )
+
       {:keep_state_and_data, [{:state_timeout, 0, :setup_phase}]}
     end
 
@@ -110,6 +116,12 @@ defmodule Samgita.Project.Orchestrator do
 
       Logger.info(
         "Phase #{phase}: spawning agents #{inspect(agent_types)} for project #{data.project_id}"
+      )
+
+      broadcast_activity(
+        data,
+        :spawned,
+        "Spawning agents: #{Enum.join(agent_types, ", ")}"
       )
 
       agent_statuses =
@@ -202,6 +214,16 @@ defmodule Samgita.Project.Orchestrator do
         case Horde.DynamicSupervisor.start_child(Samgita.AgentSupervisor, spec) do
           {:ok, _pid} ->
             Samgita.Events.agent_spawned(project_id, agent_id, agent_type)
+
+            entry =
+              Samgita.Events.build_log_entry(
+                :orchestrator,
+                "orchestrator",
+                :spawned,
+                "Agent #{agent_id} (#{agent_type}) started"
+              )
+
+            Samgita.Events.activity_log(project_id, entry)
             :running
 
           {:error, {:already_started, _pid}} ->
@@ -209,9 +231,26 @@ defmodule Samgita.Project.Orchestrator do
 
           {:error, reason} ->
             Logger.warning("Failed to spawn agent #{agent_id}: #{inspect(reason)}")
+
+            entry =
+              Samgita.Events.build_log_entry(
+                :orchestrator,
+                "orchestrator",
+                :failed,
+                "Failed to spawn agent #{agent_id}: #{inspect(reason)}"
+              )
+
+            Samgita.Events.activity_log(project_id, entry)
             :failed
         end
     end
+  end
+
+  defp broadcast_activity(data, stage, message) do
+    entry =
+      Samgita.Events.build_log_entry(:orchestrator, "orchestrator", stage, message)
+
+    Samgita.Events.activity_log(data.project_id, entry)
   end
 
   defp broadcast_phase_change(data, phase) do

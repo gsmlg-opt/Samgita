@@ -59,4 +59,20 @@ defmodule Samgita.Events do
   def project_updated(project) do
     Phoenix.PubSub.broadcast(@pubsub, "projects", {:project_updated, project})
   end
+
+  def activity_log(project_id, entry) do
+    Phoenix.PubSub.broadcast(@pubsub, "project:#{project_id}", {:activity_log, entry})
+  end
+
+  def build_log_entry(source, source_id, stage, message, opts \\ []) do
+    %{
+      id: System.unique_integer([:positive, :monotonic]),
+      timestamp: DateTime.utc_now(),
+      source: source,
+      source_id: source_id,
+      stage: stage,
+      message: message,
+      output: Keyword.get(opts, :output)
+    }
+  end
 end

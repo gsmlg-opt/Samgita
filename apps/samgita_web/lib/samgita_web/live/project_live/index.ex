@@ -12,26 +12,25 @@ defmodule SamgitaWeb.ProjectLive.Index do
           Samgita.Events.subscribe_project(project.id)
         end
 
-        tasks = Projects.list_tasks(project.id)
-        agent_runs = Projects.list_agent_runs(project.id)
-        available_agents = get_available_agent_types()
         prds = Samgita.Prds.list_prds(project.id)
+        selected_prd = find_prd(prds, project.active_prd_id)
+        {tasks, agent_runs} = load_prd_scoped_data(project, selected_prd)
 
         {:ok,
-         assign(socket,
+         socket
+         |> assign(
            page_title: project.name,
            project: project,
+           prds: prds,
+           selected_prd: selected_prd,
            tasks: tasks,
            agent_runs: agent_runs,
            active_agents: %{},
-           available_agents: available_agents,
-           prds: prds,
-           selected_prd_id: nil,
-           editing_prd: false,
-           prd_content: project.prd_content || "",
            show_task_form: false,
-           task_form: %{type: "", payload: "{}"}
-         )}
+           task_form: %{type: "", payload: "{}"},
+           log_count: 0
+         )
+         |> stream(:activity_log, [])}
 
       {:error, :not_found} ->
         {:ok,
@@ -44,11 +43,38 @@ defmodule SamgitaWeb.ProjectLive.Index do
   # Project control events
   @impl true
   def handle_event("start", _, socket) do
-    case Projects.start_project(socket.assigns.project.id) do
-      {:ok, project} ->
-        {:noreply, assign(socket, project: project)}
+    prd = socket.assigns.selected_prd
 
-      {:error, _} ->
+    with true <- not is_nil(prd) || {:error, :no_prd_selected},
+         {:ok, project} <- Projects.start_project(socket.assigns.project.id, prd.id) do
+      Projects.enqueue_task(
+        project.id,
+        "bootstrap",
+        "prod-pm",
+        %{
+          prd_id: prd.id,
+          prd_title: prd.title,
+          prd_content: prd.content,
+          project_name: project.name,
+          git_url: project.git_url,
+          working_path: project.working_path
+        }
+      )
+
+      prds = Samgita.Prds.list_prds(project.id)
+      selected_prd = find_prd(prds, project.active_prd_id)
+      {tasks, agent_runs} = load_prd_scoped_data(project, selected_prd)
+
+      {:noreply,
+       assign(socket,
+         project: project,
+         prds: prds,
+         selected_prd: selected_prd,
+         tasks: tasks,
+         agent_runs: agent_runs
+       )}
+    else
+      _ ->
         {:noreply, put_flash(socket, :error, "Failed to start project")}
     end
   end
@@ -73,61 +99,102 @@ defmodule SamgitaWeb.ProjectLive.Index do
     end
   end
 
-  # PRD Management events
-  def handle_event("create_plan", _, socket) do
-    case Projects.enqueue_task(
-           socket.assigns.project.id,
-           "generate-prd",
-           "prod-pm",
-           %{
-             project_name: socket.assigns.project.name,
-             git_url: socket.assigns.project.git_url,
-             working_path: socket.assigns.project.working_path,
-             existing_prd: socket.assigns.project.prd_content
-           }
-         ) do
-      {:ok, _task} ->
-        {:noreply,
-         socket
-         |> put_flash(
-           :info,
-           "PRD generation task queued. The product manager agent will analyze your project and create a PRD."
-         )}
-
-      {:error, _} ->
-        {:noreply, put_flash(socket, :error, "Failed to queue PRD generation task")}
-    end
-  end
-
-  def handle_event("edit_prd", _, socket) do
-    {:noreply,
-     assign(socket, editing_prd: true, prd_content: socket.assigns.project.prd_content || "")}
-  end
-
-  def handle_event("cancel_prd", _, socket) do
-    {:noreply,
-     assign(socket, editing_prd: false, prd_content: socket.assigns.project.prd_content || "")}
-  end
-
-  def handle_event("save_prd", %{"prd_content" => content}, socket) do
-    case Projects.update_prd(socket.assigns.project, content) do
+  def handle_event("stop", _, socket) do
+    case Projects.stop_project(socket.assigns.project.id) do
       {:ok, project} ->
+        prds = Samgita.Prds.list_prds(project.id)
+
         {:noreply,
          socket
-         |> assign(project: project, editing_prd: false, prd_content: content)
-         |> put_flash(:info, "PRD updated successfully")}
+         |> assign(
+           project: project,
+           prds: prds,
+           selected_prd: nil,
+           active_agents: %{},
+           tasks: [],
+           agent_runs: []
+         )
+         |> put_flash(:info, "Project stopped")}
 
       {:error, _} ->
-        {:noreply, put_flash(socket, :error, "Failed to update PRD")}
+        {:noreply, put_flash(socket, :error, "Failed to stop project")}
     end
   end
 
-  def handle_event("update_prd_content", %{"value" => content}, socket) do
-    {:noreply, assign(socket, prd_content: content)}
+  def handle_event("restart", _, socket) do
+    case Projects.restart_project(socket.assigns.project.id) do
+      {:ok, project} ->
+        prds = Samgita.Prds.list_prds(project.id)
+        selected_prd = find_prd(prds, project.active_prd_id)
+        {tasks, agent_runs} = load_prd_scoped_data(project, selected_prd)
+
+        Projects.enqueue_task(
+          project.id,
+          "bootstrap",
+          "prod-pm",
+          %{
+            prd_id: selected_prd.id,
+            prd_title: selected_prd.title,
+            prd_content: selected_prd.content,
+            project_name: project.name,
+            git_url: project.git_url,
+            working_path: project.working_path
+          }
+        )
+
+        {:noreply,
+         socket
+         |> assign(
+           project: project,
+           prds: prds,
+           selected_prd: selected_prd,
+           tasks: tasks,
+           agent_runs: agent_runs,
+           active_agents: %{},
+           log_count: 0
+         )
+         |> stream(:activity_log, [], reset: true)
+         |> put_flash(:info, "Project restarted")}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, "Failed to restart project")}
+    end
   end
 
+  def handle_event("terminate", _, socket) do
+    case Projects.terminate_project(socket.assigns.project.id) do
+      {:ok, project} ->
+        prds = Samgita.Prds.list_prds(project.id)
+
+        {:noreply,
+         socket
+         |> assign(
+           project: project,
+           prds: prds,
+           selected_prd: nil,
+           active_agents: %{},
+           tasks: [],
+           agent_runs: []
+         )
+         |> put_flash(:info, "Project terminated")}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, "Failed to terminate project")}
+    end
+  end
+
+  # PRD selection events
   def handle_event("select_prd", %{"id" => id}, socket) do
-    {:noreply, assign(socket, selected_prd_id: id)}
+    prds = socket.assigns.prds
+    selected_prd = find_prd(prds, id)
+    {tasks, agent_runs} = load_prd_scoped_data(socket.assigns.project, selected_prd)
+
+    {:noreply,
+     assign(socket,
+       selected_prd: selected_prd,
+       tasks: tasks,
+       agent_runs: agent_runs
+     )}
   end
 
   def handle_event("delete_prd", %{"id" => id}, socket) do
@@ -137,12 +204,14 @@ defmodule SamgitaWeb.ProjectLive.Index do
           {:ok, _} ->
             prds = Samgita.Prds.list_prds(socket.assigns.project.id)
 
-            selected_prd_id =
-              if socket.assigns.selected_prd_id == id, do: nil, else: socket.assigns.selected_prd_id
+            selected_prd =
+              if socket.assigns.selected_prd && socket.assigns.selected_prd.id == id,
+                do: nil,
+                else: socket.assigns.selected_prd
 
             {:noreply,
              socket
-             |> assign(prds: prds, selected_prd_id: selected_prd_id)
+             |> assign(prds: prds, selected_prd: selected_prd)
              |> put_flash(:info, "PRD deleted")}
 
           {:error, _} ->
@@ -170,6 +239,14 @@ defmodule SamgitaWeb.ProjectLive.Index do
         _ -> %{}
       end
 
+    # Include prd_id in payload if a PRD is selected
+    payload =
+      if socket.assigns.selected_prd do
+        Map.put(payload, "prd_id", socket.assigns.selected_prd.id)
+      else
+        payload
+      end
+
     attrs = %{
       type: task_params["type"],
       payload: payload,
@@ -179,7 +256,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
     case Projects.create_task(socket.assigns.project.id, attrs) do
       {:ok, _task} ->
-        tasks = Projects.list_tasks(socket.assigns.project.id)
+        {tasks, _} = load_prd_scoped_data(socket.assigns.project, socket.assigns.selected_prd)
 
         {:noreply,
          socket
@@ -194,7 +271,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
   def handle_event("retry_task", %{"id" => id}, socket) do
     case Projects.retry_task(id) do
       {:ok, _} ->
-        tasks = Projects.list_tasks(socket.assigns.project.id)
+        {tasks, _} = load_prd_scoped_data(socket.assigns.project, socket.assigns.selected_prd)
         {:noreply, assign(socket, tasks: tasks) |> put_flash(:info, "Task queued for retry")}
 
       {:error, _} ->
@@ -218,7 +295,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
   @impl true
   def handle_info({:task_completed, _task}, socket) do
-    tasks = Projects.list_tasks(socket.assigns.project.id)
+    {tasks, _} = load_prd_scoped_data(socket.assigns.project, socket.assigns.selected_prd)
     {:noreply, assign(socket, tasks: tasks)}
   end
 
@@ -233,47 +310,56 @@ defmodule SamgitaWeb.ProjectLive.Index do
   end
 
   @impl true
-  def handle_info({:prd_generated, _project_id}, socket) do
-    case Projects.get_project(socket.assigns.project.id) do
-      {:ok, project} ->
-        {:noreply,
-         socket
-         |> assign(project: project, prd_content: project.prd_content || "")
-         |> put_flash(:info, "PRD has been generated successfully!")}
-
-      {:error, _} ->
-        {:noreply, socket}
-    end
+  def handle_info({:activity_log, entry}, socket) do
+    {:noreply,
+     socket
+     |> stream_insert(:activity_log, entry)
+     |> assign(:log_count, socket.assigns.log_count + 1)}
   end
 
   @impl true
   def handle_info(_, socket), do: {:noreply, socket}
 
   # Helper functions
-  defp get_available_agent_types do
-    [
-      %{name: "prod-pm", category: "Product", description: "Product planning, PRD creation"},
-      %{name: "prod-design", category: "Product", description: "UX/UI design"},
-      %{name: "eng-frontend", category: "Engineering", description: "Frontend development"},
-      %{name: "eng-backend", category: "Engineering", description: "Backend services"},
-      %{name: "eng-database", category: "Engineering", description: "Database design"},
-      %{name: "eng-mobile", category: "Engineering", description: "Mobile apps"},
-      %{name: "eng-api", category: "Engineering", description: "API development"},
-      %{name: "eng-qa", category: "Engineering", description: "Quality assurance"},
-      %{name: "eng-perf", category: "Engineering", description: "Performance optimization"},
-      %{name: "eng-infra", category: "Engineering", description: "Infrastructure"},
-      %{name: "ops-devops", category: "Operations", description: "DevOps automation"},
-      %{name: "ops-sre", category: "Operations", description: "Site reliability"},
-      %{name: "ops-security", category: "Operations", description: "Security"},
-      %{name: "data-ml", category: "Data", description: "Machine learning"},
-      %{name: "data-eng", category: "Data", description: "Data engineering"}
-    ]
+
+  defp find_prd(_prds, nil), do: nil
+
+  defp find_prd(prds, id) do
+    Enum.find(prds, &(&1.id == id))
   end
 
-  def status_text_color(:running), do: "text-green-600"
-  def status_text_color(:paused), do: "text-orange-600"
-  def status_text_color(:failed), do: "text-red-600"
-  def status_text_color(_), do: "text-zinc-900"
+  defp load_prd_scoped_data(project, nil) do
+    {Projects.list_tasks(project.id), Projects.list_agent_runs(project.id)}
+  end
+
+  defp load_prd_scoped_data(project, prd) do
+    tasks = Projects.list_tasks_for_prd(project.id, prd.id)
+    agent_runs = Projects.list_agent_runs(project.id)
+    {tasks, agent_runs}
+  end
+
+  def can_start?(project, selected_prd) do
+    project.status in [:pending, :completed, :failed] && selected_prd != nil
+  end
+
+  def can_pause?(project), do: project.status == :running
+  def can_resume?(project), do: project.status == :paused
+  def can_stop?(project), do: project.status in [:running, :paused]
+  def can_restart?(project), do: project.status in [:running, :paused] && project.active_prd_id != nil
+  def can_terminate?(project), do: project.status in [:running, :paused]
+  def is_running?(project), do: project.status in [:running, :paused]
+
+  def status_text_color(:running), do: "text-green-500"
+  def status_text_color(:paused), do: "text-orange-500"
+  def status_text_color(:failed), do: "text-red-500"
+  def status_text_color(_), do: "text-base-content/70"
+
+  def prd_status_color(:draft), do: "bg-base-300 text-base-content/70"
+  def prd_status_color(:in_progress), do: "bg-blue-100 text-blue-800"
+  def prd_status_color(:review), do: "bg-yellow-100 text-yellow-800"
+  def prd_status_color(:approved), do: "bg-green-100 text-green-800"
+  def prd_status_color(:archived), do: "bg-zinc-100 text-zinc-500"
+  def prd_status_color(_), do: "bg-zinc-100 text-zinc-600"
 
   def phase_color(phase, current_phase) do
     phases = Project.phases()
@@ -301,6 +387,30 @@ defmodule SamgitaWeb.ProjectLive.Index do
   def task_status_color(:failed), do: "bg-red-100 text-red-800"
   def task_status_color(:dead_letter), do: "bg-zinc-100 text-zinc-800"
   def task_status_color(_), do: "bg-zinc-100 text-zinc-600"
+
+  def log_stage_color(:reason), do: "text-purple-400"
+  def log_stage_color(:act), do: "text-blue-400"
+  def log_stage_color(:reflect), do: "text-yellow-400"
+  def log_stage_color(:verify), do: "text-green-400"
+  def log_stage_color(:phase_change), do: "text-cyan-400"
+  def log_stage_color(:spawned), do: "text-emerald-400"
+  def log_stage_color(:completed), do: "text-green-300"
+  def log_stage_color(:failed), do: "text-red-400"
+  def log_stage_color(_), do: "text-zinc-400"
+
+  def source_badge_class(:agent), do: "bg-blue-900 text-blue-300"
+  def source_badge_class(:orchestrator), do: "bg-purple-900 text-purple-300"
+  def source_badge_class(:task), do: "bg-emerald-900 text-emerald-300"
+  def source_badge_class(_), do: "bg-zinc-800 text-zinc-400"
+
+  def log_source_label(:agent), do: "AGT"
+  def log_source_label(:orchestrator), do: "ORC"
+  def log_source_label(:task), do: "TSK"
+  def log_source_label(_), do: "SYS"
+
+  def format_log_time(datetime) do
+    Calendar.strftime(datetime, "%H:%M:%S")
+  end
 
   def relative_time(datetime) do
     now = DateTime.utc_now()

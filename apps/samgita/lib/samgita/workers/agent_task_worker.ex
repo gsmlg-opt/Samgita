@@ -28,10 +28,30 @@ defmodule Samgita.Workers.AgentTaskWorker do
          :ok <- execute_task(agent_pid, task) do
       mark_task_completed(task)
       Samgita.Events.task_completed(task)
+
+      entry =
+        Samgita.Events.build_log_entry(
+          :task,
+          task_id,
+          :completed,
+          "Task completed (agent: #{agent_type})"
+        )
+
+      Samgita.Events.activity_log(project_id, entry)
       :ok
     else
       {:error, reason} ->
         Logger.error("AgentTaskWorker failed: #{inspect(reason)}")
+
+        entry =
+          Samgita.Events.build_log_entry(
+            :task,
+            task_id,
+            :failed,
+            "Task failed: #{inspect(reason)}"
+          )
+
+        Samgita.Events.activity_log(project_id, entry)
         handle_failure(task_id, reason)
         {:error, reason}
     end

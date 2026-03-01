@@ -102,6 +102,12 @@ defmodule Samgita.Agent.Worker do
   def reason(:state_timeout, :execute, data) do
     Logger.info("[#{data.id}] REASON: Planning approach for task #{inspect(data.current_task)}")
 
+    broadcast_activity(
+      data,
+      :reason,
+      "Planning approach for task #{task_type(data.current_task)}"
+    )
+
     context = build_context(data)
     memory_context = fetch_memory_context(data.project_id)
     learnings = context.learnings ++ memory_learnings(memory_context)
@@ -124,17 +130,25 @@ defmodule Samgita.Agent.Worker do
   def act(:state_timeout, :execute, data) do
     Logger.info("[#{data.id}] ACT: Executing task via Claude CLI")
 
+    broadcast_activity(data, :act, "Executing task via Claude CLI")
+
     prompt = build_prompt(data)
     model = Types.model_for_type(data.agent_type)
 
     case Claude.chat(prompt, model: model) do
       {:ok, result} ->
         Logger.info("[#{data.id}] ACT: Claude returned result (#{String.length(result)} chars)")
+
+        broadcast_activity(data, :act, "Claude returned result (#{String.length(result)} chars)",
+          output: truncate_output(result, 2000)
+        )
+
         {:next_state, :reflect, %{data | act_result: result}}
 
       {:error, :rate_limit} ->
         backoff = Claude.backoff_ms(data.retry_count)
         Logger.warning("[#{data.id}] ACT: Rate limited, backing off #{backoff}ms")
+        broadcast_activity(data, :act, "Rate limited, backing off #{backoff}ms")
 
         {:keep_state, %{data | retry_count: data.retry_count + 1},
          [{:state_timeout, backoff, :execute}]}
@@ -142,12 +156,14 @@ defmodule Samgita.Agent.Worker do
       {:error, :overloaded} ->
         backoff = Claude.backoff_ms(data.retry_count)
         Logger.warning("[#{data.id}] ACT: Overloaded, backing off #{backoff}ms")
+        broadcast_activity(data, :act, "Overloaded, backing off #{backoff}ms")
 
         {:keep_state, %{data | retry_count: data.retry_count + 1},
          [{:state_timeout, backoff, :execute}]}
 
       {:error, reason} ->
         Logger.error("[#{data.id}] ACT: Failed - #{inspect(reason)}")
+        broadcast_activity(data, :act, "Execution failed: #{inspect(reason)}")
         {:next_state, :reflect, %{data | act_result: {:error, reason}}}
     end
   end
@@ -178,6 +194,8 @@ defmodule Samgita.Agent.Worker do
           "Task completed"
       end
 
+    broadcast_activity(data, :reflect, "Recording learnings: #{learning}")
+
     data = %{data | learnings: [learning | data.learnings]}
 
     persist_learning(data.project_id, learning)
@@ -202,10 +220,23 @@ defmodule Samgita.Agent.Worker do
     case data.act_result do
       {:error, _reason} when data.retry_count < @max_retries ->
         Logger.warning("[#{data.id}] VERIFY: Failed, retrying from reason phase")
+
+        broadcast_activity(
+          data,
+          :verify,
+          "Verification failed, retrying (attempt #{data.retry_count + 1}/#{@max_retries})"
+        )
+
         {:next_state, :reason, %{data | retry_count: data.retry_count + 1}}
 
       {:error, reason} ->
         Logger.error("[#{data.id}] VERIFY: Max retries reached, marking failed")
+
+        broadcast_activity(
+          data,
+          :verify,
+          "Max retries reached, marking failed: #{inspect(reason)}"
+        )
 
         data = %{
           data
@@ -217,6 +248,7 @@ defmodule Samgita.Agent.Worker do
 
       _ ->
         Logger.info("[#{data.id}] VERIFY: Task verified successfully")
+        broadcast_activity(data, :verify, "Task verified successfully")
 
         # Handle post-task actions
         handle_task_completion(data)
@@ -239,6 +271,17 @@ defmodule Samgita.Agent.Worker do
 
   ## Internal
 
+  defp broadcast_activity(data, stage, message, opts \\ []) do
+    entry = Samgita.Events.build_log_entry(:agent, data.id, stage, message, opts)
+    Samgita.Events.activity_log(data.project_id, entry)
+  end
+
+  defp truncate_output(text, max_len) when byte_size(text) > max_len do
+    String.slice(text, 0, max_len) <> "\n... (truncated)"
+  end
+
+  defp truncate_output(text, _max_len), do: text
+
   defp broadcast_state_change(data, state) do
     Phoenix.PubSub.broadcast(
       Samgita.PubSub,
@@ -260,9 +303,56 @@ defmodule Samgita.Agent.Worker do
     task_type = task_type(task)
 
     case task_type do
+      "bootstrap" -> build_bootstrap_prompt(data)
       "generate-prd" -> build_prd_prompt(data)
       _ -> build_generic_prompt(data)
     end
+  end
+
+  defp build_bootstrap_prompt(data) do
+    task = data.current_task
+    payload = task_payload(task)
+    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
+
+    project_name = payload["project_name"] || "Unnamed Project"
+    git_url = payload["git_url"] || ""
+    working_path = payload["working_path"] || ""
+    prd_title = payload["prd_title"] || "Untitled"
+    prd_content = payload["prd_content"] || ""
+
+    location =
+      if working_path && working_path != "" do
+        "Working directory: #{working_path}"
+      else
+        "Repository: #{git_url}"
+      end
+
+    """
+    You are a #{type_name} (#{type_desc}).
+
+    ## Task: Bootstrap Project "#{project_name}"
+
+    #{location}
+
+    You have been given a Product Requirements Document (PRD) to guide the project.
+    Analyze it and begin the bootstrap phase.
+
+    ## PRD: #{prd_title}
+
+    #{prd_content}
+
+    ## Instructions
+
+    1. Read and analyze the PRD thoroughly
+    2. If there is a git repository or working directory, explore the existing codebase
+    3. Identify the key components, features, and milestones described in the PRD
+    4. Create an initial project plan breaking down the PRD into actionable tasks
+    5. Set up any necessary project structure, configuration, or scaffolding
+    6. Document your findings and the plan for the next phases
+
+    Focus on understanding the full scope of the project and preparing for development.
+    Output your analysis, plan, and any actions taken in markdown format.
+    """
   end
 
   defp build_prd_prompt(data) do

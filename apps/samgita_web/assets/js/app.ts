@@ -39,9 +39,33 @@ if (!csrfToken) {
   throw new Error("CSRF token not found in meta tags")
 }
 
-// LiveView hooks need to be registered before LiveSocket initialization
-// They will be defined in the window object by the template scripts
-const Hooks = (window as any).PlaygroundHooks || {}
+// LiveView hooks
+const Hooks: Record<string, any> = (window as any).PlaygroundHooks || {}
+
+Hooks.AutoScroll = {
+  mounted() {
+    this._autoScroll = true
+
+    this._observer = new MutationObserver(() => {
+      if (this._autoScroll) {
+        this.el.scrollTop = this.el.scrollHeight
+      }
+    })
+
+    this._observer.observe(this.el, { childList: true, subtree: true })
+
+    this.el.addEventListener("scroll", () => {
+      const { scrollTop, scrollHeight, clientHeight } = this.el
+      this._autoScroll = scrollHeight - scrollTop - clientHeight < 50
+    })
+  },
+
+  destroyed() {
+    if (this._observer) {
+      this._observer.disconnect()
+    }
+  },
+}
 
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,

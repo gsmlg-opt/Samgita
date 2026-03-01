@@ -70,4 +70,36 @@ defmodule Samgita.EventsTest do
     assert_receive {:phase_changed, ^project_id, :qa}
     assert_receive {:project_updated, ^project_id, :qa}
   end
+
+  test "activity_log broadcasts to project topic", %{project_id: project_id} do
+    Events.subscribe_project(project_id)
+
+    entry = Events.build_log_entry(:agent, "agent-1", :act, "Executing task")
+    Events.activity_log(project_id, entry)
+
+    assert_receive {:activity_log, ^entry}
+  end
+
+  test "build_log_entry creates well-formed map without output", %{project_id: _project_id} do
+    entry =
+      Events.build_log_entry(:orchestrator, "orchestrator", :phase_change, "Entering bootstrap")
+
+    assert is_integer(entry.id)
+    assert %DateTime{} = entry.timestamp
+    assert entry.source == :orchestrator
+    assert entry.source_id == "orchestrator"
+    assert entry.stage == :phase_change
+    assert entry.message == "Entering bootstrap"
+    assert entry.output == nil
+  end
+
+  test "build_log_entry creates well-formed map with output", %{project_id: _project_id} do
+    entry =
+      Events.build_log_entry(:agent, "agent-1", :act, "Claude returned result",
+        output: "some output text"
+      )
+
+    assert entry.source == :agent
+    assert entry.output == "some output text"
+  end
 end
