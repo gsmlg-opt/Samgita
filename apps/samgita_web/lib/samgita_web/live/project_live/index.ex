@@ -26,6 +26,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
            active_agents: %{},
            available_agents: available_agents,
            prds: prds,
+           selected_prd_id: nil,
            editing_prd: false,
            prd_content: project.prd_content || "",
            show_task_form: false,
@@ -123,6 +124,34 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
   def handle_event("update_prd_content", %{"value" => content}, socket) do
     {:noreply, assign(socket, prd_content: content)}
+  end
+
+  def handle_event("select_prd", %{"id" => id}, socket) do
+    {:noreply, assign(socket, selected_prd_id: id)}
+  end
+
+  def handle_event("delete_prd", %{"id" => id}, socket) do
+    case Samgita.Prds.get_prd(id) do
+      {:ok, prd} ->
+        case Samgita.Prds.delete_prd(prd) do
+          {:ok, _} ->
+            prds = Samgita.Prds.list_prds(socket.assigns.project.id)
+
+            selected_prd_id =
+              if socket.assigns.selected_prd_id == id, do: nil, else: socket.assigns.selected_prd_id
+
+            {:noreply,
+             socket
+             |> assign(prds: prds, selected_prd_id: selected_prd_id)
+             |> put_flash(:info, "PRD deleted")}
+
+          {:error, _} ->
+            {:noreply, put_flash(socket, :error, "Failed to delete PRD")}
+        end
+
+      {:error, :not_found} ->
+        {:noreply, put_flash(socket, :error, "PRD not found")}
+    end
   end
 
   # Task Management events

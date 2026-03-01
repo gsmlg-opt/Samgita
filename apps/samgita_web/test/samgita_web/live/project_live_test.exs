@@ -24,9 +24,16 @@ defmodule SamgitaWeb.ProjectLiveTest do
     assert html =~ "Phase Progress"
   end
 
-  test "shows start button for pending project", %{conn: conn} do
+  test "shows start button for pending project with selected PRD", %{conn: conn} do
     project = create_project(%{status: :pending})
+    {:ok, prd} = Samgita.Prds.create_prd(%{project_id: project.id, title: "Test PRD", content: "# Test", status: :approved})
     {:ok, view, _html} = live(conn, ~p"/projects/#{project}")
+
+    # Start button not visible without selecting a PRD
+    refute has_element?(view, "button", "Start")
+
+    # Select the PRD
+    render_click(view, "select_prd", %{"id" => prd.id})
     assert has_element?(view, "button", "Start")
   end
 
@@ -56,8 +63,10 @@ defmodule SamgitaWeb.ProjectLiveTest do
 
   test "start transitions project to running", %{conn: conn} do
     project = create_project(%{status: :pending})
+    {:ok, prd} = Samgita.Prds.create_prd(%{project_id: project.id, title: "Test PRD", content: "# Test", status: :approved})
     {:ok, view, _html} = live(conn, ~p"/projects/#{project}")
 
+    render_click(view, "select_prd", %{"id" => prd.id})
     html = render_click(view, "start")
     assert html =~ "running"
     assert html =~ "Pause"
