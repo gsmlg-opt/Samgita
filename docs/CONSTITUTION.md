@@ -110,7 +110,7 @@ apps/
   samgita_provider/  — Provider abstraction wrapping Claude Code CLI via ClaudeAgentSDK
   samgita/           — Core domain: projects, tasks, agent runs, RARV worker, supervision
   samgita_memory/    — pgvector memory, PRD tracking, thinking chains, MCP tools
-  samgita_web/       — Phoenix LiveView UI, REST API, playground chat
+  samgita_web/       — Phoenix LiveView UI, REST API
 ```
 
 ### Infrastructure Stack

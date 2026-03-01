@@ -30,7 +30,6 @@ defmodule SamgitaWeb.Router do
     live "/skills", SkillsLive.Index, :index
     live "/references", ReferencesLive.Index, :index
     live "/references/*filename", ReferencesLive.Show, :show
-    live "/playground", PlaygroundLive.Index, :index
   end
 
   scope "/api", SamgitaWeb do

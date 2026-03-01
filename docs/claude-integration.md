@@ -77,10 +77,6 @@ config :samgita_provider,
 
 `Samgita.Agent.Claude.chat/2` delegates to `SamgitaProvider.query/2`. The agent worker (`apps/samgita/lib/samgita/agent/worker.ex`) calls `Claude.chat/2` in its RARV cycle.
 
-### Playground
-
-`SamgitaWeb.PlaygroundLive` calls `SamgitaProvider.query/2` directly from async tasks.
-
 ### Embeddings
 
 `SamgitaMemory.Workers.Embedding` reads `Application.get_env(:samgita_provider, :anthropic_api_key)` for the Voyage API (not for Claude — this is a shared config location).

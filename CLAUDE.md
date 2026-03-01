@@ -116,7 +116,7 @@ Manages project lifecycle phases and coordinates agent spawning.
 
 **SamgitaProvider** (`apps/samgita_provider/`) — provider abstraction:
 - Invokes `claude` CLI directly via `System.cmd/3` in print mode with JSON output
-- Used by `Samgita.Agent.Claude`, `PlaygroundLive`, and `PrdChatLive`
+- Used by `Samgita.Agent.Claude` and `PrdChatLive`
 - All Claude Code tools available automatically (CLI manages its own tools)
 - `:mock` atom provider for tests (returns `"mock response"`)
 - CLI command configurable via `config :samgita_provider, :claude_command`
@@ -136,7 +136,7 @@ Manages project lifecycle phases and coordinates agent spawning.
 
 ### Web Layer
 
-**LiveView pages** (10): Dashboard, ProjectForm, Project detail, PrdChat, Agents, MCP, Skills, References (index+show), Playground
+**LiveView pages** (9): Dashboard, ProjectForm, Project detail, PrdChat, Agents, MCP, Skills, References (index+show)
 
 **REST API**: `/api/projects` (CRUD + pause/resume), `/api/projects/:id/tasks`, `/api/projects/:id/agents`, `/api/webhooks`, `/api/notifications`, `/api/features` (CRUD + enable/disable/archive). Rate limited (100 req/60s via `SamgitaWeb.Plugs.RateLimit`).
 
