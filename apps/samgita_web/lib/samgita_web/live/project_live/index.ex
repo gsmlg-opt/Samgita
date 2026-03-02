@@ -417,6 +417,14 @@ defmodule SamgitaWeb.ProjectLive.Index do
   def log_source_label(:task), do: "TSK"
   def log_source_label(_), do: "SYS"
 
+  def task_progress_pct([], _status), do: 0
+
+  def task_progress_pct(tasks, status) do
+    count = Enum.count(tasks, &(&1.status == status))
+    total = length(tasks)
+    if total > 0, do: Float.round(count / total * 100, 1), else: 0
+  end
+
   def format_log_time(datetime) do
     Calendar.strftime(datetime, "%H:%M:%S")
   end

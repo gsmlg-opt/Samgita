@@ -240,6 +240,39 @@
           </div>
         </div>
 
+        <%!-- Task Summary --%>
+        <div :if={@tasks != []} class="bg-base-200 rounded-lg shadow p-4">
+          <h3 class="text-sm font-medium text-base-content/50 mb-3">Task Progress</h3>
+          <div class="flex gap-4 text-sm">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :completed))} completed</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :running))} running</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
+              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :pending))} pending</span>
+            </div>
+            <div :if={Enum.any?(@tasks, &(&1.status == :failed))} class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :failed))} failed</span>
+            </div>
+            <div :if={Enum.any?(@tasks, &(&1.status == :dead_letter))} class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-zinc-500"></span>
+              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :dead_letter))} dead letter</span>
+            </div>
+          </div>
+          <div class="mt-2 h-2 bg-base-300 rounded-full overflow-hidden flex">
+            <div class="bg-green-500 transition-all" style={"width: #{task_progress_pct(@tasks, :completed)}%"}></div>
+            <div class="bg-blue-500 transition-all" style={"width: #{task_progress_pct(@tasks, :running)}%"}></div>
+            <div class="bg-yellow-500 transition-all" style={"width: #{task_progress_pct(@tasks, :pending)}%"}></div>
+            <div class="bg-red-500 transition-all" style={"width: #{task_progress_pct(@tasks, :failed)}%"}></div>
+          </div>
+        </div>
+
         <%!-- Tasks --%>
         <div class="bg-base-200 rounded-lg shadow p-4">
           <div class="flex justify-between items-center mb-3">

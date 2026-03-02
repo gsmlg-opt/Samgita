@@ -58,7 +58,11 @@ defmodule SamgitaWeb.Plugs.RateLimit do
   defp ensure_table do
     case :ets.whereis(:samgita_rate_limit) do
       :undefined ->
-        :ets.new(:samgita_rate_limit, [:named_table, :public, :duplicate_bag])
+        try do
+          :ets.new(:samgita_rate_limit, [:named_table, :public, :duplicate_bag])
+        rescue
+          ArgumentError -> :ok
+        end
 
       _ ->
         :ok
