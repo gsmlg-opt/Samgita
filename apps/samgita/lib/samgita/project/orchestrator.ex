@@ -299,13 +299,11 @@ defmodule Samgita.Project.Orchestrator do
           Samgita.Events.stagnation_detected(data.project_id, phase, checks)
           data = %{data | stagnation_checks: checks}
 
-          {:keep_state, data,
-           [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
+          {:keep_state, data, [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
         else
           data = %{data | stagnation_checks: checks}
 
-          {:keep_state, data,
-           [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
+          {:keep_state, data, [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
         end
       else
         # Progress was made, reset stagnation counter
@@ -315,8 +313,7 @@ defmodule Samgita.Project.Orchestrator do
             stagnation_checks: 0
         }
 
-        {:keep_state, data,
-         [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
+        {:keep_state, data, [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
       end
     end
   end
@@ -601,9 +598,7 @@ defmodule Samgita.Project.Orchestrator do
           )
 
         {:error, reason} ->
-          Logger.warning(
-            "[Orchestrator] Failed to create phase task: #{inspect(reason)}"
-          )
+          Logger.warning("[Orchestrator] Failed to create phase task: #{inspect(reason)}")
       end
     end)
 
