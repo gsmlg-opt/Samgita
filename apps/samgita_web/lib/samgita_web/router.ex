@@ -44,6 +44,8 @@ defmodule SamgitaWeb.Router do
       post "/pause", ProjectController, :pause
       post "/resume", ProjectController, :resume
 
+      resources "/prds", PrdController, except: [:new, :edit]
+
       resources "/tasks", TaskController, only: [:index, :show] do
         post "/retry", TaskController, :retry
       end
