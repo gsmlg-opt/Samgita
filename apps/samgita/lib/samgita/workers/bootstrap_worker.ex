@@ -26,9 +26,7 @@ defmodule Samgita.Workers.BootstrapWorker do
          {:ok, tasks} <- generate_task_backlog(project, prd) do
       task_count = length(tasks)
 
-      Logger.info(
-        "[BootstrapWorker] Generated #{task_count} tasks for project #{project_id}"
-      )
+      Logger.info("[BootstrapWorker] Generated #{task_count} tasks for project #{project_id}")
 
       # Enqueue all tasks via Oban
       enqueued = enqueue_tasks(project_id, prd_id, tasks)
@@ -317,7 +315,9 @@ defmodule Samgita.Workers.BootstrapWorker do
                    agent_type: descriptor.agent_type
                  })
                ) do
-            {:ok, _job} -> [task | acc]
+            {:ok, _job} ->
+              [task | acc]
+
             {:error, reason} ->
               Logger.warning("[BootstrapWorker] Failed to enqueue task: #{inspect(reason)}")
               acc

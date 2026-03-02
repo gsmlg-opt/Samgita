@@ -214,7 +214,9 @@ defmodule Samgita.Quality.BlindReview do
         lines
         |> Enum.find(&String.contains?(&1, "LINE:"))
         |> case do
-          nil -> nil
+          nil ->
+            nil
+
           line ->
             line
             |> String.replace("LINE:", "")

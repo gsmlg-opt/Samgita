@@ -74,9 +74,7 @@ defmodule Samgita.Quality.CompletionCouncil do
             vote_result
 
           {:ok, {:error, reason}} ->
-            Logger.warning(
-              "[CompletionCouncil] #{member.role} failed: #{inspect(reason)}"
-            )
+            Logger.warning("[CompletionCouncil] #{member.role} failed: #{inspect(reason)}")
 
             %{
               role: member.role,
@@ -204,7 +202,9 @@ defmodule Samgita.Quality.CompletionCouncil do
       lines
       |> Enum.find(&String.contains?(&1, "VOTE:"))
       |> case do
-        nil -> :abstain
+        nil ->
+          :abstain
+
         line ->
           cond do
             String.contains?(String.upcase(line), "COMPLETE") and

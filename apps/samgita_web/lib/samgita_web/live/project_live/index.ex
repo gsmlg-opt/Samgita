@@ -365,7 +365,10 @@ defmodule SamgitaWeb.ProjectLive.Index do
   def can_pause?(project), do: project.status == :running
   def can_resume?(project), do: project.status == :paused
   def can_stop?(project), do: project.status in [:running, :paused]
-  def can_restart?(project), do: project.status in [:running, :paused] && project.active_prd_id != nil
+
+  def can_restart?(project),
+    do: project.status in [:running, :paused] && project.active_prd_id != nil
+
   def can_terminate?(project), do: project.status in [:running, :paused]
   def is_running?(project), do: project.status in [:running, :paused]
 

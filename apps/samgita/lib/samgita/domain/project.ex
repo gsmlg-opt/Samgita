@@ -44,7 +44,16 @@ defmodule Samgita.Domain.Project do
 
   def changeset(project, attrs) do
     project
-    |> cast(attrs, [:name, :git_url, :working_path, :prd_content, :phase, :status, :config, :active_prd_id])
+    |> cast(attrs, [
+      :name,
+      :git_url,
+      :working_path,
+      :prd_content,
+      :phase,
+      :status,
+      :config,
+      :active_prd_id
+    ])
     |> validate_required([:name, :git_url])
     |> validate_git_url()
     |> unique_constraint(:git_url)

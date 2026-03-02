@@ -87,7 +87,10 @@ defmodule Samgita.Quality.GateTest do
     end
 
     test "returns true for medium findings" do
-      findings = [%{severity: :medium, message: "Missing validation", gate: 3, file: nil, line: nil}]
+      findings = [
+        %{severity: :medium, message: "Missing validation", gate: 3, file: nil, line: nil}
+      ]
+
       assert Gate.has_blocking_findings?(findings)
     end
 

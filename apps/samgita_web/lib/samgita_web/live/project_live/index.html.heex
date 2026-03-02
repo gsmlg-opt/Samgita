@@ -66,7 +66,9 @@
                     {prd.status}
                   </span>
                   <span class="text-[10px] text-base-content/40">v{prd.version}</span>
-                  <span class="text-[10px] text-base-content/40">{relative_time(prd.updated_at)}</span>
+                  <span class="text-[10px] text-base-content/40">
+                    {relative_time(prd.updated_at)}
+                  </span>
                 </div>
               </div>
               <div class="flex items-center gap-1 shrink-0">
@@ -75,7 +77,12 @@
                   class="text-base-content/40 hover:text-purple-500 p-1"
                   title="Edit"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
                     <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                   </svg>
                 </.link>
@@ -86,8 +93,17 @@
                   class="text-base-content/40 hover:text-red-500 p-1"
                   title="Delete"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                      clip-rule="evenodd"
+                    />
                   </svg>
                 </button>
               </div>
@@ -220,10 +236,15 @@
         <div :if={@active_agents != %{}} class="bg-base-200 rounded-lg shadow p-4">
           <h3 class="text-sm font-medium text-base-content/50 mb-3">Active Agents</h3>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <div :for={{agent_id, info} <- @active_agents} class="border border-base-300 rounded-lg p-3">
+            <div
+              :for={{agent_id, info} <- @active_agents}
+              class="border border-base-300 rounded-lg p-3"
+            >
               <p class="text-sm font-medium text-base-content truncate">{agent_id}</p>
               <p class={"text-xs #{agent_state_color(info.state)}"}>{info.state}</p>
-              <p :if={Map.has_key?(info, :type)} class="text-xs text-base-content/40">{info.type}</p>
+              <p :if={Map.has_key?(info, :type)} class="text-xs text-base-content/40">
+                {info.type}
+              </p>
             </div>
           </div>
         </div>
@@ -246,30 +267,62 @@
           <div class="flex gap-4 text-sm">
             <div class="flex items-center gap-1.5">
               <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :completed))} completed</span>
+              <span class="text-base-content/70">
+                {Enum.count(@tasks, &(&1.status == :completed))} completed
+              </span>
             </div>
             <div class="flex items-center gap-1.5">
               <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :running))} running</span>
+              <span class="text-base-content/70">
+                {Enum.count(@tasks, &(&1.status == :running))} running
+              </span>
             </div>
             <div class="flex items-center gap-1.5">
               <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
-              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :pending))} pending</span>
+              <span class="text-base-content/70">
+                {Enum.count(@tasks, &(&1.status == :pending))} pending
+              </span>
             </div>
-            <div :if={Enum.any?(@tasks, &(&1.status == :failed))} class="flex items-center gap-1.5">
+            <div
+              :if={Enum.any?(@tasks, &(&1.status == :failed))}
+              class="flex items-center gap-1.5"
+            >
               <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :failed))} failed</span>
+              <span class="text-base-content/70">
+                {Enum.count(@tasks, &(&1.status == :failed))} failed
+              </span>
             </div>
-            <div :if={Enum.any?(@tasks, &(&1.status == :dead_letter))} class="flex items-center gap-1.5">
+            <div
+              :if={Enum.any?(@tasks, &(&1.status == :dead_letter))}
+              class="flex items-center gap-1.5"
+            >
               <span class="w-2.5 h-2.5 rounded-full bg-zinc-500"></span>
-              <span class="text-base-content/70">{Enum.count(@tasks, &(&1.status == :dead_letter))} dead letter</span>
+              <span class="text-base-content/70">
+                {Enum.count(@tasks, &(&1.status == :dead_letter))} dead letter
+              </span>
             </div>
           </div>
           <div class="mt-2 h-2 bg-base-300 rounded-full overflow-hidden flex">
-            <div class="bg-green-500 transition-all" style={"width: #{task_progress_pct(@tasks, :completed)}%"}></div>
-            <div class="bg-blue-500 transition-all" style={"width: #{task_progress_pct(@tasks, :running)}%"}></div>
-            <div class="bg-yellow-500 transition-all" style={"width: #{task_progress_pct(@tasks, :pending)}%"}></div>
-            <div class="bg-red-500 transition-all" style={"width: #{task_progress_pct(@tasks, :failed)}%"}></div>
+            <div
+              class="bg-green-500 transition-all"
+              style={"width: #{task_progress_pct(@tasks, :completed)}%"}
+            >
+            </div>
+            <div
+              class="bg-blue-500 transition-all"
+              style={"width: #{task_progress_pct(@tasks, :running)}%"}
+            >
+            </div>
+            <div
+              class="bg-yellow-500 transition-all"
+              style={"width: #{task_progress_pct(@tasks, :pending)}%"}
+            >
+            </div>
+            <div
+              class="bg-red-500 transition-all"
+              style={"width: #{task_progress_pct(@tasks, :failed)}%"}
+            >
+            </div>
           </div>
         </div>
 
@@ -299,14 +352,18 @@
                   :for={finding <- Enum.take(result.findings, 5)}
                   class="text-xs text-base-content/70 flex gap-2"
                 >
-                  <span class={"shrink-0 #{finding_severity_color(finding.severity)}"}>[{finding.severity}]</span>
+                  <span class={"shrink-0 #{finding_severity_color(finding.severity)}"}>
+                    [{finding.severity}]
+                  </span>
                   <span class="break-words min-w-0">{finding.message}</span>
                 </div>
                 <p :if={length(result.findings) > 5} class="text-xs text-base-content/40">
                   + {length(result.findings) - 5} more findings
                 </p>
               </div>
-              <p :if={result.findings == []} class="text-xs text-base-content/40 mt-1">No findings</p>
+              <p :if={result.findings == []} class="text-xs text-base-content/40 mt-1">
+                No findings
+              </p>
             </div>
           </div>
         </div>
@@ -325,11 +382,16 @@
           </div>
 
           <%!-- Task Form --%>
-          <div :if={@show_task_form} class="border border-base-300 rounded-lg p-4 mb-4 bg-base-300">
+          <div
+            :if={@show_task_form}
+            class="border border-base-300 rounded-lg p-4 mb-4 bg-base-300"
+          >
             <form phx-submit="create_task">
               <div class="grid grid-cols-2 gap-4 mb-3">
                 <div>
-                  <label class="block text-xs font-medium text-base-content/70 mb-1">Task Type</label>
+                  <label class="block text-xs font-medium text-base-content/70 mb-1">
+                    Task Type
+                  </label>
                   <input
                     type="text"
                     name="task[type]"
@@ -339,7 +401,9 @@
                   />
                 </div>
                 <div>
-                  <label class="block text-xs font-medium text-base-content/70 mb-1">Priority (1-10)</label>
+                  <label class="block text-xs font-medium text-base-content/70 mb-1">
+                    Priority (1-10)
+                  </label>
                   <input
                     type="number"
                     name="task[priority]"
@@ -352,7 +416,9 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label class="block text-xs font-medium text-base-content/70 mb-1">Payload (JSON)</label>
+                <label class="block text-xs font-medium text-base-content/70 mb-1">
+                  Payload (JSON)
+                </label>
                 <textarea
                   name="task[payload]"
                   rows="3"
@@ -390,7 +456,9 @@
               <p class="text-xs text-base-content/50">
                 Priority: {task.priority} | Attempts: {task.attempts || 0}
               </p>
-              <p :if={task.error} class="text-xs text-red-600 mt-1">{if is_map(task.error), do: inspect(task.error), else: task.error}</p>
+              <p :if={task.error} class="text-xs text-red-600 mt-1">
+                {if is_map(task.error), do: inspect(task.error), else: task.error}
+              </p>
             </div>
             <div class="flex items-center gap-2">
               <span class={"px-2 py-1 text-xs rounded-full #{task_status_color(task.status)}"}>
