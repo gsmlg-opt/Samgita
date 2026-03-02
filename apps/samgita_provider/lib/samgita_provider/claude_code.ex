@@ -20,13 +20,16 @@ defmodule SamgitaProvider.ClaudeCode do
 
     Logger.debug("Claude CLI: #{command} #{Enum.join(args, " ")}")
 
+    working_dir = opts[:working_directory]
+
+    cmd_opts =
+      [stderr_to_stdout: true, env: cmd_env()]
+      |> maybe_add_cd(working_dir)
+
     task =
       Task.async(fn ->
         try do
-          case System.cmd(command, args,
-                 stderr_to_stdout: true,
-                 env: cmd_env()
-               ) do
+          case System.cmd(command, args, cmd_opts) do
             {output, 0} ->
               parse_json_output(output)
 
@@ -100,6 +103,9 @@ defmodule SamgitaProvider.ClaudeCode do
         classify_error(output, 1)
     end
   end
+
+  defp maybe_add_cd(opts, nil), do: opts
+  defp maybe_add_cd(opts, dir), do: Keyword.put(opts, :cd, dir)
 
   defp classify_error(output, _exit_code) do
     cond do

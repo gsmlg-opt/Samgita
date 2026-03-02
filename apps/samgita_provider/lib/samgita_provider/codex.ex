@@ -19,44 +19,71 @@ defmodule SamgitaProvider.Codex do
     args = build_args(prompt, opts)
     model = to_string(opts[:model] || "sonnet")
     timeout = opts[:timeout] || @default_timeout
+    working_dir = opts[:working_directory]
 
     Logger.debug("Codex CLI: #{command} #{Enum.join(args, " ")}")
 
-    try do
-      case System.cmd(command, args,
-             stderr_to_stdout: true,
-             timeout: timeout,
-             env: cmd_env(model)
-           ) do
-        {output, 0} ->
-          text = String.trim(output)
+    cmd_opts =
+      [stderr_to_stdout: true, env: cmd_env(model)]
+      |> maybe_add_cd(working_dir)
 
-          if text == "" do
-            {:error, :empty_response}
-          else
-            {:ok, text}
+    task =
+      Task.async(fn ->
+        try do
+          case System.cmd(command, args, cmd_opts) do
+            {output, 0} ->
+              text = String.trim(output)
+
+              if text == "" do
+                {:error, :empty_response}
+              else
+                {:ok, text}
+              end
+
+            {output, exit_code} ->
+              Logger.error(
+                "Codex CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}"
+              )
+
+              classify_error(output, exit_code)
           end
+        rescue
+          e in ErlangError ->
+            case e do
+              %ErlangError{original: :enoent} ->
+                {:error, :codex_not_found}
 
-        {output, exit_code} ->
-          Logger.error("Codex CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}")
-          classify_error(output, exit_code)
-      end
-    rescue
-      e in ErlangError ->
-        case e do
-          %ErlangError{original: :enoent} ->
-            {:error, :codex_not_found}
-
-          _ ->
-            Logger.error("Codex CLI error: #{inspect(e)}")
-            {:error, Exception.message(e)}
+              _ ->
+                Logger.error("Codex CLI error: #{inspect(e)}")
+                {:error, Exception.message(e)}
+            end
         end
+      end)
+
+    case Task.yield(task, timeout) || Task.shutdown(task) do
+      {:ok, result} -> result
+      nil -> {:error, :timeout}
     end
   end
 
   @doc false
-  def build_args(prompt, _opts) do
-    ["exec", "--full-auto", prompt]
+  def build_args(prompt, opts) do
+    args = ["exec", "--full-auto"]
+
+    args =
+      case opts[:working_directory] do
+        nil -> args
+        dir -> args ++ ["--writable-root", dir]
+      end
+
+    # Codex doesn't support --system-prompt, so prepend it to the prompt
+    effective_prompt =
+      case opts[:system_prompt] do
+        nil -> prompt
+        sp -> "#{sp}\n\n#{prompt}"
+      end
+
+    args ++ [effective_prompt]
   end
 
   @doc false
@@ -71,6 +98,9 @@ defmodule SamgitaProvider.Codex do
   defp cmd_env(model) do
     [{"CODEX_MODEL_REASONING_EFFORT", effort_for_model(model)}]
   end
+
+  defp maybe_add_cd(opts, nil), do: opts
+  defp maybe_add_cd(opts, dir), do: Keyword.put(opts, :cd, dir)
 
   defp classify_error(output, _exit_code) do
     cond do

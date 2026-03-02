@@ -42,9 +42,30 @@ defmodule SamgitaProviderTest do
                ["exec", "--full-auto", "hello world"]
     end
 
-    test "ignores opts" do
-      assert SamgitaProvider.Codex.build_args("test", model: "opus", system_prompt: "x") ==
-               ["exec", "--full-auto", "test"]
+    test "prepends system prompt to prompt text" do
+      args = SamgitaProvider.Codex.build_args("test", system_prompt: "You are helpful")
+      assert List.last(args) == "You are helpful\n\ntest"
+    end
+
+    test "adds writable-root when working_directory is set" do
+      args = SamgitaProvider.Codex.build_args("test", working_directory: "/tmp/project")
+      assert args == ["exec", "--full-auto", "--writable-root", "/tmp/project", "test"]
+    end
+
+    test "combines system prompt and working directory" do
+      args =
+        SamgitaProvider.Codex.build_args("test",
+          system_prompt: "Be concise",
+          working_directory: "/tmp/project"
+        )
+
+      assert args == [
+               "exec",
+               "--full-auto",
+               "--writable-root",
+               "/tmp/project",
+               "Be concise\n\ntest"
+             ]
     end
   end
 

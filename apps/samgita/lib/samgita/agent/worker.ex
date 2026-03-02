@@ -30,6 +30,8 @@ defmodule Samgita.Agent.Worker do
   ]
 
   @max_retries 3
+  @reason_timeout_ms 60_000
+  @reflect_timeout_ms 60_000
 
   ## Public API
 
@@ -111,7 +113,8 @@ defmodule Samgita.Agent.Worker do
 
   def reason(:enter, _old_state, data) do
     broadcast_state_change(data, :reason)
-    {:keep_state_and_data, [{:state_timeout, 0, :execute}]}
+    emit_telemetry(:state_transition, data, %{state: :reason})
+    {:keep_state_and_data, [{:state_timeout, 0, :execute}, {{:timeout, :reason_deadline}, @reason_timeout_ms, :deadline}]}
   end
 
   def reason(:state_timeout, :execute, data) do
@@ -123,12 +126,26 @@ defmodule Samgita.Agent.Worker do
       "Planning approach for task #{task_type(data.current_task)}"
     )
 
-    context = build_context(data)
-    memory_context = fetch_memory_context(data.project_id)
-    learnings = context.learnings ++ memory_learnings(memory_context)
-    data = %{data | act_result: nil, learnings: learnings}
+    try do
+      context = build_context(data)
+      memory_context = fetch_memory_context(data.project_id)
+      learnings = context.learnings ++ memory_learnings(memory_context)
+      data = %{data | act_result: nil, learnings: learnings}
 
-    {:next_state, :act, data}
+      {:next_state, :act, data}
+    rescue
+      e ->
+        Logger.error("[#{data.id}] REASON: Error building context: #{inspect(e)}")
+        emit_telemetry(:error, data, %{state: :reason, error: inspect(e)})
+        {:next_state, :act, %{data | act_result: nil, learnings: data.learnings}}
+    end
+  end
+
+  def reason({:timeout, :reason_deadline}, :deadline, data) do
+    Logger.warning("[#{data.id}] REASON: Timed out after #{@reason_timeout_ms}ms")
+    emit_telemetry(:error, data, %{state: :reason, error: :timeout})
+    broadcast_activity(data, :reason, "Timed out, proceeding to act")
+    {:next_state, :act, %{data | act_result: nil}}
   end
 
   def reason({:call, from}, :get_state, data) do
@@ -139,6 +156,7 @@ defmodule Samgita.Agent.Worker do
 
   def act(:enter, _old_state, data) do
     broadcast_state_change(data, :act)
+    emit_telemetry(:state_transition, data, %{state: :act})
     {:keep_state_and_data, [{:state_timeout, 0, :execute}]}
   end
 
@@ -150,7 +168,15 @@ defmodule Samgita.Agent.Worker do
     prompt = build_prompt(data)
     model = Types.model_for_type(data.agent_type)
 
-    case Claude.chat(prompt, model: model) do
+    working_dir = get_working_path(data)
+
+    chat_opts =
+      [model: model]
+      |> then(fn opts ->
+        if working_dir, do: Keyword.put(opts, :working_directory, working_dir), else: opts
+      end)
+
+    case Claude.chat(prompt, chat_opts) do
       {:ok, result} ->
         Logger.info("[#{data.id}] ACT: Claude returned result (#{String.length(result)} chars)")
 
@@ -191,7 +217,8 @@ defmodule Samgita.Agent.Worker do
 
   def reflect(:enter, _old_state, data) do
     broadcast_state_change(data, :reflect)
-    {:keep_state_and_data, [{:state_timeout, 0, :execute}]}
+    emit_telemetry(:state_transition, data, %{state: :reflect})
+    {:keep_state_and_data, [{:state_timeout, 0, :execute}, {{:timeout, :reflect_deadline}, @reflect_timeout_ms, :deadline}]}
   end
 
   def reflect(:state_timeout, :execute, data) do
@@ -213,8 +240,21 @@ defmodule Samgita.Agent.Worker do
 
     data = %{data | learnings: [learning | data.learnings]}
 
-    persist_learning(data.project_id, learning)
+    try do
+      persist_learning(data.project_id, learning)
+    rescue
+      e ->
+        Logger.warning("[#{data.id}] REFLECT: Failed to persist learning: #{inspect(e)}")
+        emit_telemetry(:error, data, %{state: :reflect, error: inspect(e)})
+    end
 
+    {:next_state, :verify, data}
+  end
+
+  def reflect({:timeout, :reflect_deadline}, :deadline, data) do
+    Logger.warning("[#{data.id}] REFLECT: Timed out after #{@reflect_timeout_ms}ms")
+    emit_telemetry(:error, data, %{state: :reflect, error: :timeout})
+    broadcast_activity(data, :reflect, "Timed out, proceeding to verify")
     {:next_state, :verify, data}
   end
 
@@ -226,6 +266,7 @@ defmodule Samgita.Agent.Worker do
 
   def verify(:enter, _old_state, data) do
     broadcast_state_change(data, :verify)
+    emit_telemetry(:state_transition, data, %{state: :verify})
     {:keep_state_and_data, [{:state_timeout, 0, :execute}]}
   end
 
@@ -343,6 +384,10 @@ defmodule Samgita.Agent.Worker do
     )
 
     update_agent_run_status(data, state)
+  rescue
+    _ -> :ok
+  catch
+    :exit, _ -> :ok
   end
 
   defp update_agent_run_status(data, state) do
@@ -721,6 +766,8 @@ defmodule Samgita.Agent.Worker do
       {:ok, project} -> project.working_path
       _ -> nil
     end
+  rescue
+    _ -> nil
   catch
     :exit, _ -> nil
   end
@@ -729,5 +776,33 @@ defmodule Samgita.Agent.Worker do
     Memory.add_memory(project_id, :episodic, learning)
   catch
     :exit, _ -> :ok
+  end
+
+  defp emit_telemetry(:state_transition, data, metadata) do
+    :telemetry.execute(
+      [:samgita, :agent, :state_transition],
+      %{system_time: System.system_time()},
+      Map.merge(metadata, %{
+        agent_id: data.id,
+        agent_type: data.agent_type,
+        project_id: data.project_id
+      })
+    )
+  rescue
+    _ -> :ok
+  end
+
+  defp emit_telemetry(:error, data, metadata) do
+    :telemetry.execute(
+      [:samgita, :agent, :error],
+      %{system_time: System.system_time()},
+      Map.merge(metadata, %{
+        agent_id: data.id,
+        agent_type: data.agent_type,
+        project_id: data.project_id
+      })
+    )
+  rescue
+    _ -> :ok
   end
 end
