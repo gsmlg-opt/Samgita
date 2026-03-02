@@ -120,7 +120,7 @@ defmodule SamgitaWeb.FeatureController do
   Returns 404 if feature not found.
   Returns 422 if validation fails (e.g., enabling a non-active feature).
   """
-  def enable(conn, %{"id" => id}) do
+  def enable(conn, %{"feature_id" => id}) do
     with {:ok, feature} <- Features.get_feature(id),
          {:ok, %Feature{} = enabled_feature} <- Features.enable_feature(feature) do
       render(conn, :show, feature: enabled_feature)
@@ -135,7 +135,7 @@ defmodule SamgitaWeb.FeatureController do
   Returns 200 with updated feature on success.
   Returns 404 if feature not found.
   """
-  def disable(conn, %{"id" => id}) do
+  def disable(conn, %{"feature_id" => id}) do
     with {:ok, feature} <- Features.get_feature(id),
          {:ok, %Feature{} = disabled_feature} <- Features.disable_feature(feature) do
       render(conn, :show, feature: disabled_feature)
@@ -152,7 +152,7 @@ defmodule SamgitaWeb.FeatureController do
 
   Note: Once archived, a feature cannot transition to other statuses.
   """
-  def archive(conn, %{"id" => id}) do
+  def archive(conn, %{"feature_id" => id}) do
     with {:ok, feature} <- Features.get_feature(id),
          {:ok, %Feature{} = archived_feature} <- Features.archive_feature(feature) do
       render(conn, :show, feature: archived_feature)
