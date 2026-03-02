@@ -12,8 +12,8 @@ defmodule SamgitaWeb.FeatureController do
   """
   use SamgitaWeb, :controller
 
-  alias Samgita.Features
   alias Samgita.Domain.Feature
+  alias Samgita.Features
 
   action_fallback SamgitaWeb.FallbackController
 

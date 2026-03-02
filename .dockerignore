@@ -1,0 +1,52 @@
+# Git
+.git
+.gitignore
+
+# Mix artifacts
+/_build
+/deps
+*.ez
+
+# Elixir LS
+.elixir_ls/
+
+# Generate on crash by the VM
+erl_crash.dump
+
+# Static artifacts - will be generated during build
+/apps/samgita_web/priv/static
+
+# Node modules and asset cache
+/apps/samgita_web/node_modules
+/apps/samgita_web/.bun-cache
+
+# Development files
+.env
+.env.*
+!.env.example
+
+# Test coverage
+/cover
+
+# Documentation
+/doc
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Loki mode reference (not needed in container)
+/loki-mode
+
+# Local workspace
+/workspace
+
+# Logs
+*.log

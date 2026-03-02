@@ -4,7 +4,7 @@ defmodule Samgita.Prds do
   """
 
   import Ecto.Query
-  alias Samgita.Domain.{Prd, ChatMessage}
+  alias Samgita.Domain.{ChatMessage, Prd}
   alias Samgita.Repo
 
   ## PRD Functions
@@ -104,8 +104,7 @@ defmodule Samgita.Prds do
       content =
         prd.chat_messages
         |> Enum.filter(&(&1.role == :assistant))
-        |> Enum.map(& &1.content)
-        |> Enum.join("\n\n---\n\n")
+        |> Enum.map_join("\n\n---\n\n", & &1.content)
 
       update_prd(prd, %{content: content})
     end

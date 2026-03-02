@@ -1,10 +1,10 @@
 defmodule Samgita.PrdsTest do
   use Samgita.DataCase, async: true
 
+  alias Samgita.Domain.ChatMessage
+  alias Samgita.Domain.Prd
   alias Samgita.Prds
   alias Samgita.Projects
-  alias Samgita.Domain.Prd
-  alias Samgita.Domain.ChatMessage
 
   defp create_project do
     {:ok, project} =

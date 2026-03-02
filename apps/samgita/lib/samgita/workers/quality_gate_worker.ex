@@ -73,12 +73,10 @@ defmodule Samgita.Workers.QualityGateWorker do
   @doc "Build gate results summary for display."
   @spec summarize_results([Gate.result()]) :: String.t()
   def summarize_results(results) do
-    results
-    |> Enum.map(fn r ->
+    Enum.map_join(results, "\n", fn r ->
       finding_count = length(r.findings)
       "Gate #{r.gate} (#{r.name}): #{r.verdict} — #{finding_count} findings"
     end)
-    |> Enum.join("\n")
   end
 
   ## Internal

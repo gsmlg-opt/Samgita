@@ -1,8 +1,8 @@
 defmodule Samgita.FeaturesTest do
   use Samgita.DataCase, async: true
 
-  alias Samgita.Features
   alias Samgita.Domain.Feature
+  alias Samgita.Features
 
   @valid_attrs %{
     name: "Test Feature",

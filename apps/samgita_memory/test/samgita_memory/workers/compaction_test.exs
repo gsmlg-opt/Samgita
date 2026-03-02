@@ -1,10 +1,10 @@
 defmodule SamgitaMemory.Workers.CompactionTest do
   use SamgitaMemory.DataCase
 
-  alias SamgitaMemory.Workers.Compaction
   alias SamgitaMemory.Memories
-  alias SamgitaMemory.Repo
   alias SamgitaMemory.Memories.Memory
+  alias SamgitaMemory.Repo
+  alias SamgitaMemory.Workers.Compaction
 
   describe "run_decay/0" do
     test "decays episodic memories by 0.98" do

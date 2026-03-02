@@ -1,11 +1,11 @@
 defmodule SamgitaMemory.Workers.SummarizeTest do
   use SamgitaMemory.DataCase
 
-  alias SamgitaMemory.Workers.Summarize
   alias SamgitaMemory.Memories
   alias SamgitaMemory.Memories.ThinkingChain
   alias SamgitaMemory.PRD
   alias SamgitaMemory.Repo
+  alias SamgitaMemory.Workers.Summarize
 
   describe "thinking chain summarization" do
     test "generates summary for completed chain" do

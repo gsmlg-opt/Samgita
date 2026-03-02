@@ -1,0 +1,112 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database with pgvector extension
+  db:
+    image: pgvector/pgvector:pg14
+    container_name: samgita-db
+    environment:
+      POSTGRES_DB: samgita_prod
+      POSTGRES_USER: samgita
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-samgita_dev_password}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./deployment/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U samgita"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - samgita_network
+    restart: unless-stopped
+
+  # Samgita Web Application
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: samgita-web
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Database Configuration
+      DATABASE_URL: postgresql://samgita:${DB_PASSWORD:-samgita_dev_password}@db:5432/samgita_prod
+      POOL_SIZE: ${POOL_SIZE:-10}
+      MEMORY_POOL_SIZE: ${MEMORY_POOL_SIZE:-5}
+
+      # Phoenix Configuration
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      PHX_HOST: ${PHX_HOST:-localhost}
+      PORT: 3110
+
+      # Anthropic API Key (for embeddings)
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+
+      # API Authentication (comma-separated keys)
+      SAMGITA_API_KEYS: ${SAMGITA_API_KEYS:-}
+
+      # Claude CLI Configuration
+      CLAUDE_COMMAND: ${CLAUDE_COMMAND:-claude}
+
+      # Optional: DNS Cluster for multi-node deployment
+      DNS_CLUSTER_QUERY: ${DNS_CLUSTER_QUERY:-}
+
+      # Elixir/Erlang Configuration
+      MIX_ENV: prod
+      RELEASE_COOKIE: ${RELEASE_COOKIE:-samgita_default_cookie_change_me}
+    ports:
+      - "${HOST_PORT:-3110}:3110"
+    volumes:
+      # Mount workspace for agent operations
+      - ${WORKSPACE_DIR:-./workspace}:/workspace
+      # Optional: Mount Claude CLI if installed locally
+      # - /usr/local/bin/claude:/usr/local/bin/claude:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3110/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - samgita_network
+    restart: unless-stopped
+    # Optionally limit resources
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '2'
+    #       memory: 4G
+    #     reservations:
+    #       cpus: '1'
+    #       memory: 2G
+
+  # Optional: Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: samgita-nginx
+    profiles:
+      - with-nginx
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deployment/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./deployment/nginx/ssl:/etc/nginx/ssl:ro
+    networks:
+      - samgita_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  samgita_network:
+    driver: bridge

@@ -5,8 +5,8 @@ defmodule Samgita.Features do
   """
 
   import Ecto.Query, warn: false
-  alias Samgita.Repo
   alias Samgita.Domain.Feature
+  alias Samgita.Repo
 
   @doc """
   Returns the list of features with optional filtering.

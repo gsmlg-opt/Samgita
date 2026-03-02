@@ -3,7 +3,7 @@ defmodule SamgitaWeb.PrdChatLiveTest do
 
   import Phoenix.LiveViewTest
 
-  alias Samgita.{Projects, Prds}
+  alias Samgita.{Prds, Projects}
 
   defp create_project(attrs \\ %{}) do
     defaults = %{

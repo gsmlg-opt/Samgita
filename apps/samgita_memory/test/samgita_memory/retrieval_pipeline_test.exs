@@ -1,8 +1,8 @@
 defmodule SamgitaMemory.Retrieval.PipelineTest do
   use SamgitaMemory.DataCase
 
-  alias SamgitaMemory.Retrieval.Pipeline
   alias SamgitaMemory.Memories
+  alias SamgitaMemory.Retrieval.Pipeline
 
   describe "execute/2" do
     test "returns memories filtered by scope" do

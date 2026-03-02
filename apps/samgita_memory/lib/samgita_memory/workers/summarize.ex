@@ -16,10 +16,10 @@ defmodule SamgitaMemory.Workers.Summarize do
     max_attempts: 3,
     priority: 2
 
-  alias SamgitaMemory.Repo
+  alias SamgitaMemory.Cache.PRDTable
   alias SamgitaMemory.Memories.ThinkingChain
   alias SamgitaMemory.PRD.Execution
-  alias SamgitaMemory.Cache.PRDTable
+  alias SamgitaMemory.Repo
 
   @impl Oban.Worker
   def perform(%Oban.Job{args: %{"type" => "thinking_chain", "chain_id" => chain_id}}) do

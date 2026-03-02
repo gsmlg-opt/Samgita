@@ -1,10 +1,10 @@
 defmodule SamgitaMemory.Workers.EmbeddingTest do
   use SamgitaMemory.DataCase
 
-  alias SamgitaMemory.Workers.Embedding
   alias SamgitaMemory.Memories
-  alias SamgitaMemory.Repo
   alias SamgitaMemory.Memories.Memory
+  alias SamgitaMemory.Repo
+  alias SamgitaMemory.Workers.Embedding
 
   describe "perform/1" do
     test "generates embedding for a memory" do

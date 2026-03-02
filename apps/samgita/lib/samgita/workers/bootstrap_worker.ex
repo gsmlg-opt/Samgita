@@ -161,7 +161,7 @@ defmodule Samgita.Workers.BootstrapWorker do
 
     goal_keys
     |> Enum.flat_map(fn key -> Map.get(sections, key, []) end)
-    |> Enum.filter(&is_feature_line?/1)
+    |> Enum.filter(&feature_line?/1)
     |> Enum.map(&extract_feature_text/1)
     |> Enum.reject(&is_nil/1)
     |> Enum.take(10)
@@ -176,7 +176,7 @@ defmodule Samgita.Workers.BootstrapWorker do
 
     tech_keys
     |> Enum.flat_map(fn key -> Map.get(sections, key, []) end)
-    |> Enum.filter(&is_feature_line?/1)
+    |> Enum.filter(&feature_line?/1)
     |> Enum.map(&extract_feature_text/1)
     |> Enum.reject(&is_nil/1)
     |> Enum.take(20)
@@ -191,7 +191,7 @@ defmodule Samgita.Workers.BootstrapWorker do
 
     nfr_keys
     |> Enum.flat_map(fn key -> Map.get(sections, key, []) end)
-    |> Enum.filter(&is_feature_line?/1)
+    |> Enum.filter(&feature_line?/1)
     |> Enum.map(&extract_feature_text/1)
     |> Enum.reject(&is_nil/1)
     |> Enum.take(10)
@@ -215,7 +215,7 @@ defmodule Samgita.Workers.BootstrapWorker do
 
     milestone_keys
     |> Enum.flat_map(fn key -> Map.get(sections, key, []) end)
-    |> Enum.filter(&is_feature_line?/1)
+    |> Enum.filter(&feature_line?/1)
     |> Enum.map(&extract_feature_text/1)
     |> Enum.reject(&is_nil/1)
     |> Enum.with_index(1)
@@ -386,7 +386,7 @@ defmodule Samgita.Workers.BootstrapWorker do
     sections
     |> Enum.flat_map(fn {_name, lines} ->
       lines
-      |> Enum.filter(&is_feature_line?/1)
+      |> Enum.filter(&feature_line?/1)
       |> Enum.map(&extract_feature_text/1)
     end)
     |> Enum.reject(&is_nil/1)
@@ -394,7 +394,7 @@ defmodule Samgita.Workers.BootstrapWorker do
     |> Enum.take(50)
   end
 
-  defp is_feature_line?(line) do
+  defp feature_line?(line) do
     trimmed = String.trim(line)
 
     String.starts_with?(trimmed, "- [ ]") or

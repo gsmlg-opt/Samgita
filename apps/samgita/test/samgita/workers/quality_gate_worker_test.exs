@@ -2,10 +2,10 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
   use Samgita.DataCase, async: false
 
   alias Ecto.Adapters.SQL.Sandbox
-  alias Samgita.Workers.QualityGateWorker
-  alias Samgita.Projects
   alias Samgita.Domain.Prd
+  alias Samgita.Projects
   alias Samgita.Repo
+  alias Samgita.Workers.QualityGateWorker
 
   setup do
     Sandbox.mode(Samgita.Repo, {:shared, self()})

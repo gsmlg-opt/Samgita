@@ -6,8 +6,8 @@ defmodule SamgitaMemory.Workers.Embedding do
     max_attempts: 5,
     priority: 1
 
-  alias SamgitaMemory.Repo
   alias SamgitaMemory.Memories.Memory
+  alias SamgitaMemory.Repo
 
   @impl Oban.Worker
   def perform(%Oban.Job{args: %{"memory_id" => memory_id}}) do

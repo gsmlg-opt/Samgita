@@ -2,10 +2,10 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
   use Samgita.DataCase, async: false
 
   alias Ecto.Adapters.SQL.Sandbox
-  alias Samgita.Workers.BootstrapWorker
-  alias Samgita.Projects
   alias Samgita.Domain.Prd
+  alias Samgita.Projects
   alias Samgita.Repo
+  alias Samgita.Workers.BootstrapWorker
 
   @sample_prd """
   # My App PRD

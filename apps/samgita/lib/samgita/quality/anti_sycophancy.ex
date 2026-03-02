@@ -102,9 +102,7 @@ defmodule Samgita.Quality.AntiSycophancy do
       if previous_findings == [] do
         "All previous reviewers approved with no issues."
       else
-        previous_findings
-        |> Enum.map(fn f -> "- [#{f.severity}] #{f.message}" end)
-        |> Enum.join("\n")
+        Enum.map_join(previous_findings, "\n", fn f -> "- [#{f.severity}] #{f.message}" end)
       end
 
     """

@@ -3,10 +3,10 @@ defmodule SamgitaMemory.IntegrationTest do
   use SamgitaMemory.DataCase
 
   alias SamgitaMemory.Memories
-  alias SamgitaMemory.PRD
   alias SamgitaMemory.Memories.ThinkingChain
-  alias SamgitaMemory.Workers.{Embedding, Compaction, Summarize}
+  alias SamgitaMemory.PRD
   alias SamgitaMemory.Repo
+  alias SamgitaMemory.Workers.{Embedding, Compaction, Summarize}
 
   describe "store → embed → retrieve by semantic similarity" do
     test "full memory lifecycle with embeddings" do

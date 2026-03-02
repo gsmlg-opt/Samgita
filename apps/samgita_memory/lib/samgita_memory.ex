@@ -11,8 +11,8 @@ defmodule SamgitaMemory do
   """
 
   alias SamgitaMemory.Memories
-  alias SamgitaMemory.PRD
   alias SamgitaMemory.Memories.ThinkingChain
+  alias SamgitaMemory.PRD
 
   # --- Memory CRUD ---
 

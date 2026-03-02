@@ -840,7 +840,7 @@ defmodule SamgitaWeb.AgentsLive.Index do
     {:noreply, assign(socket, expanded_agents: expanded_agents)}
   end
 
-  def is_expanded?(expanded_agents, agent_name) do
+  def expanded?(expanded_agents, agent_name) do
     MapSet.member?(expanded_agents, agent_name)
   end
 

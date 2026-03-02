@@ -3,9 +3,9 @@ defmodule SamgitaMemory.PRD do
 
   import Ecto.Query
 
-  alias SamgitaMemory.Repo
-  alias SamgitaMemory.PRD.{Execution, Event, Decision}
   alias SamgitaMemory.Cache.PRDTable
+  alias SamgitaMemory.PRD.{Execution, Event, Decision}
+  alias SamgitaMemory.Repo
 
   @doc """
   Start or resume tracking a PRD execution.

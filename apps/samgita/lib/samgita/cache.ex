@@ -8,12 +8,17 @@ defmodule Samgita.Cache do
   @table :samgita_cache
   @default_ttl_ms 60_000
 
+  @type cache_key :: term()
+  @type cache_value :: term()
+
   ## Public API
 
+  @spec start_link(keyword()) :: GenServer.on_start()
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
   end
 
+  @spec get(cache_key()) :: {:ok, cache_value()} | :miss
   def get(key) do
     case :ets.lookup(@table, key) do
       [{^key, value, expires_at}] ->
@@ -29,12 +34,14 @@ defmodule Samgita.Cache do
     end
   end
 
+  @spec put(cache_key(), cache_value(), non_neg_integer()) :: :ok
   def put(key, value, ttl_ms \\ @default_ttl_ms) do
     expires_at = DateTime.add(DateTime.utc_now(), ttl_ms, :millisecond)
     :ets.insert(@table, {key, value, expires_at})
     :ok
   end
 
+  @spec invalidate(cache_key()) :: :ok
   def invalidate(key) do
     :ets.delete(@table, key)
 
@@ -47,6 +54,7 @@ defmodule Samgita.Cache do
     :ok
   end
 
+  @spec clear() :: :ok
   def clear do
     :ets.delete_all_objects(@table)
     :ok

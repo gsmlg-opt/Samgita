@@ -110,9 +110,10 @@ defmodule Samgita.Quality.CompletionCouncil do
     unanimous = complete_votes == total_valid and total_valid == 3
 
     verdict =
-      cond do
-        complete_votes >= 2 -> :complete
-        true -> :incomplete
+      if complete_votes >= 2 do
+        :complete
+      else
+        :incomplete
       end
 
     # Anti-sycophancy: if unanimous complete, log warning (would trigger extra review)

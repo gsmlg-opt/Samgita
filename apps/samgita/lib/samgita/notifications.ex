@@ -7,8 +7,8 @@ defmodule Samgita.Notifications do
   """
 
   import Ecto.Query, warn: false
-  alias Samgita.Repo
   alias Samgita.Domain.Notification
+  alias Samgita.Repo
 
   @doc """
   Returns the list of notifications.

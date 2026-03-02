@@ -17,9 +17,9 @@ defmodule SamgitaMemory.Workers.Compaction do
     max_attempts: 3,
     priority: 3
 
-  alias SamgitaMemory.Repo
-  alias SamgitaMemory.Memories.Memory
   alias SamgitaMemory.Cache.MemoryTable
+  alias SamgitaMemory.Memories.Memory
+  alias SamgitaMemory.Repo
 
   import Ecto.Query
 

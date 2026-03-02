@@ -116,11 +116,11 @@
                   phx-value-agent={agent.name}
                   class="text-zinc-400 hover:text-zinc-600 transition-colors"
                   title={
-                    if is_expanded?(@expanded_agents, agent.name), do: "Collapse", else: "Expand"
+                    if expanded?(@expanded_agents, agent.name), do: "Collapse", else: "Expand"
                   }
                 >
                   <svg
-                    class={"w-5 h-5 transition-transform #{if is_expanded?(@expanded_agents, agent.name), do: "rotate-180", else: ""}"}
+                    class={"w-5 h-5 transition-transform #{if expanded?(@expanded_agents, agent.name), do: "rotate-180", else: ""}"}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -142,7 +142,7 @@
           </div>
 
           <div
-            :if={is_expanded?(@expanded_agents, agent.name)}
+            :if={expanded?(@expanded_agents, agent.name)}
             class="mt-4 pt-4 border-t border-zinc-200 space-y-4"
           >
             <!-- Markdown Content -->

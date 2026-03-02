@@ -1,8 +1,8 @@
 defmodule Samgita.NotificationsTest do
   use Samgita.DataCase, async: true
 
-  alias Samgita.Notifications
   alias Samgita.Domain.Notification
+  alias Samgita.Notifications
 
   @valid_attrs %{
     title: "Test Alert",

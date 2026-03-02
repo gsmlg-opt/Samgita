@@ -13,8 +13,8 @@ defmodule SamgitaMemory.Retrieval.Pipeline do
 
   import Ecto.Query
 
-  alias SamgitaMemory.Repo
   alias SamgitaMemory.Memories.Memory
+  alias SamgitaMemory.Repo
 
   @type opts :: [
           scope: {atom(), String.t() | nil},

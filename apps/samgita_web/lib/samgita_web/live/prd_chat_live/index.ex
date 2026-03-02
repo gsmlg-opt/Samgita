@@ -1,7 +1,7 @@
 defmodule SamgitaWeb.PrdChatLive.Index do
   use SamgitaWeb, :live_view
 
-  alias Samgita.{Projects, Prds}
+  alias Samgita.{Prds, Projects}
 
   @impl true
   def mount(%{"project_id" => project_id, "prd_id" => prd_id}, _session, socket) do
