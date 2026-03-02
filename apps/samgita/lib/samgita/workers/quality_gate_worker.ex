@@ -16,7 +16,15 @@ defmodule Samgita.Workers.QualityGateWorker do
   require Logger
 
   alias Samgita.Projects
-  alias Samgita.Quality.{BlindReview, CompletionCouncil, Gate, StaticAnalysis}
+
+  alias Samgita.Quality.{
+    AntiSycophancy,
+    BlindReview,
+    CompletionCouncil,
+    Gate,
+    StaticAnalysis,
+    TestCoverage
+  }
 
   @impl true
   def perform(%Oban.Job{args: args}) do
@@ -76,9 +84,13 @@ defmodule Samgita.Workers.QualityGateWorker do
     tasks = Projects.list_tasks(project.id)
     project_status = build_project_status(project, tasks)
 
+    blind_result = run_blind_review(project)
+    anti_syc = maybe_run_anti_sycophancy(blind_result, project)
+
     [
       run_static_analysis(project),
-      run_blind_review(project),
+      blind_result,
+      anti_syc,
       run_completion_council(prd, project_status)
     ]
     |> Enum.filter(&(&1 != nil))
@@ -88,9 +100,13 @@ defmodule Samgita.Workers.QualityGateWorker do
     tasks = Projects.list_tasks(project.id)
     project_status = build_project_status(project, tasks)
 
+    blind_result = run_blind_review(project)
+    anti_syc = maybe_run_anti_sycophancy(blind_result, project)
+
     [
       run_static_analysis(project),
-      run_blind_review(project),
+      blind_result,
+      anti_syc,
       run_completion_council(prd, project_status),
       run_test_coverage_gate(project)
     ]
@@ -99,6 +115,24 @@ defmodule Samgita.Workers.QualityGateWorker do
 
   defp run_gates(_type, project, prd) do
     run_gates("pre_qa", project, prd)
+  end
+
+  defp maybe_run_anti_sycophancy(blind_result, project) do
+    if blind_result.verdict == :pass and AntiSycophancy.should_challenge?(blind_result.findings) do
+      Logger.info("[QualityGateWorker] Unanimous blind review — triggering anti-sycophancy check")
+
+      broadcast_activity(
+        project.id,
+        :reason,
+        "Unanimous approval detected — running Devil's Advocate review"
+      )
+
+      AntiSycophancy.challenge("", blind_result.findings,
+        project_context: "Project: #{project.name}"
+      )
+    else
+      nil
+    end
   end
 
   defp run_static_analysis(project) do
@@ -183,37 +217,43 @@ defmodule Samgita.Workers.QualityGateWorker do
   end
 
   defp run_test_coverage_gate(project) do
-    start = System.monotonic_time(:millisecond)
+    working_path = project.working_path
 
-    tasks = Projects.list_tasks(project.id)
-    test_tasks = Enum.filter(tasks, &(&1.type == "test"))
-    passed = Enum.count(test_tasks, &(&1.status == :completed))
-    total = length(test_tasks)
+    if working_path && File.dir?(working_path) do
+      TestCoverage.run(working_path)
+    else
+      # Fall back to task-based check when no working path
+      start = System.monotonic_time(:millisecond)
+      tasks = Projects.list_tasks(project.id)
+      test_tasks = Enum.filter(tasks, &(&1.type == "test"))
+      passed = Enum.count(test_tasks, &(&1.status == :completed))
+      total = length(test_tasks)
 
-    verdict = if total > 0 and passed == total, do: :pass, else: :warn
+      verdict = if total > 0 and passed == total, do: :pass, else: :warn
 
-    findings =
-      if verdict == :warn and total > 0 do
-        [
-          %{
-            gate: 7,
-            severity: :medium,
-            message: "Test tasks: #{passed}/#{total} passed",
-            file: nil,
-            line: nil
-          }
-        ]
-      else
-        []
-      end
+      findings =
+        if verdict == :warn and total > 0 do
+          [
+            %{
+              gate: 7,
+              severity: :medium,
+              message: "Test tasks: #{passed}/#{total} passed",
+              file: nil,
+              line: nil
+            }
+          ]
+        else
+          []
+        end
 
-    %{
-      gate: 7,
-      name: "Test Coverage",
-      verdict: verdict,
-      findings: findings,
-      duration_ms: System.monotonic_time(:millisecond) - start
-    }
+      %{
+        gate: 7,
+        name: "Test Coverage",
+        verdict: verdict,
+        findings: findings,
+        duration_ms: System.monotonic_time(:millisecond) - start
+      }
+    end
   end
 
   defp get_prd(nil), do: {:error, :no_prd}

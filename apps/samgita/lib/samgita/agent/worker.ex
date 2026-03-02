@@ -262,12 +262,46 @@ defmodule Samgita.Agent.Worker do
 
         {:next_state, :idle, data}
 
-      _ ->
+      result when is_binary(result) ->
+        # Gate 5: Output Guardrails
+        gate_result = Samgita.Quality.OutputGuardrails.validate(result)
+
+        if gate_result.verdict == :fail do
+          Logger.warning(
+            "[#{data.id}] VERIFY: Output guardrails failed: #{inspect(Enum.map(gate_result.findings, & &1.message))}"
+          )
+
+          broadcast_activity(
+            data,
+            :verify,
+            "Output guardrails flagged issues (#{length(gate_result.findings)} findings)"
+          )
+
+          # Log but don't block — findings are informational for now
+          # Critical secrets should still be flagged
+        end
+
         Logger.info("[#{data.id}] VERIFY: Task verified successfully")
         CircuitBreaker.record_success(data.agent_type)
         broadcast_activity(data, :verify, "Task verified successfully")
 
-        # Handle post-task actions
+        handle_task_completion(data)
+
+        data = %{
+          data
+          | current_task: nil,
+            act_result: nil,
+            task_count: data.task_count + 1,
+            retry_count: 0
+        }
+
+        {:next_state, :idle, data}
+
+      _ ->
+        Logger.info("[#{data.id}] VERIFY: Task completed (non-string result)")
+        CircuitBreaker.record_success(data.agent_type)
+        broadcast_activity(data, :verify, "Task verified successfully")
+
         handle_task_completion(data)
 
         data = %{
