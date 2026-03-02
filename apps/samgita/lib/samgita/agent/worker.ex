@@ -428,6 +428,7 @@ defmodule Samgita.Agent.Worker do
       "generate-prd" -> build_prd_prompt(data)
       "analysis" -> build_analysis_prompt(data)
       "architecture" -> build_architecture_prompt(data)
+      "implement" -> build_implement_prompt(data)
       "review" -> build_review_prompt(data)
       "test" -> build_test_prompt(data)
       _ -> build_generic_prompt(data)
@@ -623,6 +624,49 @@ defmodule Samgita.Agent.Worker do
 
     Be concrete — include actual schema definitions, API endpoint paths, and configuration.
     Output your design in structured markdown format with code blocks for schemas and APIs.
+    """
+  end
+
+  defp build_implement_prompt(data) do
+    task = data.current_task
+    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
+    payload = task_payload(task)
+    project_context = build_project_context(data.project_id, payload)
+    description = payload["description"] || "Implement the feature"
+
+    learnings_text =
+      case data.learnings do
+        [] -> "None yet."
+        items -> Enum.join(items, "\n- ")
+      end
+
+    """
+    You are a #{type_name} (#{type_desc}).
+    #{project_context}
+    ## Task: Implementation
+
+    #{description}
+
+    ## Previous Learnings
+    #{learnings_text}
+
+    ## Instructions
+
+    1. Analyze the existing codebase and architecture to understand the current patterns
+    2. Implement the described feature following existing code conventions
+    3. Write clean, well-structured code with appropriate error handling
+    4. Add or update tests to cover the new functionality
+    5. Ensure the code compiles and all tests pass
+    6. Make atomic git commits for each logical change
+
+    ## Quality Requirements
+
+    - Follow existing naming conventions and code style
+    - Handle edge cases and error conditions
+    - Add necessary validations at system boundaries
+    - Ensure backward compatibility unless explicitly replacing functionality
+
+    Output your implementation summary including files changed and test results.
     """
   end
 

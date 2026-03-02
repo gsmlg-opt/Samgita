@@ -17,6 +17,7 @@ defmodule SamgitaWeb.ProjectJSON do
       working_path: project.working_path,
       phase: project.phase,
       status: project.status,
+      active_prd_id: project.active_prd_id,
       config: project.config,
       inserted_at: project.inserted_at,
       updated_at: project.updated_at
