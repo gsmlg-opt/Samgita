@@ -1,741 +1,685 @@
-# PRD: Samgita Memory System
+# PRD: Samgita — Autonomous Multi-Agent Orchestration System
 
 ## Overview
 
-A persistent, queryable memory system for Claude Code agents operating within the Samgita umbrella. The system provides episodic, semantic, and procedural memory types with PRD execution tracking, enabling agents to recall prior work, avoid repeating mistakes, and resume interrupted workflows with full situational awareness.
+Samgita is an Elixir/OTP reimplementation of [loki-mode](https://github.com/asklokesh/loki-mode) — an autonomous multi-agent system that transforms a Product Requirements Document (PRD) into a fully built, tested, and deployed product with minimal human intervention.
 
-The core is an OTP application with ETS hot caching and Postgres/pgvector persistence. It exposes an MCP interface for external Claude Code agents and direct Elixir function calls for internal Samgita modules.
+**In one sentence:** PRD in, deployed product out.
+
+Samgita replaces loki-mode's shell scripts (`autonomy/run.sh` — 8,766 lines of bash), flat-file state (`.loki/` JSON), and ad-hoc process management with OTP supervision trees, PostgreSQL persistence, Oban job queues, Horde distributed processes, and Phoenix LiveView real-time dashboards.
 
 ---
 
 ## Problem Statement
 
-Claude Code agents lose all context between sessions. When a PRD is partially implemented and work resumes later, the agent starts from zero — re-reading files, re-discovering architectural decisions, and potentially contradicting prior work. Current workarounds (CLAUDE.md, CONTINUITY.md) are flat files that grow unbounded, can't be queried by relevance, and don't distinguish between active context and stale information.
+Building software from a PRD requires coordinating dozens of specialized tasks — architecture, implementation, testing, review, deployment, documentation — across multiple agents working in parallel. Existing approaches have critical limitations:
 
-### What This Solves
+| Approach | Limitation |
+|---|---|
+| Single-agent coding assistants | No parallelism, single-threaded, context window saturation |
+| loki-mode (shell scripts) | Fragile state management, no fault tolerance, no real-time observability |
+| Direct LLM API orchestration | Reimplements tool execution, loses CLI-native capabilities |
 
-1. **PRD continuity** — agents resume work on a PRD knowing exactly what's done, what's blocked, what decisions were made, and what failed
-2. **Cross-session learning** — mistakes and patterns persist across sessions and projects
-3. **Context budget management** — relevant memories are retrieved by query, not loaded in bulk
-4. **Multi-machine consistency** — memory is centralized in Postgres, accessible from any development machine via MCP
+### What Samgita Solves
+
+1. **Autonomous end-to-end delivery** — PRD to deployed product without babysitting
+2. **Multi-agent parallelism** — 10+ agents working simultaneously on different tasks
+3. **Self-healing on failures** — OTP supervisors restart crashed agents, Oban retries failed tasks
+4. **Real-time observability** — Phoenix LiveView dashboard showing agent states, task queues, activity logs
+5. **Persistent memory** — pgvector-backed semantic memory across sessions and projects
+6. **Fault-tolerant orchestration** — gen_statem state machines for agent RARV cycles and project phase transitions
+
+---
+
+## Core Workflow
+
+```
+PRD → Bootstrap → Discovery → Architecture → Infrastructure →
+      Development (RARV loop) → QA (9 quality gates) → Deployment →
+      Business Operations → Growth Loop (perpetual)
+```
+
+### The RARV Cycle
+
+The atomic unit of all agent work. Every agent iteration follows this immutable cycle:
+
+```
+REASON  — Read context, check task queue, identify highest-priority unblocked task
+   │
+   ▼
+ACT     — Execute task: write code, run commands, generate artifacts
+   │      Commit changes atomically (git checkpoint)
+   ▼
+REFLECT — Did it work? Update working memory, record learnings
+   │      Update task status and agent state
+   ▼
+VERIFY  — Run tests, check compilation, validate against spec
+   │
+   ├──[PASS]──→ Mark task complete, extract learnings, return to REASON
+   │
+   └──[FAIL]──→ Capture error in learnings, rollback if needed
+                After 3 failures: try simpler approach
+                After 5 failures: dead-letter queue, move to next task
+```
+
+**Research foundation:** Self-verification loops achieve 2-3x quality improvement (Boris Cherny's production observations). The RARV cycle is implemented as a `gen_statem` state machine in `Samgita.Agent.Worker`.
 
 ---
 
 ## Architecture
 
-### System Boundary
+### Umbrella Structure
 
 ```
-samgita_umbrella/
-├── samgita_memory/           # This PRD — core memory OTP app
-│   ├── lib/
-│   │   ├── samgita_memory/
-│   │   │   ├── memories/     # Ecto schemas + context functions
-│   │   │   ├── prd/          # PRD execution tracking
-│   │   │   ├── retrieval/    # Hybrid search pipeline
-│   │   │   ├── formation/    # Memory creation from telemetry
-│   │   │   ├── compaction/   # Decay, summarization, pruning
-│   │   │   └── cache/        # ETS hot cache management
-│   │   └── samgita_memory.ex # Public API
-│   ├── test/
-│   └── mix.exs
-├── samgita_mcp/              # MCP transport layer (separate app)
-│   └── (exposes memory as MCP tools)
-└── samgita_web/              # LiveView dashboards (separate app)
-    └── (memory inspection UI)
+apps/
+├── samgita_provider/  # Provider abstraction wrapping Claude Code CLI
+│                      # Invokes `claude` CLI via System.cmd/3
+│                      # Standalone — no dependencies on other apps
+│
+├── samgita/           # Core business logic
+│                      # Projects, Tasks, Agent Runs, RARV Worker
+│                      # Horde distributed supervision, Oban job queues
+│                      # Depends on: samgita_provider
+│
+├── samgita_memory/    # Persistent memory with pgvector
+│                      # Episodic, semantic, procedural memory types
+│                      # PRD execution tracking, thinking chains
+│                      # Standalone — shares same Postgres DB (sm_ table prefix)
+│
+└── samgita_web/       # Phoenix LiveView UI + REST API
+                       # Real-time dashboard, project management
+                       # Depends on: samgita, samgita_memory
 ```
 
-### Supervision Tree
+### Provider Model — CLI-as-Provider
+
+**Samgita does NOT call LLM APIs directly.** It orchestrates CLI tools as supervised OTP processes.
 
 ```
-SamgitaMemory.Application
-├── SamgitaMemory.Repo                    # Ecto repo (Postgres + pgvector)
-├── SamgitaMemory.Cache.Supervisor
-│   ├── SamgitaMemory.Cache.MemoryTable   # ETS for recent memories
-│   └── SamgitaMemory.Cache.PRDTable      # ETS for active PRD executions
-├── SamgitaMemory.Formation.Supervisor
-│   └── (telemetry handlers registered on init)
-├── Oban                                  # Async jobs
-│   ├── SamgitaMemory.Workers.Embedding   # Generate embeddings
-│   ├── SamgitaMemory.Workers.Compaction  # Decay + prune
-│   └── SamgitaMemory.Workers.Summarize   # Chain/PRD summarization
-└── SamgitaMemory.Retrieval.Pipeline      # GenServer for retrieval coordination
+Samgita Agent Worker (gen_statem)
+  → spawns Claude CLI via System.cmd/3 with --print and --output-format json
+  → sends task prompt as system prompt + conversation
+  → receives structured JSON output
+  → parses tool calls, results, completion status
+  → RARV cycle decides next action
+  → repeat or terminate
+```
+
+| Provider | CLI Tool | Feature Level |
+|---|---|---|
+| **Claude Code** | `claude` CLI | Full — parallel agents, Task tool, MCP, streaming |
+| **OpenAI Codex** | `codex` CLI | Degraded — sequential, no Task tool |
+
+**Why CLI, not API:** The CLI tools handle their own tool execution, context management, conversation state, rate limiting, and model selection. Samgita's job is **orchestration** — deciding which agent does what, when, in parallel.
+
+### Supervision Trees
+
+**Samgita.Application** (core):
+```
+Samgita.Repo                                    # PostgreSQL
+Phoenix.PubSub (Samgita.PubSub)                # Real-time events
+Samgita.Cache (ETS + PubSub invalidation)      # Hot caching
+Horde.Registry (Samgita.AgentRegistry)         # Distributed process registry
+Horde.DynamicSupervisor (Samgita.AgentSupervisor)  # Agent supervision
+Oban (queues: agent_tasks:100, orchestration:10, snapshots:5)
+```
+
+**Per-Project Supervision** (started on demand):
+```
+Samgita.Project.Supervisor
+├── Samgita.Project.Orchestrator (gen_statem)   # Phase state machine
+└── Agent Workers (gen_statem, via Horde)       # RARV cycle per agent
+```
+
+**SamgitaMemory.Application** (standalone):
+```
+SamgitaMemory.Repo                             # Same Postgres, sm_ prefix tables
+SamgitaMemory.Cache.Supervisor
+├── MemoryTable (ETS LRU, max 10k entries)
+└── PrdTable (ETS LRU, max 100 entries)
+SamgitaMemory.Formation.Supervisor             # Telemetry handlers
+Oban (name: SamgitaMemory.Oban, queues: embeddings:5, compaction:2, summarization:3)
 ```
 
 ---
 
-## Data Model
+## Agent Model
+
+### 37 Agent Types across 7 Swarms
+
+| Swarm | Count | Agent Types |
+|---|---|---|
+| **Engineering** | 8 | eng-frontend, eng-backend, eng-database, eng-mobile, eng-api, eng-qa, eng-perf, eng-infra |
+| **Operations** | 8 | ops-devops, ops-sre, ops-security, ops-monitor, ops-incident, ops-release, ops-cost, ops-compliance |
+| **Business** | 8 | biz-marketing, biz-sales, biz-finance, biz-legal, biz-support, biz-hr, biz-investor, biz-partnerships |
+| **Data** | 3 | data-ml, data-eng, data-analytics |
+| **Product** | 3 | prod-pm, prod-design, prod-techwriter |
+| **Growth** | 4 | growth-hacker, growth-community, growth-success, growth-lifecycle |
+| **Review** | 3 | review-code, review-business, review-security |
+
+Simple projects use 5-10 agents. Complex projects spawn 30+.
+
+### Model Selection by Agent Type
+
+| Tier | Model | Agent Types |
+|---|---|---|
+| **Planning** | Opus | prod-pm, eng-infra (architecture, system design, PRD analysis) |
+| **Development** | Sonnet | eng-*, ops-*, biz-*, data-*, growth-* (implementation, complex bugs) |
+| **Fast** | Haiku | eng-qa, ops-monitor, review-* (tests, linting, docs, simple fixes) |
+
+### Agent State Machine (gen_statem)
+
+```
+:idle → :reason → :act → :reflect → :verify
+          ↑                            │
+          └────── on failure ──────────┘
+```
+
+Each agent worker is registered in Horde with `{:agent, project_id, agent_id}` naming. Agent state transitions broadcast via PubSub for real-time UI updates.
+
+---
+
+## Project Lifecycle Phases
+
+### Phase Flow
+
+```
+BOOTSTRAP → DISCOVERY → ARCHITECTURE → INFRASTRUCTURE →
+DEVELOPMENT → QA → DEPLOYMENT → BUSINESS → GROWTH → PERPETUAL
+```
+
+| Phase | Description | Key Actions |
+|---|---|---|
+| **Bootstrap** | Initialize project structure | Create working directory, validate PRD, initialize state, spawn initial agents |
+| **Discovery** | Analyze PRD requirements | Parse PRD, competitive research, extract requirements, generate task backlog |
+| **Architecture** | System design (spec-first) | Generate OpenAPI spec, select tech stack, create project scaffolding |
+| **Infrastructure** | Provision environment | CI/CD setup, cloud resources, monitoring, database provisioning |
+| **Development** | Implementation with TDD | RARV loop per task, parallel blind review, git checkpoints |
+| **QA** | Quality verification | 9 quality gates, security audit, load testing, accessibility |
+| **Deployment** | Release to production | Blue-green deploy, smoke tests, auto-rollback on errors |
+| **Business** | Non-technical setup | Marketing site, billing, legal docs, support system |
+| **Growth** | Continuous optimization | A/B testing, performance tuning, user feedback loops |
+| **Perpetual** | Never-ending improvement | Dependency updates, security patches, feature refinement |
+
+### Phase Transitions
+
+Transitions are managed by the `Samgita.Project.Orchestrator` gen_statem. Requirements for transition:
+
+1. All phase quality gates passed
+2. No critical/high/medium unresolved issues
+3. Git checkpoint created
+4. Phase completion event recorded
+
+### Spec-First Architecture (Architecture Phase)
+
+Following loki-mode's spec-first pattern:
+
+1. Extract API requirements from PRD
+2. Generate OpenAPI 3.1 specification
+3. Validate spec (spectral, swagger-cli)
+4. Generate artifacts from spec (TypeScript types, client SDK, server stubs)
+5. Select tech stack (consensus from eng-backend + eng-frontend agents)
+6. Create project scaffolding
+7. Spec becomes source of truth for contract testing in QA phase
+
+---
+
+## Quality Gates — 9-Gate System
+
+Every code change passes through quality gates before acceptance:
+
+| Gate | Name | Description |
+|---|---|---|
+| 1 | **Input Guardrails** | Validate task scope, detect prompt injection, check constraints |
+| 2 | **Static Analysis** | Linting, type checking, compilation, unused code detection |
+| 3 | **Blind Review** | 3 independent parallel reviewers (code, business-logic, security) |
+| 4 | **Anti-Sycophancy** | Devil's advocate review on unanimous approval (CONSENSAGENT research) |
+| 5 | **Output Guardrails** | Secret detection, spec compliance, quality validation |
+| 6 | **Severity Blocking** | Critical/High/Medium = BLOCK; Low/Cosmetic = TODO comment |
+| 7 | **Test Coverage** | Unit: 100% pass, >80% coverage; Integration: 100% pass |
+| 8 | **Mock Detector** | Flags tests that never import source code, tautological assertions |
+| 9 | **Test Mutation Detector** | Detects assertion value changes with implementation, low assertion density |
+
+### Blind Review System (Gate 3)
+
+```
+IMPLEMENT → BLIND REVIEW (3 parallel agents) → AGGREGATE → FIX → RE-REVIEW
+               │
+               ├── review-code (Sonnet)     — SOLID, patterns, maintainability
+               ├── review-business (Sonnet)  — Requirements, edge cases, UX
+               └── review-security (Sonnet)  — OWASP Top 10, vulnerabilities
+```
+
+Reviewers cannot see each other's findings. This prevents anchoring bias and groupthink.
+
+### Anti-Sycophancy (Gate 4)
+
+If all 3 reviewers unanimously approve, the system automatically spawns a Devil's Advocate reviewer to challenge assumptions. Reduces false positives by 30% (CONSENSAGENT, ACL 2025).
+
+---
+
+## Task System
+
+### Task Queue (Oban-Based)
+
+Tasks flow through a state machine:
+
+```
+pending → running → completed
+                  → failed → (retry) → pending
+                           → (max retries) → dead_letter
+```
+
+### Task Schema
+
+```elixir
+schema "tasks" do
+  belongs_to :project, Project
+  belongs_to :parent_task, Task           # Hierarchical task decomposition
+
+  field :type, :string                    # e.g., "bootstrap", "implement", "review"
+  field :priority, :integer, default: 10  # 1 = highest
+  field :status, Ecto.Enum,
+    values: [:pending, :running, :completed, :failed, :dead_letter]
+  field :payload, :map, default: %{}      # Task-specific data (prd_id, files, etc.)
+  field :result, :map                     # Output on completion
+  field :error, :map                      # Error details on failure
+  field :agent_id, :string                # Which agent claimed this task
+  field :attempts, :integer, default: 0
+  field :tokens_used, :integer, default: 0
+  field :duration_ms, :integer
+
+  timestamps()
+end
+```
+
+### Task Dispatching
+
+Tasks are dispatched via `Samgita.Workers.AgentTaskWorker` (Oban worker):
+
+1. Task created with type, payload, priority
+2. Oban job enqueued in `agent_tasks` queue (100 concurrency)
+3. Worker dispatches to appropriate agent via Horde
+4. Agent executes RARV cycle
+5. Task marked completed or failed
+6. On failure: exponential backoff retry (max 5 attempts)
+7. After max retries: moved to dead_letter status
+
+### PRD-Scoped Tasks
+
+Tasks are scoped to PRDs via `payload->>'prd_id'` JSONB query. This enables:
+- Viewing tasks for a specific PRD execution
+- Multiple PRDs per project (sequential, not parallel)
+- Task isolation between PRD runs
+
+---
+
+## Completion Council
+
+A multi-agent voting system that determines when a project PRD is "done."
+
+### How It Works
+
+1. Council runs every N iterations (configurable, default: 5)
+2. 3 council members vote independently:
+   - **Requirements Verifier** — Are all PRD requirements met?
+   - **Test Auditor** — Are tests comprehensive and passing?
+   - **Devil's Advocate** — Skeptical review, find remaining issues
+3. 2/3 votes required for completion
+4. If unanimous COMPLETE → spawn extra Devil's Advocate review
+5. Stagnation detection: if N iterations pass with no git changes, force evaluation
+
+### Circuit Breaker
+
+- Track failures per agent type
+- Open circuit after 5 consecutive failures
+- Half-open testing before recovery
+- Prevents cascading failures across the system
+
+---
+
+## Memory System (samgita_memory)
+
+Three-tier architecture with progressive disclosure (60-80% token reduction):
+
+### Memory Tiers
+
+| Tier | Storage | Purpose | Token Cost |
+|---|---|---|---|
+| **Working Memory** | In-process (gen_statem state) | Current task context, active reasoning | ~0 (in memory) |
+| **Episodic Memory** | PostgreSQL + ETS cache | Specific events, tool results, session traces | ~500 tokens |
+| **Semantic Memory** | pgvector (1536-dim) | Consolidated patterns, learned abstractions | ~100 tokens (index) |
+| **Procedural Memory** | PostgreSQL | Reusable procedures, skill templates | On-demand |
 
 ### Memory Schema
 
 ```elixir
-# samgita_memory/lib/samgita_memory/memories/memory.ex
-
-schema "memories" do
-  field :content, :string                    # the fact or knowledge
-  field :embedding, Pgvector.Ecto.Vector     # 1536-dim for semantic search
+schema "sm_memories" do
+  field :content, :string
+  field :embedding, Pgvector.Ecto.Vector     # 1536-dim cosine similarity
   field :source_type, Ecto.Enum,
     values: [:conversation, :observation, :user_edit, :prd_event, :compaction]
-  field :source_id, :string                  # reference to origin
   field :scope_type, Ecto.Enum,
     values: [:global, :project, :agent]
-  field :scope_id, :string                   # project path, agent id, or nil for global
+  field :scope_id, :string
   field :memory_type, Ecto.Enum,
     values: [:episodic, :semantic, :procedural]
-  field :confidence, :float, default: 1.0    # decays over time
+  field :confidence, :float, default: 1.0    # Decays over time
   field :access_count, :integer, default: 0
   field :tags, {:array, :string}, default: []
-  field :metadata, :map, default: %{}        # flexible payload
+  field :metadata, :map, default: %{}
+  field :accessed_at, :utc_datetime
 
   timestamps()
-  field :accessed_at, :utc_datetime          # last retrieval time
 end
 ```
 
-#### Indexes
+### Hybrid Retrieval Pipeline (7 Stages)
 
-```sql
-CREATE INDEX memories_scope_idx ON memories (scope_type, scope_id);
-CREATE INDEX memories_tags_idx ON memories USING gin (tags);
-CREATE INDEX memories_type_idx ON memories (memory_type);
-CREATE INDEX memories_confidence_idx ON memories (confidence) WHERE confidence > 0.3;
-CREATE INDEX memories_embedding_idx ON memories
-  USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
+```
+Query → Scope Filter (ETS) → Type Filter → Tag Filter (GIN index) →
+Semantic Search (pgvector cosine) → Recency Boost → Confidence Threshold →
+Deduplication → Format for Context Injection
 ```
 
-### PRD Execution Schema
+Scoring: `score = semantic * 0.7 + recency * 0.2 + access_frequency * 0.1`
+
+### Task-Aware Memory Retrieval
+
+Different task types use different memory weights (MemEvolve research, 17% improvement):
+
+| Task Type | Episodic | Semantic | Procedural | Anti-Patterns |
+|---|---|---|---|---|
+| Exploration | 0.6 | 0.3 | 0.1 | 0.0 |
+| Implementation | 0.15 | 0.5 | 0.35 | 0.0 |
+| Debugging | 0.4 | 0.2 | 0.0 | 0.4 |
+| Review | 0.3 | 0.5 | 0.0 | 0.2 |
+
+### Confidence Decay (Oban Cron, Daily 3 AM)
+
+| Memory Type | Decay Rate | Half-Life |
+|---|---|---|
+| Episodic | 0.98/day | ~34 days |
+| Semantic | 0.995/day | ~138 days |
+| Procedural | 0.999/day | ~693 days |
+
+Access resets confidence to `max(current, 0.8)`. Memories below 0.1 are pruned.
+
+### PRD Execution Tracking
 
 ```elixir
-# samgita_memory/lib/samgita_memory/prd/execution.ex
-
-schema "prd_executions" do
-  field :prd_ref, :string                    # file path or git SHA
-  field :prd_hash, :string                   # content hash for change detection
+schema "sm_prd_executions" do
+  field :prd_ref, :string
+  field :prd_hash, :string
   field :title, :string
   field :status, Ecto.Enum,
     values: [:not_started, :in_progress, :paused, :blocked, :completed]
+  field :progress, :map
 
   has_many :events, SamgitaMemory.PRD.Event
   has_many :decisions, SamgitaMemory.PRD.Decision
-
-  # Materialized from events — never written directly
-  field :progress, :map, default: %{
-    completed: [],
-    in_progress: [],
-    blocked: [],
-    not_started: []
-  }
-
   timestamps()
 end
 ```
 
-### PRD Event Schema
+Events (12 types): requirement_started, requirement_completed, decision_made, blocker_hit, blocker_resolved, test_passed, test_failed, revision, review_feedback, agent_handoff, error_encountered, rollback.
+
+### Thinking Chains
+
+Captures reasoning chains with revision tracking. On completion, chains are summarized and revision patterns are extracted as procedural memories.
+
+### MCP Tools (10)
+
+| Tool | Description |
+|---|---|
+| `remember` | Store a memory |
+| `recall` | Retrieve relevant memories by semantic search |
+| `forget` | Remove a memory |
+| `prd_context` | Get full PRD execution state for resume |
+| `prd_event` | Log a PRD execution event |
+| `prd_decision` | Record a decision |
+| `start_thinking` | Begin a reasoning chain |
+| `think` | Add thought to active chain |
+| `finish_thinking` | Complete chain, trigger summarization |
+| `recall_reasoning` | Find similar past reasoning chains |
+
+Token budget enforcement: default 4000 tokens max per MCP response. Truncation by relevance score.
+
+---
+
+## Data Model (samgita core)
+
+### Core Schemas
+
+| Schema | Table | Purpose |
+|---|---|---|
+| **Project** | `projects` | Top-level entity, identified by `git_url` (unique) |
+| **Prd** | `prds` | PRD documents per project (draft → approved → in_progress → archived) |
+| **Task** | `tasks` | Work items with priority, payload, hierarchical parent_task |
+| **AgentRun** | `agent_runs` | Agent execution records with RARV state tracking |
+| **Artifact** | `artifacts` | Generated code, docs, configs, deployments |
+| **Snapshot** | `snapshots` | Periodic state checkpoints (retains last 10) |
+| **Webhook** | `webhooks` | Event subscriptions with HMAC-SHA256 signatures |
+| **Feature** | `features` | Feature flags with enable/disable/archive lifecycle |
+| **Notification** | `notifications` | System notifications with delivery tracking |
+
+### Project Schema
 
 ```elixir
-# samgita_memory/lib/samgita_memory/prd/event.ex
+schema "projects" do
+  field :name, :string
+  field :git_url, :string                    # Canonical identifier (unique)
+  field :working_path, :string
+  field :prd_content, :string
+  field :phase, Ecto.Enum,
+    values: [:bootstrap, :discovery, :architecture, :infrastructure,
+             :development, :qa, :deployment, :business, :growth, :perpetual]
+  field :status, Ecto.Enum,
+    values: [:pending, :running, :paused, :completed, :failed]
+  field :config, :map, default: %{}
 
-schema "prd_events" do
-  belongs_to :execution, SamgitaMemory.PRD.Execution
-
-  field :type, Ecto.Enum, values: [
-    :requirement_started,
-    :requirement_completed,
-    :decision_made,
-    :blocker_hit,
-    :blocker_resolved,
-    :test_passed,
-    :test_failed,
-    :revision,
-    :review_feedback,
-    :agent_handoff,
-    :error_encountered,
-    :rollback
-  ]
-  field :requirement_id, :string             # traces to PRD section
-  field :summary, :string                    # human-readable description
-  field :detail, :map, default: %{}          # structured payload
-  field :agent_id, :string                   # which agent performed this
-  field :thinking_chain_id, :string          # link to reasoning chain if any
-
-  timestamps()
-end
-```
-
-### PRD Decision Schema
-
-```elixir
-# samgita_memory/lib/samgita_memory/prd/decision.ex
-
-schema "prd_decisions" do
-  belongs_to :execution, SamgitaMemory.PRD.Execution
-
-  field :requirement_id, :string
-  field :decision, :string                   # what was decided
-  field :reason, :string                     # why
-  field :alternatives, {:array, :string}, default: []  # what was rejected
-  field :agent_id, :string
-
-  timestamps()
-end
-```
-
-### Thinking Chain Schema
-
-```elixir
-# samgita_memory/lib/samgita_memory/memories/thinking_chain.ex
-
-schema "thinking_chains" do
-  field :scope_type, Ecto.Enum, values: [:global, :project, :agent]
-  field :scope_id, :string
-  field :query, :string                      # what initiated the chain
-  field :summary, :string                    # distilled after completion
-  field :embedding, Pgvector.Ecto.Vector     # for retrieval of similar chains
-  field :status, Ecto.Enum, values: [:active, :completed, :abandoned]
-  field :thoughts, {:array, :map}, default: []
-  # Each thought: %{number: int, content: string, is_revision: bool,
-  #                  revises: int | nil, branch_id: string | nil}
-
-  field :metadata, :map, default: %{}
+  belongs_to :active_prd, Prd
+  has_many :tasks, Task
+  has_many :agent_runs, AgentRun
+  has_many :artifacts, Artifact
+  has_many :snapshots, Snapshot
   timestamps()
 end
 ```
 
 ---
 
-## Public API
+## Web Layer (samgita_web)
 
-### SamgitaMemory — Core Interface
+### Phoenix LiveView Dashboard
 
-```elixir
-defmodule SamgitaMemory do
-  @moduledoc "Public API for the memory system"
+**Project Page** — Two-column PRD-centric layout:
 
-  # --- Memory CRUD ---
-
-  @doc "Store a new memory fact"
-  @spec store(String.t(), keyword()) :: {:ok, Memory.t()} | {:error, term()}
-  def store(content, opts \\ [])
-  # opts: source: {type, id}, scope: {type, id}, type: :episodic | :semantic | :procedural,
-  #       tags: [String.t()], metadata: map()
-  # Enqueues embedding generation via Oban worker
-
-  @doc "Retrieve memories relevant to a query"
-  @spec retrieve(String.t(), keyword()) :: [Memory.t()]
-  def retrieve(query, opts \\ [])
-  # opts: scope: {type, id}, type: atom(), tags: [String.t()],
-  #       limit: integer(), min_confidence: float()
-  # Runs hybrid retrieval pipeline: tag filter → semantic search → recency boost
-
-  @doc "Explicitly forget a memory"
-  @spec forget(String.t()) :: :ok | {:error, :not_found}
-  def forget(memory_id)
-
-  @doc "Update confidence or metadata on existing memory"
-  @spec reinforce(String.t(), keyword()) :: {:ok, Memory.t()} | {:error, term()}
-  def reinforce(memory_id, opts \\ [])
-
-  # --- PRD Execution ---
-
-  @doc "Start or resume tracking a PRD execution"
-  @spec start_prd(String.t(), keyword()) :: {:ok, PRD.Execution.t()}
-  def start_prd(prd_ref, opts \\ [])
-  # If execution exists for this prd_ref, returns it. Otherwise creates new.
-  # opts: title: String.t()
-
-  @doc "Get current state of a PRD execution with progress and recent events"
-  @spec get_prd_context(String.t(), keyword()) :: {:ok, map()} | {:error, :not_found}
-  def get_prd_context(prd_id, opts \\ [])
-  # Returns: %{execution: ..., progress: ..., recent_events: [...],
-  #             decisions: [...], learnings: [...], blockers: [...]}
-  # opts: event_limit: integer(), include_decisions: boolean()
-
-  @doc "Append an event to a PRD execution"
-  @spec append_prd_event(String.t(), map()) :: {:ok, PRD.Event.t()}
-  def append_prd_event(prd_id, event_attrs)
-
-  @doc "Record a decision made during PRD execution"
-  @spec record_prd_decision(String.t(), map()) :: {:ok, PRD.Decision.t()}
-  def record_prd_decision(prd_id, decision_attrs)
-
-  @doc "Update PRD execution status"
-  @spec update_prd_status(String.t(), atom()) :: {:ok, PRD.Execution.t()}
-  def update_prd_status(prd_id, status)
-
-  # --- Thinking Chains ---
-
-  @doc "Start a new thinking chain"
-  @spec start_chain(String.t(), keyword()) :: {:ok, ThinkingChain.t()}
-  def start_chain(query, opts \\ [])
-
-  @doc "Add a thought to an active chain"
-  @spec add_thought(String.t(), map()) :: {:ok, ThinkingChain.t()}
-  def add_thought(chain_id, thought)
-
-  @doc "Complete a chain — triggers summarization and memory extraction"
-  @spec complete_chain(String.t()) :: {:ok, ThinkingChain.t()}
-  def complete_chain(chain_id)
-
-  @doc "Retrieve similar past thinking chains"
-  @spec recall_reasoning(String.t(), keyword()) :: [ThinkingChain.t()]
-  def recall_reasoning(query, opts \\ [])
-end
 ```
+┌──────────────────────────────────────────────────────┐
+│ ← Dashboard    project-name    status  phase         │
+│ git_url        ▓▓▓░░░░░░░ phase progress             │
+├─────────────┬────────────────────────────────────────┤
+│ PRDs        │  Selected PRD: title                   │
+│ ┌─────────┐ │  [Start] [Pause] [Resume] [Restart]   │
+│ │● init   │ │  [Stop] [Terminate]                    │
+│ │ approved│ │                                        │
+│ └─────────┘ │  ┌─ Activity Log ────────────────────┐ │
+│             │  │ 14:23:01 [ORC] Entering bootstrap │ │
+│ [+ New]     │  │ 14:23:02 [AGT] Planning approach  │ │
+│             │  └───────────────────────────────────┘ │
+│             │  Active Agents    Tasks                 │
+│             │  ┌──────┐        ┌──────────────────┐  │
+│             │  │pm act│        │bootstrap running │  │
+│             │  └──────┘        └──────────────────┘  │
+└─────────────┴────────────────────────────────────────┘
+```
+
+PRD is the unit of execution. Selecting a PRD reveals its scoped workspace: action buttons, activity log, agents, and tasks.
+
+**Dashboard** — Overview of all projects with status, phase, and quick navigation.
+
+**Other LiveView Pages**: Agents, MCP Servers, Skills, References.
+
+### REST API
+
+| Endpoint | Methods | Description |
+|---|---|---|
+| `/api/projects` | CRUD + pause/resume | Project management |
+| `/api/projects/:id/tasks` | CRUD + retry | Task queue management |
+| `/api/projects/:id/agents` | List | Agent run history |
+| `/api/webhooks` | CRUD | Webhook subscriptions |
+| `/api/notifications` | CRUD | Notification management |
+| `/api/features` | CRUD + enable/disable/archive | Feature flags |
+| `/api/health` | GET | Health check (public) |
+| `/api/info` | GET | System info (public) |
+
+Rate limited: 100 requests per 60 seconds per IP.
+
+### Real-Time Events (PubSub)
+
+| Event | Trigger | UI Effect |
+|---|---|---|
+| `:phase_changed` | Orchestrator transitions phase | Update phase progress bar |
+| `:agent_state_changed` | Agent RARV cycle step | Update agent grid |
+| `:agent_spawned` | New agent started | Add to agent grid |
+| `:task_completed` | Task finishes | Refresh task list |
+| `:activity_log` | Any significant event | Append to activity log stream |
 
 ---
 
-## Retrieval Pipeline
-
-The retrieval pipeline is the critical path — it determines what context an agent receives.
-
-### Pipeline Stages
-
-```
-retrieve(query, scope: {:project, "samgita"}, limit: 10)
-│
-├─ 1. Scope Filter (ETS)
-│     Filter by scope_type + scope_id
-│     Sub-millisecond, eliminates cross-project contamination
-│
-├─ 2. Tag Filter (optional, Postgres GIN index)
-│     If tags specified, intersect with tag index
-│
-├─ 3. Semantic Search (Postgres pgvector)
-│     Cosine similarity on query embedding vs stored embeddings
-│     Returns top-k * 3 candidates (over-fetch for reranking)
-│
-├─ 4. Recency Boost
-│     score = semantic_score * 0.7 + recency_score * 0.2 + access_score * 0.1
-│     recency_score = 1.0 / (1.0 + days_since_creation / 30)
-│     access_score = 1.0 / (1.0 + days_since_access / 7)
-│
-├─ 5. Confidence Threshold
-│     Drop memories with confidence < min_confidence (default 0.3)
-│
-├─ 6. Deduplication
-│     If two memories have cosine similarity > 0.95, keep higher confidence one
-│
-└─ 7. Format for Context Injection
-      Truncate to fit token budget, most relevant first
-      Return as structured list with memory IDs for feedback tracking
-```
-
-### Embedding Generation
-
-Embeddings are generated asynchronously via Oban worker after memory creation:
-
-```elixir
-# SamgitaMemory.Workers.Embedding
-# Uses Anthropic API or a local model (configurable)
-# Retries with exponential backoff on failure
-# Memories are retrievable by tag/scope before embedding completes
-# Once embedding is ready, memory becomes semantically searchable
-```
-
-### Configuration
-
-```elixir
-config :samgita_memory,
-  embedding_provider: :anthropic,          # :anthropic | :local
-  embedding_model: "voyage-3",             # or local model path
-  embedding_dimensions: 1536,
-  retrieval_default_limit: 10,
-  retrieval_min_confidence: 0.3,
-  retrieval_semantic_weight: 0.7,
-  retrieval_recency_weight: 0.2,
-  retrieval_access_weight: 0.1,
-  cache_max_memories: 10_000,
-  cache_max_prd_executions: 100
-```
-
----
-
-## Memory Formation
-
-### Explicit Formation
-
-Direct calls to `SamgitaMemory.store/2` — user or agent explicitly says "remember this."
-
-### Implicit Formation via Telemetry
-
-Agents emit telemetry events. Memory formation handlers decide what to persist.
-
-#### Telemetry Events to Handle
-
-| Event | Memory Created |
-|-------|---------------|
-| `[:prd, :requirement, :completed]` | Episodic: "Completed req-X: summary" |
-| `[:prd, :requirement, :failed]` | Episodic + Procedural learning |
-| `[:prd, :decision, :made]` | Stored as PRD Decision + semantic memory |
-| `[:prd, :blocker, :hit]` | Episodic: blocker context |
-| `[:prd, :blocker, :resolved]` | Procedural: how it was resolved |
-| `[:thinking, :chain, :completed]` | Summarized chain → semantic memory |
-| `[:thinking, :revision]` | Procedural: revision pattern signal |
-| `[:agent, :error]` | Episodic: what went wrong |
-| `[:agent, :handoff]` | Episodic: handoff context |
-
-#### Handler Implementation
-
-```elixir
-defmodule SamgitaMemory.Formation.TelemetryHandler do
-  def handle_event([:prd, :requirement, :completed], measurements, metadata, _config) do
-    SamgitaMemory.append_prd_event(metadata.prd_id, %{
-      type: :requirement_completed,
-      requirement_id: metadata.requirement_id,
-      summary: metadata.summary,
-      detail: %{
-        duration_ms: measurements[:duration],
-        files_changed: metadata[:files_changed],
-        tests_added: metadata[:tests_added]
-      },
-      agent_id: metadata[:agent_id]
-    })
-
-    # Also create a semantic memory for cross-project retrieval
-    SamgitaMemory.store(metadata.summary,
-      source: {:prd_event, metadata.prd_id},
-      scope: {:project, metadata.project},
-      type: :episodic,
-      tags: ["prd", metadata.requirement_id]
-    )
-  end
-
-  def handle_event([:thinking, :revision], _measurements, metadata, _config) do
-    # A revision is a learning signal
-    SamgitaMemory.store(
-      "When reasoning about #{metadata.topic}, initial approach " <>
-      "'#{metadata.original}' needed revision to '#{metadata.revised}' " <>
-      "because: #{metadata.reason}",
-      source: {:observation, metadata.chain_id},
-      scope: {:project, metadata.project},
-      type: :procedural,
-      tags: ["revision-pattern", metadata.topic]
-    )
-  end
-end
-```
-
----
-
-## Compaction and Lifecycle
-
-### Confidence Decay
-
-Oban cron job runs daily:
-
-```elixir
-# SamgitaMemory.Workers.Compaction
-
-# Decay formula: new_confidence = confidence * decay_rate
-# decay_rate depends on memory type:
-#   episodic:   0.98/day (half-life ~34 days)
-#   semantic:   0.995/day (half-life ~138 days)
-#   procedural: 0.999/day (half-life ~693 days)
-#
-# Access resets confidence to max(current, 0.8)
-# Explicit reinforcement sets confidence to 1.0
-# Memories below 0.1 confidence are pruned
-```
-
-### PRD Execution Compaction
-
-When a PRD execution is marked `:completed`:
-
-1. Oban job summarizes the full event log into a compact narrative
-2. Extracts decisions and learnings as standalone semantic memories
-3. Moves full event log from ETS to cold Postgres storage
-4. Keeps summary + decisions in hot cache for fast retrieval
-
-### Thinking Chain Summarization
-
-When a chain completes:
-
-1. Oban job generates a summary via LLM call (Haiku for cost efficiency)
-2. Summary gets an embedding for future semantic retrieval
-3. Full thought list stays in Postgres but not in ETS
-4. If the chain had revisions, extract procedural memories from the revision patterns
-
----
-
-## MCP Interface
-
-Exposed via `samgita_mcp` app (SSE transport over Phoenix endpoint).
-
-### Tools
-
-| Tool | Maps To | Description |
-|------|---------|-------------|
-| `recall` | `SamgitaMemory.retrieve/2` | Retrieve relevant memories for a query |
-| `remember` | `SamgitaMemory.store/2` | Explicitly store a memory |
-| `forget` | `SamgitaMemory.forget/1` | Remove a memory |
-| `prd_context` | `SamgitaMemory.get_prd_context/2` | Get full PRD execution state for resume |
-| `prd_event` | `SamgitaMemory.append_prd_event/2` | Log a PRD execution event |
-| `prd_decision` | `SamgitaMemory.record_prd_decision/2` | Record a decision |
-| `think` | `SamgitaMemory.add_thought/2` | Add thought to active chain |
-| `start_thinking` | `SamgitaMemory.start_chain/2` | Begin a new reasoning chain |
-| `finish_thinking` | `SamgitaMemory.complete_chain/1` | Complete chain, trigger summarization |
-| `recall_reasoning` | `SamgitaMemory.recall_reasoning/2` | Find similar past reasoning |
-
-### Token Budget Awareness
-
-The MCP layer enforces a configurable token budget (default: 4000 tokens) on responses. When retrieval returns more content than fits:
-
-1. Rank by relevance score
-2. Include highest-ranked memories in full
-3. For remaining, include only `content` field (drop metadata)
-4. If still over budget, truncate list and append `{truncated: true, total: N}`
-
----
-
-## ETS Cache Strategy
-
-### Memory Cache
-
-- **Table**: `:memory_cache`, type `:set`, read concurrency enabled
-- **Key**: `{scope_type, scope_id, memory_id}`
-- **Eviction**: LRU-based, max 10,000 entries
-- **Population**: on access (read-through cache)
-- **Invalidation**: on update, on delete, on confidence drop below threshold
-
-### PRD Execution Cache
-
-- **Table**: `:prd_cache`, type `:set`
-- **Key**: `prd_id`
-- **Contents**: full execution struct with recent events (last 50) and all decisions
-- **Population**: on first access or on event append
-- **Eviction**: on completion + compaction, or LRU at 100 entries
-
----
-
-## Database Migrations
-
-### Migration 1: Core Memory Tables
-
-```elixir
-def change do
-  execute "CREATE EXTENSION IF NOT EXISTS vector"
-
-  create table(:memories, primary_key: false) do
-    add :id, :binary_id, primary_key: true
-    add :content, :text, null: false
-    add :embedding, :vector, size: 1536
-    add :source_type, :string, null: false
-    add :source_id, :string
-    add :scope_type, :string, null: false
-    add :scope_id, :string
-    add :memory_type, :string, null: false
-    add :confidence, :float, default: 1.0, null: false
-    add :access_count, :integer, default: 0, null: false
-    add :tags, {:array, :string}, default: []
-    add :metadata, :map, default: %{}
-    add :accessed_at, :utc_datetime
-
-    timestamps()
-  end
-
-  # Indexes as specified in Data Model section
-end
-```
-
-### Migration 2: PRD Execution Tables
-
-```elixir
-def change do
-  create table(:prd_executions, primary_key: false) do
-    add :id, :binary_id, primary_key: true
-    add :prd_ref, :string, null: false
-    add :prd_hash, :string
-    add :title, :string
-    add :status, :string, default: "not_started", null: false
-    add :progress, :map, default: %{}
-
-    timestamps()
-  end
-
-  create unique_index(:prd_executions, [:prd_ref])
-
-  create table(:prd_events, primary_key: false) do
-    add :id, :binary_id, primary_key: true
-    add :execution_id, references(:prd_executions, type: :binary_id), null: false
-    add :type, :string, null: false
-    add :requirement_id, :string
-    add :summary, :text, null: false
-    add :detail, :map, default: %{}
-    add :agent_id, :string
-    add :thinking_chain_id, :binary_id
-
-    timestamps()
-  end
-
-  create index(:prd_events, [:execution_id])
-  create index(:prd_events, [:requirement_id])
-
-  create table(:prd_decisions, primary_key: false) do
-    add :id, :binary_id, primary_key: true
-    add :execution_id, references(:prd_executions, type: :binary_id), null: false
-    add :requirement_id, :string
-    add :decision, :text, null: false
-    add :reason, :text
-    add :alternatives, {:array, :string}, default: []
-    add :agent_id, :string
-
-    timestamps()
-  end
-
-  create index(:prd_decisions, [:execution_id])
-end
-```
-
-### Migration 3: Thinking Chains
-
-```elixir
-def change do
-  create table(:thinking_chains, primary_key: false) do
-    add :id, :binary_id, primary_key: true
-    add :scope_type, :string, null: false
-    add :scope_id, :string
-    add :query, :text
-    add :summary, :text
-    add :embedding, :vector, size: 1536
-    add :status, :string, default: "active", null: false
-    add :thoughts, {:array, :map}, default: []
-    add :metadata, :map, default: %{}
-
-    timestamps()
-  end
-
-  create index(:thinking_chains, [:scope_type, :scope_id])
-  create index(:thinking_chains, [:status])
-end
-```
-
----
-
-## Implementation Plan
-
-### Phase 1: Core Memory (Priority: Highest)
-
-1. Create `samgita_memory` OTP app in umbrella
-2. Migrations 1-3
-3. Ecto schemas for Memory, PRD Execution, PRD Event, PRD Decision, ThinkingChain
-4. `SamgitaMemory` public API — `store/2`, `retrieve/2`, `forget/1`
-5. Basic retrieval: scope filter + tag filter (no semantic search yet)
-6. Tests: unit tests for all CRUD operations, retrieval with scope isolation
-
-### Phase 2: PRD Execution Tracking (Priority: High)
-
-1. `start_prd/2`, `get_prd_context/2`, `append_prd_event/2`, `record_prd_decision/2`
-2. Progress materialization from events
-3. ETS cache for active PRD executions
-4. Telemetry handler for PRD events
-5. Tests: PRD lifecycle — create, add events, resume, complete
-
-### Phase 3: Semantic Search (Priority: High)
-
-1. Oban worker for embedding generation
-2. pgvector cosine similarity queries
-3. Hybrid retrieval pipeline (full 7-stage pipeline)
-4. Recency boost and confidence threshold
-5. Tests: retrieval relevance, deduplication, scoring
-
-### Phase 4: Thinking Chains (Priority: Medium)
-
-1. `start_chain/2`, `add_thought/2`, `complete_chain/1`, `recall_reasoning/2`
-2. Oban worker for chain summarization on completion
-3. Revision pattern extraction for procedural memory
-4. Tests: chain lifecycle, similar chain retrieval
-
-### Phase 5: Compaction and Lifecycle (Priority: Medium)
-
-1. Confidence decay Oban cron job
-2. PRD execution compaction on completion
-3. Memory pruning below threshold
-4. Access-based confidence reinforcement
-5. Tests: decay math, compaction correctness, pruning
-
-### Phase 6: MCP Interface (Priority: Medium)
-
-1. MCP tool definitions in `samgita_mcp`
-2. SSE transport via Phoenix endpoint
-3. Token budget truncation logic
-4. Tests: MCP tool roundtrip, budget enforcement
-
----
-
-## Non-Goals (Explicit Exclusions)
-
-- **Real-time sync between machines** — Postgres is the sync point, no CRDT or replication protocol
-- **Multi-user memory** — single user (Jonathan), no access control or tenant isolation
-- **Automatic PRD parsing** — agents manually call `prd_event` and `prd_decision`, no NLP extraction from PRD markdown
-- **GUI for memory editing** — LiveView dashboard is observation-only in v1 (read, not write)
-- **Local embedding model** — v1 uses Anthropic API for embeddings, local model is future work
-
----
-
-## Testing Strategy
-
-### Unit Tests
-
-- Memory CRUD with scope isolation (project A memories not visible in project B)
-- PRD event ordering and progress materialization
-- Retrieval pipeline stages in isolation
-- Confidence decay math
-- ETS cache population and eviction
-
-### Integration Tests
-
-- Full retrieval pipeline: store → embed → retrieve by semantic similarity
-- PRD lifecycle: start → events → decisions → resume → complete → compact
-- Thinking chain: start → thoughts → complete → summarize → recall similar
-- Telemetry → memory formation end-to-end
-
-### Property Tests
-
-- Retrieval always returns results within scope
-- Confidence monotonically decreases without access
-- PRD progress is always consistent with events
-- Compaction preserves all decisions (never loses decisions)
+## Autonomy Rules
+
+### Core Principles (from loki-mode CONSTITUTION)
+
+1. **Autonomy Preserves Momentum** — Decide, act, verify, adjust. No blocking on questions.
+2. **Memory Matters More Than Reasoning** — Context retrieval is the bottleneck, not intelligence.
+3. **Verification Builds Trust** — "It works" means "tests pass." Ship evidence, not assertions.
+4. **Atomicity Enables Recovery** — Commit early, commit often. Each commit is a recovery point.
+5. **Constraints Enable Speed** — Quality gates catch problems when they're cheap to fix.
+
+### Agent Autonomy Rules (ABSOLUTE)
+
+- **NEVER ask** — Do not output questions. Decide and act.
+- **NEVER wait** — Do not pause for confirmation. Execute immediately.
+- **NEVER stop** — There is always another improvement. Find it.
+- **ALWAYS verify** — Code without tests is incomplete. Run tests.
+- **ALWAYS commit** — Atomic commits after each task. Checkpoint progress.
+
+### Priority Order (Conflict Resolution)
+
+1. **Safety** — Don't break production, don't lose data, don't expose secrets
+2. **Correctness** — Tests pass, specs match, contracts honored
+3. **Quality** — Code review passed, standards met, maintainable
+4. **Speed** — Autonomy, parallelization, minimal blocking
+
+### Human Intervention
+
+| Method | Effect |
+|---|---|
+| Pause button (UI) | Pauses after current task completes |
+| Stop button (UI) | Stops project, sets status to completed |
+| Terminate button (UI) | Kills all agents, marks project failed |
+| Restart button (UI) | Stops and re-starts with same PRD from bootstrap |
 
 ---
 
 ## Configuration
 
-```elixir
-# config/config.exs
-config :samgita_memory, SamgitaMemory.Repo,
-  database: "samgita_memory",
-  extensions: [{Pgvector.Extensions.Vector, []}]
+### Config Key Mapping
 
-config :samgita_memory, Oban,
-  repo: SamgitaMemory.Repo,
-  queues: [
-    embeddings: 5,
-    compaction: 2,
-    summarization: 3
-  ],
-  plugins: [
-    {Oban.Plugins.Cron, crontab: [
-      {"0 3 * * *", SamgitaMemory.Workers.Compaction}  # 3am daily decay
-    ]}
-  ]
+| Config Key | OTP App | Purpose |
+|---|---|---|
+| `config :samgita, Samgita.Repo` | `:samgita` | PostgreSQL connection |
+| `config :samgita, Oban` | `:samgita` | Job queues (agent_tasks, orchestration, snapshots) |
+| `config :samgita, :claude_command` | `:samgita` | Claude CLI path |
+| `config :samgita, :api_keys` | `:samgita` | REST API keys (empty = open access) |
+| `config :samgita_memory, SamgitaMemory.Repo` | `:samgita_memory` | Memory database (same PG, needs PostgrexTypes) |
+| `config :samgita_memory, Oban` | `:samgita_memory` | Memory jobs (name: SamgitaMemory.Oban) |
+| `config :samgita_memory, :embedding_provider` | `:samgita_memory` | `:mock` (test) / `:anthropic` (prod) |
+| `config :samgita_web, SamgitaWeb.Endpoint` | `:samgita_web` | Endpoint (port 3110) |
+| `config :samgita_provider, :provider` | `:samgita_provider` | Provider module or `:mock` |
+| `config :samgita_provider, :anthropic_api_key` | `:samgita_provider` | API key for Voyage embeddings |
 
-config :samgita_memory,
-  embedding_provider: :anthropic,
-  embedding_dimensions: 1536,
-  retrieval_default_limit: 10,
-  retrieval_min_confidence: 0.3,
-  cache_max_memories: 10_000,
-  cache_max_prd_executions: 100
-```
+---
+
+## Implementation Status
+
+### Completed
+
+- [x] Umbrella project structure (4 apps)
+- [x] Provider abstraction (samgita_provider) with Claude Code CLI integration
+- [x] Core domain schemas (Project, Task, AgentRun, Prd, Artifact, Snapshot, Webhook, Feature, Notification)
+- [x] Agent types module (37 types, 7 swarms, model selection)
+- [x] Agent Worker gen_statem (RARV cycle state machine)
+- [x] Project Orchestrator gen_statem (phase transitions)
+- [x] Horde distributed supervision (AgentRegistry, AgentSupervisor)
+- [x] Oban job queues (AgentTaskWorker, SnapshotWorker, WebhookWorker)
+- [x] Memory system (samgita_memory) with pgvector, ETS caching, retrieval pipeline
+- [x] PRD execution tracking, thinking chains, confidence decay
+- [x] MCP tools (10 tools for memory, PRD, thinking)
+- [x] Phoenix LiveView dashboard (project page, PRD-centric layout, activity log)
+- [x] REST API with rate limiting
+- [x] PubSub real-time events
+- [x] Webhook delivery with HMAC-SHA256
+
+### In Progress
+
+- [ ] Bootstrap task worker (PRD parsing, requirement extraction, task backlog generation)
+- [ ] Discovery phase implementation (competitive research, requirement analysis)
+- [ ] Architecture phase (spec-first OpenAPI generation)
+- [ ] Development phase orchestration (parallel task dispatch, blind review coordination)
+
+### Planned
+
+- [ ] Quality gates implementation (9-gate system)
+- [ ] Blind review system (3 parallel reviewers + anti-sycophancy)
+- [ ] Completion council (multi-agent voting)
+- [ ] QA phase (test generation, security audit, load testing)
+- [ ] Deployment phase (blue-green deploy, auto-rollback)
+- [ ] Business operations phase
+- [ ] Growth loop (perpetual optimization)
+- [ ] Circuit breakers per agent type
+- [ ] Git worktree parallel mode
+- [ ] Skill system (composable agent configurations)
+
+---
+
+## Non-Goals
+
+- **Multi-tenant SaaS** — single-user local tool, no authentication
+- **Direct LLM API calls** — CLI-as-provider model only
+- **Custom tool execution** — CLI tools handle their own tools; Samgita observes
+- **GUI for memory editing** — dashboard is observation-only
+- **CRDT/real-time sync** — PostgreSQL is the single source of truth
 
 ---
 
 ## Success Criteria
 
-1. An agent can call `prd_context` and receive a complete summary of prior work on a PRD in under 100ms (ETS hit) or under 500ms (Postgres)
-2. Semantic retrieval returns relevant memories with precision > 0.8 on a test corpus of 1000 memories
-3. PRD progress is always consistent with events — no orphaned or contradictory state
-4. Confidence decay runs without impacting query latency
-5. A full PRD lifecycle (create → 50 events → complete → compact) takes < 5 seconds total
-6. MCP tool responses stay under the configured token budget
-7. Cross-project memory isolation: memories scoped to project A never appear in project B queries
+1. **End-to-end PRD pipeline** — Give it a PRD, walk away, come back to working code with tests
+2. **Multi-agent parallelism** — 10+ agents working simultaneously on independent tasks
+3. **Self-healing** — Agent crashes recovered by OTP supervisors within seconds
+4. **Quality gates** — Code passes blind review + anti-sycophancy before acceptance
+5. **Persistent memory** — Agent resumes work after restart with full context from memory system
+6. **Real-time dashboard** — Live visibility into agent states, task queue, activity log
+7. **Sub-500ms task dispatch** — Task creation to agent pickup latency
+8. **Memory retrieval < 100ms** — ETS cache hit for active PRD context
+
+---
+
+## Research Foundations
+
+| Research | Application in Samgita |
+|---|---|
+| **CONSENSAGENT** (ACL 2025) | Anti-sycophancy gate, blind review |
+| **MemEvolve** (arXiv 2512.18746) | Task-aware memory retrieval weights |
+| **Chain-of-Verification** (arXiv 2309.11495) | RARV verify step |
+| **Boris Cherny** (production) | Self-verification loop (2-3x quality) |
+| **Constitutional AI** (Anthropic) | Agent autonomy rules |
+| **GoalAct** (arXiv) | Hierarchical task planning |
+
+---
+
+**Last Updated:** 2026-03-02
+**Status:** Active
