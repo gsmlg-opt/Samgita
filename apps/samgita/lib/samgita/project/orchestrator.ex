@@ -152,6 +152,15 @@ defmodule Samgita.Project.Orchestrator do
         end)
 
       data = %{data | agents: agent_statuses}
+
+      # Enqueue phase-specific tasks
+      task_count = enqueue_phase_tasks(phase, data)
+
+      data =
+        if task_count > 0,
+          do: %{data | phase_tasks_total: task_count},
+          else: data
+
       {:keep_state, data}
     end
 
@@ -382,6 +391,187 @@ defmodule Samgita.Project.Orchestrator do
         gate_type: gate_type
       })
     )
+  end
+
+  # Phase-specific task generation.
+  # Returns the number of tasks enqueued (used to set phase_tasks_total).
+  defp enqueue_phase_tasks(:bootstrap, data) do
+    # Bootstrap is handled by BootstrapWorker (triggered from LiveView start)
+    broadcast_activity(data, :reason, "Bootstrap phase: awaiting PRD analysis tasks")
+    0
+  end
+
+  defp enqueue_phase_tasks(:discovery, data) do
+    project = refresh_project(data)
+
+    tasks = [
+      %{
+        type: "analysis",
+        description: "Analyze codebase structure and existing patterns",
+        agent_type: "prod-pm",
+        priority: 1
+      },
+      %{
+        type: "analysis",
+        description: "Map user stories and acceptance criteria from PRD",
+        agent_type: "prod-design",
+        priority: 2
+      },
+      %{
+        type: "analysis",
+        description: "Identify data requirements and analytics needs",
+        agent_type: "data-analytics",
+        priority: 3
+      }
+    ]
+
+    create_phase_tasks(project, tasks, data)
+  end
+
+  defp enqueue_phase_tasks(:architecture, data) do
+    project = refresh_project(data)
+
+    tasks = [
+      %{
+        type: "architecture",
+        description: "Design backend architecture and API contracts",
+        agent_type: "eng-backend",
+        priority: 1
+      },
+      %{
+        type: "architecture",
+        description: "Design frontend component architecture",
+        agent_type: "eng-frontend",
+        priority: 2
+      },
+      %{
+        type: "architecture",
+        description: "Design database schema and data model",
+        agent_type: "eng-database",
+        priority: 2
+      },
+      %{
+        type: "architecture",
+        description: "Design infrastructure and deployment architecture",
+        agent_type: "eng-infra",
+        priority: 3
+      }
+    ]
+
+    create_phase_tasks(project, tasks, data)
+  end
+
+  defp enqueue_phase_tasks(:infrastructure, data) do
+    project = refresh_project(data)
+
+    tasks = [
+      %{
+        type: "implement",
+        description: "Set up CI/CD pipeline and deployment scripts",
+        agent_type: "ops-devops",
+        priority: 1
+      },
+      %{
+        type: "implement",
+        description: "Configure infrastructure and environment provisioning",
+        agent_type: "eng-infra",
+        priority: 2
+      },
+      %{
+        type: "implement",
+        description: "Set up security scanning and access controls",
+        agent_type: "ops-security",
+        priority: 3
+      }
+    ]
+
+    create_phase_tasks(project, tasks, data)
+  end
+
+  defp enqueue_phase_tasks(:deployment, data) do
+    project = refresh_project(data)
+
+    tasks = [
+      %{
+        type: "implement",
+        description: "Prepare and execute deployment to staging",
+        agent_type: "ops-devops",
+        priority: 1
+      },
+      %{
+        type: "implement",
+        description: "Verify deployment health and monitoring",
+        agent_type: "ops-sre",
+        priority: 2
+      },
+      %{
+        type: "implement",
+        description: "Execute release checklist and cutover",
+        agent_type: "ops-release",
+        priority: 3
+      }
+    ]
+
+    create_phase_tasks(project, tasks, data)
+  end
+
+  defp enqueue_phase_tasks(_phase, _data) do
+    # development, qa, business, growth, perpetual — tasks come from
+    # the task backlog (bootstrap) or are manually created
+    0
+  end
+
+  defp create_phase_tasks(project, task_defs, data) do
+    prd_id =
+      case project do
+        %{active_prd_id: id} when not is_nil(id) -> id
+        _ -> nil
+      end
+
+    Enum.each(task_defs, fn task_def ->
+      attrs = %{
+        type: task_def.type,
+        payload: %{
+          "description" => task_def.description,
+          "agent_type" => task_def.agent_type,
+          "prd_id" => prd_id,
+          "phase" => to_string(data.project_id)
+        },
+        priority: task_def.priority,
+        status: :pending
+      }
+
+      case Projects.create_task(project.id, attrs) do
+        {:ok, task} ->
+          Oban.insert(
+            Samgita.Workers.AgentTaskWorker.new(%{
+              task_id: task.id,
+              project_id: project.id,
+              agent_type: task_def.agent_type
+            })
+          )
+
+        {:error, reason} ->
+          Logger.warning(
+            "[Orchestrator] Failed to create phase task: #{inspect(reason)}"
+          )
+      end
+    end)
+
+    broadcast_activity(
+      data,
+      :reason,
+      "Enqueued #{length(task_defs)} phase tasks"
+    )
+
+    length(task_defs)
+  end
+
+  defp refresh_project(data) do
+    case Projects.get_project(data.project_id) do
+      {:ok, project} -> project
+      _ -> data.project
+    end
   end
 
   defp reset_phase_counters(data) do

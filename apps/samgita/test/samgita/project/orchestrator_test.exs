@@ -106,7 +106,8 @@ defmodule Samgita.Project.OrchestratorTest do
     # Should have auto-advanced to discovery
     assert {:discovery, data} = Orchestrator.get_state(pid)
     assert data.phase_tasks_completed == 0
-    assert data.phase_tasks_total == 0
+    # Discovery phase enqueues 3 tasks during setup
+    assert data.phase_tasks_total == 3
 
     :gen_statem.stop(pid)
   end
@@ -152,9 +153,10 @@ defmodule Samgita.Project.OrchestratorTest do
     Orchestrator.notify_task_completed(pid, "task-1")
     Process.sleep(100)
 
-    # Should be in discovery with reset counters
+    # Should be in discovery with reset counters, then re-populated by phase setup
     {:discovery, data} = Orchestrator.get_state(pid)
-    assert data.phase_tasks_total == 0
+    # Discovery phase enqueues 3 tasks during setup
+    assert data.phase_tasks_total == 3
     assert data.phase_tasks_completed == 0
     # Total task count persists across phases
     assert data.task_count >= 1
@@ -203,6 +205,42 @@ defmodule Samgita.Project.OrchestratorTest do
     # Should have advanced to qa
     assert {:qa, data} = Orchestrator.get_state(pid)
     assert data.awaiting_quality_gates == false
+
+    :gen_statem.stop(pid)
+  end
+
+  test "discovery phase creates analysis tasks", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    # Advance to discovery
+    Orchestrator.advance_phase(pid)
+    Process.sleep(200)
+
+    assert {:discovery, data} = Orchestrator.get_state(pid)
+    # Discovery enqueues 3 analysis tasks
+    assert data.phase_tasks_total == 3
+
+    # Verify tasks were created in DB
+    tasks = Samgita.Projects.list_tasks(project.id)
+    analysis_tasks = Enum.filter(tasks, &(&1.type == "analysis"))
+    assert length(analysis_tasks) == 3
+
+    :gen_statem.stop(pid)
+  end
+
+  test "architecture phase creates design tasks", %{project: project} do
+    {:ok, _} = Projects.update_project(project, %{phase: :architecture})
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(200)
+
+    assert {:architecture, data} = Orchestrator.get_state(pid)
+    # Architecture enqueues 4 tasks
+    assert data.phase_tasks_total == 4
+
+    tasks = Samgita.Projects.list_tasks(project.id)
+    arch_tasks = Enum.filter(tasks, &(&1.type == "architecture"))
+    assert length(arch_tasks) == 4
 
     :gen_statem.stop(pid)
   end
