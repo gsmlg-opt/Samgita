@@ -20,29 +20,39 @@ defmodule SamgitaProvider.ClaudeCode do
 
     Logger.debug("Claude CLI: #{command} #{Enum.join(args, " ")}")
 
-    try do
-      case System.cmd(command, args,
-             stderr_to_stdout: true,
-             timeout: timeout,
-             env: cmd_env()
-           ) do
-        {output, 0} ->
-          parse_json_output(output)
+    task =
+      Task.async(fn ->
+        try do
+          case System.cmd(command, args,
+                 stderr_to_stdout: true,
+                 env: cmd_env()
+               ) do
+            {output, 0} ->
+              parse_json_output(output)
 
-        {output, exit_code} ->
-          Logger.error("Claude CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}")
-          classify_error(output, exit_code)
-      end
-    rescue
-      e in ErlangError ->
-        case e do
-          %ErlangError{original: :enoent} ->
-            {:error, :claude_not_found}
+            {output, exit_code} ->
+              Logger.error(
+                "Claude CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}"
+              )
 
-          _ ->
-            Logger.error("Claude CLI error: #{inspect(e)}")
-            {:error, Exception.message(e)}
+              classify_error(output, exit_code)
+          end
+        rescue
+          e in ErlangError ->
+            case e do
+              %ErlangError{original: :enoent} ->
+                {:error, :claude_not_found}
+
+              _ ->
+                Logger.error("Claude CLI error: #{inspect(e)}")
+                {:error, Exception.message(e)}
+            end
         end
+      end)
+
+    case Task.yield(task, timeout) || Task.shutdown(task) do
+      {:ok, result} -> result
+      nil -> {:error, :timeout}
     end
   end
 

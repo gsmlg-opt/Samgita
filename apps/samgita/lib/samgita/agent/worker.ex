@@ -11,6 +11,7 @@ defmodule Samgita.Agent.Worker do
 
   require Logger
 
+  alias Samgita.Agent.CircuitBreaker
   alias Samgita.Agent.Claude
   alias Samgita.Agent.Types
   alias Samgita.Project.Memory
@@ -85,7 +86,21 @@ defmodule Samgita.Agent.Worker do
   end
 
   def idle(:cast, {:assign_task, task}, data) do
-    {:next_state, :reason, %{data | current_task: task, retry_count: 0}}
+    case CircuitBreaker.allow?(data.agent_type) do
+      :ok ->
+        {:next_state, :reason, %{data | current_task: task, retry_count: 0}}
+
+      {:error, :circuit_open} ->
+        Logger.warning("[#{data.id}] Circuit open for #{data.agent_type}, rejecting task")
+
+        broadcast_activity(
+          data,
+          :idle,
+          "Circuit breaker open for #{data.agent_type}, task rejected"
+        )
+
+        :keep_state_and_data
+    end
   end
 
   def idle({:call, from}, :get_state, data) do
@@ -231,6 +246,7 @@ defmodule Samgita.Agent.Worker do
 
       {:error, reason} ->
         Logger.error("[#{data.id}] VERIFY: Max retries reached, marking failed")
+        CircuitBreaker.record_failure(data.agent_type)
 
         broadcast_activity(
           data,
@@ -248,6 +264,7 @@ defmodule Samgita.Agent.Worker do
 
       _ ->
         Logger.info("[#{data.id}] VERIFY: Task verified successfully")
+        CircuitBreaker.record_success(data.agent_type)
         broadcast_activity(data, :verify, "Task verified successfully")
 
         # Handle post-task actions

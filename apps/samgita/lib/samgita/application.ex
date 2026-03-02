@@ -19,6 +19,7 @@ defmodule Samgita.Application do
       {Horde.Registry, name: Samgita.AgentRegistry, keys: :unique, members: :auto},
       {Horde.DynamicSupervisor,
        name: Samgita.AgentSupervisor, strategy: :one_for_one, members: :auto},
+      Samgita.Agent.CircuitBreaker,
       {Oban, Application.fetch_env!(:samgita, Oban)}
     ]
 

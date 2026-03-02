@@ -4,6 +4,12 @@ defmodule Samgita.Agent.ClaudeTest do
   alias Samgita.Agent.Claude
 
   @moduletag :integration
+  @moduletag :skip_mock_provider
+
+  # These tests require a real Claude CLI — skip when using mock provider
+  if Application.compile_env(:samgita_provider, :provider) == :mock do
+    @moduletag :skip
+  end
 
   setup do
     # Ensure test file doesn't exist
