@@ -47,6 +47,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
     with true <- not is_nil(prd) || {:error, :no_prd_selected},
          {:ok, project} <- Projects.start_project(socket.assigns.project.id, prd.id) do
+      # Enqueue the PRD analysis task to prod-pm agent
       Projects.enqueue_task(
         project.id,
         "bootstrap",
@@ -59,6 +60,14 @@ defmodule SamgitaWeb.ProjectLive.Index do
           git_url: project.git_url,
           working_path: project.working_path
         }
+      )
+
+      # Also trigger the bootstrap worker to generate the full task backlog
+      Oban.insert(
+        Samgita.Workers.BootstrapWorker.new(%{
+          project_id: project.id,
+          prd_id: prd.id
+        })
       )
 
       prds = Samgita.Prds.list_prds(project.id)
