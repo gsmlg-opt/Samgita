@@ -14,21 +14,34 @@ defmodule SamgitaWeb.DashboardLive.Index do
     {:ok,
      assign(socket,
        page_title: "Dashboard",
-       projects: projects
+       projects: projects,
+       project_stats: load_project_stats(projects)
      )}
   end
 
   @impl true
   def handle_info({:project_updated, _project}, socket) do
     projects = Projects.list_projects()
-    {:noreply, assign(socket, projects: projects)}
+    {:noreply, assign(socket, projects: projects, project_stats: load_project_stats(projects))}
   end
 
   @impl true
   def handle_info({:project_updated, _project_id, _phase}, socket) do
     projects = Projects.list_projects()
-    {:noreply, assign(socket, projects: projects)}
+    {:noreply, assign(socket, projects: projects, project_stats: load_project_stats(projects))}
   end
+
+  @impl true
+  def handle_info(_, socket), do: {:noreply, socket}
+
+  defp load_project_stats(projects) do
+    Map.new(projects, fn project ->
+      {project.id, Projects.task_stats(project.id)}
+    end)
+  end
+
+  def total_tasks(stats), do: stats |> Map.values() |> Enum.sum()
+  def task_stat(stats, status), do: Map.get(stats, status, 0)
 
   def status_color(:pending), do: "bg-yellow-100 text-yellow-800"
   def status_color(:running), do: "bg-green-100 text-green-800"

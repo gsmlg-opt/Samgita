@@ -224,6 +224,16 @@ defmodule Samgita.Projects do
     end
   end
 
+  @doc "Returns aggregate task counts by status for a project."
+  def task_stats(project_id) do
+    TaskSchema
+    |> where(project_id: ^project_id)
+    |> group_by([t], t.status)
+    |> select([t], {t.status, count(t.id)})
+    |> Repo.all()
+    |> Map.new()
+  end
+
   def enqueue_task(project_id, task_type, agent_type, payload \\ %{}) do
     with {:ok, task} <-
            create_task(project_id, %{

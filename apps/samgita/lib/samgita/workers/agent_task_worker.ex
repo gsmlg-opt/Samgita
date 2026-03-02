@@ -169,18 +169,25 @@ defmodule Samgita.Workers.AgentTaskWorker do
         max_attempts = max_attempts_for(failure_type)
         status = if attempts >= max_attempts, do: :dead_letter, else: :failed
 
-        task
-        |> TaskSchema.changeset(%{
-          status: status,
-          attempts: attempts,
-          error: %{
-            reason: inspect(reason),
-            failure_type: Atom.to_string(failure_type),
-            attempt: attempts,
-            max_attempts: max_attempts
-          }
-        })
-        |> Repo.update()
+        case task
+             |> TaskSchema.changeset(%{
+               status: status,
+               attempts: attempts,
+               error: %{
+                 reason: inspect(reason),
+                 failure_type: Atom.to_string(failure_type),
+                 attempt: attempts,
+                 max_attempts: max_attempts
+               }
+             })
+             |> Repo.update() do
+          {:ok, updated_task} ->
+            Samgita.Events.task_failed(updated_task)
+            {:ok, updated_task}
+
+          error ->
+            error
+        end
     end
   end
 
