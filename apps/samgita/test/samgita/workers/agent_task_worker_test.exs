@@ -137,6 +137,42 @@ defmodule Samgita.Workers.AgentTaskWorkerTest do
     end
   end
 
+  test "snoozes when parent task is not completed", %{project: project} do
+    parent_task = create_task(project, %{status: :running, type: "milestone"})
+    child_task = create_task(project, %{parent_task_id: parent_task.id})
+
+    job = %Oban.Job{
+      args: %{
+        "task_id" => child_task.id,
+        "project_id" => project.id,
+        "agent_type" => "eng-backend"
+      }
+    }
+
+    assert {:snooze, 30} = AgentTaskWorker.perform(job)
+
+    # Task should still be pending (not marked as failed)
+    updated = Repo.get!(TaskSchema, child_task.id)
+    assert updated.status == :pending
+  end
+
+  test "proceeds when parent task is completed", %{project: project} do
+    parent_task = create_task(project, %{status: :completed, type: "milestone"})
+    child_task = create_task(project, %{parent_task_id: parent_task.id})
+
+    job = %Oban.Job{
+      args: %{
+        "task_id" => child_task.id,
+        "project_id" => project.id,
+        "agent_type" => "eng-backend"
+      }
+    }
+
+    # Will try to execute (may fail on agent spawn, but should get past dependency check)
+    result = AgentTaskWorker.perform(job)
+    refute match?({:snooze, _}, result)
+  end
+
   test "input guardrails block returns terminal failure", %{project: project} do
     task = create_task(project, %{attempts: 0})
 

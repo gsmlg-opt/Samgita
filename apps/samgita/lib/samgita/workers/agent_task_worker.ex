@@ -51,6 +51,7 @@ defmodule Samgita.Workers.AgentTaskWorker do
     agent_type = args["agent_type"]
 
     with {:ok, task} <- get_task(task_id),
+         :ok <- check_parent_dependency(task),
          :ok <- mark_task_running(task),
          {:ok, agent_pid} <- find_or_spawn_agent(project_id, agent_type),
          :ok <- execute_task(agent_pid, task) do
@@ -69,6 +70,10 @@ defmodule Samgita.Workers.AgentTaskWorker do
       Samgita.Events.activity_log(project_id, entry)
       :ok
     else
+      {:error, :parent_not_completed} ->
+        Logger.info("AgentTaskWorker: task #{task_id} waiting for parent to complete, snoozing")
+        {:snooze, 30}
+
       {:error, reason} ->
         Logger.error("AgentTaskWorker failed: #{inspect(reason)}")
 
@@ -83,6 +88,16 @@ defmodule Samgita.Workers.AgentTaskWorker do
         Samgita.Events.activity_log(project_id, entry)
         handle_failure(task_id, reason)
         {:error, reason}
+    end
+  end
+
+  defp check_parent_dependency(%{parent_task_id: nil}), do: :ok
+
+  defp check_parent_dependency(%{parent_task_id: parent_id}) do
+    case Repo.get(TaskSchema, parent_id) do
+      nil -> :ok
+      %{status: :completed} -> :ok
+      _ -> {:error, :parent_not_completed}
     end
   end
 
