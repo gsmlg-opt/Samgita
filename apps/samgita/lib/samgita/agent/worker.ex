@@ -460,6 +460,7 @@ defmodule Samgita.Agent.Worker do
   defp build_generic_prompt(data) do
     task = data.current_task
     {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
+    payload = task_payload(task)
 
     learnings_text =
       case data.learnings do
@@ -467,18 +468,77 @@ defmodule Samgita.Agent.Worker do
         items -> Enum.join(items, "\n- ")
       end
 
+    project_context = build_project_context(data.project_id, payload)
+    description = payload["description"] || inspect(payload)
+
     """
     You are a #{type_name} (#{type_desc}).
-
+    #{project_context}
     ## Task
     Type: #{task_type(task)}
-    Payload: #{inspect(task_payload(task))}
+    Description: #{description}
 
     ## Previous Learnings
     #{learnings_text}
 
-    Execute this task and provide the result.
+    Execute this task thoroughly. Analyze the codebase if needed, implement changes,
+    and verify your work compiles and tests pass. Output your results in markdown format.
     """
+  end
+
+  defp build_project_context(project_id, payload) do
+    project_info =
+      try do
+        case Samgita.Projects.get_project(project_id) do
+          {:ok, project} ->
+            working_path = project.working_path || ""
+            git_url = project.git_url || ""
+
+            location =
+              if working_path != "",
+                do: "Working directory: #{working_path}",
+                else: "Repository: #{git_url}"
+
+            """
+
+            ## Project: #{project.name}
+            #{location}
+            Phase: #{project.phase}
+            """
+
+          _ ->
+            ""
+        end
+      rescue
+        _ -> ""
+      end
+
+    prd_context =
+      case payload["prd_id"] do
+        nil ->
+          ""
+
+        prd_id ->
+          try do
+            case Samgita.Prds.get_prd(prd_id) do
+              {:ok, prd} ->
+                content = String.slice(prd.content || "", 0, 2000)
+
+                """
+
+                ## PRD: #{prd.title}
+                #{content}
+                """
+
+              _ ->
+                ""
+            end
+          rescue
+            _ -> ""
+          end
+      end
+
+    project_info <> prd_context
   end
 
   defp task_type(%{type: type}), do: type
