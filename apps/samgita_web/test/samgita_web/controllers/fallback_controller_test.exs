@@ -36,6 +36,36 @@ defmodule SamgitaWeb.FallbackControllerTest do
       assert conn.status == 422
     end
 
+    test "renders 422 for :already_active error", %{conn: conn} do
+      conn = FallbackController.call(conn, {:error, :already_active})
+      assert conn.status == 422
+    end
+
+    test "renders 422 for :not_active error", %{conn: conn} do
+      conn = FallbackController.call(conn, {:error, :not_active})
+      assert conn.status == 422
+    end
+
+    test "renders 422 for :prd_not_in_project error", %{conn: conn} do
+      conn = FallbackController.call(conn, {:error, :prd_not_in_project})
+      assert conn.status == 422
+    end
+
+    test "renders 422 for :no_active_prd error", %{conn: conn} do
+      conn = FallbackController.call(conn, {:error, :no_active_prd})
+      assert conn.status == 422
+    end
+
+    test "renders 422 for :max_retries_exceeded error", %{conn: conn} do
+      conn = FallbackController.call(conn, {:error, :max_retries_exceeded})
+      assert conn.status == 422
+    end
+
+    test "renders 422 for :send_timeout error", %{conn: conn} do
+      conn = FallbackController.call(conn, {:error, :send_timeout})
+      assert conn.status == 422
+    end
+
     test "renders 422 for changeset error", %{conn: conn} do
       changeset =
         %Project{}
