@@ -43,15 +43,33 @@ defmodule Samgita.Projects do
 
   def pause_project(id) do
     with {:ok, project} <- get_project(id),
-         true <- project.status == :running || {:error, :not_running} do
-      update_project(project, %{status: :paused})
+         true <- project.status == :running || {:error, :not_running},
+         {:ok, project} <- update_project(project, %{status: :paused}) do
+      notify_orchestrator_pause(id)
+      {:ok, project}
     end
   end
 
   def resume_project(id) do
     with {:ok, project} <- get_project(id),
-         true <- project.status == :paused || {:error, :not_paused} do
-      update_project(project, %{status: :running})
+         true <- project.status == :paused || {:error, :not_paused},
+         {:ok, project} <- update_project(project, %{status: :running}) do
+      notify_orchestrator_resume(id)
+      {:ok, project}
+    end
+  end
+
+  defp notify_orchestrator_pause(project_id) do
+    case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
+      [{pid, _}] -> Samgita.Project.Orchestrator.pause(pid)
+      [] -> :ok
+    end
+  end
+
+  defp notify_orchestrator_resume(project_id) do
+    case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
+      [{pid, _}] -> Samgita.Project.Orchestrator.resume(pid)
+      [] -> :ok
     end
   end
 

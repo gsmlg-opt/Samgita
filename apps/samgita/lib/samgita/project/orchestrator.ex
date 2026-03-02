@@ -27,7 +27,8 @@ defmodule Samgita.Project.Orchestrator do
     phase_entered_at: nil,
     awaiting_quality_gates: false,
     last_progress_task_count: 0,
-    stagnation_checks: 0
+    stagnation_checks: 0,
+    paused: false
   ]
 
   @phases [
@@ -72,6 +73,16 @@ defmodule Samgita.Project.Orchestrator do
   @doc "Set expected task count for current phase. Call after dispatching phase tasks."
   def set_phase_task_count(pid, count) do
     :gen_statem.cast(pid, {:set_phase_task_count, count})
+  end
+
+  @doc "Pause the orchestrator. Halts phase advancement and task processing."
+  def pause(pid) do
+    :gen_statem.cast(pid, :pause)
+  end
+
+  @doc "Resume the orchestrator. Restores phase advancement and task processing."
+  def resume(pid) do
+    :gen_statem.cast(pid, :resume)
   end
 
   def child_spec(opts) do
@@ -209,32 +220,42 @@ defmodule Samgita.Project.Orchestrator do
         "Task completed (#{data.phase_tasks_completed}/#{data.phase_tasks_total})"
       )
 
-      if phase_complete?(data) do
-        if requires_quality_gates?(phase) do
-          Logger.info("[Orchestrator] #{data.project_id}: triggering quality gates for #{phase}")
-          broadcast_activity(data, :reason, "Phase tasks complete, running quality gates")
-          trigger_quality_gates(phase, data)
-          {:keep_state, %{data | awaiting_quality_gates: true}}
-        else
-          case next_phase(phase) do
-            nil ->
-              Logger.info("[Orchestrator] #{data.project_id}: perpetual mode, staying")
-              {:keep_state, data}
-
-            next ->
-              Logger.info("[Orchestrator] #{data.project_id}: auto-advancing #{phase} → #{next}")
-
-              broadcast_activity(
-                data,
-                :phase_change,
-                "All phase tasks complete, auto-advancing to #{next}"
-              )
-
-              {:next_state, next, reset_phase_counters(data)}
-          end
-        end
-      else
+      if data.paused do
+        Logger.info("[Orchestrator] #{data.project_id}: paused, deferring phase check")
         {:keep_state, data}
+      else
+        if phase_complete?(data) do
+          if requires_quality_gates?(phase) do
+            Logger.info(
+              "[Orchestrator] #{data.project_id}: triggering quality gates for #{phase}"
+            )
+
+            broadcast_activity(data, :reason, "Phase tasks complete, running quality gates")
+            trigger_quality_gates(phase, data)
+            {:keep_state, %{data | awaiting_quality_gates: true}}
+          else
+            case next_phase(phase) do
+              nil ->
+                Logger.info("[Orchestrator] #{data.project_id}: perpetual mode, staying")
+                {:keep_state, data}
+
+              next ->
+                Logger.info(
+                  "[Orchestrator] #{data.project_id}: auto-advancing #{phase} → #{next}"
+                )
+
+                broadcast_activity(
+                  data,
+                  :phase_change,
+                  "All phase tasks complete, auto-advancing to #{next}"
+                )
+
+                {:next_state, next, reset_phase_counters(data)}
+            end
+          end
+        else
+          {:keep_state, data}
+        end
       end
     end
 
@@ -276,6 +297,28 @@ defmodule Samgita.Project.Orchestrator do
 
       data = %{data | phase_tasks_total: count}
       {:keep_state, data}
+    end
+
+    def unquote(phase)(:cast, :pause, data) do
+      if data.paused do
+        :keep_state_and_data
+      else
+        Logger.info("[Orchestrator] #{data.project_id}: pausing in phase #{unquote(phase)}")
+        broadcast_activity(data, :reason, "Orchestrator paused")
+        {:keep_state, %{data | paused: true}}
+      end
+    end
+
+    def unquote(phase)(:cast, :resume, data) do
+      if data.paused do
+        Logger.info("[Orchestrator] #{data.project_id}: resuming in phase #{unquote(phase)}")
+        broadcast_activity(data, :reason, "Orchestrator resumed")
+
+        data = %{data | paused: false}
+        maybe_deferred_advance(unquote(phase), data)
+      else
+        :keep_state_and_data
+      end
     end
 
     def unquote(phase)({:timeout, :stagnation}, :check, data) do
@@ -693,6 +736,22 @@ defmodule Samgita.Project.Orchestrator do
     case Projects.get_project(data.project_id) do
       {:ok, project} -> project
       _ -> data.project
+    end
+  end
+
+  defp maybe_deferred_advance(phase, data) do
+    if phase_complete?(data) do
+      if requires_quality_gates?(phase) and not data.awaiting_quality_gates do
+        trigger_quality_gates(phase, data)
+        {:keep_state, %{data | awaiting_quality_gates: true}}
+      else
+        case next_phase(phase) do
+          nil -> {:keep_state, data}
+          next -> {:next_state, next, reset_phase_counters(data)}
+        end
+      end
+    else
+      {:keep_state, data}
     end
   end
 

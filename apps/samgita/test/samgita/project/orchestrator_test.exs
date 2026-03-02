@@ -295,4 +295,84 @@ defmodule Samgita.Project.OrchestratorTest do
 
     :gen_statem.stop(pid)
   end
+
+  test "pause prevents auto-advance on task completion", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    Orchestrator.set_phase_task_count(pid, 2)
+    Process.sleep(10)
+
+    # Pause the orchestrator
+    Orchestrator.pause(pid)
+    Process.sleep(10)
+
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.paused == true
+
+    # Complete all tasks while paused
+    Orchestrator.notify_task_completed(pid, "task-1")
+    Orchestrator.notify_task_completed(pid, "task-2")
+    Process.sleep(100)
+
+    # Should still be in bootstrap despite all tasks being complete
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.phase_tasks_completed == 2
+    assert data.paused == true
+
+    :gen_statem.stop(pid)
+  end
+
+  test "resume after pause triggers deferred advance", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    Orchestrator.set_phase_task_count(pid, 1)
+    Process.sleep(10)
+
+    # Pause, complete task, then resume
+    Orchestrator.pause(pid)
+    Process.sleep(10)
+    Orchestrator.notify_task_completed(pid, "task-1")
+    Process.sleep(50)
+
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.paused == true
+
+    # Resume — should trigger deferred advance
+    Orchestrator.resume(pid)
+    Process.sleep(100)
+
+    {:discovery, data} = Orchestrator.get_state(pid)
+    assert data.paused == false
+
+    :gen_statem.stop(pid)
+  end
+
+  test "double pause is idempotent", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    Orchestrator.pause(pid)
+    Orchestrator.pause(pid)
+    Process.sleep(20)
+
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.paused == true
+
+    :gen_statem.stop(pid)
+  end
+
+  test "resume when not paused is no-op", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    Orchestrator.resume(pid)
+    Process.sleep(20)
+
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.paused == false
+
+    :gen_statem.stop(pid)
+  end
 end
