@@ -514,7 +514,7 @@ defmodule Samgita.Project.Orchestrator do
       }
     ]
 
-    create_phase_tasks(project, tasks, data)
+    create_phase_tasks(project, tasks, data, :discovery)
   end
 
   defp enqueue_phase_tasks(:architecture, data) do
@@ -547,7 +547,7 @@ defmodule Samgita.Project.Orchestrator do
       }
     ]
 
-    create_phase_tasks(project, tasks, data)
+    create_phase_tasks(project, tasks, data, :architecture)
   end
 
   defp enqueue_phase_tasks(:infrastructure, data) do
@@ -574,7 +574,7 @@ defmodule Samgita.Project.Orchestrator do
       }
     ]
 
-    create_phase_tasks(project, tasks, data)
+    create_phase_tasks(project, tasks, data, :infrastructure)
   end
 
   defp enqueue_phase_tasks(:deployment, data) do
@@ -601,7 +601,7 @@ defmodule Samgita.Project.Orchestrator do
       }
     ]
 
-    create_phase_tasks(project, tasks, data)
+    create_phase_tasks(project, tasks, data, :deployment)
   end
 
   defp enqueue_phase_tasks(:development, data) do
@@ -646,7 +646,7 @@ defmodule Samgita.Project.Orchestrator do
       }
     ]
 
-    create_phase_tasks(project, tasks, data)
+    create_phase_tasks(project, tasks, data, :development)
   end
 
   defp enqueue_phase_tasks(:qa, data) do
@@ -679,7 +679,7 @@ defmodule Samgita.Project.Orchestrator do
       }
     ]
 
-    create_phase_tasks(project, tasks, data)
+    create_phase_tasks(project, tasks, data, :qa)
   end
 
   defp enqueue_phase_tasks(_phase, _data) do
@@ -688,7 +688,7 @@ defmodule Samgita.Project.Orchestrator do
     0
   end
 
-  defp create_phase_tasks(project, task_defs, data) do
+  defp create_phase_tasks(project, task_defs, data, phase) do
     prd_id =
       case project do
         %{active_prd_id: id} when not is_nil(id) -> id
@@ -702,7 +702,7 @@ defmodule Samgita.Project.Orchestrator do
           "description" => task_def.description,
           "agent_type" => task_def.agent_type,
           "prd_id" => prd_id,
-          "phase" => to_string(data.project_id)
+          "phase" => to_string(phase)
         },
         priority: task_def.priority,
         status: :pending

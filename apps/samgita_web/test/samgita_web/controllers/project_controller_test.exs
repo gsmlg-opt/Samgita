@@ -96,4 +96,62 @@ defmodule SamgitaWeb.ProjectControllerTest do
       assert json_response(conn, 200)["data"]["status"] == "running"
     end
   end
+
+  describe "stop" do
+    test "returns error when project is not active", %{conn: conn} do
+      {:ok, project} =
+        Projects.create_project(%{
+          name: "Pending",
+          git_url: "git@github.com:org/stop-test.git",
+          status: :pending
+        })
+
+      conn = post(conn, ~p"/api/projects/#{project}/stop")
+      assert json_response(conn, 422)["errors"]["detail"] == "Project is not active"
+    end
+  end
+
+  describe "restart" do
+    test "returns error when project is not active", %{conn: conn} do
+      {:ok, project} =
+        Projects.create_project(%{
+          name: "Pending",
+          git_url: "git@github.com:org/restart-test.git",
+          status: :pending
+        })
+
+      conn = post(conn, ~p"/api/projects/#{project}/restart")
+      assert json_response(conn, 422)["errors"]["detail"] == "Project is not active"
+    end
+  end
+
+  describe "terminate" do
+    test "returns error when project is not active", %{conn: conn} do
+      {:ok, project} =
+        Projects.create_project(%{
+          name: "Pending",
+          git_url: "git@github.com:org/terminate-test.git",
+          status: :pending
+        })
+
+      conn = post(conn, ~p"/api/projects/#{project}/terminate")
+      assert json_response(conn, 422)["errors"]["detail"] == "Project is not active"
+    end
+  end
+
+  describe "start" do
+    test "returns error when project is already active", %{conn: conn} do
+      {:ok, project} =
+        Projects.create_project(%{
+          name: "Running",
+          git_url: "git@github.com:org/start-test.git",
+          status: :running
+        })
+
+      conn =
+        post(conn, ~p"/api/projects/#{project}/start", prd_id: Ecto.UUID.generate())
+
+      assert json_response(conn, 422)["errors"]["detail"] == "Project is already active"
+    end
+  end
 end

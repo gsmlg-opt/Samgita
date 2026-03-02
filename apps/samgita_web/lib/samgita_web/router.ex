@@ -43,6 +43,10 @@ defmodule SamgitaWeb.Router do
     resources "/projects", ProjectController, except: [:new, :edit] do
       post "/pause", ProjectController, :pause
       post "/resume", ProjectController, :resume
+      post "/start", ProjectController, :start
+      post "/stop", ProjectController, :stop
+      post "/restart", ProjectController, :restart
+      post "/terminate", ProjectController, :terminate_project
 
       resources "/prds", PrdController, except: [:new, :edit]
 

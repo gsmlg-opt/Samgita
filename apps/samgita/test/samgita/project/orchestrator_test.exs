@@ -209,7 +209,7 @@ defmodule Samgita.Project.OrchestratorTest do
     :gen_statem.stop(pid)
   end
 
-  test "discovery phase creates analysis tasks", %{project: project} do
+  test "discovery phase creates analysis tasks with correct phase payload", %{project: project} do
     {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
     Process.sleep(50)
 
@@ -221,15 +221,19 @@ defmodule Samgita.Project.OrchestratorTest do
     # Discovery enqueues 3 analysis tasks
     assert data.phase_tasks_total == 3
 
-    # Verify tasks were created in DB
+    # Verify tasks were created in DB with correct phase
     tasks = Samgita.Projects.list_tasks(project.id)
     analysis_tasks = Enum.filter(tasks, &(&1.type == "analysis"))
     assert length(analysis_tasks) == 3
 
+    Enum.each(analysis_tasks, fn task ->
+      assert task.payload["phase"] == "discovery"
+    end)
+
     :gen_statem.stop(pid)
   end
 
-  test "architecture phase creates design tasks", %{project: project} do
+  test "architecture phase creates design tasks with correct phase payload", %{project: project} do
     {:ok, _} = Projects.update_project(project, %{phase: :architecture})
     {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
     Process.sleep(200)
@@ -241,6 +245,10 @@ defmodule Samgita.Project.OrchestratorTest do
     tasks = Samgita.Projects.list_tasks(project.id)
     arch_tasks = Enum.filter(tasks, &(&1.type == "architecture"))
     assert length(arch_tasks) == 4
+
+    Enum.each(arch_tasks, fn task ->
+      assert task.payload["phase"] == "architecture"
+    end)
 
     :gen_statem.stop(pid)
   end

@@ -114,7 +114,12 @@ defmodule Samgita.Agent.Worker do
   def reason(:enter, _old_state, data) do
     broadcast_state_change(data, :reason)
     emit_telemetry(:state_transition, data, %{state: :reason})
-    {:keep_state_and_data, [{:state_timeout, 0, :execute}, {{:timeout, :reason_deadline}, @reason_timeout_ms, :deadline}]}
+
+    {:keep_state_and_data,
+     [
+       {:state_timeout, 0, :execute},
+       {{:timeout, :reason_deadline}, @reason_timeout_ms, :deadline}
+     ]}
   end
 
   def reason(:state_timeout, :execute, data) do
@@ -218,7 +223,12 @@ defmodule Samgita.Agent.Worker do
   def reflect(:enter, _old_state, data) do
     broadcast_state_change(data, :reflect)
     emit_telemetry(:state_transition, data, %{state: :reflect})
-    {:keep_state_and_data, [{:state_timeout, 0, :execute}, {{:timeout, :reflect_deadline}, @reflect_timeout_ms, :deadline}]}
+
+    {:keep_state_and_data,
+     [
+       {:state_timeout, 0, :execute},
+       {{:timeout, :reflect_deadline}, @reflect_timeout_ms, :deadline}
+     ]}
   end
 
   def reflect(:state_timeout, :execute, data) do
@@ -416,6 +426,10 @@ defmodule Samgita.Agent.Worker do
     case task_type do
       "bootstrap" -> build_bootstrap_prompt(data)
       "generate-prd" -> build_prd_prompt(data)
+      "analysis" -> build_analysis_prompt(data)
+      "architecture" -> build_architecture_prompt(data)
+      "review" -> build_review_prompt(data)
+      "test" -> build_test_prompt(data)
       _ -> build_generic_prompt(data)
     end
   end
@@ -551,6 +565,134 @@ defmodule Samgita.Agent.Worker do
     """
   end
 
+  defp build_analysis_prompt(data) do
+    task = data.current_task
+    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
+    payload = task_payload(task)
+    project_context = build_project_context(data.project_id, payload)
+    description = payload["description"] || "Analyze the project"
+
+    """
+    You are a #{type_name} (#{type_desc}).
+    #{project_context}
+    ## Task: Discovery Analysis
+
+    #{description}
+
+    ## Instructions
+
+    Perform a thorough analysis during the discovery phase. Your output should include:
+
+    1. **Findings Summary** — Key observations about the codebase, architecture, and patterns
+    2. **Requirements Analysis** — Extracted functional and non-functional requirements
+    3. **User Stories** — User stories with acceptance criteria derived from the PRD
+    4. **Technical Gaps** — Missing components, outdated dependencies, or architectural concerns
+    5. **Recommendations** — Prioritized list of recommendations for the architecture phase
+    6. **Risk Assessment** — Potential risks and mitigation strategies
+
+    Be specific and actionable. Reference specific files, modules, or code patterns where relevant.
+    Output your analysis in structured markdown format.
+    """
+  end
+
+  defp build_architecture_prompt(data) do
+    task = data.current_task
+    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
+    payload = task_payload(task)
+    project_context = build_project_context(data.project_id, payload)
+    description = payload["description"] || "Design the architecture"
+
+    """
+    You are a #{type_name} (#{type_desc}).
+    #{project_context}
+    ## Task: Architecture Design
+
+    #{description}
+
+    ## Instructions
+
+    Create a detailed architecture design document. Your output should include:
+
+    1. **Component Overview** — High-level system components and their responsibilities
+    2. **API Contracts** — Endpoint definitions, request/response schemas, error codes
+    3. **Data Model** — Database schemas, relationships, indexes, constraints
+    4. **Integration Points** — External services, third-party APIs, message queues
+    5. **Technology Decisions** — Justified technology choices with alternatives considered
+    6. **Security Architecture** — Authentication, authorization, data protection patterns
+    7. **Scalability Considerations** — Horizontal/vertical scaling strategy, bottleneck analysis
+
+    Be concrete — include actual schema definitions, API endpoint paths, and configuration.
+    Output your design in structured markdown format with code blocks for schemas and APIs.
+    """
+  end
+
+  defp build_review_prompt(data) do
+    task = data.current_task
+    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
+    payload = task_payload(task)
+    project_context = build_project_context(data.project_id, payload)
+    description = payload["description"] || "Review the implementation"
+
+    """
+    You are a #{type_name} (#{type_desc}).
+    #{project_context}
+    ## Task: Code Review
+
+    #{description}
+
+    ## Instructions
+
+    Perform a thorough review. Your output should include:
+
+    1. **Summary** — Overall assessment (PASS/FAIL/NEEDS_CHANGES)
+    2. **Critical Issues** — Blocking problems that must be fixed
+    3. **Warnings** — Non-blocking concerns that should be addressed
+    4. **Suggestions** — Optional improvements for code quality
+    5. **Security Findings** — Any security vulnerabilities or risks
+    6. **Test Coverage** — Assessment of test adequacy
+
+    For each finding, include the file path, line range, severity (critical/high/medium/low),
+    and a specific recommendation. Output in structured markdown format.
+    """
+  end
+
+  defp build_test_prompt(data) do
+    task = data.current_task
+    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
+    payload = task_payload(task)
+    project_context = build_project_context(data.project_id, payload)
+    description = payload["description"] || "Write and run tests"
+
+    """
+    You are a #{type_name} (#{type_desc}).
+    #{project_context}
+    ## Task: Testing
+
+    #{description}
+
+    ## Instructions
+
+    1. Analyze the existing codebase and identify areas lacking test coverage
+    2. Write comprehensive tests covering:
+       - Unit tests for individual functions and modules
+       - Integration tests for module interactions
+       - Edge cases and error conditions
+       - Boundary value testing
+    3. Run the test suite and verify all tests pass
+    4. Report test results with coverage metrics
+
+    ## Output Format
+
+    Provide a structured report:
+    - **Tests Written** — List of new test files and what they cover
+    - **Test Results** — Pass/fail counts, any failures with details
+    - **Coverage** — Areas covered and remaining gaps
+    - **Recommendations** — Additional tests that should be written
+
+    Output in structured markdown format.
+    """
+  end
+
   defp build_generic_prompt(data) do
     task = data.current_task
     {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
@@ -665,6 +807,15 @@ defmodule Samgita.Agent.Worker do
       "generate-prd" ->
         save_generated_prd(data)
 
+      "analysis" ->
+        save_artifact(data, :doc, "discovery")
+
+      "architecture" ->
+        save_artifact(data, :doc, "architecture")
+
+      "review" ->
+        save_artifact(data, :doc, "review")
+
       _ ->
         :ok
     end
@@ -729,6 +880,52 @@ defmodule Samgita.Agent.Worker do
       _ ->
         Logger.warning("[#{data.id}] No PRD content to save")
     end
+  end
+
+  defp save_artifact(data, type, category) do
+    case data.act_result do
+      result when is_binary(result) and result != "" ->
+        task = data.current_task
+        payload = task_payload(task)
+        description = payload["description"] || category
+
+        task_id =
+          case task do
+            %{id: id} -> id
+            _ -> nil
+          end
+
+        attrs = %{
+          type: type,
+          path: "#{category}/#{data.agent_type}/#{task_type(task)}",
+          content: result,
+          content_hash: :crypto.hash(:sha256, result) |> Base.encode16(case: :lower),
+          metadata: %{
+            "agent_type" => data.agent_type,
+            "phase" => payload["phase"],
+            "description" => description,
+            "category" => category
+          },
+          project_id: data.project_id,
+          task_id: task_id
+        }
+
+        case Samgita.Repo.insert(
+               Samgita.Domain.Artifact.changeset(%Samgita.Domain.Artifact{}, attrs)
+             ) do
+          {:ok, artifact} ->
+            Logger.info("[#{data.id}] Saved #{category} artifact: #{artifact.id}")
+
+          {:error, reason} ->
+            Logger.warning("[#{data.id}] Failed to save #{category} artifact: #{inspect(reason)}")
+        end
+
+      _ ->
+        Logger.warning("[#{data.id}] No content to save as #{category} artifact")
+    end
+  rescue
+    e ->
+      Logger.warning("[#{data.id}] Error saving #{category} artifact: #{inspect(e)}")
   end
 
   defp maybe_git_checkpoint(data) do

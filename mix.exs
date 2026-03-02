@@ -7,7 +7,8 @@ defmodule Samgita.Umbrella.MixProject do
       version: "0.1.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      releases: releases()
     ]
   end
 
@@ -41,6 +42,22 @@ defmodule Samgita.Umbrella.MixProject do
         "phx.digest"
       ],
       precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "test"]
+    ]
+  end
+
+  defp releases do
+    [
+      samgita: [
+        version: "0.1.0",
+        applications: [
+          samgita_provider: :permanent,
+          samgita: :permanent,
+          samgita_memory: :permanent,
+          samgita_web: :permanent
+        ],
+        include_executables_for: [:unix],
+        steps: [:assemble, :tar]
+      ]
     ]
   end
 end

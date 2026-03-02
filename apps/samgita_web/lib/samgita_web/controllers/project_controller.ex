@@ -51,4 +51,28 @@ defmodule SamgitaWeb.ProjectController do
       render(conn, :show, project: project)
     end
   end
+
+  def start(conn, %{"project_id" => id, "prd_id" => prd_id}) do
+    with {:ok, %Project{} = project} <- Projects.start_project(id, prd_id) do
+      render(conn, :show, project: project)
+    end
+  end
+
+  def stop(conn, %{"project_id" => id}) do
+    with {:ok, %Project{} = project} <- Projects.stop_project(id) do
+      render(conn, :show, project: project)
+    end
+  end
+
+  def restart(conn, %{"project_id" => id}) do
+    with {:ok, %Project{} = project} <- Projects.restart_project(id) do
+      render(conn, :show, project: project)
+    end
+  end
+
+  def terminate_project(conn, %{"project_id" => id}) do
+    with {:ok, %Project{} = project} <- Projects.terminate_project(id) do
+      render(conn, :show, project: project)
+    end
+  end
 end
