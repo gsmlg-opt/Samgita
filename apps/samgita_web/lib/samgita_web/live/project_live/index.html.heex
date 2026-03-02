@@ -301,6 +301,13 @@
                 {Enum.count(@tasks, &(&1.status == :dead_letter))} dead letter
               </span>
             </div>
+            <button
+              :if={Enum.any?(@tasks, &(&1.status in [:failed, :dead_letter]))}
+              phx-click="retry_all_failed"
+              class="ml-auto text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+            >
+              Retry All Failed
+            </button>
           </div>
           <div class="mt-2 h-2 bg-base-300 rounded-full overflow-hidden flex">
             <div
@@ -451,13 +458,22 @@
             :for={task <- @tasks}
             class="border-b border-base-300 last:border-b-0 py-3 flex justify-between items-center"
           >
-            <div class="flex-1">
-              <p class="text-sm font-medium text-base-content">{task.type}</p>
-              <p class="text-xs text-base-content/50">
-                Priority: {task.priority} | Attempts: {task.attempts || 0}
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <p class="text-sm font-medium text-base-content">{task.type}</p>
+                <span
+                  :if={task.payload["description"]}
+                  class="text-xs text-base-content/40 truncate"
+                >
+                  {task.payload["description"]}
+                </span>
+              </div>
+              <p class="text-xs text-base-content/50">{task_meta(task)}</p>
+              <p :if={task.error && is_map(task.error)} class="text-xs text-red-600 mt-1 truncate">
+                {task.error["reason"] || inspect(task.error)}
               </p>
-              <p :if={task.error} class="text-xs text-red-600 mt-1">
-                {if is_map(task.error), do: inspect(task.error), else: task.error}
+              <p :if={task.error && !is_map(task.error)} class="text-xs text-red-600 mt-1">
+                {task.error}
               </p>
             </div>
             <div class="flex items-center gap-2">

@@ -290,6 +290,23 @@ defmodule SamgitaWeb.ProjectLive.Index do
     end
   end
 
+  def handle_event("retry_all_failed", _, socket) do
+    failed_tasks =
+      Enum.filter(socket.assigns.tasks, &(&1.status in [:failed, :dead_letter]))
+
+    retried =
+      Enum.count(failed_tasks, fn task ->
+        match?({:ok, _}, Projects.retry_task(task.id))
+      end)
+
+    {tasks, _} = load_prd_scoped_data(socket.assigns.project, socket.assigns.selected_prd)
+
+    {:noreply,
+     socket
+     |> assign(tasks: tasks)
+     |> put_flash(:info, "#{retried} tasks queued for retry")}
+  end
+
   # PubSub event handlers
   @impl true
   def handle_info({:phase_changed, _project_id, phase}, socket) do
@@ -306,6 +323,12 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
   @impl true
   def handle_info({:task_completed, _task}, socket) do
+    {tasks, _} = load_prd_scoped_data(socket.assigns.project, socket.assigns.selected_prd)
+    {:noreply, assign(socket, tasks: tasks)}
+  end
+
+  @impl true
+  def handle_info({:task_failed, _task}, socket) do
     {tasks, _} = load_prd_scoped_data(socket.assigns.project, socket.assigns.selected_prd)
     {:noreply, assign(socket, tasks: tasks)}
   end
@@ -443,6 +466,16 @@ defmodule SamgitaWeb.ProjectLive.Index do
   def finding_severity_color(:low), do: "text-yellow-600"
   def finding_severity_color(:cosmetic), do: "text-zinc-400"
   def finding_severity_color(_), do: "text-zinc-400"
+
+  def task_meta(task) do
+    base = "Priority: #{task.priority} | Attempts: #{task.attempts || 0}"
+
+    if task.error && is_map(task.error) && task.error["failure_type"] do
+      "#{base} | #{task.error["failure_type"]}"
+    else
+      base
+    end
+  end
 
   def task_progress_pct([], _status), do: 0
 
