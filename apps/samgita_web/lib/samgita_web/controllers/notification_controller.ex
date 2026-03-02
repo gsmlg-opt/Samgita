@@ -211,7 +211,7 @@ defmodule SamgitaWeb.NotificationController do
         }
       }
   """
-  def send_notification(conn, %{"id" => id}) do
+  def send_notification(conn, %{"notification_id" => id}) do
     with {:ok, notification} <- Notifications.get_notification(id),
          {:ok, sent_notification} <- Notifications.send_notification(notification) do
       render(conn, :show, notification: sent_notification)
@@ -257,7 +257,7 @@ defmodule SamgitaWeb.NotificationController do
         }
       }
   """
-  def retry(conn, %{"id" => id}) do
+  def retry(conn, %{"notification_id" => id}) do
     with {:ok, notification} <- Notifications.get_notification(id),
          {:ok, %Notification{} = retried} <- Notifications.retry_notification(notification) do
       render(conn, :show, notification: retried)

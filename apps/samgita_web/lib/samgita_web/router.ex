@@ -60,8 +60,13 @@ defmodule SamgitaWeb.Router do
 
     resources "/webhooks", WebhookController, only: [:index, :create, :delete]
 
+    get "/notifications/pending", NotificationController, :pending
+
     resources "/notifications", NotificationController,
-      only: [:index, :show, :create, :update, :delete]
+      only: [:index, :show, :create, :update, :delete] do
+      post "/send", NotificationController, :send_notification
+      post "/retry", NotificationController, :retry
+    end
 
     resources "/features", FeatureController, except: [:new, :edit] do
       post "/enable", FeatureController, :enable

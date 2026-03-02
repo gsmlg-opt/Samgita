@@ -26,7 +26,21 @@ defmodule SamgitaWeb.FallbackController do
     conn
     |> put_status(:unprocessable_entity)
     |> put_view(json: SamgitaWeb.ErrorJSON)
-    |> render(:"422", message: "Task is not in a retriable state")
+    |> render(:"422", message: "Not in a retriable state")
+  end
+
+  def call(conn, {:error, :max_retries_exceeded}) do
+    conn
+    |> put_status(:unprocessable_entity)
+    |> put_view(json: SamgitaWeb.ErrorJSON)
+    |> render(:"422", message: "Maximum retries exceeded")
+  end
+
+  def call(conn, {:error, :send_timeout}) do
+    conn
+    |> put_status(:unprocessable_entity)
+    |> put_view(json: SamgitaWeb.ErrorJSON)
+    |> render(:"422", message: "Failed to send notification: timeout")
   end
 
   def call(conn, {:error, :already_active}) do

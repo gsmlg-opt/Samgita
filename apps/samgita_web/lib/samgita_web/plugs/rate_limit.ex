@@ -22,8 +22,15 @@ defmodule SamgitaWeb.Plugs.RateLimit do
     now = System.monotonic_time(:millisecond)
     window_start = now - opts.window_ms
 
-    cleanup_expired(key, window_start)
-    count = count_requests(key, window_start)
+    count =
+      try do
+        cleanup_expired(key, window_start)
+        count_requests(key, window_start)
+      rescue
+        ArgumentError ->
+          ensure_table()
+          0
+      end
 
     if count >= opts.limit do
       body =
@@ -38,7 +45,11 @@ defmodule SamgitaWeb.Plugs.RateLimit do
       |> resp(429, body)
       |> halt()
     else
-      record_request(key, now)
+      try do
+        record_request(key, now)
+      rescue
+        ArgumentError -> ensure_table()
+      end
 
       conn
       |> put_resp_header("x-ratelimit-limit", to_string(opts.limit))
