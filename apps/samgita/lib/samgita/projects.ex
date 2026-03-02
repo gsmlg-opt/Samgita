@@ -268,6 +268,34 @@ defmodule Samgita.Projects do
     |> Map.new()
   end
 
+  # Artifact management
+
+  alias Samgita.Domain.Artifact
+
+  def list_artifacts(project_id) do
+    Artifact
+    |> where(project_id: ^project_id)
+    |> order_by(desc: :inserted_at)
+    |> Repo.all()
+  end
+
+  def get_artifact(id) do
+    case Repo.get(Artifact, id) do
+      nil -> {:error, :not_found}
+      artifact -> {:ok, artifact}
+    end
+  end
+
+  def create_artifact(project_id, attrs) do
+    %Artifact{}
+    |> Artifact.changeset(Map.put(attrs, :project_id, project_id))
+    |> Repo.insert()
+  end
+
+  def delete_artifact(%Artifact{} = artifact) do
+    Repo.delete(artifact)
+  end
+
   def enqueue_task(project_id, task_type, agent_type, payload \\ %{}) do
     with {:ok, task} <-
            create_task(project_id, %{

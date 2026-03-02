@@ -55,6 +55,7 @@ defmodule SamgitaWeb.Router do
       end
 
       resources "/agents", AgentRunController, only: [:index, :show]
+      resources "/artifacts", ArtifactController, only: [:index, :show]
     end
 
     resources "/webhooks", WebhookController, only: [:index, :create, :delete]
