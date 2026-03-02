@@ -28,5 +28,45 @@ defmodule SamgitaProviderTest do
       assert SamgitaProvider.provider() == :mock
       Application.delete_env(:samgita_provider, :provider)
     end
+
+    test "can be configured with Codex provider" do
+      Application.put_env(:samgita_provider, :provider, SamgitaProvider.Codex)
+      assert SamgitaProvider.provider() == SamgitaProvider.Codex
+      Application.delete_env(:samgita_provider, :provider)
+    end
+  end
+
+  describe "Codex.build_args/2" do
+    test "builds exec --full-auto args with prompt" do
+      assert SamgitaProvider.Codex.build_args("hello world", []) ==
+               ["exec", "--full-auto", "hello world"]
+    end
+
+    test "ignores opts" do
+      assert SamgitaProvider.Codex.build_args("test", model: "opus", system_prompt: "x") ==
+               ["exec", "--full-auto", "test"]
+    end
+  end
+
+  describe "Codex.effort_for_model/1" do
+    test "maps opus to xhigh" do
+      assert SamgitaProvider.Codex.effort_for_model("opus") == "xhigh"
+    end
+
+    test "maps sonnet to high" do
+      assert SamgitaProvider.Codex.effort_for_model("sonnet") == "high"
+    end
+
+    test "maps haiku to low" do
+      assert SamgitaProvider.Codex.effort_for_model("haiku") == "low"
+    end
+
+    test "defaults to high for unknown models" do
+      assert SamgitaProvider.Codex.effort_for_model("gpt-4") == "high"
+    end
+
+    test "handles atom input" do
+      assert SamgitaProvider.Codex.effort_for_model(:opus) == "xhigh"
+    end
   end
 end

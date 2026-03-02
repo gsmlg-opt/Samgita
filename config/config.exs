@@ -58,6 +58,7 @@ config :samgita, :claude_command, "claude"
 
 # Configure SamgitaProvider
 config :samgita_provider, provider: SamgitaProvider.ClaudeCode
+config :samgita_provider, :codex_command, "codex"
 
 # API keys (override in runtime.exs for production)
 config :samgita, :api_keys, []

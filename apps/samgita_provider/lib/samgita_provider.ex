@@ -7,10 +7,13 @@ defmodule SamgitaProvider do
 
   ## Configuration
 
-      # config/config.exs
+      # Use Claude Code provider (default)
       config :samgita_provider, provider: SamgitaProvider.ClaudeCode
 
-      # config/test.exs
+      # Use Codex provider
+      config :samgita_provider, provider: SamgitaProvider.Codex
+
+      # Use mock provider for tests
       config :samgita_provider, provider: :mock
   """
 
