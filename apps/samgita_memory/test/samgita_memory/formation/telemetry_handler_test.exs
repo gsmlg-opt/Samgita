@@ -33,7 +33,7 @@ defmodule SamgitaMemory.Formation.TelemetryHandlerTest do
           tags: ["prd"]
         )
 
-      assert length(memories) >= 1
+      assert memories != []
     end
   end
 
@@ -56,7 +56,7 @@ defmodule SamgitaMemory.Formation.TelemetryHandlerTest do
           tags: ["error"]
         )
 
-      assert length(memories) >= 1
+      assert memories != []
       assert String.contains?(hd(memories).content, "Failed to parse JSON")
     end
   end
@@ -83,7 +83,7 @@ defmodule SamgitaMemory.Formation.TelemetryHandlerTest do
           tags: ["revision-pattern"]
         )
 
-      assert length(memories) >= 1
+      assert memories != []
       assert String.contains?(hd(memories).content, "database design")
     end
   end

@@ -3,7 +3,7 @@ defmodule SamgitaWeb.ProjectFormLiveTest do
 
   import Phoenix.LiveViewTest
 
-  defp unique_git_url(prefix \\ "form") do
+  defp unique_git_url(prefix) do
     "git@github.com:test/#{prefix}-#{System.unique_integer([:positive])}.git"
   end
 

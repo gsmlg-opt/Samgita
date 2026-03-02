@@ -192,7 +192,7 @@ defmodule SamgitaMemory.MCP.ToolsTest do
       # Should have been truncated
       memories = result.memories
 
-      if length(memories) > 0 do
+      if memories != [] do
         last = List.last(memories)
 
         if is_map(last) and Map.has_key?(last, :truncated) do

@@ -60,7 +60,7 @@ defmodule SamgitaMemory.Workers.SummarizeTest do
           tags: ["revision-pattern"]
         )
 
-      assert length(procedural) >= 1
+      assert procedural != []
     end
 
     test "handles non-existent chain" do
@@ -98,7 +98,7 @@ defmodule SamgitaMemory.Workers.SummarizeTest do
           tags: ["prd-decision"]
         )
 
-      assert length(decision_memories) >= 1
+      assert decision_memories != []
     end
 
     test "creates summary memory" do
@@ -124,7 +124,7 @@ defmodule SamgitaMemory.Workers.SummarizeTest do
           tags: ["prd-summary"]
         )
 
-      assert length(summary_memories) >= 1
+      assert summary_memories != []
     end
 
     test "handles non-existent execution" do

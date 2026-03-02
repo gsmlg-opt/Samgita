@@ -133,7 +133,7 @@ defmodule Samgita.Quality.MockDetector do
 
     all_asserts = Regex.scan(~r/assert\s+/, content)
 
-    if length(all_asserts) > 0 and length(literal_asserts) == length(all_asserts) do
+    if all_asserts != [] and length(literal_asserts) == length(all_asserts) do
       [
         %{
           gate: 8,

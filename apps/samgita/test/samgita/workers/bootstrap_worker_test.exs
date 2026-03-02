@@ -64,14 +64,14 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
     test "generates tasks from PRD", %{project: project, prd: prd} do
       {:ok, tasks} = BootstrapWorker.generate_task_backlog(project, prd)
 
-      assert length(tasks) > 0
+      assert tasks != []
 
       # Should have analysis task
       assert Enum.any?(tasks, fn t -> t.type == "analysis" end)
 
       # Should have implementation tasks for features
       impl_tasks = Enum.filter(tasks, fn t -> t.type == "implement" end)
-      assert length(impl_tasks) >= 3
+      assert Enum.count(impl_tasks) >= 3
 
       # Should have test task
       assert Enum.any?(tasks, fn t -> t.type == "test" end)
@@ -103,7 +103,7 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
           t.type == "implement" and String.contains?(String.downcase(t.description), "api")
         end)
 
-      if length(api_tasks) > 0 do
+      if api_tasks != [] do
         assert Enum.all?(api_tasks, fn t -> t.agent_type == "eng-api" end)
       end
     end
@@ -131,7 +131,7 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
 
       # Verify tasks were created in the database
       tasks = Projects.list_tasks(project.id)
-      assert length(tasks) > 0
+      assert tasks != []
 
       # All tasks should reference the PRD
       Enum.each(tasks, fn task ->

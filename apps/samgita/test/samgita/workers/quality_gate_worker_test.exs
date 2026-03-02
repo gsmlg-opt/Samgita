@@ -109,7 +109,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
         |> Ecto.Query.where(project_id: ^project.id)
         |> Repo.all()
 
-      assert length(artifacts) >= 1
+      assert artifacts != []
       artifact = List.first(artifacts)
       assert artifact.type == :doc
       assert String.starts_with?(artifact.path, "quality_gates/pre_qa_")

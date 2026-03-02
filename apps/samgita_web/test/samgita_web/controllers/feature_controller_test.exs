@@ -36,7 +36,7 @@ defmodule SamgitaWeb.FeatureControllerTest do
 
       conn = get(conn, ~p"/api/features")
       data = json_response(conn, 200)["data"]
-      assert length(data) >= 1
+      assert data != []
       assert Enum.any?(data, &(&1["id"] == feature.id))
     end
 

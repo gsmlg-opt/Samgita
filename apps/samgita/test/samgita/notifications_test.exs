@@ -208,7 +208,7 @@ defmodule Samgita.NotificationsTest do
     test "returns pending notifications" do
       create_notification()
       results = Notifications.get_pending_notifications()
-      assert length(results) >= 1
+      assert results != []
       Enum.each(results, fn n -> assert n.status in ["pending", "retrying"] end)
     end
 

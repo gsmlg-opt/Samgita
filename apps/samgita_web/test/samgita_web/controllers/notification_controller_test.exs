@@ -40,7 +40,7 @@ defmodule SamgitaWeb.NotificationControllerTest do
 
       conn = get(conn, ~p"/api/notifications")
       data = json_response(conn, 200)["data"]
-      assert length(data) >= 1
+      assert data != []
       assert Enum.any?(data, &(&1["id"] == notification.id))
     end
 

@@ -126,7 +126,7 @@ defmodule SamgitaMemory.IntegrationTest do
           tags: ["prd-decision", "integration-prd"]
         )
 
-      assert length(decision_memories) >= 1
+      assert decision_memories != []
       assert String.contains?(hd(decision_memories).content, "bcrypt")
     end
   end
@@ -177,11 +177,11 @@ defmodule SamgitaMemory.IntegrationTest do
           tags: ["revision-pattern"]
         )
 
-      assert length(procedural) >= 1
+      assert procedural != []
 
       # Recall similar chains
       chains = ThinkingChain.recall("caching", scope_type: :project, scope_id: "samgita")
-      assert length(chains) >= 1
+      assert chains != []
       assert hd(chains).id == chain.id
     end
   end

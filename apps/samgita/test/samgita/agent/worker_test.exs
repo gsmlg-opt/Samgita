@@ -5,6 +5,14 @@ defmodule Samgita.Agent.WorkerTest do
 
   alias Samgita.Agent.Worker
 
+  setup do
+    # Enable shared sandbox mode for both repos since Worker spawns processes that need DB access
+    Ecto.Adapters.SQL.Sandbox.mode(Samgita.Repo, {:shared, self()})
+    Ecto.Adapters.SQL.Sandbox.mode(SamgitaMemory.Repo, {:shared, self()})
+
+    :ok
+  end
+
   defp await_idle(pid, remaining_ms \\ 10_000) do
     case Worker.get_state(pid) do
       {:idle, data} ->
