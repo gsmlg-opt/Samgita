@@ -296,6 +296,7 @@ defmodule Samgita.Project.Orchestrator do
             "Stagnation: #{checks} checks without task progress in #{phase}"
           )
 
+          Samgita.Events.stagnation_detected(data.project_id, phase, checks)
           data = %{data | stagnation_checks: checks}
 
           {:keep_state, data,

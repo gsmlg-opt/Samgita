@@ -60,6 +60,34 @@ defmodule Samgita.Events do
     Phoenix.PubSub.broadcast(@pubsub, "projects", {:project_updated, project})
   end
 
+  def quality_gate_completed(project_id, verdict, gate_results) do
+    Phoenix.PubSub.broadcast(
+      @pubsub,
+      "project:#{project_id}",
+      {:quality_gate_results, project_id, verdict, gate_results}
+    )
+
+    findings_count =
+      gate_results
+      |> Enum.flat_map(fn r -> Map.get(r, :findings, []) end)
+      |> length()
+
+    Samgita.Webhooks.dispatch("quality_gate.completed", %{
+      project_id: project_id,
+      verdict: to_string(verdict),
+      gate_count: length(gate_results),
+      findings_count: findings_count
+    })
+  end
+
+  def stagnation_detected(project_id, phase, checks) do
+    Samgita.Webhooks.dispatch("project.stagnation_detected", %{
+      project_id: project_id,
+      phase: to_string(phase),
+      stagnation_checks: checks
+    })
+  end
+
   def activity_log(project_id, entry) do
     Phoenix.PubSub.broadcast(@pubsub, "project:#{project_id}", {:activity_log, entry})
   end

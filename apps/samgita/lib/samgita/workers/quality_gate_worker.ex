@@ -235,11 +235,7 @@ defmodule Samgita.Workers.QualityGateWorker do
   end
 
   defp broadcast_gate_results(project_id, verdict, gate_results) do
-    Phoenix.PubSub.broadcast(
-      Samgita.PubSub,
-      "project:#{project_id}",
-      {:quality_gate_results, project_id, verdict, gate_results}
-    )
+    Samgita.Events.quality_gate_completed(project_id, verdict, gate_results)
   end
 
   defp store_gate_results(project, gate_type, verdict, gate_results) do
