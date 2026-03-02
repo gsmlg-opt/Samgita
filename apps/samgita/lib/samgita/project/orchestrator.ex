@@ -21,7 +21,8 @@ defmodule Samgita.Project.Orchestrator do
     task_count: 0,
     phase_tasks_total: 0,
     phase_tasks_completed: 0,
-    phase_entered_at: nil
+    phase_entered_at: nil,
+    awaiting_quality_gates: false
   ]
 
   @phases [
@@ -193,24 +194,62 @@ defmodule Samgita.Project.Orchestrator do
       )
 
       if phase_complete?(data) do
+        if requires_quality_gates?(phase) do
+          Logger.info("[Orchestrator] #{data.project_id}: triggering quality gates for #{phase}")
+          broadcast_activity(data, :reason, "Phase tasks complete, running quality gates")
+          trigger_quality_gates(phase, data)
+          {:keep_state, %{data | awaiting_quality_gates: true}}
+        else
+          case next_phase(phase) do
+            nil ->
+              Logger.info("[Orchestrator] #{data.project_id}: perpetual mode, staying")
+              {:keep_state, data}
+
+            next ->
+              Logger.info("[Orchestrator] #{data.project_id}: auto-advancing #{phase} → #{next}")
+
+              broadcast_activity(
+                data,
+                :phase_change,
+                "All phase tasks complete, auto-advancing to #{next}"
+              )
+
+              {:next_state, next, reset_phase_counters(data)}
+          end
+        end
+      else
+        {:keep_state, data}
+      end
+    end
+
+    def unquote(phase)(:cast, :quality_gates_passed, data) do
+      phase = unquote(phase)
+
+      if data.awaiting_quality_gates do
         case next_phase(phase) do
           nil ->
-            Logger.info("[Orchestrator] #{data.project_id}: perpetual mode, staying")
-            {:keep_state, data}
+            Logger.info("[Orchestrator] #{data.project_id}: quality gates passed, perpetual mode")
+            {:keep_state, %{data | awaiting_quality_gates: false}}
 
           next ->
-            Logger.info("[Orchestrator] #{data.project_id}: auto-advancing #{phase} → #{next}")
+            Logger.info(
+              "[Orchestrator] #{data.project_id}: quality gates passed, advancing #{phase} → #{next}"
+            )
 
             broadcast_activity(
               data,
               :phase_change,
-              "All phase tasks complete, auto-advancing to #{next}"
+              "Quality gates passed, advancing to #{next}"
             )
 
-            {:next_state, next, reset_phase_counters(data)}
+            {:next_state, next, reset_phase_counters(%{data | awaiting_quality_gates: false})}
         end
       else
-        {:keep_state, data}
+        Logger.warning(
+          "[Orchestrator] #{data.project_id}: received quality_gates_passed but not awaiting"
+        )
+
+        :keep_state_and_data
       end
     end
 
@@ -317,6 +356,33 @@ defmodule Samgita.Project.Orchestrator do
 
   defp phase_complete?(%{phase_tasks_total: total, phase_tasks_completed: completed}),
     do: completed >= total
+
+  defp requires_quality_gates?(:development), do: true
+  defp requires_quality_gates?(:qa), do: true
+  defp requires_quality_gates?(_), do: false
+
+  defp trigger_quality_gates(current_phase, data) do
+    prd_id =
+      case Projects.get_project(data.project_id) do
+        {:ok, project} -> project.active_prd_id
+        _ -> nil
+      end
+
+    gate_type =
+      case current_phase do
+        :development -> "pre_qa"
+        :qa -> "pre_deploy"
+        _ -> "pre_qa"
+      end
+
+    Oban.insert(
+      Samgita.Workers.QualityGateWorker.new(%{
+        project_id: data.project_id,
+        prd_id: prd_id,
+        gate_type: gate_type
+      })
+    )
+  end
 
   defp reset_phase_counters(data) do
     %{data | phase_tasks_total: 0, phase_tasks_completed: 0}

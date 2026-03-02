@@ -161,4 +161,65 @@ defmodule Samgita.Project.OrchestratorTest do
 
     :gen_statem.stop(pid)
   end
+
+  test "development phase triggers quality gates instead of auto-advancing", %{project: project} do
+    {:ok, _} = Projects.update_project(project, %{phase: :development})
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    assert {:development, _} = Orchestrator.get_state(pid)
+
+    # Complete all tasks — should NOT auto-advance, should wait for quality gates
+    Orchestrator.set_phase_task_count(pid, 1)
+    Process.sleep(10)
+    Orchestrator.notify_task_completed(pid, "task-1")
+    Process.sleep(100)
+
+    # Still in development, awaiting quality gates
+    {:development, data} = Orchestrator.get_state(pid)
+    assert data.awaiting_quality_gates == true
+
+    :gen_statem.stop(pid)
+  end
+
+  test "development phase advances after quality_gates_passed", %{project: project} do
+    {:ok, _} = Projects.update_project(project, %{phase: :development})
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    # Complete tasks to trigger gate wait
+    Orchestrator.set_phase_task_count(pid, 1)
+    Process.sleep(10)
+    Orchestrator.notify_task_completed(pid, "task-1")
+    Process.sleep(100)
+
+    {:development, data} = Orchestrator.get_state(pid)
+    assert data.awaiting_quality_gates == true
+
+    # Simulate quality gates passing
+    :gen_statem.cast(pid, :quality_gates_passed)
+    Process.sleep(100)
+
+    # Should have advanced to qa
+    assert {:qa, data} = Orchestrator.get_state(pid)
+    assert data.awaiting_quality_gates == false
+
+    :gen_statem.stop(pid)
+  end
+
+  test "quality_gates_passed ignored when not awaiting", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    assert {:bootstrap, _} = Orchestrator.get_state(pid)
+
+    # Send quality_gates_passed when not awaiting — should be ignored
+    :gen_statem.cast(pid, :quality_gates_passed)
+    Process.sleep(50)
+
+    assert {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.awaiting_quality_gates == false
+
+    :gen_statem.stop(pid)
+  end
 end

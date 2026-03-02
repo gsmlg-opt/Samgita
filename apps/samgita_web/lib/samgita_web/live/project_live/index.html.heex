@@ -273,6 +273,44 @@
           </div>
         </div>
 
+        <%!-- Quality Gate Results --%>
+        <div :if={@quality_gate_verdict} class="bg-base-200 rounded-lg shadow p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-medium text-base-content/50">Quality Gates</h3>
+            <span class={"px-2 py-1 text-xs rounded-full font-semibold #{if @quality_gate_verdict == :pass, do: "bg-green-100 text-green-800", else: "bg-red-100 text-red-800"}"}>
+              {@quality_gate_verdict}
+            </span>
+          </div>
+          <div class="space-y-2">
+            <div
+              :for={result <- @quality_gate_results}
+              class="border border-base-300 rounded-lg p-3"
+            >
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-base-content">
+                  Gate {result.gate}: {result.name}
+                </span>
+                <span class={"text-xs px-2 py-0.5 rounded-full #{gate_verdict_color(result.verdict)}"}>
+                  {result.verdict}
+                </span>
+              </div>
+              <div :if={result.findings != []} class="mt-2 space-y-1">
+                <div
+                  :for={finding <- Enum.take(result.findings, 5)}
+                  class="text-xs text-base-content/70 flex gap-2"
+                >
+                  <span class={"shrink-0 #{finding_severity_color(finding.severity)}"}>[{finding.severity}]</span>
+                  <span class="break-words min-w-0">{finding.message}</span>
+                </div>
+                <p :if={length(result.findings) > 5} class="text-xs text-base-content/40">
+                  + {length(result.findings) - 5} more findings
+                </p>
+              </div>
+              <p :if={result.findings == []} class="text-xs text-base-content/40 mt-1">No findings</p>
+            </div>
+          </div>
+        </div>
+
         <%!-- Tasks --%>
         <div class="bg-base-200 rounded-lg shadow p-4">
           <div class="flex justify-between items-center mb-3">

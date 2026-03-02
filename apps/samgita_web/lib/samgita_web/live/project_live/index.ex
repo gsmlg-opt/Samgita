@@ -28,7 +28,9 @@ defmodule SamgitaWeb.ProjectLive.Index do
            active_agents: %{},
            show_task_form: false,
            task_form: %{type: "", payload: "{}"},
-           log_count: 0
+           log_count: 0,
+           quality_gate_verdict: nil,
+           quality_gate_results: []
          )
          |> stream(:activity_log, [])}
 
@@ -319,6 +321,15 @@ defmodule SamgitaWeb.ProjectLive.Index do
   end
 
   @impl true
+  def handle_info({:quality_gate_results, _project_id, verdict, gate_results}, socket) do
+    {:noreply,
+     assign(socket,
+       quality_gate_verdict: verdict,
+       quality_gate_results: gate_results
+     )}
+  end
+
+  @impl true
   def handle_info({:activity_log, entry}, socket) do
     {:noreply,
      socket
@@ -416,6 +427,19 @@ defmodule SamgitaWeb.ProjectLive.Index do
   def log_source_label(:orchestrator), do: "ORC"
   def log_source_label(:task), do: "TSK"
   def log_source_label(_), do: "SYS"
+
+  def gate_verdict_color(:pass), do: "bg-green-100 text-green-800"
+  def gate_verdict_color(:fail), do: "bg-red-100 text-red-800"
+  def gate_verdict_color(:warn), do: "bg-yellow-100 text-yellow-800"
+  def gate_verdict_color(:skip), do: "bg-zinc-100 text-zinc-600"
+  def gate_verdict_color(_), do: "bg-zinc-100 text-zinc-600"
+
+  def finding_severity_color(:critical), do: "text-red-600 font-bold"
+  def finding_severity_color(:high), do: "text-red-500"
+  def finding_severity_color(:medium), do: "text-orange-500"
+  def finding_severity_color(:low), do: "text-yellow-600"
+  def finding_severity_color(:cosmetic), do: "text-zinc-400"
+  def finding_severity_color(_), do: "text-zinc-400"
 
   def task_progress_pct([], _status), do: 0
 
