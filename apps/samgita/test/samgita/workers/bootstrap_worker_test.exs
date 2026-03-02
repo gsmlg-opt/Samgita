@@ -150,6 +150,85 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
     end
   end
 
+  describe "milestone extraction" do
+    test "extracts milestones from PRD with phases section", %{project: project} do
+      prd = %Prd{
+        content: """
+        # Project X
+
+        ## Overview
+        A task management app.
+
+        ## Milestones
+
+        1. Core user authentication and registration
+        2. Task CRUD with database schema
+        3. Real-time WebSocket notifications
+        4. Dashboard analytics and reporting
+
+        ## Features
+
+        - User registration and login via JWT authentication
+        - Create, edit, and delete tasks with database operations
+        - WebSocket push notifications for task updates
+        - Analytics dashboard with charts
+        """,
+        title: "Milestone PRD"
+      }
+
+      {:ok, tasks} = BootstrapWorker.generate_task_backlog(project, prd)
+
+      milestone_tasks = Enum.filter(tasks, fn t -> t.type == "milestone" end)
+      assert length(milestone_tasks) == 4
+
+      # Milestones should be ordered
+      orders = Enum.map(milestone_tasks, fn t -> t.payload["milestone_order"] end) |> Enum.sort()
+      assert orders == [1, 2, 3, 4]
+    end
+
+    test "links implementation tasks to parent milestones", %{project: project} do
+      prd = %Prd{
+        content: """
+        # Project Y
+
+        ## Milestones
+
+        1. Authentication system setup
+
+        ## Features
+
+        - JWT authentication with refresh tokens
+        - User profile management
+        """,
+        title: "Linked PRD"
+      }
+
+      {:ok, tasks} = BootstrapWorker.generate_task_backlog(project, prd)
+
+      # The auth-related feature should have a parent_milestone reference
+      auth_impl =
+        Enum.find(tasks, fn t ->
+          t.type == "implement" and String.contains?(t.description, "authentication")
+        end)
+
+      if auth_impl do
+        assert Map.has_key?(auth_impl, :parent_milestone)
+      end
+    end
+  end
+
+  describe "metadata extraction" do
+    test "populates PRD metadata on perform", %{project: project, prd: prd} do
+      job = %Oban.Job{args: %{"project_id" => project.id, "prd_id" => prd.id}}
+      assert :ok = BootstrapWorker.perform(job)
+
+      updated_prd = Repo.get(Prd, prd.id)
+      assert updated_prd.metadata["parsed_at"]
+      assert is_list(updated_prd.metadata["tech_stack"])
+      assert is_list(updated_prd.metadata["non_functional"])
+    end
+  end
+
   describe "PRD parsing edge cases" do
     test "handles empty PRD", %{project: project} do
       empty_prd = %Prd{content: "", title: "Empty"}

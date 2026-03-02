@@ -2,9 +2,17 @@ defmodule Samgita.Workers.BootstrapWorker do
   @moduledoc """
   Oban worker that bootstraps a project from a PRD.
 
-  Parses PRD content, extracts requirements, and generates a structured
-  task backlog. This is the first step in the autonomous pipeline:
-  PRD → tasks → agent dispatch → development.
+  Parses PRD content, extracts requirements, milestones, and generates
+  a structured task backlog with dependencies. This is the first step
+  in the autonomous pipeline: PRD → tasks → agent dispatch → development.
+
+  ## PRD Parsing
+
+  The worker extracts structured data from markdown PRDs:
+  - **Sections**: H1/H2 headers become named sections
+  - **Milestones**: Sections matching milestone/phase patterns become parent tasks
+  - **Features**: Bullet points and numbered lists become implementation tasks
+  - **Metadata**: Goals, tech stack, and milestones populate `prd.metadata`
   """
 
   use Oban.Worker,
@@ -23,6 +31,7 @@ defmodule Samgita.Workers.BootstrapWorker do
 
     with {:ok, project} <- Projects.get_project(project_id),
          {:ok, prd} <- get_prd(project, prd_id),
+         :ok <- extract_and_save_metadata(prd),
          {:ok, tasks} <- generate_task_backlog(project, prd) do
       task_count = length(tasks)
 
@@ -51,6 +60,7 @@ defmodule Samgita.Workers.BootstrapWorker do
   Parse PRD content and generate a structured task backlog.
 
   Returns a list of task descriptors: `%{type, agent_type, priority, description, payload}`.
+  Milestones extracted from PRD become parent tasks with features as children.
   """
   def generate_task_backlog(project, prd) do
     prd_content = prd.content || ""
@@ -58,12 +68,16 @@ defmodule Samgita.Workers.BootstrapWorker do
     # Extract sections from markdown PRD
     sections = parse_prd_sections(prd_content)
 
+    # Extract milestones for dependency tracking
+    milestones = extract_milestones(sections)
+
     # Generate tasks from sections
     tasks =
       []
       |> add_analysis_tasks(sections, project)
       |> add_architecture_tasks(sections, project)
-      |> add_implementation_tasks(sections, project)
+      |> add_milestone_tasks(milestones, sections, project)
+      |> add_implementation_tasks(sections, project, milestones)
       |> add_testing_tasks(sections, project)
       |> add_documentation_tasks(sections, project)
 
@@ -118,6 +132,116 @@ defmodule Samgita.Workers.BootstrapWorker do
     |> String.trim("_")
   end
 
+  ## Metadata Extraction
+
+  defp extract_and_save_metadata(prd) do
+    content = prd.content || ""
+    sections = parse_prd_sections(content)
+
+    metadata = %{
+      "goals" => extract_goals(sections),
+      "tech_stack" => extract_tech_stack(sections),
+      "milestones" => Enum.map(extract_milestones(sections), fn m -> m.title end),
+      "non_functional" => extract_non_functional(sections),
+      "parsed_at" => DateTime.utc_now() |> DateTime.to_iso8601()
+    }
+
+    case Samgita.Prds.update_prd(prd, %{metadata: Map.merge(prd.metadata || %{}, metadata)}) do
+      {:ok, _} -> :ok
+      {:error, _} -> :ok
+    end
+  end
+
+  defp extract_goals(sections) do
+    goal_keys =
+      Enum.filter(Map.keys(sections), fn key ->
+        String.contains?(key, "goal") or String.contains?(key, "objective") or
+          String.contains?(key, "success")
+      end)
+
+    goal_keys
+    |> Enum.flat_map(fn key -> Map.get(sections, key, []) end)
+    |> Enum.filter(&is_feature_line?/1)
+    |> Enum.map(&extract_feature_text/1)
+    |> Enum.reject(&is_nil/1)
+    |> Enum.take(10)
+  end
+
+  defp extract_tech_stack(sections) do
+    tech_keys =
+      Enum.filter(Map.keys(sections), fn key ->
+        String.contains?(key, "technical") or String.contains?(key, "stack") or
+          String.contains?(key, "technology") or String.contains?(key, "architect")
+      end)
+
+    tech_keys
+    |> Enum.flat_map(fn key -> Map.get(sections, key, []) end)
+    |> Enum.filter(&is_feature_line?/1)
+    |> Enum.map(&extract_feature_text/1)
+    |> Enum.reject(&is_nil/1)
+    |> Enum.take(20)
+  end
+
+  defp extract_non_functional(sections) do
+    nfr_keys =
+      Enum.filter(Map.keys(sections), fn key ->
+        String.contains?(key, "non_functional") or String.contains?(key, "performance") or
+          String.contains?(key, "security") or String.contains?(key, "scalab")
+      end)
+
+    nfr_keys
+    |> Enum.flat_map(fn key -> Map.get(sections, key, []) end)
+    |> Enum.filter(&is_feature_line?/1)
+    |> Enum.map(&extract_feature_text/1)
+    |> Enum.reject(&is_nil/1)
+    |> Enum.take(10)
+  end
+
+  ## Milestone Extraction
+
+  @doc """
+  Extract milestones/phases from PRD sections.
+
+  Looks for sections that represent development phases or milestones
+  (e.g., "Milestones", "Phases", "Roadmap") and extracts ordered items.
+  """
+  def extract_milestones(sections) do
+    milestone_keys =
+      Enum.filter(Map.keys(sections), fn key ->
+        String.contains?(key, "milestone") or String.contains?(key, "phase") or
+          String.contains?(key, "roadmap") or String.contains?(key, "timeline") or
+          String.contains?(key, "deliverable") or String.contains?(key, "sprint")
+      end)
+
+    milestone_keys
+    |> Enum.flat_map(fn key -> Map.get(sections, key, []) end)
+    |> Enum.filter(&is_feature_line?/1)
+    |> Enum.map(&extract_feature_text/1)
+    |> Enum.reject(&is_nil/1)
+    |> Enum.with_index(1)
+    |> Enum.map(fn {title, idx} ->
+      %{title: title, order: idx, features: extract_milestone_features(title, sections)}
+    end)
+    |> Enum.take(20)
+  end
+
+  defp extract_milestone_features(milestone_title, sections) do
+    milestone_lower = String.downcase(milestone_title)
+
+    # Find features that semantically belong to this milestone
+    all_features = extract_features(sections)
+
+    Enum.filter(all_features, fn feature ->
+      feature_lower = String.downcase(feature)
+
+      # Check for keyword overlap between milestone and feature
+      milestone_words =
+        milestone_lower |> String.split(~r/\W+/, trim: true) |> Enum.reject(&(byte_size(&1) < 4))
+
+      Enum.any?(milestone_words, fn word -> String.contains?(feature_lower, word) end)
+    end)
+  end
+
   ## Task Generation
 
   defp add_analysis_tasks(tasks, sections, project) do
@@ -165,18 +289,49 @@ defmodule Samgita.Workers.BootstrapWorker do
     end
   end
 
-  defp add_implementation_tasks(tasks, sections, project) do
+  defp add_milestone_tasks(tasks, milestones, _sections, project) do
+    milestone_tasks =
+      milestones
+      |> Enum.map(fn milestone ->
+        %{
+          type: "milestone",
+          agent_type: "prod-pm",
+          priority: 2 + milestone.order,
+          description: "Milestone #{milestone.order}: #{milestone.title}",
+          payload: %{
+            "project_name" => project.name,
+            "milestone_order" => milestone.order,
+            "milestone_title" => milestone.title,
+            "feature_count" => length(milestone.features)
+          }
+        }
+      end)
+
+    milestone_tasks ++ tasks
+  end
+
+  defp add_implementation_tasks(tasks, sections, project, milestones) do
     # Extract feature requirements from sections
     features = extract_features(sections)
+
+    # Build a map of feature -> milestone_title for dependency linking
+    feature_to_milestone =
+      milestones
+      |> Enum.flat_map(fn m ->
+        Enum.map(m.features, fn f -> {f, "Milestone #{m.order}: #{m.title}"} end)
+      end)
+      |> Map.new()
 
     feature_tasks =
       features
       |> Enum.with_index(1)
       |> Enum.map(fn {feature, idx} ->
-        %{
+        base_priority = if milestones == [], do: 3 + div(idx, 5), else: 10 + idx
+
+        task = %{
           type: "implement",
           agent_type: agent_for_feature(feature),
-          priority: 3 + div(idx, 5),
+          priority: base_priority,
           description: "Implement: #{feature}",
           payload: %{
             "project_name" => project.name,
@@ -184,6 +339,12 @@ defmodule Samgita.Workers.BootstrapWorker do
             "working_path" => project.working_path
           }
         }
+
+        # Link to parent milestone if applicable
+        case Map.get(feature_to_milestone, feature) do
+          nil -> task
+          milestone_desc -> Map.put(task, :parent_milestone, milestone_desc)
+        end
       end)
 
     feature_tasks ++ tasks
@@ -269,23 +430,72 @@ defmodule Samgita.Workers.BootstrapWorker do
     feature_lower = String.downcase(feature)
 
     cond do
-      String.contains?(feature_lower, ["ui", "frontend", "component", "page", "view"]) ->
+      String.contains?(feature_lower, [
+        "ui",
+        "frontend",
+        "component",
+        "page",
+        "view",
+        "css",
+        "layout",
+        "responsive"
+      ]) ->
         "eng-frontend"
 
-      String.contains?(feature_lower, ["api", "endpoint", "rest", "graphql"]) ->
+      String.contains?(feature_lower, ["api", "endpoint", "rest", "graphql", "webhook", "route"]) ->
         "eng-api"
 
-      String.contains?(feature_lower, ["database", "schema", "migration", "query"]) ->
+      String.contains?(feature_lower, [
+        "database",
+        "schema",
+        "migration",
+        "query",
+        "model",
+        "table",
+        "index"
+      ]) ->
         "eng-database"
 
-      String.contains?(feature_lower, ["deploy", "ci", "cd", "docker"]) ->
+      String.contains?(feature_lower, ["mobile", "ios", "android", "react native", "flutter"]) ->
+        "eng-mobile"
+
+      String.contains?(feature_lower, [
+        "deploy",
+        "ci",
+        "cd",
+        "docker",
+        "kubernetes",
+        "k8s",
+        "infrastructure",
+        "terraform"
+      ]) ->
         "ops-devops"
 
-      String.contains?(feature_lower, ["security", "auth", "permission"]) ->
+      String.contains?(feature_lower, [
+        "security",
+        "auth",
+        "permission",
+        "encrypt",
+        "jwt",
+        "oauth",
+        "rbac"
+      ]) ->
         "ops-security"
 
-      String.contains?(feature_lower, ["test", "spec", "coverage"]) ->
+      String.contains?(feature_lower, ["monitor", "alert", "log", "metric", "observ"]) ->
+        "ops-monitor"
+
+      String.contains?(feature_lower, ["test", "spec", "coverage", "e2e", "integration"]) ->
         "eng-qa"
+
+      String.contains?(feature_lower, ["performance", "cache", "optim", "latency", "load"]) ->
+        "eng-perf"
+
+      String.contains?(feature_lower, ["ml", "machine learning", "model", "training", "ai"]) ->
+        "data-ml"
+
+      String.contains?(feature_lower, ["analytics", "report", "dashboard", "chart", "metric"]) ->
+        "data-analytics"
 
       true ->
         "eng-backend"
@@ -295,40 +505,79 @@ defmodule Samgita.Workers.BootstrapWorker do
   ## Task Enqueuing
 
   defp enqueue_tasks(project_id, prd_id, task_descriptors) do
-    task_descriptors
-    |> Enum.sort_by(& &1.priority)
-    |> Enum.reduce([], fn descriptor, acc ->
-      payload =
-        Map.merge(descriptor.payload, %{"prd_id" => prd_id})
+    sorted = Enum.sort_by(task_descriptors, & &1.priority)
 
-      case Projects.create_task(project_id, %{
-             type: descriptor.type,
-             priority: descriptor.priority,
-             payload: payload,
-             status: :pending
-           }) do
-        {:ok, task} ->
-          case Oban.insert(
-                 AgentTaskWorker.new(%{
-                   task_id: task.id,
-                   project_id: project_id,
-                   agent_type: descriptor.agent_type
-                 })
-               ) do
-            {:ok, _job} ->
-              [task | acc]
+    # First pass: create milestone tasks and build a description-to-id map
+    {milestone_map, milestone_tasks} =
+      sorted
+      |> Enum.filter(fn d -> d.type == "milestone" end)
+      |> Enum.reduce({%{}, []}, fn descriptor, {map, acc} ->
+        payload = Map.merge(descriptor.payload, %{"prd_id" => prd_id})
 
-            {:error, reason} ->
-              Logger.warning("[BootstrapWorker] Failed to enqueue task: #{inspect(reason)}")
-              acc
+        case Projects.create_task(project_id, %{
+               type: descriptor.type,
+               priority: descriptor.priority,
+               payload: payload,
+               status: :pending
+             }) do
+          {:ok, task} ->
+            {Map.put(map, descriptor.description, task.id), [task | acc]}
+
+          {:error, reason} ->
+            Logger.warning("[BootstrapWorker] Failed to create milestone: #{inspect(reason)}")
+            {map, acc}
+        end
+      end)
+
+    # Second pass: create all other tasks, linking to parent milestones
+    other_tasks =
+      sorted
+      |> Enum.reject(fn d -> d.type == "milestone" end)
+      |> Enum.reduce([], fn descriptor, acc ->
+        payload = Map.merge(descriptor.payload, %{"prd_id" => prd_id})
+
+        parent_task_id =
+          case Map.get(descriptor, :parent_milestone) do
+            nil -> nil
+            milestone_desc -> Map.get(milestone_map, milestone_desc)
           end
 
-        {:error, reason} ->
-          Logger.warning("[BootstrapWorker] Failed to create task: #{inspect(reason)}")
-          acc
-      end
-    end)
-    |> Enum.reverse()
+        task_attrs = %{
+          type: descriptor.type,
+          priority: descriptor.priority,
+          payload: payload,
+          status: :pending
+        }
+
+        task_attrs =
+          if parent_task_id,
+            do: Map.put(task_attrs, :parent_task_id, parent_task_id),
+            else: task_attrs
+
+        case Projects.create_task(project_id, task_attrs) do
+          {:ok, task} ->
+            case Oban.insert(
+                   AgentTaskWorker.new(%{
+                     task_id: task.id,
+                     project_id: project_id,
+                     agent_type: descriptor.agent_type
+                   })
+                 ) do
+              {:ok, _job} ->
+                [task | acc]
+
+              {:error, reason} ->
+                Logger.warning("[BootstrapWorker] Failed to enqueue task: #{inspect(reason)}")
+                acc
+            end
+
+          {:error, reason} ->
+            Logger.warning("[BootstrapWorker] Failed to create task: #{inspect(reason)}")
+            acc
+        end
+      end)
+
+    Enum.reverse(milestone_tasks ++ other_tasks)
   end
 
   defp notify_orchestrator(project_id, task_count) do
