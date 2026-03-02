@@ -88,4 +88,77 @@ defmodule Samgita.Project.OrchestratorTest do
 
     :gen_statem.stop(pid)
   end
+
+  test "auto-advances phase when all tasks complete", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    assert {:bootstrap, _} = Orchestrator.get_state(pid)
+
+    # Set expected task count and complete them
+    Orchestrator.set_phase_task_count(pid, 2)
+    Process.sleep(10)
+    Orchestrator.notify_task_completed(pid, "task-1")
+    Process.sleep(10)
+    Orchestrator.notify_task_completed(pid, "task-2")
+    Process.sleep(100)
+
+    # Should have auto-advanced to discovery
+    assert {:discovery, data} = Orchestrator.get_state(pid)
+    assert data.phase_tasks_completed == 0
+    assert data.phase_tasks_total == 0
+
+    :gen_statem.stop(pid)
+  end
+
+  test "does not auto-advance when tasks remain", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    Orchestrator.set_phase_task_count(pid, 3)
+    Process.sleep(10)
+    Orchestrator.notify_task_completed(pid, "task-1")
+    Orchestrator.notify_task_completed(pid, "task-2")
+    Process.sleep(50)
+
+    # Should still be in bootstrap (2/3 tasks)
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.phase_tasks_completed == 2
+    assert data.phase_tasks_total == 3
+
+    :gen_statem.stop(pid)
+  end
+
+  test "does not auto-advance when phase_tasks_total is 0", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    # Complete tasks without setting total — should not auto-advance
+    Orchestrator.notify_task_completed(pid, "task-1")
+    Process.sleep(50)
+
+    assert {:bootstrap, _} = Orchestrator.get_state(pid)
+
+    :gen_statem.stop(pid)
+  end
+
+  test "resets phase counters on phase transition", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(50)
+
+    # Set and complete tasks to trigger auto-advance
+    Orchestrator.set_phase_task_count(pid, 1)
+    Process.sleep(10)
+    Orchestrator.notify_task_completed(pid, "task-1")
+    Process.sleep(100)
+
+    # Should be in discovery with reset counters
+    {:discovery, data} = Orchestrator.get_state(pid)
+    assert data.phase_tasks_total == 0
+    assert data.phase_tasks_completed == 0
+    # Total task count persists across phases
+    assert data.task_count >= 1
+
+    :gen_statem.stop(pid)
+  end
 end

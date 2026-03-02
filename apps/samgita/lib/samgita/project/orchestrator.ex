@@ -17,8 +17,11 @@ defmodule Samgita.Project.Orchestrator do
     :project_id,
     :project,
     :agents,
-    :task_count,
-    :started_at
+    :started_at,
+    task_count: 0,
+    phase_tasks_total: 0,
+    phase_tasks_completed: 0,
+    phase_entered_at: nil
   ]
 
   @phases [
@@ -53,6 +56,16 @@ defmodule Samgita.Project.Orchestrator do
 
   def advance_phase(pid) do
     :gen_statem.cast(pid, :advance_phase)
+  end
+
+  @doc "Notify the orchestrator that a phase task completed. Triggers auto-advance check."
+  def notify_task_completed(pid, task_id) do
+    :gen_statem.cast(pid, {:task_completed, task_id})
+  end
+
+  @doc "Set expected task count for current phase. Call after dispatching phase tasks."
+  def set_phase_task_count(pid, count) do
+    :gen_statem.cast(pid, {:set_phase_task_count, count})
   end
 
   def child_spec(opts) do
@@ -98,6 +111,13 @@ defmodule Samgita.Project.Orchestrator do
       phase = unquote(phase)
       Logger.info("Project #{data.project_id} entering phase: #{phase} (from #{old_state})")
 
+      data = %{
+        data
+        | phase_tasks_total: 0,
+          phase_tasks_completed: 0,
+          phase_entered_at: DateTime.utc_now()
+      }
+
       broadcast_phase_change(data, phase)
       persist_phase(data, phase)
 
@@ -107,7 +127,7 @@ defmodule Samgita.Project.Orchestrator do
         "Entering phase: #{phase} (from #{old_state})"
       )
 
-      {:keep_state_and_data, [{:state_timeout, 0, :setup_phase}]}
+      {:keep_state, data, [{:state_timeout, 0, :setup_phase}]}
     end
 
     def unquote(phase)(:state_timeout, :setup_phase, data) do
@@ -143,7 +163,8 @@ defmodule Samgita.Project.Orchestrator do
           :keep_state_and_data
 
         next ->
-          {:next_state, next, data}
+          broadcast_activity(data, :phase_change, "Phase #{phase} complete, advancing to #{next}")
+          {:next_state, next, reset_phase_counters(data)}
       end
     end
 
@@ -151,8 +172,54 @@ defmodule Samgita.Project.Orchestrator do
       {:keep_state_and_data, [{:reply, from, {unquote(phase), data}}]}
     end
 
-    def unquote(phase)(:cast, {:task_completed, _task_id}, data) do
-      data = %{data | task_count: data.task_count + 1}
+    def unquote(phase)(:cast, {:task_completed, task_id}, data) do
+      phase = unquote(phase)
+
+      data = %{
+        data
+        | task_count: data.task_count + 1,
+          phase_tasks_completed: data.phase_tasks_completed + 1
+      }
+
+      Logger.info(
+        "[Orchestrator] Phase #{phase}: task #{task_id} completed " <>
+          "(#{data.phase_tasks_completed}/#{data.phase_tasks_total})"
+      )
+
+      broadcast_activity(
+        data,
+        :task_completed,
+        "Task completed (#{data.phase_tasks_completed}/#{data.phase_tasks_total})"
+      )
+
+      if phase_complete?(data) do
+        case next_phase(phase) do
+          nil ->
+            Logger.info("[Orchestrator] #{data.project_id}: perpetual mode, staying")
+            {:keep_state, data}
+
+          next ->
+            Logger.info("[Orchestrator] #{data.project_id}: auto-advancing #{phase} → #{next}")
+
+            broadcast_activity(
+              data,
+              :phase_change,
+              "All phase tasks complete, auto-advancing to #{next}"
+            )
+
+            {:next_state, next, reset_phase_counters(data)}
+        end
+      else
+        {:keep_state, data}
+      end
+    end
+
+    def unquote(phase)(:cast, {:set_phase_task_count, count}, data) do
+      Logger.info(
+        "[Orchestrator] Phase #{unquote(phase)}: expecting #{count} tasks for project #{data.project_id}"
+      )
+
+      data = %{data | phase_tasks_total: count}
       {:keep_state, data}
     end
   end
@@ -244,6 +311,15 @@ defmodule Samgita.Project.Orchestrator do
             :failed
         end
     end
+  end
+
+  defp phase_complete?(%{phase_tasks_total: 0}), do: false
+
+  defp phase_complete?(%{phase_tasks_total: total, phase_tasks_completed: completed}),
+    do: completed >= total
+
+  defp reset_phase_counters(data) do
+    %{data | phase_tasks_total: 0, phase_tasks_completed: 0}
   end
 
   defp broadcast_activity(data, stage, message) do
