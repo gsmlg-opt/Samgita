@@ -13,6 +13,9 @@ defmodule Samgita.Project.Orchestrator do
 
   alias Samgita.Projects
 
+  @stagnation_check_interval_ms 300_000
+  @stagnation_threshold 5
+
   defstruct [
     :project_id,
     :project,
@@ -22,7 +25,9 @@ defmodule Samgita.Project.Orchestrator do
     phase_tasks_total: 0,
     phase_tasks_completed: 0,
     phase_entered_at: nil,
-    awaiting_quality_gates: false
+    awaiting_quality_gates: false,
+    last_progress_task_count: 0,
+    stagnation_checks: 0
   ]
 
   @phases [
@@ -161,7 +166,9 @@ defmodule Samgita.Project.Orchestrator do
           do: %{data | phase_tasks_total: task_count},
           else: data
 
-      {:keep_state, data}
+      # Start stagnation check timer
+      data = %{data | last_progress_task_count: data.task_count, stagnation_checks: 0}
+      {:keep_state, data, [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
     end
 
     def unquote(phase)(:cast, :advance_phase, data) do
@@ -269,6 +276,47 @@ defmodule Samgita.Project.Orchestrator do
 
       data = %{data | phase_tasks_total: count}
       {:keep_state, data}
+    end
+
+    def unquote(phase)({:timeout, :stagnation}, :check, data) do
+      phase = unquote(phase)
+
+      if data.task_count == data.last_progress_task_count do
+        checks = data.stagnation_checks + 1
+
+        if checks >= @stagnation_threshold do
+          Logger.warning(
+            "[Orchestrator] #{data.project_id}: stagnation detected in #{phase} " <>
+              "(#{checks} checks without progress)"
+          )
+
+          broadcast_activity(
+            data,
+            :failed,
+            "Stagnation: #{checks} checks without task progress in #{phase}"
+          )
+
+          data = %{data | stagnation_checks: checks}
+
+          {:keep_state, data,
+           [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
+        else
+          data = %{data | stagnation_checks: checks}
+
+          {:keep_state, data,
+           [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
+        end
+      else
+        # Progress was made, reset stagnation counter
+        data = %{
+          data
+          | last_progress_task_count: data.task_count,
+            stagnation_checks: 0
+        }
+
+        {:keep_state, data,
+         [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
+      end
     end
   end
 

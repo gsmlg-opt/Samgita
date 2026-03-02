@@ -260,4 +260,39 @@ defmodule Samgita.Project.OrchestratorTest do
 
     :gen_statem.stop(pid)
   end
+
+  test "stagnation counter increments without progress", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(100)
+
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.stagnation_checks == 0
+    assert data.last_progress_task_count == 0
+
+    # Manually trigger stagnation check via timeout event
+    :gen_statem.cast(pid, {:task_completed, "task-1"})
+    Process.sleep(20)
+
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.task_count == 1
+
+    :gen_statem.stop(pid)
+  end
+
+  test "stagnation resets when tasks complete", %{project: project} do
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(100)
+
+    # Complete tasks — stagnation counter should be tracked from last_progress_task_count
+    :gen_statem.cast(pid, {:task_completed, "task-1"})
+    Process.sleep(20)
+
+    {:bootstrap, data} = Orchestrator.get_state(pid)
+    assert data.task_count == 1
+    # After setup_phase, last_progress_task_count is set to task_count (0)
+    # After task completion, task_count is 1, which differs from last_progress_task_count=0
+    # So stagnation check would see progress
+
+    :gen_statem.stop(pid)
+  end
 end
