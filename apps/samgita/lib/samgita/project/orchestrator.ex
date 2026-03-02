@@ -561,9 +561,87 @@ defmodule Samgita.Project.Orchestrator do
     create_phase_tasks(project, tasks, data)
   end
 
+  defp enqueue_phase_tasks(:development, data) do
+    project = refresh_project(data)
+
+    tasks = [
+      %{
+        type: "implement",
+        description: "Implement core backend features from architecture design",
+        agent_type: "eng-backend",
+        priority: 1
+      },
+      %{
+        type: "implement",
+        description: "Implement frontend UI components from design specs",
+        agent_type: "eng-frontend",
+        priority: 1
+      },
+      %{
+        type: "implement",
+        description: "Implement database migrations and data layer",
+        agent_type: "eng-database",
+        priority: 2
+      },
+      %{
+        type: "implement",
+        description: "Implement API endpoints and integrations",
+        agent_type: "eng-api",
+        priority: 2
+      },
+      %{
+        type: "test",
+        description: "Write comprehensive test suite for implemented features",
+        agent_type: "eng-qa",
+        priority: 3
+      },
+      %{
+        type: "implement",
+        description: "Write technical documentation and API docs",
+        agent_type: "prod-techwriter",
+        priority: 3
+      }
+    ]
+
+    create_phase_tasks(project, tasks, data)
+  end
+
+  defp enqueue_phase_tasks(:qa, data) do
+    project = refresh_project(data)
+
+    tasks = [
+      %{
+        type: "test",
+        description: "Run full test suite and verify all tests pass",
+        agent_type: "eng-qa",
+        priority: 1
+      },
+      %{
+        type: "review",
+        description: "Performance testing and optimization",
+        agent_type: "eng-perf",
+        priority: 2
+      },
+      %{
+        type: "review",
+        description: "Security audit and vulnerability assessment",
+        agent_type: "review-security",
+        priority: 2
+      },
+      %{
+        type: "review",
+        description: "Code review for quality and maintainability",
+        agent_type: "review-code",
+        priority: 2
+      }
+    ]
+
+    create_phase_tasks(project, tasks, data)
+  end
+
   defp enqueue_phase_tasks(_phase, _data) do
-    # development, qa, business, growth, perpetual — tasks come from
-    # the task backlog (bootstrap) or are manually created
+    # business, growth, perpetual — tasks come from
+    # the task backlog or are manually created
     0
   end
 

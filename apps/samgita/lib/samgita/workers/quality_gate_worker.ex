@@ -22,8 +22,11 @@ defmodule Samgita.Workers.QualityGateWorker do
     BlindReview,
     CompletionCouncil,
     Gate,
+    MockDetector,
+    SeverityBlocking,
     StaticAnalysis,
-    TestCoverage
+    TestCoverage,
+    TestMutationDetector
   }
 
   @impl true
@@ -87,13 +90,18 @@ defmodule Samgita.Workers.QualityGateWorker do
     blind_result = run_blind_review(project)
     anti_syc = maybe_run_anti_sycophancy(blind_result, project)
 
-    [
-      run_static_analysis(project),
-      blind_result,
-      anti_syc,
-      run_completion_council(prd, project_status)
-    ]
-    |> Enum.filter(&(&1 != nil))
+    gate_results =
+      [
+        run_static_analysis(project),
+        blind_result,
+        anti_syc,
+        run_completion_council(prd, project_status)
+      ]
+      |> Enum.filter(&(&1 != nil))
+
+    # Gate 6: Severity Blocking — final aggregation
+    severity_result = SeverityBlocking.evaluate(gate_results)
+    gate_results ++ [severity_result]
   end
 
   defp run_gates("pre_deploy", project, prd) do
@@ -103,14 +111,21 @@ defmodule Samgita.Workers.QualityGateWorker do
     blind_result = run_blind_review(project)
     anti_syc = maybe_run_anti_sycophancy(blind_result, project)
 
-    [
-      run_static_analysis(project),
-      blind_result,
-      anti_syc,
-      run_completion_council(prd, project_status),
-      run_test_coverage_gate(project)
-    ]
-    |> Enum.filter(&(&1 != nil))
+    gate_results =
+      [
+        run_static_analysis(project),
+        blind_result,
+        anti_syc,
+        run_completion_council(prd, project_status),
+        run_test_coverage_gate(project),
+        run_mock_detector(project),
+        run_test_mutation_detector(project)
+      ]
+      |> Enum.filter(&(&1 != nil))
+
+    # Gate 6: Severity Blocking — final aggregation
+    severity_result = SeverityBlocking.evaluate(gate_results)
+    gate_results ++ [severity_result]
   end
 
   defp run_gates(_type, project, prd) do
@@ -253,6 +268,26 @@ defmodule Samgita.Workers.QualityGateWorker do
         findings: findings,
         duration_ms: System.monotonic_time(:millisecond) - start
       }
+    end
+  end
+
+  defp run_mock_detector(project) do
+    working_path = project.working_path
+
+    if working_path && File.dir?(working_path) do
+      MockDetector.scan(working_path)
+    else
+      nil
+    end
+  end
+
+  defp run_test_mutation_detector(project) do
+    working_path = project.working_path
+
+    if working_path && File.dir?(working_path) do
+      TestMutationDetector.scan(working_path)
+    else
+      nil
     end
   end
 
