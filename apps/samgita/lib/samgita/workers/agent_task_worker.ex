@@ -12,6 +12,7 @@ defmodule Samgita.Workers.AgentTaskWorker do
   require Logger
 
   alias Samgita.Domain.Task, as: TaskSchema
+  alias Samgita.Quality.InputGuardrails
   alias Samgita.Repo
 
   @impl true
@@ -22,12 +23,40 @@ defmodule Samgita.Workers.AgentTaskWorker do
 
     Logger.info("AgentTaskWorker: executing task #{task_id} with agent type #{agent_type}")
 
+    # Gate 1: Input Guardrails — validate before execution
+    gate_result = InputGuardrails.validate(args)
+
+    if gate_result.verdict == :fail do
+      Logger.warning("AgentTaskWorker: input guardrails blocked task #{task_id}")
+
+      entry =
+        Samgita.Events.build_log_entry(
+          :task,
+          task_id,
+          :failed,
+          "Input guardrails blocked: #{Enum.map_join(gate_result.findings, "; ", & &1.message)}"
+        )
+
+      Samgita.Events.activity_log(project_id, entry)
+      handle_failure(task_id, :input_guardrails_blocked)
+      {:error, :input_guardrails_blocked}
+    else
+      execute_task_pipeline(args)
+    end
+  end
+
+  defp execute_task_pipeline(args) do
+    task_id = args["task_id"]
+    project_id = args["project_id"]
+    agent_type = args["agent_type"]
+
     with {:ok, task} <- get_task(task_id),
          :ok <- mark_task_running(task),
          {:ok, agent_pid} <- find_or_spawn_agent(project_id, agent_type),
          :ok <- execute_task(agent_pid, task) do
       mark_task_completed(task)
       Samgita.Events.task_completed(task)
+      notify_orchestrator(project_id, task_id)
 
       entry =
         Samgita.Events.build_log_entry(
@@ -117,6 +146,16 @@ defmodule Samgita.Workers.AgentTaskWorker do
   defp execute_task(agent_pid, task) do
     Samgita.Agent.Worker.assign_task(agent_pid, task)
     :ok
+  end
+
+  defp notify_orchestrator(project_id, task_id) do
+    case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
+      [{pid, _}] ->
+        Samgita.Project.Orchestrator.notify_task_completed(pid, task_id)
+
+      [] ->
+        Logger.debug("AgentTaskWorker: No orchestrator found for #{project_id}, skipping notify")
+    end
   end
 
   defp handle_failure(task_id, reason) do

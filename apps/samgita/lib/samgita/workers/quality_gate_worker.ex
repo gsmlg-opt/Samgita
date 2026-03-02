@@ -16,7 +16,7 @@ defmodule Samgita.Workers.QualityGateWorker do
   require Logger
 
   alias Samgita.Projects
-  alias Samgita.Quality.{BlindReview, CompletionCouncil, Gate}
+  alias Samgita.Quality.{BlindReview, CompletionCouncil, Gate, StaticAnalysis}
 
   @impl true
   def perform(%Oban.Job{args: args}) do
@@ -76,33 +76,45 @@ defmodule Samgita.Workers.QualityGateWorker do
     tasks = Projects.list_tasks(project.id)
     project_status = build_project_status(project, tasks)
 
-    gate_results =
-      [
-        run_blind_review(project),
-        run_completion_council(prd, project_status)
-      ]
-      |> Enum.filter(&(&1 != nil))
-
-    gate_results
+    [
+      run_static_analysis(project),
+      run_blind_review(project),
+      run_completion_council(prd, project_status)
+    ]
+    |> Enum.filter(&(&1 != nil))
   end
 
   defp run_gates("pre_deploy", project, prd) do
     tasks = Projects.list_tasks(project.id)
     project_status = build_project_status(project, tasks)
 
-    gate_results =
-      [
-        run_blind_review(project),
-        run_completion_council(prd, project_status),
-        run_test_coverage_gate(project)
-      ]
-      |> Enum.filter(&(&1 != nil))
-
-    gate_results
+    [
+      run_static_analysis(project),
+      run_blind_review(project),
+      run_completion_council(prd, project_status),
+      run_test_coverage_gate(project)
+    ]
+    |> Enum.filter(&(&1 != nil))
   end
 
   defp run_gates(_type, project, prd) do
     run_gates("pre_qa", project, prd)
+  end
+
+  defp run_static_analysis(project) do
+    working_path = project.working_path
+
+    if working_path && File.dir?(working_path) do
+      StaticAnalysis.analyze(working_path)
+    else
+      %{
+        gate: 2,
+        name: "Static Analysis",
+        verdict: :skip,
+        findings: [],
+        duration_ms: 0
+      }
+    end
   end
 
   defp run_blind_review(project) do
