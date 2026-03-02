@@ -190,10 +190,23 @@ defmodule Samgita.Projects do
 
   def retry_task(id) do
     with {:ok, task} <- get_task(id),
-         true <- task.status in [:failed, :dead_letter] || {:error, :not_retriable} do
-      task
-      |> TaskSchema.changeset(%{status: :pending, attempts: 0, error: nil})
-      |> Repo.update()
+         true <- task.status in [:failed, :dead_letter] || {:error, :not_retriable},
+         {:ok, task} <-
+           task
+           |> TaskSchema.changeset(%{status: :pending, attempts: 0, error: nil})
+           |> Repo.update() do
+      # Re-enqueue in Oban
+      agent_type = get_in(task.payload, ["agent_type"]) || "eng-backend"
+
+      Oban.insert(
+        AgentTaskWorker.new(%{
+          task_id: task.id,
+          project_id: task.project_id,
+          agent_type: agent_type
+        })
+      )
+
+      {:ok, task}
     end
   end
 

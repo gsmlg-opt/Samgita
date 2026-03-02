@@ -165,15 +165,40 @@ defmodule Samgita.Workers.AgentTaskWorker do
 
       task ->
         attempts = task.attempts + 1
-        status = if attempts >= 5, do: :dead_letter, else: :failed
+        failure_type = classify_failure(reason)
+        max_attempts = max_attempts_for(failure_type)
+        status = if attempts >= max_attempts, do: :dead_letter, else: :failed
 
         task
         |> TaskSchema.changeset(%{
           status: status,
           attempts: attempts,
-          error: %{reason: inspect(reason)}
+          error: %{
+            reason: inspect(reason),
+            failure_type: Atom.to_string(failure_type),
+            attempt: attempts,
+            max_attempts: max_attempts
+          }
         })
         |> Repo.update()
     end
   end
+
+  defp classify_failure(:input_guardrails_blocked), do: :terminal
+  defp classify_failure(:task_not_found), do: :terminal
+  defp classify_failure(:project_not_found), do: :terminal
+  defp classify_failure(:rate_limited), do: :rate_limit
+  defp classify_failure(:overloaded), do: :rate_limit
+  defp classify_failure(:timeout), do: :transient
+  defp classify_failure(:circuit_open), do: :circuit_breaker
+  defp classify_failure(_), do: :unknown
+
+  # Terminal errors should not be retried
+  defp max_attempts_for(:terminal), do: 1
+  # Rate limits get more retries with backoff
+  defp max_attempts_for(:rate_limit), do: 8
+  # Circuit breaker should retry after cool-down
+  defp max_attempts_for(:circuit_breaker), do: 3
+  # Default for transient and unknown
+  defp max_attempts_for(_), do: 5
 end

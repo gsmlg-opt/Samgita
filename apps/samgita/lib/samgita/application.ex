@@ -20,7 +20,8 @@ defmodule Samgita.Application do
       {Horde.DynamicSupervisor,
        name: Samgita.AgentSupervisor, strategy: :one_for_one, members: :auto},
       Samgita.Agent.CircuitBreaker,
-      {Oban, Application.fetch_env!(:samgita, Oban)}
+      {Oban, Application.fetch_env!(:samgita, Oban)},
+      Samgita.Project.Recovery
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
