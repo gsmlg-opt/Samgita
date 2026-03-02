@@ -148,6 +148,7 @@ defmodule Samgita.Workers.AgentTaskWorker do
     case Horde.DynamicSupervisor.start_child(Samgita.AgentSupervisor, spec) do
       {:ok, pid} ->
         Samgita.Events.agent_spawned(project_id, agent_id, agent_type)
+        track_agent_run(project_id, agent_type, pid)
         {:ok, pid}
 
       {:error, {:already_started, pid}} ->
@@ -156,6 +157,15 @@ defmodule Samgita.Workers.AgentTaskWorker do
       error ->
         error
     end
+  end
+
+  defp track_agent_run(project_id, agent_type, pid) do
+    Samgita.Projects.find_or_create_agent_run(project_id, agent_type, %{
+      pid: inspect(pid),
+      status: :idle
+    })
+  rescue
+    _ -> :ok
   end
 
   defp execute_task(agent_pid, task) do

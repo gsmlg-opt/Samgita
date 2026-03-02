@@ -341,6 +341,19 @@ defmodule Samgita.Agent.Worker do
       "project:#{data.project_id}",
       {:agent_state_changed, data.id, state}
     )
+
+    update_agent_run_status(data, state)
+  end
+
+  defp update_agent_run_status(data, state) do
+    case find_active_agent_run(data.project_id, data.agent_type) do
+      nil -> :ok
+      run -> Samgita.Projects.update_agent_run(run, %{status: state})
+    end
+  rescue
+    _ -> :ok
+  catch
+    :exit, _ -> :ok
   end
 
   defp build_context(data) do
@@ -610,6 +623,37 @@ defmodule Samgita.Agent.Worker do
       _ ->
         :ok
     end
+
+    increment_agent_run_tasks(data)
+  end
+
+  defp increment_agent_run_tasks(data) do
+    case find_active_agent_run(data.project_id, data.agent_type) do
+      nil ->
+        :ok
+
+      run ->
+        Samgita.Projects.update_agent_run(run, %{
+          total_tasks: (run.total_tasks || 0) + 1
+        })
+    end
+  rescue
+    _ -> :ok
+  catch
+    :exit, _ -> :ok
+  end
+
+  defp find_active_agent_run(project_id, agent_type) do
+    import Ecto.Query
+
+    Samgita.Domain.AgentRun
+    |> where([a], a.project_id == ^project_id and a.agent_type == ^agent_type)
+    |> where([a], is_nil(a.ended_at))
+    |> Samgita.Repo.one()
+  rescue
+    _ -> nil
+  catch
+    :exit, _ -> nil
   end
 
   defp save_generated_prd(data) do

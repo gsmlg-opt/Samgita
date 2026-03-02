@@ -224,6 +224,40 @@ defmodule Samgita.Projects do
     end
   end
 
+  @doc "Find or create an agent run for a project and agent type."
+  def find_or_create_agent_run(project_id, agent_type, attrs \\ %{}) do
+    case AgentRun
+         |> where(project_id: ^project_id, agent_type: ^agent_type)
+         |> where([a], is_nil(a.ended_at))
+         |> Repo.one() do
+      nil ->
+        %AgentRun{}
+        |> AgentRun.changeset(
+          Map.merge(
+            %{
+              project_id: project_id,
+              agent_type: agent_type,
+              status: :idle,
+              started_at: DateTime.utc_now(),
+              node: Atom.to_string(Node.self())
+            },
+            attrs
+          )
+        )
+        |> Repo.insert()
+
+      agent_run ->
+        {:ok, agent_run}
+    end
+  end
+
+  @doc "Update an agent run's status and metrics."
+  def update_agent_run(agent_run, attrs) do
+    agent_run
+    |> AgentRun.changeset(attrs)
+    |> Repo.update()
+  end
+
   @doc "Returns aggregate task counts by status for a project."
   def task_stats(project_id) do
     TaskSchema
