@@ -17,6 +17,7 @@ app_tree.dot
 
 # Phoenix/Node/Bun
 /tmp/
+**/tmp/
 npm-debug.log
 .bun-cache/
 bun.lockb

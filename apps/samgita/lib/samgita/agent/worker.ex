@@ -286,6 +286,7 @@ defmodule Samgita.Agent.Worker do
         broadcast_activity(data, :verify, "Task verified successfully")
 
         handle_task_completion(data)
+        maybe_git_checkpoint(data)
 
         data = %{
           data
@@ -303,6 +304,7 @@ defmodule Samgita.Agent.Worker do
         broadcast_activity(data, :verify, "Task verified successfully")
 
         handle_task_completion(data)
+        maybe_git_checkpoint(data)
 
         data = %{
           data
@@ -638,6 +640,45 @@ defmodule Samgita.Agent.Worker do
       _ ->
         Logger.warning("[#{data.id}] No PRD content to save")
     end
+  end
+
+  defp maybe_git_checkpoint(data) do
+    task = data.current_task
+    working_path = get_working_path(data)
+
+    if working_path && File.dir?(working_path) do
+      if Samgita.Git.Worktree.has_changes?(working_path) do
+        task_desc =
+          case task do
+            %{type: type, payload: %{"description" => desc}} -> "#{type}: #{desc}"
+            %{type: type} -> type
+            _ -> "task"
+          end
+
+        message = "[samgita] #{data.agent_type}: #{task_desc}"
+
+        case Samgita.Git.Worktree.commit(working_path, message) do
+          {:ok, hash} ->
+            Logger.info("[#{data.id}] Git checkpoint: #{hash}")
+            broadcast_activity(data, :verify, "Git checkpoint: #{hash}")
+
+          {:error, reason} ->
+            Logger.warning("[#{data.id}] Git checkpoint failed: #{inspect(reason)}")
+        end
+      end
+    end
+  rescue
+    e ->
+      Logger.warning("[#{data.id}] Git checkpoint error: #{inspect(e)}")
+  end
+
+  defp get_working_path(data) do
+    case Samgita.Projects.get_project(data.project_id) do
+      {:ok, project} -> project.working_path
+      _ -> nil
+    end
+  catch
+    :exit, _ -> nil
   end
 
   defp persist_learning(project_id, learning) do
