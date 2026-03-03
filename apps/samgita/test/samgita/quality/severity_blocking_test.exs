@@ -17,6 +17,16 @@ defmodule Samgita.Quality.SeverityBlockingTest do
       assert result.findings == []
     end
 
+    test "handles empty gate results list" do
+      result = SeverityBlocking.evaluate([])
+
+      assert result.gate == 6
+      assert result.name == "Severity Blocking"
+      assert result.verdict == :pass
+      assert result.findings == []
+      assert is_integer(result.duration_ms)
+    end
+
     test "fails when critical findings exist" do
       results = [
         %{
@@ -137,6 +147,136 @@ defmodule Samgita.Quality.SeverityBlockingTest do
       assert result.verdict == :fail
       assert Enum.any?(result.findings, &String.contains?(&1.message, "1 critical"))
       assert Enum.any?(result.findings, &String.contains?(&1.message, "2 medium"))
+    end
+
+    test "summary message format is correct" do
+      results = [
+        %{
+          gate: 1,
+          verdict: :fail,
+          findings: [
+            %{gate: 1, severity: :critical, message: "C1", file: nil, line: nil},
+            %{gate: 1, severity: :high, message: "H1", file: nil, line: nil},
+            %{gate: 1, severity: :medium, message: "M1", file: nil, line: nil}
+          ],
+          duration_ms: 0
+        }
+      ]
+
+      result = SeverityBlocking.evaluate(results)
+      [finding] = result.findings
+
+      assert finding.message == "Severity blocking: 1 critical, 1 high, 1 medium finding(s) across 1 gates"
+      assert finding.gate == 6
+      assert finding.severity == :high
+      assert finding.file == nil
+      assert finding.line == nil
+    end
+
+    test "only includes present severities in summary" do
+      results = [
+        %{
+          gate: 1,
+          verdict: :fail,
+          findings: [
+            %{gate: 1, severity: :critical, message: "Error", file: nil, line: nil}
+          ],
+          duration_ms: 0
+        }
+      ]
+
+      result = SeverityBlocking.evaluate(results)
+      [finding] = result.findings
+
+      assert finding.message == "Severity blocking: 1 critical finding(s) across 1 gates"
+      refute finding.message =~ "high"
+      refute finding.message =~ "medium"
+    end
+
+    test "ignores non-blocking severities in summary" do
+      results = [
+        %{
+          gate: 1,
+          verdict: :warn,
+          findings: [
+            %{gate: 1, severity: :critical, message: "Critical", file: nil, line: nil},
+            %{gate: 1, severity: :low, message: "Low", file: nil, line: nil},
+            %{gate: 1, severity: :cosmetic, message: "Cosmetic", file: nil, line: nil}
+          ],
+          duration_ms: 0
+        }
+      ]
+
+      result = SeverityBlocking.evaluate(results)
+      assert result.verdict == :fail
+
+      [finding] = result.findings
+      assert finding.message =~ "1 critical"
+      refute finding.message =~ "low"
+      refute finding.message =~ "cosmetic"
+    end
+
+    test "counts multiple findings of same severity correctly" do
+      results = [
+        %{
+          gate: 1,
+          verdict: :fail,
+          findings: [
+            %{gate: 1, severity: :critical, message: "C1", file: nil, line: nil},
+            %{gate: 1, severity: :critical, message: "C2", file: nil, line: nil},
+            %{gate: 1, severity: :high, message: "H1", file: nil, line: nil},
+            %{gate: 1, severity: :high, message: "H2", file: nil, line: nil},
+            %{gate: 1, severity: :high, message: "H3", file: nil, line: nil},
+            %{gate: 1, severity: :medium, message: "M1", file: nil, line: nil}
+          ],
+          duration_ms: 0
+        }
+      ]
+
+      result = SeverityBlocking.evaluate(results)
+      [finding] = result.findings
+
+      assert finding.message =~ "2 critical"
+      assert finding.message =~ "3 high"
+      assert finding.message =~ "1 medium"
+    end
+
+    test "aggregates findings from multiple gates with different severities" do
+      results = [
+        %{
+          gate: 1,
+          verdict: :pass,
+          findings: [
+            %{gate: 1, severity: :low, message: "Low", file: nil, line: nil}
+          ],
+          duration_ms: 0
+        },
+        %{
+          gate: 2,
+          verdict: :fail,
+          findings: [
+            %{gate: 2, severity: :high, message: "High 1", file: nil, line: nil}
+          ],
+          duration_ms: 0
+        },
+        %{
+          gate: 3,
+          verdict: :fail,
+          findings: [
+            %{gate: 3, severity: :high, message: "High 2", file: nil, line: nil},
+            %{gate: 3, severity: :medium, message: "Medium", file: nil, line: nil}
+          ],
+          duration_ms: 0
+        }
+      ]
+
+      result = SeverityBlocking.evaluate(results)
+      assert result.verdict == :fail
+
+      [finding] = result.findings
+      assert finding.message =~ "2 high"
+      assert finding.message =~ "1 medium"
+      assert finding.message =~ "3 gates"
     end
 
     test "includes duration_ms" do

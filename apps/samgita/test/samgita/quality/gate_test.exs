@@ -34,6 +34,68 @@ defmodule Samgita.Quality.GateTest do
     end
   end
 
+  describe "all/0" do
+    test "returns map with all gate IDs as keys" do
+      gates = Gate.all()
+
+      assert Map.has_key?(gates, 1)
+      assert Map.has_key?(gates, 9)
+    end
+
+    test "each gate has name and blocking fields" do
+      gates = Gate.all()
+
+      Enum.each(gates, fn {_id, gate} ->
+        assert Map.has_key?(gate, :name)
+        assert Map.has_key?(gate, :blocking)
+        assert is_binary(gate.name)
+        assert is_boolean(gate.blocking)
+      end)
+    end
+  end
+
+  describe "get/1" do
+    test "returns gate definition for valid IDs" do
+      assert Gate.get(1) == %{name: "Input Guardrails", blocking: true}
+      assert Gate.get(2) == %{name: "Static Analysis", blocking: true}
+      assert Gate.get(6) == %{name: "Severity Blocking", blocking: true}
+      assert Gate.get(8) == %{name: "Mock Detector", blocking: false}
+    end
+
+    test "returns nil for invalid IDs" do
+      assert Gate.get(0) == nil
+      assert Gate.get(10) == nil
+      assert Gate.get(999) == nil
+    end
+
+    test "handles nil input" do
+      assert Gate.get(nil) == nil
+    end
+  end
+
+  describe "name/1" do
+    test "returns all correct gate names" do
+      assert Gate.name(1) == "Input Guardrails"
+      assert Gate.name(2) == "Static Analysis"
+      assert Gate.name(3) == "Blind Review"
+      assert Gate.name(4) == "Anti-Sycophancy"
+      assert Gate.name(5) == "Output Guardrails"
+      assert Gate.name(6) == "Severity Blocking"
+      assert Gate.name(7) == "Test Coverage"
+      assert Gate.name(8) == "Mock Detector"
+      assert Gate.name(9) == "Test Mutation Detector"
+    end
+
+    test "returns default name for invalid IDs" do
+      assert Gate.name(0) == "Unknown Gate 0"
+      assert Gate.name(10) == "Unknown Gate 10"
+    end
+
+    test "handles nil input" do
+      assert Gate.name(nil) == "Unknown Gate "
+    end
+  end
+
   describe "aggregate/1" do
     test "passes when all gates pass" do
       results = [
@@ -73,6 +135,46 @@ defmodule Samgita.Quality.GateTest do
 
       assert {:pass, ^results} = Gate.aggregate(results)
     end
+
+    test "handles empty results list" do
+      assert {:pass, []} = Gate.aggregate([])
+    end
+
+    test "ignores warn and skip verdicts" do
+      results = [
+        %{gate: 1, verdict: :pass, findings: [], duration_ms: 10},
+        %{gate: 2, verdict: :warn, findings: [], duration_ms: 20},
+        %{gate: 3, verdict: :skip, findings: [], duration_ms: 30}
+      ]
+
+      assert {:pass, ^results} = Gate.aggregate(results)
+    end
+
+    test "fails when multiple blocking gates fail" do
+      results = [
+        %{gate: 1, verdict: :fail, findings: [], duration_ms: 10},
+        %{gate: 2, verdict: :fail, findings: [], duration_ms: 20},
+        %{gate: 3, verdict: :fail, findings: [], duration_ms: 30}
+      ]
+
+      assert {:fail, ^results} = Gate.aggregate(results)
+    end
+
+    test "passes when all blocking gates pass with non-blocking failures" do
+      results = [
+        %{gate: 1, verdict: :pass, findings: [], duration_ms: 10},
+        %{gate: 2, verdict: :pass, findings: [], duration_ms: 10},
+        %{gate: 3, verdict: :pass, findings: [], duration_ms: 10},
+        %{gate: 4, verdict: :pass, findings: [], duration_ms: 10},
+        %{gate: 5, verdict: :pass, findings: [], duration_ms: 10},
+        %{gate: 6, verdict: :pass, findings: [], duration_ms: 10},
+        %{gate: 7, verdict: :pass, findings: [], duration_ms: 10},
+        %{gate: 8, verdict: :fail, findings: [], duration_ms: 10},
+        %{gate: 9, verdict: :fail, findings: [], duration_ms: 10}
+      ]
+
+      assert {:pass, ^results} = Gate.aggregate(results)
+    end
   end
 
   describe "has_blocking_findings?/1" do
@@ -106,6 +208,25 @@ defmodule Samgita.Quality.GateTest do
 
     test "returns false for empty findings" do
       refute Gate.has_blocking_findings?([])
+    end
+
+    test "returns true when any finding is blocking" do
+      findings = [
+        %{severity: :low, message: "Low warning", gate: 2, file: "test.ex", line: 10},
+        %{severity: :cosmetic, message: "Cosmetic", gate: 2, file: "test.ex", line: 11},
+        %{severity: :critical, message: "Critical", gate: 2, file: "test.ex", line: 12}
+      ]
+
+      assert Gate.has_blocking_findings?(findings)
+    end
+
+    test "returns false when all findings are non-blocking" do
+      findings = [
+        %{severity: :low, message: "Low warning", gate: 2, file: "test.ex", line: 10},
+        %{severity: :cosmetic, message: "Cosmetic", gate: 2, file: "test.ex", line: 11}
+      ]
+
+      refute Gate.has_blocking_findings?(findings)
     end
   end
 end
