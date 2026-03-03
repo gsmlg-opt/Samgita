@@ -30,6 +30,21 @@ apps/samgita_web/node_modules/
 *.db
 *.sqlite3
 
+# Loki-mode generated docs (auto-created, not canonical)
+ARCHITECTURE.md
+DISCOVERY_ANALYSIS.md
+DISCOVERY_ANALYSIS_*.md
+FRONTEND_ARCHITECTURE.md
+IMPLEMENTATION_SUMMARY.md
+DELIVERABLES.md
+CI_CD_IMPLEMENTATION_SUMMARY.md
+SECURITY_SUMMARY.md
+SECURITY_IMPLEMENTATION_CHECKLIST.md
+TESTING_DOCUMENTATION.md
+TEST_REPORT.md
+TEST_SUMMARY.md
+README_QA.md
+
 # commands and skills
 !.claude/commands
 !.claude/skills
