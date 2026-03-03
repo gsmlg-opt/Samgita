@@ -1,8 +1,9 @@
 defmodule SamgitaMemory.PRDTest do
   use SamgitaMemory.DataCase, async: true
 
+  alias SamgitaMemory.Cache.PRDTable
   alias SamgitaMemory.PRD
-  alias SamgitaMemory.PRD.{Execution, Event, Decision}
+  alias SamgitaMemory.PRD.Event
 
   describe "start_execution/2" do
     test "creates new execution" do
@@ -128,7 +129,7 @@ defmodule SamgitaMemory.PRDTest do
     test "respects event_limit", %{execution: execution} do
       assert {:ok, context} = PRD.get_context(execution.id, event_limit: 1)
       # Cache invalidation needed for fresh query
-      SamgitaMemory.Cache.PRDTable.invalidate(execution.id)
+      PRDTable.invalidate(execution.id)
       {:ok, context} = PRD.get_context(execution.id, event_limit: 1)
       assert length(context.recent_events) == 1
     end
@@ -202,7 +203,7 @@ defmodule SamgitaMemory.PRDTest do
       assert completed.status == :completed
 
       # Verify context
-      SamgitaMemory.Cache.PRDTable.invalidate(exec.id)
+      PRDTable.invalidate(exec.id)
       {:ok, context} = PRD.get_context(exec.id)
       assert length(context.recent_events) == 4
       assert length(context.decisions) == 1

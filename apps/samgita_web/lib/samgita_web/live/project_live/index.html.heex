@@ -189,7 +189,7 @@
               Terminate
             </button>
             <span
-              :if={!is_running?(@project) && !can_start?(@project, @selected_prd)}
+              :if={!running?(@project) && !can_start?(@project, @selected_prd)}
               class="text-sm text-base-content/40 px-4 py-2"
             >
               Project {@project.status}

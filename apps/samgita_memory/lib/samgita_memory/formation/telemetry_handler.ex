@@ -7,6 +7,7 @@ defmodule SamgitaMemory.Formation.TelemetryHandler do
 
   alias SamgitaMemory.Memories
   alias SamgitaMemory.PRD
+  alias SamgitaMemory.Workers.Summarize
 
   @events [
     [:prd, :requirement, :completed],
@@ -128,7 +129,7 @@ defmodule SamgitaMemory.Formation.TelemetryHandler do
 
   def handle_event([:thinking, :chain, :completed], _measurements, metadata, _config) do
     if chain_id = metadata[:chain_id] do
-      SamgitaMemory.Workers.Summarize.enqueue_chain_summarization(chain_id)
+      Summarize.enqueue_chain_summarization(chain_id)
     end
   end
 

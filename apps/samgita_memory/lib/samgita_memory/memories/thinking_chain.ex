@@ -6,6 +6,7 @@ defmodule SamgitaMemory.Memories.ThinkingChain do
   import Ecto.Query
 
   alias SamgitaMemory.Repo
+  alias SamgitaMemory.Workers.Summarize
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -79,7 +80,7 @@ defmodule SamgitaMemory.Memories.ThinkingChain do
         case chain |> changeset(%{status: :completed}) |> Repo.update() do
           {:ok, completed_chain} ->
             # Enqueue async summarization
-            SamgitaMemory.Workers.Summarize.enqueue_chain_summarization(completed_chain.id)
+            Summarize.enqueue_chain_summarization(completed_chain.id)
             {:ok, completed_chain}
 
           error ->

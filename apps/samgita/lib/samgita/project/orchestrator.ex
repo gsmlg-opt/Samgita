@@ -12,6 +12,8 @@ defmodule Samgita.Project.Orchestrator do
   require Logger
 
   alias Samgita.Projects
+  alias Samgita.Workers.AgentTaskWorker
+  alias Samgita.Workers.QualityGateWorker
 
   @stagnation_check_interval_ms 300_000
   @stagnation_threshold 5
@@ -220,43 +222,7 @@ defmodule Samgita.Project.Orchestrator do
         "Task completed (#{data.phase_tasks_completed}/#{data.phase_tasks_total})"
       )
 
-      if data.paused do
-        Logger.info("[Orchestrator] #{data.project_id}: paused, deferring phase check")
-        {:keep_state, data}
-      else
-        if phase_complete?(data) do
-          if requires_quality_gates?(phase) do
-            Logger.info(
-              "[Orchestrator] #{data.project_id}: triggering quality gates for #{phase}"
-            )
-
-            broadcast_activity(data, :reason, "Phase tasks complete, running quality gates")
-            trigger_quality_gates(phase, data)
-            {:keep_state, %{data | awaiting_quality_gates: true}}
-          else
-            case next_phase(phase) do
-              nil ->
-                Logger.info("[Orchestrator] #{data.project_id}: perpetual mode, staying")
-                {:keep_state, data}
-
-              next ->
-                Logger.info(
-                  "[Orchestrator] #{data.project_id}: auto-advancing #{phase} → #{next}"
-                )
-
-                broadcast_activity(
-                  data,
-                  :phase_change,
-                  "All phase tasks complete, auto-advancing to #{next}"
-                )
-
-                {:next_state, next, reset_phase_counters(data)}
-            end
-          end
-        else
-          {:keep_state, data}
-        end
-      end
+      handle_task_completion(phase, data)
     end
 
     def unquote(phase)(:cast, :quality_gates_passed, data) do
@@ -474,7 +440,7 @@ defmodule Samgita.Project.Orchestrator do
       end
 
     Oban.insert(
-      Samgita.Workers.QualityGateWorker.new(%{
+      QualityGateWorker.new(%{
         project_id: data.project_id,
         prd_id: prd_id,
         gate_type: gate_type
@@ -711,7 +677,7 @@ defmodule Samgita.Project.Orchestrator do
       case Projects.create_task(project.id, attrs) do
         {:ok, task} ->
           Oban.insert(
-            Samgita.Workers.AgentTaskWorker.new(%{
+            AgentTaskWorker.new(%{
               task_id: task.id,
               project_id: project.id,
               agent_type: task_def.agent_type
@@ -778,6 +744,53 @@ defmodule Samgita.Project.Orchestrator do
     case Projects.get_project(data.project_id) do
       {:ok, project} -> Projects.update_project(project, %{phase: phase})
       _ -> :ok
+    end
+  end
+
+  defp handle_task_completion(phase, data) do
+    if data.paused do
+      Logger.info("[Orchestrator] #{data.project_id}: paused, deferring phase check")
+      {:keep_state, data}
+    else
+      handle_phase_completion(phase, data)
+    end
+  end
+
+  defp handle_phase_completion(phase, data) do
+    if phase_complete?(data) do
+      handle_completed_phase(phase, data)
+    else
+      {:keep_state, data}
+    end
+  end
+
+  defp handle_completed_phase(phase, data) do
+    if requires_quality_gates?(phase) do
+      Logger.info("[Orchestrator] #{data.project_id}: triggering quality gates for #{phase}")
+      broadcast_activity(data, :reason, "Phase tasks complete, running quality gates")
+      trigger_quality_gates(phase, data)
+      {:keep_state, %{data | awaiting_quality_gates: true}}
+    else
+      advance_to_next_phase(phase, data)
+    end
+  end
+
+  defp advance_to_next_phase(phase, data) do
+    case next_phase(phase) do
+      nil ->
+        Logger.info("[Orchestrator] #{data.project_id}: perpetual mode, staying")
+        {:keep_state, data}
+
+      next ->
+        Logger.info("[Orchestrator] #{data.project_id}: auto-advancing #{phase} → #{next}")
+
+        broadcast_activity(
+          data,
+          :phase_change,
+          "All phase tasks complete, auto-advancing to #{next}"
+        )
+
+        {:next_state, next, reset_phase_counters(data)}
     end
   end
 end

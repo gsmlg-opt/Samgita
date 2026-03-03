@@ -3,6 +3,8 @@ defmodule SamgitaMemory.Formation.Supervisor do
 
   use Supervisor
 
+  alias SamgitaMemory.Formation.TelemetryHandler
+
   def start_link(opts) do
     Supervisor.start_link(__MODULE__, opts, name: __MODULE__)
   end
@@ -10,7 +12,7 @@ defmodule SamgitaMemory.Formation.Supervisor do
   @impl true
   def init(_opts) do
     # Attach telemetry handlers on supervisor init
-    SamgitaMemory.Formation.TelemetryHandler.attach()
+    TelemetryHandler.attach()
 
     # No children to supervise — handlers are registered with :telemetry
     Supervisor.init([], strategy: :one_for_one)

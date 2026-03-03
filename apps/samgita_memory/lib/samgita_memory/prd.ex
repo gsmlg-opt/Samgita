@@ -4,8 +4,9 @@ defmodule SamgitaMemory.PRD do
   import Ecto.Query
 
   alias SamgitaMemory.Cache.PRDTable
-  alias SamgitaMemory.PRD.{Execution, Event, Decision}
+  alias SamgitaMemory.PRD.{Decision, Event, Execution}
   alias SamgitaMemory.Repo
+  alias SamgitaMemory.Workers.Summarize
 
   @doc """
   Start or resume tracking a PRD execution.
@@ -127,26 +128,33 @@ defmodule SamgitaMemory.PRD do
         {:error, :not_found}
 
       execution ->
-        result =
-          execution
-          |> Execution.changeset(%{status: status})
-          |> Repo.update()
-
-        case result do
-          {:ok, updated} ->
-            PRDTable.invalidate(prd_id)
-
-            # Trigger compaction when PRD is completed
-            if status == :completed do
-              SamgitaMemory.Workers.Summarize.enqueue_prd_compaction(updated.id)
-            end
-
-            {:ok, updated}
-
-          error ->
-            error
-        end
+        do_update_status(execution, prd_id, status)
     end
+  end
+
+  defp do_update_status(execution, prd_id, status) do
+    result =
+      execution
+      |> Execution.changeset(%{status: status})
+      |> Repo.update()
+
+    case result do
+      {:ok, updated} ->
+        handle_successful_update(prd_id, status, updated)
+
+      error ->
+        error
+    end
+  end
+
+  defp handle_successful_update(prd_id, status, updated) do
+    PRDTable.invalidate(prd_id)
+
+    if status == :completed do
+      Summarize.enqueue_prd_compaction(updated.id)
+    end
+
+    {:ok, updated}
   end
 
   @doc "Get a single execution by ID."

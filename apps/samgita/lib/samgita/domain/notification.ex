@@ -148,17 +148,21 @@ defmodule Samgita.Domain.Notification do
         |> validate_format(:webhook_url, ~r/^https?:\/\/.+/,
           message: "must be a valid HTTP or HTTPS URL"
         )
-        |> validate_change(:webhook_url, fn :webhook_url, url ->
-          case URI.parse(url) do
-            %URI{scheme: scheme, host: host}
-            when scheme in ["http", "https"] and not is_nil(host) ->
-              []
-
-            _ ->
-              [webhook_url: "must be a valid HTTP or HTTPS URL with a valid host"]
-          end
-        end)
+        |> validate_webhook_uri()
     end
+  end
+
+  defp validate_webhook_uri(changeset) do
+    validate_change(changeset, :webhook_url, fn :webhook_url, url ->
+      case URI.parse(url) do
+        %URI{scheme: scheme, host: host}
+        when scheme in ["http", "https"] and not is_nil(host) ->
+          []
+
+        _ ->
+          [webhook_url: "must be a valid HTTP or HTTPS URL with a valid host"]
+      end
+    end)
   end
 
   defp validate_delivery_method(changeset) do

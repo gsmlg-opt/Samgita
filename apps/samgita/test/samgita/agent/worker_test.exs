@@ -3,12 +3,13 @@ defmodule Samgita.Agent.WorkerTest do
 
   @moduletag timeout: 300_000
 
+  alias Ecto.Adapters.SQL.Sandbox
   alias Samgita.Agent.Worker
 
   setup do
     # Enable shared sandbox mode for both repos since Worker spawns processes that need DB access
-    Ecto.Adapters.SQL.Sandbox.mode(Samgita.Repo, {:shared, self()})
-    Ecto.Adapters.SQL.Sandbox.mode(SamgitaMemory.Repo, {:shared, self()})
+    Sandbox.mode(Samgita.Repo, {:shared, self()})
+    Sandbox.mode(SamgitaMemory.Repo, {:shared, self()})
 
     :ok
   end

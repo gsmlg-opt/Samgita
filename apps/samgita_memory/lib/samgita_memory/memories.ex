@@ -3,9 +3,11 @@ defmodule SamgitaMemory.Memories do
 
   import Ecto.Query
 
-  alias SamgitaMemory.Repo
-  alias SamgitaMemory.Memories.Memory
   alias SamgitaMemory.Cache.MemoryTable
+  alias SamgitaMemory.Memories.Memory
+  alias SamgitaMemory.Repo
+  alias SamgitaMemory.Retrieval.Pipeline
+  alias SamgitaMemory.Workers.Embedding
 
   @doc """
   Store a new memory fact.
@@ -38,7 +40,7 @@ defmodule SamgitaMemory.Memories do
     case %Memory{} |> Memory.changeset(attrs) |> Repo.insert() do
       {:ok, memory} ->
         # Enqueue async embedding generation
-        SamgitaMemory.Workers.Embedding.enqueue(memory.id)
+        Embedding.enqueue(memory.id)
         {:ok, memory}
 
       error ->
@@ -57,7 +59,7 @@ defmodule SamgitaMemory.Memories do
     * `:min_confidence` - minimum confidence threshold
   """
   def retrieve(query, opts \\ []) do
-    results = SamgitaMemory.Retrieval.Pipeline.execute(query, opts)
+    results = Pipeline.execute(query, opts)
 
     # Update access tracking for returned memories
     Enum.each(results, &touch_access/1)

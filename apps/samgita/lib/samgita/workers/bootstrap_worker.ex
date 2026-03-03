@@ -87,33 +87,36 @@ defmodule Samgita.Workers.BootstrapWorker do
   ## PRD Parsing
 
   defp parse_prd_sections(content) do
-    # Split by markdown headers and categorize
     lines = String.split(content, "\n")
 
     {sections, current_section, current_lines} =
-      Enum.reduce(lines, {%{}, nil, []}, fn line, {sections, current, lines} ->
-        case parse_header(line) do
-          {:header, level, title} when level <= 2 ->
-            sections =
-              if current do
-                Map.put(sections, current, Enum.reverse(lines))
-              else
-                sections
-              end
-
-            {sections, normalize_section_name(title), []}
-
-          _ ->
-            {sections, current, [line | lines]}
-        end
+      Enum.reduce(lines, {%{}, nil, []}, fn line, acc ->
+        process_prd_line(line, acc)
       end)
 
-    # Don't forget the last section
-    if current_section do
-      Map.put(sections, current_section, Enum.reverse(current_lines))
-    else
-      sections
+    finalize_prd_sections(sections, current_section, current_lines)
+  end
+
+  defp process_prd_line(line, {sections, current, lines}) do
+    case parse_header(line) do
+      {:header, level, title} when level <= 2 ->
+        sections = save_current_prd_section(sections, current, lines)
+        {sections, normalize_section_name(title), []}
+
+      _ ->
+        {sections, current, [line | lines]}
     end
+  end
+
+  defp save_current_prd_section(sections, nil, _lines), do: sections
+
+  defp save_current_prd_section(sections, current, lines),
+    do: Map.put(sections, current, Enum.reverse(lines))
+
+  defp finalize_prd_sections(sections, nil, _lines), do: sections
+
+  defp finalize_prd_sections(sections, current_section, current_lines) do
+    Map.put(sections, current_section, Enum.reverse(current_lines))
   end
 
   defp parse_header(line) do
@@ -430,76 +433,81 @@ defmodule Samgita.Workers.BootstrapWorker do
     feature_lower = String.downcase(feature)
 
     cond do
-      String.contains?(feature_lower, [
-        "ui",
-        "frontend",
-        "component",
-        "page",
-        "view",
-        "css",
-        "layout",
-        "responsive"
-      ]) ->
-        "eng-frontend"
-
-      String.contains?(feature_lower, ["api", "endpoint", "rest", "graphql", "webhook", "route"]) ->
-        "eng-api"
-
-      String.contains?(feature_lower, [
-        "database",
-        "schema",
-        "migration",
-        "query",
-        "model",
-        "table",
-        "index"
-      ]) ->
-        "eng-database"
-
-      String.contains?(feature_lower, ["mobile", "ios", "android", "react native", "flutter"]) ->
-        "eng-mobile"
-
-      String.contains?(feature_lower, [
-        "deploy",
-        "ci",
-        "cd",
-        "docker",
-        "kubernetes",
-        "k8s",
-        "infrastructure",
-        "terraform"
-      ]) ->
-        "ops-devops"
-
-      String.contains?(feature_lower, [
-        "security",
-        "auth",
-        "permission",
-        "encrypt",
-        "jwt",
-        "oauth",
-        "rbac"
-      ]) ->
-        "ops-security"
-
-      String.contains?(feature_lower, ["monitor", "alert", "log", "metric", "observ"]) ->
-        "ops-monitor"
-
-      String.contains?(feature_lower, ["test", "spec", "coverage", "e2e", "integration"]) ->
-        "eng-qa"
-
-      String.contains?(feature_lower, ["performance", "cache", "optim", "latency", "load"]) ->
-        "eng-perf"
-
-      String.contains?(feature_lower, ["ml", "machine learning", "model", "training", "ai"]) ->
-        "data-ml"
-
-      String.contains?(feature_lower, ["analytics", "report", "dashboard", "chart", "metric"]) ->
-        "data-analytics"
-
-      true ->
-        "eng-backend"
+      matches_frontend?(feature_lower) -> "eng-frontend"
+      matches_api?(feature_lower) -> "eng-api"
+      matches_database?(feature_lower) -> "eng-database"
+      matches_mobile?(feature_lower) -> "eng-mobile"
+      matches_devops?(feature_lower) -> "ops-devops"
+      matches_security?(feature_lower) -> "ops-security"
+      matches_monitoring?(feature_lower) -> "ops-monitor"
+      matches_testing?(feature_lower) -> "eng-qa"
+      matches_performance?(feature_lower) -> "eng-perf"
+      matches_ml?(feature_lower) -> "data-ml"
+      matches_analytics?(feature_lower) -> "data-analytics"
+      true -> "eng-backend"
     end
+  end
+
+  defp matches_frontend?(text) do
+    String.contains?(text, [
+      "ui",
+      "frontend",
+      "component",
+      "page",
+      "view",
+      "css",
+      "layout",
+      "responsive"
+    ])
+  end
+
+  defp matches_api?(text) do
+    String.contains?(text, ["api", "endpoint", "rest", "graphql", "webhook", "route"])
+  end
+
+  defp matches_database?(text) do
+    String.contains?(text, ["database", "schema", "migration", "query", "model", "table", "index"])
+  end
+
+  defp matches_mobile?(text) do
+    String.contains?(text, ["mobile", "ios", "android", "react native", "flutter"])
+  end
+
+  defp matches_devops?(text) do
+    String.contains?(text, [
+      "deploy",
+      "ci",
+      "cd",
+      "docker",
+      "kubernetes",
+      "k8s",
+      "infrastructure",
+      "terraform"
+    ])
+  end
+
+  defp matches_security?(text) do
+    String.contains?(text, ["security", "auth", "permission", "encrypt", "jwt", "oauth", "rbac"])
+  end
+
+  defp matches_monitoring?(text) do
+    String.contains?(text, ["monitor", "alert", "log", "metric", "observ"])
+  end
+
+  defp matches_testing?(text) do
+    String.contains?(text, ["test", "spec", "coverage", "e2e", "integration"])
+  end
+
+  defp matches_performance?(text) do
+    String.contains?(text, ["performance", "cache", "optim", "latency", "load"])
+  end
+
+  defp matches_ml?(text) do
+    String.contains?(text, ["ml", "machine learning", "model", "training", "ai"])
+  end
+
+  defp matches_analytics?(text) do
+    String.contains?(text, ["analytics", "report", "dashboard", "chart", "metric"])
   end
 
   ## Task Enqueuing
@@ -507,83 +515,100 @@ defmodule Samgita.Workers.BootstrapWorker do
   defp enqueue_tasks(project_id, prd_id, task_descriptors) do
     sorted = Enum.sort_by(task_descriptors, & &1.priority)
 
-    # First pass: create milestone tasks and build a description-to-id map
-    {milestone_map, milestone_tasks} =
-      sorted
-      |> Enum.filter(fn d -> d.type == "milestone" end)
-      |> Enum.reduce({%{}, []}, fn descriptor, {map, acc} ->
-        payload = Map.merge(descriptor.payload, %{"prd_id" => prd_id})
-
-        case Projects.create_task(project_id, %{
-               type: descriptor.type,
-               priority: descriptor.priority,
-               payload: payload,
-               status: :pending
-             }) do
-          {:ok, task} ->
-            {Map.put(map, descriptor.description, task.id), [task | acc]}
-
-          {:error, reason} ->
-            Logger.warning("[BootstrapWorker] Failed to create milestone: #{inspect(reason)}")
-            {map, acc}
-        end
-      end)
-
-    # Second pass: create all other tasks, linking to parent milestones
-    other_tasks =
-      sorted
-      |> Enum.reject(fn d -> d.type == "milestone" end)
-      |> Enum.reduce([], fn descriptor, acc ->
-        payload = Map.merge(descriptor.payload, %{"prd_id" => prd_id})
-
-        parent_task_id =
-          case Map.get(descriptor, :parent_milestone) do
-            nil -> nil
-            milestone_desc -> Map.get(milestone_map, milestone_desc)
-          end
-
-        task_attrs = %{
-          type: descriptor.type,
-          priority: descriptor.priority,
-          payload: payload,
-          status: :pending
-        }
-
-        task_attrs =
-          if parent_task_id,
-            do: Map.put(task_attrs, :parent_task_id, parent_task_id),
-            else: task_attrs
-
-        case Projects.create_task(project_id, task_attrs) do
-          {:ok, task} ->
-            case Oban.insert(
-                   AgentTaskWorker.new(%{
-                     task_id: task.id,
-                     project_id: project_id,
-                     agent_type: descriptor.agent_type
-                   })
-                 ) do
-              {:ok, _job} ->
-                [task | acc]
-
-              {:error, reason} ->
-                Logger.warning("[BootstrapWorker] Failed to enqueue task: #{inspect(reason)}")
-                acc
-            end
-
-          {:error, reason} ->
-            Logger.warning("[BootstrapWorker] Failed to create task: #{inspect(reason)}")
-            acc
-        end
-      end)
+    {milestone_map, milestone_tasks} = create_milestone_tasks(sorted, project_id, prd_id)
+    other_tasks = create_other_tasks(sorted, project_id, prd_id, milestone_map)
 
     Enum.reverse(milestone_tasks ++ other_tasks)
+  end
+
+  defp create_milestone_tasks(sorted, project_id, prd_id) do
+    sorted
+    |> Enum.filter(fn d -> d.type == "milestone" end)
+    |> Enum.reduce({%{}, []}, fn descriptor, {map, acc} ->
+      create_milestone_task(descriptor, project_id, prd_id, map, acc)
+    end)
+  end
+
+  defp create_milestone_task(descriptor, project_id, prd_id, map, acc) do
+    payload = Map.merge(descriptor.payload, %{"prd_id" => prd_id})
+
+    case Projects.create_task(project_id, %{
+           type: descriptor.type,
+           priority: descriptor.priority,
+           payload: payload,
+           status: :pending
+         }) do
+      {:ok, task} ->
+        {Map.put(map, descriptor.description, task.id), [task | acc]}
+
+      {:error, reason} ->
+        Logger.warning("[BootstrapWorker] Failed to create milestone: #{inspect(reason)}")
+        {map, acc}
+    end
+  end
+
+  defp create_other_tasks(sorted, project_id, prd_id, milestone_map) do
+    sorted
+    |> Enum.reject(fn d -> d.type == "milestone" end)
+    |> Enum.reduce([], fn descriptor, acc ->
+      create_and_enqueue_task(descriptor, project_id, prd_id, milestone_map, acc)
+    end)
+  end
+
+  defp create_and_enqueue_task(descriptor, project_id, prd_id, milestone_map, acc) do
+    payload = Map.merge(descriptor.payload, %{"prd_id" => prd_id})
+    parent_task_id = get_parent_task_id(descriptor, milestone_map)
+
+    task_attrs = %{
+      type: descriptor.type,
+      priority: descriptor.priority,
+      payload: payload,
+      status: :pending
+    }
+
+    task_attrs =
+      if parent_task_id,
+        do: Map.put(task_attrs, :parent_task_id, parent_task_id),
+        else: task_attrs
+
+    case Projects.create_task(project_id, task_attrs) do
+      {:ok, task} ->
+        enqueue_agent_task(task, project_id, descriptor.agent_type, acc)
+
+      {:error, reason} ->
+        Logger.warning("[BootstrapWorker] Failed to create task: #{inspect(reason)}")
+        acc
+    end
+  end
+
+  defp get_parent_task_id(descriptor, milestone_map) do
+    case Map.get(descriptor, :parent_milestone) do
+      nil -> nil
+      milestone_desc -> Map.get(milestone_map, milestone_desc)
+    end
+  end
+
+  defp enqueue_agent_task(task, project_id, agent_type, acc) do
+    case Oban.insert(
+           AgentTaskWorker.new(%{
+             task_id: task.id,
+             project_id: project_id,
+             agent_type: agent_type
+           })
+         ) do
+      {:ok, _job} ->
+        [task | acc]
+
+      {:error, reason} ->
+        Logger.warning("[BootstrapWorker] Failed to enqueue task: #{inspect(reason)}")
+        acc
+    end
   end
 
   defp notify_orchestrator(project_id, task_count) do
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
       [{pid, _}] ->
-        Samgita.Project.Orchestrator.set_phase_task_count(pid, task_count)
+        :gen_statem.call(pid, {:set_phase_task_count, task_count})
 
       [] ->
         Logger.debug("[BootstrapWorker] No orchestrator found for #{project_id}")

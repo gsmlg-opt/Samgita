@@ -2,7 +2,7 @@ defmodule Samgita.Project.RecoveryTest do
   use Samgita.DataCase, async: false
 
   alias Ecto.Adapters.SQL.Sandbox
-  alias Samgita.Project.Recovery
+  alias Samgita.Project.{Orchestrator, Recovery}
   alias Samgita.Projects
 
   setup do
@@ -72,7 +72,7 @@ defmodule Samgita.Project.RecoveryTest do
 
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project.id}) do
       [{pid, _}] ->
-        {phase, _data} = Samgita.Project.Orchestrator.get_state(pid)
+        {phase, _data} = Orchestrator.get_state(pid)
         # Orchestrator starts at persisted phase but may auto-advance with inline Oban
         assert phase in [:discovery, :architecture, :infrastructure, :development]
         :gen_statem.stop(pid)

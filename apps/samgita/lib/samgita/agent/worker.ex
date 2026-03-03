@@ -14,7 +14,10 @@ defmodule Samgita.Agent.Worker do
   alias Samgita.Agent.CircuitBreaker
   alias Samgita.Agent.Claude
   alias Samgita.Agent.Types
+  alias Samgita.Domain.Artifact
+  alias Samgita.Git.Worktree
   alias Samgita.Project.Memory
+  alias Samgita.Quality.OutputGuardrails
 
   defstruct [
     :id,
@@ -315,7 +318,7 @@ defmodule Samgita.Agent.Worker do
 
       result when is_binary(result) ->
         # Gate 5: Output Guardrails
-        gate_result = Samgita.Quality.OutputGuardrails.validate(result)
+        gate_result = OutputGuardrails.validate(result)
 
         if gate_result.verdict == :fail do
           Logger.warning(
@@ -767,58 +770,63 @@ defmodule Samgita.Agent.Worker do
   end
 
   defp build_project_context(project_id, payload) do
-    project_info =
-      try do
-        case Samgita.Projects.get_project(project_id) do
-          {:ok, project} ->
-            working_path = project.working_path || ""
-            git_url = project.git_url || ""
-
-            location =
-              if working_path != "",
-                do: "Working directory: #{working_path}",
-                else: "Repository: #{git_url}"
-
-            """
-
-            ## Project: #{project.name}
-            #{location}
-            Phase: #{project.phase}
-            """
-
-          _ ->
-            ""
-        end
-      rescue
-        _ -> ""
-      end
-
-    prd_context =
-      case payload["prd_id"] do
-        nil ->
-          ""
-
-        prd_id ->
-          try do
-            case Samgita.Prds.get_prd(prd_id) do
-              {:ok, prd} ->
-                content = String.slice(prd.content || "", 0, 2000)
-
-                """
-
-                ## PRD: #{prd.title}
-                #{content}
-                """
-
-              _ ->
-                ""
-            end
-          rescue
-            _ -> ""
-          end
-      end
+    project_info = fetch_project_info(project_id)
+    prd_context = fetch_prd_context(payload["prd_id"])
 
     project_info <> prd_context
+  end
+
+  defp fetch_project_info(project_id) do
+    case Samgita.Projects.get_project(project_id) do
+      {:ok, project} ->
+        build_project_info_string(project)
+
+      _ ->
+        ""
+    end
+  rescue
+    _ -> ""
+  end
+
+  defp build_project_info_string(project) do
+    working_path = project.working_path || ""
+    git_url = project.git_url || ""
+
+    location =
+      if working_path != "",
+        do: "Working directory: #{working_path}",
+        else: "Repository: #{git_url}"
+
+    """
+
+    ## Project: #{project.name}
+    #{location}
+    Phase: #{project.phase}
+    """
+  end
+
+  defp fetch_prd_context(nil), do: ""
+
+  defp fetch_prd_context(prd_id) do
+    case Samgita.Prds.get_prd(prd_id) do
+      {:ok, prd} ->
+        build_prd_context_string(prd)
+
+      _ ->
+        ""
+    end
+  rescue
+    _ -> ""
+  end
+
+  defp build_prd_context_string(prd) do
+    content = String.slice(prd.content || "", 0, 2000)
+
+    """
+
+    ## PRD: #{prd.title}
+    #{content}
+    """
   end
 
   defp task_type(%{type: type}), do: type
@@ -900,29 +908,36 @@ defmodule Samgita.Agent.Worker do
     case data.act_result do
       result when is_binary(result) ->
         Logger.info("[#{data.id}] Saving generated PRD to project #{data.project_id}")
-
-        case Samgita.Projects.get_project(data.project_id) do
-          {:ok, project} ->
-            case Samgita.Projects.update_prd(project, result) do
-              {:ok, _} ->
-                Logger.info("[#{data.id}] PRD saved successfully")
-
-                Phoenix.PubSub.broadcast(
-                  Samgita.PubSub,
-                  "project:#{data.project_id}",
-                  {:prd_generated, data.project_id}
-                )
-
-              {:error, reason} ->
-                Logger.error("[#{data.id}] Failed to save PRD: #{inspect(reason)}")
-            end
-
-          {:error, reason} ->
-            Logger.error("[#{data.id}] Failed to get project: #{inspect(reason)}")
-        end
+        do_save_prd(data, result)
 
       _ ->
         Logger.warning("[#{data.id}] No PRD content to save")
+    end
+  end
+
+  defp do_save_prd(data, result) do
+    case Samgita.Projects.get_project(data.project_id) do
+      {:ok, project} ->
+        update_and_broadcast_prd(data, project, result)
+
+      {:error, reason} ->
+        Logger.error("[#{data.id}] Failed to get project: #{inspect(reason)}")
+    end
+  end
+
+  defp update_and_broadcast_prd(data, project, result) do
+    case Samgita.Projects.update_prd(project, result) do
+      {:ok, _} ->
+        Logger.info("[#{data.id}] PRD saved successfully")
+
+        Phoenix.PubSub.broadcast(
+          Samgita.PubSub,
+          "project:#{data.project_id}",
+          {:prd_generated, data.project_id}
+        )
+
+      {:error, reason} ->
+        Logger.error("[#{data.id}] Failed to save PRD: #{inspect(reason)}")
     end
   end
 
@@ -954,9 +969,7 @@ defmodule Samgita.Agent.Worker do
           task_id: task_id
         }
 
-        case Samgita.Repo.insert(
-               Samgita.Domain.Artifact.changeset(%Samgita.Domain.Artifact{}, attrs)
-             ) do
+        case Samgita.Repo.insert(Artifact.changeset(%Artifact{}, attrs)) do
           {:ok, artifact} ->
             Logger.info("[#{data.id}] Saved #{category} artifact: #{artifact.id}")
 
@@ -977,29 +990,38 @@ defmodule Samgita.Agent.Worker do
     working_path = get_working_path(data)
 
     if working_path && File.dir?(working_path) do
-      if Samgita.Git.Worktree.has_changes?(working_path) do
-        task_desc =
-          case task do
-            %{type: type, payload: %{"description" => desc}} -> "#{type}: #{desc}"
-            %{type: type} -> type
-            _ -> "task"
-          end
-
-        message = "[samgita] #{data.agent_type}: #{task_desc}"
-
-        case Samgita.Git.Worktree.commit(working_path, message) do
-          {:ok, hash} ->
-            Logger.info("[#{data.id}] Git checkpoint: #{hash}")
-            broadcast_activity(data, :verify, "Git checkpoint: #{hash}")
-
-          {:error, reason} ->
-            Logger.warning("[#{data.id}] Git checkpoint failed: #{inspect(reason)}")
-        end
-      end
+      create_git_checkpoint_if_changes(data, task, working_path)
     end
   rescue
     e ->
       Logger.warning("[#{data.id}] Git checkpoint error: #{inspect(e)}")
+  end
+
+  defp create_git_checkpoint_if_changes(data, task, working_path) do
+    if Worktree.has_changes?(working_path) do
+      task_desc = build_task_description(task)
+      message = "[samgita] #{data.agent_type}: #{task_desc}"
+      commit_checkpoint(data, working_path, message)
+    end
+  end
+
+  defp build_task_description(task) do
+    case task do
+      %{type: type, payload: %{"description" => desc}} -> "#{type}: #{desc}"
+      %{type: type} -> type
+      _ -> "task"
+    end
+  end
+
+  defp commit_checkpoint(data, working_path, message) do
+    case Worktree.commit(working_path, message) do
+      {:ok, hash} ->
+        Logger.info("[#{data.id}] Git checkpoint: #{hash}")
+        broadcast_activity(data, :verify, "Git checkpoint: #{hash}")
+
+      {:error, reason} ->
+        Logger.warning("[#{data.id}] Git checkpoint failed: #{inspect(reason)}")
+    end
   end
 
   defp get_working_path(data) do

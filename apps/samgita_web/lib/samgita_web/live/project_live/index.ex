@@ -3,6 +3,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
   alias Samgita.Domain.Project
   alias Samgita.Projects
+  alias Samgita.Workers.BootstrapWorker
 
   @impl true
   def mount(%{"id" => id}, _session, socket) do
@@ -66,7 +67,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
       # Also trigger the bootstrap worker to generate the full task backlog
       Oban.insert(
-        Samgita.Workers.BootstrapWorker.new(%{
+        BootstrapWorker.new(%{
           project_id: project.id,
           prd_id: prd.id
         })
@@ -393,7 +394,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
     do: project.status in [:running, :paused] && project.active_prd_id != nil
 
   def can_terminate?(project), do: project.status in [:running, :paused]
-  def is_running?(project), do: project.status in [:running, :paused]
+  def running?(project), do: project.status in [:running, :paused]
 
   def status_text_color(:running), do: "text-green-500"
   def status_text_color(:paused), do: "text-orange-500"
@@ -496,8 +497,8 @@ defmodule SamgitaWeb.ProjectLive.Index do
     cond do
       diff < 60 -> "just now"
       diff < 3600 -> "#{div(diff, 60)}m ago"
-      diff < 86400 -> "#{div(diff, 3600)}h ago"
-      diff < 604_800 -> "#{div(diff, 86400)}d ago"
+      diff < 86_400 -> "#{div(diff, 3600)}h ago"
+      diff < 604_800 -> "#{div(diff, 86_400)}d ago"
       true -> Calendar.strftime(datetime, "%b %d, %Y")
     end
   end

@@ -2,7 +2,6 @@ defmodule SamgitaMemory.MemoriesTest do
   use SamgitaMemory.DataCase, async: true
 
   alias SamgitaMemory.Memories
-  alias SamgitaMemory.Memories.Memory
 
   describe "store/2" do
     test "creates a memory with required fields" do

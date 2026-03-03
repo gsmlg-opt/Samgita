@@ -1,10 +1,11 @@
 defmodule Samgita.Project.SupervisorTest do
   use Samgita.DataCase, async: false
 
+  alias Ecto.Adapters.SQL.Sandbox
   alias Samgita.Project.Supervisor, as: ProjectSupervisor
 
   setup do
-    Ecto.Adapters.SQL.Sandbox.mode(Samgita.Repo, {:shared, self()})
+    Sandbox.mode(Samgita.Repo, {:shared, self()})
 
     {:ok, project} =
       Samgita.Projects.create_project(%{

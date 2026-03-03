@@ -20,39 +20,49 @@ defmodule SamgitaProvider.ClaudeCode do
 
     Logger.debug("Claude CLI: #{command} #{Enum.join(args, " ")}")
 
-    working_dir = opts[:working_directory]
+    cmd_opts = build_cmd_opts(opts[:working_directory])
+    task = Task.async(fn -> execute_claude_command(command, args, cmd_opts) end)
+    await_task_result(task, timeout)
+  end
 
-    cmd_opts =
-      [stderr_to_stdout: true, env: cmd_env()]
-      |> maybe_add_cd(working_dir)
+  defp build_cmd_opts(working_dir) do
+    [stderr_to_stdout: true, env: cmd_env()]
+    |> maybe_add_cd(working_dir)
+  end
 
-    task =
-      Task.async(fn ->
-        try do
-          case System.cmd(command, args, cmd_opts) do
-            {output, 0} ->
-              parse_json_output(output)
+  defp execute_claude_command(command, args, cmd_opts) do
+    case System.cmd(command, args, cmd_opts) do
+      {output, 0} ->
+        parse_json_output(output)
 
-            {output, exit_code} ->
-              Logger.error(
-                "Claude CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}"
-              )
+      {output, exit_code} ->
+        handle_error_output(output, exit_code)
+    end
+  rescue
+    e in ErlangError ->
+      handle_erlang_error(e)
+  end
 
-              classify_error(output, exit_code)
-          end
-        rescue
-          e in ErlangError ->
-            case e do
-              %ErlangError{original: :enoent} ->
-                {:error, :claude_not_found}
+  defp handle_error_output(output, exit_code) do
+    Logger.error(
+      "Claude CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}"
+    )
 
-              _ ->
-                Logger.error("Claude CLI error: #{inspect(e)}")
-                {:error, Exception.message(e)}
-            end
-        end
-      end)
+    classify_error(output, exit_code)
+  end
 
+  defp handle_erlang_error(e) do
+    case e do
+      %ErlangError{original: :enoent} ->
+        {:error, :claude_not_found}
+
+      _ ->
+        Logger.error("Claude CLI error: #{inspect(e)}")
+        {:error, Exception.message(e)}
+    end
+  end
+
+  defp await_task_result(task, timeout) do
     case Task.yield(task, timeout) || Task.shutdown(task) do
       {:ok, result} -> result
       nil -> {:error, :timeout}

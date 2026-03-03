@@ -104,41 +104,53 @@ defmodule SamgitaMemory.Workers.Summarize do
 
   defp extract_revision_patterns(chain) do
     thoughts = chain.thoughts || []
-
-    revisions =
-      Enum.filter(thoughts, fn t ->
-        (t["is_revision"] || t[:is_revision]) == true
-      end)
+    revisions = filter_revisions(thoughts)
 
     for revision <- revisions do
-      revises = revision["revises"] || revision[:revises]
-      content = revision["content"] || revision[:content] || ""
-
-      original =
-        Enum.find(thoughts, fn t ->
-          (t["number"] || t[:number]) == revises
-        end)
-
-      original_content =
-        if original, do: original["content"] || original[:content] || "unknown", else: "unknown"
-
-      memory_content =
-        "When reasoning about '#{chain.query}', initial approach " <>
-          "'#{truncate(original_content, 100)}' was revised to " <>
-          "'#{truncate(content, 100)}'"
-
-      SamgitaMemory.Memories.store(memory_content,
-        source: {:observation, chain.id},
-        scope: {chain.scope_type, chain.scope_id},
-        type: :procedural,
-        tags: ["revision-pattern"],
-        metadata: %{
-          chain_id: chain.id,
-          original_thought: revises,
-          revision_thought: revision["number"] || revision[:number]
-        }
-      )
+      store_revision_memory(chain, revision, thoughts)
     end
+  end
+
+  defp filter_revisions(thoughts) do
+    Enum.filter(thoughts, fn t ->
+      (t["is_revision"] || t[:is_revision]) == true
+    end)
+  end
+
+  defp store_revision_memory(chain, revision, thoughts) do
+    revises = revision["revises"] || revision[:revises]
+    content = revision["content"] || revision[:content] || ""
+    original = find_original_thought(thoughts, revises)
+    original_content = extract_original_content(original)
+
+    memory_content =
+      "When reasoning about '#{chain.query}', initial approach " <>
+        "'#{truncate(original_content, 100)}' was revised to " <>
+        "'#{truncate(content, 100)}'"
+
+    SamgitaMemory.Memories.store(memory_content,
+      source: {:observation, chain.id},
+      scope: {chain.scope_type, chain.scope_id},
+      type: :procedural,
+      tags: ["revision-pattern"],
+      metadata: %{
+        chain_id: chain.id,
+        original_thought: revises,
+        revision_thought: revision["number"] || revision[:number]
+      }
+    )
+  end
+
+  defp find_original_thought(thoughts, revises) do
+    Enum.find(thoughts, fn t ->
+      (t["number"] || t[:number]) == revises
+    end)
+  end
+
+  defp extract_original_content(nil), do: "unknown"
+
+  defp extract_original_content(original) do
+    original["content"] || original[:content] || "unknown"
   end
 
   # --- PRD Execution Compaction ---

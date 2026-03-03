@@ -95,31 +95,29 @@ defmodule Samgita.Quality.StaticAnalysis do
   ## Internal
 
   defp run_mix_cmd(working_path, args, timeout) do
-    try do
-      task =
-        Task.async(fn ->
-          System.cmd("mix", args,
-            cd: working_path,
-            stderr_to_stdout: true,
-            env: [{"MIX_ENV", "test"}]
-          )
-        end)
+    task =
+      Task.async(fn ->
+        System.cmd("mix", args,
+          cd: working_path,
+          stderr_to_stdout: true,
+          env: [{"MIX_ENV", "test"}]
+        )
+      end)
 
-      case Task.yield(task, timeout) || Task.shutdown(task) do
-        {:ok, {output, 0}} ->
-          {:ok, output}
+    case Task.yield(task, timeout) || Task.shutdown(task) do
+      {:ok, {output, 0}} ->
+        {:ok, output}
 
-        {:ok, {output, exit_code}} ->
-          {:error, output, exit_code}
+      {:ok, {output, exit_code}} ->
+        {:error, output, exit_code}
 
-        nil ->
-          {:error, "Command timed out after #{timeout}ms", 1}
-      end
-    rescue
-      e ->
-        Logger.warning("[StaticAnalysis] Command failed: #{inspect(e)}")
-        {:error, "Failed to execute: #{Exception.message(e)}", 1}
+      nil ->
+        {:error, "Command timed out after #{timeout}ms", 1}
     end
+  rescue
+    e ->
+      Logger.warning("[StaticAnalysis] Command failed: #{inspect(e)}")
+      {:error, "Failed to execute: #{Exception.message(e)}", 1}
   end
 
   defp parse_compile_output(output, _exit_code) do
@@ -233,35 +231,44 @@ defmodule Samgita.Quality.StaticAnalysis do
   end
 
   defp parse_credo_text(output) do
-    if String.contains?(output, "could not be found") or
-         String.contains?(output, "not available") do
-      # Credo not installed — skip, not a finding
+    if credo_not_available?(output) do
       []
     else
-      issues =
-        output
-        |> String.split("\n")
-        |> Enum.filter(&Regex.match?(~r/\[.\]\s/, &1))
-        |> Enum.map(fn line ->
-          severity =
-            cond do
-              String.contains?(line, "[F]") -> :high
-              String.contains?(line, "[C]") -> :medium
-              String.contains?(line, "[W]") -> :low
-              String.contains?(line, "[R]") -> :cosmetic
-              true -> :low
-            end
+      parse_credo_text_issues(output)
+    end
+  end
 
-          %{
-            gate: 2,
-            severity: severity,
-            message: "[credo] #{String.trim(line)}",
-            file: nil,
-            line: nil
-          }
-        end)
+  defp credo_not_available?(output) do
+    String.contains?(output, "could not be found") or
+      String.contains?(output, "not available")
+  end
 
-      issues
+  defp parse_credo_text_issues(output) do
+    output
+    |> String.split("\n")
+    |> Enum.filter(&Regex.match?(~r/\[.\]\s/, &1))
+    |> Enum.map(&parse_credo_text_line/1)
+  end
+
+  defp parse_credo_text_line(line) do
+    severity = extract_credo_severity(line)
+
+    %{
+      gate: 2,
+      severity: severity,
+      message: "[credo] #{String.trim(line)}",
+      file: nil,
+      line: nil
+    }
+  end
+
+  defp extract_credo_severity(line) do
+    cond do
+      String.contains?(line, "[F]") -> :high
+      String.contains?(line, "[C]") -> :medium
+      String.contains?(line, "[W]") -> :low
+      String.contains?(line, "[R]") -> :cosmetic
+      true -> :low
     end
   end
 

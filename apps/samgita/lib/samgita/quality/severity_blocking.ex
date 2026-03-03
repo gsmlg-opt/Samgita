@@ -26,44 +26,10 @@ defmodule Samgita.Quality.SeverityBlocking do
   def evaluate(gate_results) do
     start = System.monotonic_time(:millisecond)
 
-    all_findings =
-      gate_results
-      |> Enum.flat_map(fn r -> r.findings end)
-
-    blocking =
-      Enum.filter(all_findings, fn f ->
-        f.severity in @blocking_severities
-      end)
-
-    summary_findings =
-      if blocking != [] do
-        by_severity = Enum.group_by(blocking, & &1.severity)
-
-        summary =
-          @blocking_severities
-          |> Enum.map(fn sev ->
-            count = length(Map.get(by_severity, sev, []))
-            if count > 0, do: "#{count} #{sev}", else: nil
-          end)
-          |> Enum.filter(& &1)
-          |> Enum.join(", ")
-
-        [
-          %{
-            gate: 6,
-            severity: :high,
-            message:
-              "Severity blocking: #{summary} finding(s) across #{length(gate_results)} gates",
-            file: nil,
-            line: nil
-          }
-        ]
-      else
-        []
-      end
-
-    verdict =
-      if blocking != [], do: :fail, else: :pass
+    all_findings = Enum.flat_map(gate_results, fn r -> r.findings end)
+    blocking = Enum.filter(all_findings, fn f -> f.severity in @blocking_severities end)
+    summary_findings = create_summary_findings(blocking, gate_results)
+    verdict = if blocking != [], do: :fail, else: :pass
 
     %{
       gate: 6,
@@ -72,6 +38,31 @@ defmodule Samgita.Quality.SeverityBlocking do
       findings: summary_findings,
       duration_ms: System.monotonic_time(:millisecond) - start
     }
+  end
+
+  defp create_summary_findings([], _gate_results), do: []
+
+  defp create_summary_findings(blocking, gate_results) do
+    by_severity = Enum.group_by(blocking, & &1.severity)
+
+    summary =
+      @blocking_severities
+      |> Enum.map(fn sev ->
+        count = length(Map.get(by_severity, sev, []))
+        if count > 0, do: "#{count} #{sev}", else: nil
+      end)
+      |> Enum.filter(& &1)
+      |> Enum.join(", ")
+
+    [
+      %{
+        gate: 6,
+        severity: :high,
+        message: "Severity blocking: #{summary} finding(s) across #{length(gate_results)} gates",
+        file: nil,
+        line: nil
+      }
+    ]
   end
 
   @doc "Returns the list of severities that cause blocking."

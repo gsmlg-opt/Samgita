@@ -7,6 +7,7 @@ defmodule Samgita.Projects do
   alias Samgita.Domain.AgentRun
   alias Samgita.Domain.Project
   alias Samgita.Domain.Task, as: TaskSchema
+  alias Samgita.Project.Orchestrator
   alias Samgita.Repo
   alias Samgita.Workers.AgentTaskWorker
 
@@ -61,14 +62,14 @@ defmodule Samgita.Projects do
 
   defp notify_orchestrator_pause(project_id) do
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
-      [{pid, _}] -> Samgita.Project.Orchestrator.pause(pid)
+      [{pid, _}] -> Orchestrator.pause(pid)
       [] -> :ok
     end
   end
 
   defp notify_orchestrator_resume(project_id) do
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
-      [{pid, _}] -> Samgita.Project.Orchestrator.resume(pid)
+      [{pid, _}] -> Orchestrator.resume(pid)
       [] -> :ok
     end
   end
@@ -102,14 +103,7 @@ defmodule Samgita.Projects do
     with {:ok, project} <- get_project(id),
          true <- project.status in [:running, :paused] || {:error, :not_active} do
       terminate_supervisor(id)
-
-      if project.active_prd_id do
-        case Samgita.Prds.get_prd(project.active_prd_id) do
-          {:ok, prd} -> Samgita.Prds.update_prd(prd, %{status: :approved})
-          _ -> :ok
-        end
-      end
-
+      update_active_prd_status(project.active_prd_id, :approved)
       update_project(project, %{status: :completed, active_prd_id: nil})
     end
   end
@@ -132,22 +126,27 @@ defmodule Samgita.Projects do
     with {:ok, project} <- get_project(id),
          true <- project.status in [:running, :paused] || {:error, :not_active} do
       terminate_supervisor(id)
-
-      if project.active_prd_id do
-        case Samgita.Prds.get_prd(project.active_prd_id) do
-          {:ok, prd} -> Samgita.Prds.update_prd(prd, %{status: :draft})
-          _ -> :ok
-        end
-      end
-
-      from(t in TaskSchema,
-        where: t.project_id == ^id,
-        where: t.status in [:pending, :running]
-      )
-      |> Repo.update_all(set: [status: :failed, error: %{"reason" => "project terminated"}])
-
+      update_active_prd_status(project.active_prd_id, :draft)
+      fail_pending_tasks(id)
       update_project(project, %{status: :failed, active_prd_id: nil})
     end
+  end
+
+  defp update_active_prd_status(nil, _status), do: :ok
+
+  defp update_active_prd_status(prd_id, status) do
+    case Samgita.Prds.get_prd(prd_id) do
+      {:ok, prd} -> Samgita.Prds.update_prd(prd, %{status: status})
+      _ -> :ok
+    end
+  end
+
+  defp fail_pending_tasks(project_id) do
+    from(t in TaskSchema,
+      where: t.project_id == ^project_id,
+      where: t.status in [:pending, :running]
+    )
+    |> Repo.update_all(set: [status: :failed, error: %{"reason" => "project terminated"}])
   end
 
   defp terminate_supervisor(id) do

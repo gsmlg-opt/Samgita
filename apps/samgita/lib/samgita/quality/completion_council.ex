@@ -55,56 +55,68 @@ defmodule Samgita.Quality.CompletionCouncil do
   def evaluate(prd_content, project_status, opts \\ []) do
     timeout = opts[:timeout] || 120_000
 
-    # Run all council members in parallel
-    tasks =
-      Enum.map(@council_members, fn member ->
-        Task.async(fn ->
-          evaluate_member(member, prd_content, project_status)
-        end)
-      end)
-
+    tasks = start_council_evaluation(prd_content, project_status)
     results = Task.yield_many(tasks, timeout)
+    votes = collect_votes(results)
+    result = calculate_council_result(votes)
 
-    votes =
-      results
-      |> Enum.zip(@council_members)
-      |> Enum.map(fn {{_task, result}, member} ->
-        case result do
-          {:ok, {:ok, vote_result}} ->
-            vote_result
+    {:ok, result}
+  end
 
-          {:ok, {:error, reason}} ->
-            Logger.warning("[CompletionCouncil] #{member.role} failed: #{inspect(reason)}")
-
-            %{
-              role: member.role,
-              vote: :abstain,
-              reasoning: "Evaluation failed: #{inspect(reason)}",
-              remaining_issues: []
-            }
-
-          {:exit, reason} ->
-            Logger.error("[CompletionCouncil] #{member.role} crashed: #{inspect(reason)}")
-
-            %{
-              role: member.role,
-              vote: :abstain,
-              reasoning: "Evaluator crashed",
-              remaining_issues: []
-            }
-
-          nil ->
-            Logger.warning("[CompletionCouncil] #{member.role} timed out")
-
-            %{
-              role: member.role,
-              vote: :abstain,
-              reasoning: "Evaluation timed out",
-              remaining_issues: []
-            }
-        end
+  defp start_council_evaluation(prd_content, project_status) do
+    Enum.map(@council_members, fn member ->
+      Task.async(fn ->
+        evaluate_member(member, prd_content, project_status)
       end)
+    end)
+  end
 
+  defp collect_votes(results) do
+    results
+    |> Enum.zip(@council_members)
+    |> Enum.map(fn {{_task, result}, member} ->
+      process_vote_result(result, member)
+    end)
+  end
+
+  defp process_vote_result(result, member) do
+    case result do
+      {:ok, {:ok, vote_result}} ->
+        vote_result
+
+      {:ok, {:error, reason}} ->
+        Logger.warning("[CompletionCouncil] #{member.role} failed: #{inspect(reason)}")
+
+        %{
+          role: member.role,
+          vote: :abstain,
+          reasoning: "Evaluation failed: #{inspect(reason)}",
+          remaining_issues: []
+        }
+
+      {:exit, reason} ->
+        Logger.error("[CompletionCouncil] #{member.role} crashed: #{inspect(reason)}")
+
+        %{
+          role: member.role,
+          vote: :abstain,
+          reasoning: "Evaluator crashed",
+          remaining_issues: []
+        }
+
+      nil ->
+        Logger.warning("[CompletionCouncil] #{member.role} timed out")
+
+        %{
+          role: member.role,
+          vote: :abstain,
+          reasoning: "Evaluation timed out",
+          remaining_issues: []
+        }
+    end
+  end
+
+  defp calculate_council_result(votes) do
     complete_votes = Enum.count(votes, fn v -> v.vote == :complete end)
     total_valid = Enum.count(votes, fn v -> v.vote != :abstain end)
     unanimous = complete_votes == total_valid and total_valid == 3
@@ -116,21 +128,18 @@ defmodule Samgita.Quality.CompletionCouncil do
         :incomplete
       end
 
-    # Anti-sycophancy: if unanimous complete, log warning (would trigger extra review)
     if unanimous and verdict == :complete do
       Logger.info(
         "[CompletionCouncil] Unanimous completion detected — anti-sycophancy check recommended"
       )
     end
 
-    result = %{
+    %{
       verdict: verdict,
       votes: votes,
       unanimous: unanimous,
       quorum_met: complete_votes >= 2
     }
-
-    {:ok, result}
   end
 
   @doc "Check for stagnation: no meaningful progress in N iterations."

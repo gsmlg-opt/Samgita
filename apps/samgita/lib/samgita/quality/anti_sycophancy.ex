@@ -149,20 +149,26 @@ defmodule Samgita.Quality.AntiSycophancy do
   defp parse_challenge_response(response) do
     response
     |> String.split("\n")
-    |> Enum.chunk_while(
-      [],
-      fn line, acc ->
-        if String.starts_with?(String.trim(line), "FINDING:") do
-          if acc == [], do: {:cont, [line]}, else: {:cont, Enum.reverse(acc), [line]}
-        else
-          {:cont, [line | acc]}
-        end
-      end,
-      fn acc -> if acc == [], do: {:cont, []}, else: {:cont, Enum.reverse(acc), []} end
-    )
+    |> chunk_finding_blocks()
     |> Enum.flat_map(fn lines ->
       parse_finding_block(lines)
     end)
+  end
+
+  defp chunk_finding_blocks(lines) do
+    Enum.chunk_while(lines, [], &chunk_reducer/2, &chunk_finalizer/1)
+  end
+
+  defp chunk_reducer(line, acc) do
+    if String.starts_with?(String.trim(line), "FINDING:") do
+      if acc == [], do: {:cont, [line]}, else: {:cont, Enum.reverse(acc), [line]}
+    else
+      {:cont, [line | acc]}
+    end
+  end
+
+  defp chunk_finalizer(acc) do
+    if acc == [], do: {:cont, []}, else: {:cont, Enum.reverse(acc), []}
   end
 
   defp parse_finding_block([]), do: []
@@ -172,32 +178,8 @@ defmodule Samgita.Quality.AntiSycophancy do
 
     if finding_line do
       {severity, message} = parse_severity(finding_line)
-
-      file =
-        lines
-        |> Enum.find(&String.contains?(&1, "FILE:"))
-        |> case do
-          nil -> nil
-          line -> line |> String.replace("FILE:", "") |> String.trim()
-        end
-
-      line_num =
-        lines
-        |> Enum.find(&String.contains?(&1, "LINE:"))
-        |> case do
-          nil ->
-            nil
-
-          line ->
-            line
-            |> String.replace("LINE:", "")
-            |> String.trim()
-            |> Integer.parse()
-            |> case do
-              {n, _} -> n
-              :error -> nil
-            end
-        end
+      file = extract_file_from_lines(lines)
+      line_num = extract_line_number_from_lines(lines)
 
       if severity == :pass do
         []
@@ -214,6 +196,34 @@ defmodule Samgita.Quality.AntiSycophancy do
       end
     else
       []
+    end
+  end
+
+  defp extract_file_from_lines(lines) do
+    lines
+    |> Enum.find(&String.contains?(&1, "FILE:"))
+    |> case do
+      nil -> nil
+      line -> line |> String.replace("FILE:", "") |> String.trim()
+    end
+  end
+
+  defp extract_line_number_from_lines(lines) do
+    lines
+    |> Enum.find(&String.contains?(&1, "LINE:"))
+    |> case do
+      nil ->
+        nil
+
+      line ->
+        line
+        |> String.replace("LINE:", "")
+        |> String.trim()
+        |> Integer.parse()
+        |> case do
+          {n, _} -> n
+          :error -> nil
+        end
     end
   end
 

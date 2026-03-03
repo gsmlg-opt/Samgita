@@ -23,43 +23,59 @@ defmodule SamgitaProvider.Codex do
 
     Logger.debug("Codex CLI: #{command} #{Enum.join(args, " ")}")
 
-    cmd_opts =
-      [stderr_to_stdout: true, env: cmd_env(model)]
-      |> maybe_add_cd(working_dir)
+    cmd_opts = build_cmd_opts(model, working_dir)
+    task = Task.async(fn -> execute_codex_command(command, args, cmd_opts) end)
+    await_task_result(task, timeout)
+  end
 
-    task =
-      Task.async(fn ->
-        try do
-          case System.cmd(command, args, cmd_opts) do
-            {output, 0} ->
-              text = String.trim(output)
+  defp build_cmd_opts(model, working_dir) do
+    [stderr_to_stdout: true, env: cmd_env(model)]
+    |> maybe_add_cd(working_dir)
+  end
 
-              if text == "" do
-                {:error, :empty_response}
-              else
-                {:ok, text}
-              end
+  defp execute_codex_command(command, args, cmd_opts) do
+    case System.cmd(command, args, cmd_opts) do
+      {output, 0} ->
+        handle_success_output(output)
 
-            {output, exit_code} ->
-              Logger.error(
-                "Codex CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}"
-              )
+      {output, exit_code} ->
+        handle_error_output(output, exit_code)
+    end
+  rescue
+    e in ErlangError ->
+      handle_erlang_error(e)
+  end
 
-              classify_error(output, exit_code)
-          end
-        rescue
-          e in ErlangError ->
-            case e do
-              %ErlangError{original: :enoent} ->
-                {:error, :codex_not_found}
+  defp handle_success_output(output) do
+    text = String.trim(output)
 
-              _ ->
-                Logger.error("Codex CLI error: #{inspect(e)}")
-                {:error, Exception.message(e)}
-            end
-        end
-      end)
+    if text == "" do
+      {:error, :empty_response}
+    else
+      {:ok, text}
+    end
+  end
 
+  defp handle_error_output(output, exit_code) do
+    Logger.error(
+      "Codex CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}"
+    )
+
+    classify_error(output, exit_code)
+  end
+
+  defp handle_erlang_error(e) do
+    case e do
+      %ErlangError{original: :enoent} ->
+        {:error, :codex_not_found}
+
+      _ ->
+        Logger.error("Codex CLI error: #{inspect(e)}")
+        {:error, Exception.message(e)}
+    end
+  end
+
+  defp await_task_result(task, timeout) do
     case Task.yield(task, timeout) || Task.shutdown(task) do
       {:ok, result} -> result
       nil -> {:error, :timeout}

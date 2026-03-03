@@ -15,6 +15,7 @@ defmodule Samgita.Workers.QualityGateWorker do
 
   require Logger
 
+  alias Samgita.Domain.Artifact
   alias Samgita.Projects
 
   alias Samgita.Quality.{
@@ -326,8 +327,8 @@ defmodule Samgita.Workers.QualityGateWorker do
   defp store_gate_results(project, gate_type, verdict, gate_results) do
     summary = summarize_results(gate_results)
 
-    %Samgita.Domain.Artifact{}
-    |> Samgita.Domain.Artifact.changeset(%{
+    %Artifact{}
+    |> Artifact.changeset(%{
       type: :doc,
       path: "quality_gates/#{gate_type}_#{DateTime.to_iso8601(DateTime.utc_now())}.md",
       content: summary,

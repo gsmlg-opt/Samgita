@@ -41,72 +41,13 @@ defmodule Samgita.Quality.BlindReview do
   def review(diff, opts \\ []) do
     project_context = opts[:project_context] || ""
     start_time = System.monotonic_time(:millisecond)
-
-    # Run all reviewers in parallel (blind — they can't see each other)
-    tasks =
-      Enum.map(@reviewers, fn reviewer ->
-        Task.async(fn ->
-          run_reviewer(reviewer, diff, project_context)
-        end)
-      end)
-
-    # Collect results with timeout
     timeout = opts[:timeout] || 120_000
+
+    tasks = start_blind_review_tasks(diff, project_context)
     results = Task.yield_many(tasks, timeout)
-
-    findings =
-      results
-      |> Enum.zip(@reviewers)
-      |> Enum.flat_map(fn {{_task, result}, reviewer} ->
-        case result do
-          {:ok, {:ok, reviewer_findings}} ->
-            reviewer_findings
-
-          {:ok, {:error, reason}} ->
-            Logger.warning("[BlindReview] #{reviewer.agent_type} failed: #{inspect(reason)}")
-
-            [
-              %{
-                gate: 3,
-                severity: :low,
-                message: "Reviewer #{reviewer.agent_type} failed: #{inspect(reason)}",
-                file: nil,
-                line: nil
-              }
-            ]
-
-          {:exit, reason} ->
-            Logger.error("[BlindReview] #{reviewer.agent_type} crashed: #{inspect(reason)}")
-
-            [
-              %{
-                gate: 3,
-                severity: :low,
-                message: "Reviewer #{reviewer.agent_type} crashed",
-                file: nil,
-                line: nil
-              }
-            ]
-
-          nil ->
-            Logger.warning("[BlindReview] #{reviewer.agent_type} timed out")
-
-            [
-              %{
-                gate: 3,
-                severity: :low,
-                message: "Reviewer #{reviewer.agent_type} timed out",
-                file: nil,
-                line: nil
-              }
-            ]
-        end
-      end)
-
+    findings = collect_review_findings(results)
     duration = System.monotonic_time(:millisecond) - start_time
-
-    verdict =
-      if Gate.has_blocking_findings?(findings), do: :fail, else: :pass
+    verdict = if Gate.has_blocking_findings?(findings), do: :fail, else: :pass
 
     result = %{
       gate: 3,
@@ -116,12 +57,77 @@ defmodule Samgita.Quality.BlindReview do
       duration_ms: duration
     }
 
-    # Check for unanimous approval → trigger anti-sycophancy
+    check_unanimous_approval(verdict, findings)
+
+    {:ok, result}
+  end
+
+  defp start_blind_review_tasks(diff, project_context) do
+    Enum.map(@reviewers, fn reviewer ->
+      Task.async(fn ->
+        run_reviewer(reviewer, diff, project_context)
+      end)
+    end)
+  end
+
+  defp collect_review_findings(results) do
+    results
+    |> Enum.zip(@reviewers)
+    |> Enum.flat_map(fn {{_task, result}, reviewer} ->
+      process_reviewer_result(result, reviewer)
+    end)
+  end
+
+  defp process_reviewer_result(result, reviewer) do
+    case result do
+      {:ok, {:ok, reviewer_findings}} ->
+        reviewer_findings
+
+      {:ok, {:error, reason}} ->
+        Logger.warning("[BlindReview] #{reviewer.agent_type} failed: #{inspect(reason)}")
+
+        [
+          %{
+            gate: 3,
+            severity: :low,
+            message: "Reviewer #{reviewer.agent_type} failed: #{inspect(reason)}",
+            file: nil,
+            line: nil
+          }
+        ]
+
+      {:exit, reason} ->
+        Logger.error("[BlindReview] #{reviewer.agent_type} crashed: #{inspect(reason)}")
+
+        [
+          %{
+            gate: 3,
+            severity: :low,
+            message: "Reviewer #{reviewer.agent_type} crashed",
+            file: nil,
+            line: nil
+          }
+        ]
+
+      nil ->
+        Logger.warning("[BlindReview] #{reviewer.agent_type} timed out")
+
+        [
+          %{
+            gate: 3,
+            severity: :low,
+            message: "Reviewer #{reviewer.agent_type} timed out",
+            file: nil,
+            line: nil
+          }
+        ]
+    end
+  end
+
+  defp check_unanimous_approval(verdict, findings) do
     if verdict == :pass and unanimous_approval?(findings) do
       Logger.info("[BlindReview] Unanimous approval detected, would trigger anti-sycophancy gate")
     end
-
-    {:ok, result}
   end
 
   @doc "Returns the list of reviewer configurations."
@@ -178,20 +184,26 @@ defmodule Samgita.Quality.BlindReview do
   defp parse_review_response(response, agent_type) do
     response
     |> String.split("\n")
-    |> Enum.chunk_while(
-      [],
-      fn line, acc ->
-        if String.starts_with?(String.trim(line), "FINDING:") do
-          if acc == [], do: {:cont, [line]}, else: {:cont, Enum.reverse(acc), [line]}
-        else
-          {:cont, [line | acc]}
-        end
-      end,
-      fn acc -> if acc == [], do: {:cont, []}, else: {:cont, Enum.reverse(acc), []} end
-    )
+    |> chunk_finding_blocks()
     |> Enum.flat_map(fn lines ->
       parse_finding_block(lines, agent_type)
     end)
+  end
+
+  defp chunk_finding_blocks(lines) do
+    Enum.chunk_while(lines, [], &chunk_reducer/2, &chunk_finalizer/1)
+  end
+
+  defp chunk_reducer(line, acc) do
+    if String.starts_with?(String.trim(line), "FINDING:") do
+      if acc == [], do: {:cont, [line]}, else: {:cont, Enum.reverse(acc), [line]}
+    else
+      {:cont, [line | acc]}
+    end
+  end
+
+  defp chunk_finalizer(acc) do
+    if acc == [], do: {:cont, []}, else: {:cont, Enum.reverse(acc), []}
   end
 
   defp parse_finding_block([], _agent_type), do: []
@@ -201,32 +213,8 @@ defmodule Samgita.Quality.BlindReview do
 
     if finding_line do
       {severity, message} = parse_finding_line(finding_line)
-
-      file =
-        lines
-        |> Enum.find(&String.contains?(&1, "FILE:"))
-        |> case do
-          nil -> nil
-          line -> line |> String.replace("FILE:", "") |> String.trim()
-        end
-
-      line_num =
-        lines
-        |> Enum.find(&String.contains?(&1, "LINE:"))
-        |> case do
-          nil ->
-            nil
-
-          line ->
-            line
-            |> String.replace("LINE:", "")
-            |> String.trim()
-            |> Integer.parse()
-            |> case do
-              {n, _} -> n
-              :error -> nil
-            end
-        end
+      file = extract_file_from_lines(lines)
+      line_num = extract_line_number_from_lines(lines)
 
       if severity == :pass do
         []
@@ -243,6 +231,34 @@ defmodule Samgita.Quality.BlindReview do
       end
     else
       []
+    end
+  end
+
+  defp extract_file_from_lines(lines) do
+    lines
+    |> Enum.find(&String.contains?(&1, "FILE:"))
+    |> case do
+      nil -> nil
+      line -> line |> String.replace("FILE:", "") |> String.trim()
+    end
+  end
+
+  defp extract_line_number_from_lines(lines) do
+    lines
+    |> Enum.find(&String.contains?(&1, "LINE:"))
+    |> case do
+      nil ->
+        nil
+
+      line ->
+        line
+        |> String.replace("LINE:", "")
+        |> String.trim()
+        |> Integer.parse()
+        |> case do
+          {n, _} -> n
+          :error -> nil
+        end
     end
   end
 
