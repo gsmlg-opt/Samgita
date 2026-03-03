@@ -429,85 +429,26 @@ defmodule Samgita.Workers.BootstrapWorker do
     end)
   end
 
+  @agent_keyword_map [
+    {"eng-frontend", ~w(ui frontend component page view css layout responsive)},
+    {"eng-api", ~w(api endpoint rest graphql webhook route)},
+    {"eng-database", ~w(database schema migration query model table index)},
+    {"eng-mobile", ["mobile", "ios", "android", "react native", "flutter"]},
+    {"ops-devops", ~w(deploy ci cd docker kubernetes k8s infrastructure terraform)},
+    {"ops-security", ~w(security auth permission encrypt jwt oauth rbac)},
+    {"ops-monitor", ~w(monitor alert log metric observ)},
+    {"eng-qa", ~w(test spec coverage e2e integration)},
+    {"eng-perf", ~w(performance cache optim latency load)},
+    {"data-ml", ["ml", "machine learning", "model", "training", "ai"]},
+    {"data-analytics", ~w(analytics report dashboard chart metric)}
+  ]
+
   defp agent_for_feature(feature) do
     feature_lower = String.downcase(feature)
 
-    cond do
-      matches_frontend?(feature_lower) -> "eng-frontend"
-      matches_api?(feature_lower) -> "eng-api"
-      matches_database?(feature_lower) -> "eng-database"
-      matches_mobile?(feature_lower) -> "eng-mobile"
-      matches_devops?(feature_lower) -> "ops-devops"
-      matches_security?(feature_lower) -> "ops-security"
-      matches_monitoring?(feature_lower) -> "ops-monitor"
-      matches_testing?(feature_lower) -> "eng-qa"
-      matches_performance?(feature_lower) -> "eng-perf"
-      matches_ml?(feature_lower) -> "data-ml"
-      matches_analytics?(feature_lower) -> "data-analytics"
-      true -> "eng-backend"
-    end
-  end
-
-  defp matches_frontend?(text) do
-    String.contains?(text, [
-      "ui",
-      "frontend",
-      "component",
-      "page",
-      "view",
-      "css",
-      "layout",
-      "responsive"
-    ])
-  end
-
-  defp matches_api?(text) do
-    String.contains?(text, ["api", "endpoint", "rest", "graphql", "webhook", "route"])
-  end
-
-  defp matches_database?(text) do
-    String.contains?(text, ["database", "schema", "migration", "query", "model", "table", "index"])
-  end
-
-  defp matches_mobile?(text) do
-    String.contains?(text, ["mobile", "ios", "android", "react native", "flutter"])
-  end
-
-  defp matches_devops?(text) do
-    String.contains?(text, [
-      "deploy",
-      "ci",
-      "cd",
-      "docker",
-      "kubernetes",
-      "k8s",
-      "infrastructure",
-      "terraform"
-    ])
-  end
-
-  defp matches_security?(text) do
-    String.contains?(text, ["security", "auth", "permission", "encrypt", "jwt", "oauth", "rbac"])
-  end
-
-  defp matches_monitoring?(text) do
-    String.contains?(text, ["monitor", "alert", "log", "metric", "observ"])
-  end
-
-  defp matches_testing?(text) do
-    String.contains?(text, ["test", "spec", "coverage", "e2e", "integration"])
-  end
-
-  defp matches_performance?(text) do
-    String.contains?(text, ["performance", "cache", "optim", "latency", "load"])
-  end
-
-  defp matches_ml?(text) do
-    String.contains?(text, ["ml", "machine learning", "model", "training", "ai"])
-  end
-
-  defp matches_analytics?(text) do
-    String.contains?(text, ["analytics", "report", "dashboard", "chart", "metric"])
+    Enum.find_value(@agent_keyword_map, "eng-backend", fn {agent, keywords} ->
+      if String.contains?(feature_lower, keywords), do: agent
+    end)
   end
 
   ## Task Enqueuing

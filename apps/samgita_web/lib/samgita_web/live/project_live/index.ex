@@ -210,28 +210,25 @@ defmodule SamgitaWeb.ProjectLive.Index do
   end
 
   def handle_event("delete_prd", %{"id" => id}, socket) do
-    case Samgita.Prds.get_prd(id) do
-      {:ok, prd} ->
-        case Samgita.Prds.delete_prd(prd) do
-          {:ok, _} ->
-            prds = Samgita.Prds.list_prds(socket.assigns.project.id)
+    with {:ok, prd} <- Samgita.Prds.get_prd(id),
+         {:ok, _} <- Samgita.Prds.delete_prd(prd) do
+      prds = Samgita.Prds.list_prds(socket.assigns.project.id)
 
-            selected_prd =
-              if socket.assigns.selected_prd && socket.assigns.selected_prd.id == id,
-                do: nil,
-                else: socket.assigns.selected_prd
+      selected_prd =
+        if socket.assigns.selected_prd && socket.assigns.selected_prd.id == id,
+          do: nil,
+          else: socket.assigns.selected_prd
 
-            {:noreply,
-             socket
-             |> assign(prds: prds, selected_prd: selected_prd)
-             |> put_flash(:info, "PRD deleted")}
-
-          {:error, _} ->
-            {:noreply, put_flash(socket, :error, "Failed to delete PRD")}
-        end
-
+      {:noreply,
+       socket
+       |> assign(prds: prds, selected_prd: selected_prd)
+       |> put_flash(:info, "PRD deleted")}
+    else
       {:error, :not_found} ->
         {:noreply, put_flash(socket, :error, "PRD not found")}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, "Failed to delete PRD")}
     end
   end
 

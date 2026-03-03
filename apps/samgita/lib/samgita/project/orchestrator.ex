@@ -707,17 +707,21 @@ defmodule Samgita.Project.Orchestrator do
 
   defp maybe_deferred_advance(phase, data) do
     if phase_complete?(data) do
-      if requires_quality_gates?(phase) and not data.awaiting_quality_gates do
-        trigger_quality_gates(phase, data)
-        {:keep_state, %{data | awaiting_quality_gates: true}}
-      else
-        case next_phase(phase) do
-          nil -> {:keep_state, data}
-          next -> {:next_state, next, reset_phase_counters(data)}
-        end
-      end
+      advance_or_gate(phase, data)
     else
       {:keep_state, data}
+    end
+  end
+
+  defp advance_or_gate(phase, data) do
+    if requires_quality_gates?(phase) and not data.awaiting_quality_gates do
+      trigger_quality_gates(phase, data)
+      {:keep_state, %{data | awaiting_quality_gates: true}}
+    else
+      case next_phase(phase) do
+        nil -> {:keep_state, data}
+        next -> {:next_state, next, reset_phase_counters(data)}
+      end
     end
   end
 
