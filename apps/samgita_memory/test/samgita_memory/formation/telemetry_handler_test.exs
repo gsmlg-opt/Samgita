@@ -1,7 +1,6 @@
 defmodule SamgitaMemory.Formation.TelemetryHandlerTest do
   use SamgitaMemory.DataCase
 
-  alias SamgitaMemory.Formation.TelemetryHandler
   alias SamgitaMemory.Memories
   alias SamgitaMemory.PRD
 

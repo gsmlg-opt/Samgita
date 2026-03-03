@@ -166,7 +166,9 @@ defmodule Samgita.Quality.SeverityBlockingTest do
       result = SeverityBlocking.evaluate(results)
       [finding] = result.findings
 
-      assert finding.message == "Severity blocking: 1 critical, 1 high, 1 medium finding(s) across 1 gates"
+      assert finding.message ==
+               "Severity blocking: 1 critical, 1 high, 1 medium finding(s) across 1 gates"
+
       assert finding.gate == 6
       assert finding.severity == :high
       assert finding.file == nil

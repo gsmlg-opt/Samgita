@@ -13,6 +13,7 @@ defmodule Samgita.Project.Orchestrator do
 
   alias Samgita.Projects
   alias Samgita.Workers.AgentTaskWorker
+  alias Samgita.Workers.BootstrapWorker
   alias Samgita.Workers.QualityGateWorker
 
   @stagnation_check_interval_ms 300_000
@@ -451,9 +452,30 @@ defmodule Samgita.Project.Orchestrator do
   # Phase-specific task generation.
   # Returns the number of tasks enqueued (used to set phase_tasks_total).
   defp enqueue_phase_tasks(:bootstrap, data) do
-    # Bootstrap is handled by BootstrapWorker (triggered from LiveView start)
-    broadcast_activity(data, :reason, "Bootstrap phase: awaiting PRD analysis tasks")
-    0
+    project = refresh_project(data)
+
+    case project.active_prd_id do
+      nil ->
+        broadcast_activity(data, :reason, "Bootstrap phase: no active PRD, awaiting PRD creation")
+        0
+
+      prd_id ->
+        broadcast_activity(
+          data,
+          :reason,
+          "Bootstrap phase: analyzing PRD and generating task backlog"
+        )
+
+        Oban.insert(
+          BootstrapWorker.new(%{
+            project_id: project.id,
+            prd_id: prd_id
+          })
+        )
+
+        # BootstrapWorker will call set_phase_task_count with the actual count
+        1
+    end
   end
 
   defp enqueue_phase_tasks(:discovery, data) do

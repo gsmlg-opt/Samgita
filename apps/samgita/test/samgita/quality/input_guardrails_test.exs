@@ -39,10 +39,11 @@ defmodule Samgita.Quality.InputGuardrailsTest do
     end
 
     test "passes with mixed string and atom keys" do
-      task_args = Map.merge(
-        %{"type" => "review", "payload" => %{description: "Review PR for security issues"}},
-        %{agent_type: "review-code"}
-      )
+      task_args =
+        Map.merge(
+          %{"type" => "review", "payload" => %{description: "Review PR for security issues"}},
+          %{agent_type: "review-code"}
+        )
 
       result = InputGuardrails.validate(task_args)
 
