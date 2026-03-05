@@ -3,8 +3,10 @@ defmodule Samgita.Project.OrchestratorTest do
   use Samgita.DataCase, async: false
 
   alias Ecto.Adapters.SQL.Sandbox
+  alias Samgita.Domain.Prd
   alias Samgita.Project.Orchestrator
   alias Samgita.Projects
+  alias Samgita.Repo
 
   setup do
     # Allow spawned processes to access the sandbox
@@ -382,5 +384,45 @@ defmodule Samgita.Project.OrchestratorTest do
     assert data.paused == false
 
     :gen_statem.stop(pid)
+  end
+
+  describe "bootstrap phase auto-trigger" do
+    test "enqueues BootstrapWorker when project has active_prd_id", %{project: project} do
+      # Create a PRD and set it as active
+      {:ok, prd} =
+        %Prd{}
+        |> Prd.changeset(%{
+          title: "Test PRD",
+          content: "# Test\n\n## Features\n\n- Build a web app",
+          status: :approved,
+          project_id: project.id
+        })
+        |> Repo.insert()
+
+      {:ok, _} = Projects.update_project(project, %{active_prd_id: prd.id})
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      {:bootstrap, data} = Orchestrator.get_state(pid)
+      # Should have set phase_tasks_total to 1 (BootstrapWorker enqueued)
+      assert data.phase_tasks_total == 1
+
+      :gen_statem.stop(pid)
+    end
+
+    test "does not enqueue BootstrapWorker when no active_prd_id", %{project: project} do
+      # Ensure no active PRD is set
+      {:ok, _} = Projects.update_project(project, %{active_prd_id: nil})
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      {:bootstrap, data} = Orchestrator.get_state(pid)
+      # Should have phase_tasks_total = 0 (no BootstrapWorker triggered)
+      assert data.phase_tasks_total == 0
+
+      :gen_statem.stop(pid)
+    end
   end
 end

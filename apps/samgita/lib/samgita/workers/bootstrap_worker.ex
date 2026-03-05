@@ -549,7 +549,7 @@ defmodule Samgita.Workers.BootstrapWorker do
   defp notify_orchestrator(project_id, task_count) do
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
       [{pid, _}] ->
-        :gen_statem.call(pid, {:set_phase_task_count, task_count})
+        Samgita.Project.Orchestrator.set_phase_task_count(pid, task_count)
 
       [] ->
         Logger.debug("[BootstrapWorker] No orchestrator found for #{project_id}")
