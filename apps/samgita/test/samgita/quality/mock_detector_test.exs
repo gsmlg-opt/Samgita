@@ -73,7 +73,7 @@ defmodule Samgita.Quality.MockDetectorTest do
       assert is_integer(result.duration_ms)
 
       # Should have findings from bad_test.exs
-      assert length(result.findings) >= 1
+      assert result.findings != []
       assert Enum.any?(result.findings, &(&1.file == "bad_test.exs"))
     end
 

@@ -11,7 +11,11 @@ defmodule Samgita.Workers.AgentTaskWorker do
 
   require Logger
 
+  alias Samgita.Agent.Worker
   alias Samgita.Domain.Task, as: TaskSchema
+  alias Samgita.Events
+  alias Samgita.Project.Orchestrator
+  alias Samgita.Projects
   alias Samgita.Quality.InputGuardrails
   alias Samgita.Repo
 
@@ -30,14 +34,14 @@ defmodule Samgita.Workers.AgentTaskWorker do
       Logger.warning("AgentTaskWorker: input guardrails blocked task #{task_id}")
 
       entry =
-        Samgita.Events.build_log_entry(
+        Events.build_log_entry(
           :task,
           task_id,
           :failed,
           "Input guardrails blocked: #{Enum.map_join(gate_result.findings, "; ", & &1.message)}"
         )
 
-      Samgita.Events.activity_log(project_id, entry)
+      Events.activity_log(project_id, entry)
       handle_failure(task_id, :input_guardrails_blocked)
       {:error, :input_guardrails_blocked}
     else
@@ -56,18 +60,18 @@ defmodule Samgita.Workers.AgentTaskWorker do
          {:ok, agent_pid} <- find_or_spawn_agent(project_id, agent_type),
          :ok <- execute_task(agent_pid, task) do
       mark_task_completed(task)
-      Samgita.Events.task_completed(task)
+      Events.task_completed(task)
       notify_orchestrator(project_id, task_id)
 
       entry =
-        Samgita.Events.build_log_entry(
+        Events.build_log_entry(
           :task,
           task_id,
           :completed,
           "Task completed (agent: #{agent_type})"
         )
 
-      Samgita.Events.activity_log(project_id, entry)
+      Events.activity_log(project_id, entry)
       :ok
     else
       {:error, :parent_not_completed} ->
@@ -78,14 +82,14 @@ defmodule Samgita.Workers.AgentTaskWorker do
         Logger.error("AgentTaskWorker failed: #{inspect(reason)}")
 
         entry =
-          Samgita.Events.build_log_entry(
+          Events.build_log_entry(
             :task,
             task_id,
             :failed,
             "Task failed: #{inspect(reason)}"
           )
 
-        Samgita.Events.activity_log(project_id, entry)
+        Events.activity_log(project_id, entry)
         handle_failure(task_id, reason)
         {:error, reason}
     end
@@ -160,7 +164,7 @@ defmodule Samgita.Workers.AgentTaskWorker do
 
     case Horde.DynamicSupervisor.start_child(Samgita.AgentSupervisor, spec) do
       {:ok, pid} ->
-        Samgita.Events.agent_spawned(project_id, agent_id, agent_type)
+        Events.agent_spawned(project_id, agent_id, agent_type)
         track_agent_run(project_id, agent_type, pid)
         {:ok, pid}
 
@@ -173,7 +177,7 @@ defmodule Samgita.Workers.AgentTaskWorker do
   end
 
   defp track_agent_run(project_id, agent_type, pid) do
-    Samgita.Projects.find_or_create_agent_run(project_id, agent_type, %{
+    Projects.find_or_create_agent_run(project_id, agent_type, %{
       pid: inspect(pid),
       status: :idle
     })
@@ -182,14 +186,14 @@ defmodule Samgita.Workers.AgentTaskWorker do
   end
 
   defp execute_task(agent_pid, task) do
-    Samgita.Agent.Worker.assign_task(agent_pid, task)
+    Worker.assign_task(agent_pid, task)
     :ok
   end
 
   defp notify_orchestrator(project_id, task_id) do
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
       [{pid, _}] ->
-        Samgita.Project.Orchestrator.notify_task_completed(pid, task_id)
+        Orchestrator.notify_task_completed(pid, task_id)
 
       [] ->
         Logger.warning(
@@ -223,7 +227,7 @@ defmodule Samgita.Workers.AgentTaskWorker do
              })
              |> Repo.update() do
           {:ok, updated_task} ->
-            Samgita.Events.task_failed(updated_task)
+            Events.task_failed(updated_task)
             {:ok, updated_task}
 
           error ->

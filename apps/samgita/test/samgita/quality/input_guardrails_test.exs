@@ -577,7 +577,7 @@ defmodule Samgita.Quality.InputGuardrailsTest do
 
       assert result.verdict == :fail
       # Should have both injection finding (critical) and unknown task type (low)
-      assert length(result.findings) >= 1
+      assert result.findings != []
 
       # Check that we have the critical injection finding
       critical_finding =
@@ -791,7 +791,7 @@ defmodule Samgita.Quality.InputGuardrailsTest do
 
       assert result.verdict == :fail
       # Should have injection finding
-      assert length(result.findings) >= 1
+      assert result.findings != []
 
       assert Enum.any?(result.findings, fn f ->
                f.severity == :critical and f.message =~ "prompt injection"
