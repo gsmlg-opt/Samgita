@@ -93,11 +93,24 @@ defmodule Samgita.Workers.AgentTaskWorker do
 
   defp check_parent_dependency(%{parent_task_id: nil}), do: :ok
 
-  defp check_parent_dependency(%{parent_task_id: parent_id}) do
+  defp check_parent_dependency(%{id: task_id, parent_task_id: parent_id}) do
     case Repo.get(TaskSchema, parent_id) do
-      nil -> :ok
-      %{status: :completed} -> :ok
-      _ -> {:error, :parent_not_completed}
+      nil ->
+        Logger.info(
+          "AgentTaskWorker: parent task #{parent_id} not found for task #{task_id}, proceeding"
+        )
+
+        :ok
+
+      %{status: :completed} ->
+        :ok
+
+      %{status: parent_status} ->
+        Logger.info(
+          "AgentTaskWorker: task #{task_id} blocked by parent #{parent_id} (status: #{parent_status})"
+        )
+
+        {:error, :parent_not_completed}
     end
   end
 
@@ -176,10 +189,13 @@ defmodule Samgita.Workers.AgentTaskWorker do
   defp notify_orchestrator(project_id, task_id) do
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
       [{pid, _}] ->
-        :gen_statem.cast(pid, {:task_completed, task_id})
+        Samgita.Project.Orchestrator.notify_task_completed(pid, task_id)
 
       [] ->
-        Logger.debug("AgentTaskWorker: No orchestrator found for #{project_id}, skipping notify")
+        Logger.warning(
+          "AgentTaskWorker: No orchestrator found for project #{project_id}, " <>
+            "task #{task_id} completion not tracked for phase advancement"
+        )
     end
   end
 

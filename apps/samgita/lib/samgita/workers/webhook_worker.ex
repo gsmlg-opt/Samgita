@@ -62,12 +62,24 @@ defmodule Samgita.Workers.WebhookWorker do
         Logger.info("Webhook delivered: #{event} -> #{webhook.url} (#{status})")
         :ok
 
+      {:ok, {{_, status, _}, _, _}} when status in 400..499 ->
+        # Client errors (4xx) are permanent — don't retry
+        Logger.warning(
+          "Webhook permanently failed: #{event} -> #{webhook.url} (#{status}), not retrying"
+        )
+
+        :ok
+
       {:ok, {{_, status, _}, _, _}} ->
-        Logger.warning("Webhook failed: #{event} -> #{webhook.url} (#{status})")
+        # Server errors (5xx) are transient — retry
+        Logger.warning("Webhook server error: #{event} -> #{webhook.url} (#{status}), will retry")
         {:error, "HTTP #{status}"}
 
       {:error, reason} ->
-        Logger.error("Webhook error: #{event} -> #{webhook.url} (#{inspect(reason)})")
+        Logger.error(
+          "Webhook network error: #{event} -> #{webhook.url} (#{inspect(reason)}), will retry"
+        )
+
         {:error, inspect(reason)}
     end
   end

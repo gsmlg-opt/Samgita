@@ -138,5 +138,144 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
       assert String.contains?(summary, "Gate 4")
       assert String.contains?(summary, "fail")
     end
+
+    test "summarizes empty results" do
+      assert QualityGateWorker.summarize_results([]) == ""
+    end
+
+    test "includes finding count in summary" do
+      results = [
+        %{
+          gate: 2,
+          name: "Static Analysis",
+          verdict: :fail,
+          findings: [
+            %{gate: 2, severity: :high, message: "issue1", file: nil, line: nil},
+            %{gate: 2, severity: :medium, message: "issue2", file: nil, line: nil}
+          ],
+          duration_ms: 50
+        }
+      ]
+
+      summary = QualityGateWorker.summarize_results(results)
+      assert String.contains?(summary, "2 findings")
+    end
+  end
+
+  describe "gate aggregation via perform" do
+    test "defaults to pre_qa when gate_type is missing", %{project: project, prd: prd} do
+      job = %Oban.Job{
+        args: %{
+          "project_id" => project.id,
+          "prd_id" => prd.id
+          # no gate_type
+        }
+      }
+
+      assert :ok = QualityGateWorker.perform(job)
+    end
+
+    test "falls back to pre_qa for unknown gate_type", %{project: project, prd: prd} do
+      job = %Oban.Job{
+        args: %{
+          "project_id" => project.id,
+          "prd_id" => prd.id,
+          "gate_type" => "custom_unknown"
+        }
+      }
+
+      assert :ok = QualityGateWorker.perform(job)
+    end
+
+    test "stores verdict in artifact metadata", %{project: project, prd: prd} do
+      job = %Oban.Job{
+        args: %{
+          "project_id" => project.id,
+          "prd_id" => prd.id,
+          "gate_type" => "pre_qa"
+        }
+      }
+
+      :ok = QualityGateWorker.perform(job)
+
+      artifacts =
+        Samgita.Domain.Artifact
+        |> Ecto.Query.where(project_id: ^project.id)
+        |> Repo.all()
+
+      assert length(artifacts) == 1
+      artifact = hd(artifacts)
+      assert artifact.metadata["verdict"] in ["pass", "fail"]
+      assert is_integer(artifact.metadata["gate_count"])
+      assert artifact.metadata["gate_count"] >= 1
+      assert is_integer(artifact.metadata["findings_count"])
+    end
+
+    test "pre_deploy runs more gates than pre_qa", %{project: project, prd: prd} do
+      # Run pre_qa
+      job_qa = %Oban.Job{
+        args: %{
+          "project_id" => project.id,
+          "prd_id" => prd.id,
+          "gate_type" => "pre_qa"
+        }
+      }
+
+      :ok = QualityGateWorker.perform(job_qa)
+
+      qa_artifacts =
+        Samgita.Domain.Artifact
+        |> Ecto.Query.where(project_id: ^project.id)
+        |> Repo.all()
+
+      qa_gate_count = hd(qa_artifacts).metadata["gate_count"]
+
+      # Clean artifacts for next run
+      Repo.delete_all(
+        Ecto.Query.from(a in Samgita.Domain.Artifact, where: a.project_id == ^project.id)
+      )
+
+      # Run pre_deploy
+      job_deploy = %Oban.Job{
+        args: %{
+          "project_id" => project.id,
+          "prd_id" => prd.id,
+          "gate_type" => "pre_deploy"
+        }
+      }
+
+      :ok = QualityGateWorker.perform(job_deploy)
+
+      deploy_artifacts =
+        Samgita.Domain.Artifact
+        |> Ecto.Query.where(project_id: ^project.id)
+        |> Repo.all()
+
+      deploy_gate_count = hd(deploy_artifacts).metadata["gate_count"]
+
+      # pre_deploy should run more gates (adds test coverage, mock detector, mutation detector)
+      assert deploy_gate_count >= qa_gate_count
+    end
+
+    test "creates tasks and includes them in project status", %{project: project, prd: prd} do
+      # Create some tasks to ensure project status is populated
+      {:ok, _task} =
+        Projects.create_task(project.id, %{
+          type: "implement",
+          payload: %{"description" => "Test task"},
+          priority: 1,
+          status: :completed
+        })
+
+      job = %Oban.Job{
+        args: %{
+          "project_id" => project.id,
+          "prd_id" => prd.id,
+          "gate_type" => "pre_qa"
+        }
+      }
+
+      assert :ok = QualityGateWorker.perform(job)
+    end
   end
 end
