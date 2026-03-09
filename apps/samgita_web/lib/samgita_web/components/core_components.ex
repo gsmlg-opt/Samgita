@@ -1,166 +1,40 @@
 defmodule SamgitaWeb.CoreComponents do
   @moduledoc """
-  Provides core UI components.
+  Thin wrappers around PhoenixDuskmoon components for backward-compatible usage.
 
-  At first glance, this module may seem daunting, but its goal is to provide
-  core building blocks for your application, such as tables, forms, and
-  inputs. The components consist mostly of markup and are well-documented
-  with doc strings and declarative assigns. You may customize and style
-  them in any way you want, based on your application growth and needs.
-
-  The foundation for styling is Tailwind CSS, a utility-first CSS framework,
-  augmented with daisyUI, a Tailwind CSS plugin that provides UI components
-  and themes. Here are useful references:
-
-    * [daisyUI](https://daisyui.com/docs/intro/) - a good place to get
-      started and see the available components.
-
-    * [Tailwind CSS](https://tailwindcss.com) - the foundational framework
-      we build on. You will use it for layout, sizing, flexbox, grid, and
-      spacing.
-
-    * [Heroicons](https://heroicons.com) - see `icon/1` for usage.
-
-    * [Phoenix.Component](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html) -
-      the component system used by Phoenix. Some components, such as `<.link>`
-      and `<.form>`, are defined there.
-
+  Direct dm_* components from PhoenixDuskmoon are preferred in new code.
+  These wrappers exist for templates that use the original <.input>, <.button>,
+  <.table>, <.list>, <.header> API.
   """
   use Phoenix.Component
   use Gettext, backend: SamgitaWeb.Gettext
+  use PhoenixDuskmoon.Component
 
-  alias Phoenix.HTML.Form, as: HtmlForm
   alias Phoenix.LiveView.JS
 
   @doc """
-  Renders flash notices.
-
-  ## Examples
-
-      <.flash kind={:info} flash={@flash} />
-      <.flash kind={:info} phx-mounted={show("#flash")}>Welcome Back!</.flash>
+  Renders a button. Delegates to dm_btn.
   """
-  attr :id, :string, doc: "the optional id of flash container"
-  attr :flash, :map, default: %{}, doc: "the map of flash messages to display"
-  attr :title, :string, default: nil
-  attr :kind, :atom, values: [:info, :error], doc: "used for styling and flash lookup"
-  attr :rest, :global, doc: "the arbitrary HTML attributes to add to the flash container"
+  attr :rest, :global, include: ~w(href navigate patch method download name value disabled type)
+  attr :class, :any, default: nil
+  attr :variant, :string, default: "primary"
+  slot :inner_block, required: true
 
-  slot :inner_block, doc: "the optional inner block that renders the flash message"
-
-  def flash(assigns) do
-    assigns = assign_new(assigns, :id, fn -> "flash-#{assigns.kind}" end)
-
+  def button(assigns) do
     ~H"""
-    <div
-      :if={msg = render_slot(@inner_block) || Phoenix.Flash.get(@flash, @kind)}
-      id={@id}
-      phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
-      role="alert"
-      class="toast toast-top toast-end z-50"
-      {@rest}
-    >
-      <div class={[
-        "alert w-80 sm:w-96 max-w-80 sm:max-w-96 text-wrap",
-        @kind == :info && "alert-info",
-        @kind == :error && "alert-error"
-      ]}>
-        <.icon :if={@kind == :info} name="hero-information-circle" class="size-5 shrink-0" />
-        <.icon :if={@kind == :error} name="hero-exclamation-circle" class="size-5 shrink-0" />
-        <div>
-          <p :if={@title} class="font-semibold">{@title}</p>
-          <p>{msg}</p>
-        </div>
-        <div class="flex-1" />
-        <button type="button" class="group self-start cursor-pointer" aria-label={gettext("close")}>
-          <.icon name="hero-x-mark" class="size-5 opacity-40 group-hover:opacity-70" />
-        </button>
-      </div>
-    </div>
+    <.dm_btn variant={@variant} class={@class} {@rest}>
+      {render_slot(@inner_block)}
+    </.dm_btn>
     """
   end
 
   @doc """
-  Renders a button with navigation support.
-
-  ## Examples
-
-      <.button>Send!</.button>
-      <.button phx-click="go" variant="primary">Send!</.button>
-      <.button navigate={~p"/"}>Home</.button>
-  """
-  attr :rest, :global, include: ~w(href navigate patch method download name value disabled)
-  attr :class, :any
-  attr :variant, :string, values: ~w(primary)
-  slot :inner_block, required: true
-
-  def button(%{rest: rest} = assigns) do
-    variants = %{"primary" => "btn-primary", nil => "btn-primary btn-soft"}
-
-    assigns =
-      assign_new(assigns, :class, fn ->
-        ["btn", Map.fetch!(variants, assigns[:variant])]
-      end)
-
-    if rest[:href] || rest[:navigate] || rest[:patch] do
-      ~H"""
-      <.link class={@class} {@rest}>
-        {render_slot(@inner_block)}
-      </.link>
-      """
-    else
-      ~H"""
-      <button class={@class} {@rest}>
-        {render_slot(@inner_block)}
-      </button>
-      """
-    end
-  end
-
-  @doc """
-  Renders an input with label and error messages.
-
-  A `Phoenix.HTML.FormField` may be passed as argument,
-  which is used to retrieve the input name, id, and values.
-  Otherwise all attributes may be passed explicitly.
-
-  ## Types
-
-  This function accepts all HTML input types, considering that:
-
-    * You may also set `type="select"` to render a `<select>` tag
-
-    * `type="checkbox"` is used exclusively to render boolean values
-
-    * For live file uploads, see `Phoenix.Component.live_file_input/1`
-
-  See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-  for more information. Unsupported types, such as radio, are best
-  written directly in your templates.
-
-  ## Examples
-
-  ```heex
-  <.input field={@form[:email]} type="email" />
-  <.input name="my-input" errors={["oh no!"]} />
-  ```
-
-  ## Select type
-
-  When using `type="select"`, you must pass the `options` and optionally
-  a `value` to mark which option should be preselected.
-
-  ```heex
-  <.input field={@form[:user_type]} type="select" options={["Admin": "admin", "User": "user"]} />
-  ```
-
-  For more information on what kind of data can be passed to `options` see
-  [`options_for_select`](https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#options_for_select/2).
+  Renders an input. Delegates to dm_input / dm_select / dm_textarea / dm_checkbox.
   """
   attr :id, :any, default: nil
-  attr :name, :any
+  attr :name, :any, default: nil
   attr :label, :string, default: nil
-  attr :value, :any
+  attr :value, :any, default: nil
 
   attr :type, :string,
     default: "text",
@@ -173,141 +47,57 @@ defmodule SamgitaWeb.CoreComponents do
   attr :errors, :list, default: []
   attr :checked, :boolean, doc: "the checked flag for checkbox inputs"
   attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
-  attr :options, :list, doc: "the options to pass to HtmlForm.options_for_select/2"
+  attr :options, :list, default: [], doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2"
   attr :multiple, :boolean, default: false, doc: "the multiple flag for select inputs"
-  attr :class, :any, default: nil, doc: "the input class to use over defaults"
-  attr :error_class, :any, default: nil, doc: "the input error class to use over defaults"
+  attr :class, :any, default: nil
 
   attr :rest, :global,
     include: ~w(accept autocomplete capture cols disabled form list max maxlength min minlength
                 multiple pattern placeholder readonly required rows size step)
 
-  def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
-    errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
-
-    assigns
-    |> assign(field: nil, id: assigns.id || field.id)
-    |> assign(:errors, Enum.map(errors, &translate_error(&1)))
-    |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
-    |> assign_new(:value, fn -> field.value end)
-    |> input()
-  end
-
-  def input(%{type: "hidden"} = assigns) do
+  def input(%{field: %Phoenix.HTML.FormField{}} = assigns) do
     ~H"""
-    <input type="hidden" id={@id} name={@name} value={@value} {@rest} />
-    """
-  end
-
-  def input(%{type: "checkbox"} = assigns) do
-    assigns =
-      assign_new(assigns, :checked, fn ->
-        HtmlForm.normalize_value("checkbox", assigns[:value])
-      end)
-
-    ~H"""
-    <div class="fieldset mb-2">
-      <label>
-        <input
-          type="hidden"
-          name={@name}
-          value="false"
-          disabled={@rest[:disabled]}
-          form={@rest[:form]}
-        />
-        <span class="label">
-          <input
-            type="checkbox"
-            id={@id}
-            name={@name}
-            value="true"
-            checked={@checked}
-            class={@class || "checkbox checkbox-sm"}
-            {@rest}
-          />{@label}
-        </span>
-      </label>
-      <.error :for={msg <- @errors}>{msg}</.error>
-    </div>
+    <.dm_input field={@field} label={@label} type={@type} class={@class} {@rest} />
     """
   end
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <div class="fieldset mb-2">
-      <label>
-        <span :if={@label} class="label mb-1">{@label}</span>
-        <select
-          id={@id}
-          name={@name}
-          class={[@class || "w-full select", @errors != [] && (@error_class || "select-error")]}
-          multiple={@multiple}
-          {@rest}
-        >
-          <option :if={@prompt} value="">{@prompt}</option>
-          {HtmlForm.options_for_select(@options, @value)}
-        </select>
-      </label>
-      <.error :for={msg <- @errors}>{msg}</.error>
-    </div>
+    <.dm_select
+      id={@id}
+      name={@name}
+      label={@label}
+      value={@value}
+      options={@options}
+      prompt={@prompt}
+      multiple={@multiple}
+      errors={@errors}
+      class={@class}
+      {@rest}
+    />
     """
   end
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <div class="fieldset mb-2">
-      <label>
-        <span :if={@label} class="label mb-1">{@label}</span>
-        <textarea
-          id={@id}
-          name={@name}
-          class={[
-            @class || "w-full textarea",
-            @errors != [] && (@error_class || "textarea-error")
-          ]}
-          {@rest}
-        >{HtmlForm.normalize_value("textarea", @value)}</textarea>
-      </label>
-      <.error :for={msg <- @errors}>{msg}</.error>
-    </div>
+    <.dm_textarea id={@id} name={@name} label={@label} value={@value} errors={@errors} class={@class} {@rest} />
     """
   end
 
-  # All other inputs text, datetime-local, url, password, etc. are handled here...
+  def input(%{type: "checkbox"} = assigns) do
+    ~H"""
+    <.dm_checkbox id={@id} name={@name} label={@label} value={@value} checked={@checked} errors={@errors} class={@class} {@rest} />
+    """
+  end
+
   def input(assigns) do
     ~H"""
-    <div class="fieldset mb-2">
-      <label>
-        <span :if={@label} class="label mb-1">{@label}</span>
-        <input
-          type={@type}
-          name={@name}
-          id={@id}
-          value={HtmlForm.normalize_value(@type, @value)}
-          class={[
-            @class || "w-full input",
-            @errors != [] && (@error_class || "input-error")
-          ]}
-          {@rest}
-        />
-      </label>
-      <.error :for={msg <- @errors}>{msg}</.error>
-    </div>
-    """
-  end
-
-  # Helper used by inputs to generate form errors
-  defp error(assigns) do
-    ~H"""
-    <p class="mt-1.5 flex gap-2 items-center text-sm text-error">
-      <.icon name="hero-exclamation-circle" class="size-5" />
-      {render_slot(@inner_block)}
-    </p>
+    <.dm_input id={@id} name={@name} label={@label} value={@value} type={@type} errors={@errors} class={@class} {@rest} />
     """
   end
 
   @doc """
-  Renders a header with title.
+  Renders a page header with title, optional subtitle, and actions.
   """
   slot :inner_block, required: true
   slot :subtitle
@@ -317,10 +107,10 @@ defmodule SamgitaWeb.CoreComponents do
     ~H"""
     <header class={[@actions != [] && "flex items-center justify-between gap-6", "pb-4"]}>
       <div>
-        <h1 class="text-lg font-semibold leading-8">
+        <h1 class="text-lg font-semibold leading-8 text-on-surface">
           {render_slot(@inner_block)}
         </h1>
-        <p :if={@subtitle != []} class="text-sm text-base-content/70">
+        <p :if={@subtitle != []} class="text-sm text-on-surface-variant">
           {render_slot(@subtitle)}
         </p>
       </div>
@@ -330,14 +120,7 @@ defmodule SamgitaWeb.CoreComponents do
   end
 
   @doc """
-  Renders a table with generic styling.
-
-  ## Examples
-
-      <.table id="users" rows={@users}>
-        <:col :let={user} label="id">{user.id}</:col>
-        <:col :let={user} label="username">{user.username}</:col>
-      </.table>
+  Renders a table with streaming support.
   """
   attr :id, :string, required: true
   attr :rows, :list, required: true
@@ -361,7 +144,7 @@ defmodule SamgitaWeb.CoreComponents do
       end
 
     ~H"""
-    <table class="table table-zebra">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th :for={col <- @col}>{col[:label]}</th>
@@ -394,13 +177,6 @@ defmodule SamgitaWeb.CoreComponents do
 
   @doc """
   Renders a data list.
-
-  ## Examples
-
-      <.list>
-        <:item title="Title">{@post.title}</:item>
-        <:item title="Views">{@post.views}</:item>
-      </.list>
   """
   slot :item, required: true do
     attr :title, :string, required: true
@@ -409,33 +185,16 @@ defmodule SamgitaWeb.CoreComponents do
   def list(assigns) do
     ~H"""
     <ul class="list">
-      <li :for={item <- @item} class="list-row">
-        <div class="list-col-grow">
-          <div class="font-bold">{item.title}</div>
-          <div>{render_slot(item)}</div>
-        </div>
+      <li :for={item <- @item} class="list-item">
+        <div class="font-bold text-on-surface">{item.title}</div>
+        <div class="text-on-surface-variant">{render_slot(item)}</div>
       </li>
     </ul>
     """
   end
 
   @doc """
-  Renders a [Heroicon](https://heroicons.com).
-
-  Heroicons come in three styles – outline, solid, and mini.
-  By default, the outline style is used, but solid and mini may
-  be applied by using the `-solid` and `-mini` suffix.
-
-  You can customize the size and colors of the icons by setting
-  width, height, and background color classes.
-
-  Icons are extracted from the `deps/heroicons` directory and bundled within
-  your compiled app.css by the plugin in `assets/vendor/heroicons.js`.
-
-  ## Examples
-
-      <.icon name="hero-x-mark" />
-      <.icon name="hero-arrow-path" class="ml-1 size-3 motion-safe:animate-spin" />
+  Renders a [Heroicon](https://heroicons.com) via the heroicons CSS plugin.
   """
   attr :name, :string, required: true
   attr :class, :any, default: "size-4"
@@ -473,16 +232,6 @@ defmodule SamgitaWeb.CoreComponents do
   Translates an error message using gettext.
   """
   def translate_error({msg, opts}) do
-    # When using gettext, we typically pass the strings we want
-    # to translate as a static argument:
-    #
-    #     # Translate the number of files with plural rules
-    #     dngettext("errors", "1 file", "%{count} files", count)
-    #
-    # However the error messages in our forms and APIs are generated
-    # dynamically, so we need to translate them by calling Gettext
-    # with our gettext backend as first argument. Translations are
-    # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
       Gettext.dngettext(SamgitaWeb.Gettext, "errors", msg, msg, count, opts)
     else
