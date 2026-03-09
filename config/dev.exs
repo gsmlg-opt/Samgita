@@ -1,22 +1,39 @@
 import Config
 
 # Configure your database
+# Supports Unix socket (devenv) via PGHOST env var, or TCP via hostname
+db_socket_opts =
+  case System.get_env("PGHOST") do
+    nil ->
+      [hostname: System.get_env("POSTGRES_HOST", "localhost"),
+       port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))]
+    pghost when is_binary(pghost) ->
+      if String.starts_with?(pghost, "/"),
+        do: [socket_dir: pghost],
+        else: [hostname: pghost,
+               port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))]
+  end
+
 config :samgita, Samgita.Repo,
-  username: "gao",
-  hostname: "localhost",
-  database: "samgita_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  [
+    username: System.get_env("POSTGRES_USER", System.get_env("USER", "postgres")),
+    password: System.get_env("POSTGRES_PASSWORD", ""),
+    database: System.get_env("POSTGRES_DB", "samgita_dev"),
+    stacktrace: true,
+    show_sensitive_data_on_connection_error: true,
+    pool_size: 10
+  ] ++ db_socket_opts
 
 config :samgita_memory, SamgitaMemory.Repo,
-  username: "gao",
-  hostname: "localhost",
-  database: "samgita_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 5,
-  types: SamgitaMemory.PostgrexTypes
+  [
+    username: System.get_env("POSTGRES_USER", System.get_env("USER", "postgres")),
+    password: System.get_env("POSTGRES_PASSWORD", ""),
+    database: System.get_env("POSTGRES_DB", "samgita_dev"),
+    stacktrace: true,
+    show_sensitive_data_on_connection_error: true,
+    pool_size: 5,
+    types: SamgitaMemory.PostgrexTypes
+  ] ++ db_socket_opts
 
 config :samgita_web, SamgitaWeb.Endpoint,
   http: [ip: {0, 0, 0, 0, 0, 0, 0, 0}, port: 3110],

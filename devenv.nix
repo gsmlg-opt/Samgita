@@ -9,6 +9,9 @@
   pkgs-unstable = import inputs.nixpkgs-unstable {system = pkgs.stdenv.system;};
 in {
   env.GREET = "Samgita";
+  env.MIX_BUN_PATH = lib.getExe pkgs-stable.bun;
+  env.MIX_TAILWIND_PATH = lib.getExe pkgs-stable.tailwindcss_4;
+  env.PGHOST = "${config.env.DEVENV_STATE}/postgres";
 
   packages = with pkgs-stable;
     [
@@ -16,7 +19,6 @@ in {
       figlet
       lolcat
       watchman
-      tailwindcss_4
     ]
     ++ lib.optionals stdenv.isLinux [
       inotify-tools
@@ -29,6 +31,17 @@ in {
   languages.javascript.pnpm.enable = true;
   languages.javascript.bun.enable = true;
   languages.javascript.bun.package = pkgs-stable.bun;
+
+  services.postgres = {
+    enable = true;
+    package = pkgs-stable.postgresql_16;
+    listen_addresses = "";
+    initialDatabases = [
+      {name = "samgita_dev";}
+      {name = "samgita_test";}
+    ];
+    settings.unix_socket_directories = "${config.env.DEVENV_STATE}/postgres";
+  };
 
   scripts.hello.exec = ''
     figlet -w 120 $GREET | lolcat

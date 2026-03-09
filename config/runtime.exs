@@ -1,5 +1,14 @@
 import Config
 
+# Use devenv-provided binaries if available (avoids downloading)
+if System.get_env("MIX_BUN_PATH") do
+  config :bun, path: System.get_env("MIX_BUN_PATH")
+end
+
+if System.get_env("MIX_TAILWIND_PATH") do
+  config :tailwind, path: System.get_env("MIX_TAILWIND_PATH")
+end
+
 # SamgitaProvider configuration
 # Anthropic API key used by samgita_memory for Voyage embeddings
 config :samgita_provider,
