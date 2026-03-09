@@ -88,6 +88,10 @@ defmodule SamgitaWeb do
       # Core UI components
       import SamgitaWeb.CoreComponents
 
+      # Phoenix Duskmoon UI components (dm_* prefix)
+      use PhoenixDuskmoon.Component
+      use PhoenixDuskmoon.CssArt
+
       # Common modules used in templates
       alias Phoenix.LiveView.JS
       alias SamgitaWeb.Layouts

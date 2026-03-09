@@ -12,8 +12,9 @@
    The heroicons installation itself is managed by your mix.exs */
 @plugin "../vendor/heroicons";
 
-/* @duskmoon-dev/core - CSS theme system */
+/* @duskmoon-dev/core - CSS theme system and components */
 @plugin "@duskmoon-dev/core/plugin";
+@import "@duskmoon-dev/core/components";
 
 /* Add variants based on LiveView classes */
 @custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);

@@ -1,1 +1,2 @@
-import '@duskmoon-dev/el-markdown/register';
+import { registerAll } from '@duskmoon-dev/elements'
+registerAll()

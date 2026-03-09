@@ -9,8 +9,11 @@ import { Socket } from "phoenix"
 import { LiveSocket, type LiveSocketInstanceInterface } from "phoenix_live_view"
 import topbar from "topbar"
 
-// Import markdown custom element
+// Import and register all DuskMoon custom elements
 import "./custom-elements"
+
+// DuskMoon LiveView hooks (ThemeSwitcher, WebComponentHook, etc.)
+import * as DuskmoonHooks from "phoenix_duskmoon/hooks"
 
 // Extend Window interface for custom properties
 declare global {
@@ -39,8 +42,8 @@ if (!csrfToken) {
   throw new Error("CSRF token not found in meta tags")
 }
 
-// LiveView hooks
-const Hooks: Record<string, any> = (window as any).PlaygroundHooks || {}
+// LiveView hooks (merge DuskMoon hooks with app hooks)
+const Hooks: Record<string, any> = { ...DuskmoonHooks, ...((window as any).PlaygroundHooks || {}) }
 
 Hooks.AutoScroll = {
   mounted() {
