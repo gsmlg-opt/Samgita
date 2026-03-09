@@ -34,12 +34,12 @@ config :samgita_web, SamgitaWeb.Endpoint,
     web_console_logger: true,
     patterns: [
       # Static assets, except user uploads
-      ~r"apps/samgita_web/priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)$"E,
+      ~r"apps/samgita_web/priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)$",
       # Gettext translations
-      ~r"apps/samgita_web/priv/gettext/.*\.po$"E,
+      ~r"apps/samgita_web/priv/gettext/.*\.po$",
       # Router, Controllers, LiveViews and LiveComponents
-      ~r"apps/samgita_web/lib/samgita_web/router\.ex$"E,
-      ~r"apps/samgita_web/lib/samgita_web/(controllers|live|components)/.*\.(ex|heex)$"E
+      ~r"apps/samgita_web/lib/samgita_web/router\.ex$",
+      ~r"apps/samgita_web/lib/samgita_web/(controllers|live|components)/.*\.(ex|heex)$"
     ]
   ]
 
