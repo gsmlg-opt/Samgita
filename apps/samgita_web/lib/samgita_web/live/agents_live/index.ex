@@ -864,12 +864,12 @@ defmodule SamgitaWeb.AgentsLive.Index do
     """
   end
 
-  def swarm_color("Engineering Swarm"), do: "bg-blue-100 border-blue-300 text-blue-800"
-  def swarm_color("Operations Swarm"), do: "bg-green-100 border-green-300 text-green-800"
-  def swarm_color("Business Swarm"), do: "bg-purple-100 border-purple-300 text-purple-800"
-  def swarm_color("Data Swarm"), do: "bg-orange-100 border-orange-300 text-orange-800"
-  def swarm_color("Product Swarm"), do: "bg-pink-100 border-pink-300 text-pink-800"
-  def swarm_color("Growth Swarm"), do: "bg-yellow-100 border-yellow-300 text-yellow-800"
-  def swarm_color("Review Swarm"), do: "bg-red-100 border-red-300 text-red-800"
-  def swarm_color(_), do: "bg-zinc-100 border-zinc-300 text-zinc-800"
+  def swarm_badge_color("Engineering Swarm"), do: "primary"
+  def swarm_badge_color("Operations Swarm"), do: "success"
+  def swarm_badge_color("Business Swarm"), do: "secondary"
+  def swarm_badge_color("Data Swarm"), do: "tertiary"
+  def swarm_badge_color("Product Swarm"), do: "info"
+  def swarm_badge_color("Growth Swarm"), do: "warning"
+  def swarm_badge_color("Review Swarm"), do: "error"
+  def swarm_badge_color(_), do: ""
 end

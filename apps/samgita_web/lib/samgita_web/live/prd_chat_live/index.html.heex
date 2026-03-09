@@ -1,75 +1,45 @@
 <div class="max-w-4xl mx-auto px-4 py-8">
   <%!-- Header --%>
   <div class="mb-6">
-    <.link
-      navigate={~p"/projects/#{@project.id}"}
-      class="text-sm text-zinc-500 hover:text-zinc-700"
-    >
+    <.link navigate={~p"/projects/#{@project.id}"} class="text-sm text-on-surface-variant hover:text-on-surface">
       &larr; Back to Project
     </.link>
-    <h1 class="text-2xl font-bold text-zinc-900 mt-2">
+    <h1 class="text-2xl font-bold text-on-surface mt-2">
       {if @prd, do: "Edit PRD", else: "New PRD"}
     </h1>
-    <p class="text-sm text-zinc-500">{@project.name}</p>
+    <p class="text-sm text-on-surface-variant">{@project.name}</p>
   </div>
 
   <form phx-submit="save" phx-change="validate">
     <%!-- Title --%>
     <div class="mb-4">
-      <label class="block text-sm font-medium text-zinc-700 mb-1">Title</label>
-      <input
-        type="text"
-        name="prd[title]"
-        value={@title}
-        required
-        placeholder="e.g., Mobile App MVP Requirements"
-        class="w-full border border-zinc-300 rounded-lg px-4 py-2 text-zinc-900 bg-white placeholder:text-zinc-400 focus:ring-2 focus:ring-purple-500"
-      />
+      <.dm_input type="text" name="prd[title]" value={@title} required placeholder="e.g., Mobile App MVP Requirements" label="Title" />
     </div>
 
     <%!-- Toolbar --%>
     <div class="flex items-center justify-between mb-2">
-      <label class="text-sm font-medium text-zinc-700">Content (Markdown)</label>
-      <button
-        type="button"
-        phx-click="toggle_preview"
-        class="text-sm px-3 py-1 rounded border border-zinc-300 text-zinc-600 hover:bg-zinc-100"
-      >
+      <span class="text-sm font-medium text-on-surface-variant">Content (Markdown)</span>
+      <.dm_btn type="button" variant="outline" size="sm" phx-click="toggle_preview">
         {if @preview, do: "Edit", else: "Preview"}
-      </button>
+      </.dm_btn>
     </div>
 
     <%!-- Editor / Preview --%>
     <div :if={!@preview} class="mb-6">
-      <textarea
-        name="prd[content]"
-        rows="24"
-        placeholder="# Project Overview&#10;&#10;## Problem Statement&#10;&#10;## Goals & Objectives&#10;&#10;## User Stories&#10;&#10;## Technical Requirements&#10;&#10;## Milestones"
-        class="w-full border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 bg-white placeholder:text-zinc-400 font-mono text-sm focus:ring-2 focus:ring-purple-500"
-      >{@content}</textarea>
+      <.dm_textarea name="prd[content]" rows="24" placeholder="# Project Overview&#10;&#10;## Problem Statement&#10;&#10;## Goals & Objectives&#10;&#10;## User Stories&#10;&#10;## Technical Requirements&#10;&#10;## Milestones" class="font-mono text-sm" value={@content} />
     </div>
 
-    <div :if={@preview} class="mb-6 border border-zinc-300 rounded-lg p-6 bg-white min-h-[24rem]">
-      <div :if={@content == ""} class="text-zinc-400 italic">Nothing to preview</div>
-      <el-markdown :if={@content != ""} class="prose prose-zinc max-w-none">
-        {@content}
-      </el-markdown>
+    <div :if={@preview} class="mb-6 border border-outline rounded-lg p-6 bg-surface min-h-[24rem]">
+      <div :if={@content == ""} class="text-on-surface-variant italic">Nothing to preview</div>
+      <.dm_markdown :if={@content != ""} content={@content} />
     </div>
 
     <%!-- Actions --%>
     <div class="flex justify-end gap-3">
-      <.link
-        navigate={~p"/projects/#{@project.id}"}
-        class="px-4 py-2 text-zinc-600 hover:text-zinc-900"
-      >
-        Cancel
-      </.link>
-      <button
-        type="submit"
-        class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 font-medium"
-      >
+      <.link navigate={~p"/projects/#{@project.id}"}><.dm_btn variant="ghost">Cancel</.dm_btn></.link>
+      <.dm_btn variant="accent" type="submit">
         {if @prd, do: "Update PRD", else: "Create PRD"}
-      </button>
+      </.dm_btn>
     </div>
   </form>
 </div>

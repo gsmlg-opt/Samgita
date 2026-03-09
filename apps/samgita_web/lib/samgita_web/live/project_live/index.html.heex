@@ -1,19 +1,19 @@
 <div class="max-w-7xl mx-auto px-4 py-8">
   <%!-- Header --%>
   <div class="mb-6">
-    <.link navigate={~p"/"} class="text-sm text-base-content/50 hover:text-base-content/70">
+    <.link navigate={~p"/"} class="text-sm text-on-surface-variant hover:text-on-surface-variant">
       &larr; Dashboard
     </.link>
     <div class="flex items-center gap-4 mt-2">
-      <h1 class="text-3xl font-bold text-base-content">{@project.name}</h1>
+      <h1 class="text-3xl font-bold text-on-surface">{@project.name}</h1>
       <span class={"font-semibold #{status_text_color(@project.status)}"}>{@project.status}</span>
-      <span class="text-sm text-base-content/50">{@project.phase}</span>
+      <span class="text-sm text-on-surface-variant">{@project.phase}</span>
     </div>
-    <p class="text-sm text-base-content/50 mt-1">{@project.git_url}</p>
+    <p class="text-sm text-on-surface-variant mt-1">{@project.git_url}</p>
   </div>
 
   <%!-- Phase Progress --%>
-  <div class="bg-base-200 rounded-lg shadow p-4 mb-6">
+  <div class="bg-surface-container rounded-lg shadow p-4 mb-6">
     <div class="flex gap-1">
       <div
         :for={phase <- Samgita.Domain.Project.phases()}
@@ -21,7 +21,7 @@
       >
       </div>
     </div>
-    <div class="flex justify-between mt-1 text-xs text-base-content/40">
+    <div class="flex justify-between mt-1 text-xs text-on-surface-variant">
       <span>bootstrap</span>
       <span>perpetual</span>
     </div>
@@ -31,18 +31,15 @@
   <div class="flex gap-6">
     <%!-- Left column: PRD list --%>
     <div class="w-80 shrink-0">
-      <div class="bg-base-200 rounded-lg shadow p-4">
+      <div class="bg-surface-container rounded-lg shadow p-4">
         <div class="flex justify-between items-center mb-4">
-          <h3 class="text-sm font-medium text-base-content/50">PRDs</h3>
-          <.link
-            navigate={~p"/projects/#{@project.id}/prds/new"}
-            class="text-xs bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700"
-          >
-            + New
+          <h3 class="text-sm font-medium text-on-surface-variant">PRDs</h3>
+          <.link navigate={~p"/projects/#{@project.id}/prds/new"}>
+            <.dm_btn variant="accent" size="xs">+ New</.dm_btn>
           </.link>
         </div>
 
-        <div :if={@prds == []} class="text-center py-8 text-base-content/40">
+        <div :if={@prds == []} class="text-center py-8 text-on-surface-variant">
           <p class="text-sm mb-1">No PRDs yet</p>
           <p class="text-xs">Create a PRD to define requirements.</p>
         </div>
@@ -52,21 +49,19 @@
             :for={prd <- @prds}
             phx-click="select_prd"
             phx-value-id={prd.id}
-            class={"border border-base-300 rounded-lg p-3 cursor-pointer transition-colors #{cond do
-              @selected_prd && @selected_prd.id == prd.id -> "border-purple-500 bg-purple-500/10"
-              @project.active_prd_id == prd.id -> "border-blue-400 bg-blue-500/10"
-              true -> "hover:bg-base-300"
+            class={"border border-outline rounded-lg p-3 cursor-pointer transition-colors #{cond do
+              @selected_prd && @selected_prd.id == prd.id -> "border-tertiary bg-tertiary-container/30"
+              @project.active_prd_id == prd.id -> "border-primary bg-primary-container/30"
+              true -> "hover:bg-surface-container"
             end}"}
           >
             <div class="flex items-start justify-between gap-2">
               <div class="min-w-0 flex-1">
-                <p class="text-sm font-medium text-base-content truncate">{prd.title}</p>
+                <p class="text-sm font-medium text-on-surface truncate">{prd.title}</p>
                 <div class="flex items-center gap-2 mt-1">
-                  <span class={"text-[10px] px-1.5 py-0.5 rounded-full #{prd_status_color(prd.status)}"}>
-                    {prd.status}
-                  </span>
-                  <span class="text-[10px] text-base-content/40">v{prd.version}</span>
-                  <span class="text-[10px] text-base-content/40">
+                  <.dm_badge color={prd_status_badge_color(prd.status)} size="xs">{prd.status}</.dm_badge>
+                  <span class="text-[10px] text-on-surface-variant">v{prd.version}</span>
+                  <span class="text-[10px] text-on-surface-variant">
                     {relative_time(prd.updated_at)}
                   </span>
                 </div>
@@ -74,37 +69,19 @@
               <div class="flex items-center gap-1 shrink-0">
                 <.link
                   navigate={~p"/projects/#{@project.id}/prds/#{prd.id}"}
-                  class="text-base-content/40 hover:text-purple-500 p-1"
+                  class="text-on-surface-variant hover:text-tertiary p-1"
                   title="Edit"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-3.5 w-3.5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                  </svg>
+                  <.dm_mdi name="pencil-outline" class="h-3.5 w-3.5" />
                 </.link>
                 <button
                   phx-click="delete_prd"
                   phx-value-id={prd.id}
                   data-confirm={"Delete PRD \"#{prd.title}\"?"}
-                  class="text-base-content/40 hover:text-red-500 p-1"
+                  class="text-on-surface-variant hover:text-error p-1"
                   title="Delete"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-3.5 w-3.5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
+                  <.dm_mdi name="trash-can-outline" class="h-3.5 w-3.5" />
                 </button>
               </div>
             </div>
@@ -116,9 +93,9 @@
     <%!-- Right column: Execution workspace --%>
     <div class="flex-1 min-w-0">
       <%!-- Empty state --%>
-      <div :if={!@selected_prd} class="bg-base-200 rounded-lg shadow p-12 text-center">
-        <p class="text-base-content/40 text-lg">Select a PRD to view its execution workspace</p>
-        <p :if={@prds == []} class="text-base-content/30 text-sm mt-2">
+      <div :if={!@selected_prd} class="bg-surface-container rounded-lg shadow p-12 text-center">
+        <p class="text-on-surface-variant text-lg">Select a PRD to view its execution workspace</p>
+        <p :if={@prds == []} class="text-on-surface/30 text-sm mt-2">
           Create a PRD first using the + New button
         </p>
       </div>
@@ -126,14 +103,12 @@
       <%!-- Workspace when PRD selected --%>
       <div :if={@selected_prd} class="space-y-4">
         <%!-- PRD header + action bar --%>
-        <div class="bg-base-200 rounded-lg shadow p-4">
+        <div class="bg-surface-container rounded-lg shadow p-4">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h2 class="text-lg font-semibold text-base-content">{@selected_prd.title}</h2>
-              <div class="flex items-center gap-3 mt-1 text-xs text-base-content/50">
-                <span class={"px-2 py-0.5 rounded-full #{prd_status_color(@selected_prd.status)}"}>
-                  {@selected_prd.status}
-                </span>
+              <h2 class="text-lg font-semibold text-on-surface">{@selected_prd.title}</h2>
+              <div class="flex items-center gap-3 mt-1 text-xs text-on-surface-variant">
+                <.dm_badge color={prd_status_badge_color(@selected_prd.status)}>{@selected_prd.status}</.dm_badge>
                 <span>Version {@selected_prd.version}</span>
                 <span>{length(@tasks)} tasks</span>
                 <span>{length(@agent_runs)} agents</span>
@@ -143,65 +118,23 @@
 
           <%!-- Action bar --%>
           <div class="flex gap-2 flex-wrap">
-            <button
-              :if={can_start?(@project, @selected_prd)}
-              phx-click="start"
-              class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm"
-            >
-              Start
-            </button>
-            <button
-              :if={can_pause?(@project)}
-              phx-click="pause"
-              class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 text-sm"
-            >
-              Pause
-            </button>
-            <button
-              :if={can_resume?(@project)}
-              phx-click="resume"
-              class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm"
-            >
-              Resume
-            </button>
-            <button
-              :if={can_restart?(@project)}
-              phx-click="restart"
-              data-confirm="Restart this project? This will stop all agents and re-bootstrap from the current PRD."
-              class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm"
-            >
-              Restart
-            </button>
-            <button
-              :if={can_stop?(@project)}
-              phx-click="stop"
-              data-confirm="Stop this project? This will terminate all running agents."
-              class="bg-zinc-600 text-white px-4 py-2 rounded-lg hover:bg-zinc-700 text-sm"
-            >
-              Stop
-            </button>
-            <button
-              :if={can_terminate?(@project)}
-              phx-click="terminate"
-              data-confirm="Terminate this project? This will kill all agents and mark the project as failed."
-              class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm"
-            >
-              Terminate
-            </button>
-            <span
-              :if={!running?(@project) && !can_start?(@project, @selected_prd)}
-              class="text-sm text-base-content/40 px-4 py-2"
-            >
+            <.dm_btn :if={can_start?(@project, @selected_prd)} variant="secondary" size="sm" phx-click="start">Start</.dm_btn>
+            <.dm_btn :if={can_pause?(@project)} variant="warning" size="sm" phx-click="pause">Pause</.dm_btn>
+            <.dm_btn :if={can_resume?(@project)} variant="secondary" size="sm" phx-click="resume">Resume</.dm_btn>
+            <.dm_btn :if={can_restart?(@project)} variant="primary" size="sm" phx-click="restart" data-confirm="Restart this project? This will stop all agents and re-bootstrap from the current PRD.">Restart</.dm_btn>
+            <.dm_btn :if={can_stop?(@project)} variant="ghost" size="sm" phx-click="stop" data-confirm="Stop this project? This will terminate all running agents.">Stop</.dm_btn>
+            <.dm_btn :if={can_terminate?(@project)} variant="error" size="sm" phx-click="terminate" data-confirm="Terminate this project? This will kill all agents and mark the project as failed.">Terminate</.dm_btn>
+            <span :if={!running?(@project) && !can_start?(@project, @selected_prd)} class="text-sm text-on-surface-variant px-4 py-2">
               Project {@project.status}
             </span>
           </div>
         </div>
 
         <%!-- Activity Log --%>
-        <div class="bg-zinc-950 rounded-lg shadow p-4 border border-zinc-800">
+        <div class="bg-inverse-surface rounded-lg shadow p-4 border border-outline">
           <div class="flex justify-between items-center mb-3">
-            <h3 class="text-sm font-medium text-zinc-400">Activity Log</h3>
-            <span class="text-xs text-zinc-500">{@log_count} events</span>
+            <h3 class="text-sm font-medium text-inverse-on-surface/70">Activity Log</h3>
+            <span class="text-xs text-inverse-on-surface/50">{@log_count} events</span>
           </div>
           <div
             id="activity-log"
@@ -212,37 +145,37 @@
             <div
               :for={{dom_id, entry} <- @streams.activity_log}
               id={dom_id}
-              class="flex items-start gap-2 px-2 py-1 hover:bg-zinc-900/50 rounded"
+              class="flex items-start gap-2 px-2 py-1 hover:bg-inverse-surface-variant/20 rounded"
             >
-              <span class="text-zinc-600 shrink-0">{format_log_time(entry.timestamp)}</span>
+              <span class="text-inverse-on-surface/40 shrink-0">{format_log_time(entry.timestamp)}</span>
               <span class={"px-1.5 py-0.5 rounded text-[10px] font-bold uppercase shrink-0 #{source_badge_class(entry.source)}"}>
                 {log_source_label(entry.source)}
               </span>
               <span class={"shrink-0 #{log_stage_color(entry.stage)}"}>[{entry.stage}]</span>
-              <span class="text-zinc-500 shrink-0">{entry.source_id}:</span>
-              <span class="text-zinc-300 break-words min-w-0">{entry.message}</span>
+              <span class="text-inverse-on-surface/50 shrink-0">{entry.source_id}:</span>
+              <span class="text-inverse-on-surface break-words min-w-0">{entry.message}</span>
               <details :if={entry.output} class="ml-auto shrink-0">
-                <summary class="text-zinc-600 hover:text-zinc-400 cursor-pointer">output</summary>
-                <pre class="mt-1 p-2 bg-zinc-900 rounded text-zinc-400 text-[11px] whitespace-pre-wrap max-h-48 overflow-y-auto">{entry.output}</pre>
+                <summary class="text-inverse-on-surface/40 hover:text-inverse-on-surface cursor-pointer">output</summary>
+                <pre class="mt-1 p-2 bg-inverse-surface rounded text-inverse-on-surface/70 text-[11px] whitespace-pre-wrap max-h-48 overflow-y-auto">{entry.output}</pre>
               </details>
             </div>
           </div>
-          <div :if={@log_count == 0} class="text-center py-6 text-zinc-600">
+          <div :if={@log_count == 0} class="text-center py-6 text-inverse-on-surface/40">
             No activity yet. Start the project to see real-time events.
           </div>
         </div>
 
         <%!-- Active Agents (from PubSub) --%>
-        <div :if={@active_agents != %{}} class="bg-base-200 rounded-lg shadow p-4">
-          <h3 class="text-sm font-medium text-base-content/50 mb-3">Active Agents</h3>
+        <div :if={@active_agents != %{}} class="bg-surface-container rounded-lg shadow p-4">
+          <h3 class="text-sm font-medium text-on-surface-variant mb-3">Active Agents</h3>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
             <div
               :for={{agent_id, info} <- @active_agents}
-              class="border border-base-300 rounded-lg p-3"
+              class="border border-outline-variant rounded-lg p-3"
             >
-              <p class="text-sm font-medium text-base-content truncate">{agent_id}</p>
+              <p class="text-sm font-medium text-on-surface truncate">{agent_id}</p>
               <p class={"text-xs #{agent_state_color(info.state)}"}>{info.state}</p>
-              <p :if={Map.has_key?(info, :type)} class="text-xs text-base-content/40">
+              <p :if={Map.has_key?(info, :type)} class="text-xs text-on-surface-variant">
                 {info.type}
               </p>
             </div>
@@ -250,36 +183,36 @@
         </div>
 
         <%!-- Working Agents (from DB) --%>
-        <div :if={@agent_runs != []} class="bg-base-200 rounded-lg shadow p-4">
-          <h3 class="text-sm font-medium text-base-content/50 mb-3">Agents</h3>
+        <div :if={@agent_runs != []} class="bg-surface-container rounded-lg shadow p-4">
+          <h3 class="text-sm font-medium text-on-surface-variant mb-3">Agents</h3>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <div :for={agent <- @agent_runs} class="border border-base-300 rounded-lg p-3">
-              <p class="text-sm font-medium text-base-content truncate">{agent.agent_type}</p>
+            <div :for={agent <- @agent_runs} class="border border-outline-variant rounded-lg p-3">
+              <p class="text-sm font-medium text-on-surface truncate">{agent.agent_type}</p>
               <p class={"text-xs #{agent_state_color(agent.status)}"}>{agent.status}</p>
-              <p class="text-xs text-base-content/40">Node: {agent.node || "local"}</p>
+              <p class="text-xs text-on-surface-variant">Node: {agent.node || "local"}</p>
             </div>
           </div>
         </div>
 
         <%!-- Task Summary --%>
-        <div :if={@tasks != []} class="bg-base-200 rounded-lg shadow p-4">
-          <h3 class="text-sm font-medium text-base-content/50 mb-3">Task Progress</h3>
+        <div :if={@tasks != []} class="bg-surface-container rounded-lg shadow p-4">
+          <h3 class="text-sm font-medium text-on-surface-variant mb-3">Task Progress</h3>
           <div class="flex gap-4 text-sm">
             <div class="flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-              <span class="text-base-content/70">
+              <span class="w-2.5 h-2.5 rounded-full bg-success"></span>
+              <span class="text-on-surface-variant">
                 {Enum.count(@tasks, &(&1.status == :completed))} completed
               </span>
             </div>
             <div class="flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-              <span class="text-base-content/70">
+              <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+              <span class="text-on-surface-variant">
                 {Enum.count(@tasks, &(&1.status == :running))} running
               </span>
             </div>
             <div class="flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
-              <span class="text-base-content/70">
+              <span class="w-2.5 h-2.5 rounded-full bg-warning"></span>
+              <span class="text-on-surface-variant">
                 {Enum.count(@tasks, &(&1.status == :pending))} pending
               </span>
             </div>
@@ -287,8 +220,8 @@
               :if={Enum.any?(@tasks, &(&1.status == :failed))}
               class="flex items-center gap-1.5"
             >
-              <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-              <span class="text-base-content/70">
+              <span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+              <span class="text-on-surface-variant">
                 {Enum.count(@tasks, &(&1.status == :failed))} failed
               </span>
             </div>
@@ -296,37 +229,33 @@
               :if={Enum.any?(@tasks, &(&1.status == :dead_letter))}
               class="flex items-center gap-1.5"
             >
-              <span class="w-2.5 h-2.5 rounded-full bg-zinc-500"></span>
-              <span class="text-base-content/70">
+              <span class="w-2.5 h-2.5 rounded-full bg-surface-container-high"></span>
+              <span class="text-on-surface-variant">
                 {Enum.count(@tasks, &(&1.status == :dead_letter))} dead letter
               </span>
             </div>
-            <button
-              :if={Enum.any?(@tasks, &(&1.status in [:failed, :dead_letter]))}
-              phx-click="retry_all_failed"
-              class="ml-auto text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
-            >
+            <.dm_btn :if={Enum.any?(@tasks, &(&1.status in [:failed, :dead_letter]))} variant="primary" size="xs" phx-click="retry_all_failed" class="ml-auto">
               Retry All Failed
-            </button>
+            </.dm_btn>
           </div>
-          <div class="mt-2 h-2 bg-base-300 rounded-full overflow-hidden flex">
+          <div class="mt-2 h-2 bg-surface-container-high rounded-full overflow-hidden flex">
             <div
-              class="bg-green-500 transition-all"
+              class="bg-success transition-all"
               style={"width: #{task_progress_pct(@tasks, :completed)}%"}
             >
             </div>
             <div
-              class="bg-blue-500 transition-all"
+              class="bg-primary transition-all"
               style={"width: #{task_progress_pct(@tasks, :running)}%"}
             >
             </div>
             <div
-              class="bg-yellow-500 transition-all"
+              class="bg-warning transition-all"
               style={"width: #{task_progress_pct(@tasks, :pending)}%"}
             >
             </div>
             <div
-              class="bg-red-500 transition-all"
+              class="bg-error transition-all"
               style={"width: #{task_progress_pct(@tasks, :failed)}%"}
             >
             </div>
@@ -334,41 +263,39 @@
         </div>
 
         <%!-- Quality Gate Results --%>
-        <div :if={@quality_gate_verdict} class="bg-base-200 rounded-lg shadow p-4">
+        <div :if={@quality_gate_verdict} class="bg-surface-container rounded-lg shadow p-4">
           <div class="flex items-center justify-between mb-3">
-            <h3 class="text-sm font-medium text-base-content/50">Quality Gates</h3>
-            <span class={"px-2 py-1 text-xs rounded-full font-semibold #{if @quality_gate_verdict == :pass, do: "bg-green-100 text-green-800", else: "bg-red-100 text-red-800"}"}>
+            <h3 class="text-sm font-medium text-on-surface-variant">Quality Gates</h3>
+            <.dm_badge color={if @quality_gate_verdict == :pass, do: "success", else: "error"}>
               {@quality_gate_verdict}
-            </span>
+            </.dm_badge>
           </div>
           <div class="space-y-2">
             <div
               :for={result <- @quality_gate_results}
-              class="border border-base-300 rounded-lg p-3"
+              class="border border-outline-variant rounded-lg p-3"
             >
               <div class="flex items-center justify-between">
-                <span class="text-sm font-medium text-base-content">
+                <span class="text-sm font-medium text-on-surface">
                   Gate {result.gate}: {result.name}
                 </span>
-                <span class={"text-xs px-2 py-0.5 rounded-full #{gate_verdict_color(result.verdict)}"}>
-                  {result.verdict}
-                </span>
+                <.dm_badge size="xs" color={gate_verdict_badge_color(result.verdict)}>{result.verdict}</.dm_badge>
               </div>
               <div :if={result.findings != []} class="mt-2 space-y-1">
                 <div
                   :for={finding <- Enum.take(result.findings, 5)}
-                  class="text-xs text-base-content/70 flex gap-2"
+                  class="text-xs text-on-surface-variant flex gap-2"
                 >
                   <span class={"shrink-0 #{finding_severity_color(finding.severity)}"}>
                     [{finding.severity}]
                   </span>
                   <span class="break-words min-w-0">{finding.message}</span>
                 </div>
-                <p :if={length(result.findings) > 5} class="text-xs text-base-content/40">
+                <p :if={length(result.findings) > 5} class="text-xs text-on-surface-variant">
                   + {length(result.findings) - 5} more findings
                 </p>
               </div>
-              <p :if={result.findings == []} class="text-xs text-base-content/40 mt-1">
+              <p :if={result.findings == []} class="text-xs text-on-surface-variant mt-1">
                 No findings
               </p>
             </div>
@@ -376,118 +303,61 @@
         </div>
 
         <%!-- Tasks --%>
-        <div class="bg-base-200 rounded-lg shadow p-4">
+        <div class="bg-surface-container rounded-lg shadow p-4">
           <div class="flex justify-between items-center mb-3">
-            <h3 class="text-sm font-medium text-base-content/50">Tasks</h3>
-            <button
-              :if={!@show_task_form}
-              phx-click="show_task_form"
-              class="text-xs bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
-            >
+            <h3 class="text-sm font-medium text-on-surface-variant">Tasks</h3>
+            <.dm_btn :if={!@show_task_form} variant="success" size="xs" phx-click="show_task_form">
               + New Task
-            </button>
+            </.dm_btn>
           </div>
 
           <%!-- Task Form --%>
-          <div
-            :if={@show_task_form}
-            class="border border-base-300 rounded-lg p-4 mb-4 bg-base-300"
-          >
+          <div :if={@show_task_form} class="border border-outline rounded-lg p-4 mb-4 bg-surface-container">
             <form phx-submit="create_task">
               <div class="grid grid-cols-2 gap-4 mb-3">
-                <div>
-                  <label class="block text-xs font-medium text-base-content/70 mb-1">
-                    Task Type
-                  </label>
-                  <input
-                    type="text"
-                    name="task[type]"
-                    required
-                    placeholder="e.g., implement-feature"
-                    class="w-full border border-base-300 rounded px-3 py-2 text-sm text-base-content bg-base-100 placeholder:text-base-content/40"
-                  />
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-base-content/70 mb-1">
-                    Priority (1-10)
-                  </label>
-                  <input
-                    type="number"
-                    name="task[priority]"
-                    min="1"
-                    max="10"
-                    value="5"
-                    required
-                    class="w-full border border-base-300 rounded px-3 py-2 text-sm text-base-content bg-base-100 placeholder:text-base-content/40"
-                  />
-                </div>
+                <.dm_input type="text" name="task[type]" required placeholder="e.g., implement-feature" label="Task Type" />
+                <.dm_input type="number" name="task[priority]" min="1" max="10" value="5" required label="Priority (1-10)" />
               </div>
               <div class="mb-3">
-                <label class="block text-xs font-medium text-base-content/70 mb-1">
-                  Payload (JSON)
-                </label>
-                <textarea
-                  name="task[payload]"
-                  rows="3"
-                  placeholder='{"description": "Task details here"}'
-                  class="w-full border border-base-300 rounded px-3 py-2 text-sm font-mono text-base-content bg-base-100 placeholder:text-base-content/40"
-                >{"{}"}</textarea>
+                <.dm_textarea name="task[payload]" rows="3" placeholder='{"description": "Task details here"}' label="Payload (JSON)" value="{}" class="font-mono text-sm" />
               </div>
               <div class="flex gap-2">
-                <button
-                  type="submit"
-                  class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm"
-                >
-                  Create Task
-                </button>
-                <button
-                  type="button"
-                  phx-click="hide_task_form"
-                  class="bg-base-300 text-base-content px-4 py-2 rounded hover:bg-base-100 text-sm"
-                >
-                  Cancel
-                </button>
+                <.dm_btn type="submit" variant="secondary" size="sm">Create Task</.dm_btn>
+                <.dm_btn type="button" variant="ghost" size="sm" phx-click="hide_task_form">Cancel</.dm_btn>
               </div>
             </form>
           </div>
 
-          <div :if={@tasks == []} class="text-center py-6 text-base-content/40">
+          <div :if={@tasks == []} class="text-center py-6 text-on-surface-variant">
             No tasks yet
           </div>
           <div
             :for={task <- @tasks}
-            class="border-b border-base-300 last:border-b-0 py-3 flex justify-between items-center"
+            class="border-b border-outline-variant last:border-b-0 py-3 flex justify-between items-center"
           >
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2">
-                <p class="text-sm font-medium text-base-content">{task.type}</p>
+                <p class="text-sm font-medium text-on-surface">{task.type}</p>
                 <span
                   :if={task.payload["description"]}
-                  class="text-xs text-base-content/40 truncate"
+                  class="text-xs text-on-surface-variant truncate"
                 >
                   {task.payload["description"]}
                 </span>
               </div>
-              <p class="text-xs text-base-content/50">{task_meta(task)}</p>
-              <p :if={task.error && is_map(task.error)} class="text-xs text-red-600 mt-1 truncate">
+              <p class="text-xs text-on-surface-variant">{task_meta(task)}</p>
+              <p :if={task.error && is_map(task.error)} class="text-xs text-error mt-1 truncate">
                 {task.error["reason"] || inspect(task.error)}
               </p>
-              <p :if={task.error && !is_map(task.error)} class="text-xs text-red-600 mt-1">
+              <p :if={task.error && !is_map(task.error)} class="text-xs text-error mt-1">
                 {task.error}
               </p>
             </div>
             <div class="flex items-center gap-2">
-              <span class={"px-2 py-1 text-xs rounded-full #{task_status_color(task.status)}"}>
-                {task.status}
-              </span>
-              <button
-                :if={task.status in [:failed, :dead_letter]}
-                phx-click="retry_task"
-                phx-value-id={task.id}
-                class="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
-              >
+              <.dm_badge color={task_status_badge_color(task.status)}>{task.status}</.dm_badge>
+              <.dm_btn :if={task.status in [:failed, :dead_letter]} variant="primary" size="xs" phx-click="retry_task" phx-value-id={task.id}>
                 Retry
-              </button>
+              </.dm_btn>
             </div>
           </div>
         </div>

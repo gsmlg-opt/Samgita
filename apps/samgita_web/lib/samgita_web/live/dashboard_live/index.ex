@@ -43,10 +43,10 @@ defmodule SamgitaWeb.DashboardLive.Index do
   def total_tasks(stats), do: stats |> Map.values() |> Enum.sum()
   def task_stat(stats, status), do: Map.get(stats, status, 0)
 
-  def status_color(:pending), do: "bg-yellow-100 text-yellow-800"
-  def status_color(:running), do: "bg-green-100 text-green-800"
-  def status_color(:paused), do: "bg-orange-100 text-orange-800"
-  def status_color(:completed), do: "bg-blue-100 text-blue-800"
-  def status_color(:failed), do: "bg-red-100 text-red-800"
-  def status_color(_), do: "bg-zinc-100 text-zinc-600"
+  def status_badge_color(:pending), do: "warning"
+  def status_badge_color(:running), do: "success"
+  def status_badge_color(:paused), do: "warning"
+  def status_badge_color(:completed), do: "primary"
+  def status_badge_color(:failed), do: "error"
+  def status_badge_color(_), do: ""
 end

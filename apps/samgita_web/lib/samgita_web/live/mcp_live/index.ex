@@ -40,7 +40,7 @@ defmodule SamgitaWeb.McpLive.Index do
     ]
   end
 
-  def status_color(:connected), do: "bg-green-100 text-green-800"
-  def status_color(:disconnected), do: "bg-zinc-100 text-zinc-600"
-  def status_color(:error), do: "bg-red-100 text-red-800"
+  def status_badge_color(:connected), do: "success"
+  def status_badge_color(:disconnected), do: ""
+  def status_badge_color(:error), do: "error"
 end

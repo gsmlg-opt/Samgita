@@ -1,97 +1,51 @@
 <div class="max-w-7xl mx-auto px-4 py-8">
   <div class="flex justify-between items-center mb-8">
     <div>
-      <h1 class="text-3xl font-bold text-zinc-900">MCP Server Management</h1>
-      <p class="text-zinc-600 mt-2">Configure Model Context Protocol servers</p>
+      <h1 class="text-3xl font-bold text-on-surface">MCP Server Management</h1>
+      <p class="text-on-surface-variant mt-2">Configure Model Context Protocol servers</p>
     </div>
     <div class="flex gap-3">
-      <button
-        phx-click="refresh"
-        class="bg-white border border-zinc-300 text-zinc-700 px-4 py-2 rounded-lg hover:bg-zinc-50"
-      >
-        Refresh
-      </button>
-      <.link
-        navigate={~p"/"}
-        class="text-blue-600 hover:text-blue-700 font-medium"
-      >
-        ← Back to Dashboard
-      </.link>
+      <.dm_btn variant="outline" phx-click="refresh">Refresh</.dm_btn>
+      <.link navigate={~p"/"}><.dm_btn variant="ghost">← Back to Dashboard</.dm_btn></.link>
     </div>
   </div>
 
-  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+  <.dm_card variant="bordered" class="p-4 mb-6 bg-primary-container/20">
     <div class="flex items-start gap-3">
-      <svg
-        class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
+      <.dm_mdi name="information-outline" class="w-5 h-5 text-primary shrink-0 mt-0.5" />
       <div class="flex-1">
-        <p class="font-medium text-blue-800">MCP Configuration</p>
-        <p class="text-sm text-blue-800 mt-1">
-          MCP servers are configured in
-          <code class="bg-blue-100 px-1 rounded">~/.claude/mcp.json</code>
+        <p class="font-medium text-on-surface">MCP Configuration</p>
+        <p class="text-sm text-on-surface-variant mt-1">
+          MCP servers are configured in <code class="bg-surface-container px-1 rounded">~/.claude/mcp.json</code>
         </p>
         <div class="mt-3">
-          <.link
-            navigate={~p"/references/mcp-integration.md"}
-            class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-white border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-            <span>View MCP Integration Guide</span>
+          <.link navigate={~p"/references/mcp-integration.md"}>
+            <.dm_btn variant="outline" size="sm">View MCP Integration Guide</.dm_btn>
           </.link>
         </div>
       </div>
     </div>
-  </div>
+  </.dm_card>
 
   <div class="grid gap-4">
-    <div
-      :for={server <- @servers}
-      class="bg-white rounded-lg shadow p-6 border border-zinc-200"
-    >
+    <.dm_card :for={server <- @servers} variant="bordered" class="p-6">
       <div class="flex items-start justify-between">
         <div class="flex-1">
           <div class="flex items-center gap-3">
-            <h3 class="text-lg font-semibold text-zinc-900">{server.name}</h3>
-            <span class={"px-2 py-1 text-xs rounded-full font-medium #{status_color(server.status)}"}>
-              {server.status}
-            </span>
+            <h3 class="text-lg font-semibold text-on-surface">{server.name}</h3>
+            <.dm_badge color={status_badge_color(server.status)}>{server.status}</.dm_badge>
           </div>
-          <p class="text-sm text-zinc-600 mt-2">{server.description}</p>
+          <p class="text-sm text-on-surface-variant mt-2">{server.description}</p>
           <div class="flex gap-2 mt-3">
-            <span
-              :for={capability <- server.capabilities}
-              class="px-2 py-1 text-xs bg-zinc-100 text-zinc-700 rounded"
-            >
-              {capability}
-            </span>
+            <.dm_badge :for={capability <- server.capabilities} color="secondary">{capability}</.dm_badge>
           </div>
         </div>
       </div>
-    </div>
+    </.dm_card>
   </div>
 
-  <div :if={@servers == []} class="text-center py-16 text-zinc-500">
+  <div :if={@servers == []} class="text-center py-16 text-on-surface-variant">
     <p class="text-lg">No MCP servers configured.</p>
-    <p class="mt-2">
-      Add servers to <code class="bg-zinc-100 px-2 py-1 rounded">~/.claude/mcp.json</code>
-    </p>
+    <p class="mt-2">Add servers to <code class="bg-surface-container px-2 py-1 rounded">~/.claude/mcp.json</code></p>
   </div>
 </div>
