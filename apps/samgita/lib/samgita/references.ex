@@ -140,13 +140,13 @@ defmodule Samgita.References do
     end
   end
 
-  def category_color("Agents"), do: "bg-purple-100 text-purple-800 border-purple-300"
-  def category_color("Research"), do: "bg-blue-100 text-blue-800 border-blue-300"
-  def category_color("Architecture"), do: "bg-green-100 text-green-800 border-green-300"
-  def category_color("Business"), do: "bg-orange-100 text-orange-800 border-orange-300"
-  def category_color("Operations"), do: "bg-red-100 text-red-800 border-red-300"
-  def category_color("Integration"), do: "bg-cyan-100 text-cyan-800 border-cyan-300"
-  def category_color("Optimization"), do: "bg-yellow-100 text-yellow-800 border-yellow-300"
-  def category_color("Quality"), do: "bg-pink-100 text-pink-800 border-pink-300"
-  def category_color(_), do: "bg-zinc-100 text-zinc-800 border-zinc-300"
+  def category_badge_color("Agents"), do: "secondary"
+  def category_badge_color("Research"), do: "primary"
+  def category_badge_color("Architecture"), do: "success"
+  def category_badge_color("Business"), do: "tertiary"
+  def category_badge_color("Operations"), do: "error"
+  def category_badge_color("Integration"), do: "info"
+  def category_badge_color("Optimization"), do: "warning"
+  def category_badge_color("Quality"), do: "secondary"
+  def category_badge_color(_), do: ""
 end

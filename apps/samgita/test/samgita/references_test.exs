@@ -59,16 +59,16 @@ defmodule Samgita.ReferencesTest do
     end
   end
 
-  describe "category_color/1" do
-    test "returns color for known categories" do
-      assert References.category_color("Agents") =~ "purple"
-      assert References.category_color("Research") =~ "blue"
-      assert References.category_color("Architecture") =~ "green"
-      assert References.category_color("Quality") =~ "pink"
+  describe "category_badge_color/1" do
+    test "returns duskmoon color name for known categories" do
+      assert References.category_badge_color("Agents") == "secondary"
+      assert References.category_badge_color("Research") == "primary"
+      assert References.category_badge_color("Architecture") == "success"
+      assert References.category_badge_color("Quality") == "secondary"
     end
 
-    test "returns default color for unknown categories" do
-      assert References.category_color("Unknown") =~ "zinc"
+    test "returns empty string for unknown categories" do
+      assert References.category_badge_color("Unknown") == ""
     end
   end
 end
