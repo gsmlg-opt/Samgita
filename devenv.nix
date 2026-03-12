@@ -44,11 +44,29 @@ in {
     settings.unix_socket_directories = "${config.env.DEVENV_STATE}/postgres";
   };
 
+  processes.server = {
+    exec = "mix phx.server";
+    process-compose = {
+      depends_on.postgres.condition = "process_healthy";
+    };
+  };
+
   scripts.hello.exec = ''
     figlet -w 120 $GREET | lolcat
   '';
 
+  scripts.setup.exec = ''
+    echo "==> Setting up databases..."
+    mix ecto.setup
+    echo "==> Done! Run 'devenv up' to start all services."
+  '';
+
   enterShell = ''
     hello
+    echo ""
+    echo "Commands:"
+    echo "  devenv up   — start PostgreSQL + Phoenix server"
+    echo "  setup       — first-time DB setup (mix ecto.setup)"
+    echo "  mix test    — run tests"
   '';
 }
