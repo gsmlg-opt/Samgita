@@ -35,6 +35,7 @@ in {
   services.postgres = {
     enable = true;
     package = pkgs-stable.postgresql_16;
+    extensions = ext: [ext.pgvector];
     listen_addresses = "";
     initialDatabases = [
       {name = "samgita_dev";}
