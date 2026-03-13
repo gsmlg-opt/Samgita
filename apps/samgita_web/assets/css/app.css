@@ -7,6 +7,7 @@
 @source "../css";
 @source "../js";
 @source "../../lib/samgita_web";
+@source "../../../../deps/phoenix_duskmoon/lib";
 
 /* A Tailwind plugin that makes "hero-#{ICON}" classes available.
    The heroicons installation itself is managed by your mix.exs */
@@ -28,3 +29,11 @@
 [data-phx-session], [data-phx-teleported-src] { display: contents }
 
 /* This file is for your main application CSS */
+
+/* TODO: upstream duskmoon-dev/duskmoonui#25
+   appbar-trailing has flex-grow:0 causing nav overflow with 5+ menu items.
+   Override to flex-1 + justify-end so the trailing section fills available space. */
+header.appbar .appbar-trailing {
+  flex-grow: 1;
+  justify-content: flex-end;
+}

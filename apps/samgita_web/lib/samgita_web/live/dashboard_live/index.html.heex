@@ -7,7 +7,7 @@
   <%!-- Management Cards --%>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
     <.link navigate={~p"/agents"} class="block">
-      <.dm_card variant="bordered" class="p-6 hover:shadow-md transition-shadow h-full">
+      <.dm_card body_class="" variant="bordered" class="p-6 hover:shadow-md transition-shadow h-full">
         <div class="flex items-center gap-3 mb-2">
           <div class="p-2 bg-tertiary-container rounded-lg">
             <.dm_mdi name="robot" class="w-6 h-6 text-on-tertiary-container" />
@@ -19,7 +19,7 @@
     </.link>
 
     <.link navigate={~p"/mcp"} class="block">
-      <.dm_card variant="bordered" class="p-6 hover:shadow-md transition-shadow h-full">
+      <.dm_card body_class="" variant="bordered" class="p-6 hover:shadow-md transition-shadow h-full">
         <div class="flex items-center gap-3 mb-2">
           <div class="p-2 bg-primary-container rounded-lg">
             <.dm_mdi name="server-network" class="w-6 h-6 text-on-primary-container" />
@@ -31,7 +31,7 @@
     </.link>
 
     <.link navigate={~p"/skills"} class="block">
-      <.dm_card variant="bordered" class="p-6 hover:shadow-md transition-shadow h-full">
+      <.dm_card body_class="" variant="bordered" class="p-6 hover:shadow-md transition-shadow h-full">
         <div class="flex items-center gap-3 mb-2">
           <div class="p-2 bg-secondary-container rounded-lg">
             <.dm_mdi name="book-open-variant" class="w-6 h-6 text-on-secondary-container" />
@@ -43,7 +43,7 @@
     </.link>
 
     <.link navigate={~p"/references"} class="block">
-      <.dm_card variant="bordered" class="p-6 hover:shadow-md transition-shadow h-full">
+      <.dm_card body_class="" variant="bordered" class="p-6 hover:shadow-md transition-shadow h-full">
         <div class="flex items-center gap-3 mb-2">
           <div class="p-2 bg-tertiary-container rounded-lg">
             <.dm_mdi name="file-document-outline" class="w-6 h-6 text-on-tertiary-container" />
@@ -64,7 +64,7 @@
 
   <div class="grid gap-4">
     <.link :for={project <- @projects} navigate={~p"/projects/#{project}"} class="block">
-      <.dm_card variant="bordered" class="p-6 hover:shadow-md transition-shadow">
+      <.dm_card body_class="" variant="bordered" class="p-6 hover:shadow-md transition-shadow">
         <div class="flex justify-between items-start">
           <div>
             <h2 class="text-xl font-semibold text-on-surface">{project.name}</h2>

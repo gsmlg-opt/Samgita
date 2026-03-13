@@ -8,7 +8,7 @@
   </div>
 
   <%!-- Related References --%>
-  <.dm_card variant="bordered" class="p-4 mb-6 bg-primary-container/20">
+  <.dm_card body_class="" variant="bordered" class="p-4 mb-6 bg-primary-container/20">
     <div class="flex items-start gap-3">
       <.dm_mdi name="file-document-outline" class="w-5 h-5 text-primary shrink-0 mt-0.5" />
       <div class="flex-1">
@@ -29,6 +29,7 @@
   <div :if={is_nil(@selected_swarm)} class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <.dm_card
       :for={{swarm_name, agents} <- @agent_types}
+      body_class=""
       variant="bordered"
       class="p-6 hover:shadow-md transition-shadow hover:bg-surface-container-high cursor-pointer text-left"
       phx-click="select_swarm"
@@ -45,7 +46,7 @@
   <div :if={@selected_swarm} class="space-y-4">
     <h2 class="text-2xl font-bold text-on-surface mb-4">{@selected_swarm}</h2>
     <div class="grid gap-4">
-      <.dm_card :for={agent <- @agent_types[@selected_swarm]} variant="bordered" class="hover:shadow-md transition-shadow">
+      <.dm_card body_class="" :for={agent <- @agent_types[@selected_swarm]} variant="bordered" class="hover:shadow-md transition-shadow">
         <div class="p-6">
           <div class="flex items-start justify-between">
             <div class="flex-1">

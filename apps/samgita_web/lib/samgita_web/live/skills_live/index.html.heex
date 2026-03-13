@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <.dm_card variant="bordered" class="p-4 mb-6 bg-primary-container/20">
+  <.dm_card body_class="" variant="bordered" class="p-4 mb-6 bg-primary-container/20">
     <div class="flex items-start gap-3">
       <.dm_mdi name="information-outline" class="w-5 h-5 text-primary shrink-0 mt-0.5" />
       <div class="flex-1">
@@ -27,7 +27,7 @@
   </.dm_card>
 
   <div class="grid gap-4">
-    <.dm_card :for={skill <- @skills} variant="bordered" class="p-6 hover:shadow-md transition-shadow">
+    <.dm_card body_class="" :for={skill <- @skills} variant="bordered" class="p-6 hover:shadow-md transition-shadow">
       <div class="flex items-start gap-4">
         {status_icon(skill.status)}
         <div class="flex-1">

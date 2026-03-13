@@ -19,7 +19,7 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <.link :for={ref <- refs} navigate={~p"/references/#{ref.filename}"} class="block">
-          <.dm_card variant="bordered" class="p-4 hover:shadow-md transition-shadow h-full">
+          <.dm_card body_class="" variant="bordered" class="p-4 hover:shadow-md transition-shadow h-full">
             <div class="flex items-start justify-between mb-2">
               <h3 class="text-base font-semibold text-on-surface flex-1">{ref.title}</h3>
               <.dm_badge color={References.category_badge_color(category)}>{category}</.dm_badge>
@@ -35,7 +35,7 @@
     <h2 class="text-2xl font-bold text-on-surface mb-4">{@selected_category}</h2>
     <div class="grid gap-4">
       <.link :for={ref <- Map.get(@references, @selected_category, [])} navigate={~p"/references/#{ref.filename}"} class="block">
-        <.dm_card variant="bordered" class="p-6 hover:shadow-md transition-shadow">
+        <.dm_card body_class="" variant="bordered" class="p-6 hover:shadow-md transition-shadow">
           <div class="flex items-start justify-between">
             <div class="flex-1">
               <h3 class="text-lg font-semibold text-on-surface">{ref.title}</h3>
