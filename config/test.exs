@@ -37,8 +37,8 @@ config :samgita_memory, Oban, testing: :inline
 # Use echo as a mock for Claude CLI in tests
 config :samgita, :claude_command, "echo"
 
-# Use mock provider for SamgitaProvider in tests
-config :samgita_provider, provider: :mock
+# Use Mox-based mock provider for SamgitaProvider in tests
+config :samgita_provider, provider: SamgitaProvider.MockProvider
 
 # Use mock embedding provider in tests
 config :samgita_memory, embedding_provider: :mock

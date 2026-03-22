@@ -1,38 +1,34 @@
 defmodule SamgitaProviderTest do
   use ExUnit.Case, async: true
 
-  describe "query/2 with :mock provider" do
-    setup do
-      Application.put_env(:samgita_provider, :provider, :mock)
-      on_exit(fn -> Application.delete_env(:samgita_provider, :provider) end)
+  import Mox
+
+  setup :verify_on_exit!
+
+  describe "query/2" do
+    test "delegates to the configured provider" do
+      expect(SamgitaProvider.MockProvider, :query, fn "hello", [] -> {:ok, "delegated"} end)
+      assert {:ok, "delegated"} = SamgitaProvider.query("hello")
     end
 
-    test "returns mock response" do
-      assert {:ok, "mock response"} = SamgitaProvider.query("hello")
+    test "passes opts through to the provider" do
+      expect(SamgitaProvider.MockProvider, :query, fn "test", [model: "opus"] ->
+        {:ok, "opus response"}
+      end)
+
+      assert {:ok, "opus response"} = SamgitaProvider.query("test", model: "opus")
     end
 
-    test "ignores opts for mock" do
-      assert {:ok, "mock response"} =
-               SamgitaProvider.query("hello", system_prompt: "test", max_turns: 1)
+    test "returns provider errors" do
+      expect(SamgitaProvider.MockProvider, :query, fn _, _ -> {:error, :rate_limit} end)
+      assert {:error, :rate_limit} = SamgitaProvider.query("hello")
     end
   end
 
   describe "provider/0" do
-    test "defaults to ClaudeCode" do
-      Application.delete_env(:samgita_provider, :provider)
-      assert SamgitaProvider.provider() == SamgitaProvider.ClaudeCode
-    end
-
-    test "returns configured provider" do
-      Application.put_env(:samgita_provider, :provider, :mock)
-      assert SamgitaProvider.provider() == :mock
-      Application.delete_env(:samgita_provider, :provider)
-    end
-
-    test "can be configured with Codex provider" do
-      Application.put_env(:samgita_provider, :provider, SamgitaProvider.Codex)
-      assert SamgitaProvider.provider() == SamgitaProvider.Codex
-      Application.delete_env(:samgita_provider, :provider)
+    test "returns the configured provider module" do
+      # In test env, config/test.exs sets provider: SamgitaProvider.MockProvider
+      assert SamgitaProvider.provider() == SamgitaProvider.MockProvider
     end
   end
 

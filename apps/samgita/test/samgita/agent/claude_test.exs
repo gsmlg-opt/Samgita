@@ -3,23 +3,14 @@ defmodule Samgita.Agent.ClaudeTest do
 
   alias Samgita.Agent.Claude
 
-  @moduletag :integration
-  @moduletag :skip_mock_provider
-
-  # These tests require a real Claude CLI — skip when using mock provider
-  if Application.compile_env(:samgita_provider, :provider) == :mock do
-    @moduletag :skip
-  end
+  # Requires a real Claude CLI. Excluded from `mix test` by default.
+  # Run with: mix test --include e2e
+  @moduletag :e2e
 
   setup do
-    # Ensure test file doesn't exist
     test_file = "/tmp/claude_test_#{:rand.uniform(10000)}.txt"
     File.rm(test_file)
-
-    on_exit(fn ->
-      File.rm(test_file)
-    end)
-
+    on_exit(fn -> File.rm(test_file) end)
     {:ok, test_file: test_file}
   end
 
@@ -37,25 +28,18 @@ defmodule Samgita.Agent.ClaudeTest do
       IO.puts(response)
       IO.puts("======================\n")
 
-      # Give it a moment for the file to be created
       Process.sleep(500)
 
-      # Check if file exists
       if File.exists?(test_file) do
         content = File.read!(test_file)
-        IO.puts("✅ File created successfully!")
-        IO.puts("Content: #{content}")
         assert String.contains?(content, "Hello from Claude")
       else
-        IO.puts("❌ File was NOT created")
-        IO.puts("Test file path: #{test_file}")
-        flunk("File was not created")
+        flunk("File was not created. Claude response: #{response}")
       end
     end
 
     @tag timeout: 60_000
     test "can read a file", %{test_file: test_file} do
-      # First create a file
       File.write!(test_file, "Test content for reading")
 
       prompt = """

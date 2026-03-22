@@ -13,8 +13,8 @@ defmodule SamgitaProvider do
       # Use Codex provider
       config :samgita_provider, provider: SamgitaProvider.Codex
 
-      # Use mock provider for tests
-      config :samgita_provider, provider: :mock
+      # Use mock provider for tests (Mox-based)
+      config :samgita_provider, provider: SamgitaProvider.MockProvider
   """
 
   @doc """
@@ -36,13 +36,10 @@ defmodule SamgitaProvider do
   """
   @spec query(String.t(), keyword()) :: {:ok, String.t()} | {:error, atom() | String.t()}
   def query(prompt, opts \\ []) do
-    case provider() do
-      :mock -> {:ok, "mock response"}
-      module -> module.query(prompt, opts)
-    end
+    provider().query(prompt, opts)
   end
 
-  @doc "Returns the configured provider module or `:mock`."
+  @doc "Returns the configured provider module."
   def provider do
     Application.get_env(:samgita_provider, :provider, SamgitaProvider.ClaudeCode)
   end
