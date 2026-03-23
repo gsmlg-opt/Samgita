@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Samgita is a distributed multi-agent orchestration system built on Elixir/OTP. It transforms Product Requirements Documents into software through coordinated AI agent swarms running on the BEAM VM. Inspired by [loki-mode](https://github.com/asklokesh/loki-mode).
 
-No authentication system by design — single-tenant, access controlled at infrastructure level (see `docs/CONSTITUTION.md`).
+No authentication system by design — single-tenant, access controlled at infrastructure level (see `docs/development/CONSTITUTION.md`).
 
 ## Umbrella Structure
 
@@ -120,7 +120,7 @@ Manages project lifecycle phases and coordinates agent spawning.
 - All Claude Code tools available automatically (CLI manages its own tools)
 - `:mock` atom provider for tests (returns `"mock response"`)
 - CLI command configurable via `config :samgita_provider, :claude_command`
-- See `docs/claude-integration.md` for full documentation
+- See `docs/architecture/claude-integration.md` for full documentation
 
 ### Oban Workers
 
@@ -256,8 +256,8 @@ Reference docs in `apps/samgita/priv/references/` (20 markdown files from loki-m
 
 ## Important References
 
-- **PRD.md** — Product requirements, data models, API spec
+- **docs/product/PRD.md** — Product requirements, data models, API spec
 - **PLAN.md** — 5-phase implementation plan
-- **docs/CONSTITUTION.md** — Security model and architectural constraints
+- **docs/development/CONSTITUTION.md** — Security model and architectural constraints
 - **loki-mode/** — Original implementation (gitignored, for reference)
 - **examples/** — SamgitaProvider usage examples
