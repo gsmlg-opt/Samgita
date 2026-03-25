@@ -2,29 +2,25 @@
 
 ## Context
 
-Samgita is an Elixir/OTP implementation of loki-mode — an autonomous AI system that transforms PRDs into production software via agent swarms. The codebase is ~90-95% architecturally complete. The blockers are not missing features but wiring bugs, timing issues, and disconnected integrations.
+Samgita is an Elixir/OTP implementation of loki-mode — an autonomous AI system that transforms PRDs into production software via agent swarms. The codebase is architecturally complete. All critical blockers have been resolved (see "Fixed" section in `docs/prd.md`).
 
-This plan fixes them in four phases, from critical blockers to full loki-mode parity.
+This plan documents the original four phases. Remaining work focuses on enhancements and loki-mode parity.
 
 ---
 
 ## Gap Analysis
 
-### Critical Bug — Fire-and-Forget Task Completion (BLOCKER)
+### ~~Critical Bug — Fire-and-Forget Task Completion~~ (FIXED)
 
-`AgentTaskWorker.execute_task/2` issues a **cast** (`Worker.assign_task(agent_pid, task)`) then immediately calls `mark_task_completed` and `notify_orchestrator`. The Orchestrator receives "task done" before Claude has run. Phase advancement is premature; RARV output is never linked back to DB task status.
-
-**Root cause:** `assign_task` is async. Task completion should be driven by the Agent.Worker after its RARV cycle completes, not by the Oban dispatcher.
+**RESOLVED:** `AgentTaskWorker.execute_task/2` now uses `Process.monitor` + `receive` to wait synchronously for the Worker to complete the RARV cycle. Task completion is driven by `Worker.complete_and_notify/1` after the verify state, not by the dispatcher.
 
 Files:
 - `apps/samgita/lib/samgita/workers/agent_task_worker.ex`
 - `apps/samgita/lib/samgita/agent/worker.ex`
 
-### Missing CONTINUITY.md (Working Memory File)
+### ~~Missing CONTINUITY.md~~ (FIXED)
 
-Claude is invoked with `--no-session-persistence`. No file-based context is written to the project's working directory before each RARV iteration. loki-mode writes `.loki/CONTINUITY.md` before every Claude call, giving the model persistent context of what it was doing and what it learned.
-
-`Project.Memory` GenServer fetches memory and injects it into prompts — but it's not written as a file the Claude CLI can read via its own file tools.
+**RESOLVED:** `Worker.write_continuity_file/2` now writes `.samgita/CONTINUITY.md` to the project's working directory in the `reason` state before each RARV iteration, including episodic/semantic memory and session learnings.
 
 ### Disconnected Memory Systems
 
