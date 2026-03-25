@@ -27,6 +27,7 @@ defmodule Samgita.Agent.Worker do
     :current_task,
     :act_result,
     :reply_to,
+    :working_path,
     task_count: 0,
     token_count: 0,
     retry_count: 0,
@@ -35,6 +36,7 @@ defmodule Samgita.Agent.Worker do
   ]
 
   @max_retries 3
+  @max_learnings 20
   @reason_timeout_ms 60_000
   @act_timeout_ms 600_000
   @reflect_timeout_ms 60_000
@@ -116,6 +118,9 @@ defmodule Samgita.Agent.Worker do
     {:keep_state_and_data, [{:reply, from, {:idle, data}}]}
   end
 
+  def idle(:info, _msg, _data), do: :keep_state_and_data
+  def idle(:cast, _msg, _data), do: :keep_state_and_data
+
   ## State: reason
 
   def reason(:enter, _old_state, data) do
@@ -141,7 +146,10 @@ defmodule Samgita.Agent.Worker do
     try do
       context = build_context(data)
       memory_context = fetch_memory_context(data.project_id)
-      learnings = context.learnings ++ memory_learnings(memory_context)
+
+      learnings =
+        (context.learnings ++ memory_learnings(memory_context)) |> Enum.take(@max_learnings)
+
       data = %{data | act_result: nil, learnings: learnings}
 
       write_continuity_file(data, memory_context)
@@ -187,7 +195,13 @@ defmodule Samgita.Agent.Worker do
     prompt = build_prompt(data)
     model = Types.model_for_type(data.agent_type)
 
+    # Cache working_path on first use to avoid repeated DB queries
     working_dir = get_working_path(data)
+
+    data =
+      if is_nil(data.working_path) && working_dir,
+        do: %{data | working_path: working_dir},
+        else: data
 
     chat_opts =
       [model: model]
@@ -269,7 +283,7 @@ defmodule Samgita.Agent.Worker do
 
     broadcast_activity(data, :reflect, "Recording learnings: #{learning}")
 
-    data = %{data | learnings: [learning | data.learnings]}
+    data = %{data | learnings: Enum.take([learning | data.learnings], @max_learnings)}
 
     try do
       persist_learning(data.project_id, learning)
@@ -332,7 +346,8 @@ defmodule Samgita.Agent.Worker do
           data
           | current_task: nil,
             reply_to: nil,
-            learnings: ["Max retries: #{inspect(reason)}" | data.learnings]
+            learnings:
+              Enum.take(["Max retries: #{inspect(reason)}" | data.learnings], @max_learnings)
         }
 
         {:next_state, :idle, data}
@@ -404,9 +419,24 @@ defmodule Samgita.Agent.Worker do
   end
 
   ## Catch-all handlers — prevent gen_statem crash on unexpected messages
-  for state <- [:idle, :reason, :act, :reflect, :verify] do
+  for state <- [:reason, :act, :reflect, :verify] do
+    def unquote(state)(:cast, {:assign_task, task, reply_to}, data) do
+      Logger.warning("[#{data.id}] Rejecting task in #{unquote(state)} state (busy)")
+      notify_caller(reply_to, task, {:error, :agent_busy})
+      :keep_state_and_data
+    end
+
     def unquote(state)(:info, _msg, _data), do: :keep_state_and_data
     def unquote(state)(:cast, _msg, _data), do: :keep_state_and_data
+  end
+
+  ## Lifecycle
+
+  @impl true
+  def terminate(reason, _state, data) do
+    notify_caller(data.reply_to, data.current_task, {:error, :worker_terminated})
+    Logger.info("[#{data.id}] Worker terminated: #{inspect(reason)}")
+    :ok
   end
 
   ## Internal
@@ -952,7 +982,7 @@ defmodule Samgita.Agent.Worker do
   end
 
   defp format_learnings([]), do: "None yet."
-  defp format_learnings(items), do: Enum.join(items, "\n- ")
+  defp format_learnings(items), do: Enum.map_join(items, "\n", &"- #{&1}")
 
   defp memory_learnings(%{procedural: procedural, semantic: semantic}) do
     procedures = Enum.map(procedural, fn m -> "Procedure: #{m.content}" end)
@@ -1228,6 +1258,8 @@ defmodule Samgita.Agent.Worker do
         Logger.warning("[#{data.id}] Git checkpoint failed: #{inspect(reason)}")
     end
   end
+
+  defp get_working_path(%{working_path: path} = _data) when not is_nil(path), do: path
 
   defp get_working_path(data) do
     case Samgita.Projects.get_project(data.project_id) do
