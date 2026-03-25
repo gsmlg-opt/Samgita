@@ -106,7 +106,7 @@ defmodule Samgita.Agent.Worker do
           "Circuit breaker open for #{data.agent_type}, task rejected"
         )
 
-        notify_caller(reply_to, data.current_task, {:error, :circuit_open})
+        notify_caller(reply_to, task, {:error, :circuit_open})
         :keep_state_and_data
     end
   end
