@@ -10,36 +10,133 @@
     <p class="text-sm text-on-surface-variant">{@project.name}</p>
   </div>
 
-  <form phx-submit="save" phx-change="validate">
-    <%!-- Title --%>
-    <div class="mb-4">
-      <.dm_input type="text" name="prd[title]" value={@title} required placeholder="e.g., Mobile App MVP Requirements" label="Title" />
+  <%!-- Tab Switcher --%>
+  <div class="flex gap-1 mb-6 border-b border-outline">
+    <.dm_btn
+      type="button"
+      variant={if @active_tab == :editor, do: "accent", else: "ghost"}
+      size="sm"
+      phx-click="switch_tab"
+      phx-value-tab="editor"
+    >
+      Editor
+    </.dm_btn>
+    <.dm_btn
+      type="button"
+      variant={if @active_tab == :chat, do: "accent", else: "ghost"}
+      size="sm"
+      phx-click="switch_tab"
+      phx-value-tab="chat"
+    >
+      Chat
+      <.dm_badge :if={length(@chat_messages) > 0} variant="info" class="ml-1">
+        {length(@chat_messages)}
+      </.dm_badge>
+    </.dm_btn>
+  </div>
+
+  <%!-- Editor Tab --%>
+  <div :if={@active_tab == :editor}>
+    <form phx-submit="save" phx-change="validate">
+      <%!-- Title --%>
+      <div class="mb-4">
+        <.dm_input type="text" name="prd[title]" value={@title} required placeholder="e.g., Mobile App MVP Requirements" label="Title" />
+      </div>
+
+      <%!-- Toolbar --%>
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-medium text-on-surface-variant">Content (Markdown)</span>
+        <.dm_btn type="button" variant="outline" size="sm" phx-click="toggle_preview">
+          {if @preview, do: "Edit", else: "Preview"}
+        </.dm_btn>
+      </div>
+
+      <%!-- Editor / Preview --%>
+      <div :if={!@preview} class="mb-6">
+        <.dm_textarea name="prd[content]" rows={24} placeholder="# Project Overview&#10;&#10;## Problem Statement&#10;&#10;## Goals & Objectives&#10;&#10;## User Stories&#10;&#10;## Technical Requirements&#10;&#10;## Milestones" class="font-mono text-sm" value={@content} />
+      </div>
+
+      <div :if={@preview} class="mb-6 border border-outline rounded-lg p-6 bg-surface min-h-[24rem]">
+        <div :if={@content == ""} class="text-on-surface-variant italic">Nothing to preview</div>
+        <.dm_markdown :if={@content != ""} content={@content} />
+      </div>
+
+      <%!-- Actions --%>
+      <div class="flex justify-end gap-3">
+        <.link navigate={~p"/projects/#{@project.id}"}><.dm_btn variant="ghost">Cancel</.dm_btn></.link>
+        <.dm_btn variant="accent" type="submit">
+          {if @prd, do: "Update PRD", else: "Create PRD"}
+        </.dm_btn>
+      </div>
+    </form>
+  </div>
+
+  <%!-- Chat Tab --%>
+  <div :if={@active_tab == :chat}>
+    <%!-- Chat Messages --%>
+    <div class="border border-outline rounded-lg bg-surface mb-4 min-h-[24rem] max-h-[32rem] overflow-y-auto p-4" id="chat-messages" phx-hook="AutoScroll">
+      <div :if={@chat_messages == []} class="flex items-center justify-center h-full text-on-surface-variant italic py-16">
+        Start a conversation to define your PRD requirements.
+      </div>
+
+      <div :for={msg <- @chat_messages} class="mb-4">
+        <div :if={msg.role in [:user, "user"]} class="flex justify-end">
+          <div class="max-w-[80%] rounded-lg px-4 py-2 bg-primary text-on-primary">
+            <div class="text-xs font-medium mb-1 opacity-75">You</div>
+            <p class="text-sm whitespace-pre-wrap">{msg.content}</p>
+          </div>
+        </div>
+        <div :if={msg.role in [:assistant, "assistant"]} class="flex justify-start">
+          <div class="max-w-[80%] rounded-lg px-4 py-2 bg-surface-variant text-on-surface-variant">
+            <div class="text-xs font-medium mb-1 opacity-75">Claude</div>
+            <div class="text-sm">
+              <.dm_markdown content={msg.content} />
+            </div>
+          </div>
+        </div>
+        <div :if={msg.role in [:system, "system"]} class="flex justify-center">
+          <div class="text-xs text-on-surface-variant italic py-1">
+            {msg.content}
+          </div>
+        </div>
+      </div>
+
+      <div :if={@generating} class="flex justify-start mb-4">
+        <div class="max-w-[80%] rounded-lg px-4 py-2 bg-surface-variant text-on-surface-variant">
+          <div class="text-xs font-medium mb-1 opacity-75">Claude</div>
+          <div class="text-sm animate-pulse">Thinking...</div>
+        </div>
+      </div>
     </div>
 
-    <%!-- Toolbar --%>
-    <div class="flex items-center justify-between mb-2">
-      <span class="text-sm font-medium text-on-surface-variant">Content (Markdown)</span>
-      <.dm_btn type="button" variant="outline" size="sm" phx-click="toggle_preview">
-        {if @preview, do: "Edit", else: "Preview"}
+    <%!-- Chat Input --%>
+    <form phx-submit="send_message" class="flex gap-2 mb-4">
+      <div class="flex-1">
+        <.dm_textarea
+          name="chat_input"
+          rows={3}
+          placeholder="Describe your product idea, ask questions, or refine requirements..."
+          value={@chat_input}
+          phx-change="update_chat_input"
+        />
+      </div>
+      <div class="flex flex-col justify-end">
+        <.dm_btn type="submit" variant="accent" disabled={@generating}>
+          {if @generating, do: "Sending...", else: "Send"}
+        </.dm_btn>
+      </div>
+    </form>
+
+    <%!-- Generate PRD Button --%>
+    <div :if={length(@chat_messages) > 0} class="flex justify-end">
+      <.dm_btn
+        type="button"
+        variant="accent"
+        phx-click="generate_prd"
+        disabled={@generating}
+      >
+        {if @generating, do: "Generating...", else: "Generate PRD from Conversation"}
       </.dm_btn>
     </div>
-
-    <%!-- Editor / Preview --%>
-    <div :if={!@preview} class="mb-6">
-      <.dm_textarea name="prd[content]" rows={24} placeholder="# Project Overview&#10;&#10;## Problem Statement&#10;&#10;## Goals & Objectives&#10;&#10;## User Stories&#10;&#10;## Technical Requirements&#10;&#10;## Milestones" class="font-mono text-sm" value={@content} />
-    </div>
-
-    <div :if={@preview} class="mb-6 border border-outline rounded-lg p-6 bg-surface min-h-[24rem]">
-      <div :if={@content == ""} class="text-on-surface-variant italic">Nothing to preview</div>
-      <.dm_markdown :if={@content != ""} content={@content} />
-    </div>
-
-    <%!-- Actions --%>
-    <div class="flex justify-end gap-3">
-      <.link navigate={~p"/projects/#{@project.id}"}><.dm_btn variant="ghost">Cancel</.dm_btn></.link>
-      <.dm_btn variant="accent" type="submit">
-        {if @prd, do: "Update PRD", else: "Create PRD"}
-      </.dm_btn>
-    </div>
-  </form>
+  </div>
 </div>
