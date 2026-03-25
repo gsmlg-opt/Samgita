@@ -672,6 +672,9 @@ defmodule Samgita.Agent.Worker do
 
     #{description}
 
+    ## Previous Learnings
+    #{format_learnings(data.learnings)}
+
     ## Instructions
 
     Perform a thorough analysis during the discovery phase. Your output should include:
@@ -694,6 +697,7 @@ defmodule Samgita.Agent.Worker do
     payload = task_payload(task)
     project_context = build_project_context(data.project_id, payload)
     description = payload["description"] || "Design the architecture"
+    learnings = format_learnings(data.learnings)
 
     """
     You are a #{type_name} (#{type_desc}).
@@ -701,6 +705,9 @@ defmodule Samgita.Agent.Worker do
     ## Task: Architecture Design
 
     #{description}
+
+    ## Previous Learnings
+    #{learnings}
 
     ## Instructions
 
@@ -726,12 +733,6 @@ defmodule Samgita.Agent.Worker do
     project_context = build_project_context(data.project_id, payload)
     description = payload["description"] || "Implement the feature"
 
-    learnings_text =
-      case data.learnings do
-        [] -> "None yet."
-        items -> Enum.join(items, "\n- ")
-      end
-
     """
     You are a #{type_name} (#{type_desc}).
     #{project_context}
@@ -740,7 +741,7 @@ defmodule Samgita.Agent.Worker do
     #{description}
 
     ## Previous Learnings
-    #{learnings_text}
+    #{format_learnings(data.learnings)}
 
     ## Instructions
 
@@ -776,6 +777,9 @@ defmodule Samgita.Agent.Worker do
 
     #{description}
 
+    ## Previous Learnings
+    #{format_learnings(data.learnings)}
+
     ## Instructions
 
     Perform a thorough review. Your output should include:
@@ -806,6 +810,9 @@ defmodule Samgita.Agent.Worker do
 
     #{description}
 
+    ## Previous Learnings
+    #{format_learnings(data.learnings)}
+
     ## Instructions
 
     1. Analyze the existing codebase and identify areas lacking test coverage
@@ -833,13 +840,6 @@ defmodule Samgita.Agent.Worker do
     task = data.current_task
     {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
     payload = task_payload(task)
-
-    learnings_text =
-      case data.learnings do
-        [] -> "None yet."
-        items -> Enum.join(items, "\n- ")
-      end
-
     project_context = build_project_context(data.project_id, payload)
     description = payload["description"] || inspect(payload)
 
@@ -851,7 +851,7 @@ defmodule Samgita.Agent.Worker do
     Description: #{description}
 
     ## Previous Learnings
-    #{learnings_text}
+    #{format_learnings(data.learnings)}
 
     Execute this task thoroughly. Analyze the codebase if needed, implement changes,
     and verify your work compiles and tests pass. Output your results in markdown format.
@@ -931,6 +931,9 @@ defmodule Samgita.Agent.Worker do
   catch
     :exit, _ -> %{episodic: [], semantic: [], procedural: []}
   end
+
+  defp format_learnings([]), do: "None yet."
+  defp format_learnings(items), do: Enum.join(items, "\n- ")
 
   defp memory_learnings(%{procedural: procedural, semantic: semantic}) do
     procedures = Enum.map(procedural, fn m -> "Procedure: #{m.content}" end)

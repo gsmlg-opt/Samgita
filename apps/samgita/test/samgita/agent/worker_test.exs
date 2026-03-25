@@ -545,4 +545,76 @@ defmodule Samgita.Agent.WorkerTest do
       assert {Worker, :start_link, [^opts]} = spec.start
     end
   end
+
+  describe "crash recovery" do
+    test "agent supervised by DynamicSupervisor restarts after crash" do
+      # Start a local DynamicSupervisor to simulate Horde behavior
+      {:ok, sup} = DynamicSupervisor.start_link(strategy: :one_for_one)
+
+      agent_id = "crash-test-#{System.unique_integer([:positive])}"
+
+      opts = [
+        id: agent_id,
+        agent_type: "eng-backend",
+        project_id: Ecto.UUID.generate()
+      ]
+
+      {:ok, pid1} = DynamicSupervisor.start_child(sup, Worker.child_spec(opts))
+      assert {:idle, _} = Worker.get_state(pid1)
+      ref = Process.monitor(pid1)
+
+      # Kill the agent process abruptly
+      Process.exit(pid1, :kill)
+      assert_receive {:DOWN, ^ref, :process, ^pid1, :killed}, 5_000
+
+      # The supervisor should restart it (transient restart)
+      # Since :kill is abnormal, :transient policy restarts
+      Process.sleep(200)
+
+      children = DynamicSupervisor.which_children(sup)
+      # Supervisor restarts the child — verify a new process exists
+      assert [{_, pid2, :worker, _}] = children
+      assert is_pid(pid2)
+      assert pid2 != pid1
+      assert Process.alive?(pid2)
+
+      DynamicSupervisor.stop(sup)
+    end
+
+    test "agent retries RARV cycle on provider failure" do
+      # Stub provider to fail twice then succeed
+      call_count = :counters.new(1, [:atomics])
+
+      Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts ->
+        count = :counters.get(call_count, 1)
+        :counters.add(call_count, 1, 1)
+
+        if count < 2 do
+          {:error, :provider_error}
+        else
+          {:ok, "success after retries"}
+        end
+      end)
+
+      opts = [
+        id: "retry-test-#{System.unique_integer([:positive])}",
+        agent_type: "eng-backend",
+        project_id: Ecto.UUID.generate()
+      ]
+
+      {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
+
+      task = %{id: "task-retry-#{System.unique_integer([:positive])}", type: "implement", payload: %{}}
+      Worker.assign_task(pid, task, self())
+
+      # Should eventually succeed after retrying (max_retries = 3)
+      assert_receive {:task_completed, _, :ok}, 30_000
+
+      {:idle, data} = Worker.get_state(pid)
+      # Should have completed at least one task
+      assert data.task_count >= 1
+
+      :gen_statem.stop(pid)
+    end
+  end
 end
