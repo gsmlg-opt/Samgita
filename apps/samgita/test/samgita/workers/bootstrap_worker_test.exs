@@ -41,6 +41,8 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
 
     Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
 
+    Mox.stub(Samgita.MockOban, :insert, fn job -> Oban.insert(job) end)
+
     Sandbox.mode(Samgita.Repo, {:shared, self()})
 
     {:ok, project} =

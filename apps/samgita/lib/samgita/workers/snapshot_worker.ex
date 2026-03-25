@@ -106,8 +106,11 @@ defmodule Samgita.Workers.SnapshotWorker do
         {:error, :no_snapshot}
 
       snapshot ->
+        valid_phases =
+          ~w(bootstrap discovery architecture infrastructure development qa deployment business growth perpetual)a
+
         with {:ok, project} <- Samgita.Projects.get_project(project_id),
-             phase = String.to_existing_atom(snapshot.phase),
+             {:ok, phase} <- parse_phase(snapshot.phase, valid_phases),
              {:ok, project} <- Samgita.Projects.update_project(project, %{phase: phase}) do
           Logger.info(
             "Restored project #{project_id} to phase #{snapshot.phase} from snapshot #{snapshot.id}"
@@ -115,6 +118,16 @@ defmodule Samgita.Workers.SnapshotWorker do
 
           {:ok, %{project: project, snapshot: snapshot}}
         end
+    end
+  end
+
+  defp parse_phase(phase_string, valid_phases) do
+    atom = String.to_atom(phase_string)
+
+    if atom in valid_phases do
+      {:ok, atom}
+    else
+      {:error, {:invalid_phase, phase_string}}
     end
   end
 end

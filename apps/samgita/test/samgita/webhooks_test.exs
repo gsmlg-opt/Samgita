@@ -1,7 +1,13 @@
 defmodule Samgita.WebhooksTest do
-  use Samgita.DataCase, async: true
+  use Samgita.DataCase, async: false
 
   alias Samgita.Webhooks
+
+  setup do
+    Mox.set_mox_global(self())
+    Mox.stub(Samgita.MockOban, :insert, fn job -> Oban.insert(job) end)
+    :ok
+  end
 
   @valid_attrs %{
     url: "https://example.com/webhook",

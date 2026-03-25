@@ -38,8 +38,12 @@ defmodule Samgita.Domain.Webhook do
   defp validate_url(changeset, field) do
     validate_change(changeset, field, fn _, url ->
       case URI.parse(url) do
-        %URI{scheme: scheme} when scheme in ["http", "https"] -> []
-        _ -> [{field, "must be a valid HTTP/HTTPS URL"}]
+        %URI{scheme: scheme, host: host}
+        when scheme in ["http", "https"] and is_binary(host) and host != "" ->
+          []
+
+        _ ->
+          [{field, "must be a valid HTTP/HTTPS URL"}]
       end
     end)
   end

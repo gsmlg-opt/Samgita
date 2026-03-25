@@ -1,10 +1,13 @@
 defmodule SamgitaWeb.TaskControllerTest do
-  use SamgitaWeb.ConnCase, async: true
+  use SamgitaWeb.ConnCase, async: false
   use Oban.Testing, repo: Samgita.Repo
 
   alias Samgita.Projects
 
   setup do
+    Mox.set_mox_global(self())
+    Mox.stub(Samgita.MockOban, :insert, fn job -> Oban.insert(job) end)
+
     {:ok, project} =
       Projects.create_project(%{
         name: "Task Test",

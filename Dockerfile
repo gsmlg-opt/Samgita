@@ -1,9 +1,9 @@
 # Multi-stage Dockerfile for Samgita production deployment
 # Based on official Elixir Docker best practices
 
-ARG ELIXIR_VERSION=1.17.3
-ARG OTP_VERSION=26.2.5
-ARG DEBIAN_VERSION=bookworm-20240513-slim
+ARG ELIXIR_VERSION=1.18.4
+ARG OTP_VERSION=27.2.5
+ARG DEBIAN_VERSION=bookworm-20250317-slim
 
 ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
 ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
@@ -11,7 +11,7 @@ ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 ################################################################################
 # Stage 1: Build Environment
 ################################################################################
-FROM ${BUILDER_IMAGE} as builder
+FROM ${BUILDER_IMAGE} AS builder
 
 # Install build dependencies
 RUN apt-get update -y && apt-get install -y \
@@ -46,7 +46,6 @@ COPY apps/samgita_memory/mix.exs apps/samgita_memory/mix.exs
 COPY apps/samgita_web/mix.exs apps/samgita_web/mix.exs
 
 RUN mix deps.get --only $MIX_ENV
-RUN mkdir config
 RUN mix deps.compile
 
 # Copy application code

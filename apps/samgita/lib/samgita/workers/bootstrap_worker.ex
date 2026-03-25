@@ -151,8 +151,12 @@ defmodule Samgita.Workers.BootstrapWorker do
     }
 
     case Samgita.Prds.update_prd(prd, %{metadata: Map.merge(prd.metadata || %{}, metadata)}) do
-      {:ok, _} -> :ok
-      {:error, _} -> :ok
+      {:ok, _} ->
+        :ok
+
+      {:error, reason} ->
+        Logger.warning("[BootstrapWorker] Failed to save PRD metadata: #{inspect(reason)}")
+        :ok
     end
   end
 
@@ -531,7 +535,7 @@ defmodule Samgita.Workers.BootstrapWorker do
   end
 
   defp enqueue_agent_task(task, project_id, agent_type, acc) do
-    case Oban.insert(
+    case Samgita.ObanClient.insert(
            AgentTaskWorker.new(%{
              task_id: task.id,
              project_id: project_id,

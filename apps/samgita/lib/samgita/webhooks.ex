@@ -38,7 +38,7 @@ defmodule Samgita.Webhooks do
     |> Repo.all()
     |> Enum.filter(&(event in &1.events))
     |> Enum.each(fn webhook ->
-      Oban.insert(
+      Samgita.ObanClient.insert(
         WebhookWorker.new(%{
           webhook_id: webhook.id,
           event: event,

@@ -209,7 +209,7 @@ defmodule Samgita.Projects do
       # Re-enqueue in Oban
       agent_type = get_in(task.payload, ["agent_type"]) || "eng-backend"
 
-      Oban.insert(
+      Samgita.ObanClient.insert(
         AgentTaskWorker.new(%{
           task_id: task.id,
           project_id: task.project_id,
@@ -329,7 +329,7 @@ defmodule Samgita.Projects do
              payload: payload,
              queued_at: DateTime.utc_now()
            }) do
-      Oban.insert(
+      Samgita.ObanClient.insert(
         AgentTaskWorker.new(%{
           task_id: task.id,
           project_id: project_id,
