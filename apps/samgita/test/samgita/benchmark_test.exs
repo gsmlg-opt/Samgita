@@ -3,6 +3,7 @@ defmodule Samgita.BenchmarkTest do
   Benchmark tests verifying PRD success criteria:
   - Task dispatch latency < 500ms
   - Memory retrieval (ETS cache hit) < 100ms
+  - 10+ agents working simultaneously
   """
   use Samgita.DataCase, async: false
 
@@ -99,5 +100,80 @@ defmodule Samgita.BenchmarkTest do
 
     assert miss_us < @cache_hit_threshold_us,
            "Cache miss took #{miss_us}us, expected < #{@cache_hit_threshold_us}us"
+  end
+
+  @tag :benchmark
+  test "10+ agents work simultaneously via Horde", %{project: project} do
+    alias Samgita.Agent.Worker
+
+    agent_types = [
+      "eng-backend",
+      "eng-frontend",
+      "eng-database",
+      "eng-api",
+      "eng-qa",
+      "eng-perf",
+      "eng-infra",
+      "ops-devops",
+      "ops-sre",
+      "ops-security",
+      "data-eng",
+      "data-analytics"
+    ]
+
+    # Spawn 12 agents into Horde.DynamicSupervisor
+    agents =
+      Enum.map(agent_types, fn type ->
+        id = "bench-#{type}-#{System.unique_integer([:positive])}"
+
+        {:ok, pid} =
+          Horde.DynamicSupervisor.start_child(
+            Samgita.AgentSupervisor,
+            Worker.child_spec(id: id, agent_type: type, project_id: project.id)
+          )
+
+        {id, pid, type}
+      end)
+
+    # Verify all 12 are alive and registered
+    assert length(agents) == 12
+
+    for {_id, pid, _type} <- agents do
+      assert Process.alive?(pid)
+      assert {:idle, _} = Worker.get_state(pid)
+    end
+
+    # Assign tasks concurrently to all agents
+    caller = self()
+
+    tasks =
+      Enum.map(agents, fn {id, pid, type} ->
+        task = %{
+          id: "bench-task-#{id}",
+          type: "implement",
+          payload: %{"description" => "Benchmark task for #{type}"}
+        }
+
+        Worker.assign_task(pid, task, caller)
+        {id, task}
+      end)
+
+    # Collect completion messages from all 12 agents
+    completed =
+      Enum.reduce(1..12, [], fn _, acc ->
+        receive do
+          {:task_completed, task_id, result} -> [{task_id, result} | acc]
+        after
+          30_000 -> acc
+        end
+      end)
+
+    assert length(completed) == 12,
+           "Expected 12 completions, got #{length(completed)}"
+
+    # Clean up
+    for {_id, pid, _type} <- agents do
+      if Process.alive?(pid), do: :gen_statem.stop(pid)
+    end
   end
 end
