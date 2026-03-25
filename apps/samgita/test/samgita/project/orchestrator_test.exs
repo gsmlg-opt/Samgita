@@ -10,6 +10,7 @@ defmodule Samgita.Project.OrchestratorTest do
 
   setup do
     Mox.set_mox_global(self())
+
     Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
 
     # Allow spawned processes to access the sandbox

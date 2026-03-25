@@ -8,6 +8,7 @@ defmodule Samgita.Agent.WorkerTest do
 
   setup do
     Mox.set_mox_global(self())
+
     Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
 
     # Enable shared sandbox mode for both repos since Worker spawns processes that need DB access

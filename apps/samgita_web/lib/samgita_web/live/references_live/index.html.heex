@@ -4,7 +4,9 @@
       <h1 class="text-3xl font-bold text-on-surface">Reference Documentation</h1>
       <p class="text-on-surface-variant mt-2">Loki Mode patterns, research, and best practices</p>
     </div>
-    <.link navigate={~p"/"}><.dm_btn variant="ghost">← Back to Dashboard</.dm_btn></.link>
+    <.link navigate={~p"/"}>
+      <.dm_btn variant="ghost">← Back to Dashboard</.dm_btn>
+    </.link>
   </div>
 
   <div :if={@selected_category} class="mb-6">
@@ -19,10 +21,16 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <.link :for={ref <- refs} navigate={~p"/references/#{ref.filename}"} class="block">
-          <.dm_card body_class="" variant="bordered" class="p-4 hover:shadow-md transition-shadow h-full">
+          <.dm_card
+            body_class=""
+            variant="bordered"
+            class="p-4 hover:shadow-md transition-shadow h-full"
+          >
             <div class="flex items-start justify-between mb-2">
               <h3 class="text-base font-semibold text-on-surface flex-1">{ref.title}</h3>
-              <.dm_badge variant={References.category_badge_color(category)}>{category}</.dm_badge>
+              <.dm_badge variant={References.category_badge_color(category)}>
+                {category}
+              </.dm_badge>
             </div>
             <p class="text-sm text-on-surface-variant">{ref.description}</p>
           </.dm_card>
@@ -34,14 +42,20 @@
   <div :if={@selected_category} class="space-y-4">
     <h2 class="text-2xl font-bold text-on-surface mb-4">{@selected_category}</h2>
     <div class="grid gap-4">
-      <.link :for={ref <- Map.get(@references, @selected_category, [])} navigate={~p"/references/#{ref.filename}"} class="block">
+      <.link
+        :for={ref <- Map.get(@references, @selected_category, [])}
+        navigate={~p"/references/#{ref.filename}"}
+        class="block"
+      >
         <.dm_card body_class="" variant="bordered" class="p-6 hover:shadow-md transition-shadow">
           <div class="flex items-start justify-between">
             <div class="flex-1">
               <h3 class="text-lg font-semibold text-on-surface">{ref.title}</h3>
               <p class="text-sm text-on-surface-variant mt-2">{ref.description}</p>
             </div>
-            <.dm_badge variant={References.category_badge_color(@selected_category)}>{@selected_category}</.dm_badge>
+            <.dm_badge variant={References.category_badge_color(@selected_category)}>
+              {@selected_category}
+            </.dm_badge>
           </div>
         </.dm_card>
       </.link>

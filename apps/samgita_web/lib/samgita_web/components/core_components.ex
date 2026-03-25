@@ -47,7 +47,11 @@ defmodule SamgitaWeb.CoreComponents do
   attr :errors, :list, default: []
   attr :checked, :boolean, doc: "the checked flag for checkbox inputs"
   attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
-  attr :options, :list, default: [], doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2"
+
+  attr :options, :list,
+    default: [],
+    doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2"
+
   attr :multiple, :boolean, default: false, doc: "the multiple flag for select inputs"
   attr :class, :any, default: nil
 
@@ -80,19 +84,45 @@ defmodule SamgitaWeb.CoreComponents do
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <.dm_textarea id={@id} name={@name} label={@label} value={@value} errors={@errors} class={@class} {@rest} />
+    <.dm_textarea
+      id={@id}
+      name={@name}
+      label={@label}
+      value={@value}
+      errors={@errors}
+      class={@class}
+      {@rest}
+    />
     """
   end
 
   def input(%{type: "checkbox"} = assigns) do
     ~H"""
-    <.dm_checkbox id={@id} name={@name} label={@label} value={@value} checked={@checked} errors={@errors} class={@class} {@rest} />
+    <.dm_checkbox
+      id={@id}
+      name={@name}
+      label={@label}
+      value={@value}
+      checked={@checked}
+      errors={@errors}
+      class={@class}
+      {@rest}
+    />
     """
   end
 
   def input(assigns) do
     ~H"""
-    <.dm_input id={@id} name={@name} label={@label} value={@value} type={@type} errors={@errors} class={@class} {@rest} />
+    <.dm_input
+      id={@id}
+      name={@name}
+      label={@label}
+      value={@value}
+      type={@type}
+      errors={@errors}
+      class={@class}
+      {@rest}
+    />
     """
   end
 

@@ -8,7 +8,9 @@
         <h1 class="text-3xl font-bold text-on-surface">{@reference.title}</h1>
         <p class="text-on-surface-variant mt-2">{@reference.description}</p>
       </div>
-      <.dm_badge variant={References.category_badge_color(@reference.category)}>{@reference.category}</.dm_badge>
+      <.dm_badge variant={References.category_badge_color(@reference.category)}>
+        {@reference.category}
+      </.dm_badge>
     </div>
   </div>
 

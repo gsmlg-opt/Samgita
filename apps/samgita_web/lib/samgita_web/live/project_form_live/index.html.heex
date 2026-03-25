@@ -5,16 +5,47 @@
   <h1 class="text-3xl font-bold text-on-surface mt-4 mb-8">New Project</h1>
 
   <.dm_form for={@form} phx-change="validate" phx-submit="save" class="space-y-6">
-    <.dm_input field={@form[:name]} type="text" label="Project Name" placeholder="My Project" required />
+    <.dm_input
+      field={@form[:name]}
+      type="text"
+      label="Project Name"
+      placeholder="My Project"
+      required
+    />
     <div>
-      <.dm_input field={@form[:git_url]} type="text" label="Git URL" placeholder="git@github.com:org/repo.git" phx-blur="detect_path" required />
-      <p :if={@detected_path} class="text-sm text-success mt-1">Found local clone: {@detected_path}</p>
-      <p :if={@clone_needed} class="text-sm text-warning mt-1">Repo not found locally. Will clone on project start.</p>
+      <.dm_input
+        field={@form[:git_url]}
+        type="text"
+        label="Git URL"
+        placeholder="git@github.com:org/repo.git"
+        phx-blur="detect_path"
+        required
+      />
+      <p :if={@detected_path} class="text-sm text-success mt-1">
+        Found local clone: {@detected_path}
+      </p>
+      <p :if={@clone_needed} class="text-sm text-warning mt-1">
+        Repo not found locally. Will clone on project start.
+      </p>
     </div>
-    <.dm_input field={@form[:working_path]} type="text" label="Working Path (optional)" placeholder="Auto-detected from git URL" />
-    <.dm_textarea name="prd_content" rows={12} label="PRD Content" placeholder="Paste your Product Requirements Document here..." phx-change="update_prd" value={@prd_content} />
+    <.dm_input
+      field={@form[:working_path]}
+      type="text"
+      label="Working Path (optional)"
+      placeholder="Auto-detected from git URL"
+    />
+    <.dm_textarea
+      name="prd_content"
+      rows={12}
+      label="PRD Content"
+      placeholder="Paste your Product Requirements Document here..."
+      phx-change="update_prd"
+      value={@prd_content}
+    />
     <div class="flex justify-end gap-3">
-      <.link navigate={~p"/"}><.dm_btn variant="ghost">Cancel</.dm_btn></.link>
+      <.link navigate={~p"/"}>
+        <.dm_btn variant="ghost">Cancel</.dm_btn>
+      </.link>
       <.dm_btn variant="primary" type="submit">Create Project</.dm_btn>
     </div>
   </.dm_form>

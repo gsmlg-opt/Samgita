@@ -9,6 +9,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
 
   setup do
     Mox.set_mox_global(self())
+
     Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
 
     Sandbox.mode(Samgita.Repo, {:shared, self()})

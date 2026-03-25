@@ -1,7 +1,10 @@
 <div class="max-w-4xl mx-auto px-4 py-8">
   <%!-- Header --%>
   <div class="mb-6">
-    <.link navigate={~p"/projects/#{@project.id}"} class="text-sm text-on-surface-variant hover:text-on-surface">
+    <.link
+      navigate={~p"/projects/#{@project.id}"}
+      class="text-sm text-on-surface-variant hover:text-on-surface"
+    >
       &larr; Back to Project
     </.link>
     <h1 class="text-2xl font-bold text-on-surface mt-2">
@@ -40,7 +43,14 @@
     <form phx-submit="save" phx-change="validate">
       <%!-- Title --%>
       <div class="mb-4">
-        <.dm_input type="text" name="prd[title]" value={@title} required placeholder="e.g., Mobile App MVP Requirements" label="Title" />
+        <.dm_input
+          type="text"
+          name="prd[title]"
+          value={@title}
+          required
+          placeholder="e.g., Mobile App MVP Requirements"
+          label="Title"
+        />
       </div>
 
       <%!-- Toolbar --%>
@@ -53,17 +63,28 @@
 
       <%!-- Editor / Preview --%>
       <div :if={!@preview} class="mb-6">
-        <.dm_textarea name="prd[content]" rows={24} placeholder="# Project Overview&#10;&#10;## Problem Statement&#10;&#10;## Goals & Objectives&#10;&#10;## User Stories&#10;&#10;## Technical Requirements&#10;&#10;## Milestones" class="font-mono text-sm" value={@content} />
+        <.dm_textarea
+          name="prd[content]"
+          rows={24}
+          placeholder="# Project Overview&#10;&#10;## Problem Statement&#10;&#10;## Goals & Objectives&#10;&#10;## User Stories&#10;&#10;## Technical Requirements&#10;&#10;## Milestones"
+          class="font-mono text-sm"
+          value={@content}
+        />
       </div>
 
-      <div :if={@preview} class="mb-6 border border-outline rounded-lg p-6 bg-surface min-h-[24rem]">
+      <div
+        :if={@preview}
+        class="mb-6 border border-outline rounded-lg p-6 bg-surface min-h-[24rem]"
+      >
         <div :if={@content == ""} class="text-on-surface-variant italic">Nothing to preview</div>
         <.dm_markdown :if={@content != ""} content={@content} />
       </div>
 
       <%!-- Actions --%>
       <div class="flex justify-end gap-3">
-        <.link navigate={~p"/projects/#{@project.id}"}><.dm_btn variant="ghost">Cancel</.dm_btn></.link>
+        <.link navigate={~p"/projects/#{@project.id}"}>
+          <.dm_btn variant="ghost">Cancel</.dm_btn>
+        </.link>
         <.dm_btn variant="accent" type="submit">
           {if @prd, do: "Update PRD", else: "Create PRD"}
         </.dm_btn>
@@ -74,8 +95,15 @@
   <%!-- Chat Tab --%>
   <div :if={@active_tab == :chat}>
     <%!-- Chat Messages --%>
-    <div class="border border-outline rounded-lg bg-surface mb-4 min-h-[24rem] max-h-[32rem] overflow-y-auto p-4" id="chat-messages" phx-hook="AutoScroll">
-      <div :if={@chat_messages == []} class="flex items-center justify-center h-full text-on-surface-variant italic py-16">
+    <div
+      class="border border-outline rounded-lg bg-surface mb-4 min-h-[24rem] max-h-[32rem] overflow-y-auto p-4"
+      id="chat-messages"
+      phx-hook="AutoScroll"
+    >
+      <div
+        :if={@chat_messages == []}
+        class="flex items-center justify-center h-full text-on-surface-variant italic py-16"
+      >
         Start a conversation to define your PRD requirements.
       </div>
 

@@ -66,7 +66,9 @@ defmodule Samgita.Agent.WorkerIntegrationTest do
       false
     else
       case Worker.get_state(pid) do
-        {^target_state, _data} -> true
+        {^target_state, _data} ->
+          true
+
         _other ->
           Process.sleep(100)
           do_wait_for_state(pid, target_state, deadline)

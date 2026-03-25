@@ -5,7 +5,9 @@ defmodule Samgita.Quality.CompletionCouncilTest do
 
   setup do
     Mox.set_mox_global(self())
+
     Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
+
     :ok
   end
 

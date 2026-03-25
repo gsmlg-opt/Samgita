@@ -4,7 +4,9 @@
       <h1 class="text-3xl font-bold text-on-surface">Agent Definitions</h1>
       <p class="text-on-surface-variant mt-2">37 specialized agents across 7 swarms</p>
     </div>
-    <.link navigate={~p"/"}><.dm_btn variant="ghost">← Back to Dashboard</.dm_btn></.link>
+    <.link navigate={~p"/"}>
+      <.dm_btn variant="ghost">← Back to Dashboard</.dm_btn>
+    </.link>
   </div>
 
   <%!-- Related References --%>
@@ -14,9 +16,15 @@
       <div class="flex-1">
         <p class="text-sm font-medium text-on-surface mb-2">Related Documentation</p>
         <div class="flex flex-wrap gap-2">
-          <.link navigate={~p"/references/agents.md"}><.dm_btn variant="outline" size="sm">Agent Type Definitions</.dm_btn></.link>
-          <.link navigate={~p"/references/agent-types.md"}><.dm_btn variant="outline" size="sm">Agent Types Reference</.dm_btn></.link>
-          <.link navigate={~p"/references/core-workflow.md"}><.dm_btn variant="outline" size="sm">RARV Workflow</.dm_btn></.link>
+          <.link navigate={~p"/references/agents.md"}>
+            <.dm_btn variant="outline" size="sm">Agent Type Definitions</.dm_btn>
+          </.link>
+          <.link navigate={~p"/references/agent-types.md"}>
+            <.dm_btn variant="outline" size="sm">Agent Types Reference</.dm_btn>
+          </.link>
+          <.link navigate={~p"/references/core-workflow.md"}>
+            <.dm_btn variant="outline" size="sm">RARV Workflow</.dm_btn>
+          </.link>
         </div>
       </div>
     </div>
@@ -46,7 +54,12 @@
   <div :if={@selected_swarm} class="space-y-4">
     <h2 class="text-2xl font-bold text-on-surface mb-4">{@selected_swarm}</h2>
     <div class="grid gap-4">
-      <.dm_card body_class="" :for={agent <- @agent_types[@selected_swarm]} variant="bordered" class="hover:shadow-md transition-shadow">
+      <.dm_card
+        :for={agent <- @agent_types[@selected_swarm]}
+        body_class=""
+        variant="bordered"
+        class="hover:shadow-md transition-shadow"
+      >
         <div class="p-6">
           <div class="flex items-start justify-between">
             <div class="flex-1">
@@ -56,9 +69,14 @@
                   phx-click="toggle_agent"
                   phx-value-agent={agent.name}
                   class="text-on-surface-variant hover:text-on-surface transition-colors"
-                  title={if expanded?(@expanded_agents, agent.name), do: "Collapse", else: "Expand"}
+                  title={
+                    if expanded?(@expanded_agents, agent.name), do: "Collapse", else: "Expand"
+                  }
                 >
-                  <.dm_mdi name="chevron-down" class={"w-5 h-5 transition-transform #{if expanded?(@expanded_agents, agent.name), do: "rotate-180", else: ""}"} />
+                  <.dm_mdi
+                    name="chevron-down"
+                    class={"w-5 h-5 transition-transform #{if expanded?(@expanded_agents, agent.name), do: "rotate-180", else: ""}"}
+                  />
                 </button>
               </div>
               <p class="text-sm text-on-surface-variant mt-2">{agent.description}</p>
@@ -68,10 +86,15 @@
             </.dm_badge>
           </div>
 
-          <div :if={expanded?(@expanded_agents, agent.name)} class="mt-4 pt-4 border-t border-outline space-y-4">
+          <div
+            :if={expanded?(@expanded_agents, agent.name)}
+            class="mt-4 pt-4 border-t border-outline space-y-4"
+          >
             <%!-- Agent Markdown --%>
             <div>
-              <h4 class="text-sm font-semibold text-on-surface mb-2">Agent Definition (Markdown)</h4>
+              <h4 class="text-sm font-semibold text-on-surface mb-2">
+                Agent Definition (Markdown)
+              </h4>
               <div class="bg-inverse-surface rounded-lg p-4 overflow-x-auto">
                 <pre class="text-xs text-inverse-on-surface font-mono leading-relaxed"><%= agent_markdown(agent, @selected_swarm) %></pre>
               </div>
@@ -81,7 +104,10 @@
               <h4 class="text-sm font-semibold text-on-surface mb-2">Capabilities</h4>
               <div class="bg-surface-container rounded-lg p-4">
                 <ul class="space-y-1">
-                  <li :for={capability <- agent.capabilities} class="text-sm text-on-surface flex items-start">
+                  <li
+                    :for={capability <- agent.capabilities}
+                    class="text-sm text-on-surface flex items-start"
+                  >
                     <span class="text-on-surface-variant mr-2">•</span>
                     <span>{capability}</span>
                   </li>
@@ -92,7 +118,13 @@
             <div>
               <h4 class="text-sm font-semibold text-on-surface mb-2">Task Types</h4>
               <div class="flex flex-wrap gap-2">
-                <.dm_badge :for={task_type <- agent.task_types} variant="primary" class="font-mono">{task_type}</.dm_badge>
+                <.dm_badge
+                  :for={task_type <- agent.task_types}
+                  variant="primary"
+                  class="font-mono"
+                >
+                  {task_type}
+                </.dm_badge>
               </div>
             </div>
             <%!-- Quality Checks --%>
@@ -100,8 +132,14 @@
               <h4 class="text-sm font-semibold text-on-surface mb-2">Quality Checks</h4>
               <div class="bg-secondary-container/30 rounded-lg p-4">
                 <ul class="space-y-1">
-                  <li :for={check <- agent.quality_checks} class="text-sm text-on-surface flex items-start">
-                    <.dm_mdi name="check-circle" class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-success" />
+                  <li
+                    :for={check <- agent.quality_checks}
+                    class="text-sm text-on-surface flex items-start"
+                  >
+                    <.dm_mdi
+                      name="check-circle"
+                      class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-success"
+                    />
                     <span>{check}</span>
                   </li>
                 </ul>
@@ -111,8 +149,12 @@
             <div :if={Map.get(agent, :model)}>
               <h4 class="text-sm font-semibold text-on-surface mb-2">Recommended Model</h4>
               <div class="bg-tertiary-container/30 border border-tertiary-container rounded-lg p-3">
-                <span class="text-sm font-mono text-on-tertiary-container">{Map.get(agent, :model)}</span>
-                <span class="text-xs text-on-tertiary-container/70 ml-2">(required for deep analysis)</span>
+                <span class="text-sm font-mono text-on-tertiary-container">
+                  {Map.get(agent, :model)}
+                </span>
+                <span class="text-xs text-on-tertiary-container/70 ml-2">
+                  (required for deep analysis)
+                </span>
               </div>
             </div>
           </div>
