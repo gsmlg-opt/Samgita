@@ -1,3 +1,6 @@
+# Ensure the samgita application (and its Repo) is started before tests run
+{:ok, _} = Application.ensure_all_started(:samgita)
+
 ExUnit.start()
 
 # Exclude e2e tests by default; run with: mix test --include e2e

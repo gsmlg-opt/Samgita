@@ -8,6 +8,9 @@ defmodule Samgita.Workers.AgentTaskWorkerTest do
   alias Samgita.Workers.AgentTaskWorker
 
   setup do
+    Mox.set_mox_global(self())
+    Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
+
     Sandbox.mode(Samgita.Repo, {:shared, self()})
 
     {:ok, project} =
@@ -45,7 +48,7 @@ defmodule Samgita.Workers.AgentTaskWorkerTest do
     assert {:error, :task_not_found} = AgentTaskWorker.perform(job)
   end
 
-  test "marks task as running then completed on success", %{project: project} do
+  test "marks task as running and dispatches to agent", %{project: project} do
     task = create_task(project)
 
     job = %Oban.Job{
@@ -56,13 +59,13 @@ defmodule Samgita.Workers.AgentTaskWorkerTest do
       }
     }
 
-    # The worker will try to find/spawn agent via Horde - this may fail in test
-    # but we can verify the task state transitions
+    # The worker marks the task as running and dispatches to the agent.
+    # Completion is handled asynchronously by the Agent Worker's verify state.
     case AgentTaskWorker.perform(job) do
       :ok ->
         updated = Repo.get!(TaskSchema, task.id)
-        assert updated.status == :completed
-        assert updated.completed_at != nil
+        assert updated.status == :running
+        assert updated.started_at != nil
 
       {:error, _reason} ->
         # Agent spawn failure is expected in test env without full supervision tree

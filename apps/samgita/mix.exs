@@ -31,6 +31,7 @@ defmodule Samgita.MixProject do
   defp deps do
     [
       {:samgita_provider, in_umbrella: true},
+      {:samgita_memory, in_umbrella: true},
       {:bcrypt_elixir, "~> 3.0"},
       {:ecto_sql, "~> 3.13"},
       {:postgrex, ">= 0.0.0"},

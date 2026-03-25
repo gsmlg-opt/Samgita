@@ -1,7 +1,13 @@
 defmodule Samgita.Quality.BlindReviewTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
 
   alias Samgita.Quality.BlindReview
+
+  setup do
+    Mox.set_mox_global(self())
+    Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
+    :ok
+  end
 
   describe "reviewers/0" do
     test "returns 3 reviewers" do

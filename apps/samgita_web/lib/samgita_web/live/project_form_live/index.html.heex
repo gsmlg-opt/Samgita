@@ -12,7 +12,7 @@
       <p :if={@clone_needed} class="text-sm text-warning mt-1">Repo not found locally. Will clone on project start.</p>
     </div>
     <.dm_input field={@form[:working_path]} type="text" label="Working Path (optional)" placeholder="Auto-detected from git URL" />
-    <.dm_textarea name="prd_content" rows="12" label="PRD Content" placeholder="Paste your Product Requirements Document here..." phx-change="update_prd" value={@prd_content} />
+    <.dm_textarea name="prd_content" rows={12} label="PRD Content" placeholder="Paste your Product Requirements Document here..." phx-change="update_prd" value={@prd_content} />
     <div class="flex justify-end gap-3">
       <.link navigate={~p"/"}><.dm_btn variant="ghost">Cancel</.dm_btn></.link>
       <.dm_btn variant="primary" type="submit">Create Project</.dm_btn>

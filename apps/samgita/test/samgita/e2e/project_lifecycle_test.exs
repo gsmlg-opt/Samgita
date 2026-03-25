@@ -10,6 +10,9 @@ defmodule Samgita.E2E.ProjectLifecycleTest do
   alias Samgita.Repo
 
   setup do
+    Mox.set_mox_global(self())
+    Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
+
     :timer.sleep(100)
     :ok
   end

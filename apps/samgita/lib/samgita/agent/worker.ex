@@ -140,6 +140,8 @@ defmodule Samgita.Agent.Worker do
       learnings = context.learnings ++ memory_learnings(memory_context)
       data = %{data | act_result: nil, learnings: learnings}
 
+      write_continuity_file(data, memory_context)
+
       {:next_state, :act, data}
     rescue
       e ->
@@ -340,6 +342,7 @@ defmodule Samgita.Agent.Worker do
         broadcast_activity(data, :verify, "Task verified successfully")
 
         handle_task_completion(data)
+        complete_and_notify(data)
         maybe_git_checkpoint(data)
 
         data = %{
@@ -358,6 +361,7 @@ defmodule Samgita.Agent.Worker do
         broadcast_activity(data, :verify, "Task verified successfully")
 
         handle_task_completion(data)
+        complete_and_notify(data)
         maybe_git_checkpoint(data)
 
         data = %{
@@ -410,6 +414,63 @@ defmodule Samgita.Agent.Worker do
     end
   rescue
     _ -> :ok
+  catch
+    :exit, _ -> :ok
+  end
+
+  # Write a CONTINUITY.md file to the project's working directory before each RARV cycle.
+  # This gives Claude persistent file-based context, matching loki-mode's .loki/CONTINUITY.md.
+  defp write_continuity_file(data, memory_context) do
+    working_path = get_working_path(data)
+
+    if working_path do
+      dir = Path.join(working_path, ".samgita")
+      File.mkdir_p!(dir)
+
+      task_desc =
+        case data.current_task do
+          %{payload: %{"description" => desc}} -> desc
+          %{"description" => desc} -> desc
+          _ -> task_type(data.current_task)
+        end
+
+      episodic_lines =
+        memory_context
+        |> Map.get(:episodic, [])
+        |> Enum.take(5)
+        |> Enum.map_join("\n", fn m -> "- #{m.content}" end)
+
+      semantic_lines =
+        memory_context
+        |> Map.get(:semantic, [])
+        |> Enum.take(5)
+        |> Enum.map_join("\n", fn m -> "- #{m.content}" end)
+
+      learnings_lines =
+        data.learnings
+        |> Enum.take(5)
+        |> Enum.map_join("\n", fn l -> "- #{l}" end)
+
+      content = """
+      # Samgita Continuity
+      Agent: #{data.agent_type} | Task Count: #{data.task_count} | Retries: #{data.retry_count}
+      Current Task: #{task_desc}
+
+      ## Episodic Memory
+      #{if episodic_lines == "", do: "(none)", else: episodic_lines}
+
+      ## Semantic Knowledge
+      #{if semantic_lines == "", do: "(none)", else: semantic_lines}
+
+      ## Session Learnings
+      #{if learnings_lines == "", do: "(none)", else: learnings_lines}
+      """
+
+      path = Path.join(dir, "CONTINUITY.md")
+      File.write!(path, content)
+    end
+  rescue
+    e -> Logger.warning("[#{data.id}] Failed to write CONTINUITY.md: #{inspect(e)}")
   catch
     :exit, _ -> :ok
   end
@@ -875,6 +936,51 @@ defmodule Samgita.Agent.Worker do
     increment_agent_run_tasks(data)
   end
 
+  # Mark the DB task as completed and notify the Orchestrator.
+  # This is called from the verify state AFTER the RARV cycle completes,
+  # ensuring task completion is driven by actual Claude output, not the dispatcher.
+  defp complete_and_notify(data) do
+    task = data.current_task
+
+    task_id =
+      case task do
+        %{id: id} -> id
+        _ -> nil
+      end
+
+    if task_id do
+      case Samgita.Projects.complete_task(task_id) do
+        {:ok, completed_task} ->
+          Samgita.Events.task_completed(completed_task)
+
+        {:error, reason} ->
+          Logger.warning("[#{data.id}] Failed to mark task #{task_id} complete: #{inspect(reason)}")
+      end
+
+      notify_orchestrator(data.project_id, task_id)
+    end
+  rescue
+    e -> Logger.warning("[#{data.id}] complete_and_notify failed: #{inspect(e)}")
+  catch
+    :exit, _ -> :ok
+  end
+
+  defp notify_orchestrator(project_id, task_id) do
+    case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
+      [{pid, _}] ->
+        Samgita.Project.Orchestrator.notify_task_completed(pid, task_id)
+
+      [] ->
+        Logger.warning(
+          "[#{project_id}] No orchestrator found for task #{task_id} completion notification"
+        )
+    end
+  rescue
+    _ -> :ok
+  catch
+    :exit, _ -> :ok
+  end
+
   defp increment_agent_run_tasks(data) do
     case find_active_agent_run(data.project_id, data.agent_type) do
       nil ->
@@ -926,7 +1032,21 @@ defmodule Samgita.Agent.Worker do
   end
 
   defp update_and_broadcast_prd(data, project, result) do
-    case Samgita.Projects.update_prd(project, result) do
+    save_result =
+      case Samgita.Prds.list_prds(project.id) do
+        [prd | _] ->
+          Samgita.Prds.update_prd(prd, %{content: result, status: :approved})
+
+        [] ->
+          Samgita.Prds.create_prd(%{
+            project_id: project.id,
+            title: "Generated PRD",
+            content: result,
+            status: :approved
+          })
+      end
+
+    case save_result do
       {:ok, _} ->
         Logger.info("[#{data.id}] PRD saved successfully")
 

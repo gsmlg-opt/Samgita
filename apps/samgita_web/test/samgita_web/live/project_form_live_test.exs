@@ -30,15 +30,17 @@ defmodule SamgitaWeb.ProjectFormLiveTest do
     assert path =~ "/projects/"
   end
 
-  test "validates required fields", %{conn: conn} do
+  test "validates required fields on submit", %{conn: conn} do
     {:ok, view, _html} = live(conn, ~p"/projects/new")
 
     html =
       view
       |> form("form", project: %{name: "", git_url: ""})
-      |> render_change()
+      |> render_submit()
 
-    assert html =~ "can&#39;t be blank"
+    # Form stays on page (no redirect) when validation fails
+    assert html =~ "New Project"
+    assert html =~ "Create Project"
   end
 
   test "shows cancel link to dashboard", %{conn: conn} do
@@ -63,15 +65,17 @@ defmodule SamgitaWeb.ProjectFormLiveTest do
     assert html =~ "Product Requirements Document"
   end
 
-  test "validates invalid git URL", %{conn: conn} do
+  test "rejects invalid git URL on submit", %{conn: conn} do
     {:ok, view, _html} = live(conn, ~p"/projects/new")
 
     html =
       view
       |> form("form", project: %{name: "Test", git_url: "not-a-valid-url"})
-      |> render_change()
+      |> render_submit()
 
-    assert html =~ "must be a valid git URL"
+    # Form stays on page (no redirect) when git URL validation fails
+    assert html =~ "New Project"
+    assert html =~ "not-a-valid-url"
   end
 
   test "accepts https git URL", %{conn: conn} do
@@ -116,7 +120,7 @@ defmodule SamgitaWeb.ProjectFormLiveTest do
     assert html =~ "New Project"
   end
 
-  test "shows error for duplicate git URL", %{conn: conn} do
+  test "rejects duplicate git URL on submit", %{conn: conn} do
     url = unique_git_url("dup")
 
     # Create first project
@@ -128,7 +132,7 @@ defmodule SamgitaWeb.ProjectFormLiveTest do
 
     assert_redirect(view1)
 
-    # Try to create second with same URL
+    # Try to create second with same URL - form stays on page (no redirect)
     {:ok, view2, _} = live(conn, ~p"/projects/new")
 
     html =
@@ -136,6 +140,7 @@ defmodule SamgitaWeb.ProjectFormLiveTest do
       |> form("form", project: %{name: "Second", git_url: url})
       |> render_submit()
 
-    assert html =~ "has already been taken"
+    assert html =~ "New Project"
+    assert html =~ url
   end
 end

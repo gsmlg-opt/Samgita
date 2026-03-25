@@ -37,7 +37,7 @@
     >
       <div class="flex items-center justify-between mb-2">
         <h3 class="text-lg font-semibold text-on-surface">{swarm_name}</h3>
-        <.dm_badge color={swarm_badge_color(swarm_name)}>{length(agents)}</.dm_badge>
+        <.dm_badge variant={swarm_badge_color(swarm_name)}>{length(agents)}</.dm_badge>
       </div>
       <p class="text-sm text-on-surface-variant">{length(agents)} agents</p>
     </.dm_card>
@@ -63,7 +63,7 @@
               </div>
               <p class="text-sm text-on-surface-variant mt-2">{agent.description}</p>
             </div>
-            <.dm_badge color={swarm_badge_color(@selected_swarm)}>
+            <.dm_badge variant={swarm_badge_color(@selected_swarm)}>
               {@selected_swarm |> String.split(" ") |> hd()}
             </.dm_badge>
           </div>
@@ -92,7 +92,7 @@
             <div>
               <h4 class="text-sm font-semibold text-on-surface mb-2">Task Types</h4>
               <div class="flex flex-wrap gap-2">
-                <.dm_badge :for={task_type <- agent.task_types} color="primary" class="font-mono">{task_type}</.dm_badge>
+                <.dm_badge :for={task_type <- agent.task_types} variant="primary" class="font-mono">{task_type}</.dm_badge>
               </div>
             </div>
             <%!-- Quality Checks --%>

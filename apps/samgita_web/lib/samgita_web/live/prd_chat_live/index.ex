@@ -74,15 +74,19 @@ defmodule SamgitaWeb.PrdChatLive.Index do
   end
 
   defp save_prd(%{assigns: %{prd: nil}} = socket, title, content) do
+    status = if(content == "", do: :draft, else: :approved)
+
     attrs = %{
       project_id: socket.assigns.project.id,
       title: title,
       content: content,
-      status: if(content == "", do: :draft, else: :approved)
+      status: status
     }
 
     case Prds.create_prd(attrs) do
-      {:ok, _prd} ->
+      {:ok, prd} ->
+        maybe_start_project(socket.assigns.project, prd, status)
+
         {:noreply,
          socket
          |> put_flash(:info, "PRD created")
@@ -94,14 +98,18 @@ defmodule SamgitaWeb.PrdChatLive.Index do
   end
 
   defp save_prd(%{assigns: %{prd: prd}} = socket, title, content) do
+    status = if(content == "", do: :draft, else: :approved)
+
     attrs = %{
       title: title,
       content: content,
-      status: if(content == "", do: :draft, else: :approved)
+      status: status
     }
 
     case Prds.update_prd(prd, attrs) do
-      {:ok, _prd} ->
+      {:ok, updated_prd} ->
+        maybe_start_project(socket.assigns.project, updated_prd, status)
+
         {:noreply,
          socket
          |> put_flash(:info, "PRD updated")
@@ -111,4 +119,12 @@ defmodule SamgitaWeb.PrdChatLive.Index do
         {:noreply, put_flash(socket, :error, "Failed to update PRD")}
     end
   end
+
+  defp maybe_start_project(project, prd, :approved) do
+    if project.status in [:pending, :failed] do
+      Projects.start_project(project.id, prd.id)
+    end
+  end
+
+  defp maybe_start_project(_project, _prd, _status), do: :ok
 end

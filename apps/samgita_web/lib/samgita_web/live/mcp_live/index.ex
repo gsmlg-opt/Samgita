@@ -16,28 +16,24 @@ defmodule SamgitaWeb.McpLive.Index do
   end
 
   defp list_mcp_servers do
-    # TODO: Implement actual MCP server listing
-    # This should read from ~/.claude/mcp.json or similar
-    [
-      %{
-        name: "dart",
-        description: "Dart and Flutter development tools",
-        status: :connected,
-        capabilities: ["tools", "resources"]
-      },
-      %{
-        name: "github",
-        description: "GitHub API integration",
-        status: :connected,
-        capabilities: ["tools"]
-      },
-      %{
-        name: "chrome-devtools",
-        description: "Browser automation and testing",
-        status: :disconnected,
-        capabilities: ["tools"]
-      }
-    ]
+    ["~/.claude/mcp.json", "~/.claude.json"]
+    |> Enum.map(&Path.expand/1)
+    |> Enum.find_value([], fn path ->
+      with {:ok, content} <- File.read(path),
+           {:ok, decoded} <- Jason.decode(content),
+           servers when is_map(servers) <- Map.get(decoded, "mcpServers") do
+        Enum.map(servers, fn {name, config} ->
+          %{
+            name: name,
+            description: Map.get(config, "description", "MCP server: #{name}"),
+            status: :connected,
+            capabilities: Map.get(config, "capabilities", ["tools"])
+          }
+        end)
+      else
+        _ -> nil
+      end
+    end)
   end
 
   def status_badge_color(:connected), do: "success"

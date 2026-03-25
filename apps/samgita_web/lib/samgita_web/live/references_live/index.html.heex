@@ -22,7 +22,7 @@
           <.dm_card body_class="" variant="bordered" class="p-4 hover:shadow-md transition-shadow h-full">
             <div class="flex items-start justify-between mb-2">
               <h3 class="text-base font-semibold text-on-surface flex-1">{ref.title}</h3>
-              <.dm_badge color={References.category_badge_color(category)}>{category}</.dm_badge>
+              <.dm_badge variant={References.category_badge_color(category)}>{category}</.dm_badge>
             </div>
             <p class="text-sm text-on-surface-variant">{ref.description}</p>
           </.dm_card>
@@ -41,7 +41,7 @@
               <h3 class="text-lg font-semibold text-on-surface">{ref.title}</h3>
               <p class="text-sm text-on-surface-variant mt-2">{ref.description}</p>
             </div>
-            <.dm_badge color={References.category_badge_color(@selected_category)}>{@selected_category}</.dm_badge>
+            <.dm_badge variant={References.category_badge_color(@selected_category)}>{@selected_category}</.dm_badge>
           </div>
         </.dm_card>
       </.link>

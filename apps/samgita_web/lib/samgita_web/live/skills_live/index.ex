@@ -16,47 +16,39 @@ defmodule SamgitaWeb.SkillsLive.Index do
   end
 
   defp list_skills do
-    # TODO: Implement actual skills listing
-    # This should read from ~/.claude/skills/ directory
-    [
+    Samgita.Agent.Types.all()
+    |> Enum.map(fn {id, description, _model} ->
+      category = agent_category(id)
+
       %{
-        name: "git-commit",
-        description: "Stage and commit changes with conventional commit message",
-        category: "Git Operations",
-        status: :active
-      },
-      %{
-        name: "code-review",
-        description: "Comprehensive code review with best practices",
-        category: "Code Quality",
-        status: :active
-      },
-      %{
-        name: "fix-github-actions",
-        description: "Fix GitHub Actions failures iteratively",
-        category: "CI/CD",
-        status: :active
-      },
-      %{
-        name: "frontend-design",
-        description: "Create production-grade frontend interfaces",
-        category: "Design",
-        status: :active
-      },
-      %{
-        name: "loki-mode",
-        description: "Multi-agent autonomous startup system",
-        category: "Automation",
+        name: id,
+        description: description,
+        category: category,
         status: :active
       }
-    ]
+    end)
   end
 
-  def category_badge_color("Git Operations"), do: "tertiary"
-  def category_badge_color("Code Quality"), do: "primary"
-  def category_badge_color("CI/CD"), do: "success"
-  def category_badge_color("Design"), do: "secondary"
-  def category_badge_color("Automation"), do: "error"
+  defp agent_category(id) do
+    cond do
+      String.starts_with?(id, "eng-") -> "Engineering"
+      String.starts_with?(id, "ops-") -> "Operations"
+      String.starts_with?(id, "biz-") -> "Business"
+      String.starts_with?(id, "data-") -> "Data"
+      String.starts_with?(id, "prod-") -> "Product"
+      String.starts_with?(id, "growth-") -> "Growth"
+      String.starts_with?(id, "review-") -> "Review"
+      true -> "Other"
+    end
+  end
+
+  def category_badge_color("Engineering"), do: "primary"
+  def category_badge_color("Operations"), do: "success"
+  def category_badge_color("Business"), do: "secondary"
+  def category_badge_color("Data"), do: "tertiary"
+  def category_badge_color("Product"), do: "error"
+  def category_badge_color("Growth"), do: "warning"
+  def category_badge_color("Review"), do: "info"
   def category_badge_color(_), do: ""
 
   def status_icon(:active) do

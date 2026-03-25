@@ -187,6 +187,18 @@ defmodule Samgita.Projects do
     end
   end
 
+  def complete_task(id) do
+    case Repo.get(TaskSchema, id) do
+      nil ->
+        {:error, :not_found}
+
+      task ->
+        task
+        |> TaskSchema.changeset(%{status: :completed, completed_at: DateTime.utc_now()})
+        |> Repo.update()
+    end
+  end
+
   def retry_task(id) do
     with {:ok, task} <- get_task(id),
          true <- task.status in [:failed, :dead_letter] || {:error, :not_retriable},

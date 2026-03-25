@@ -9,15 +9,17 @@ defmodule SamgitaWeb.SkillsLiveTest do
     assert html =~ "skills and extensions"
   end
 
-  test "shows skill entries", %{conn: conn} do
+  test "shows agent type entries from Types module", %{conn: conn} do
     {:ok, _view, html} = live(conn, ~p"/skills")
-    assert html =~ "git-commit"
-    assert html =~ "loki-mode"
+    # Skills now come from Samgita.Agent.Types.all()
+    assert html =~ "eng-backend"
+    assert html =~ "eng-frontend"
+    assert html =~ "Engineering"
   end
 
   test "refresh event reloads skills", %{conn: conn} do
     {:ok, view, _html} = live(conn, ~p"/skills")
     html = render_click(view, "refresh")
-    assert html =~ "git-commit"
+    assert html =~ "eng-backend"
   end
 end

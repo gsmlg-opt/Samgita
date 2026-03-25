@@ -14,7 +14,6 @@ defmodule Samgita.Workers.AgentTaskWorker do
   alias Samgita.Agent.Worker
   alias Samgita.Domain.Task, as: TaskSchema
   alias Samgita.Events
-  alias Samgita.Project.Orchestrator
   alias Samgita.Projects
   alias Samgita.Quality.InputGuardrails
   alias Samgita.Repo
@@ -59,16 +58,12 @@ defmodule Samgita.Workers.AgentTaskWorker do
          :ok <- mark_task_running(task),
          {:ok, agent_pid} <- find_or_spawn_agent(project_id, agent_type),
          :ok <- execute_task(agent_pid, task) do
-      mark_task_completed(task)
-      Events.task_completed(task)
-      notify_orchestrator(project_id, task_id)
-
       entry =
         Events.build_log_entry(
           :task,
           task_id,
-          :completed,
-          "Task completed (agent: #{agent_type})"
+          :running,
+          "Task dispatched to agent (type: #{agent_type})"
         )
 
       Events.activity_log(project_id, entry)
@@ -135,15 +130,6 @@ defmodule Samgita.Workers.AgentTaskWorker do
     end
   end
 
-  defp mark_task_completed(task) do
-    task
-    |> TaskSchema.changeset(%{
-      status: :completed,
-      completed_at: DateTime.utc_now()
-    })
-    |> Repo.update()
-  end
-
   defp find_or_spawn_agent(project_id, agent_type) do
     agent_id = "#{project_id}-#{agent_type}"
 
@@ -188,19 +174,6 @@ defmodule Samgita.Workers.AgentTaskWorker do
   defp execute_task(agent_pid, task) do
     Worker.assign_task(agent_pid, task)
     :ok
-  end
-
-  defp notify_orchestrator(project_id, task_id) do
-    case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
-      [{pid, _}] ->
-        Orchestrator.notify_task_completed(pid, task_id)
-
-      [] ->
-        Logger.warning(
-          "AgentTaskWorker: No orchestrator found for project #{project_id}, " <>
-            "task #{task_id} completion not tracked for phase advancement"
-        )
-    end
   end
 
   defp handle_failure(task_id, reason) do

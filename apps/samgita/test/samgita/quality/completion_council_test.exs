@@ -1,7 +1,13 @@
 defmodule Samgita.Quality.CompletionCouncilTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
 
   alias Samgita.Quality.CompletionCouncil
+
+  setup do
+    Mox.set_mox_global(self())
+    Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
+    :ok
+  end
 
   describe "members/0" do
     test "returns 3 council members" do

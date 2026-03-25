@@ -71,8 +71,8 @@
             <p class="text-sm text-on-surface-variant mt-1">{project.git_url}</p>
           </div>
           <div class="flex gap-2">
-            <.dm_badge color={status_badge_color(project.status)}>{project.status}</.dm_badge>
-            <.dm_badge color="secondary">{project.phase}</.dm_badge>
+            <.dm_badge variant={status_badge_color(project.status)}>{project.status}</.dm_badge>
+            <.dm_badge variant="secondary">{project.phase}</.dm_badge>
           </div>
         </div>
         <% stats = Map.get(@project_stats, project.id, %{}) %>
