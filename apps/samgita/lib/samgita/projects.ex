@@ -279,6 +279,21 @@ defmodule Samgita.Projects do
     |> Map.new()
   end
 
+  @doc "Returns task stats for multiple projects in a single query, avoiding N+1."
+  def task_stats_batch(project_ids) when is_list(project_ids) do
+    if project_ids == [] do
+      %{}
+    else
+      TaskSchema
+      |> where([t], t.project_id in ^project_ids)
+      |> group_by([t], [t.project_id, t.status])
+      |> select([t], {t.project_id, t.status, count(t.id)})
+      |> Repo.all()
+      |> Enum.group_by(&elem(&1, 0), fn {_pid, status, count} -> {status, count} end)
+      |> Map.new(fn {pid, stats} -> {pid, Map.new(stats)} end)
+    end
+  end
+
   # Artifact management
 
   alias Samgita.Domain.Artifact

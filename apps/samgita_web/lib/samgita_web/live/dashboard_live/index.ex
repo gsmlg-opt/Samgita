@@ -35,8 +35,11 @@ defmodule SamgitaWeb.DashboardLive.Index do
   def handle_info(_, socket), do: {:noreply, socket}
 
   defp load_project_stats(projects) do
+    project_ids = Enum.map(projects, & &1.id)
+    batch_stats = Projects.task_stats_batch(project_ids)
+
     Map.new(projects, fn project ->
-      {project.id, Projects.task_stats(project.id)}
+      {project.id, Map.get(batch_stats, project.id, %{})}
     end)
   end
 
