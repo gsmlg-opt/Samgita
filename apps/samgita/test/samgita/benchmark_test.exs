@@ -35,6 +35,10 @@ defmodule Samgita.BenchmarkTest do
 
     Cache.clear()
 
+    on_exit(fn ->
+      Sandbox.mode(Samgita.Repo, :manual)
+    end)
+
     %{project: project}
   end
 

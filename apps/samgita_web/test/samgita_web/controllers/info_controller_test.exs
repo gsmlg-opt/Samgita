@@ -22,6 +22,37 @@ defmodule SamgitaWeb.InfoControllerTest do
       assert "samgita_web" in app_names
     end
 
+    test "returns environment field as string", %{conn: conn} do
+      conn = get(conn, "/api/info")
+      json = json_response(conn, 200)
+
+      assert is_binary(json["environment"])
+      # In test, environment should be "test" (from config or Mix.env fallback)
+      assert json["environment"] == "test"
+    end
+
+    test "returns all expected fields with correct types", %{conn: conn} do
+      conn = get(conn, "/api/info")
+      json = json_response(conn, 200)
+
+      assert Map.has_key?(json, "app")
+      assert Map.has_key?(json, "version")
+      assert Map.has_key?(json, "elixir")
+      assert Map.has_key?(json, "otp")
+      assert Map.has_key?(json, "environment")
+      assert Map.has_key?(json, "umbrella_apps")
+      assert Map.has_key?(json, "phoenix")
+      assert Map.has_key?(json, "endpoint")
+
+      # Each umbrella app has name and version
+      for app <- json["umbrella_apps"] do
+        assert Map.has_key?(app, "name")
+        assert Map.has_key?(app, "version")
+        assert is_binary(app["name"])
+        assert is_binary(app["version"])
+      end
+    end
+
     test "does not require API key auth", %{conn: conn} do
       conn = get(conn, "/api/info")
       assert json_response(conn, 200)
