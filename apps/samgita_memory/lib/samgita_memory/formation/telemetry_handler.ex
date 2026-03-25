@@ -21,14 +21,27 @@ defmodule SamgitaMemory.Formation.TelemetryHandler do
     [:agent, :handoff]
   ]
 
+  require Logger
+
   @doc "Attach all telemetry handlers."
   def attach do
     :telemetry.attach_many(
       "samgita-memory-formation",
       @events,
-      &handle_event/4,
+      &safe_handle_event/4,
       nil
     )
+  end
+
+  defp safe_handle_event(event, measurements, metadata, config) do
+    handle_event(event, measurements, metadata, config)
+  rescue
+    e ->
+      Logger.error(
+        "[TelemetryHandler] Handler crashed for #{inspect(event)}: #{Exception.message(e)}"
+      )
+
+      :ok
   end
 
   @doc "Detach handlers."
