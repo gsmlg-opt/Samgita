@@ -28,6 +28,20 @@ defmodule Samgita.WebhooksTest do
     assert %{url: ["must be a valid HTTP/HTTPS URL"]} = errors_on(changeset)
   end
 
+  test "fails with URL that has scheme but no host" do
+    assert {:error, changeset} =
+             Webhooks.create_webhook(%{url: "https:///path", events: ["task.completed"]})
+
+    assert %{url: ["must be a valid HTTP/HTTPS URL"]} = errors_on(changeset)
+  end
+
+  test "fails with URL that has scheme but empty host" do
+    assert {:error, changeset} =
+             Webhooks.create_webhook(%{url: "http://", events: ["task.completed"]})
+
+    assert %{url: ["must be a valid HTTP/HTTPS URL"]} = errors_on(changeset)
+  end
+
   test "fails with invalid events" do
     assert {:error, changeset} =
              Webhooks.create_webhook(%{url: "https://example.com", events: ["invalid.event"]})
@@ -58,8 +72,25 @@ defmodule Samgita.WebhooksTest do
   end
 
   test "dispatch enqueues jobs for matching webhooks" do
+    test_pid = self()
+
+    Mox.expect(Samgita.MockOban, :insert, fn job ->
+      send(test_pid, {:oban_insert, job})
+      {:ok, %Oban.Job{id: 1}}
+    end)
+
     {:ok, _webhook} = Webhooks.create_webhook(@valid_attrs)
     assert :ok == Webhooks.dispatch("task.completed", %{task_id: "123"})
+
+    assert_received {:oban_insert, changeset}
+    assert changeset.changes[:worker] == "Samgita.Workers.WebhookWorker"
+  end
+
+  test "dispatch returns :ok even when ObanClient.insert fails" do
+    Mox.expect(Samgita.MockOban, :insert, fn _job -> {:error, :queue_full} end)
+
+    {:ok, _webhook} = Webhooks.create_webhook(@valid_attrs)
+    assert :ok == Webhooks.dispatch("task.completed", %{task_id: "456"})
   end
 
   test "dispatch skips webhooks that don't match event" do

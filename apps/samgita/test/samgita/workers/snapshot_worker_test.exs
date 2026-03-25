@@ -90,6 +90,23 @@ defmodule Samgita.Workers.SnapshotWorkerTest do
     assert {:error, :no_snapshot} = SnapshotWorker.restore_from_snapshot(project_id)
   end
 
+  test "restore_from_snapshot/1 returns error for invalid phase string", %{project: project} do
+    # Create a snapshot with an invalid phase
+    {:ok, _snapshot} =
+      %Snapshot{}
+      |> Snapshot.changeset(%{
+        project_id: project.id,
+        phase: "totally_bogus_phase",
+        agent_states: %{},
+        task_queue_state: %{},
+        memory_state: %{}
+      })
+      |> Repo.insert()
+
+    assert {:error, {:invalid_phase, "totally_bogus_phase"}} =
+             SnapshotWorker.restore_from_snapshot(project.id)
+  end
+
   test "cleanup_old_snapshots keeps only the specified number", %{project: project} do
     # Create 12 snapshots
     for _ <- 1..12 do

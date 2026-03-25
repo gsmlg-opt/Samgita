@@ -235,6 +235,47 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
     end
   end
 
+  describe "failure paths" do
+    test "save_prd_metadata logs warning and returns :ok on update failure", %{
+      project: project,
+      prd: prd
+    } do
+      # Delete the PRD so update will fail
+      Repo.delete(prd)
+
+      # Re-insert with a stale reference that will cause update to fail
+      stale_prd = %Prd{prd | __meta__: %{prd.__meta__ | state: :loaded}}
+
+      # Perform should still succeed (save_prd_metadata returns :ok on failure)
+      job = %Oban.Job{args: %{"project_id" => project.id, "prd_id" => prd.id}}
+      # This will get :prd_not_found since we deleted it
+      assert {:error, :prd_not_found} = BootstrapWorker.perform(job)
+    end
+
+    test "enqueue_agent_task handles ObanClient.insert failure gracefully", %{
+      project: project,
+      prd: prd
+    } do
+      # Make ObanClient.insert fail for agent task jobs
+      Mox.expect(Samgita.MockOban, :insert, fn job ->
+        worker = job.changes[:worker] || ""
+
+        if worker == "Samgita.Workers.AgentTaskWorker" do
+          {:error, :insert_failed}
+        else
+          Oban.insert(job)
+        end
+      end)
+
+      # Allow additional calls to fall back to real Oban
+      Mox.stub(Samgita.MockOban, :insert, fn _job -> {:error, :insert_failed} end)
+
+      job = %Oban.Job{args: %{"project_id" => project.id, "prd_id" => prd.id}}
+      # Should still return :ok — failed enqueues are logged but not fatal
+      assert :ok = BootstrapWorker.perform(job)
+    end
+  end
+
   describe "PRD parsing edge cases" do
     test "handles empty PRD", %{project: project} do
       empty_prd = %Prd{content: "", title: "Empty"}

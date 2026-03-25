@@ -16,7 +16,7 @@ defmodule Samgita.E2E.ProjectLifecycleTest do
 
     Mox.stub(Samgita.MockOban, :insert, fn job -> Oban.insert(job) end)
 
-    :timer.sleep(100)
+    Ecto.Adapters.SQL.Sandbox.mode(Samgita.Repo, {:shared, self()})
     :ok
   end
 

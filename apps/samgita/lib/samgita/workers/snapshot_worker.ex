@@ -122,12 +122,15 @@ defmodule Samgita.Workers.SnapshotWorker do
   end
 
   defp parse_phase(phase_string, valid_phases) do
-    atom = String.to_atom(phase_string)
+    atom = String.to_existing_atom(phase_string)
 
     if atom in valid_phases do
       {:ok, atom}
     else
       {:error, {:invalid_phase, phase_string}}
     end
+  rescue
+    ArgumentError ->
+      {:error, {:invalid_phase, phase_string}}
   end
 end
