@@ -326,6 +326,10 @@ defmodule Samgita.Project.Orchestrator do
         {:keep_state, data, [{{:timeout, :stagnation}, @stagnation_check_interval_ms, :check}]}
       end
     end
+
+    # Catch-all handlers — prevent gen_statem crash on unexpected messages
+    def unquote(phase)(:info, _msg, _data), do: :keep_state_and_data
+    def unquote(phase)(:cast, _msg, _data), do: :keep_state_and_data
   end
 
   ## Internal helpers

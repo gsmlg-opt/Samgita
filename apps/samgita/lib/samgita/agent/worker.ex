@@ -36,6 +36,7 @@ defmodule Samgita.Agent.Worker do
 
   @max_retries 3
   @reason_timeout_ms 60_000
+  @act_timeout_ms 600_000
   @reflect_timeout_ms 60_000
 
   ## Public API
@@ -170,7 +171,12 @@ defmodule Samgita.Agent.Worker do
   def act(:enter, _old_state, data) do
     broadcast_state_change(data, :act)
     emit_telemetry(:state_transition, data, %{state: :act})
-    {:keep_state_and_data, [{:state_timeout, 0, :execute}]}
+
+    {:keep_state_and_data,
+     [
+       {:state_timeout, 0, :execute},
+       {{:timeout, :act_deadline}, @act_timeout_ms, :deadline}
+     ]}
   end
 
   def act(:state_timeout, :execute, data) do
@@ -220,6 +226,13 @@ defmodule Samgita.Agent.Worker do
         broadcast_activity(data, :act, "Execution failed: #{inspect(reason)}")
         {:next_state, :reflect, %{data | act_result: {:error, reason}}}
     end
+  end
+
+  def act({:timeout, :act_deadline}, :deadline, data) do
+    Logger.warning("[#{data.id}] ACT: Timed out after #{@act_timeout_ms}ms")
+    emit_telemetry(:error, data, %{state: :act, error: :timeout})
+    broadcast_activity(data, :act, "Timed out executing Claude CLI")
+    {:next_state, :reflect, %{data | act_result: {:error, :timeout}}}
   end
 
   def act({:call, from}, :get_state, data) do
@@ -388,6 +401,12 @@ defmodule Samgita.Agent.Worker do
 
   def verify({:call, from}, :get_state, data) do
     {:keep_state_and_data, [{:reply, from, {:verify, data}}]}
+  end
+
+  ## Catch-all handlers — prevent gen_statem crash on unexpected messages
+  for state <- [:idle, :reason, :act, :reflect, :verify] do
+    def unquote(state)(:info, _msg, _data), do: :keep_state_and_data
+    def unquote(state)(:cast, _msg, _data), do: :keep_state_and_data
   end
 
   ## Internal
