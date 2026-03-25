@@ -1,5 +1,6 @@
 defmodule SamgitaWeb.TaskControllerTest do
   use SamgitaWeb.ConnCase, async: true
+  use Oban.Testing, repo: Samgita.Repo
 
   alias Samgita.Projects
 
@@ -53,18 +54,30 @@ defmodule SamgitaWeb.TaskControllerTest do
       {:ok, task} =
         Projects.create_task(project.id, %{type: "build", status: :failed, attempts: 3})
 
-      conn = post(conn, ~p"/api/projects/#{project}/tasks/#{task}/retry")
+      # Use manual mode to prevent Oban inline execution of AgentTaskWorker,
+      # which spawns Horde agents in separate processes that can't access Mox stubs.
+      conn =
+        Oban.Testing.with_testing_mode(:manual, fn ->
+          post(conn, ~p"/api/projects/#{project}/tasks/#{task}/retry")
+        end)
+
       data = json_response(conn, 200)["data"]
       assert data["status"] == "pending"
       assert data["attempts"] == 0
+      assert_enqueued(worker: Samgita.Workers.AgentTaskWorker, args: %{task_id: task.id})
     end
 
     test "retries a dead_letter task", %{conn: conn, project: project} do
       {:ok, task} =
         Projects.create_task(project.id, %{type: "deploy", status: :dead_letter, attempts: 5})
 
-      conn = post(conn, ~p"/api/projects/#{project}/tasks/#{task}/retry")
+      conn =
+        Oban.Testing.with_testing_mode(:manual, fn ->
+          post(conn, ~p"/api/projects/#{project}/tasks/#{task}/retry")
+        end)
+
       assert json_response(conn, 200)["data"]["status"] == "pending"
+      assert_enqueued(worker: Samgita.Workers.AgentTaskWorker, args: %{task_id: task.id})
     end
 
     test "rejects retry for pending task", %{conn: conn, project: project} do
@@ -171,8 +184,12 @@ defmodule SamgitaWeb.TaskControllerTest do
 
       {:ok, task} = Projects.create_task(project.id, %{type: "flaky", status: :failed})
 
-      # First retry
-      conn1 = post(conn, ~p"/api/projects/#{project}/tasks/#{task}/retry")
+      # First retry (manual mode prevents inline Oban execution)
+      conn1 =
+        Oban.Testing.with_testing_mode(:manual, fn ->
+          post(conn, ~p"/api/projects/#{project}/tasks/#{task}/retry")
+        end)
+
       assert json_response(conn1, 200)["data"]["attempts"] == 0
 
       # Mark as failed again
@@ -184,7 +201,11 @@ defmodule SamgitaWeb.TaskControllerTest do
         |> Repo.update()
 
       # Second retry
-      conn2 = post(conn, ~p"/api/projects/#{project}/tasks/#{task}/retry")
+      conn2 =
+        Oban.Testing.with_testing_mode(:manual, fn ->
+          post(conn, ~p"/api/projects/#{project}/tasks/#{task}/retry")
+        end)
+
       assert json_response(conn2, 200)["data"]["attempts"] == 0
     end
 
