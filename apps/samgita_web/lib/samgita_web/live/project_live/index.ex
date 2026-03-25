@@ -31,7 +31,8 @@ defmodule SamgitaWeb.ProjectLive.Index do
            task_form: %{type: "", payload: "{}"},
            log_count: 0,
            quality_gate_verdict: nil,
-           quality_gate_results: []
+           quality_gate_results: [],
+           agent_runs_timer: nil
          )
          |> stream(:activity_log, [])}
 
@@ -314,9 +315,8 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
   @impl true
   def handle_info({:agent_state_changed, agent_id, state}, socket) do
-    agent_runs = Projects.list_agent_runs(socket.assigns.project.id)
     active_agents = Map.put(socket.assigns.active_agents, agent_id, %{state: state})
-    {:noreply, assign(socket, agent_runs: agent_runs, active_agents: active_agents)}
+    {:noreply, socket |> assign(active_agents: active_agents) |> schedule_agent_runs_reload()}
   end
 
   @impl true
@@ -333,12 +333,16 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
   @impl true
   def handle_info({:agent_spawned, agent_id, agent_type}, socket) do
-    agent_runs = Projects.list_agent_runs(socket.assigns.project.id)
-
     active_agents =
       Map.put(socket.assigns.active_agents, agent_id, %{state: :idle, type: agent_type})
 
-    {:noreply, assign(socket, agent_runs: agent_runs, active_agents: active_agents)}
+    {:noreply, socket |> assign(active_agents: active_agents) |> schedule_agent_runs_reload()}
+  end
+
+  @impl true
+  def handle_info(:reload_agent_runs, socket) do
+    agent_runs = Projects.list_agent_runs(socket.assigns.project.id)
+    {:noreply, assign(socket, agent_runs: agent_runs, agent_runs_timer: nil)}
   end
 
   @impl true
@@ -371,6 +375,17 @@ defmodule SamgitaWeb.ProjectLive.Index do
       {int, _} -> int
       :error -> default
     end
+  end
+
+  @agent_runs_debounce_ms 200
+
+  defp schedule_agent_runs_reload(socket) do
+    if timer = socket.assigns.agent_runs_timer do
+      Process.cancel_timer(timer)
+    end
+
+    timer = Process.send_after(self(), :reload_agent_runs, @agent_runs_debounce_ms)
+    assign(socket, agent_runs_timer: timer)
   end
 
   defp find_prd(_prds, nil), do: nil
