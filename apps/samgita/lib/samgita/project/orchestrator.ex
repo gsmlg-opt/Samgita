@@ -447,6 +447,13 @@ defmodule Samgita.Project.Orchestrator do
         gate_type: gate_type
       })
     )
+  rescue
+    e ->
+      Logger.warning(
+        "[Orchestrator] #{data.project_id}: failed to trigger quality gates: #{inspect(e)}"
+      )
+  catch
+    :exit, _ -> :ok
   end
 
   # Phase-specific task generation.
@@ -725,6 +732,10 @@ defmodule Samgita.Project.Orchestrator do
       {:ok, project} -> project
       _ -> data.project
     end
+  rescue
+    _ -> data.project
+  catch
+    :exit, _ -> data.project
   end
 
   defp maybe_deferred_advance(phase, data) do
@@ -764,6 +775,10 @@ defmodule Samgita.Project.Orchestrator do
       "project:#{data.project_id}",
       {:phase_changed, data.project_id, phase}
     )
+  rescue
+    _ -> :ok
+  catch
+    :exit, _ -> :ok
   end
 
   defp persist_phase(data, phase) do
@@ -771,6 +786,10 @@ defmodule Samgita.Project.Orchestrator do
       {:ok, project} -> Projects.update_project(project, %{phase: phase})
       _ -> :ok
     end
+  rescue
+    _ -> :ok
+  catch
+    :exit, _ -> :ok
   end
 
   defp handle_task_completion(phase, data) do

@@ -100,10 +100,32 @@ defmodule Samgita.Project.Recovery do
   end
 
   defp start_project_supervisor(project) do
-    Horde.DynamicSupervisor.start_child(
-      Samgita.AgentSupervisor,
-      {Samgita.Project.Supervisor, project_id: project.id}
-    )
+    start_project_supervisor(project, 3)
+  end
+
+  defp start_project_supervisor(_project, 0) do
+    {:error, :max_retries}
+  end
+
+  defp start_project_supervisor(project, retries) do
+    case Horde.DynamicSupervisor.start_child(
+           Samgita.AgentSupervisor,
+           {Samgita.Project.Supervisor, project_id: project.id}
+         ) do
+      {:ok, pid} ->
+        {:ok, pid}
+
+      {:error, {:already_started, pid}} ->
+        {:ok, pid}
+
+      {:error, reason} ->
+        Logger.warning(
+          "[Recovery] Retry #{4 - retries}/3 for project #{project.id}: #{inspect(reason)}"
+        )
+
+        Process.sleep(500)
+        start_project_supervisor(project, retries - 1)
+    end
   end
 
   defp notify_orchestrator_pause(project_id) do

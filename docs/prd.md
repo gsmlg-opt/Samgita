@@ -298,16 +298,16 @@ PRD is the unit of execution. Activity log streams in real time via PubSub.
 - [x] Project.Recovery (restart running projects on boot)
 - [x] All 12 database migrations
 
-### Needs Fixing (see docs/plan.md)
+### Fixed (previously blocking)
 
-- [ ] **BLOCKER**: `AgentTaskWorker` marks task complete before Claude runs (fire-and-forget bug)
-- [ ] **BLOCKER**: No CONTINUITY.md written before Claude invocations (no working memory file)
-- [ ] `samgita_memory` not wired as dep of `samgita` (pgvector not used by agents)
-- [ ] PRD save target bug (writes to `projects.prd_content` instead of `Prd` schema)
-- [ ] `config/test.exs` hardcodes `username: "gao"`
-- [ ] McpLive has hardcoded fake servers
-- [ ] SkillsLive has hardcoded skill data
-- [ ] PrdChatLive doesn't auto-start project on PRD approval
+- [x] `AgentTaskWorker` synchronous wait — uses `Process.monitor` + `receive` with 10min timeout
+- [x] CONTINUITY.md written in `reason` state before each Claude invocation
+- [x] `samgita_memory` wired as umbrella dep of `samgita`
+- [x] PRD saves to `Prd` schema via `Samgita.Prds` (not `projects.prd_content`)
+- [x] `config/test.exs` uses `System.get_env("USER", "postgres")` instead of hardcoded username
+- [x] McpLive reads from `~/.claude/mcp.json` dynamically
+- [x] SkillsLive uses `Agent.Types.all()` for real agent type data
+- [x] PrdChatLive auto-starts project on PRD approval via `maybe_start_project/3`
 
 ### Planned Enhancements
 
@@ -340,5 +340,5 @@ PRD is the unit of execution. Activity log streams in real time via PubSub.
 
 ---
 
-**Last Updated:** 2026-03-25
+**Last Updated:** 2026-03-26
 **Status:** Active Development — see [docs/plan.md](plan.md) for the implementation roadmap
