@@ -62,6 +62,9 @@ config :samgita, :claude_command, "echo"
 # Use Mox-based mock provider for SamgitaProvider in tests
 config :samgita_provider, provider: SamgitaProvider.MockProvider
 
+# Use Mox-based mock for ObanClient in tests (default stub delegates to real Oban)
+config :samgita, :oban_module, Samgita.MockOban
+
 # Use mock embedding provider in tests
 config :samgita_memory, embedding_provider: :mock
 

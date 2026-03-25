@@ -11,6 +11,7 @@ defmodule Samgita.Project.Orchestrator do
 
   require Logger
 
+  alias Samgita.ObanClient
   alias Samgita.Projects
   alias Samgita.Workers.AgentTaskWorker
   alias Samgita.Workers.BootstrapWorker
@@ -444,7 +445,7 @@ defmodule Samgita.Project.Orchestrator do
         _ -> "pre_qa"
       end
 
-    Oban.insert(
+    ObanClient.insert(
       QualityGateWorker.new(%{
         project_id: data.project_id,
         prd_id: prd_id,
@@ -477,7 +478,7 @@ defmodule Samgita.Project.Orchestrator do
           "Bootstrap phase: analyzing PRD and generating task backlog"
         )
 
-        case Oban.insert(
+        case ObanClient.insert(
                BootstrapWorker.new(%{
                  project_id: project.id,
                  prd_id: prd_id
@@ -719,7 +720,7 @@ defmodule Samgita.Project.Orchestrator do
 
         case Projects.create_task(project.id, attrs) do
           {:ok, task} ->
-            case Oban.insert(
+            case ObanClient.insert(
                    AgentTaskWorker.new(%{
                      task_id: task.id,
                      project_id: project.id,

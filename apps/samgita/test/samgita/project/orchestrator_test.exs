@@ -13,6 +13,10 @@ defmodule Samgita.Project.OrchestratorTest do
 
     Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
 
+    # Default: delegate ObanClient calls to real Oban (inline test mode).
+    # Individual tests override this stub to inject failures.
+    Mox.stub(Samgita.MockOban, :insert, fn job -> Oban.insert(job) end)
+
     # Allow spawned processes to access the sandbox
     Sandbox.mode(Samgita.Repo, {:shared, self()})
 
@@ -425,6 +429,93 @@ defmodule Samgita.Project.OrchestratorTest do
       {:bootstrap, data} = Orchestrator.get_state(pid)
       # Should have phase_tasks_total = 0 (no BootstrapWorker triggered)
       assert data.phase_tasks_total == 0
+
+      :gen_statem.stop(pid)
+    end
+  end
+
+  describe "Oban.insert failure handling" do
+    test "bootstrap phase: Oban.insert failure sets phase_tasks_total to 0 and broadcasts failure",
+         %{project: project} do
+      {:ok, prd} =
+        %Prd{}
+        |> Prd.changeset(%{
+          title: "Failure Test PRD",
+          content: "# Test\n\n## Features\n\n- Trigger failure",
+          status: :approved,
+          project_id: project.id
+        })
+        |> Repo.insert()
+
+      {:ok, _} = Projects.update_project(project, %{active_prd_id: prd.id})
+
+      :ok = Samgita.Events.subscribe_project(project.id)
+
+      Mox.stub(Samgita.MockOban, :insert, fn _job -> {:error, :simulated_insert_failure} end)
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      {:bootstrap, data} = Orchestrator.get_state(pid)
+      assert data.phase_tasks_total == 0
+
+      assert_receive {:activity_log,
+                      %{stage: :failed, message: "Failed to queue bootstrap task"}},
+                     500
+
+      :gen_statem.stop(pid)
+    end
+
+    test "create_phase_tasks: all Oban.inserts fail yields phase_tasks_total 0 with 0/N message",
+         %{project: project} do
+      {:ok, _} = Projects.update_project(project, %{phase: :discovery})
+
+      :ok = Samgita.Events.subscribe_project(project.id)
+
+      Mox.stub(Samgita.MockOban, :insert, fn _job -> {:error, :simulated_insert_failure} end)
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(200)
+
+      {:discovery, data} = Orchestrator.get_state(pid)
+      # All 3 AgentTaskWorker inserts failed → phase_tasks_total stays 0
+      assert data.phase_tasks_total == 0
+
+      assert_receive {:activity_log, %{stage: :reason, message: "Enqueued 0/3 phase tasks"}},
+                     500
+
+      :gen_statem.stop(pid)
+    end
+
+    test "create_phase_tasks: partial Oban.insert failures yield correct partial count",
+         %{project: project} do
+      {:ok, _} = Projects.update_project(project, %{phase: :discovery})
+
+      :ok = Samgita.Events.subscribe_project(project.id)
+
+      # Fail only the first insert; let subsequent ones succeed via real Oban
+      {:ok, counter} = Agent.start_link(fn -> 0 end)
+      on_exit(fn -> if Process.alive?(counter), do: Agent.stop(counter) end)
+
+      Mox.stub(Samgita.MockOban, :insert, fn job ->
+        n = Agent.get_and_update(counter, fn c -> {c + 1, c + 1} end)
+
+        if n == 1 do
+          {:error, :simulated_first_failure}
+        else
+          Oban.insert(job)
+        end
+      end)
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(300)
+
+      {:discovery, data} = Orchestrator.get_state(pid)
+      # 1 failed, 2 succeeded → phase_tasks_total == 2
+      assert data.phase_tasks_total == 2
+
+      assert_receive {:activity_log, %{stage: :reason, message: "Enqueued 2/3 phase tasks"}},
+                     500
 
       :gen_statem.stop(pid)
     end
