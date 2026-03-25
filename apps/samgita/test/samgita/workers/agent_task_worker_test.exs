@@ -49,7 +49,9 @@ defmodule Samgita.Workers.AgentTaskWorkerTest do
     assert {:error, :task_not_found} = AgentTaskWorker.perform(job)
   end
 
-  test "marks task as running and dispatches to agent", %{project: project} do
+  test "marks task as running, dispatches to agent, and waits for RARV completion", %{
+    project: project
+  } do
     task = create_task(project)
 
     job = %Oban.Job{
@@ -60,16 +62,16 @@ defmodule Samgita.Workers.AgentTaskWorkerTest do
       }
     }
 
-    # The worker marks the task as running and dispatches to the agent.
-    # Completion is handled asynchronously by the Agent Worker's verify state.
+    # The worker marks the task as running, dispatches to the agent, and blocks
+    # until the RARV cycle completes. On success, the task ends up :completed.
     case AgentTaskWorker.perform(job) do
       :ok ->
         updated = Repo.get!(TaskSchema, task.id)
-        assert updated.status == :running
+        assert updated.status == :completed
         assert updated.started_at != nil
 
       {:error, _reason} ->
-        # Agent spawn failure is expected in test env without full supervision tree
+        # Agent spawn/crash failure — task may be running, failed, or dead_letter
         updated = Repo.get!(TaskSchema, task.id)
         assert updated.status in [:running, :failed, :dead_letter]
     end

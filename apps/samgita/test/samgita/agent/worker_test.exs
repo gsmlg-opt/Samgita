@@ -465,6 +465,72 @@ defmodule Samgita.Agent.WorkerTest do
     end
   end
 
+  describe "assign_task with reply_to" do
+    test "sends {:task_completed, task_id, :ok} to caller on success" do
+      opts = [
+        id: "test-worker-#{System.unique_integer([:positive])}",
+        agent_type: "eng-backend",
+        project_id: Ecto.UUID.generate()
+      ]
+
+      {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
+
+      task = %{id: "task-reply-1", type: "implement", payload: %{}}
+      Worker.assign_task(pid, task, self())
+
+      assert_receive {:task_completed, "task-reply-1", :ok}, 10_000
+
+      {:idle, data} = Worker.get_state(pid)
+      assert data.task_count == 1
+      assert data.reply_to == nil
+
+      :gen_statem.stop(pid)
+    end
+
+    test "sends {:task_completed, task_id, {:error, _}} on max retries" do
+      # Stub provider to always fail
+      Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts ->
+        {:error, :internal_error}
+      end)
+
+      opts = [
+        id: "test-worker-#{System.unique_integer([:positive])}",
+        agent_type: "eng-backend",
+        project_id: Ecto.UUID.generate()
+      ]
+
+      {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
+
+      task = %{id: "task-reply-2", type: "implement", payload: %{}}
+      Worker.assign_task(pid, task, self())
+
+      assert_receive {:task_completed, "task-reply-2", {:error, _reason}}, 30_000
+
+      {:idle, data} = Worker.get_state(pid)
+      assert data.reply_to == nil
+
+      :gen_statem.stop(pid)
+    end
+
+    test "does not send message when reply_to is nil" do
+      opts = [
+        id: "test-worker-#{System.unique_integer([:positive])}",
+        agent_type: "eng-backend",
+        project_id: Ecto.UUID.generate()
+      ]
+
+      {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
+
+      task = %{id: "task-no-reply", type: "implement", payload: %{}}
+      Worker.assign_task(pid, task)
+
+      await_idle(pid)
+      refute_received {:task_completed, _, _}
+
+      :gen_statem.stop(pid)
+    end
+  end
+
   describe "child_spec/1" do
     test "returns valid child spec" do
       spec = Worker.child_spec(id: "agent-1", agent_type: "eng-backend", project_id: "proj-1")
