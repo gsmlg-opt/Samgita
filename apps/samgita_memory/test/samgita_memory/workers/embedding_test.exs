@@ -6,12 +6,61 @@ defmodule SamgitaMemory.Workers.EmbeddingTest do
   alias SamgitaMemory.Repo
   alias SamgitaMemory.Workers.Embedding
 
+  # ---------------------------------------------------------------------------
+  # Fake httpc modules for Anthropic provider path testing
+  # ---------------------------------------------------------------------------
+
+  defmodule FakeHttpcSuccess do
+    @embedding Enum.map(1..1536, &(&1 / 1536.0))
+    def request(:post, _, _, _) do
+      body = Jason.encode!(%{"data" => [%{"embedding" => @embedding}]})
+      {:ok, {{:http, 200, ~c"OK"}, [], String.to_charlist(body)}}
+    end
+  end
+
+  defmodule FakeHttpcNon200 do
+    def request(:post, _, _, _) do
+      {:ok, {{:http, 401, ~c"Unauthorized"}, [], ~c"Unauthorized"}}
+    end
+  end
+
+  defmodule FakeHttpcInvalidJson do
+    def request(:post, _, _, _) do
+      {:ok, {{:http, 200, ~c"OK"}, [], ~c"not-valid-json"}}
+    end
+  end
+
+  defmodule FakeHttpcConnectionError do
+    def request(:post, _, _, _) do
+      {:error, {:failed_connect, []}}
+    end
+  end
+
+  # ---------------------------------------------------------------------------
+  # Helper: temporarily switch to Anthropic provider with a fake httpc module
+  # ---------------------------------------------------------------------------
+
+  defp with_anthropic(httpc_mod, fun) do
+    Application.put_env(:samgita_memory, :embedding_provider, :anthropic)
+    Application.put_env(:samgita_memory, :httpc_module, httpc_mod)
+
+    on_exit(fn ->
+      Application.put_env(:samgita_memory, :embedding_provider, :mock)
+      Application.delete_env(:samgita_memory, :httpc_module)
+    end)
+
+    fun.()
+  end
+
+  # ---------------------------------------------------------------------------
+  # perform/1
+  # ---------------------------------------------------------------------------
+
   describe "perform/1" do
     test "generates embedding for a memory" do
       {:ok, memory} = Memories.store("test content for embedding", scope: {:global, nil})
       assert is_nil(memory.embedding)
 
-      # Perform the embedding job directly
       assert :ok = Embedding.perform(%Oban.Job{args: %{"memory_id" => memory.id}})
 
       updated = Repo.get!(Memory, memory.id)
@@ -21,7 +70,6 @@ defmodule SamgitaMemory.Workers.EmbeddingTest do
     test "skips if memory already has embedding" do
       {:ok, memory} = Memories.store("already embedded", scope: {:global, nil})
 
-      # Generate embedding first
       assert :ok = Embedding.perform(%Oban.Job{args: %{"memory_id" => memory.id}})
       updated = Repo.get!(Memory, memory.id)
       embedding1 = updated.embedding
@@ -37,6 +85,15 @@ defmodule SamgitaMemory.Workers.EmbeddingTest do
                Embedding.perform(%Oban.Job{
                  args: %{"memory_id" => Ecto.UUID.generate()}
                })
+    end
+
+    test "returns {:error, reason} when embedding generation fails" do
+      # Uses Anthropic provider + connection-error httpc so generate_embedding
+      # returns {:error, _}, which perform/1 must propagate (triggers Oban retries)
+      with_anthropic(FakeHttpcConnectionError, fn ->
+        {:ok, memory} = Memories.store("embedding will fail", scope: {:global, nil})
+        assert {:error, _reason} = Embedding.perform(%Oban.Job{args: %{"memory_id" => memory.id}})
+      end)
     end
 
     test "produces deterministic embeddings for same content" do
@@ -66,6 +123,10 @@ defmodule SamgitaMemory.Workers.EmbeddingTest do
     end
   end
 
+  # ---------------------------------------------------------------------------
+  # generate_embedding — provider dispatch
+  # ---------------------------------------------------------------------------
+
   describe "generate_embedding (provider dispatch)" do
     test "mock provider returns normalized unit vector" do
       {:ok, memory} = Memories.store("vector normalization test", scope: {:global, nil})
@@ -74,42 +135,69 @@ defmodule SamgitaMemory.Workers.EmbeddingTest do
       updated = Repo.get!(Memory, memory.id)
       vec = Pgvector.to_list(updated.embedding)
 
-      # Should be 1536 dimensions (default)
       assert length(vec) == 1536
 
-      # Should be normalized to unit length (magnitude ~1.0)
+      # Normalized to unit length (magnitude ~1.0)
       magnitude = :math.sqrt(Enum.reduce(vec, 0, fn x, acc -> acc + x * x end))
       assert_in_delta magnitude, 1.0, 0.001
     end
 
-    test "anthropic provider constructs correct httpc charlist request" do
-      # Verify the httpc call uses charlists for headers and body
-      # by testing generate_anthropic_embedding indirectly through a mock httpc response
-      test_pid = self()
+    test "anthropic provider stores embedding on successful 200 response" do
+      with_anthropic(FakeHttpcSuccess, fn ->
+        {:ok, memory} = Memories.store("anthropic success path", scope: {:global, nil})
+        assert :ok = Embedding.perform(%Oban.Job{args: %{"memory_id" => memory.id}})
 
-      # We can't easily mock :httpc, but we can verify the charlist format
-      # by testing the mock provider path and verifying the code structure
-      # The key assertion: headers and body must be charlists for :httpc
-      headers = [
-        {~c"Authorization", String.to_charlist("Bearer test-key")},
-        {~c"Content-Type", ~c"application/json"}
-      ]
+        updated = Repo.get!(Memory, memory.id)
+        refute is_nil(updated.embedding)
+        assert length(Pgvector.to_list(updated.embedding)) == 1536
+      end)
+    end
 
-      body =
-        String.to_charlist(
-          Jason.encode!(%{input: ["test"], model: "voyage-3", input_type: "document"})
-        )
+    test "anthropic provider returns {:error, {:api_error, status}} on non-200 response" do
+      with_anthropic(FakeHttpcNon200, fn ->
+        {:ok, memory} = Memories.store("anthropic 401 path", scope: {:global, nil})
 
-      # Verify charlist types - this is what the code produces
-      assert is_list(hd(headers) |> elem(0))
-      assert is_list(hd(headers) |> elem(1))
-      assert is_list(body)
+        assert {:error, {:api_error, 401}} =
+                 Embedding.perform(%Oban.Job{args: %{"memory_id" => memory.id}})
+      end)
+    end
 
-      # Verify the URL is also a charlist
-      url = ~c"https://api.voyageai.com/v1/embeddings"
-      assert is_list(url)
+    test "anthropic provider returns {:error, :invalid_response} on bad json body" do
+      with_anthropic(FakeHttpcInvalidJson, fn ->
+        {:ok, memory} = Memories.store("anthropic invalid json path", scope: {:global, nil})
+
+        assert {:error, :invalid_response} =
+                 Embedding.perform(%Oban.Job{args: %{"memory_id" => memory.id}})
+      end)
+    end
+
+    test "anthropic provider propagates connection error from httpc" do
+      with_anthropic(FakeHttpcConnectionError, fn ->
+        {:ok, memory} = Memories.store("anthropic connection error path", scope: {:global, nil})
+
+        assert {:error, _reason} =
+                 Embedding.perform(%Oban.Job{args: %{"memory_id" => memory.id}})
+      end)
+    end
+
+    test "unknown provider falls back to mock embedding" do
+      Application.put_env(:samgita_memory, :embedding_provider, :unknown_provider)
+
+      on_exit(fn ->
+        Application.put_env(:samgita_memory, :embedding_provider, :mock)
+      end)
+
+      {:ok, memory} = Memories.store("unknown provider fallback", scope: {:global, nil})
+      assert :ok = Embedding.perform(%Oban.Job{args: %{"memory_id" => memory.id}})
+
+      updated = Repo.get!(Memory, memory.id)
+      refute is_nil(updated.embedding)
     end
   end
+
+  # ---------------------------------------------------------------------------
+  # enqueue/1
+  # ---------------------------------------------------------------------------
 
   describe "enqueue/1" do
     test "enqueues an embedding job" do

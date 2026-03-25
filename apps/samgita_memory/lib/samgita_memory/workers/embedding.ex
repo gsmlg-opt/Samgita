@@ -86,7 +86,9 @@ defmodule SamgitaMemory.Workers.Embedding do
       {~c"Content-Type", ~c"application/json"}
     ]
 
-    case :httpc.request(
+    httpc_module = Application.get_env(:samgita_memory, :httpc_module, :httpc)
+
+    case httpc_module.request(
            :post,
            {~c"https://api.voyageai.com/v1/embeddings", headers, ~c"application/json",
             String.to_charlist(body)},
