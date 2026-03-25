@@ -604,7 +604,12 @@ defmodule Samgita.Agent.WorkerTest do
 
       {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
 
-      task = %{id: "task-retry-#{System.unique_integer([:positive])}", type: "implement", payload: %{}}
+      task = %{
+        id: "task-retry-#{System.unique_integer([:positive])}",
+        type: "implement",
+        payload: %{}
+      }
+
       Worker.assign_task(pid, task, self())
 
       # Should eventually succeed after retrying (max_retries = 3)
