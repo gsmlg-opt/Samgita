@@ -259,7 +259,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
     attrs = %{
       type: task_params["type"],
       payload: payload,
-      priority: String.to_integer(task_params["priority"] || "5"),
+      priority: parse_integer(task_params["priority"], 5),
       status: :pending
     }
 
@@ -362,6 +362,16 @@ defmodule SamgitaWeb.ProjectLive.Index do
   def handle_info(_, socket), do: {:noreply, socket}
 
   # Helper functions
+
+  defp parse_integer(nil, default), do: default
+  defp parse_integer(val, _default) when is_integer(val), do: val
+
+  defp parse_integer(val, default) when is_binary(val) do
+    case Integer.parse(val) do
+      {int, _} -> int
+      :error -> default
+    end
+  end
 
   defp find_prd(_prds, nil), do: nil
 

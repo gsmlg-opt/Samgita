@@ -7,8 +7,10 @@ defmodule SamgitaWeb.PrdController do
   action_fallback SamgitaWeb.FallbackController
 
   def index(conn, %{"project_id" => project_id}) do
-    prds = Prds.list_prds(project_id)
-    render(conn, :index, prds: prds)
+    with {:ok, _project} <- Samgita.Projects.get_project(project_id) do
+      prds = Prds.list_prds(project_id)
+      render(conn, :index, prds: prds)
+    end
   end
 
   def show(conn, %{"id" => id}) do

@@ -58,8 +58,12 @@ defmodule SamgitaWeb.PrdChatLive.Index do
   end
 
   @impl true
-  def handle_event("switch_tab", %{"tab" => tab}, socket) do
+  def handle_event("switch_tab", %{"tab" => tab}, socket) when tab in ["editor", "chat"] do
     {:noreply, assign(socket, active_tab: String.to_existing_atom(tab))}
+  end
+
+  def handle_event("switch_tab", _params, socket) do
+    {:noreply, socket}
   end
 
   @impl true
@@ -115,7 +119,15 @@ defmodule SamgitaWeb.PrdChatLive.Index do
       prd_id = prd_id(socket)
 
       Task.start(fn ->
-        result = generate_prd_from_chat(messages, prd_id)
+        result =
+          try do
+            generate_prd_from_chat(messages, prd_id)
+          rescue
+            e -> {:error, Exception.message(e)}
+          catch
+            :exit, reason -> {:error, inspect(reason)}
+          end
+
         send(pid, {:prd_generated, result})
       end)
 
