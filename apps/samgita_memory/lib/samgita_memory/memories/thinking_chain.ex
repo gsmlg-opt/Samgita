@@ -57,18 +57,25 @@ defmodule SamgitaMemory.Memories.ThinkingChain do
     |> Repo.insert()
   end
 
-  @doc "Add a thought to an active chain"
+  @doc "Add a thought to an active chain. Uses row-level locking to prevent race conditions."
   def add_thought(chain_id, thought) do
-    case Repo.get(__MODULE__, chain_id) do
-      nil ->
-        {:error, :not_found}
+    Repo.transaction(fn ->
+      case from(c in __MODULE__, where: c.id == ^chain_id, lock: "FOR UPDATE")
+           |> Repo.one() do
+        nil ->
+          Repo.rollback(:not_found)
 
-      chain ->
-        thought_entry = Map.merge(thought, %{number: length(chain.thoughts) + 1})
+        chain ->
+          thought_entry = Map.merge(thought, %{number: length(chain.thoughts) + 1})
 
-        chain
-        |> changeset(%{thoughts: chain.thoughts ++ [thought_entry]})
-        |> Repo.update()
+          chain
+          |> changeset(%{thoughts: chain.thoughts ++ [thought_entry]})
+          |> Repo.update!()
+      end
+    end)
+    |> case do
+      {:ok, chain} -> {:ok, chain}
+      {:error, :not_found} -> {:error, :not_found}
     end
   end
 

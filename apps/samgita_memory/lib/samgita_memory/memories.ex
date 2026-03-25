@@ -74,9 +74,14 @@ defmodule SamgitaMemory.Memories do
         {:error, :not_found}
 
       memory ->
-        MemoryTable.invalidate(memory.scope_type, memory.scope_id, memory.id)
-        Repo.delete(memory)
-        :ok
+        case Repo.delete(memory) do
+          {:ok, _} ->
+            MemoryTable.invalidate(memory.scope_type, memory.scope_id, memory.id)
+            :ok
+
+          {:error, _} = error ->
+            error
+        end
     end
   end
 

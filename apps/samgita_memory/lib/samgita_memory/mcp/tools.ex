@@ -20,6 +20,11 @@ defmodule SamgitaMemory.MCP.Tools do
 
   @default_token_budget 4000
 
+  @valid_scope_types ~w(global project agent)
+  @valid_source_types ~w(conversation observation user_edit)
+  @valid_memory_types ~w(episodic semantic procedural)
+  @valid_event_types ~w(requirement_started requirement_completed decision_made blocker_hit blocker_resolved test_passed test_failed revision review_feedback agent_handoff error_encountered rollback)
+
   @doc "List all available MCP tool definitions."
   def definitions do
     [
@@ -109,17 +114,23 @@ defmodule SamgitaMemory.MCP.Tools do
   end
 
   defp dispatch("prd_event", %{"prd_id" => prd_id} = args) do
-    event_attrs = %{
-      type: String.to_existing_atom(args["type"]),
-      summary: args["summary"],
-      requirement_id: args["requirement_id"],
-      detail: args["detail"] || %{},
-      agent_id: args["agent_id"]
-    }
+    case safe_to_atom(args["type"], @valid_event_types) do
+      {:ok, event_type} ->
+        event_attrs = %{
+          type: event_type,
+          summary: args["summary"],
+          requirement_id: args["requirement_id"],
+          detail: args["detail"] || %{},
+          agent_id: args["agent_id"]
+        }
 
-    case SamgitaMemory.append_prd_event(prd_id, event_attrs) do
-      {:ok, event} -> {:ok, %{id: event.id, status: "recorded"}}
-      {:error, changeset} -> {:error, format_errors(changeset)}
+        case SamgitaMemory.append_prd_event(prd_id, event_attrs) do
+          {:ok, event} -> {:ok, %{id: event.id, status: "recorded"}}
+          {:error, changeset} -> {:error, format_errors(changeset)}
+        end
+
+      :error ->
+        {:error, "Invalid event type: #{inspect(args["type"])}"}
     end
   end
 
@@ -395,13 +406,21 @@ defmodule SamgitaMemory.MCP.Tools do
 
   # --- Helpers ---
 
+  defp safe_to_atom(value, allowed) when is_binary(value) do
+    if value in allowed, do: {:ok, String.to_existing_atom(value)}, else: :error
+  end
+
+  defp safe_to_atom(_, _), do: :error
+
   defp build_retrieve_opts(args) do
     opts = []
 
     opts =
       if args["scope_type"] do
-        scope_type = String.to_existing_atom(args["scope_type"])
-        [{:scope, {scope_type, args["scope_id"]}} | opts]
+        case safe_to_atom(args["scope_type"], @valid_scope_types) do
+          {:ok, scope_type} -> [{:scope, {scope_type, args["scope_id"]}} | opts]
+          :error -> opts
+        end
       else
         opts
       end
@@ -417,24 +436,44 @@ defmodule SamgitaMemory.MCP.Tools do
     opts
   end
 
-  defp maybe_add_source(opts, %{"source_type" => st, "source_id" => sid}),
-    do: [{:source, {String.to_existing_atom(st), sid}} | opts]
+  defp maybe_add_source(opts, %{"source_type" => st, "source_id" => sid}) do
+    case safe_to_atom(st, @valid_source_types) do
+      {:ok, atom} -> [{:source, {atom, sid}} | opts]
+      :error -> opts
+    end
+  end
 
-  defp maybe_add_source(opts, %{"source_type" => st}),
-    do: [{:source, {String.to_existing_atom(st), nil}} | opts]
+  defp maybe_add_source(opts, %{"source_type" => st}) do
+    case safe_to_atom(st, @valid_source_types) do
+      {:ok, atom} -> [{:source, {atom, nil}} | opts]
+      :error -> opts
+    end
+  end
 
   defp maybe_add_source(opts, _), do: opts
 
-  defp maybe_add_scope(opts, %{"scope_type" => st, "scope_id" => sid}),
-    do: [{:scope, {String.to_existing_atom(st), sid}} | opts]
+  defp maybe_add_scope(opts, %{"scope_type" => st, "scope_id" => sid}) do
+    case safe_to_atom(st, @valid_scope_types) do
+      {:ok, atom} -> [{:scope, {atom, sid}} | opts]
+      :error -> opts
+    end
+  end
 
-  defp maybe_add_scope(opts, %{"scope_type" => st}),
-    do: [{:scope, {String.to_existing_atom(st), nil}} | opts]
+  defp maybe_add_scope(opts, %{"scope_type" => st}) do
+    case safe_to_atom(st, @valid_scope_types) do
+      {:ok, atom} -> [{:scope, {atom, nil}} | opts]
+      :error -> opts
+    end
+  end
 
   defp maybe_add_scope(opts, _), do: opts
 
-  defp maybe_add_type(opts, %{"memory_type" => t}),
-    do: [{:type, String.to_existing_atom(t)} | opts]
+  defp maybe_add_type(opts, %{"memory_type" => t}) do
+    case safe_to_atom(t, @valid_memory_types) do
+      {:ok, atom} -> [{:type, atom} | opts]
+      :error -> opts
+    end
+  end
 
   defp maybe_add_type(opts, _), do: opts
 
@@ -444,8 +483,12 @@ defmodule SamgitaMemory.MCP.Tools do
   defp maybe_add_metadata(opts, %{"metadata" => m}), do: [{:metadata, m} | opts]
   defp maybe_add_metadata(opts, _), do: opts
 
-  defp maybe_add_scope_type(opts, %{"scope_type" => st}),
-    do: [{:scope_type, String.to_existing_atom(st)} | opts]
+  defp maybe_add_scope_type(opts, %{"scope_type" => st}) do
+    case safe_to_atom(st, @valid_scope_types) do
+      {:ok, atom} -> [{:scope_type, atom} | opts]
+      :error -> opts
+    end
+  end
 
   defp maybe_add_scope_type(opts, _), do: opts
 
