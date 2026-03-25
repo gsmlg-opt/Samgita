@@ -1120,9 +1120,31 @@ defmodule Samgita.Agent.Worker do
   defp create_git_checkpoint_if_changes(data, task, working_path) do
     if Worktree.has_changes?(working_path) do
       task_desc = build_task_description(task)
+      task_id = case task do
+        %{id: id} -> id
+        _ -> "unknown"
+      end
+      phase = case Samgita.Projects.get_project(data.project_id) do
+        {:ok, p} -> p.phase
+        _ -> "unknown"
+      end
+
+      message = """
+      [samgita] #{data.agent_type}: #{task_desc}
+
+      Agent-Type: #{data.agent_type}
+      Phase: #{phase}
+      Task-ID: #{task_id}
+      Samgita-Version: #{Application.spec(:samgita, :vsn)}
+      """
+
+      commit_checkpoint(data, working_path, String.trim(message))
+    end
+  rescue
+    _ ->
+      task_desc = build_task_description(task)
       message = "[samgita] #{data.agent_type}: #{task_desc}"
       commit_checkpoint(data, working_path, message)
-    end
   end
 
   defp build_task_description(task) do
