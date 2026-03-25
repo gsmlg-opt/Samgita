@@ -82,13 +82,14 @@ defmodule SamgitaMemory.Workers.Embedding do
       })
 
     headers = [
-      {"Authorization", "Bearer #{api_key}"},
-      {"Content-Type", "application/json"}
+      {~c"Authorization", String.to_charlist("Bearer #{api_key}")},
+      {~c"Content-Type", ~c"application/json"}
     ]
 
     case :httpc.request(
            :post,
-           {~c"https://api.voyageai.com/v1/embeddings", headers, ~c"application/json", body},
+           {~c"https://api.voyageai.com/v1/embeddings", headers, ~c"application/json",
+            String.to_charlist(body)},
            [],
            []
          ) do

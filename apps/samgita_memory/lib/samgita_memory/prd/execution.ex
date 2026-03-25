@@ -28,6 +28,8 @@ defmodule SamgitaMemory.PRD.Execution do
     timestamps(type: :utc_datetime)
   end
 
+  @type t :: %__MODULE__{}
+
   def changeset(execution, attrs) do
     execution
     |> cast(attrs, [:prd_ref, :prd_hash, :title, :status, :progress])

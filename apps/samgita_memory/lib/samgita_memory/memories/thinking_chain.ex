@@ -26,6 +26,8 @@ defmodule SamgitaMemory.Memories.ThinkingChain do
     timestamps(type: :utc_datetime)
   end
 
+  @type t :: %__MODULE__{}
+
   def changeset(chain, attrs) do
     chain
     |> cast(attrs, [

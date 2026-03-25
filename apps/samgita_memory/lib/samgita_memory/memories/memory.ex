@@ -27,6 +27,8 @@ defmodule SamgitaMemory.Memories.Memory do
     timestamps(type: :utc_datetime)
   end
 
+  @type t :: %__MODULE__{}
+
   def changeset(memory, attrs) do
     memory
     |> cast(attrs, [

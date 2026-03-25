@@ -19,6 +19,8 @@ defmodule SamgitaMemory.PRD.Decision do
     timestamps(type: :utc_datetime)
   end
 
+  @type t :: %__MODULE__{}
+
   def changeset(decision, attrs) do
     decision
     |> cast(attrs, [

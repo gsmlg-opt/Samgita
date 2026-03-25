@@ -1,7 +1,7 @@
 ExUnit.start()
 
 # Exclude e2e tests by default; run with: mix test --include e2e
-ExUnit.configure(exclude: [:e2e])
+ExUnit.configure(exclude: [:e2e, :benchmark])
 
 Ecto.Adapters.SQL.Sandbox.mode(Samgita.Repo, :manual)
 

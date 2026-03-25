@@ -35,6 +35,8 @@ defmodule SamgitaMemory.PRD.Event do
     timestamps(type: :utc_datetime)
   end
 
+  @type t :: %__MODULE__{}
+
   def changeset(event, attrs) do
     event
     |> cast(attrs, [
