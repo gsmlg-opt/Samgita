@@ -56,7 +56,7 @@ defmodule SamgitaWeb.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:phoenix_duskmoon, "9.0.0-rc.3"},
+      {:phoenix_duskmoon, "~> 9.0"},
       {:bandit, "~> 1.5"},
       {:gettext, "~> 1.0"},
       {:jason, "~> 1.2"}
