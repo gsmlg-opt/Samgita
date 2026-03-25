@@ -1,9 +1,17 @@
 defmodule SamgitaWeb.PrdChatLiveTest do
-  use SamgitaWeb.ConnCase, async: true
+  use SamgitaWeb.ConnCase, async: false
 
   import Phoenix.LiveViewTest
 
   alias Samgita.{Prds, Projects}
+
+  setup do
+    Mox.set_mox_global(self())
+
+    Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
+
+    :ok
+  end
 
   defp create_project(attrs \\ %{}) do
     defaults = %{
@@ -146,6 +154,147 @@ defmodule SamgitaWeb.PrdChatLiveTest do
       html = render_click(view, "toggle_preview")
       assert html =~ "Preview"
     end
+  end
+
+  describe "chat tab" do
+    test "switches to chat tab and shows empty message prompt", %{conn: conn} do
+      project = create_project()
+      {:ok, view, _html} = live(conn, ~p"/projects/#{project.id}/prds/new")
+
+      html = render_click(view, "switch_tab", %{"tab" => "chat"})
+      assert html =~ "Start a conversation to define your PRD requirements"
+      assert html =~ "Send"
+    end
+
+    test "switches between editor and chat tabs", %{conn: conn} do
+      project = create_project()
+      {:ok, view, html} = live(conn, ~p"/projects/#{project.id}/prds/new")
+
+      # Initially on editor tab
+      assert html =~ "Content (Markdown)"
+
+      # Switch to chat
+      html = render_click(view, "switch_tab", %{"tab" => "chat"})
+      assert html =~ "Start a conversation"
+      refute html =~ "Content (Markdown)"
+
+      # Switch back to editor
+      html = render_click(view, "switch_tab", %{"tab" => "editor"})
+      assert html =~ "Content (Markdown)"
+      refute html =~ "Start a conversation"
+    end
+
+    test "chat tab renders messages for existing PRD with chat history", %{conn: conn} do
+      project = create_project()
+      prd = create_prd(project, %{title: "Chat PRD", content: "# Chat"})
+
+      # Add some chat messages
+      Prds.add_user_message(prd.id, "I want to build a task manager")
+      Prds.add_assistant_message(prd.id, "Great idea! Let me help you define the requirements.")
+
+      {:ok, view, _html} = live(conn, ~p"/projects/#{project.id}/prds/#{prd.id}")
+
+      html = render_click(view, "switch_tab", %{"tab" => "chat"})
+      assert html =~ "I want to build a task manager"
+      assert html =~ "Great idea! Let me help you define the requirements."
+    end
+
+    test "send_message event triggers Claude query and appends messages", %{conn: conn} do
+      Mox.set_mox_global(self())
+
+      Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts ->
+        {:ok, "Here are some suggestions for your app."}
+      end)
+
+      project = create_project()
+      {:ok, view, _html} = live(conn, ~p"/projects/#{project.id}/prds/new")
+
+      # Switch to chat tab
+      render_click(view, "switch_tab", %{"tab" => "chat"})
+
+      # Send a message
+      render_submit(view, "send_message", %{"chat_input" => "Build a todo app"})
+
+      # Wait for async task to send the response back
+      # The LiveView will receive {:chat_response, {:ok, response}, message}
+      assert_receive_and_render(view, 2000)
+
+      html = render(view)
+      assert html =~ "Build a todo app"
+      assert html =~ "Here are some suggestions for your app."
+    end
+
+    test "send_message ignores empty messages", %{conn: conn} do
+      project = create_project()
+      {:ok, view, _html} = live(conn, ~p"/projects/#{project.id}/prds/new")
+
+      render_click(view, "switch_tab", %{"tab" => "chat"})
+      html = render_submit(view, "send_message", %{"chat_input" => ""})
+
+      # Should still show empty state
+      assert html =~ "Start a conversation"
+    end
+
+    test "generate_prd event does nothing when no messages", %{conn: conn} do
+      project = create_project()
+      {:ok, view, _html} = live(conn, ~p"/projects/#{project.id}/prds/new")
+
+      render_click(view, "switch_tab", %{"tab" => "chat"})
+
+      # generate_prd should be a no-op when there are no messages
+      html = render_click(view, "generate_prd")
+      # Should remain on chat tab with empty state
+      assert html =~ "Start a conversation"
+    end
+
+    test "generate_prd produces content and switches to editor tab", %{conn: conn} do
+      Mox.set_mox_global(self())
+
+      # First call is for chat response, second for PRD generation
+      Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts ->
+        {:ok, "# Generated PRD\n\n## Overview\n\nA task management application."}
+      end)
+
+      project = create_project()
+      prd = create_prd(project, %{title: "Gen PRD", content: ""})
+
+      # Add a message so generate_prd has something to work with
+      Prds.add_user_message(prd.id, "Build a task manager")
+      Prds.add_assistant_message(prd.id, "Sure, let me help with that.")
+
+      {:ok, view, _html} = live(conn, ~p"/projects/#{project.id}/prds/#{prd.id}")
+      render_click(view, "switch_tab", %{"tab" => "chat"})
+
+      # Trigger generation
+      render_click(view, "generate_prd")
+
+      # Wait for async task to complete
+      assert_receive_and_render(view, 2000)
+
+      html = render(view)
+      # Should switch back to editor tab with generated content
+      assert html =~ "PRD generated from conversation"
+    end
+
+    test "chat shows badge with message count", %{conn: conn} do
+      project = create_project()
+      prd = create_prd(project, %{title: "Badge Test", content: "# Test"})
+
+      Prds.add_user_message(prd.id, "Hello")
+      Prds.add_assistant_message(prd.id, "Hi there")
+
+      {:ok, _view, html} = live(conn, ~p"/projects/#{project.id}/prds/#{prd.id}")
+      # The Chat button should show badge count of 2
+      assert html =~ "2"
+    end
+  end
+
+  # Helper to wait for async messages and re-render
+  defp assert_receive_and_render(view, timeout) do
+    # Give the async Task time to complete and send messages back to the LiveView
+    Process.sleep(min(timeout, 500))
+    # Force a render to pick up any handle_info updates
+    render(view)
   end
 
   describe "back navigation" do

@@ -1122,30 +1122,14 @@ defmodule Samgita.Agent.Worker do
 
   defp create_git_checkpoint_if_changes(data, task, working_path) do
     if Worktree.has_changes?(working_path) do
-      task_desc = build_task_description(task)
-
-      task_id =
-        case task do
-          %{id: id} -> id
-          _ -> "unknown"
-        end
-
       phase =
         case Samgita.Projects.get_project(data.project_id) do
           {:ok, p} -> p.phase
           _ -> "unknown"
         end
 
-      message = """
-      [samgita] #{data.agent_type}: #{task_desc}
-
-      Agent-Type: #{data.agent_type}
-      Phase: #{phase}
-      Task-ID: #{task_id}
-      Samgita-Version: #{Application.spec(:samgita, :vsn)}
-      """
-
-      commit_checkpoint(data, working_path, String.trim(message))
+      message = build_commit_message(data.agent_type, task, phase)
+      commit_checkpoint(data, working_path, message)
     end
   rescue
     _ ->
@@ -1154,12 +1138,35 @@ defmodule Samgita.Agent.Worker do
       commit_checkpoint(data, working_path, message)
   end
 
-  defp build_task_description(task) do
+  @doc false
+  def build_task_description(task) do
     case task do
       %{type: type, payload: %{"description" => desc}} -> "#{type}: #{desc}"
       %{type: type} -> type
       _ -> "task"
     end
+  end
+
+  @doc false
+  def build_commit_message(agent_type, task, phase) do
+    task_desc = build_task_description(task)
+
+    task_id =
+      case task do
+        %{id: id} -> id
+        _ -> "unknown"
+      end
+
+    message = """
+    [samgita] #{agent_type}: #{task_desc}
+
+    Agent-Type: #{agent_type}
+    Phase: #{phase}
+    Task-ID: #{task_id}
+    Samgita-Version: #{Application.spec(:samgita, :vsn)}
+    """
+
+    String.trim(message)
   end
 
   defp commit_checkpoint(data, working_path, message) do

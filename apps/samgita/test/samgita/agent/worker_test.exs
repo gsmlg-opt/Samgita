@@ -384,6 +384,87 @@ defmodule Samgita.Agent.WorkerTest do
     end
   end
 
+  describe "build_commit_message/3" do
+    test "includes agent type, task description, and trailers" do
+      task = %{id: "task-123", type: "implement", payload: %{"description" => "add auth module"}}
+      message = Worker.build_commit_message("eng-backend", task, :development)
+
+      # Subject line
+      assert message =~ "[samgita] eng-backend: implement: add auth module"
+
+      # Git trailers
+      assert message =~ "Agent-Type: eng-backend"
+      assert message =~ "Phase: development"
+      assert message =~ "Task-ID: task-123"
+      assert message =~ "Samgita-Version:"
+    end
+
+    test "uses task type when no description in payload" do
+      task = %{id: "task-456", type: "test", payload: %{}}
+      message = Worker.build_commit_message("eng-qa", task, :qa)
+
+      assert message =~ "[samgita] eng-qa: test"
+      assert message =~ "Task-ID: task-456"
+      assert message =~ "Phase: qa"
+    end
+
+    test "uses 'task' when task has no type" do
+      task = %{id: "task-789"}
+      message = Worker.build_commit_message("ops-devops", task, :infrastructure)
+
+      assert message =~ "[samgita] ops-devops: task"
+      assert message =~ "Task-ID: task-789"
+    end
+
+    test "uses 'unknown' task id when task has no id" do
+      task = %{type: "review"}
+      message = Worker.build_commit_message("review-code", task, :qa)
+
+      assert message =~ "Task-ID: unknown"
+    end
+
+    test "message has correct multi-line format with blank line before trailers" do
+      task = %{id: "t1", type: "implement", payload: %{"description" => "feature X"}}
+      message = Worker.build_commit_message("eng-frontend", task, :development)
+
+      lines = String.split(message, "\n")
+
+      # First line is the subject
+      assert hd(lines) == "[samgita] eng-frontend: implement: feature X"
+
+      # Second line is blank (separating subject from trailers)
+      assert Enum.at(lines, 1) == ""
+
+      # Remaining lines are trailers
+      trailer_lines = Enum.drop(lines, 2)
+      assert Enum.any?(trailer_lines, &String.starts_with?(&1, "Agent-Type:"))
+      assert Enum.any?(trailer_lines, &String.starts_with?(&1, "Phase:"))
+      assert Enum.any?(trailer_lines, &String.starts_with?(&1, "Task-ID:"))
+      assert Enum.any?(trailer_lines, &String.starts_with?(&1, "Samgita-Version:"))
+    end
+  end
+
+  describe "build_task_description/1" do
+    test "returns type and description when both present" do
+      task = %{type: "implement", payload: %{"description" => "build login"}}
+      assert Worker.build_task_description(task) == "implement: build login"
+    end
+
+    test "returns type when no description" do
+      task = %{type: "test", payload: %{}}
+      assert Worker.build_task_description(task) == "test"
+    end
+
+    test "returns type when payload missing" do
+      task = %{type: "review"}
+      assert Worker.build_task_description(task) == "review"
+    end
+
+    test "returns 'task' for empty map" do
+      assert Worker.build_task_description(%{}) == "task"
+    end
+  end
+
   describe "child_spec/1" do
     test "returns valid child spec" do
       spec = Worker.child_spec(id: "agent-1", agent_type: "eng-backend", project_id: "proj-1")
