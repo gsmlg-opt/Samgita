@@ -26,6 +26,7 @@ defmodule Samgita.Agent.Worker do
     :project_id,
     :current_task,
     :act_result,
+    :reply_to,
     task_count: 0,
     token_count: 0,
     retry_count: 0,
@@ -50,8 +51,8 @@ defmodule Samgita.Agent.Worker do
     )
   end
 
-  def assign_task(pid, task) do
-    :gen_statem.cast(pid, {:assign_task, task})
+  def assign_task(pid, task, reply_to \\ nil) do
+    :gen_statem.cast(pid, {:assign_task, task, reply_to})
   end
 
   def get_state(pid) do
@@ -91,10 +92,10 @@ defmodule Samgita.Agent.Worker do
     :keep_state_and_data
   end
 
-  def idle(:cast, {:assign_task, task}, data) do
+  def idle(:cast, {:assign_task, task, reply_to}, data) do
     case CircuitBreaker.allow?(data.agent_type) do
       :ok ->
-        {:next_state, :reason, %{data | current_task: task, retry_count: 0}}
+        {:next_state, :reason, %{data | current_task: task, retry_count: 0, reply_to: reply_to}}
 
       {:error, :circuit_open} ->
         Logger.warning("[#{data.id}] Circuit open for #{data.agent_type}, rejecting task")
@@ -105,6 +106,7 @@ defmodule Samgita.Agent.Worker do
           "Circuit breaker open for #{data.agent_type}, task rejected"
         )
 
+        notify_caller(reply_to, data.current_task, {:error, :circuit_open})
         :keep_state_and_data
     end
   end
@@ -311,9 +313,12 @@ defmodule Samgita.Agent.Worker do
           "Max retries reached, marking failed: #{inspect(reason)}"
         )
 
+        notify_caller(data.reply_to, data.current_task, {:error, reason})
+
         data = %{
           data
           | current_task: nil,
+            reply_to: nil,
             learnings: ["Max retries: #{inspect(reason)}" | data.learnings]
         }
 
@@ -345,11 +350,13 @@ defmodule Samgita.Agent.Worker do
         handle_task_completion(data)
         complete_and_notify(data)
         maybe_git_checkpoint(data)
+        notify_caller(data.reply_to, data.current_task, :ok)
 
         data = %{
           data
           | current_task: nil,
             act_result: nil,
+            reply_to: nil,
             task_count: data.task_count + 1,
             retry_count: 0
         }
@@ -364,11 +371,13 @@ defmodule Samgita.Agent.Worker do
         handle_task_completion(data)
         complete_and_notify(data)
         maybe_git_checkpoint(data)
+        notify_caller(data.reply_to, data.current_task, :ok)
 
         data = %{
           data
           | current_task: nil,
             act_result: nil,
+            reply_to: nil,
             task_count: data.task_count + 1,
             retry_count: 0
         }
@@ -382,6 +391,24 @@ defmodule Samgita.Agent.Worker do
   end
 
   ## Internal
+
+  defp notify_caller(nil, _task, _result), do: :ok
+
+  defp notify_caller(pid, task, result) when is_pid(pid) do
+    task_id =
+      case task do
+        %{id: id} -> id
+        _ -> nil
+      end
+
+    send(pid, {:task_completed, task_id, result})
+  rescue
+    _ -> :ok
+  catch
+    :exit, _ -> :ok
+  end
+
+  defp notify_caller(_other, _task, _result), do: :ok
 
   defp broadcast_activity(data, stage, message, opts \\ []) do
     entry = Samgita.Events.build_log_entry(:agent, data.id, stage, message, opts)

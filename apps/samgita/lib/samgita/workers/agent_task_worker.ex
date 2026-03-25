@@ -171,9 +171,31 @@ defmodule Samgita.Workers.AgentTaskWorker do
     _ -> :ok
   end
 
+  # 10-minute timeout for Claude CLI execution within the RARV cycle
+  @task_timeout_ms 600_000
+
   defp execute_task(agent_pid, task) do
-    Worker.assign_task(agent_pid, task)
-    :ok
+    ref = Process.monitor(agent_pid)
+    task_id = task.id
+
+    Worker.assign_task(agent_pid, task, self())
+
+    receive do
+      {:task_completed, ^task_id, :ok} ->
+        Process.demonitor(ref, [:flush])
+        :ok
+
+      {:task_completed, ^task_id, {:error, reason}} ->
+        Process.demonitor(ref, [:flush])
+        {:error, reason}
+
+      {:DOWN, ^ref, :process, ^agent_pid, reason} ->
+        {:error, {:agent_crashed, reason}}
+    after
+      @task_timeout_ms ->
+        Process.demonitor(ref, [:flush])
+        {:error, :timeout}
+    end
   end
 
   defp handle_failure(task_id, reason) do
