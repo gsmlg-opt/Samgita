@@ -477,15 +477,24 @@ defmodule Samgita.Project.Orchestrator do
           "Bootstrap phase: analyzing PRD and generating task backlog"
         )
 
-        Oban.insert(
-          BootstrapWorker.new(%{
-            project_id: project.id,
-            prd_id: prd_id
-          })
-        )
+        case Oban.insert(
+               BootstrapWorker.new(%{
+                 project_id: project.id,
+                 prd_id: prd_id
+               })
+             ) do
+          {:ok, _job} ->
+            # BootstrapWorker will call set_phase_task_count with the actual count
+            1
 
-        # BootstrapWorker will call set_phase_task_count with the actual count
-        1
+          {:error, reason} ->
+            Logger.error(
+              "[Orchestrator] #{data.project_id}: failed to queue BootstrapWorker: #{inspect(reason)}"
+            )
+
+            broadcast_activity(data, :failed, "Failed to queue bootstrap task")
+            0
+        end
     end
   end
 
@@ -694,41 +703,51 @@ defmodule Samgita.Project.Orchestrator do
         _ -> nil
       end
 
-    Enum.each(task_defs, fn task_def ->
-      attrs = %{
-        type: task_def.type,
-        payload: %{
-          "description" => task_def.description,
-          "agent_type" => task_def.agent_type,
-          "prd_id" => prd_id,
-          "phase" => to_string(phase)
-        },
-        priority: task_def.priority,
-        status: :pending
-      }
+    enqueued =
+      Enum.count(task_defs, fn task_def ->
+        attrs = %{
+          type: task_def.type,
+          payload: %{
+            "description" => task_def.description,
+            "agent_type" => task_def.agent_type,
+            "prd_id" => prd_id,
+            "phase" => to_string(phase)
+          },
+          priority: task_def.priority,
+          status: :pending
+        }
 
-      case Projects.create_task(project.id, attrs) do
-        {:ok, task} ->
-          Oban.insert(
-            AgentTaskWorker.new(%{
-              task_id: task.id,
-              project_id: project.id,
-              agent_type: task_def.agent_type
-            })
-          )
+        case Projects.create_task(project.id, attrs) do
+          {:ok, task} ->
+            case Oban.insert(
+                   AgentTaskWorker.new(%{
+                     task_id: task.id,
+                     project_id: project.id,
+                     agent_type: task_def.agent_type
+                   })
+                 ) do
+              {:ok, _job} ->
+                true
 
-        {:error, reason} ->
-          Logger.warning("[Orchestrator] Failed to create phase task: #{inspect(reason)}")
-      end
-    end)
+              {:error, reason} ->
+                Logger.error("[Orchestrator] Failed to queue task #{task.id}: #{inspect(reason)}")
+
+                false
+            end
+
+          {:error, reason} ->
+            Logger.warning("[Orchestrator] Failed to create phase task: #{inspect(reason)}")
+            false
+        end
+      end)
 
     broadcast_activity(
       data,
       :reason,
-      "Enqueued #{length(task_defs)} phase tasks"
+      "Enqueued #{enqueued}/#{length(task_defs)} phase tasks"
     )
 
-    length(task_defs)
+    enqueued
   end
 
   defp refresh_project(data) do
