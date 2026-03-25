@@ -1,6 +1,8 @@
 defmodule SamgitaWeb.SkillsLive.Index do
   use SamgitaWeb, :live_view
 
+  alias Samgita.Agent.Types
+
   @impl true
   def mount(_params, _session, socket) do
     {:ok,
@@ -16,7 +18,7 @@ defmodule SamgitaWeb.SkillsLive.Index do
   end
 
   defp list_skills do
-    Samgita.Agent.Types.all()
+    Types.all()
     |> Enum.map(fn {id, description, _model} ->
       category = agent_category(id)
 

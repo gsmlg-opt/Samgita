@@ -17,6 +17,7 @@ defmodule Samgita.Agent.Worker do
   alias Samgita.Domain.Artifact
   alias Samgita.Git.Worktree
   alias Samgita.Project.Memory
+  alias Samgita.Project.Orchestrator
   alias Samgita.Quality.OutputGuardrails
 
   defstruct [
@@ -970,7 +971,7 @@ defmodule Samgita.Agent.Worker do
   defp notify_orchestrator(project_id, task_id) do
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
       [{pid, _}] ->
-        Samgita.Project.Orchestrator.notify_task_completed(pid, task_id)
+        Orchestrator.notify_task_completed(pid, task_id)
 
       [] ->
         Logger.warning(

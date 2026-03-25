@@ -17,9 +17,11 @@ defmodule Mix.Tasks.Samgita.Mcp do
 
   use Mix.Task
 
+  alias SamgitaMemory.MCP.Server
+
   @impl Mix.Task
   def run(_args) do
     Mix.Task.run("app.start")
-    SamgitaMemory.MCP.Server.run()
+    Server.run()
   end
 end

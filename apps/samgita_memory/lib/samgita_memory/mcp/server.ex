@@ -46,19 +46,20 @@ defmodule SamgitaMemory.MCP.Server do
         :ok
 
       line ->
-        line = String.trim(line)
-
-        if line != "" do
-          case handle_message(line) do
-            nil ->
-              :ok
-
-            response ->
-              IO.write(:stdio, response <> "\n")
-          end
-        end
+        line
+        |> String.trim()
+        |> process_line()
 
         loop()
+    end
+  end
+
+  defp process_line(""), do: :ok
+
+  defp process_line(line) do
+    case handle_message(line) do
+      nil -> :ok
+      response -> IO.write(:stdio, response <> "\n")
     end
   end
 

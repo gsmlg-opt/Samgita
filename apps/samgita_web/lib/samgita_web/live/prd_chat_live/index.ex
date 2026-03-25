@@ -197,12 +197,10 @@ defmodule SamgitaWeb.PrdChatLive.Index do
 
   defp build_prompt(history, new_message) do
     history_text =
-      history
-      |> Enum.map(fn msg ->
+      Enum.map_join(history, "\n\n", fn msg ->
         role = if msg.role in [:user, "user"], do: "User", else: "Assistant"
         "#{role}: #{msg.content}"
       end)
-      |> Enum.join("\n\n")
 
     if history_text == "" do
       new_message
@@ -213,12 +211,10 @@ defmodule SamgitaWeb.PrdChatLive.Index do
 
   defp generate_prd_from_chat(messages, prd_id) do
     conversation =
-      messages
-      |> Enum.map(fn msg ->
+      Enum.map_join(messages, "\n\n", fn msg ->
         role = if msg.role in [:user, "user"], do: "User", else: "Assistant"
         "#{role}: #{msg.content}"
       end)
-      |> Enum.join("\n\n")
 
     prompt = """
     Based on the following conversation, generate a well-structured Product Requirements Document (PRD) in Markdown format.

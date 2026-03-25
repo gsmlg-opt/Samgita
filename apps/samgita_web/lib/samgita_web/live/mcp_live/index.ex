@@ -18,22 +18,24 @@ defmodule SamgitaWeb.McpLive.Index do
   defp list_mcp_servers do
     ["~/.claude/mcp.json", "~/.claude.json"]
     |> Enum.map(&Path.expand/1)
-    |> Enum.find_value([], fn path ->
-      with {:ok, content} <- File.read(path),
-           {:ok, decoded} <- Jason.decode(content),
-           servers when is_map(servers) <- Map.get(decoded, "mcpServers") do
-        Enum.map(servers, fn {name, config} ->
-          %{
-            name: name,
-            description: Map.get(config, "description", "MCP server: #{name}"),
-            status: :connected,
-            capabilities: Map.get(config, "capabilities", ["tools"])
-          }
-        end)
-      else
-        _ -> nil
-      end
-    end)
+    |> Enum.find_value([], &parse_mcp_config/1)
+  end
+
+  defp parse_mcp_config(path) do
+    with {:ok, content} <- File.read(path),
+         {:ok, decoded} <- Jason.decode(content),
+         servers when is_map(servers) <- Map.get(decoded, "mcpServers") do
+      Enum.map(servers, fn {name, config} ->
+        %{
+          name: name,
+          description: Map.get(config, "description", "MCP server: #{name}"),
+          status: :connected,
+          capabilities: Map.get(config, "capabilities", ["tools"])
+        }
+      end)
+    else
+      _ -> nil
+    end
   end
 
   def status_badge_color(:connected), do: "success"
