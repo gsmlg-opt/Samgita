@@ -116,11 +116,23 @@ defmodule SamgitaMemory.Memories do
 
   # Private helpers
 
+  @access_confidence_floor 0.8
+
   defp touch_access(memory) do
     now = DateTime.utc_now() |> DateTime.truncate(:second)
 
+    # Boost confidence to max(current, 0.8) on access — counteracts decay for active memories
     from(m in Memory, where: m.id == ^memory.id)
-    |> Repo.update_all(set: [accessed_at: now], inc: [access_count: 1])
+    |> Repo.update_all(
+      set: [accessed_at: now, updated_at: now],
+      inc: [access_count: 1]
+    )
+
+    # GREATEST requires raw SQL; Ecto update_all doesn't support it
+    Repo.query!(
+      "UPDATE sm_memories SET confidence = GREATEST(confidence, $1) WHERE id::text = $2",
+      [@access_confidence_floor, memory.id]
+    )
   end
 
   defp maybe_put(map, _key, nil), do: map
