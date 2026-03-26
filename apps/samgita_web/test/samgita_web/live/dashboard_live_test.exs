@@ -139,4 +139,37 @@ defmodule SamgitaWeb.DashboardLiveTest do
     assert html =~ "completed"
     assert html =~ "failed"
   end
+
+  test "activity log streams real-time events", %{conn: conn} do
+    {:ok, _project} =
+      Projects.create_project(%{name: "Log Test", git_url: unique_git_url("log")})
+
+    {:ok, view, _html} = live(conn, ~p"/")
+
+    # Send an activity_log event
+    entry = %{
+      source: "orchestrator",
+      stage: :spawned,
+      message: "Agent test-agent started"
+    }
+
+    send(view.pid, {:activity_log, entry})
+
+    html = render(view)
+    assert html =~ "Activity Log"
+    assert html =~ "Agent test-agent started"
+  end
+
+  test "activity log handles phase_changed events", %{conn: conn} do
+    {:ok, project} =
+      Projects.create_project(%{name: "Phase Log", git_url: unique_git_url("plog")})
+
+    {:ok, view, _html} = live(conn, ~p"/")
+
+    send(view.pid, {:phase_changed, project.id, :development})
+
+    # Should re-render without error
+    html = render(view)
+    assert html =~ "Phase Log"
+  end
 end

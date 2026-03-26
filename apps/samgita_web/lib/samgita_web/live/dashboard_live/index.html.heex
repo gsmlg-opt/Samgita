@@ -128,4 +128,29 @@
       </.dm_card>
     </.link>
   </div>
+
+  <%!-- Real-time Activity Log --%>
+  <div :if={@activity_log != []} class="mt-8">
+    <h2 class="text-2xl font-bold text-on-surface mb-4">Activity Log</h2>
+    <.dm_card body_class="" variant="bordered" class="p-4 max-h-96 overflow-y-auto">
+      <div class="space-y-2">
+        <div
+          :for={entry <- @activity_log}
+          class="flex items-start gap-3 text-sm py-1 border-b border-outline-variant last:border-0"
+        >
+          <span class={[
+            "inline-block w-2 h-2 rounded-full mt-1.5 shrink-0",
+            activity_dot_color(entry)
+          ]}>
+          </span>
+          <div class="min-w-0 flex-1">
+            <span class="text-on-surface-variant text-xs">
+              {Map.get(entry, :source, "system")}
+            </span>
+            <span class="text-on-surface ml-2">{Map.get(entry, :message, "")}</span>
+          </div>
+        </div>
+      </div>
+    </.dm_card>
+  </div>
 </div>

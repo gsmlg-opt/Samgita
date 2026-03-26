@@ -19,6 +19,7 @@ defmodule Samgita.Project.Orchestrator do
 
   @stagnation_check_interval_ms 300_000
   @stagnation_threshold 5
+  @quality_gate_timeout_ms 600_000
 
   defstruct [
     :project_id,
@@ -32,7 +33,8 @@ defmodule Samgita.Project.Orchestrator do
     awaiting_quality_gates: false,
     last_progress_task_count: 0,
     stagnation_checks: 0,
-    paused: false
+    paused: false,
+    agent_monitors: %{}
   ]
 
   @phases [
@@ -165,13 +167,13 @@ defmodule Samgita.Project.Orchestrator do
         "Spawning agents: #{Enum.join(agent_types, ", ")}"
       )
 
-      agent_statuses =
-        Map.new(agent_types, fn agent_type ->
-          status = spawn_phase_agent(data.project_id, agent_type)
-          {agent_type, status}
+      {agent_statuses, monitors} =
+        Enum.reduce(agent_types, {%{}, data.agent_monitors}, fn agent_type, {statuses, mons} ->
+          {status, new_mons} = spawn_phase_agent(data.project_id, agent_type, mons)
+          {Map.put(statuses, agent_type, status), new_mons}
         end)
 
-      data = %{data | agents: agent_statuses}
+      data = %{data | agents: agent_statuses, agent_monitors: monitors}
 
       # Enqueue phase-specific tasks (rescue to prevent orchestrator crash)
       task_count =
@@ -341,6 +343,54 @@ defmodule Samgita.Project.Orchestrator do
       end
     end
 
+    # Agent crash recovery — respawn monitored agents on DOWN
+    def unquote(phase)(:info, {:DOWN, ref, :process, _pid, reason}, data) do
+      case Map.pop(data.agent_monitors, ref) do
+        {nil, _} ->
+          :keep_state_and_data
+
+        {{agent_id, agent_type}, remaining_monitors} ->
+          Logger.warning(
+            "[Orchestrator] #{data.project_id}: agent #{agent_id} crashed: #{inspect(reason)}, respawning"
+          )
+
+          broadcast_activity(
+            data,
+            :failed,
+            "Agent #{agent_id} crashed (#{inspect(reason)}), respawning"
+          )
+
+          data = %{data | agent_monitors: remaining_monitors}
+
+          {status, new_monitors} =
+            spawn_phase_agent(data.project_id, agent_type, data.agent_monitors)
+
+          agents = Map.put(data.agents, agent_type, status)
+          {:keep_state, %{data | agents: agents, agent_monitors: new_monitors}}
+      end
+    end
+
+    # Quality gate timeout — re-trigger if waiting too long
+    def unquote(phase)(
+          {:timeout, :quality_gate_timeout},
+          :check,
+          %{awaiting_quality_gates: true} = data
+        ) do
+      phase = unquote(phase)
+
+      Logger.warning(
+        "[Orchestrator] #{data.project_id}: quality gate timeout in #{phase}, re-triggering"
+      )
+
+      broadcast_activity(data, :failed, "Quality gate timed out, re-triggering")
+      trigger_quality_gates(phase, data)
+      {:keep_state, data, [{{:timeout, :quality_gate_timeout}, @quality_gate_timeout_ms, :check}]}
+    end
+
+    def unquote(phase)({:timeout, :quality_gate_timeout}, :check, data) do
+      {:keep_state, %{data | awaiting_quality_gates: false}}
+    end
+
     # Catch-all handlers — prevent gen_statem crash on unexpected messages
     def unquote(phase)(:info, _msg, _data), do: :keep_state_and_data
     def unquote(phase)(:cast, _msg, _data), do: :keep_state_and_data
@@ -389,19 +439,20 @@ defmodule Samgita.Project.Orchestrator do
   defp agents_for_phase(:perpetual),
     do: ["eng-qa", "eng-perf", "ops-monitor", "review-code"]
 
-  defp spawn_phase_agent(project_id, agent_type) do
+  defp spawn_phase_agent(project_id, agent_type, monitors) do
     agent_id = "#{project_id}-#{agent_type}"
 
     case Horde.Registry.lookup(Samgita.AgentRegistry, agent_id) do
       [{_pid, _}] ->
-        :running
+        {:running, monitors}
 
       [] ->
         spec =
           {Samgita.Agent.Worker, id: agent_id, agent_type: agent_type, project_id: project_id}
 
         case Horde.DynamicSupervisor.start_child(Samgita.AgentSupervisor, spec) do
-          {:ok, _pid} ->
+          {:ok, pid} ->
+            ref = Process.monitor(pid)
             Samgita.Events.agent_spawned(project_id, agent_id, agent_type)
 
             entry =
@@ -413,10 +464,11 @@ defmodule Samgita.Project.Orchestrator do
               )
 
             Samgita.Events.activity_log(project_id, entry)
-            :running
+            {:running, Map.put(monitors, ref, {agent_id, agent_type})}
 
-          {:error, {:already_started, _pid}} ->
-            :running
+          {:error, {:already_started, pid}} ->
+            ref = Process.monitor(pid)
+            {:running, Map.put(monitors, ref, {agent_id, agent_type})}
 
           {:error, reason} ->
             Logger.warning("Failed to spawn agent #{agent_id}: #{inspect(reason)}")
@@ -430,7 +482,7 @@ defmodule Samgita.Project.Orchestrator do
               )
 
             Samgita.Events.activity_log(project_id, entry)
-            :failed
+            {:failed, monitors}
         end
     end
   end
@@ -850,7 +902,9 @@ defmodule Samgita.Project.Orchestrator do
       Logger.info("[Orchestrator] #{data.project_id}: triggering quality gates for #{phase}")
       broadcast_activity(data, :reason, "Phase tasks complete, running quality gates")
       trigger_quality_gates(phase, data)
-      {:keep_state, %{data | awaiting_quality_gates: true}}
+
+      {:keep_state, %{data | awaiting_quality_gates: true},
+       [{{:timeout, :quality_gate_timeout}, @quality_gate_timeout_ms, :check}]}
     else
       advance_to_next_phase(phase, data)
     end
