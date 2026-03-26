@@ -90,12 +90,15 @@ defmodule Samgita.Projects do
              phase: :bootstrap,
              active_prd_id: prd_id
            }) do
-      Horde.DynamicSupervisor.start_child(
-        Samgita.AgentSupervisor,
-        {Samgita.Project.Supervisor, project_id: project.id}
-      )
-
-      {:ok, project}
+      case Horde.DynamicSupervisor.start_child(
+             Samgita.AgentSupervisor,
+             {Samgita.Project.Supervisor, project_id: project.id}
+           ) do
+        {:ok, _pid} -> {:ok, project}
+        {:ok, _pid, _info} -> {:ok, project}
+        {:error, {:already_started, _pid}} -> {:ok, project}
+        {:error, reason} -> {:error, {:supervisor_start_failed, reason}}
+      end
     end
   end
 
@@ -115,10 +118,10 @@ defmodule Samgita.Projects do
       prd_id = project.active_prd_id
       terminate_supervisor(id)
 
-      {:ok, project} =
-        update_project(project, %{status: :pending, phase: :bootstrap, active_prd_id: nil})
-
-      start_project(project.id, prd_id)
+      with {:ok, project} <-
+             update_project(project, %{status: :pending, phase: :bootstrap, active_prd_id: nil}) do
+        start_project(project.id, prd_id)
+      end
     end
   end
 

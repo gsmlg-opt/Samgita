@@ -1033,14 +1033,13 @@ defmodule Samgita.Agent.Worker do
       case Samgita.Projects.complete_task(task_id) do
         {:ok, completed_task} ->
           Samgita.Events.task_completed(completed_task)
+          notify_orchestrator(data.project_id, task_id)
 
         {:error, reason} ->
           Logger.warning(
             "[#{data.id}] Failed to mark task #{task_id} complete: #{inspect(reason)}"
           )
       end
-
-      notify_orchestrator(data.project_id, task_id)
     end
   rescue
     e -> Logger.warning("[#{data.id}] complete_and_notify failed: #{inspect(e)}")
