@@ -127,7 +127,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
       results = [
         %{gate: 3, name: "Blind Review", verdict: :pass, findings: [], duration_ms: 100},
         %{
-          gate: 4,
+          gate: 10,
           name: "Completion Council",
           verdict: :fail,
           findings: [%{severity: :medium, message: "issue"}],
@@ -139,7 +139,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
       assert String.contains?(summary, "Gate 3")
       assert String.contains?(summary, "Blind Review")
       assert String.contains?(summary, "pass")
-      assert String.contains?(summary, "Gate 4")
+      assert String.contains?(summary, "Gate 10")
       assert String.contains?(summary, "fail")
     end
 

@@ -1,6 +1,6 @@
 defmodule Samgita.Quality.Gate do
   @moduledoc """
-  Quality gate definitions for the 9-gate system.
+  Quality gate definitions for the 9-gate system plus Completion Council.
 
   Every code change passes through quality gates before acceptance:
 
@@ -13,9 +13,10 @@ defmodule Samgita.Quality.Gate do
   7. Test Coverage — Unit 100% pass, >80% coverage
   8. Mock Detector — Flags tests that never import source
   9. Test Mutation Detector — Detects assertion gaming
+  10. Completion Council — Multi-agent vote on PRD completeness (pre-phase)
   """
 
-  @type gate_id :: 1..9
+  @type gate_id :: 1..10
   @type severity :: :critical | :high | :medium | :low | :cosmetic
   @type verdict :: :pass | :fail | :warn | :skip
   @type finding :: %{
@@ -43,7 +44,8 @@ defmodule Samgita.Quality.Gate do
     6 => %{name: "Severity Blocking", blocking: true},
     7 => %{name: "Test Coverage", blocking: true},
     8 => %{name: "Mock Detector", blocking: false},
-    9 => %{name: "Test Mutation Detector", blocking: false}
+    9 => %{name: "Test Mutation Detector", blocking: false},
+    10 => %{name: "Completion Council", blocking: true}
   }
 
   @doc "Returns all gate definitions."

@@ -4,12 +4,12 @@ defmodule Samgita.Quality.GateTest do
   alias Samgita.Quality.Gate
 
   describe "gate definitions" do
-    test "all 9 gates are defined" do
-      assert map_size(Gate.all()) == 9
+    test "all 10 gates are defined" do
+      assert map_size(Gate.all()) == 10
     end
 
     test "each gate has a name" do
-      for id <- 1..9 do
+      for id <- 1..10 do
         assert is_binary(Gate.name(id))
         refute Gate.name(id) =~ "Unknown"
       end
@@ -64,7 +64,7 @@ defmodule Samgita.Quality.GateTest do
 
     test "returns nil for invalid IDs" do
       assert Gate.get(0) == nil
-      assert Gate.get(10) == nil
+      assert Gate.get(11) == nil
       assert Gate.get(999) == nil
     end
 
@@ -84,11 +84,12 @@ defmodule Samgita.Quality.GateTest do
       assert Gate.name(7) == "Test Coverage"
       assert Gate.name(8) == "Mock Detector"
       assert Gate.name(9) == "Test Mutation Detector"
+      assert Gate.name(10) == "Completion Council"
     end
 
     test "returns default name for invalid IDs" do
       assert Gate.name(0) == "Unknown Gate 0"
-      assert Gate.name(10) == "Unknown Gate 10"
+      assert Gate.name(11) == "Unknown Gate 11"
     end
 
     test "handles nil input" do

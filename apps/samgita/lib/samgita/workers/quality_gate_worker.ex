@@ -202,7 +202,7 @@ defmodule Samgita.Workers.QualityGateWorker do
               vote.remaining_issues
               |> Enum.map(fn issue ->
                 %{
-                  gate: 4,
+                  gate: 10,
                   severity: :medium,
                   message: "[#{vote.role}] #{issue}",
                   file: nil,
@@ -222,7 +222,7 @@ defmodule Samgita.Workers.QualityGateWorker do
       end
 
     %{
-      gate: 4,
+      gate: 10,
       name: "Completion Council",
       verdict: result.verdict,
       findings: result.findings,
