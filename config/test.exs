@@ -67,6 +67,9 @@ config :samgita, :oban_module, Samgita.MockOban
 config :samgita, :bootstrap_notify_retries, 0
 config :samgita, :orchestrator_notify_retries, 0
 
+# Skip project recovery on startup (Repo sandbox isn't available to the Recovery GenServer)
+config :samgita, :skip_recovery, true
+
 # Use mock embedding provider in tests
 config :samgita_memory, embedding_provider: :mock
 

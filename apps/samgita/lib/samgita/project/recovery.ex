@@ -32,11 +32,17 @@ defmodule Samgita.Project.Recovery do
 
   @impl true
   def handle_info(:recover, state) do
-    {recovered, failed} = recover_projects()
+    if Application.get_env(:samgita, :skip_recovery, false) do
+      {:noreply, state}
+    else
+      {recovered, failed} = recover_projects()
 
-    Logger.info("[Recovery] Startup recovery complete: #{recovered} recovered, #{failed} failed")
+      Logger.info(
+        "[Recovery] Startup recovery complete: #{recovered} recovered, #{failed} failed"
+      )
 
-    {:noreply, %{state | recovered: recovered, failed: failed}}
+      {:noreply, %{state | recovered: recovered, failed: failed}}
+    end
   end
 
   @doc """

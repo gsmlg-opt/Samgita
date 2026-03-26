@@ -2,6 +2,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
   use Samgita.DataCase, async: false
 
   alias Ecto.Adapters.SQL.Sandbox
+  alias Samgita.Domain.Artifact
   alias Samgita.Domain.Prd
   alias Samgita.Projects
   alias Samgita.Repo
@@ -109,7 +110,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
 
       # Check artifact was created
       artifacts =
-        Samgita.Domain.Artifact
+        Artifact
         |> Ecto.Query.where(project_id: ^project.id)
         |> Repo.all()
 
@@ -203,7 +204,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
       :ok = QualityGateWorker.perform(job)
 
       artifacts =
-        Samgita.Domain.Artifact
+        Artifact
         |> Ecto.Query.where(project_id: ^project.id)
         |> Repo.all()
 
@@ -228,16 +229,14 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
       :ok = QualityGateWorker.perform(job_qa)
 
       qa_artifacts =
-        Samgita.Domain.Artifact
+        Artifact
         |> Ecto.Query.where(project_id: ^project.id)
         |> Repo.all()
 
       qa_gate_count = hd(qa_artifacts).metadata["gate_count"]
 
       # Clean artifacts for next run
-      Repo.delete_all(
-        Ecto.Query.from(a in Samgita.Domain.Artifact, where: a.project_id == ^project.id)
-      )
+      Repo.delete_all(Ecto.Query.from(a in Artifact, where: a.project_id == ^project.id))
 
       # Run pre_deploy
       job_deploy = %Oban.Job{
@@ -251,7 +250,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
       :ok = QualityGateWorker.perform(job_deploy)
 
       deploy_artifacts =
-        Samgita.Domain.Artifact
+        Artifact
         |> Ecto.Query.where(project_id: ^project.id)
         |> Repo.all()
 
@@ -295,7 +294,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
         })
 
       [artifact] =
-        Samgita.Domain.Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
+        Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
 
       assert String.contains?(artifact.content, "Static Analysis")
       assert String.contains?(artifact.content, "Blind Review")
@@ -312,7 +311,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
         })
 
       [artifact] =
-        Samgita.Domain.Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
+        Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
 
       # Gates present in pre_qa also appear in pre_deploy
       assert String.contains?(artifact.content, "Static Analysis")
@@ -331,13 +330,11 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
         })
 
       [qa_artifact] =
-        Samgita.Domain.Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
+        Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
 
       qa_count = qa_artifact.metadata["gate_count"]
 
-      Repo.delete_all(
-        Ecto.Query.from(a in Samgita.Domain.Artifact, where: a.project_id == ^project.id)
-      )
+      Repo.delete_all(Ecto.Query.from(a in Artifact, where: a.project_id == ^project.id))
 
       :ok =
         QualityGateWorker.perform(%Oban.Job{
@@ -345,7 +342,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
         })
 
       [deploy_artifact] =
-        Samgita.Domain.Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
+        Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
 
       deploy_count = deploy_artifact.metadata["gate_count"]
 
@@ -356,8 +353,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
     test "pre_deploy includes Output Guardrails when project has artifacts",
          %{project: project, prd: prd} do
       # Create an artifact so Output Guardrails has something to scan
-      %Samgita.Domain.Artifact{}
-      |> Samgita.Domain.Artifact.changeset(%{
+      Artifact.changeset(struct(Artifact), %{
         type: :code,
         path: "lib/test.ex",
         content: "defmodule Test do\n  def hello, do: :world\nend",
@@ -371,7 +367,7 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
         })
 
       artifacts =
-        Samgita.Domain.Artifact
+        Artifact
         |> Ecto.Query.where(project_id: ^project.id)
         |> Ecto.Query.where([a], a.type == :doc)
         |> Repo.all()

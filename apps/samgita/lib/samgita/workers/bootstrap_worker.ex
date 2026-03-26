@@ -570,7 +570,13 @@ defmodule Samgita.Workers.BootstrapWorker do
         do_notify_orchestrator(project_id, task_count, retries - 1)
 
       [] ->
-        Logger.warning("[BootstrapWorker] No orchestrator found for #{project_id} after retries")
+        max_retries = Application.get_env(:samgita, :bootstrap_notify_retries, 3)
+
+        if max_retries > 0 do
+          Logger.warning(
+            "[BootstrapWorker] No orchestrator found for #{project_id} after retries"
+          )
+        end
     end
   end
 

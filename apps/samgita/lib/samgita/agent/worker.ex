@@ -1070,9 +1070,13 @@ defmodule Samgita.Agent.Worker do
         do_notify_orchestrator(project_id, task_id, retries - 1)
 
       [] ->
-        Logger.warning(
-          "[#{project_id}] No orchestrator found for task #{task_id} completion notification after retries"
-        )
+        max_retries = Application.get_env(:samgita, :orchestrator_notify_retries, 3)
+
+        if max_retries > 0 do
+          Logger.warning(
+            "[#{project_id}] No orchestrator found for task #{task_id} completion notification after retries"
+          )
+        end
     end
   end
 

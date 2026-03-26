@@ -11,9 +11,9 @@ defmodule Samgita.Agent.WorkerTest do
 
     Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
 
-    # Enable shared sandbox mode for both repos since Worker spawns processes that need DB access
-    Sandbox.mode(Samgita.Repo, {:shared, self()})
-    Sandbox.mode(SamgitaMemory.Repo, {:shared, self()})
+    # Start sandbox owners with shared mode so Worker gen_statem processes can access DB
+    repo_pid = Sandbox.start_owner!(Samgita.Repo, shared: true)
+    memory_pid = Sandbox.start_owner!(SamgitaMemory.Repo, shared: true)
 
     on_exit(fn ->
       # Terminate any Horde children spawned during tests to avoid DB sandbox leaks
@@ -23,6 +23,8 @@ defmodule Samgita.Agent.WorkerTest do
       end)
 
       Process.sleep(50)
+      Sandbox.stop_owner(repo_pid)
+      Sandbox.stop_owner(memory_pid)
     end)
 
     :ok
