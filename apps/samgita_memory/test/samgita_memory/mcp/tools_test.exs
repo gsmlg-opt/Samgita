@@ -202,4 +202,191 @@ defmodule SamgitaMemory.MCP.ToolsTest do
       end
     end
   end
+
+  describe "10 MCP tools integration (prd-015)" do
+    test "recall respects scope isolation — project scope excludes other projects" do
+      proj_a = "mcp-proj-a-#{System.unique_integer([:positive])}"
+      proj_b = "mcp-proj-b-#{System.unique_integer([:positive])}"
+
+      {:ok, _} =
+        Tools.execute("remember", %{
+          "content" => "project A secret",
+          "scope_type" => "project",
+          "scope_id" => proj_a
+        })
+
+      {:ok, _} =
+        Tools.execute("remember", %{
+          "content" => "project B secret",
+          "scope_type" => "project",
+          "scope_id" => proj_b
+        })
+
+      {:ok, result} =
+        Tools.execute("recall", %{
+          "query" => "secret",
+          "scope_type" => "project",
+          "scope_id" => proj_a
+        })
+
+      contents = Enum.map(result.memories, & &1.content)
+      assert "project A secret" in contents
+      refute "project B secret" in contents
+    end
+
+    test "recall with min_confidence filters low-confidence memories" do
+      {:ok, _} =
+        Tools.execute("remember", %{
+          "content" => "high confidence fact",
+          "confidence" => 0.9
+        })
+
+      {:ok, _} =
+        Tools.execute("remember", %{
+          "content" => "low confidence fact",
+          "confidence" => 0.1
+        })
+
+      {:ok, result} =
+        Tools.execute("recall", %{
+          "query" => "fact",
+          "min_confidence" => 0.5
+        })
+
+      confidences = Enum.map(result.memories, & &1.confidence)
+      assert Enum.all?(confidences, &(&1 >= 0.5))
+    end
+
+    test "prd_context reflects events and decisions recorded via MCP" do
+      {:ok, execution} = PRD.start_execution("mcp-lifecycle-prd", title: "Lifecycle Test")
+
+      # Record an event and a decision
+      {:ok, _} =
+        Tools.execute("prd_event", %{
+          "prd_id" => execution.id,
+          "type" => "requirement_started",
+          "summary" => "Development phase began"
+        })
+
+      {:ok, _} =
+        Tools.execute("prd_decision", %{
+          "prd_id" => execution.id,
+          "decision" => "Use PostgreSQL for storage",
+          "reason" => "Existing infrastructure"
+        })
+
+      {:ok, context} = Tools.execute("prd_context", %{"prd_id" => execution.id})
+
+      # Context should reflect the recorded event and decision
+      assert length(context.recent_events) >= 1
+      assert length(context.decisions) >= 1
+
+      event_summaries = Enum.map(context.recent_events, & &1.summary)
+      assert "Development phase began" in event_summaries
+
+      decision_texts = Enum.map(context.decisions, & &1.decision)
+      assert "Use PostgreSQL for storage" in decision_texts
+    end
+
+    test "all 10 tools return {:ok, result} for valid inputs" do
+      {:ok, execution} =
+        PRD.start_execution("mcp-all-tools-#{System.unique_integer([:positive])}")
+
+      {:ok, stored} = Tools.execute("remember", %{"content" => "tool coverage test"})
+      assert stored.status == "stored"
+
+      {:ok, recalled} = Tools.execute("recall", %{"query" => "coverage"})
+      assert is_integer(recalled.total)
+
+      {:ok, forgotten} =
+        Tools.execute("remember", %{"content" => "to forget"})
+
+      {:ok, forget_result} = Tools.execute("forget", %{"memory_id" => forgotten.id})
+      assert forget_result.status == "forgotten"
+
+      {:ok, ctx} = Tools.execute("prd_context", %{"prd_id" => execution.id})
+      assert is_map(ctx.execution)
+
+      {:ok, ev} =
+        Tools.execute("prd_event", %{
+          "prd_id" => execution.id,
+          "type" => "requirement_completed",
+          "summary" => "test task done"
+        })
+
+      assert ev.status == "recorded"
+
+      {:ok, dec} =
+        Tools.execute("prd_decision", %{
+          "prd_id" => execution.id,
+          "decision" => "use Ecto",
+          "reason" => "ORM"
+        })
+
+      assert dec.status == "recorded"
+
+      {:ok, chain} =
+        Tools.execute("start_thinking", %{
+          "query" => "all tools test",
+          "scope_type" => "global"
+        })
+
+      chain_id = chain.chain_id
+
+      {:ok, thought} = Tools.execute("think", %{"chain_id" => chain_id, "content" => "step one"})
+      assert thought.thought_count == 1
+
+      {:ok, finished} = Tools.execute("finish_thinking", %{"chain_id" => chain_id})
+      assert finished.status == "completed"
+
+      {:ok, reasoning} =
+        Tools.execute("recall_reasoning", %{"query" => "all tools", "scope_type" => "global"})
+
+      assert is_integer(reasoning.total)
+    end
+
+    test "remember accepts all memory type options" do
+      for type <- ["episodic", "semantic", "procedural"] do
+        {:ok, result} =
+          Tools.execute("remember", %{
+            "content" => "#{type} content",
+            "memory_type" => type
+          })
+
+        assert result.status == "stored"
+      end
+    end
+
+    test "recall returns memories ordered by relevance (higher confidence first)" do
+      scope = "order-test-#{System.unique_integer([:positive])}"
+
+      {:ok, _} =
+        Tools.execute("remember", %{
+          "content" => "low ranked memory",
+          "scope_type" => "project",
+          "scope_id" => scope,
+          "confidence" => 0.4
+        })
+
+      {:ok, _} =
+        Tools.execute("remember", %{
+          "content" => "high ranked memory",
+          "scope_type" => "project",
+          "scope_id" => scope,
+          "confidence" => 0.9
+        })
+
+      {:ok, result} =
+        Tools.execute("recall", %{
+          "query" => "memory",
+          "scope_type" => "project",
+          "scope_id" => scope
+        })
+
+      assert length(result.memories) == 2
+      confidences = Enum.map(result.memories, & &1.confidence)
+      [first | _] = confidences
+      assert first >= 0.9
+    end
+  end
 end
