@@ -413,8 +413,9 @@ defmodule Samgita.Project.OrchestratorTest do
       Process.sleep(100)
 
       {:bootstrap, data} = Orchestrator.get_state(pid)
-      # Should have set phase_tasks_total to 1 (BootstrapWorker enqueued)
-      assert data.phase_tasks_total == 1
+      # phase_tasks_total starts at 0; BootstrapWorker calls set_phase_task_count
+      # asynchronously with the real count after generating tasks.
+      assert data.phase_tasks_total == 0
 
       :gen_statem.stop(pid)
     end

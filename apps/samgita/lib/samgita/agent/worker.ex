@@ -120,6 +120,7 @@ defmodule Samgita.Agent.Worker do
 
   def idle(:info, _msg, _data), do: :keep_state_and_data
   def idle(:cast, _msg, _data), do: :keep_state_and_data
+  def idle({:timeout, _name}, _content, _data), do: :keep_state_and_data
 
   ## State: reason
 

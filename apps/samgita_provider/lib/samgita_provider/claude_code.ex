@@ -44,9 +44,7 @@ defmodule SamgitaProvider.ClaudeCode do
   end
 
   defp handle_error_output(output, exit_code) do
-    Logger.error(
-      "Claude CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}"
-    )
+    Logger.error("Claude CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}")
 
     classify_error(output, exit_code)
   end
@@ -69,7 +67,8 @@ defmodule SamgitaProvider.ClaudeCode do
     end
   end
 
-  defp build_args(prompt, opts) do
+  @doc false
+  def build_args(prompt, opts) do
     model = to_string(opts[:model] || "sonnet")
 
     system_prompt =
@@ -97,7 +96,8 @@ defmodule SamgitaProvider.ClaudeCode do
     []
   end
 
-  defp parse_json_output(output) do
+  @doc false
+  def parse_json_output(output) do
     case Jason.decode(output) do
       {:ok, %{"result" => result, "is_error" => false}} ->
         {:ok, result}
@@ -117,7 +117,8 @@ defmodule SamgitaProvider.ClaudeCode do
   defp maybe_add_cd(opts, nil), do: opts
   defp maybe_add_cd(opts, dir), do: Keyword.put(opts, :cd, dir)
 
-  defp classify_error(output, _exit_code) do
+  @doc false
+  def classify_error(output, _exit_code \\ 1) do
     cond do
       String.contains?(output, "rate limit") or String.contains?(output, "rate_limit") ->
         {:error, :rate_limit}
