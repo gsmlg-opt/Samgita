@@ -172,6 +172,63 @@ defmodule SamgitaMemory.Retrieval.PipelineTest do
     end
   end
 
+  describe "stage 6: cosine similarity deduplication (prd-013)" do
+    test "deduplicates memories with near-identical embeddings" do
+      scope = {:project, "cosine-dedup-#{System.unique_integer([:positive])}"}
+
+      # Create two memories with nearly identical embeddings (cosine > 0.95)
+      base_vec = List.duplicate(0.1, 1536)
+      # Same vector = cosine similarity 1.0
+      embedding = Pgvector.new(base_vec)
+
+      {:ok, m1} =
+        Memories.store("memory A about elixir",
+          scope: scope,
+          confidence: 0.9
+        )
+
+      {:ok, m2} =
+        Memories.store("memory B about erlang",
+          scope: scope,
+          confidence: 0.8
+        )
+
+      # Manually set identical embeddings to trigger cosine dedup
+      import Ecto.Query
+
+      SamgitaMemory.Repo.update_all(
+        from(m in SamgitaMemory.Memories.Memory,
+          where: m.id in ^[m1.id, m2.id]
+        ),
+        set: [embedding: embedding]
+      )
+
+      results = Pipeline.execute(nil, scope: scope)
+      # Only one should survive dedup since embeddings are identical
+      assert length(results) == 1
+    end
+
+    test "keeps memories with different embeddings" do
+      scope = {:project, "cosine-keep-#{System.unique_integer([:positive])}"}
+
+      {:ok, _m1} =
+        Memories.store("completely different content A",
+          scope: scope,
+          confidence: 0.9
+        )
+
+      {:ok, _m2} =
+        Memories.store("completely different content B",
+          scope: scope,
+          confidence: 0.8
+        )
+
+      results = Pipeline.execute(nil, scope: scope)
+      # Without embeddings, text-based dedup shouldn't match these
+      assert length(results) == 2
+    end
+  end
+
   describe "stage 4: recency boost ordering (prd-013)" do
     test "higher confidence memories are returned first when no embedding" do
       scope = {:project, "recency-test-#{System.unique_integer([:positive])}"}
