@@ -1,5 +1,6 @@
 defmodule Samgita.ProjectsTest do
-  use Samgita.DataCase, async: true
+  # async: false — start/stop/restart_project interact with global Horde.DynamicSupervisor
+  use Samgita.DataCase, async: false
 
   alias Samgita.Domain.Project
   alias Samgita.Projects
