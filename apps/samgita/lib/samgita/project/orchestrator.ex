@@ -722,26 +722,23 @@ defmodule Samgita.Project.Orchestrator do
           status: :pending
         }
 
-        case Projects.create_task(project.id, attrs) do
-          {:ok, task} ->
-            case ObanClient.insert(
-                   AgentTaskWorker.new(%{
-                     task_id: task.id,
-                     project_id: project.id,
-                     agent_type: task_def.agent_type
-                   })
-                 ) do
-              {:ok, _job} ->
-                true
-
-              {:error, reason} ->
-                Logger.error("[Orchestrator] Failed to queue task #{task.id}: #{inspect(reason)}")
-
-                false
-            end
+        with {:ok, task} <- Projects.create_task(project.id, attrs),
+             {:ok, _job} <-
+               ObanClient.insert(
+                 AgentTaskWorker.new(%{
+                   task_id: task.id,
+                   project_id: project.id,
+                   agent_type: task_def.agent_type
+                 })
+               ) do
+          true
+        else
+          {:error, %Ecto.Changeset{} = reason} ->
+            Logger.warning("[Orchestrator] Failed to create phase task: #{inspect(reason)}")
+            false
 
           {:error, reason} ->
-            Logger.warning("[Orchestrator] Failed to create phase task: #{inspect(reason)}")
+            Logger.error("[Orchestrator] Failed to queue task: #{inspect(reason)}")
             false
         end
       end)

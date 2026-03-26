@@ -2,10 +2,30 @@ defmodule Samgita.ProjectsTest do
   # async: false — start/stop/restart_project interact with global Horde.DynamicSupervisor
   use Samgita.DataCase, async: false
 
+  alias Ecto.Adapters.SQL.Sandbox
   alias Samgita.Domain.Project
   alias Samgita.Projects
 
   @valid_attrs %{name: "Test Project", git_url: "git@github.com:org/test.git"}
+
+  setup do
+    Mox.set_mox_global(self())
+
+    Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
+
+    Mox.stub(Samgita.MockOban, :insert, fn _job -> {:ok, %Oban.Job{}} end)
+    Sandbox.mode(Samgita.Repo, {:shared, self()})
+
+    on_exit(fn ->
+      # Stop any supervisor processes spawned during tests via Horde
+      Horde.DynamicSupervisor.which_children(Samgita.AgentSupervisor)
+      |> Enum.each(fn {_, pid, _, _} ->
+        Horde.DynamicSupervisor.terminate_child(Samgita.AgentSupervisor, pid)
+      end)
+    end)
+
+    :ok
+  end
 
   defp create_project(attrs \\ %{}) do
     {:ok, project} = Projects.create_project(Map.merge(@valid_attrs, attrs))

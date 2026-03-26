@@ -5,6 +5,7 @@ defmodule Samgita.E2E.ProjectLifecycleTest do
 
   use Samgita.DataCase, async: false
 
+  alias Ecto.Adapters.SQL.Sandbox
   alias Samgita.Domain.{AgentRun, Snapshot, Task}
   alias Samgita.Projects
   alias Samgita.Repo
@@ -16,7 +17,7 @@ defmodule Samgita.E2E.ProjectLifecycleTest do
 
     Mox.stub(Samgita.MockOban, :insert, fn job -> Oban.insert(job) end)
 
-    Ecto.Adapters.SQL.Sandbox.mode(Samgita.Repo, {:shared, self()})
+    Sandbox.mode(Samgita.Repo, {:shared, self()})
     :ok
   end
 

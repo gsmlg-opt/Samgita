@@ -10,7 +10,12 @@ defmodule SamgitaWeb.ProjectLiveTest do
 
     Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
 
-    Mox.stub(Samgita.MockOban, :insert, fn job -> Oban.insert(job) end)
+    Mox.stub(Samgita.MockOban, :insert, fn _job -> {:ok, %Oban.Job{}} end)
+
+    on_exit(fn ->
+      # Restore global passthrough stub so other tests aren't affected
+      Mox.stub(Samgita.MockOban, :insert, fn job -> Oban.insert(job) end)
+    end)
 
     :ok
   end
@@ -115,19 +120,9 @@ defmodule SamgitaWeb.ProjectLiveTest do
 
     render_click(view, "select_prd", %{"id" => prd.id})
 
-    # The start handler enqueues a BootstrapWorker via Oban inline which may crash
-    # trying to spawn agents via Horde (unavailable in test). We verify the
-    # project status was updated to running by re-fetching from DB.
-    try do
-      html = render_click(view, "start")
-      assert html =~ "running"
-      assert html =~ "Pause"
-    catch
-      :exit, _ ->
-        {:ok, updated} = Projects.get_project(project.id)
-        assert updated.status == :running
-        assert updated.active_prd_id == prd.id
-    end
+    html = render_click(view, "start")
+    assert html =~ "running"
+    assert html =~ "Pause"
   end
 
   test "pause transitions running project to paused", %{conn: conn} do

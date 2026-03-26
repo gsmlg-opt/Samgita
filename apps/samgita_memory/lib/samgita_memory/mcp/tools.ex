@@ -552,8 +552,6 @@ defmodule SamgitaMemory.MCP.Tools do
     end
   end
 
-  defp truncate_to_budget(data, _budget), do: data
-
   defp truncate_map_to_budget(data, budget) do
     # For lists of items (memories, events, etc.), drop items from the end
     Enum.reduce(data, %{}, fn {key, value}, acc ->
