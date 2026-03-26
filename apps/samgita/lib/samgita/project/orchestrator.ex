@@ -890,7 +890,7 @@ defmodule Samgita.Project.Orchestrator do
   end
 
   defp handle_phase_completion(phase, data) do
-    if phase_complete?(data) do
+    if phase_complete?(data) and not data.awaiting_quality_gates do
       handle_completed_phase(phase, data)
     else
       {:keep_state, data}

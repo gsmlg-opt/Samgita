@@ -758,6 +758,8 @@ defmodule Samgita.Agent.WorkerTest do
         "review-code"
       ]
 
+      # Each iteration waits for await_idle + stop before proceeding, so the Mox stub is
+      # replaced only after the previous worker has fully stopped — no cross-iteration race.
       Enum.each(sample_agents, fn agent_type ->
         Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, opts ->
           send(test_pid, {:model_used, agent_type, Keyword.get(opts, :model)})
@@ -771,7 +773,8 @@ defmodule Samgita.Agent.WorkerTest do
         ]
 
         {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
-        task = %{id: "task-#{agent_type}", type: "implement", payload: %{}}
+        # Use a real UUID so complete_and_notify does not log a cast error
+        task = %{id: Ecto.UUID.generate(), type: "implement", payload: %{}}
         Worker.assign_task(pid, task, self())
 
         assert_receive {:model_used, ^agent_type, model}, 10_000

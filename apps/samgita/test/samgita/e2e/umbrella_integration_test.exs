@@ -2,12 +2,17 @@ defmodule Samgita.E2E.UmbrellaIntegrationTest do
   @moduledoc """
   Integration tests verifying all umbrella apps are loaded and work together.
 
-  Covers prd-004 acceptance criteria:
-  - Submit a PRD → working code with tests in the target git repo
-  - 10+ agents working simultaneously (Horde + Oban concurrency: 100)
-  - Agent crash → OTP supervisor restarts, task retried automatically
-  - All quality gates configured before phase advances to QA
-  - Activity log streams every state transition in real time
+  Covers prd-004 structural criteria (wiring between apps):
+  - All four OTP applications are started in the umbrella
+  - Horde registry/supervisor, PubSub, Repo, Oban are accessible
+  - SamgitaProvider delegates to configured provider module
+  - Orchestrator starts in bootstrap phase and broadcasts activity_log events
+  - Multiple agents can be spawned in the development phase concurrently
+  - SamgitaMemory.Repo and Oban instance are configured
+
+  Note: end-to-end criteria ("submit PRD → working code", agent crash recovery)
+  require a full production environment and are tested in supervisor_test.exs and
+  orchestrator_test.exs respectively.
   """
 
   use Samgita.DataCase, async: false
