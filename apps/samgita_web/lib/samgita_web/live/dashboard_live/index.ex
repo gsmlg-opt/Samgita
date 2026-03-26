@@ -7,13 +7,10 @@ defmodule SamgitaWeb.DashboardLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    if connected?(socket) do
-      Samgita.Events.subscribe_all_projects()
-    end
-
     projects = Projects.list_projects()
 
     if connected?(socket) do
+      Samgita.Events.subscribe_all_projects()
       Enum.each(projects, fn p -> Samgita.Events.subscribe_project(p.id) end)
     end
 

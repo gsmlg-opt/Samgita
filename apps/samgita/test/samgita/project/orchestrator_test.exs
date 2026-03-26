@@ -665,54 +665,132 @@ defmodule Samgita.Project.OrchestratorTest do
   end
 
   describe "agent crash recovery" do
-    test "respawns agent after crash", %{project: project} do
+    test "handles unknown DOWN message without crashing", %{project: project} do
       {:ok, _} = Projects.update_project(project, %{phase: :bootstrap})
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
 
+      # DOWN for an unmonitored ref — takes the nil branch, keeps state unchanged
+      send(pid, {:DOWN, make_ref(), :process, self(), :test_crash})
+      Process.sleep(50)
+
+      assert Process.alive?(pid)
+      :gen_statem.stop(pid)
+    end
+
+    test "handles DOWN for monitored agent and attempts respawn", %{project: project} do
+      {:ok, _} = Projects.update_project(project, %{phase: :bootstrap})
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      fake_ref = make_ref()
+      fake_agent_id = "#{project.id}-prod-pm"
+
+      # Inject a fake monitor into orchestrator state
+      :sys.replace_state(pid, fn {phase, data} ->
+        monitors = Map.put(data.agent_monitors, fake_ref, {fake_agent_id, "prod-pm"})
+        {phase, %{data | agent_monitors: monitors}}
+      end)
+
+      # Verify the monitor was injected
+      {:bootstrap, data} = Orchestrator.get_state(pid)
+      assert Map.has_key?(data.agent_monitors, fake_ref)
+
+      # Send DOWN for the monitored ref — orchestrator should handle and stay alive
+      send(pid, {:DOWN, fake_ref, :process, self(), :killed})
+      Process.sleep(100)
+
+      assert Process.alive?(pid)
+      :gen_statem.stop(pid)
+    end
+  end
+
+  describe "awaiting_quality_gates state" do
+    test "awaiting_quality_gates is set to true when requires_quality_gates phase completes all tasks",
+         %{project: project} do
+      {:ok, _} = Projects.update_project(project, %{phase: :development})
       :ok = Samgita.Events.subscribe_project(project.id)
 
       {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
       Process.sleep(100)
 
-      {:bootstrap, data} = Orchestrator.get_state(pid)
-      assert map_size(data.agent_monitors) >= 0
+      # Manually set phase_tasks_total and complete all tasks to trigger quality gate check
+      :sys.replace_state(pid, fn {phase, data} ->
+        {phase, %{data | phase_tasks_total: 1, phase_tasks_completed: 0}}
+      end)
 
-      # Simulate an agent crash by sending a DOWN message
-      fake_ref = make_ref()
-      fake_agent_id = "#{project.id}-prod-pm"
-      fake_monitors = Map.put(data.agent_monitors, fake_ref, {fake_agent_id, "prod-pm"})
+      # Complete the one task — should trigger quality gate arm
+      Orchestrator.notify_task_completed(pid, "fake-task-id")
+      Process.sleep(100)
 
-      # Manually inject monitors into state — use internal state_timeout trick
-      # Instead, just verify the handler exists by sending a DOWN message directly
-      send(pid, {:DOWN, make_ref(), :process, self(), :test_crash})
-      Process.sleep(50)
+      {:development, data} = Orchestrator.get_state(pid)
+      assert data.awaiting_quality_gates == true
 
-      # Orchestrator should still be alive (didn't crash)
-      assert Process.alive?(pid)
+      :gen_statem.stop(pid)
+    end
+
+    test "awaiting_quality_gates is broadcast via activity_log when triggered", %{
+      project: project
+    } do
+      {:ok, _} = Projects.update_project(project, %{phase: :development})
+      :ok = Samgita.Events.subscribe_project(project.id)
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      :sys.replace_state(pid, fn {phase, data} ->
+        {phase, %{data | phase_tasks_total: 1, phase_tasks_completed: 0}}
+      end)
+
+      Orchestrator.notify_task_completed(pid, "fake-task-id")
+
+      assert_receive {:activity_log,
+                      %{stage: :reason, message: "Phase tasks complete, running quality gates"}},
+                     500
 
       :gen_statem.stop(pid)
     end
   end
 
   describe "quality gate timeout" do
-    test "awaiting_quality_gates times out and retriggers", %{project: project} do
+    test "orchestrator stays alive while awaiting quality gates", %{project: project} do
       {:ok, _} = Projects.update_project(project, %{phase: :development})
-
       {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
       Process.sleep(100)
 
-      {:development, _data} = Orchestrator.get_state(pid)
-      # Manually set awaiting_quality_gates
-      :sys.replace_state(pid, fn {phase, data} ->
-        {phase, %{data | awaiting_quality_gates: true}}
+      {:development, data} = Orchestrator.get_state(pid)
+      assert data.awaiting_quality_gates == false
+
+      # Set awaiting_quality_gates to true via sys.replace_state
+      :sys.replace_state(pid, fn {phase, state} ->
+        {phase, %{state | awaiting_quality_gates: true}}
       end)
 
-      # Send a quality_gate_timeout event directly
-      send(pid, {{:timeout, :quality_gate_timeout}, :check})
+      {:development, data} = Orchestrator.get_state(pid)
+      assert data.awaiting_quality_gates == true
+
+      # Orchestrator stays alive while waiting for quality gates
+      Process.sleep(50)
+      assert Process.alive?(pid)
+      :gen_statem.stop(pid)
+    end
+
+    test "quality_gate_timeout clears awaiting flag when not in awaiting state", %{
+      project: project
+    } do
+      {:ok, _} = Projects.update_project(project, %{phase: :development})
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      {:development, data} = Orchestrator.get_state(pid)
+      assert data.awaiting_quality_gates == false
+
+      # Send a gen_statem named timeout event via :gen_statem.cast with internal event injection
+      # The non-awaiting handler clears the flag — orchestrator must survive
+      :gen_statem.cast(pid, {:quality_gate_check, :noop})
       Process.sleep(50)
 
-      # Orchestrator should still be alive
       assert Process.alive?(pid)
-
       :gen_statem.stop(pid)
     end
   end

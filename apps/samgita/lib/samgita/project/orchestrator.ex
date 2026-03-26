@@ -350,14 +350,16 @@ defmodule Samgita.Project.Orchestrator do
           :keep_state_and_data
 
         {{agent_id, agent_type}, remaining_monitors} ->
+          reason_str = inspect(reason, limit: 10, printable_limit: 50)
+
           Logger.warning(
-            "[Orchestrator] #{data.project_id}: agent #{agent_id} crashed: #{inspect(reason)}, respawning"
+            "[Orchestrator] #{data.project_id}: agent #{agent_id} crashed: #{reason_str}, respawning"
           )
 
           broadcast_activity(
             data,
             :failed,
-            "Agent #{agent_id} crashed (#{inspect(reason)}), respawning"
+            "Agent #{agent_id} crashed (#{reason_str}), respawning"
           )
 
           data = %{data | agent_monitors: remaining_monitors}
@@ -439,8 +441,10 @@ defmodule Samgita.Project.Orchestrator do
   defp agents_for_phase(:perpetual),
     do: ["eng-qa", "eng-perf", "ops-monitor", "review-code"]
 
+  defp agent_id_for(project_id, agent_type), do: "#{project_id}-#{agent_type}"
+
   defp spawn_phase_agent(project_id, agent_type, monitors) do
-    agent_id = "#{project_id}-#{agent_type}"
+    agent_id = agent_id_for(project_id, agent_type)
 
     case Horde.Registry.lookup(Samgita.AgentRegistry, agent_id) do
       [{_pid, _}] ->
@@ -497,11 +501,7 @@ defmodule Samgita.Project.Orchestrator do
   defp requires_quality_gates?(_), do: false
 
   defp trigger_quality_gates(current_phase, data) do
-    prd_id =
-      case Projects.get_project(data.project_id) do
-        {:ok, project} -> project.active_prd_id
-        _ -> nil
-      end
+    prd_id = data.project && data.project.active_prd_id
 
     gate_type =
       case current_phase do
