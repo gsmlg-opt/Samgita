@@ -278,8 +278,8 @@ defmodule SamgitaMemory.MCP.ToolsTest do
       {:ok, context} = Tools.execute("prd_context", %{"prd_id" => execution.id})
 
       # Context should reflect the recorded event and decision
-      assert length(context.recent_events) >= 1
-      assert length(context.decisions) >= 1
+      assert context.recent_events != []
+      assert context.decisions != []
 
       event_summaries = Enum.map(context.recent_events, & &1.summary)
       assert "Development phase began" in event_summaries
