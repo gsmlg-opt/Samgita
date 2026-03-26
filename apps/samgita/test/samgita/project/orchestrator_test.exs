@@ -794,4 +794,231 @@ defmodule Samgita.Project.OrchestratorTest do
       :gen_statem.stop(pid)
     end
   end
+
+  describe "10-phase sequence (prd-009)" do
+    test "complete phase order is bootstrap→discovery→architecture→infrastructure→development→qa→deployment→business→growth→perpetual",
+         %{project: project} do
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+
+      # Start: bootstrap
+      assert {:bootstrap, _} = Orchestrator.get_state(pid)
+
+      # bootstrap → discovery
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:discovery, _} = Orchestrator.get_state(pid)
+
+      # discovery → architecture
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:architecture, _} = Orchestrator.get_state(pid)
+
+      # architecture → infrastructure
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:infrastructure, _} = Orchestrator.get_state(pid)
+
+      # infrastructure → development
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:development, _} = Orchestrator.get_state(pid)
+
+      # development → qa (advance_phase is an admin override that bypasses quality gates)
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:qa, _} = Orchestrator.get_state(pid)
+
+      # qa → deployment (advance_phase bypasses quality gates)
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:deployment, _} = Orchestrator.get_state(pid)
+
+      # deployment → business
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:business, _} = Orchestrator.get_state(pid)
+
+      # business → growth
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:growth, _} = Orchestrator.get_state(pid)
+
+      # growth → perpetual
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:perpetual, _} = Orchestrator.get_state(pid)
+
+      # perpetual stays perpetual
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+      assert {:perpetual, _} = Orchestrator.get_state(pid)
+
+      :gen_statem.stop(pid)
+    end
+
+    test "orchestrator has exactly 10 distinct phases", %{project: project} do
+      # Verify by walking all phases via advance_phase
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+
+      phases_seen =
+        Enum.reduce_while(1..20, [], fn _, acc ->
+          {phase, _} = Orchestrator.get_state(pid)
+
+          if phase == :perpetual and :perpetual in acc do
+            {:halt, acc}
+          else
+            Orchestrator.advance_phase(pid)
+            Process.sleep(50)
+
+            # Use quality_gates_passed for gated phases
+            {next_phase, _} = Orchestrator.get_state(pid)
+
+            if next_phase == phase do
+              # Phase didn't advance — send quality_gates_passed and retry
+              :gen_statem.cast(pid, :quality_gates_passed)
+              Process.sleep(50)
+            end
+
+            {:cont, Enum.uniq([phase | acc])}
+          end
+        end)
+
+      :gen_statem.stop(pid)
+
+      expected_phases = [
+        :bootstrap,
+        :discovery,
+        :architecture,
+        :infrastructure,
+        :development,
+        :qa,
+        :deployment,
+        :business,
+        :growth,
+        :perpetual
+      ]
+
+      assert length(phases_seen) == 10,
+             "Expected 10 phases, got #{length(phases_seen)}: #{inspect(phases_seen)}"
+
+      Enum.each(expected_phases, fn p ->
+        assert p in phases_seen, "Phase #{p} was never visited"
+      end)
+    end
+
+    test "project phase column is updated on each phase transition", %{project: project} do
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(50)
+
+      # Initial phase in DB should be bootstrap
+      reloaded = Repo.reload!(project)
+      assert reloaded.phase == :bootstrap
+
+      Orchestrator.advance_phase(pid)
+      Process.sleep(100)
+
+      reloaded = Repo.reload!(project)
+      assert reloaded.phase == :discovery
+
+      :gen_statem.stop(pid)
+    end
+  end
+
+  describe "phase transition guards (prd-010)" do
+    test "advance_phase is an admin override that bypasses quality gates in development",
+         %{project: project} do
+      {:ok, _} = Projects.update_project(project, %{phase: :development})
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      assert {:development, _} = Orchestrator.get_state(pid)
+
+      # Set awaiting_quality_gates: true (simulating all tasks done but gates pending)
+      :sys.replace_state(pid, fn {phase, data} ->
+        {phase, %{data | awaiting_quality_gates: true}}
+      end)
+
+      # advance_phase IS an admin override — it bypasses the quality gate and advances
+      Orchestrator.advance_phase(pid)
+      Process.sleep(50)
+
+      # Admin override advanced to qa despite quality gates being pending
+      assert {:qa, _} = Orchestrator.get_state(pid)
+
+      :gen_statem.stop(pid)
+    end
+
+    test "task_completed event does not auto-advance development when awaiting quality gates",
+         %{project: project} do
+      {:ok, _} = Projects.update_project(project, %{phase: :development})
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      assert {:development, _} = Orchestrator.get_state(pid)
+
+      # Set up: one task remaining, already awaiting quality gates
+      :sys.replace_state(pid, fn {phase, data} ->
+        {phase,
+         %{
+           data
+           | phase_tasks_total: 5,
+             phase_tasks_completed: 4,
+             awaiting_quality_gates: true
+         }}
+      end)
+
+      # This task_completed will increment to 5/5, but since awaiting_quality_gates
+      # is already true, it should NOT auto-advance — only quality_gates_passed can advance
+      :gen_statem.cast(pid, {:task_completed, "last-dev-task"})
+      Process.sleep(100)
+
+      # Still in development — quality gate blocks auto-advance
+      assert {:development, _} = Orchestrator.get_state(pid)
+
+      :gen_statem.stop(pid)
+    end
+
+    test "quality_gates_passed is ignored when not awaiting", %{project: project} do
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(50)
+
+      # In bootstrap, not awaiting quality gates
+      {:bootstrap, data} = Orchestrator.get_state(pid)
+      assert data.awaiting_quality_gates == false
+
+      # Should be a no-op
+      :gen_statem.cast(pid, :quality_gates_passed)
+      Process.sleep(50)
+
+      # Still bootstrap
+      assert {:bootstrap, _} = Orchestrator.get_state(pid)
+
+      :gen_statem.stop(pid)
+    end
+
+    test "paused orchestrator ignores task completions for auto-advance", %{project: project} do
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(50)
+
+      Orchestrator.pause(pid)
+      Process.sleep(50)
+
+      {:bootstrap, data_before} = Orchestrator.get_state(pid)
+
+      # Complete enough tasks that would normally trigger advance
+      :sys.replace_state(pid, fn {phase, data} ->
+        total = max(data.phase_tasks_total, 1)
+        {phase, %{data | phase_tasks_total: total, phase_tasks_completed: total - 1}}
+      end)
+
+      :gen_statem.cast(pid, {:task_completed, "last-task"})
+      Process.sleep(100)
+
+      # Should still be in bootstrap, not advanced
+      assert {:bootstrap, _} = Orchestrator.get_state(pid)
+      _ = data_before
+
+      :gen_statem.stop(pid)
+    end
+  end
 end

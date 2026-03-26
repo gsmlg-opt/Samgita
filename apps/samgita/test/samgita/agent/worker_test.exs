@@ -669,4 +669,117 @@ defmodule Samgita.Agent.WorkerTest do
       :gen_statem.stop(pid)
     end
   end
+
+  describe "model tiers (prd-008)" do
+    test "opus tier agent (prod-pm) passes model: opus to provider" do
+      test_pid = self()
+
+      Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, opts ->
+        send(test_pid, {:model_used, Keyword.get(opts, :model)})
+        {:ok, "mock response"}
+      end)
+
+      opts = [
+        id: "model-tier-opus-#{System.unique_integer([:positive])}",
+        agent_type: "prod-pm",
+        project_id: Ecto.UUID.generate()
+      ]
+
+      {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
+      task = %{id: "task-opus", type: "plan", payload: %{}}
+      Worker.assign_task(pid, task, self())
+
+      assert_receive {:model_used, "opus"}, 10_000
+      assert_receive {:task_completed, "task-opus", :ok}, 10_000
+
+      :gen_statem.stop(pid)
+    end
+
+    test "haiku tier agent (eng-qa) passes model: haiku to provider" do
+      test_pid = self()
+
+      Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, opts ->
+        send(test_pid, {:model_used, Keyword.get(opts, :model)})
+        {:ok, "mock response"}
+      end)
+
+      opts = [
+        id: "model-tier-haiku-#{System.unique_integer([:positive])}",
+        agent_type: "eng-qa",
+        project_id: Ecto.UUID.generate()
+      ]
+
+      {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
+      task = %{id: "task-haiku", type: "test", payload: %{}}
+      Worker.assign_task(pid, task, self())
+
+      assert_receive {:model_used, "haiku"}, 10_000
+      assert_receive {:task_completed, "task-haiku", :ok}, 10_000
+
+      :gen_statem.stop(pid)
+    end
+
+    test "sonnet tier agent (eng-backend) passes model: sonnet to provider" do
+      test_pid = self()
+
+      Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, opts ->
+        send(test_pid, {:model_used, Keyword.get(opts, :model)})
+        {:ok, "mock response"}
+      end)
+
+      opts = [
+        id: "model-tier-sonnet-#{System.unique_integer([:positive])}",
+        agent_type: "eng-backend",
+        project_id: Ecto.UUID.generate()
+      ]
+
+      {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
+      task = %{id: "task-sonnet", type: "implement", payload: %{}}
+      Worker.assign_task(pid, task, self())
+
+      assert_receive {:model_used, "sonnet"}, 10_000
+      assert_receive {:task_completed, "task-sonnet", :ok}, 10_000
+
+      :gen_statem.stop(pid)
+    end
+
+    test "model is always one of the three valid tiers for every agent type" do
+      valid_models = ["opus", "sonnet", "haiku"]
+      test_pid = self()
+
+      # Sample one agent per swarm
+      sample_agents = [
+        "eng-frontend",
+        "ops-devops",
+        "biz-marketing",
+        "data-ml",
+        "prod-design",
+        "growth-hacker",
+        "review-code"
+      ]
+
+      Enum.each(sample_agents, fn agent_type ->
+        Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, opts ->
+          send(test_pid, {:model_used, agent_type, Keyword.get(opts, :model)})
+          {:ok, "mock response"}
+        end)
+
+        opts = [
+          id: "model-check-#{agent_type}-#{System.unique_integer([:positive])}",
+          agent_type: agent_type,
+          project_id: Ecto.UUID.generate()
+        ]
+
+        {:ok, pid} = :gen_statem.start_link(Worker, opts, [])
+        task = %{id: "task-#{agent_type}", type: "implement", payload: %{}}
+        Worker.assign_task(pid, task, self())
+
+        assert_receive {:model_used, ^agent_type, model}, 10_000
+        assert model in valid_models, "#{agent_type} used invalid model: #{inspect(model)}"
+
+        await_idle(pid)
+        :gen_statem.stop(pid)
+      end)
+    end
+  end
 end
