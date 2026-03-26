@@ -87,6 +87,8 @@ defmodule SamgitaProvider.ClaudeCode do
       "--no-session-persistence"
     ]
 
+    args = maybe_add_max_turns(args, opts[:max_turns])
+
     # Append prompt as the positional argument
     args ++ [prompt]
   end
@@ -116,6 +118,14 @@ defmodule SamgitaProvider.ClaudeCode do
 
   defp maybe_add_cd(opts, nil), do: opts
   defp maybe_add_cd(opts, dir), do: Keyword.put(opts, :cd, dir)
+
+  defp maybe_add_max_turns(args, nil), do: args
+
+  defp maybe_add_max_turns(args, max_turns) when is_integer(max_turns) and max_turns > 0 do
+    args ++ ["--max-turns", to_string(max_turns)]
+  end
+
+  defp maybe_add_max_turns(args, _invalid), do: args
 
   @doc false
   def classify_error(output, _exit_code \\ 1) do

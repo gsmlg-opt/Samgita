@@ -49,6 +49,24 @@ defmodule SamgitaProvider.ClaudeCodeTest do
       assert is_binary(default_sp)
       assert String.length(default_sp) > 0
     end
+
+    test "includes --max-turns flag when max_turns: 5 is given" do
+      args = ClaudeCode.build_args("test prompt", max_turns: 5)
+      mt_idx = Enum.find_index(args, &(&1 == "--max-turns"))
+      assert mt_idx != nil
+      assert Enum.at(args, mt_idx + 1) == "5"
+      assert mt_idx < Enum.find_index(args, &(&1 == "test prompt"))
+    end
+
+    test "does not include --max-turns when no max_turns option is given" do
+      args = ClaudeCode.build_args("test prompt", [])
+      refute "--max-turns" in args
+    end
+
+    test "does not include --max-turns when max_turns: 0 is given" do
+      args = ClaudeCode.build_args("test prompt", max_turns: 0)
+      refute "--max-turns" in args
+    end
   end
 
   describe "parse_json_output/1" do

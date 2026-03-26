@@ -2,10 +2,7 @@ defmodule SamgitaWeb.HealthController do
   use SamgitaWeb, :controller
 
   def index(conn, _params) do
-    checks = %{
-      samgita_repo: check_repo(Samgita.Repo),
-      samgita_memory_repo: check_repo(SamgitaMemory.Repo)
-    }
+    checks = Samgita.health_checks()
 
     all_healthy = Enum.all?(checks, fn {_, v} -> v == :ok end)
     status = if all_healthy, do: :ok, else: :service_unavailable
@@ -17,13 +14,6 @@ defmodule SamgitaWeb.HealthController do
       uptime_seconds: uptime_seconds(),
       checks: Map.new(checks, fn {k, v} -> {k, to_string(v)} end)
     })
-  end
-
-  defp check_repo(repo) do
-    repo.query!("SELECT 1")
-    :ok
-  rescue
-    _ -> :error
   end
 
   defp uptime_seconds do

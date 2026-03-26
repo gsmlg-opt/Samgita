@@ -53,9 +53,6 @@ config :samgita, Oban,
     snapshots: [limit: 5]
   ]
 
-# Configure Claude CLI command
-config :samgita, :claude_command, "claude"
-
 # Configure SamgitaProvider
 config :samgita_provider, provider: SamgitaProvider.ClaudeCode
 config :samgita_provider, :codex_command, "codex"

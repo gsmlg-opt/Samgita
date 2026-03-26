@@ -112,6 +112,101 @@ defmodule Samgita.Agent.CircuitBreakerTest do
     end
   end
 
+  describe "half-open state" do
+    test "transitions open → half_open after recovery timeout and allows probe", %{
+      agent_type: agent_type
+    } do
+      # Open the circuit with 5 consecutive failures
+      for _ <- 1..5 do
+        CircuitBreaker.record_failure(agent_type)
+      end
+
+      Process.sleep(10)
+
+      assert {:error, :circuit_open} == CircuitBreaker.allow?(agent_type)
+
+      # Back-date opened_at so the recovery timeout appears to have elapsed
+      past = DateTime.add(DateTime.utc_now(), -61, :second)
+
+      :sys.replace_state(CircuitBreaker, fn %{breakers: breakers} = s ->
+        updated =
+          Map.update!(breakers, agent_type, fn breaker ->
+            %{breaker | opened_at: past}
+          end)
+
+        %{s | breakers: updated}
+      end)
+
+      # Now allow? should transition to half_open and return :ok
+      assert :ok == CircuitBreaker.allow?(agent_type)
+
+      breaker = CircuitBreaker.get_state(agent_type)
+      assert breaker.state == :half_open
+    end
+
+    test "success in half_open closes the circuit", %{agent_type: agent_type} do
+      for _ <- 1..5 do
+        CircuitBreaker.record_failure(agent_type)
+      end
+
+      Process.sleep(10)
+
+      # Force the circuit into half_open by back-dating opened_at
+      past = DateTime.add(DateTime.utc_now(), -61, :second)
+
+      :sys.replace_state(CircuitBreaker, fn %{breakers: breakers} = s ->
+        updated =
+          Map.update!(breakers, agent_type, fn breaker ->
+            %{breaker | opened_at: past}
+          end)
+
+        %{s | breakers: updated}
+      end)
+
+      # Trigger the open → half_open transition
+      assert :ok == CircuitBreaker.allow?(agent_type)
+
+      # A successful probe must close the circuit
+      CircuitBreaker.record_success(agent_type)
+      Process.sleep(10)
+
+      breaker = CircuitBreaker.get_state(agent_type)
+      assert breaker.state == :closed
+      assert breaker.failure_count == 0
+    end
+
+    test "failure in half_open re-opens the circuit", %{agent_type: agent_type} do
+      for _ <- 1..5 do
+        CircuitBreaker.record_failure(agent_type)
+      end
+
+      Process.sleep(10)
+
+      # Force the circuit into half_open by back-dating opened_at
+      past = DateTime.add(DateTime.utc_now(), -61, :second)
+
+      :sys.replace_state(CircuitBreaker, fn %{breakers: breakers} = s ->
+        updated =
+          Map.update!(breakers, agent_type, fn breaker ->
+            %{breaker | opened_at: past}
+          end)
+
+        %{s | breakers: updated}
+      end)
+
+      # Trigger the open → half_open transition
+      assert :ok == CircuitBreaker.allow?(agent_type)
+
+      # A failed probe must re-open the circuit
+      CircuitBreaker.record_failure(agent_type)
+      Process.sleep(10)
+
+      breaker = CircuitBreaker.get_state(agent_type)
+      assert breaker.state == :open
+      assert breaker.opened_at != nil
+    end
+  end
+
   describe "independent agent types" do
     test "failures in one type don't affect another" do
       type_a = "independent-a-#{System.unique_integer([:positive])}"

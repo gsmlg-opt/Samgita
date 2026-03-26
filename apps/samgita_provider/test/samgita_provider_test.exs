@@ -23,6 +23,14 @@ defmodule SamgitaProviderTest do
       expect(SamgitaProvider.MockProvider, :query, fn _, _ -> {:error, :rate_limit} end)
       assert {:error, :rate_limit} = SamgitaProvider.query("hello")
     end
+
+    test "passes max_turns opt through to the provider" do
+      expect(SamgitaProvider.MockProvider, :query, fn "test", [max_turns: 5] ->
+        {:ok, "bounded response"}
+      end)
+
+      assert {:ok, "bounded response"} = SamgitaProvider.query("test", max_turns: 5)
+    end
   end
 
   describe "provider/0" do

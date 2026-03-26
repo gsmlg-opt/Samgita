@@ -52,7 +52,6 @@ mix ecto.rollback -r SamgitaMemory.Repo  # Rollback memory
 |---|---|---|
 | `config :samgita, Samgita.Repo` | `:samgita` | Database |
 | `config :samgita, Oban` | `:samgita` | Job queues (agent_tasks, orchestration, snapshots) |
-| `config :samgita, :claude_command` | `:samgita` | Claude CLI path |
 | `config :samgita, :api_keys` | `:samgita` | REST API keys |
 | `config :samgita_memory, SamgitaMemory.Repo` | `:samgita_memory` | Memory database (same PG, needs `PostgrexTypes`) |
 | `config :samgita_memory, Oban` | `:samgita_memory` | Memory jobs (name: `SamgitaMemory.Oban`) |
@@ -76,7 +75,9 @@ Finch (name: Samgita.Finch)
 Samgita.Cache (ETS with TTL + PubSub invalidation)
 Horde.Registry (Samgita.AgentRegistry)
 Horde.DynamicSupervisor (Samgita.AgentSupervisor)
+Samgita.Agent.CircuitBreaker (GenServer, per-agent-type failure tracking)
 Oban (queues: agent_tasks:100, orchestration:10, snapshots:5)
+Samgita.Project.Recovery (GenServer, restores active projects on startup)
 ```
 
 **SamgitaMemory.Application** (memory app):
@@ -126,6 +127,8 @@ Manages project lifecycle phases and coordinates agent spawning.
 
 **samgita app:**
 - **AgentTaskWorker** — queue: `agent_tasks`, max attempts: 5. Dispatches tasks to agent workers via Horde.
+- **BootstrapWorker** — queue: `orchestration`. Initializes project orchestration (creates tasks, spawns agents).
+- **QualityGateWorker** — queue: `orchestration`. Evaluates quality gates before phase advancement.
 - **SnapshotWorker** — queue: `snapshots`, max attempts: 3. Periodic state snapshots, retains last 10.
 - **WebhookWorker** — queue: `agent_tasks`, max attempts: 5. Delivers webhooks with HMAC-SHA256 signatures.
 

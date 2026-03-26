@@ -56,9 +56,6 @@ config :samgita_web, SamgitaWeb.Endpoint,
 config :samgita, Oban, testing: :inline
 config :samgita_memory, Oban, testing: :inline
 
-# Use echo as a mock for Claude CLI in tests
-config :samgita, :claude_command, "echo"
-
 # Use Mox-based mock provider for SamgitaProvider in tests
 config :samgita_provider, provider: SamgitaProvider.MockProvider
 
