@@ -173,8 +173,19 @@ defmodule Samgita.Project.Orchestrator do
 
       data = %{data | agents: agent_statuses}
 
-      # Enqueue phase-specific tasks
-      task_count = enqueue_phase_tasks(phase, data)
+      # Enqueue phase-specific tasks (rescue to prevent orchestrator crash)
+      task_count =
+        try do
+          enqueue_phase_tasks(phase, data)
+        rescue
+          e ->
+            Logger.error(
+              "[Orchestrator] #{data.project_id}: enqueue_phase_tasks raised: #{Exception.message(e)}"
+            )
+
+            broadcast_activity(data, :failed, "Failed to enqueue #{phase} tasks")
+            0
+        end
 
       data =
         if task_count > 0,

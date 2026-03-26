@@ -10,6 +10,8 @@ defmodule SamgitaWeb.PrdChatLiveTest do
 
     Mox.stub(SamgitaProvider.MockProvider, :query, fn _prompt, _opts -> {:ok, "mock response"} end)
 
+    Mox.stub(Samgita.MockOban, :insert, fn _job -> {:ok, %Oban.Job{}} end)
+
     :ok
   end
 
