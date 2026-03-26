@@ -2,6 +2,8 @@ defmodule Samgita.ProjectsTest do
   # async: false — start/stop/restart_project interact with global Horde.DynamicSupervisor
   use Samgita.DataCase, async: false
 
+  import ExUnit.CaptureLog
+
   alias Ecto.Adapters.SQL.Sandbox
   alias Samgita.Domain.Project
   alias Samgita.Projects
@@ -17,11 +19,16 @@ defmodule Samgita.ProjectsTest do
     Sandbox.mode(Samgita.Repo, {:shared, self()})
 
     on_exit(fn ->
-      # Stop any supervisor processes spawned during tests via Horde
+      # Stop any supervisor processes spawned during tests via Horde.
+      # Must terminate before Mox cleans up stubs, otherwise orphan
+      # orchestrator processes hit "no expectation defined" errors.
       Horde.DynamicSupervisor.which_children(Samgita.AgentSupervisor)
       |> Enum.each(fn {_, pid, _, _} ->
         Horde.DynamicSupervisor.terminate_child(Samgita.AgentSupervisor, pid)
       end)
+
+      # Brief pause to let terminated processes fully shut down
+      Process.sleep(50)
     end)
 
     :ok
@@ -110,30 +117,36 @@ defmodule Samgita.ProjectsTest do
       project = create_project(%{status: :pending})
       prd = create_prd(project)
 
-      assert {:ok, started} = Projects.start_project(project.id, prd.id)
-      assert started.status == :running
-      assert started.phase == :bootstrap
-      assert started.active_prd_id == prd.id
+      capture_log(fn ->
+        assert {:ok, started} = Projects.start_project(project.id, prd.id)
+        assert started.status == :running
+        assert started.phase == :bootstrap
+        assert started.active_prd_id == prd.id
 
-      # PRD should be in_progress
-      {:ok, updated_prd} = Samgita.Prds.get_prd(prd.id)
-      assert updated_prd.status == :in_progress
+        # PRD should be in_progress
+        {:ok, updated_prd} = Samgita.Prds.get_prd(prd.id)
+        assert updated_prd.status == :in_progress
+      end)
     end
 
     test "starts a completed project" do
       project = create_project(%{status: :completed})
       prd = create_prd(project)
 
-      assert {:ok, started} = Projects.start_project(project.id, prd.id)
-      assert started.status == :running
+      capture_log(fn ->
+        assert {:ok, started} = Projects.start_project(project.id, prd.id)
+        assert started.status == :running
+      end)
     end
 
     test "starts a failed project" do
       project = create_project(%{status: :failed})
       prd = create_prd(project)
 
-      assert {:ok, started} = Projects.start_project(project.id, prd.id)
-      assert started.status == :running
+      capture_log(fn ->
+        assert {:ok, started} = Projects.start_project(project.id, prd.id)
+        assert started.status == :running
+      end)
     end
 
     test "fails for already running project" do
@@ -179,10 +192,12 @@ defmodule Samgita.ProjectsTest do
       prd = create_prd(project, %{status: :in_progress})
       {:ok, project} = Projects.update_project(project, %{active_prd_id: prd.id})
 
-      assert {:ok, restarted} = Projects.restart_project(project.id)
-      assert restarted.status == :running
-      assert restarted.phase == :bootstrap
-      assert restarted.active_prd_id == prd.id
+      capture_log(fn ->
+        assert {:ok, restarted} = Projects.restart_project(project.id)
+        assert restarted.status == :running
+        assert restarted.phase == :bootstrap
+        assert restarted.active_prd_id == prd.id
+      end)
     end
 
     test "fails when no active PRD" do

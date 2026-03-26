@@ -31,6 +31,14 @@ defmodule Samgita.Project.OrchestratorTest do
     %{project: project}
   end
 
+  defp flush_messages(acc \\ []) do
+    receive do
+      msg -> flush_messages([msg | acc])
+    after
+      0 -> Enum.reverse(acc)
+    end
+  end
+
   test "starts in project's current phase", %{project: project} do
     {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
     assert {:bootstrap, _data} = Orchestrator.get_state(pid)
@@ -430,6 +438,140 @@ defmodule Samgita.Project.OrchestratorTest do
       {:bootstrap, data} = Orchestrator.get_state(pid)
       # Should have phase_tasks_total = 0 (no BootstrapWorker triggered)
       assert data.phase_tasks_total == 0
+
+      :gen_statem.stop(pid)
+    end
+  end
+
+  describe "quality gates block phase advancement" do
+    test "qa phase also triggers quality gates instead of auto-advancing", %{project: project} do
+      {:ok, _} = Projects.update_project(project, %{phase: :qa})
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(50)
+
+      assert {:qa, _} = Orchestrator.get_state(pid)
+
+      Orchestrator.set_phase_task_count(pid, 1)
+      Process.sleep(10)
+      Orchestrator.notify_task_completed(pid, "task-1")
+      Process.sleep(100)
+
+      # QA requires quality gates — should be awaiting, not auto-advanced
+      {:qa, data} = Orchestrator.get_state(pid)
+      assert data.awaiting_quality_gates == true
+
+      :gen_statem.stop(pid)
+    end
+
+    test "orchestrator stays in development when quality gates are not sent", %{project: project} do
+      {:ok, _} = Projects.update_project(project, %{phase: :development})
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(50)
+
+      # Complete tasks to trigger gate wait
+      Orchestrator.set_phase_task_count(pid, 1)
+      Process.sleep(10)
+      Orchestrator.notify_task_completed(pid, "task-1")
+      Process.sleep(200)
+
+      # Orchestrator should be stuck awaiting gates — NOT advanced
+      {:development, data} = Orchestrator.get_state(pid)
+      assert data.awaiting_quality_gates == true
+
+      # Wait extra time — still should not advance without explicit gate pass
+      Process.sleep(500)
+      {:development, _} = Orchestrator.get_state(pid)
+
+      :gen_statem.stop(pid)
+    end
+
+    test "qa phase advances after quality_gates_passed", %{project: project} do
+      {:ok, _} = Projects.update_project(project, %{phase: :qa})
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(50)
+
+      Orchestrator.set_phase_task_count(pid, 1)
+      Process.sleep(10)
+      Orchestrator.notify_task_completed(pid, "task-1")
+      Process.sleep(100)
+
+      {:qa, data} = Orchestrator.get_state(pid)
+      assert data.awaiting_quality_gates == true
+
+      :gen_statem.cast(pid, :quality_gates_passed)
+      Process.sleep(500)
+
+      # Should have advanced to deployment
+      assert {:deployment, data} = Orchestrator.get_state(pid)
+      assert data.awaiting_quality_gates == false
+
+      :gen_statem.stop(pid)
+    end
+  end
+
+  describe "activity log broadcasting" do
+    test "broadcasts activity_log on phase entry", %{project: project} do
+      :ok = Samgita.Events.subscribe_project(project.id)
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      # Should have received bootstrap phase entry activity
+      assert_receive {:activity_log, %{stage: :phase_change, message: msg}}, 500
+      assert msg =~ "Entering phase: bootstrap"
+
+      :gen_statem.stop(pid)
+    end
+
+    test "broadcasts activity_log on agent spawning", %{project: project} do
+      :ok = Samgita.Events.subscribe_project(project.id)
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      assert_receive {:activity_log, %{stage: :spawned, message: msg}}, 500
+      assert msg =~ "Spawning agents:"
+
+      :gen_statem.stop(pid)
+    end
+
+    test "broadcasts activity_log on task completion", %{project: project} do
+      :ok = Samgita.Events.subscribe_project(project.id)
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(50)
+
+      :gen_statem.cast(pid, {:task_completed, "task-abc"})
+      Process.sleep(50)
+
+      assert_receive {:activity_log, %{stage: :task_completed, message: msg}}, 500
+      assert msg =~ "Task completed"
+
+      :gen_statem.stop(pid)
+    end
+
+    test "broadcasts activity_log on auto-advance", %{project: project} do
+      :ok = Samgita.Events.subscribe_project(project.id)
+
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(50)
+
+      Orchestrator.set_phase_task_count(pid, 1)
+      Process.sleep(10)
+      Orchestrator.notify_task_completed(pid, "task-1")
+      Process.sleep(500)
+
+      # Should receive phase_change activity for advancing to discovery
+      messages = flush_messages()
+
+      phase_change_msgs =
+        Enum.filter(messages, fn
+          {:activity_log, %{stage: :phase_change}} -> true
+          _ -> false
+        end)
+
+      assert length(phase_change_msgs) >= 2
+      # At least: entering bootstrap + entering discovery (or auto-advance message)
 
       :gen_statem.stop(pid)
     end

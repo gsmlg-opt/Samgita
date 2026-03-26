@@ -90,15 +90,7 @@ defmodule Samgita.Projects do
              phase: :bootstrap,
              active_prd_id: prd_id
            }) do
-      case Horde.DynamicSupervisor.start_child(
-             Samgita.AgentSupervisor,
-             {Samgita.Project.Supervisor, project_id: project.id}
-           ) do
-        {:ok, _pid} -> {:ok, project}
-        {:ok, _pid, _info} -> {:ok, project}
-        {:error, {:already_started, _pid}} -> {:ok, project}
-        {:error, reason} -> {:error, {:supervisor_start_failed, reason}}
-      end
+      start_project_supervisor(project)
     end
   end
 
@@ -150,6 +142,32 @@ defmodule Samgita.Projects do
       where: t.status in [:pending, :running]
     )
     |> Repo.update_all(set: [status: :failed, error: %{"reason" => "project terminated"}])
+  end
+
+  # Retry Horde supervisor start to handle transient :process_not_registered_via
+  # race conditions during Horde registry synchronization
+  defp start_project_supervisor(project, retries \\ 3) do
+    case Horde.DynamicSupervisor.start_child(
+           Samgita.AgentSupervisor,
+           {Samgita.Project.Supervisor, project_id: project.id}
+         ) do
+      {:ok, _pid} ->
+        {:ok, project}
+
+      {:ok, _pid, _info} ->
+        {:ok, project}
+
+      {:error, {:already_started, _pid}} ->
+        {:ok, project}
+
+      {:error, {:shutdown, {:failed_to_start_child, _, {:process_not_registered_via, _}}}}
+      when retries > 0 ->
+        Process.sleep(100)
+        start_project_supervisor(project, retries - 1)
+
+      {:error, reason} ->
+        {:error, {:supervisor_start_failed, reason}}
+    end
   end
 
   defp terminate_supervisor(id) do

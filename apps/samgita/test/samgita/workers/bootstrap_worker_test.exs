@@ -70,7 +70,7 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
     test "generates tasks from PRD", %{project: project, prd: prd} do
       {:ok, tasks} = BootstrapWorker.generate_task_backlog(project, prd)
 
-      assert tasks != []
+      assert length(tasks) > 0
 
       # Should have analysis task
       assert Enum.any?(tasks, fn t -> t.type == "analysis" end)
@@ -137,7 +137,7 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
 
       # Verify tasks were created in the database
       tasks = Projects.list_tasks(project.id)
-      assert tasks != []
+      assert length(tasks) > 0
 
       # All tasks should reference the PRD
       Enum.each(tasks, fn task ->
@@ -244,7 +244,7 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
       Repo.delete(prd)
 
       # Re-insert with a stale reference that will cause update to fail
-      stale_prd = %Prd{prd | __meta__: %{prd.__meta__ | state: :loaded}}
+      _stale_prd = %Prd{prd | __meta__: %{prd.__meta__ | state: :loaded}}
 
       # Perform should still succeed (save_prd_metadata returns :ok on failure)
       job = %Oban.Job{args: %{"project_id" => project.id, "prd_id" => prd.id}}

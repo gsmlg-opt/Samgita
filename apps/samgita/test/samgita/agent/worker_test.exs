@@ -15,6 +15,16 @@ defmodule Samgita.Agent.WorkerTest do
     Sandbox.mode(Samgita.Repo, {:shared, self()})
     Sandbox.mode(SamgitaMemory.Repo, {:shared, self()})
 
+    on_exit(fn ->
+      # Terminate any Horde children spawned during tests to avoid DB sandbox leaks
+      Horde.DynamicSupervisor.which_children(Samgita.AgentSupervisor)
+      |> Enum.each(fn {_, pid, _, _} ->
+        Horde.DynamicSupervisor.terminate_child(Samgita.AgentSupervisor, pid)
+      end)
+
+      Process.sleep(50)
+    end)
+
     :ok
   end
 
@@ -557,35 +567,64 @@ defmodule Samgita.Agent.WorkerTest do
         project_id: Ecto.UUID.generate()
       ]
 
+      # Retry start_child — Horde registry may not be synced yet in concurrent test runs
       {:ok, pid1} =
-        Horde.DynamicSupervisor.start_child(
-          Samgita.AgentSupervisor,
-          Worker.child_spec(opts)
-        )
+        Enum.reduce_while(1..5, nil, fn attempt, _ ->
+          case Horde.DynamicSupervisor.start_child(
+                 Samgita.AgentSupervisor,
+                 Worker.child_spec(opts)
+               ) do
+            {:ok, pid} ->
+              {:halt, {:ok, pid}}
+
+            {:error, _reason} when attempt < 5 ->
+              Process.sleep(100)
+              {:cont, nil}
+
+            {:error, reason} ->
+              {:halt, {:error, reason}}
+          end
+        end)
 
       assert {:idle, _} = Worker.get_state(pid1)
       ref = Process.monitor(pid1)
 
-      # Kill the agent process abruptly
+      # Kill the agent process abruptly and time the recovery
+      start_time = System.monotonic_time(:millisecond)
       Process.exit(pid1, :kill)
       assert_receive {:DOWN, ^ref, :process, ^pid1, :killed}, 5_000
 
       # Horde should restart it (transient restart, :kill is abnormal)
-      Process.sleep(500)
+      # Poll for restart — must happen within 2 seconds (acceptance: "within seconds")
+      restarted_pid =
+        Enum.reduce_while(1..40, nil, fn _, _acc ->
+          Process.sleep(50)
+
+          case Horde.Registry.lookup(Samgita.AgentRegistry, agent_id) do
+            [{pid2, _}] when pid2 != pid1 -> {:halt, pid2}
+            _ -> {:cont, nil}
+          end
+        end)
+
+      recovery_ms = System.monotonic_time(:millisecond) - start_time
 
       # Verify the agent re-registered in Horde.Registry
-      case Horde.Registry.lookup(Samgita.AgentRegistry, agent_id) do
-        [{pid2, _}] ->
-          assert is_pid(pid2)
-          assert pid2 != pid1
-          assert Process.alive?(pid2)
-          # Clean up
-          Horde.DynamicSupervisor.terminate_child(Samgita.AgentSupervisor, pid2)
-
-        [] ->
+      case restarted_pid do
+        nil ->
           # Transient restart may not restart after :kill in some Horde versions;
           # verify the original process is dead at minimum
           refute Process.alive?(pid1)
+
+        pid2 ->
+          assert is_pid(pid2)
+          assert pid2 != pid1
+          assert Process.alive?(pid2)
+          # Recovery must happen within 2 seconds
+          assert recovery_ms < 2_000,
+                 "Agent restart took #{recovery_ms}ms — exceeds 2 second threshold"
+
+          # Clean up
+          Horde.DynamicSupervisor.terminate_child(Samgita.AgentSupervisor, pid2)
       end
     end
 
