@@ -292,4 +292,153 @@ defmodule Samgita.ProjectsTest do
       assert {:error, :not_paused} = Projects.resume_project(project.id)
     end
   end
+
+  describe "task system (prd-016)" do
+    test "create_task inserts task with project_id" do
+      project = create_project()
+
+      {:ok, task} =
+        Projects.create_task(project.id, %{
+          type: "eng-backend",
+          payload: %{"action" => "build"}
+        })
+
+      assert task.project_id == project.id
+      assert task.type == "eng-backend"
+      assert task.status == :pending
+    end
+
+    test "list_tasks returns all tasks for a project ordered by priority" do
+      project = create_project()
+
+      {:ok, _low} = Projects.create_task(project.id, %{type: "low", priority: 20})
+      {:ok, _high} = Projects.create_task(project.id, %{type: "high", priority: 1})
+      {:ok, _mid} = Projects.create_task(project.id, %{type: "mid", priority: 10})
+
+      tasks = Projects.list_tasks(project.id)
+      priorities = Enum.map(tasks, & &1.priority)
+
+      assert priorities == Enum.sort(priorities)
+    end
+
+    test "list_tasks excludes tasks from other projects" do
+      project_a = create_project(%{name: "A", git_url: "git@github.com:org/a.git"})
+
+      project_b =
+        create_project(%{
+          name: "B",
+          git_url: "git@github.com:org/b-#{System.unique_integer()}.git"
+        })
+
+      {:ok, _a_task} = Projects.create_task(project_a.id, %{type: "a-task"})
+      {:ok, _b_task} = Projects.create_task(project_b.id, %{type: "b-task"})
+
+      a_tasks = Projects.list_tasks(project_a.id)
+      types = Enum.map(a_tasks, & &1.type)
+
+      assert "a-task" in types
+      refute "b-task" in types
+    end
+
+    test "get_task returns {:ok, task} for existing task" do
+      project = create_project()
+      {:ok, task} = Projects.create_task(project.id, %{type: "findable"})
+
+      assert {:ok, found} = Projects.get_task(task.id)
+      assert found.id == task.id
+    end
+
+    test "get_task returns {:error, :not_found} for missing task" do
+      assert {:error, :not_found} = Projects.get_task(Ecto.UUID.generate())
+    end
+
+    test "complete_task transitions to :completed and sets completed_at" do
+      project = create_project()
+      {:ok, task} = Projects.create_task(project.id, %{type: "to-complete"})
+
+      assert {:ok, completed} = Projects.complete_task(task.id)
+      assert completed.status == :completed
+      assert completed.completed_at != nil
+    end
+
+    test "complete_task returns :not_found for missing task" do
+      assert {:error, :not_found} = Projects.complete_task(Ecto.UUID.generate())
+    end
+
+    test "retry_task resets failed task to pending with attempts=0" do
+      project = create_project()
+
+      {:ok, task} =
+        Projects.create_task(project.id, %{
+          type: "failed-task",
+          status: :failed,
+          attempts: 3,
+          error: %{"reason" => "timeout"}
+        })
+
+      assert {:ok, retried} = Projects.retry_task(task.id)
+      assert retried.status == :pending
+      assert retried.attempts == 0
+      assert retried.error == nil
+    end
+
+    test "retry_task resets dead_letter task" do
+      project = create_project()
+
+      {:ok, task} =
+        Projects.create_task(project.id, %{
+          type: "dead-task",
+          status: :dead_letter,
+          attempts: 5
+        })
+
+      assert {:ok, retried} = Projects.retry_task(task.id)
+      assert retried.status == :pending
+      assert retried.attempts == 0
+    end
+
+    test "retry_task returns error for pending task (not retriable)" do
+      project = create_project()
+      {:ok, task} = Projects.create_task(project.id, %{type: "pending-task", status: :pending})
+
+      assert {:error, :not_retriable} = Projects.retry_task(task.id)
+    end
+
+    test "retry_task returns error for running task (not retriable)" do
+      project = create_project()
+      {:ok, task} = Projects.create_task(project.id, %{type: "running-task", status: :running})
+
+      assert {:error, :not_retriable} = Projects.retry_task(task.id)
+    end
+
+    test "hierarchical task: child task has parent_task_id set" do
+      project = create_project()
+      {:ok, parent} = Projects.create_task(project.id, %{type: "parent-milestone"})
+
+      {:ok, child} =
+        Projects.create_task(project.id, %{
+          type: "child-task",
+          parent_task_id: parent.id
+        })
+
+      assert child.parent_task_id == parent.id
+
+      {:ok, found_child} = Projects.get_task(child.id)
+      assert found_child.parent_task_id == parent.id
+    end
+
+    test "tasks track tokens_used and duration_ms" do
+      project = create_project()
+
+      {:ok, task} =
+        Projects.create_task(project.id, %{
+          type: "tracked-task",
+          tokens_used: 1500,
+          duration_ms: 3000
+        })
+
+      assert task.tokens_used == 1500
+      assert task.duration_ms == 3000
+    end
+  end
 end

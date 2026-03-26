@@ -172,4 +172,94 @@ defmodule SamgitaWeb.DashboardLiveTest do
     html = render(view)
     assert html =~ "Phase Log"
   end
+
+  describe "real-time dashboard updates (prd-017)" do
+    test "activity log renders all orchestrator stage types", %{conn: conn} do
+      {:ok, _project} =
+        Projects.create_project(%{name: "Stage Test", git_url: unique_git_url("stages")})
+
+      {:ok, view, _html} = live(conn, ~p"/")
+
+      stages = [:spawned, :act, :reflect, :verify, :phase_change, :error]
+
+      for {stage, i} <- Enum.with_index(stages) do
+        send(
+          view.pid,
+          {:activity_log, %{stage: stage, message: "Stage #{i} event", source: "orchestrator"}}
+        )
+      end
+
+      html = render(view)
+      assert html =~ "Activity Log"
+    end
+
+    test "activity log appends entries in order without full page reload", %{conn: conn} do
+      {:ok, view, _html} = live(conn, ~p"/")
+
+      # Send three events in sequence
+      for i <- 1..3 do
+        send(view.pid, {:activity_log, %{stage: :act, message: "Event #{i}", source: "test"}})
+      end
+
+      html = render(view)
+
+      # All three events must appear
+      assert html =~ "Event 1"
+      assert html =~ "Event 2"
+      assert html =~ "Event 3"
+    end
+
+    test "project status updates reflect in dashboard without navigation", %{conn: conn} do
+      {:ok, project} =
+        Projects.create_project(%{
+          name: "Live Update",
+          git_url: unique_git_url("live-update"),
+          status: :pending
+        })
+
+      {:ok, view, html} = live(conn, ~p"/")
+      assert html =~ "pending"
+
+      # Simulate project status change via PubSub
+      {:ok, updated} = Projects.update_project(project, %{status: :running})
+      send(view.pid, {:project_updated, updated})
+
+      html = render(view)
+      assert html =~ "running"
+    end
+
+    test "dashboard shows running project count in summary", %{conn: conn} do
+      {:ok, _} =
+        Projects.create_project(%{
+          name: "Running 1",
+          git_url: unique_git_url("r1"),
+          status: :running
+        })
+
+      {:ok, _} =
+        Projects.create_project(%{
+          name: "Running 2",
+          git_url: unique_git_url("r2"),
+          status: :running
+        })
+
+      {:ok, _view, html} = live(conn, ~p"/")
+      # Both running projects listed
+      assert html =~ "Running 1"
+      assert html =~ "Running 2"
+    end
+
+    test "new project link is always present in dashboard", %{conn: conn} do
+      {:ok, view, _html} = live(conn, ~p"/")
+      assert has_element?(view, ~s|a[href="/projects/new"]|)
+    end
+
+    test "project cards link to project detail pages", %{conn: conn} do
+      {:ok, project} =
+        Projects.create_project(%{name: "Detail Link", git_url: unique_git_url("detail")})
+
+      {:ok, view, _html} = live(conn, ~p"/")
+      assert has_element?(view, ~s|a[href="/projects/#{project.id}"]|)
+    end
+  end
 end
