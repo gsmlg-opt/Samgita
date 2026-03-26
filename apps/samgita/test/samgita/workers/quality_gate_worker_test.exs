@@ -353,6 +353,33 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
              "pre_deploy (#{deploy_count}) should have more gates than pre_qa (#{qa_count})"
     end
 
+    test "pre_deploy includes Output Guardrails when project has artifacts",
+         %{project: project, prd: prd} do
+      # Create an artifact so Output Guardrails has something to scan
+      %Samgita.Domain.Artifact{}
+      |> Samgita.Domain.Artifact.changeset(%{
+        type: :code,
+        path: "lib/test.ex",
+        content: "defmodule Test do\n  def hello, do: :world\nend",
+        project_id: project.id
+      })
+      |> Repo.insert!()
+
+      :ok =
+        QualityGateWorker.perform(%Oban.Job{
+          args: %{"project_id" => project.id, "prd_id" => prd.id, "gate_type" => "pre_deploy"}
+        })
+
+      artifacts =
+        Samgita.Domain.Artifact
+        |> Ecto.Query.where(project_id: ^project.id)
+        |> Ecto.Query.where([a], a.type == :doc)
+        |> Repo.all()
+
+      [gate_artifact] = artifacts
+      assert String.contains?(gate_artifact.content, "Output Guardrails")
+    end
+
     test "summarize_results/1 formats each gate with gate number, name, verdict, and finding count" do
       gate_results = [
         %{gate: 2, name: "Static Analysis", verdict: :pass, findings: []},
