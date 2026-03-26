@@ -16,6 +16,7 @@ defmodule Samgita.Project.Orchestrator do
   alias Samgita.Workers.AgentTaskWorker
   alias Samgita.Workers.BootstrapWorker
   alias Samgita.Workers.QualityGateWorker
+  alias Samgita.Workers.SnapshotWorker
 
   @stagnation_check_interval_ms 300_000
   @stagnation_threshold 5
@@ -918,6 +919,8 @@ defmodule Samgita.Project.Orchestrator do
   end
 
   defp advance_to_next_phase(phase, data) do
+    create_phase_checkpoint(data, phase)
+
     case next_phase(phase) do
       nil ->
         Logger.info("[Orchestrator] #{data.project_id}: perpetual mode, staying")
@@ -934,5 +937,18 @@ defmodule Samgita.Project.Orchestrator do
 
         {:next_state, next, reset_phase_counters(data)}
     end
+  end
+
+  defp create_phase_checkpoint(data, phase) do
+    ObanClient.insert(
+      SnapshotWorker.new(%{project_id: data.project_id, trigger: "phase_complete_#{phase}"})
+    )
+  rescue
+    e ->
+      Logger.warning(
+        "[Orchestrator] #{data.project_id}: failed to create phase checkpoint: #{inspect(e)}"
+      )
+  catch
+    :exit, _ -> :ok
   end
 end

@@ -54,9 +54,23 @@ defmodule Samgita.Agent.TypesTest do
   end
 
   test "model_for_type/1 returns appropriate model" do
+    # Planning tier (Opus)
     assert Types.model_for_type("prod-pm") == "opus"
+    assert Types.model_for_type("eng-infra") == "opus"
+
+    # Fast tier (Haiku) — eng-qa + all review-*
     assert Types.model_for_type("eng-qa") == "haiku"
+    assert Types.model_for_type("review-code") == "haiku"
+    assert Types.model_for_type("review-business") == "haiku"
+    assert Types.model_for_type("review-security") == "haiku"
+
+    # Development tier (Sonnet) — everything else
     assert Types.model_for_type("eng-backend") == "sonnet"
+    assert Types.model_for_type("ops-monitor") == "sonnet"
+    assert Types.model_for_type("ops-sre") == "sonnet"
+    assert Types.model_for_type("biz-marketing") == "sonnet"
+    assert Types.model_for_type("data-ml") == "sonnet"
+    assert Types.model_for_type("growth-hacker") == "sonnet"
   end
 
   test "model_for_type/1 returns a valid model string for all 37 agent types" do

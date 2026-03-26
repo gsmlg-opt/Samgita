@@ -83,7 +83,7 @@ defmodule Samgita.Agent.Types do
   def model_for_type(type_id) do
     cond do
       type_id in ["prod-pm", "eng-infra"] -> "opus"
-      type_id in ["eng-qa", "ops-monitor", "review-code"] -> "haiku"
+      type_id in ["eng-qa", "review-code", "review-business", "review-security"] -> "haiku"
       true -> "sonnet"
     end
   end
