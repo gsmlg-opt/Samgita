@@ -131,4 +131,121 @@ defmodule SamgitaMemory.Retrieval.PipelineTest do
       assert hd(results).id == m1.id
     end
   end
+
+  describe "stage 1b: type filter (prd-013)" do
+    test "filters by episodic type only" do
+      {:ok, ep} = Memories.store("episodic memory", type: :episodic, scope: {:global, nil})
+      {:ok, _sem} = Memories.store("semantic memory", type: :semantic, scope: {:global, nil})
+      {:ok, _proc} = Memories.store("procedural memory", type: :procedural, scope: {:global, nil})
+
+      results = Pipeline.execute(nil, type: :episodic)
+      assert Enum.all?(results, &(&1.memory_type == :episodic))
+      assert Enum.any?(results, &(&1.id == ep.id))
+    end
+
+    test "filters by semantic type only" do
+      {:ok, _ep} = Memories.store("episodic memory", type: :episodic, scope: {:global, nil})
+      {:ok, sem} = Memories.store("semantic pattern", type: :semantic, scope: {:global, nil})
+
+      results = Pipeline.execute(nil, type: :semantic)
+      assert Enum.all?(results, &(&1.memory_type == :semantic))
+      assert Enum.any?(results, &(&1.id == sem.id))
+    end
+
+    test "filters by procedural type only" do
+      {:ok, _ep} = Memories.store("episodic fact", type: :episodic, scope: {:global, nil})
+      {:ok, proc} = Memories.store("deploy procedure", type: :procedural, scope: {:global, nil})
+
+      results = Pipeline.execute(nil, type: :procedural)
+      assert Enum.all?(results, &(&1.memory_type == :procedural))
+      assert Enum.any?(results, &(&1.id == proc.id))
+    end
+
+    test "type filter is independent of scope filter" do
+      scope = {:project, "proj-type-test"}
+      {:ok, ep} = Memories.store("episodic in scope", type: :episodic, scope: scope)
+      {:ok, _sem} = Memories.store("semantic in scope", type: :semantic, scope: scope)
+
+      results = Pipeline.execute(nil, type: :episodic, scope: scope)
+      assert length(results) == 1
+      assert hd(results).id == ep.id
+    end
+  end
+
+  describe "stage 4: recency boost ordering (prd-013)" do
+    test "higher confidence memories are returned first when no embedding" do
+      scope = {:project, "recency-test-#{System.unique_integer([:positive])}"}
+
+      {:ok, low} = Memories.store("low confidence memory", confidence: 0.4, scope: scope)
+      {:ok, high} = Memories.store("high confidence memory", confidence: 0.9, scope: scope)
+
+      results = Pipeline.execute(nil, scope: scope)
+      assert length(results) == 2
+
+      # High confidence should score higher in stage 4 (confidence * 0.7 + recency * 0.2 + access * 0.1)
+      assert hd(results).id == high.id
+      assert List.last(results).id == low.id
+    end
+  end
+
+  describe "all 7 pipeline stages active (prd-013)" do
+    test "pipeline applies all stages: scope, type, tag, semantic, recency, confidence, dedup" do
+      scope = {:project, "all-stages-#{System.unique_integer([:positive])}"}
+
+      # Stage 1: scope filter — only proj-in-scope visible
+      {:ok, _other} =
+        Memories.store("other project memory",
+          scope: {:project, "other-proj"},
+          type: :episodic,
+          tags: ["elixir"],
+          confidence: 0.9
+        )
+
+      # Stage 1b: type filter — only episodic
+      {:ok, _sem} =
+        Memories.store("semantic in scope", type: :semantic, scope: scope, confidence: 0.9)
+
+      # Stage 2: tag filter — only tagged with elixir
+      {:ok, _notag} =
+        Memories.store("no elixir tag", type: :episodic, scope: scope, tags: ["python"])
+
+      # Stage 5: confidence filter — above min_confidence
+      {:ok, _low} =
+        Memories.store("low confidence",
+          type: :episodic,
+          scope: scope,
+          tags: ["elixir"],
+          confidence: 0.1
+        )
+
+      # Stage 6: dedup — two identical content entries = one result
+      {:ok, _dup1} =
+        Memories.store("unique finding",
+          type: :episodic,
+          scope: scope,
+          tags: ["elixir"],
+          confidence: 0.9
+        )
+
+      {:ok, _dup2} =
+        Memories.store("unique finding",
+          type: :episodic,
+          scope: scope,
+          tags: ["elixir"],
+          confidence: 0.8
+        )
+
+      results =
+        Pipeline.execute(nil,
+          scope: scope,
+          type: :episodic,
+          tags: ["elixir"],
+          min_confidence: 0.3
+        )
+
+      # Only the deduplicated "unique finding" should survive all stages
+      assert length(results) == 1
+      assert hd(results).content == "unique finding"
+    end
+  end
 end

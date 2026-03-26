@@ -149,6 +149,77 @@ defmodule SamgitaMemory.MemoriesTest do
     end
   end
 
+  describe "three memory tiers (prd-012)" do
+    test "episodic tier stores event-specific memories" do
+      assert {:ok, memory} =
+               Memories.store("Task 42 completed in 1.2s",
+                 type: :episodic,
+                 scope: {:project, "proj-ep"},
+                 tags: ["task", "performance"]
+               )
+
+      assert memory.memory_type == :episodic
+      assert memory.confidence == 1.0
+      assert "task" in memory.tags
+    end
+
+    test "semantic tier stores consolidated pattern memories" do
+      assert {:ok, memory} =
+               Memories.store("Use Ecto.Multi for atomic DB operations",
+                 type: :semantic,
+                 scope: {:global, nil},
+                 tags: ["elixir", "ecto", "pattern"]
+               )
+
+      assert memory.memory_type == :semantic
+    end
+
+    test "procedural tier stores reusable skill templates" do
+      assert {:ok, memory} =
+               Memories.store("To deploy: mix ecto.migrate && mix phx.server",
+                 type: :procedural,
+                 scope: {:global, nil},
+                 tags: ["deployment", "procedure"]
+               )
+
+      assert memory.memory_type == :procedural
+    end
+
+    test "all three tiers can be stored and retrieved independently" do
+      scope = {:project, "three-tiers-#{System.unique_integer([:positive])}"}
+
+      {:ok, ep} = Memories.store("episodic event", type: :episodic, scope: scope)
+      {:ok, sem} = Memories.store("semantic pattern", type: :semantic, scope: scope)
+      {:ok, proc} = Memories.store("procedural template", type: :procedural, scope: scope)
+
+      ep_results = Memories.retrieve("anything", type: :episodic, scope: scope)
+      sem_results = Memories.retrieve("anything", type: :semantic, scope: scope)
+      proc_results = Memories.retrieve("anything", type: :procedural, scope: scope)
+
+      assert Enum.any?(ep_results, &(&1.id == ep.id))
+      assert Enum.any?(sem_results, &(&1.id == sem.id))
+      assert Enum.any?(proc_results, &(&1.id == proc.id))
+
+      # Each tier is isolated from others
+      refute Enum.any?(ep_results, &(&1.id == sem.id))
+      refute Enum.any?(ep_results, &(&1.id == proc.id))
+    end
+
+    test "default memory type is episodic" do
+      assert {:ok, memory} = Memories.store("default tier memory")
+      assert memory.memory_type == :episodic
+    end
+
+    test "confidence defaults to 1.0 for all tiers" do
+      for type <- [:episodic, :semantic, :procedural] do
+        assert {:ok, memory} = Memories.store("#{type} default confidence", type: type)
+
+        assert memory.confidence == 1.0,
+               "Expected confidence 1.0 for #{type}, got #{memory.confidence}"
+      end
+    end
+  end
+
   describe "get/1" do
     test "returns memory by id" do
       {:ok, memory} = Memories.store("Findable")
