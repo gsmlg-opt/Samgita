@@ -551,13 +551,21 @@ defmodule Samgita.Workers.BootstrapWorker do
     end
   end
 
-  defp notify_orchestrator(project_id, task_count) do
+  defp notify_orchestrator(project_id, task_count, retries \\ 3) do
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
       [{pid, _}] ->
         Orchestrator.set_phase_task_count(pid, task_count)
 
+      [] when retries > 0 ->
+        Logger.debug(
+          "[BootstrapWorker] Orchestrator not found for #{project_id}, retrying in 500ms (#{retries} left)"
+        )
+
+        Process.sleep(500)
+        notify_orchestrator(project_id, task_count, retries - 1)
+
       [] ->
-        Logger.debug("[BootstrapWorker] No orchestrator found for #{project_id}")
+        Logger.warning("[BootstrapWorker] No orchestrator found for #{project_id} after retries")
     end
   end
 

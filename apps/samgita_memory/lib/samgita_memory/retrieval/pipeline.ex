@@ -22,7 +22,7 @@ defmodule SamgitaMemory.Retrieval.Pipeline do
           tags: [String.t()],
           limit: pos_integer(),
           min_confidence: float(),
-          embedding: Pgvector.t() | nil
+          embedding: [float()] | nil
         ]
 
   @doc "Execute the full retrieval pipeline."

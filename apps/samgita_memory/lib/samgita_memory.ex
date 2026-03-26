@@ -55,13 +55,14 @@ defmodule SamgitaMemory do
   end
 
   @doc "Append an event to a PRD execution"
-  @spec append_prd_event(String.t(), map()) :: {:ok, PRD.Event.t()}
+  @spec append_prd_event(String.t(), map()) :: {:ok, PRD.Event.t()} | {:error, Ecto.Changeset.t()}
   def append_prd_event(prd_id, event_attrs) do
     PRD.append_event(prd_id, event_attrs)
   end
 
   @doc "Record a decision made during PRD execution"
-  @spec record_prd_decision(String.t(), map()) :: {:ok, PRD.Decision.t()}
+  @spec record_prd_decision(String.t(), map()) ::
+          {:ok, PRD.Decision.t()} | {:error, Ecto.Changeset.t()}
   def record_prd_decision(prd_id, decision_attrs) do
     PRD.record_decision(prd_id, decision_attrs)
   end
@@ -75,19 +76,21 @@ defmodule SamgitaMemory do
   # --- Thinking Chains ---
 
   @doc "Start a new thinking chain"
-  @spec start_chain(String.t(), keyword()) :: {:ok, ThinkingChain.t()}
+  @spec start_chain(String.t(), keyword()) ::
+          {:ok, ThinkingChain.t()} | {:error, Ecto.Changeset.t()}
   def start_chain(query, opts \\ []) do
     ThinkingChain.start(query, opts)
   end
 
   @doc "Add a thought to an active chain"
-  @spec add_thought(String.t(), map()) :: {:ok, ThinkingChain.t()}
+  @spec add_thought(String.t(), map()) :: {:ok, ThinkingChain.t()} | {:error, :not_found}
   def add_thought(chain_id, thought) do
     ThinkingChain.add_thought(chain_id, thought)
   end
 
   @doc "Complete a chain — triggers summarization and memory extraction"
-  @spec complete_chain(String.t()) :: {:ok, ThinkingChain.t()}
+  @spec complete_chain(String.t()) ::
+          {:ok, ThinkingChain.t()} | {:error, :not_found | Ecto.Changeset.t()}
   def complete_chain(chain_id) do
     ThinkingChain.complete(chain_id)
   end

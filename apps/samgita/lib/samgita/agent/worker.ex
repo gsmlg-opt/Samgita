@@ -1047,14 +1047,22 @@ defmodule Samgita.Agent.Worker do
     :exit, _ -> :ok
   end
 
-  defp notify_orchestrator(project_id, task_id) do
+  defp notify_orchestrator(project_id, task_id, retries \\ 3) do
     case Horde.Registry.lookup(Samgita.AgentRegistry, {:orchestrator, project_id}) do
       [{pid, _}] ->
         Orchestrator.notify_task_completed(pid, task_id)
 
+      [] when retries > 0 ->
+        Logger.debug(
+          "[#{project_id}] Orchestrator not found for task #{task_id}, retrying in 500ms (#{retries} left)"
+        )
+
+        Process.sleep(500)
+        notify_orchestrator(project_id, task_id, retries - 1)
+
       [] ->
         Logger.warning(
-          "[#{project_id}] No orchestrator found for task #{task_id} completion notification"
+          "[#{project_id}] No orchestrator found for task #{task_id} completion notification after retries"
         )
     end
   rescue

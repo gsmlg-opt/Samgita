@@ -264,7 +264,9 @@ defmodule Samgita.Project.Orchestrator do
       )
 
       data = %{data | phase_tasks_total: count}
-      {:keep_state, data}
+
+      # Check if tasks already completed before this count was set
+      maybe_deferred_advance(unquote(phase), data)
     end
 
     def unquote(phase)(:cast, :pause, data) do
@@ -485,8 +487,10 @@ defmodule Samgita.Project.Orchestrator do
                })
              ) do
           {:ok, _job} ->
-            # BootstrapWorker will call set_phase_task_count with the actual count
-            1
+            # Return 0 — BootstrapWorker will call set_phase_task_count with
+            # the real count after generating tasks. Returning 0 prevents
+            # premature phase advancement (phase_complete? returns false when total=0).
+            0
 
           {:error, reason} ->
             Logger.error(

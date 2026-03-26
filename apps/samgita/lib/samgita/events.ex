@@ -23,12 +23,14 @@ defmodule Samgita.Events do
   @spec task_completed(struct()) :: :ok
   def task_completed(task) do
     Phoenix.PubSub.broadcast(@pubsub, "project:#{task.project_id}", {:task_completed, task})
+    Phoenix.PubSub.broadcast(@pubsub, "projects", {:task_stats_changed, task.project_id})
     Samgita.Webhooks.dispatch("task.completed", %{task_id: task.id, project_id: task.project_id})
   end
 
   @spec task_failed(struct()) :: :ok
   def task_failed(task) do
     Phoenix.PubSub.broadcast(@pubsub, "project:#{task.project_id}", {:task_failed, task})
+    Phoenix.PubSub.broadcast(@pubsub, "projects", {:task_stats_changed, task.project_id})
     Samgita.Webhooks.dispatch("task.failed", %{task_id: task.id, project_id: task.project_id})
   end
 

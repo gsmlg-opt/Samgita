@@ -80,7 +80,7 @@ defmodule Samgita.Projects do
 
   def start_project(id, prd_id) do
     with {:ok, project} <- get_project(id),
-         true <- project.status in [:pending, :completed, :failed] || {:error, :already_active},
+         true <- project.status in [:pending, :failed] || {:error, :already_active},
          {:ok, prd} <- Samgita.Prds.get_prd(prd_id),
          true <- prd.project_id == project.id || {:error, :prd_not_in_project},
          {:ok, _prd} <- Samgita.Prds.update_prd(prd, %{status: :in_progress}),

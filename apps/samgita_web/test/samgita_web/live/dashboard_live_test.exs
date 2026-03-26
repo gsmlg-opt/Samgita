@@ -104,6 +104,24 @@ defmodule SamgitaWeb.DashboardLiveTest do
     assert html =~ "development"
   end
 
+  test "updates task stats when task_stats_changed received", %{conn: conn} do
+    {:ok, project} =
+      Projects.create_project(%{
+        name: "Stats Test",
+        git_url: unique_git_url("stats"),
+        status: :running
+      })
+
+    {:ok, view, _html} = live(conn, ~p"/")
+
+    # Simulate a task stats change event
+    send(view.pid, {:task_stats_changed, project.id})
+
+    # Should re-render without error
+    html = render(view)
+    assert html =~ "Stats Test"
+  end
+
   test "shows different status colors for each status", %{conn: conn} do
     for status <- [:pending, :running, :paused, :completed, :failed] do
       {:ok, _} =

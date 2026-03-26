@@ -32,6 +32,13 @@ defmodule SamgitaWeb.DashboardLive.Index do
   end
 
   @impl true
+  def handle_info({:task_stats_changed, project_id}, socket) do
+    stats = Projects.task_stats(project_id)
+    project_stats = Map.put(socket.assigns.project_stats, project_id, stats)
+    {:noreply, assign(socket, project_stats: project_stats)}
+  end
+
+  @impl true
   def handle_info(_, socket), do: {:noreply, socket}
 
   defp load_project_stats(projects) do

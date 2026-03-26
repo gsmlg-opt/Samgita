@@ -298,16 +298,16 @@ PRD is the unit of execution. Activity log streams in real time via PubSub.
 - [x] Project.Recovery (restart running projects on boot)
 - [x] All 12 database migrations
 
-### Fixed (previously blocking)
+### Needs Fixing (see docs/plan.md for details)
 
-- [x] `AgentTaskWorker` synchronous wait — uses `Process.monitor` + `receive` with 10min timeout
-- [x] CONTINUITY.md written in `reason` state before each Claude invocation
-- [x] `samgita_memory` wired as umbrella dep of `samgita`
-- [x] PRD saves to `Prd` schema via `Samgita.Prds` (not `projects.prd_content`)
-- [x] `config/test.exs` uses `System.get_env("USER", "postgres")` instead of hardcoded username
-- [x] McpLive reads from `~/.claude/mcp.json` dynamically
-- [x] SkillsLive uses `Agent.Types.all()` for real agent type data
-- [x] PrdChatLive auto-starts project on PRD approval via `maybe_start_project/3`
+- [ ] **BLOCKER**: `AgentTaskWorker` marks task complete before Claude runs (fire-and-forget timing bug)
+- [ ] **BLOCKER**: No CONTINUITY.md written before Claude invocations (no working memory file)
+- [ ] `samgita_memory` not wired as dep of `samgita` (pgvector unused by agents)
+- [ ] PRD save target bug (agent output writes to `projects.prd_content` instead of `Prd` schema)
+- [ ] `config/test.exs` hardcodes `username: "gao"` (fails for other developers)
+- [ ] McpLive returns hardcoded fake servers
+- [ ] SkillsLive returns hardcoded skill data
+- [ ] PrdChatLive doesn't auto-start project on PRD approval
 
 ### Planned Enhancements
 

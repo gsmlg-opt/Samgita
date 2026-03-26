@@ -38,6 +38,26 @@ defmodule Samgita.EventsTest do
     assert_receive {:task_failed, ^task}
   end
 
+  test "task_completed broadcasts task_stats_changed to all_projects", %{
+    project_id: project_id
+  } do
+    Events.subscribe_all_projects()
+
+    task = %{project_id: project_id, id: "task-3"}
+    Events.task_completed(task)
+    assert_receive {:task_stats_changed, ^project_id}
+  end
+
+  test "task_failed broadcasts task_stats_changed to all_projects", %{
+    project_id: project_id
+  } do
+    Events.subscribe_all_projects()
+
+    task = %{project_id: project_id, id: "task-4"}
+    Events.task_failed(task)
+    assert_receive {:task_stats_changed, ^project_id}
+  end
+
   test "subscribe and receive agent_state_changed events", %{project_id: project_id} do
     Events.subscribe_project(project_id)
 
