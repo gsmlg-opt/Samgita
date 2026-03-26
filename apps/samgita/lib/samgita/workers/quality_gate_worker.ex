@@ -24,6 +24,7 @@ defmodule Samgita.Workers.QualityGateWorker do
     CompletionCouncil,
     Gate,
     MockDetector,
+    OutputGuardrails,
     SeverityBlocking,
     StaticAnalysis,
     TestCoverage,
@@ -115,6 +116,7 @@ defmodule Samgita.Workers.QualityGateWorker do
         run_static_analysis(project),
         blind_result,
         anti_syc,
+        run_output_guardrails(project),
         run_completion_council(prd, project_status),
         run_test_coverage_gate(project),
         run_mock_detector(project),
@@ -287,6 +289,41 @@ defmodule Samgita.Workers.QualityGateWorker do
       TestMutationDetector.scan(working_path)
     else
       nil
+    end
+  end
+
+  defp run_output_guardrails(project) do
+    import Ecto.Query, only: [where: 2, order_by: 2, limit: 2]
+
+    artifacts =
+      Samgita.Domain.Artifact
+      |> where(project_id: ^project.id)
+      |> order_by(desc: :inserted_at)
+      |> limit(50)
+      |> Samgita.Repo.all()
+
+    if artifacts == [] do
+      nil
+    else
+      start = System.monotonic_time(:millisecond)
+
+      findings =
+        artifacts
+        |> Enum.flat_map(fn artifact ->
+          result = OutputGuardrails.validate(artifact.content || "")
+          result.findings
+        end)
+
+      verdict =
+        if Gate.has_blocking_findings?(findings), do: :fail, else: :pass
+
+      %{
+        gate: 5,
+        name: "Output Guardrails",
+        verdict: verdict,
+        findings: findings,
+        duration_ms: System.monotonic_time(:millisecond) - start
+      }
     end
   end
 

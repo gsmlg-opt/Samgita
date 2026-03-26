@@ -155,13 +155,29 @@ defmodule SamgitaMemory.Retrieval.Pipeline do
 
   defp duplicate?(memory, accepted) do
     Enum.any?(accepted, fn {existing, _} ->
-      # Text-based dedup: if content is very similar (same prefix up to 100 chars)
-      similar_content?(memory.content, existing.content)
+      cosine_similar?(memory.embedding, existing.embedding) ||
+        similar_content?(memory.content, existing.content)
     end)
   end
 
+  defp cosine_similar?(%Pgvector{} = a, %Pgvector{} = b) do
+    cosine_similarity(a, b) > 0.95
+  end
+
+  defp cosine_similar?(_, _), do: false
+
+  defp cosine_similarity(%Pgvector{} = a, %Pgvector{} = b) do
+    va = Pgvector.to_list(a)
+    vb = Pgvector.to_list(b)
+
+    dot = Enum.zip(va, vb) |> Enum.reduce(0.0, fn {x, y}, acc -> acc + x * y end)
+    norm_a = :math.sqrt(Enum.reduce(va, 0.0, fn x, acc -> acc + x * x end))
+    norm_b = :math.sqrt(Enum.reduce(vb, 0.0, fn x, acc -> acc + x * x end))
+
+    if norm_a == 0.0 or norm_b == 0.0, do: 0.0, else: dot / (norm_a * norm_b)
+  end
+
   defp similar_content?(a, b) when is_binary(a) and is_binary(b) do
-    # Simple dedup: if normalized content matches
     normalize(a) == normalize(b)
   end
 
