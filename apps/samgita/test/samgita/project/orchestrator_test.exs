@@ -322,6 +322,38 @@ defmodule Samgita.Project.OrchestratorTest do
     :gen_statem.stop(pid)
   end
 
+  test "stagnation threshold triggers stagnation_detected broadcast (unit)", %{project: project} do
+    {:ok, _} = Projects.update_project(project, %{phase: :development})
+    :ok = Samgita.Events.subscribe_project(project.id)
+
+    {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+    Process.sleep(100)
+
+    {:development, data} = Orchestrator.get_state(pid)
+
+    # Call the stagnation timeout handler directly 5 times (threshold = 5)
+    # with no task progress so stagnation_checks increments each time
+    stagnant_data = %{data | task_count: 0, last_progress_task_count: 0, stagnation_checks: 0}
+
+    # Call 4 times — should not yet broadcast
+    {:keep_state, data1, _} =
+      Orchestrator.development({:timeout, :stagnation}, :check, stagnant_data)
+
+    assert data1.stagnation_checks == 1
+    {:keep_state, data2, _} = Orchestrator.development({:timeout, :stagnation}, :check, data1)
+    assert data2.stagnation_checks == 2
+    {:keep_state, data3, _} = Orchestrator.development({:timeout, :stagnation}, :check, data2)
+    assert data3.stagnation_checks == 3
+    {:keep_state, data4, _} = Orchestrator.development({:timeout, :stagnation}, :check, data3)
+    assert data4.stagnation_checks == 4
+
+    # 5th call should trigger activity_log broadcast with stagnation message
+    Orchestrator.development({:timeout, :stagnation}, :check, data4)
+    assert_receive {:activity_log, %{stage: :failed, message: "Stagnation: " <> _}}, 500
+
+    :gen_statem.stop(pid)
+  end
+
   test "pause prevents auto-advance on task completion", %{project: project} do
     {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
     Process.sleep(50)
@@ -678,7 +710,9 @@ defmodule Samgita.Project.OrchestratorTest do
       :gen_statem.stop(pid)
     end
 
-    test "handles DOWN for monitored agent and attempts respawn", %{project: project} do
+    test "handles DOWN for monitored agent — removes ref and attempts respawn", %{
+      project: project
+    } do
       {:ok, _} = Projects.update_project(project, %{phase: :bootstrap})
       {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
       Process.sleep(100)
@@ -693,14 +727,21 @@ defmodule Samgita.Project.OrchestratorTest do
       end)
 
       # Verify the monitor was injected
-      {:bootstrap, data} = Orchestrator.get_state(pid)
-      assert Map.has_key?(data.agent_monitors, fake_ref)
+      {:bootstrap, data_before} = Orchestrator.get_state(pid)
+      assert Map.has_key?(data_before.agent_monitors, fake_ref)
 
       # Send DOWN for the monitored ref — orchestrator should handle and stay alive
       send(pid, {:DOWN, fake_ref, :process, self(), :killed})
-      Process.sleep(100)
+      Process.sleep(150)
 
       assert Process.alive?(pid)
+
+      # Critical: the fake_ref must have been removed from agent_monitors
+      {:bootstrap, data_after} = Orchestrator.get_state(pid)
+
+      refute Map.has_key?(data_after.agent_monitors, fake_ref),
+             "fake_ref must be removed from agent_monitors after DOWN"
+
       :gen_statem.stop(pid)
     end
   end
@@ -775,7 +816,7 @@ defmodule Samgita.Project.OrchestratorTest do
       :gen_statem.stop(pid)
     end
 
-    test "quality_gate_timeout clears awaiting flag when not in awaiting state", %{
+    test "quality_gate_timeout handler clears awaiting flag when not awaiting (unit)", %{
       project: project
     } do
       {:ok, _} = Projects.update_project(project, %{phase: :development})
@@ -783,14 +824,44 @@ defmodule Samgita.Project.OrchestratorTest do
       Process.sleep(100)
 
       {:development, data} = Orchestrator.get_state(pid)
-      assert data.awaiting_quality_gates == false
 
-      # Send a gen_statem named timeout event via :gen_statem.cast with internal event injection
-      # The non-awaiting handler clears the flag — orchestrator must survive
-      :gen_statem.cast(pid, {:quality_gate_check, :noop})
-      Process.sleep(50)
+      # Call state function directly — non-awaiting path should clear the flag
+      not_awaiting_data = %{data | awaiting_quality_gates: false}
 
-      assert Process.alive?(pid)
+      result =
+        Orchestrator.development({:timeout, :quality_gate_timeout}, :check, not_awaiting_data)
+
+      assert {:keep_state, updated_data} = result
+      assert updated_data.awaiting_quality_gates == false
+
+      :gen_statem.stop(pid)
+    end
+
+    test "quality_gate_timeout handler re-arms timer when awaiting quality gates (unit)", %{
+      project: project
+    } do
+      {:ok, _} = Projects.update_project(project, %{phase: :development})
+      {:ok, pid} = :gen_statem.start_link(Orchestrator, [project_id: project.id], [])
+      Process.sleep(100)
+
+      {:development, data} = Orchestrator.get_state(pid)
+
+      # Call state function directly — awaiting path re-triggers gates and re-arms timer
+      awaiting_data = %{data | awaiting_quality_gates: true}
+      result = Orchestrator.development({:timeout, :quality_gate_timeout}, :check, awaiting_data)
+
+      # Must not stop — must re-arm the timer
+      assert match?({:keep_state, _, _}, result),
+             "quality gate timeout must re-arm, not stop the orchestrator"
+
+      {_, _, actions} = result
+
+      assert Enum.any?(actions, fn
+               {{:timeout, :quality_gate_timeout}, _, :check} -> true
+               _ -> false
+             end),
+             "named timeout must be re-armed after quality gate re-trigger"
+
       :gen_statem.stop(pid)
     end
   end
