@@ -475,14 +475,15 @@ defmodule Samgita.Project.Orchestrator do
             {:running, Map.put(monitors, ref, {agent_id, agent_type})}
 
           {:error, reason} ->
-            Logger.warning("Failed to spawn agent #{agent_id}: #{inspect(reason)}")
+            reason_str = inspect(reason, limit: 10, printable_limit: 50)
+            Logger.warning("Failed to spawn agent #{agent_id}: #{reason_str}")
 
             entry =
               Samgita.Events.build_log_entry(
                 :orchestrator,
                 "orchestrator",
                 :failed,
-                "Failed to spawn agent #{agent_id}: #{inspect(reason)}"
+                "Failed to spawn agent #{agent_id}: #{reason_str}"
               )
 
             Samgita.Events.activity_log(project_id, entry)
@@ -557,7 +558,7 @@ defmodule Samgita.Project.Orchestrator do
 
           {:error, reason} ->
             Logger.error(
-              "[Orchestrator] #{data.project_id}: failed to queue BootstrapWorker: #{inspect(reason)}"
+              "[Orchestrator] #{data.project_id}: failed to queue BootstrapWorker: #{inspect(reason, limit: 10, printable_limit: 50)}"
             )
 
             broadcast_activity(data, :failed, "Failed to queue bootstrap task")
@@ -797,11 +798,17 @@ defmodule Samgita.Project.Orchestrator do
           true
         else
           {:error, %Ecto.Changeset{} = reason} ->
-            Logger.warning("[Orchestrator] Failed to create phase task: #{inspect(reason)}")
+            Logger.warning(
+              "[Orchestrator] Failed to create phase task: #{inspect(reason, limit: 10, printable_limit: 50)}"
+            )
+
             false
 
           {:error, reason} ->
-            Logger.error("[Orchestrator] Failed to queue task: #{inspect(reason)}")
+            Logger.error(
+              "[Orchestrator] Failed to queue task: #{inspect(reason, limit: 10, printable_limit: 50)}"
+            )
+
             false
         end
       end)
