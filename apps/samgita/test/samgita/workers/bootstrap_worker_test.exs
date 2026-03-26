@@ -154,6 +154,14 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
       job = %Oban.Job{args: %{"project_id" => project.id, "prd_id" => Ecto.UUID.generate()}}
       assert {:error, :prd_not_found} = BootstrapWorker.perform(job)
     end
+
+    test "raises FunctionClauseError when prd_id key is missing from args", %{project: project} do
+      job = %Oban.Job{args: %{"project_id" => project.id}}
+
+      assert_raise FunctionClauseError, fn ->
+        BootstrapWorker.perform(job)
+      end
+    end
   end
 
   describe "milestone extraction" do
@@ -217,9 +225,10 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
           t.type == "implement" and String.contains?(t.description, "authentication")
         end)
 
-      if auth_impl do
-        assert Map.has_key?(auth_impl, :parent_milestone)
-      end
+      assert auth_impl != nil, "Expected an implement task for authentication feature"
+
+      assert Map.has_key?(auth_impl, :parent_milestone),
+             "Auth impl task should have :parent_milestone key"
     end
   end
 

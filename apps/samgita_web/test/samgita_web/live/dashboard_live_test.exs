@@ -261,5 +261,66 @@ defmodule SamgitaWeb.DashboardLiveTest do
       {:ok, view, _html} = live(conn, ~p"/")
       assert has_element?(view, ~s|a[href="/projects/#{project.id}"]|)
     end
+
+    test "activity log caps at @max_activity_entries (50)", %{conn: conn} do
+      {:ok, view, _html} = live(conn, ~p"/")
+
+      # Send 55 events with zero-padded IDs so substrings don't collide
+      for i <- 1..55 do
+        msg = "entry-#{String.pad_leading("#{i}", 3, "0")}"
+        send(view.pid, {:activity_log, %{stage: :act, message: msg, source: "test"}})
+      end
+
+      html = render(view)
+      # Entries are prepended; Enum.take(50) keeps most recent 50: 006..055
+      assert html =~ "entry-055"
+      assert html =~ "entry-006"
+      refute html =~ "entry-001"
+      refute html =~ "entry-005"
+    end
+
+    test "task_stats_changed updates project stats for that project", %{conn: conn} do
+      {:ok, project} =
+        Projects.create_project(%{
+          name: "Stats Project",
+          git_url: unique_git_url("stats-update"),
+          status: :running
+        })
+
+      {:ok, view, _html} = live(conn, ~p"/")
+
+      # Create a task then complete it so stats become non-empty
+      {:ok, task} =
+        Projects.create_task(project.id, %{type: "test", payload: %{}, status: :pending})
+
+      {:ok, _} = Projects.complete_task(task.id)
+
+      # Trigger stats update
+      send(view.pid, {:task_stats_changed, project.id})
+
+      # Re-render should not crash and the project is still visible
+      html = render(view)
+      assert html =~ "Stats Project"
+    end
+
+    test "subscribe_new_projects: activity_log arrives for project created after mount", %{
+      conn: conn
+    } do
+      {:ok, view, _html} = live(conn, ~p"/")
+
+      # Create a new project after mount
+      {:ok, new_project} =
+        Projects.create_project(%{name: "After Mount", git_url: unique_git_url("after-mount")})
+
+      # Simulate the project_updated broadcast that triggers subscribe_new_projects
+      send(view.pid, {:project_updated, new_project})
+
+      # Now send an activity_log for the new project directly (as if the orchestrator did)
+      entry = %{source: "orchestrator", stage: :spawned, message: "After-mount agent spawned"}
+      send(view.pid, {:activity_log, entry})
+
+      html = render(view)
+      assert html =~ "After-mount agent spawned"
+    end
   end
 end
