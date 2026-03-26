@@ -65,6 +65,11 @@ config :samgita_provider, provider: SamgitaProvider.MockProvider
 # Use Mox-based mock for ObanClient in tests (default stub delegates to real Oban)
 config :samgita, :oban_module, Samgita.MockOban
 
+# Skip orchestrator notification retries in tests to avoid 500ms×N blocking
+# when gen_statem processes are not registered in Horde (test isolation)
+config :samgita, :bootstrap_notify_retries, 0
+config :samgita, :orchestrator_notify_retries, 0
+
 # Use mock embedding provider in tests
 config :samgita_memory, embedding_provider: :mock
 

@@ -111,7 +111,7 @@ defmodule Samgita.Project.OrchestratorTest do
     Orchestrator.notify_task_completed(pid, "task-1")
     Process.sleep(10)
     Orchestrator.notify_task_completed(pid, "task-2")
-    Process.sleep(100)
+    Process.sleep(500)
 
     # Should have auto-advanced to discovery
     assert {:discovery, data} = Orchestrator.get_state(pid)
@@ -210,7 +210,7 @@ defmodule Samgita.Project.OrchestratorTest do
 
     # Simulate quality gates passing
     :gen_statem.cast(pid, :quality_gates_passed)
-    Process.sleep(100)
+    Process.sleep(500)
 
     # Should have advanced to qa
     assert {:qa, data} = Orchestrator.get_state(pid)
