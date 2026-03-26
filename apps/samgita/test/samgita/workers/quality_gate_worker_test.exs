@@ -282,4 +282,89 @@ defmodule Samgita.Workers.QualityGateWorkerTest do
       assert :ok = QualityGateWorker.perform(job)
     end
   end
+
+  describe "9-gate system (prd-011)" do
+    # Note: gate results are stored as summarized text in artifact.content
+    # ("Gate N (Name): verdict — M findings") and count in artifact.metadata["gate_count"]
+
+    test "pre_qa gate set includes static analysis, blind review, and severity blocking",
+         %{project: project, prd: prd} do
+      :ok =
+        QualityGateWorker.perform(%Oban.Job{
+          args: %{"project_id" => project.id, "prd_id" => prd.id, "gate_type" => "pre_qa"}
+        })
+
+      [artifact] =
+        Samgita.Domain.Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
+
+      assert String.contains?(artifact.content, "Static Analysis")
+      assert String.contains?(artifact.content, "Blind Review")
+      assert String.contains?(artifact.content, "Severity Blocking")
+    end
+
+    test "pre_deploy gate set adds test coverage (mock/mutation skip without working_path)",
+         %{project: project, prd: prd} do
+      # Without project.working_path, mock_detector and mutation_detector return nil and are
+      # filtered from results. Test Coverage falls back to task-based check and always runs.
+      :ok =
+        QualityGateWorker.perform(%Oban.Job{
+          args: %{"project_id" => project.id, "prd_id" => prd.id, "gate_type" => "pre_deploy"}
+        })
+
+      [artifact] =
+        Samgita.Domain.Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
+
+      # Gates present in pre_qa also appear in pre_deploy
+      assert String.contains?(artifact.content, "Static Analysis")
+      assert String.contains?(artifact.content, "Blind Review")
+      assert String.contains?(artifact.content, "Severity Blocking")
+
+      # Test Coverage always runs (task-based fallback when no working_path)
+      assert String.contains?(artifact.content, "Test Coverage")
+    end
+
+    test "pre_deploy runs more gates than pre_qa (9-gate system)",
+         %{project: project, prd: prd} do
+      :ok =
+        QualityGateWorker.perform(%Oban.Job{
+          args: %{"project_id" => project.id, "prd_id" => prd.id, "gate_type" => "pre_qa"}
+        })
+
+      [qa_artifact] =
+        Samgita.Domain.Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
+
+      qa_count = qa_artifact.metadata["gate_count"]
+
+      Repo.delete_all(
+        Ecto.Query.from(a in Samgita.Domain.Artifact, where: a.project_id == ^project.id)
+      )
+
+      :ok =
+        QualityGateWorker.perform(%Oban.Job{
+          args: %{"project_id" => project.id, "prd_id" => prd.id, "gate_type" => "pre_deploy"}
+        })
+
+      [deploy_artifact] =
+        Samgita.Domain.Artifact |> Ecto.Query.where(project_id: ^project.id) |> Repo.all()
+
+      deploy_count = deploy_artifact.metadata["gate_count"]
+
+      assert deploy_count > qa_count,
+             "pre_deploy (#{deploy_count}) should have more gates than pre_qa (#{qa_count})"
+    end
+
+    test "summarize_results/1 formats each gate with gate number, name, verdict, and finding count" do
+      gate_results = [
+        %{gate: 2, name: "Static Analysis", verdict: :pass, findings: []},
+        %{gate: 3, name: "Blind Review", verdict: :fail, findings: [%{severity: :high}]},
+        %{gate: 6, name: "Severity Blocking", verdict: :fail, findings: [%{}, %{}]}
+      ]
+
+      summary = QualityGateWorker.summarize_results(gate_results)
+
+      assert String.contains?(summary, "Gate 2 (Static Analysis): pass — 0 findings")
+      assert String.contains?(summary, "Gate 3 (Blind Review): fail — 1 findings")
+      assert String.contains?(summary, "Gate 6 (Severity Blocking): fail — 2 findings")
+    end
+  end
 end
