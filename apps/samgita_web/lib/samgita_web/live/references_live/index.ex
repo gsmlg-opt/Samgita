@@ -32,4 +32,9 @@ defmodule SamgitaWeb.ReferencesLive.Index do
   def handle_event("clear_selection", _params, socket) do
     {:noreply, push_patch(socket, to: ~p"/references")}
   end
+
+  @impl true
+  def handle_event(_event, _params, socket) do
+    {:noreply, socket}
+  end
 end

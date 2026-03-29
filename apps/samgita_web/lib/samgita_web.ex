@@ -54,6 +54,9 @@ defmodule SamgitaWeb do
         layout: {SamgitaWeb.Layouts, :app}
 
       unquote(html_helpers())
+
+      def handle_event("theme_changed", _params, socket), do: {:noreply, socket}
+      defoverridable handle_event: 3
     end
   end
 
