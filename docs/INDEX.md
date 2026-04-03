@@ -21,7 +21,9 @@ Welcome to the Samgita documentation. This index provides a structured guide to 
 
 > Requirements and product vision.
 
-- **[PRD.md](./product/PRD.md)** — Product Requirements Document: problem statement, data model, API spec, project lifecycle phases
+- **[prd.md](./prd.md)** — Product Requirements Document (v2): problem, RARV cycle, architecture, agent model, phases, v2 enhancements
+- **[design-v2.md](./design-v2.md)** — v2 Design Document: provider evolution, task DAG, plan mode, worker decomposition, inter-agent comms, Synapsis integration
+- **[plan.md](./plan.md)** — v2 Implementation Plan: 6-phase roadmap from worker decomposition to Synapsis integration
 
 ---
 
@@ -59,7 +61,6 @@ Welcome to the Samgita documentation. This index provides a structured guide to 
 
 - **[DEPLOYMENT.md](./deployment/DEPLOYMENT.md)** — Full deployment guide: building releases, environment config, Docker, systemd, Fly.io, security hardening, monitoring
 - **[QUICKSTART-DEPLOY.md](./deployment/QUICKSTART-DEPLOY.md)** — Get Samgita running in production in under 5 minutes (Docker, Fly.io, bare metal)
-- **[DEPLOYMENT_SUMMARY.md](./deployment/DEPLOYMENT_SUMMARY.md)** — Summary of deployment infrastructure and tasks completed
 
 ---
 
@@ -68,8 +69,6 @@ Welcome to the Samgita documentation. This index provides a structured guide to 
 > Continuous integration and deployment pipeline.
 
 - **[CI-CD.md](./ci-cd/CI-CD.md)** — CI/CD overview: GitHub Actions workflows, pipeline structure, environment promotion
-- **[CI-CD-IMPLEMENTATION.md](./ci-cd/CI-CD-IMPLEMENTATION.md)** — Implementation details: test, build, deploy, rollback pipeline configuration
-- **[CI_CD_IMPLEMENTATION_SUMMARY.md](./ci-cd/CI_CD_IMPLEMENTATION_SUMMARY.md)** — Summary of CI/CD setup tasks completed
 
 ---
 
@@ -94,10 +93,11 @@ Welcome to the Samgita documentation. This index provides a structured guide to 
 3. [CI/CD](./ci-cd/CI-CD.md) — pipeline documentation
 
 ### Architects
-1. [PRD](./product/PRD.md) — product requirements
-2. [Architecture](./architecture/ARCHITECTURE.md) — system design
-3. [Database Architecture](./architecture/DATABASE-ARCHITECTURE.md) — data model
-4. [Constitution](./development/CONSTITUTION.md) — design principles
+1. [PRD](./prd.md) — product requirements (v2)
+2. [Design v2](./design-v2.md) — v2 design document
+3. [Architecture](./architecture/ARCHITECTURE.md) — system design
+4. [Database Architecture](./architecture/DATABASE-ARCHITECTURE.md) — data model
+5. [Constitution](./development/CONSTITUTION.md) — design principles
 
 ---
 
@@ -115,7 +115,12 @@ Welcome to the Samgita documentation. This index provides a structured guide to 
 | **pgvector** | PostgreSQL extension for vector similarity search |
 | **LiveView** | Phoenix real-time UI framework |
 | **Umbrella** | Elixir multi-app project structure |
+| **DAG** | Directed Acyclic Graph — task dependency graph within each phase |
+| **Wave** | Set of tasks with no unresolved dependencies, dispatched together |
+| **Session** | Long-lived provider connection maintaining conversation state across RARV cycles |
+| **MessageRouter** | Per-project GenServer routing inter-agent messages |
+| **Plan Mode** | Optional phase converting an idea into a structured PRD |
 
 ---
 
-**Last Updated:** 2026-03-23
+**Last Updated:** 2026-04-03

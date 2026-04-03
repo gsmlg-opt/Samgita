@@ -23,19 +23,19 @@ Samgita solves this by treating Claude CLI as a supervised OTP process — getti
 ## Core Workflow
 
 ```
-PRD
+PRD or Idea
  │
  ▼
-Bootstrap ──► Discovery ──► Architecture ──► Infrastructure
-                                                    │
-                                                    ▼
-                                            Development (RARV loop)
-                                                    │
-                                                    ▼
-                                            QA (9 quality gates)
-                                                    │
-                                                    ▼
-                                   Deployment ──► Business ──► Growth ──► Perpetual
+[Planning] ──► Bootstrap ──► Discovery ──► Architecture ──► Infrastructure
+(v2, optional)                                                    │
+                                                                  ▼
+                                                          Development (RARV loop)
+                                                                  │
+                                                                  ▼
+                                                          QA (9 quality gates)
+                                                                  │
+                                                                  ▼
+                                                 Deployment ──► Business ──► Growth ──► Perpetual
 ```
 
 ### The RARV Cycle
@@ -100,14 +100,21 @@ Agent.Worker (gen_statem)
 
 The CLI handles tool execution, context management, conversation state, rate limiting, and model selection internally. Samgita handles **orchestration**.
 
+**v2 Session Lifecycle:** The provider behaviour evolves from a single `query/2` callback to a full session lifecycle: `start_session`, `send_message`, `stream_message`, `close_session`, `capabilities`, `health_check`. Sessions maintain conversation state across RARV cycles, reducing prompt tokens by 60-80% on subsequent iterations. The existing `query/2` is retained for backward compatibility. See [docs/design-v2.md](design-v2.md) for details.
+
 ### Supervision Tree (per project)
 
 ```
 Horde.DynamicSupervisor (Samgita.AgentSupervisor)
 └── Samgita.Project.Supervisor
     ├── Samgita.Project.Orchestrator (gen_statem, phase state machine)
+    ├── Samgita.Project.MessageRouter (GenServer, v2)       ← agent-to-agent routing
     └── [Agent Workers via Horde — spawned on demand]
         └── Samgita.Agent.Worker (gen_statem, RARV cycle)
+
+Application-level (v2):
+├── Samgita.Provider.SessionRegistry (ETS)     ← active session tracking
+├── Samgita.Provider.HealthChecker (GenServer)  ← Synapsis endpoint health
 ```
 
 On crash, OTP supervisors restart agents. On system restart, `Project.Recovery` restores running projects from database state.
@@ -144,6 +151,7 @@ On crash, OTP supervisors restart agents. On system restart, `Project.Recovery` 
 
 | Phase | Key Output |
 |---|---|
+| Planning (v2, optional) | Structured PRD from idea via research/architecture/draft/review/revise pipeline |
 | Bootstrap | Working directory, validated PRD, initial task backlog |
 | Discovery | Requirements analysis, competitive research, refined backlog |
 | Architecture | OpenAPI spec, tech stack decision, project scaffolding |
@@ -228,6 +236,8 @@ pending → running → completed
 ```
 
 Tasks dispatched via `Samgita.Workers.AgentTaskWorker` (Oban, `agent_tasks` queue, 100 concurrency). **Task completion is driven by Agent.Worker** after RARV verify step, not by the Oban dispatcher.
+
+**v2 Dependency DAG:** Tasks gain `depends_on`, `blocks`, and `wave` fields. A dependency graph (DAG) drives wave-based dispatch: wave 0 = root tasks with no dependencies, wave N = tasks unblocked by wave N-1. Critical path computation via topological sort provides accurate time estimates. Cycle detection uses Kahn's algorithm at graph construction time. Status expanded to: `blocked`, `pending`, `assigned`, `running`, `completed`, `failed`, `skipped`. See [docs/design-v2.md](design-v2.md) for the full DAG design.
 
 ---
 
@@ -316,14 +326,41 @@ PRD is the unit of execution. Activity log streams in real time via PubSub.
 - [ ] Live task progress on Dashboard (per-project PubSub subscriptions)
 - [ ] Enhanced git commit trailers with agent metadata
 
+### v2 Planned (see [docs/design-v2.md](design-v2.md))
+
+- [ ] **Worker Decomposition** — Extract PromptBuilder, ResultParser, ContextAssembler, WorktreeManager, ActivityBroadcaster, RetryStrategy from 1300-line Worker monolith
+- [ ] **Provider Session Lifecycle** — Replace fire-and-forget `query/2` with `start_session`/`send_message`/`stream_message`/`close_session`/`capabilities`/`health_check`. Port-based ClaudeCode, HTTP-based ClaudeAPI
+- [ ] **Task Dependency DAG** — `depends_on`/`blocks`/`wave` fields, wave-based dispatch, critical path computation, cycle detection (Kahn's algorithm)
+- [ ] **Inter-Agent Communication** — MessageRouter per project, PubSub message bus, message budget (10/task), depth limiting (3), timeout (60s)
+- [ ] **Plan Mode** — `:planning` phase before `:bootstrap`. Idea-to-PRD pipeline: research, architecture, draft, review, revise. 4 new `@planning` swarm agents
+- [ ] **Synapsis Integration** — New provider connecting to Synapsis HTTP API / Phoenix Channels. Colocated, single remote, or multi-instance deployment with automatic fallback to ClaudeCode
+
+---
+
+## v2 Enhancements (Summary)
+
+Samgita v2 addresses six structural gaps identified in v1. See [docs/design-v2.md](design-v2.md) for the full design document.
+
+| Enhancement | What Changes | Why |
+|---|---|---|
+| **Provider Session Lifecycle** | `query/2` replaced by 6 session callbacks; Port-based ClaudeCode, HTTP-based ClaudeAPI, Synapsis provider | 60-80% token savings via multi-turn sessions |
+| **Task Dependency DAG** | Tasks gain `depends_on`, `blocks`, `wave`; wave-based dispatch; critical path; Kahn's cycle detection | Eliminates wasted work from premature parallel dispatch |
+| **Plan Mode** | New `:planning` phase with 5 sub-phases (research/architecture/draft/review/revise); 4 `@planning` agents | Automates idea-to-PRD pipeline |
+| **Worker Decomposition** | 1300-line Worker splits into PromptBuilder, ResultParser, ContextAssembler, WorktreeManager, ActivityBroadcaster, RetryStrategy | Independent testability, easier modification |
+| **Inter-Agent Communication** | Dependency-driven (DAG) + PubSub message bus with MessageRouter per project | Agents coordinate on shared artifacts instead of working in isolation |
+| **Synapsis Integration** | New provider connecting to Synapsis HTTP API / Phoenix Channels with automatic fallback | Persistent sessions, tool execution, workspace management via Synapsis |
+
+Implementation order: Worker Decomposition (prerequisite) -> Provider Evolution -> Task DAG -> Inter-Agent Communication -> Plan Mode -> Synapsis Integration.
+
 ---
 
 ## Non-Goals
 
 - Multi-tenant SaaS or authentication (infrastructure-level access control only)
-- Direct LLM API calls (CLI-as-provider only)
+- Direct LLM API calls (v2 adds ClaudeAPI as an option alongside CLI-as-provider)
 - GUI for memory editing (observation-only dashboard)
 - CRDT real-time sync (PostgreSQL is the single source of truth)
+- Gemini/Cline/Aider providers in v2 (community contributions welcome via Provider behaviour)
 
 ---
 
@@ -340,5 +377,5 @@ PRD is the unit of execution. Activity log streams in real time via PubSub.
 
 ---
 
-**Last Updated:** 2026-03-26
-**Status:** Active Development — see [docs/plan.md](plan.md) for the implementation roadmap
+**Last Updated:** 2026-04-03
+**Status:** Active Development — see [docs/plan.md](plan.md) for the v1 roadmap, [docs/design-v2.md](design-v2.md) for v2 design

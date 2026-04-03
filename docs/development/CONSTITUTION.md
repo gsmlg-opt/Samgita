@@ -27,8 +27,10 @@ Samgita is an Elixir/Phoenix reimplementation of [loki-mode](https://github.com/
 The fundamental pipeline Samgita must preserve:
 
 ```
-PRD → Discovery → Architecture → Development (RARV loop) → QA → Deployment → Growth
+[Idea →] Planning → PRD → Discovery → Architecture → Development (RARV) → QA → Deployment → Growth
 ```
+
+Planning is an optional first phase: users may supply a finished PRD directly or start from a rough idea that the planning agents refine into a PRD.
 
 ### RARV Cycle
 
@@ -135,7 +137,7 @@ samgita_data ← samgita_core ← samgita_server ← samgita_web
 
 ---
 
-## Provider Architecture — CLI-First
+## Provider Architecture — CLI-First, Session-Aware
 
 **Samgita does NOT call LLM APIs directly.** It orchestrates CLI tools as supervised processes.
 
@@ -145,8 +147,11 @@ The providers are:
 |---|---|---|
 | **Claude Code** | `claude` CLI | Full — parallel agents, Task tool, MCP, streaming |
 | **OpenAI Codex** | `codex` CLI | Degraded — sequential, no Task tool |
+| **ClaudeAPI** | Anthropic API | Production-grade path — direct API for maximum control |
 
-Each provider is an OTP-supervised Port or process. Samgita sends prompts/instructions to the CLI, receives structured output (text, tool calls, status), and manages the lifecycle (start, stop, rate limit backoff, crash recovery).
+Each provider is an OTP-supervised Port or process. Samgita sends prompts/instructions to the CLI, receives structured output (text, tool calls, status), and manages the full session lifecycle (start, multi-turn conversation, stop, rate limit backoff, crash recovery).
+
+**v2 Session Model:** v1 used fire-and-forget `System.cmd/3` calls. v2 transitions to Port-based sessions that maintain conversation state across multiple turns within a single agent task. This eliminates the need to replay context on every invocation, saving 60-80% of tokens for multi-step tasks. ClaudeAPI is the production-grade path for deployments requiring direct API control without CLI dependencies.
 
 **Why CLI, not API:**
 
@@ -159,12 +164,13 @@ Each provider is an OTP-supervised Port or process. Samgita sends prompts/instru
 
 ```
 Samgita Agent Worker (gen_statem)
-  → spawns Claude CLI as supervised Port
-  → sends task prompt via stdin / CLI args
+  → spawns Claude CLI as supervised Port (session-based)
+  → sends task prompt via stdin
   → receives streaming output via stdout
+  → multi-turn conversation within session
   → parses tool calls, results, completion
   → RARV cycle decides next action
-  → repeat or terminate
+  → repeat or terminate session
 ```
 
 ---
@@ -330,6 +336,40 @@ The Reason-Act-Reflect-Verify cycle is the fundamental workflow pattern for all 
 
 Samgita invokes the `claude` CLI tool directly (via `System.cmd/3`) instead of calling LLM APIs. This reuses host authentication and simplifies deployment.
 
+### Task Dependencies are a DAG
+
+Task dependencies within each phase form a Directed Acyclic Graph (DAG) with wave-based execution. Independent tasks in the same wave run in parallel; dependent tasks wait for their predecessors. The critical path through the DAG determines the minimum phase duration. DAGs are per-phase, not global — each phase transition resets the dependency graph.
+
+### Inter-Agent Communication is Advisory
+
+The message bus between agents is best-effort, at-most-once delivery. Agents must not rely on messages for correctness. The DAG handles durable coordination: if a task depends on another task's output, that dependency is expressed in the DAG, not via message passing.
+
+### Planning Quality Gates Everything
+
+The planning phase uses the highest-quality model (opus) for all agents. A bad PRD from a cheaper model costs more in wasted development cycles than the token premium for planning with opus. Quality gates at the planning boundary prevent cascading failures downstream.
+
+---
+
+## Resolved Design Decisions (v2)
+
+These decisions were made during v2 design and are now binding:
+
+1. **Provider sessions are stateful, not stateless-with-replay.** Port-based sessions maintain conversation state across turns, saving 60-80% of tokens compared to replaying full context on every invocation.
+
+2. **Dependency DAG is per-phase, not global.** Each phase has its own task DAG. Cross-phase dependencies are implicit in the phase ordering. This keeps the DAG small enough to reason about and avoids global coordination bottlenecks.
+
+3. **Inter-agent messages are ephemeral, not persisted.** The DAG is the durable coordination mechanism. Messages between agents are advisory and best-effort. This simplifies the message bus and avoids the need for message replay or ordering guarantees.
+
+4. **Planning uses opus for all agents.** Quality gates everything downstream. The token cost of opus during planning is negligible compared to the cost of wasted development cycles from a poorly specified PRD.
+
+5. **Synapsis integration is a provider, not a protocol.** Samgita orchestrates, Synapsis executes. Synapsis appears as another provider alongside Claude Code and Codex, not as a separate coordination protocol that Samgita must speak.
+
+6. **Worker decomposition preserves gen_statem.** RARV is a fixed 4-state loop implemented as gen_statem. Task decomposition, dependency resolution, and session management are separate concerns handled by other modules. The worker stays simple.
+
+7. **Human-in-the-loop defaults to ON for planning.** Users can disable it, but the default assumes human review of plans before committing to expensive development cycles.
+
+8. **No Gemini/Cline/Aider providers in v2.** Only Claude and Codex have the full capability set (tool use, streaming, autonomous operation) required for RARV. Additional providers may be added in future versions when they reach parity.
+
 ---
 
 ## Enforcement
@@ -343,5 +383,5 @@ Any changes to these core principles require explicit discussion and documentati
 
 ---
 
-**Last Updated:** 2026-02-27
+**Last Updated:** 2026-04-03
 **Status:** Active
