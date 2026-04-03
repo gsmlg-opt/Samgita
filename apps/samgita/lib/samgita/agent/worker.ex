@@ -11,12 +11,16 @@ defmodule Samgita.Agent.Worker do
 
   require Logger
 
+  alias Samgita.Agent.ActivityBroadcaster
   alias Samgita.Agent.CircuitBreaker
   alias Samgita.Agent.Claude
+  alias Samgita.Agent.ContextAssembler
+  alias Samgita.Agent.PromptBuilder
+  alias Samgita.Agent.ResultParser
+  alias Samgita.Agent.RetryStrategy
   alias Samgita.Agent.Types
+  alias Samgita.Agent.WorktreeManager
   alias Samgita.Domain.Artifact
-  alias Samgita.Git.Worktree
-  alias Samgita.Project.Memory
   alias Samgita.Project.Orchestrator
   alias Samgita.Quality.OutputGuardrails
 
@@ -103,7 +107,7 @@ defmodule Samgita.Agent.Worker do
       {:error, :circuit_open} ->
         Logger.warning("[#{data.id}] Circuit open for #{data.agent_type}, rejecting task")
 
-        broadcast_activity(
+        ActivityBroadcaster.broadcast_activity(
           data,
           :idle,
           "Circuit breaker open for #{data.agent_type}, task rejected"
@@ -125,8 +129,8 @@ defmodule Samgita.Agent.Worker do
   ## State: reason
 
   def reason(:enter, _old_state, data) do
-    broadcast_state_change(data, :reason)
-    emit_telemetry(:state_transition, data, %{state: :reason})
+    ActivityBroadcaster.broadcast_state_change(data, :reason)
+    ActivityBroadcaster.emit_state_transition(data, :reason)
 
     {:keep_state_and_data,
      [
@@ -138,36 +142,47 @@ defmodule Samgita.Agent.Worker do
   def reason(:state_timeout, :execute, data) do
     Logger.info("[#{data.id}] REASON: Planning approach for task #{inspect(data.current_task)}")
 
-    broadcast_activity(
+    ActivityBroadcaster.broadcast_activity(
       data,
       :reason,
-      "Planning approach for task #{task_type(data.current_task)}"
+      "Planning approach for task #{PromptBuilder.task_type(data.current_task)}"
     )
 
     try do
-      context = build_context(data)
-      memory_context = fetch_memory_context(data.project_id)
+      prd_id = get_in(PromptBuilder.task_payload(data.current_task), ["prd_id"])
+      assemble_input = data |> Map.from_struct() |> Map.put(:prd_id, prd_id)
+      context = ContextAssembler.assemble(assemble_input)
 
       learnings =
-        (context.learnings ++ memory_learnings(memory_context)) |> Enum.take(@max_learnings)
+        (context.learnings ++ context.memory_learnings) |> Enum.take(@max_learnings)
 
       data = %{data | act_result: nil, learnings: learnings}
 
-      write_continuity_file(data, memory_context)
+      working_path = get_working_path(data)
+
+      if working_path do
+        continuity_context =
+          Map.merge(context, %{
+            retry_count: data.retry_count,
+            current_task_description: PromptBuilder.task_description(data.current_task)
+          })
+
+        ContextAssembler.write_continuity_file(working_path, continuity_context)
+      end
 
       {:next_state, :act, data}
     rescue
       e ->
         Logger.error("[#{data.id}] REASON: Error building context: #{inspect(e)}")
-        emit_telemetry(:error, data, %{state: :reason, error: inspect(e)})
+        ActivityBroadcaster.emit_error(data, :reason, inspect(e))
         {:next_state, :act, %{data | act_result: nil, learnings: data.learnings}}
     end
   end
 
   def reason({:timeout, :reason_deadline}, :deadline, data) do
     Logger.warning("[#{data.id}] REASON: Timed out after #{@reason_timeout_ms}ms")
-    emit_telemetry(:error, data, %{state: :reason, error: :timeout})
-    broadcast_activity(data, :reason, "Timed out, proceeding to act")
+    ActivityBroadcaster.emit_error(data, :reason, :timeout)
+    ActivityBroadcaster.broadcast_activity(data, :reason, "Timed out, proceeding to act")
     {:next_state, :act, %{data | act_result: nil}}
   end
 
@@ -178,8 +193,8 @@ defmodule Samgita.Agent.Worker do
   ## State: act
 
   def act(:enter, _old_state, data) do
-    broadcast_state_change(data, :act)
-    emit_telemetry(:state_transition, data, %{state: :act})
+    ActivityBroadcaster.broadcast_state_change(data, :act)
+    ActivityBroadcaster.emit_state_transition(data, :act)
 
     {:keep_state_and_data,
      [
@@ -191,9 +206,12 @@ defmodule Samgita.Agent.Worker do
   def act(:state_timeout, :execute, data) do
     Logger.info("[#{data.id}] ACT: Executing task via Claude CLI")
 
-    broadcast_activity(data, :act, "Executing task via Claude CLI")
+    ActivityBroadcaster.broadcast_activity(data, :act, "Executing task via Claude CLI")
 
-    prompt = build_prompt(data)
+    prd_id = get_in(PromptBuilder.task_payload(data.current_task), ["prd_id"])
+    assemble_input = data |> Map.from_struct() |> Map.put(:prd_id, prd_id)
+    context = ContextAssembler.assemble(assemble_input)
+    prompt = PromptBuilder.build(data.current_task, context)
     model = Types.model_for_type(data.agent_type)
 
     # Cache working_path on first use to avoid repeated DB queries
@@ -210,43 +228,60 @@ defmodule Samgita.Agent.Worker do
         if working_dir, do: Keyword.put(opts, :working_directory, working_dir), else: opts
       end)
 
-    case Claude.chat(prompt, chat_opts) do
-      {:ok, result} ->
-        Logger.info("[#{data.id}] ACT: Claude returned result (#{String.length(result)} chars)")
+    raw_result = Claude.chat(prompt, chat_opts)
+    classified = ResultParser.classify(raw_result)
 
-        broadcast_activity(data, :act, "Claude returned result (#{String.length(result)} chars)",
-          output: truncate_output(result, 2000)
+    case classified do
+      {:success, content} ->
+        Logger.info("[#{data.id}] ACT: Claude returned result (#{String.length(content)} chars)")
+
+        truncated =
+          if byte_size(content) > 2000,
+            do: String.slice(content, 0, 2000) <> "\n... (truncated)",
+            else: content
+
+        ActivityBroadcaster.broadcast_activity(
+          data,
+          :act,
+          "Claude returned result (#{String.length(content)} chars)",
+          output: truncated
         )
 
-        {:next_state, :reflect, %{data | act_result: result}}
+        {:next_state, :reflect, %{data | act_result: content}}
 
-      {:error, :rate_limit} ->
-        backoff = Claude.backoff_ms(data.retry_count)
-        Logger.warning("[#{data.id}] ACT: Rate limited, backing off #{backoff}ms")
-        broadcast_activity(data, :act, "Rate limited, backing off #{backoff}ms")
+      {:failure, reason} ->
+        category = RetryStrategy.classify_for_retry(reason)
 
-        {:keep_state, %{data | retry_count: data.retry_count + 1},
-         [{:state_timeout, backoff, :execute}]}
+        if category in [:rate_limit, :overloaded] do
+          backoff = RetryStrategy.backoff_ms(category, data.retry_count)
+          Logger.warning("[#{data.id}] ACT: #{category}, backing off #{backoff}ms")
 
-      {:error, :overloaded} ->
-        backoff = Claude.backoff_ms(data.retry_count)
-        Logger.warning("[#{data.id}] ACT: Overloaded, backing off #{backoff}ms")
-        broadcast_activity(data, :act, "Overloaded, backing off #{backoff}ms")
+          ActivityBroadcaster.broadcast_activity(
+            data,
+            :act,
+            "#{category |> to_string() |> String.replace("_", " ") |> String.capitalize()}, backing off #{backoff}ms"
+          )
 
-        {:keep_state, %{data | retry_count: data.retry_count + 1},
-         [{:state_timeout, backoff, :execute}]}
+          {:keep_state, %{data | retry_count: data.retry_count + 1},
+           [{:state_timeout, backoff, :execute}]}
+        else
+          Logger.error("[#{data.id}] ACT: Failed - #{inspect(reason)}")
 
-      {:error, reason} ->
-        Logger.error("[#{data.id}] ACT: Failed - #{inspect(reason)}")
-        broadcast_activity(data, :act, "Execution failed: #{inspect(reason)}")
-        {:next_state, :reflect, %{data | act_result: {:error, reason}}}
+          ActivityBroadcaster.broadcast_activity(
+            data,
+            :act,
+            "Execution failed: #{inspect(reason)}"
+          )
+
+          {:next_state, :reflect, %{data | act_result: {:error, reason}}}
+        end
     end
   end
 
   def act({:timeout, :act_deadline}, :deadline, data) do
     Logger.warning("[#{data.id}] ACT: Timed out after #{@act_timeout_ms}ms")
-    emit_telemetry(:error, data, %{state: :act, error: :timeout})
-    broadcast_activity(data, :act, "Timed out executing Claude CLI")
+    ActivityBroadcaster.emit_error(data, :act, :timeout)
+    ActivityBroadcaster.broadcast_activity(data, :act, "Timed out executing Claude CLI")
     {:next_state, :reflect, %{data | act_result: {:error, :timeout}}}
   end
 
@@ -257,8 +292,8 @@ defmodule Samgita.Agent.Worker do
   ## State: reflect
 
   def reflect(:enter, _old_state, data) do
-    broadcast_state_change(data, :reflect)
-    emit_telemetry(:state_transition, data, %{state: :reflect})
+    ActivityBroadcaster.broadcast_state_change(data, :reflect)
+    ActivityBroadcaster.emit_state_transition(data, :reflect)
 
     {:keep_state_and_data,
      [
@@ -282,16 +317,16 @@ defmodule Samgita.Agent.Worker do
           "Task completed"
       end
 
-    broadcast_activity(data, :reflect, "Recording learnings: #{learning}")
+    ActivityBroadcaster.broadcast_activity(data, :reflect, "Recording learnings: #{learning}")
 
     data = %{data | learnings: Enum.take([learning | data.learnings], @max_learnings)}
 
     try do
-      persist_learning(data.project_id, learning)
+      ContextAssembler.persist_learning(data.project_id, learning)
     rescue
       e ->
         Logger.warning("[#{data.id}] REFLECT: Failed to persist learning: #{inspect(e)}")
-        emit_telemetry(:error, data, %{state: :reflect, error: inspect(e)})
+        ActivityBroadcaster.emit_error(data, :reflect, inspect(e))
     end
 
     {:next_state, :verify, data}
@@ -299,8 +334,8 @@ defmodule Samgita.Agent.Worker do
 
   def reflect({:timeout, :reflect_deadline}, :deadline, data) do
     Logger.warning("[#{data.id}] REFLECT: Timed out after #{@reflect_timeout_ms}ms")
-    emit_telemetry(:error, data, %{state: :reflect, error: :timeout})
-    broadcast_activity(data, :reflect, "Timed out, proceeding to verify")
+    ActivityBroadcaster.emit_error(data, :reflect, :timeout)
+    ActivityBroadcaster.broadcast_activity(data, :reflect, "Timed out, proceeding to verify")
     {:next_state, :verify, data}
   end
 
@@ -311,8 +346,8 @@ defmodule Samgita.Agent.Worker do
   ## State: verify
 
   def verify(:enter, _old_state, data) do
-    broadcast_state_change(data, :verify)
-    emit_telemetry(:state_transition, data, %{state: :verify})
+    ActivityBroadcaster.broadcast_state_change(data, :verify)
+    ActivityBroadcaster.emit_state_transition(data, :verify)
     {:keep_state_and_data, [{:state_timeout, 0, :execute}]}
   end
 
@@ -320,38 +355,44 @@ defmodule Samgita.Agent.Worker do
     Logger.info("[#{data.id}] VERIFY: Validating task output")
 
     case data.act_result do
-      {:error, _reason} when data.retry_count < @max_retries ->
-        Logger.warning("[#{data.id}] VERIFY: Failed, retrying from reason phase")
-
-        broadcast_activity(
-          data,
-          :verify,
-          "Verification failed, retrying (attempt #{data.retry_count + 1}/#{@max_retries})"
-        )
-
-        {:next_state, :reason, %{data | retry_count: data.retry_count + 1}}
-
       {:error, reason} ->
-        Logger.error("[#{data.id}] VERIFY: Max retries reached, marking failed")
-        CircuitBreaker.record_failure(data.agent_type)
+        error_category = RetryStrategy.classify_for_retry(reason)
 
-        broadcast_activity(
-          data,
-          :verify,
-          "Max retries reached, marking failed: #{inspect(reason)}"
-        )
+        if RetryStrategy.should_retry?(error_category, data.retry_count) do
+          Logger.warning("[#{data.id}] VERIFY: Failed, retrying from reason phase")
 
-        notify_caller(data.reply_to, data.current_task, {:error, reason})
+          ActivityBroadcaster.broadcast_activity(
+            data,
+            :verify,
+            "Verification failed, retrying (attempt #{data.retry_count + 1}/#{@max_retries})"
+          )
 
-        data = %{
-          data
-          | current_task: nil,
-            reply_to: nil,
-            learnings:
-              Enum.take(["Max retries: #{inspect(reason)}" | data.learnings], @max_learnings)
-        }
+          {:next_state, :reason, %{data | retry_count: data.retry_count + 1}}
+        else
+          Logger.error("[#{data.id}] VERIFY: Max retries reached, marking failed")
 
-        {:next_state, :idle, data}
+          if RetryStrategy.should_escalate?(error_category, data.retry_count) do
+            CircuitBreaker.record_failure(data.agent_type)
+          end
+
+          ActivityBroadcaster.broadcast_activity(
+            data,
+            :verify,
+            "Max retries reached, marking failed: #{inspect(reason)}"
+          )
+
+          notify_caller(data.reply_to, data.current_task, {:error, reason})
+
+          data = %{
+            data
+            | current_task: nil,
+              reply_to: nil,
+              learnings:
+                Enum.take(["Max retries: #{inspect(reason)}" | data.learnings], @max_learnings)
+          }
+
+          {:next_state, :idle, data}
+        end
 
       result when is_binary(result) ->
         # Gate 5: Output Guardrails
@@ -362,7 +403,7 @@ defmodule Samgita.Agent.Worker do
             "[#{data.id}] VERIFY: Output guardrails failed: #{inspect(Enum.map(gate_result.findings, & &1.message))}"
           )
 
-          broadcast_activity(
+          ActivityBroadcaster.broadcast_activity(
             data,
             :verify,
             "Output guardrails flagged issues (#{length(gate_result.findings)} findings)"
@@ -374,11 +415,11 @@ defmodule Samgita.Agent.Worker do
 
         Logger.info("[#{data.id}] VERIFY: Task verified successfully")
         CircuitBreaker.record_success(data.agent_type)
-        broadcast_activity(data, :verify, "Task verified successfully")
+        ActivityBroadcaster.broadcast_activity(data, :verify, "Task verified successfully")
 
         handle_task_completion(data)
         complete_and_notify(data)
-        maybe_git_checkpoint(data)
+        WorktreeManager.maybe_checkpoint(data)
         notify_caller(data.reply_to, data.current_task, :ok)
 
         data = %{
@@ -395,11 +436,11 @@ defmodule Samgita.Agent.Worker do
       _ ->
         Logger.info("[#{data.id}] VERIFY: Task completed (non-string result)")
         CircuitBreaker.record_success(data.agent_type)
-        broadcast_activity(data, :verify, "Task verified successfully")
+        ActivityBroadcaster.broadcast_activity(data, :verify, "Task verified successfully")
 
         handle_task_completion(data)
         complete_and_notify(data)
-        maybe_git_checkpoint(data)
+        WorktreeManager.maybe_checkpoint(data)
         notify_caller(data.reply_to, data.current_task, :ok)
 
         data = %{
@@ -460,544 +501,10 @@ defmodule Samgita.Agent.Worker do
 
   defp notify_caller(_other, _task, _result), do: :ok
 
-  defp broadcast_activity(data, stage, message, opts \\ []) do
-    entry = Samgita.Events.build_log_entry(:agent, data.id, stage, message, opts)
-    Samgita.Events.activity_log(data.project_id, entry)
-  end
-
-  defp truncate_output(text, max_len) when byte_size(text) > max_len do
-    String.slice(text, 0, max_len) <> "\n... (truncated)"
-  end
-
-  defp truncate_output(text, _max_len), do: text
-
-  defp broadcast_state_change(data, state) do
-    Phoenix.PubSub.broadcast(
-      Samgita.PubSub,
-      "project:#{data.project_id}",
-      {:agent_state_changed, data.id, state}
-    )
-
-    update_agent_run_status(data, state)
-  rescue
-    _ -> :ok
-  catch
-    :exit, _ -> :ok
-  end
-
-  defp update_agent_run_status(data, state) do
-    case find_active_agent_run(data.project_id, data.agent_type) do
-      nil -> :ok
-      run -> Samgita.Projects.update_agent_run(run, %{status: state})
-    end
-  rescue
-    _ -> :ok
-  catch
-    :exit, _ -> :ok
-  end
-
-  # Write a CONTINUITY.md file to the project's working directory before each RARV cycle.
-  # This gives Claude persistent file-based context, matching loki-mode's .loki/CONTINUITY.md.
-  defp write_continuity_file(data, memory_context) do
-    working_path = get_working_path(data)
-
-    if working_path do
-      dir = Path.join(working_path, ".samgita")
-      File.mkdir_p!(dir)
-
-      task_desc =
-        case data.current_task do
-          %{payload: %{"description" => desc}} -> desc
-          %{"description" => desc} -> desc
-          _ -> task_type(data.current_task)
-        end
-
-      episodic_lines =
-        memory_context
-        |> Map.get(:episodic, [])
-        |> Enum.take(5)
-        |> Enum.map_join("\n", fn m -> "- #{m.content}" end)
-
-      semantic_lines =
-        memory_context
-        |> Map.get(:semantic, [])
-        |> Enum.take(5)
-        |> Enum.map_join("\n", fn m -> "- #{m.content}" end)
-
-      learnings_lines =
-        data.learnings
-        |> Enum.take(5)
-        |> Enum.map_join("\n", fn l -> "- #{l}" end)
-
-      content = """
-      # Samgita Continuity
-      Agent: #{data.agent_type} | Task Count: #{data.task_count} | Retries: #{data.retry_count}
-      Current Task: #{task_desc}
-
-      ## Episodic Memory
-      #{if episodic_lines == "", do: "(none)", else: episodic_lines}
-
-      ## Semantic Knowledge
-      #{if semantic_lines == "", do: "(none)", else: semantic_lines}
-
-      ## Session Learnings
-      #{if learnings_lines == "", do: "(none)", else: learnings_lines}
-      """
-
-      path = Path.join(dir, "CONTINUITY.md")
-      File.write!(path, content)
-    end
-  rescue
-    e -> Logger.warning("[#{data.id}] Failed to write CONTINUITY.md: #{inspect(e)}")
-  catch
-    :exit, _ -> :ok
-  end
-
-  defp build_context(data) do
-    %{
-      learnings: data.learnings,
-      agent_type: data.agent_type,
-      task_count: data.task_count
-    }
-  end
-
-  defp build_prompt(data) do
-    task = data.current_task
-    task_type = task_type(task)
-
-    case task_type do
-      "bootstrap" -> build_bootstrap_prompt(data)
-      "generate-prd" -> build_prd_prompt(data)
-      "analysis" -> build_analysis_prompt(data)
-      "architecture" -> build_architecture_prompt(data)
-      "implement" -> build_implement_prompt(data)
-      "review" -> build_review_prompt(data)
-      "test" -> build_test_prompt(data)
-      _ -> build_generic_prompt(data)
-    end
-  end
-
-  defp build_bootstrap_prompt(data) do
-    task = data.current_task
-    payload = task_payload(task)
-    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
-
-    project_name = payload["project_name"] || "Unnamed Project"
-    git_url = payload["git_url"] || ""
-    working_path = payload["working_path"] || ""
-    prd_title = payload["prd_title"] || "Untitled"
-    prd_content = payload["prd_content"] || ""
-
-    location =
-      if working_path && working_path != "" do
-        "Working directory: #{working_path}"
-      else
-        "Repository: #{git_url}"
-      end
-
-    """
-    You are a #{type_name} (#{type_desc}).
-
-    ## Task: Bootstrap Project "#{project_name}"
-
-    #{location}
-
-    You have been given a Product Requirements Document (PRD) to guide the project.
-    Analyze it and begin the bootstrap phase.
-
-    ## PRD: #{prd_title}
-
-    #{prd_content}
-
-    ## Instructions
-
-    1. Read and analyze the PRD thoroughly
-    2. If there is a git repository or working directory, explore the existing codebase
-    3. Identify the key components, features, and milestones described in the PRD
-    4. Create an initial project plan breaking down the PRD into actionable tasks
-    5. Set up any necessary project structure, configuration, or scaffolding
-    6. Document your findings and the plan for the next phases
-
-    Focus on understanding the full scope of the project and preparing for development.
-    Output your analysis, plan, and any actions taken in markdown format.
-    """
-  end
-
-  defp build_prd_prompt(data) do
-    task = data.current_task
-    payload = task_payload(task)
-    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
-
-    project_name = payload["project_name"] || "Unnamed Project"
-    git_url = payload["git_url"] || ""
-    working_path = payload["working_path"] || ""
-    existing_prd = payload["existing_prd"]
-
-    context_info =
-      if working_path && working_path != "" do
-        "Working directory: #{working_path}"
-      else
-        "Repository: #{git_url}"
-      end
-
-    existing_context =
-      if existing_prd && existing_prd != "" do
-        """
-
-        ## Existing PRD (refine/expand this)
-        #{existing_prd}
-        """
-      else
-        ""
-      end
-
-    """
-    You are a #{type_name} (#{type_desc}).
-
-    ## Task: Generate Product Requirements Document
-
-    Create a comprehensive Product Requirements Document (PRD) for the project "#{project_name}".
-
-    #{context_info}
-
-    #{existing_context}
-
-    ## PRD Structure
-
-    Please analyze the project and create a PRD with the following sections:
-
-    1. **Project Overview**
-       - Brief description
-       - Problem statement
-       - Target users/audience
-
-    2. **Goals & Objectives**
-       - Primary goals
-       - Success metrics
-       - Out of scope
-
-    3. **User Stories / Use Cases**
-       - Key user flows
-       - Core functionality requirements
-
-    4. **Technical Requirements**
-       - Technology stack recommendations
-       - Architecture considerations
-       - Integration points
-
-    5. **Non-Functional Requirements**
-       - Performance targets
-       - Security requirements
-       - Scalability considerations
-
-    6. **Milestones & Phases**
-       - Development phases
-       - Key deliverables
-       - Timeline estimates
-
-    ## Instructions
-
-    - If there's a git repository, analyze the existing code/docs to understand the project
-    - If there's an existing PRD, enhance and expand it with more details
-    - Be specific and actionable
-    - Focus on what needs to be built, not how to build it
-    - Output only the PRD content in markdown format
-    - Do not include any meta-commentary or explanations outside the PRD
-
-    Generate the PRD now:
-    """
-  end
-
-  defp build_analysis_prompt(data) do
-    task = data.current_task
-    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
-    payload = task_payload(task)
-    project_context = build_project_context(data.project_id, payload)
-    description = payload["description"] || "Analyze the project"
-
-    """
-    You are a #{type_name} (#{type_desc}).
-    #{project_context}
-    ## Task: Discovery Analysis
-
-    #{description}
-
-    ## Previous Learnings
-    #{format_learnings(data.learnings)}
-
-    ## Instructions
-
-    Perform a thorough analysis during the discovery phase. Your output should include:
-
-    1. **Findings Summary** — Key observations about the codebase, architecture, and patterns
-    2. **Requirements Analysis** — Extracted functional and non-functional requirements
-    3. **User Stories** — User stories with acceptance criteria derived from the PRD
-    4. **Technical Gaps** — Missing components, outdated dependencies, or architectural concerns
-    5. **Recommendations** — Prioritized list of recommendations for the architecture phase
-    6. **Risk Assessment** — Potential risks and mitigation strategies
-
-    Be specific and actionable. Reference specific files, modules, or code patterns where relevant.
-    Output your analysis in structured markdown format.
-    """
-  end
-
-  defp build_architecture_prompt(data) do
-    task = data.current_task
-    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
-    payload = task_payload(task)
-    project_context = build_project_context(data.project_id, payload)
-    description = payload["description"] || "Design the architecture"
-    learnings = format_learnings(data.learnings)
-
-    """
-    You are a #{type_name} (#{type_desc}).
-    #{project_context}
-    ## Task: Architecture Design
-
-    #{description}
-
-    ## Previous Learnings
-    #{learnings}
-
-    ## Instructions
-
-    Create a detailed architecture design document. Your output should include:
-
-    1. **Component Overview** — High-level system components and their responsibilities
-    2. **API Contracts** — Endpoint definitions, request/response schemas, error codes
-    3. **Data Model** — Database schemas, relationships, indexes, constraints
-    4. **Integration Points** — External services, third-party APIs, message queues
-    5. **Technology Decisions** — Justified technology choices with alternatives considered
-    6. **Security Architecture** — Authentication, authorization, data protection patterns
-    7. **Scalability Considerations** — Horizontal/vertical scaling strategy, bottleneck analysis
-
-    Be concrete — include actual schema definitions, API endpoint paths, and configuration.
-    Output your design in structured markdown format with code blocks for schemas and APIs.
-    """
-  end
-
-  defp build_implement_prompt(data) do
-    task = data.current_task
-    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
-    payload = task_payload(task)
-    project_context = build_project_context(data.project_id, payload)
-    description = payload["description"] || "Implement the feature"
-
-    """
-    You are a #{type_name} (#{type_desc}).
-    #{project_context}
-    ## Task: Implementation
-
-    #{description}
-
-    ## Previous Learnings
-    #{format_learnings(data.learnings)}
-
-    ## Instructions
-
-    1. Analyze the existing codebase and architecture to understand the current patterns
-    2. Implement the described feature following existing code conventions
-    3. Write clean, well-structured code with appropriate error handling
-    4. Add or update tests to cover the new functionality
-    5. Ensure the code compiles and all tests pass
-    6. Make atomic git commits for each logical change
-
-    ## Quality Requirements
-
-    - Follow existing naming conventions and code style
-    - Handle edge cases and error conditions
-    - Add necessary validations at system boundaries
-    - Ensure backward compatibility unless explicitly replacing functionality
-
-    Output your implementation summary including files changed and test results.
-    """
-  end
-
-  defp build_review_prompt(data) do
-    task = data.current_task
-    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
-    payload = task_payload(task)
-    project_context = build_project_context(data.project_id, payload)
-    description = payload["description"] || "Review the implementation"
-
-    """
-    You are a #{type_name} (#{type_desc}).
-    #{project_context}
-    ## Task: Code Review
-
-    #{description}
-
-    ## Previous Learnings
-    #{format_learnings(data.learnings)}
-
-    ## Instructions
-
-    Perform a thorough review. Your output should include:
-
-    1. **Summary** — Overall assessment (PASS/FAIL/NEEDS_CHANGES)
-    2. **Critical Issues** — Blocking problems that must be fixed
-    3. **Warnings** — Non-blocking concerns that should be addressed
-    4. **Suggestions** — Optional improvements for code quality
-    5. **Security Findings** — Any security vulnerabilities or risks
-    6. **Test Coverage** — Assessment of test adequacy
-
-    For each finding, include the file path, line range, severity (critical/high/medium/low),
-    and a specific recommendation. Output in structured markdown format.
-    """
-  end
-
-  defp build_test_prompt(data) do
-    task = data.current_task
-    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
-    payload = task_payload(task)
-    project_context = build_project_context(data.project_id, payload)
-    description = payload["description"] || "Write and run tests"
-
-    """
-    You are a #{type_name} (#{type_desc}).
-    #{project_context}
-    ## Task: Testing
-
-    #{description}
-
-    ## Previous Learnings
-    #{format_learnings(data.learnings)}
-
-    ## Instructions
-
-    1. Analyze the existing codebase and identify areas lacking test coverage
-    2. Write comprehensive tests covering:
-       - Unit tests for individual functions and modules
-       - Integration tests for module interactions
-       - Edge cases and error conditions
-       - Boundary value testing
-    3. Run the test suite and verify all tests pass
-    4. Report test results with coverage metrics
-
-    ## Output Format
-
-    Provide a structured report:
-    - **Tests Written** — List of new test files and what they cover
-    - **Test Results** — Pass/fail counts, any failures with details
-    - **Coverage** — Areas covered and remaining gaps
-    - **Recommendations** — Additional tests that should be written
-
-    Output in structured markdown format.
-    """
-  end
-
-  defp build_generic_prompt(data) do
-    task = data.current_task
-    {_, type_name, type_desc} = Types.get(data.agent_type) || {nil, data.agent_type, ""}
-    payload = task_payload(task)
-    project_context = build_project_context(data.project_id, payload)
-    description = payload["description"] || inspect(payload)
-
-    """
-    You are a #{type_name} (#{type_desc}).
-    #{project_context}
-    ## Task
-    Type: #{task_type(task)}
-    Description: #{description}
-
-    ## Previous Learnings
-    #{format_learnings(data.learnings)}
-
-    Execute this task thoroughly. Analyze the codebase if needed, implement changes,
-    and verify your work compiles and tests pass. Output your results in markdown format.
-    """
-  end
-
-  defp build_project_context(project_id, payload) do
-    project_info = fetch_project_info(project_id)
-    prd_context = fetch_prd_context(payload["prd_id"])
-
-    project_info <> prd_context
-  end
-
-  defp fetch_project_info(project_id) do
-    case Samgita.Projects.get_project(project_id) do
-      {:ok, project} ->
-        build_project_info_string(project)
-
-      _ ->
-        ""
-    end
-  rescue
-    _ -> ""
-  end
-
-  defp build_project_info_string(project) do
-    working_path = project.working_path || ""
-    git_url = project.git_url || ""
-
-    location =
-      if working_path != "",
-        do: "Working directory: #{working_path}",
-        else: "Repository: #{git_url}"
-
-    """
-
-    ## Project: #{project.name}
-    #{location}
-    Phase: #{project.phase}
-    """
-  end
-
-  defp fetch_prd_context(nil), do: ""
-
-  defp fetch_prd_context(prd_id) do
-    case Samgita.Prds.get_prd(prd_id) do
-      {:ok, prd} ->
-        build_prd_context_string(prd)
-
-      _ ->
-        ""
-    end
-  rescue
-    _ -> ""
-  end
-
-  defp build_prd_context_string(prd) do
-    content = String.slice(prd.content || "", 0, 2000)
-
-    """
-
-    ## PRD: #{prd.title}
-    #{content}
-    """
-  end
-
-  defp task_type(%{type: type}), do: type
-  defp task_type(%{"type" => type}), do: type
-  defp task_type(_), do: "unknown"
-
-  defp task_payload(%{payload: payload}), do: payload
-  defp task_payload(%{"payload" => payload}), do: payload
-  defp task_payload(_), do: %{}
-
-  defp fetch_memory_context(project_id) do
-    Memory.get_context(project_id)
-  catch
-    :exit, _ -> %{episodic: [], semantic: [], procedural: []}
-  end
-
-  defp format_learnings([]), do: "None yet."
-  defp format_learnings(items), do: Enum.map_join(items, "\n", &"- #{&1}")
-
-  defp memory_learnings(%{procedural: procedural, semantic: semantic}) do
-    procedures = Enum.map(procedural, fn m -> "Procedure: #{m.content}" end)
-    semantics = Enum.map(semantic, fn m -> "Knowledge: #{m.content}" end)
-    Enum.take(procedures ++ semantics, 5)
-  end
-
-  defp memory_learnings(_), do: []
-
   defp handle_task_completion(data) do
     task = data.current_task
-    task_type = task_type(task)
 
-    case task_type do
+    case PromptBuilder.task_type(task) do
       "generate-prd" ->
         save_generated_prd(data)
 
@@ -1164,7 +671,7 @@ defmodule Samgita.Agent.Worker do
     case data.act_result do
       result when is_binary(result) and result != "" ->
         task = data.current_task
-        payload = task_payload(task)
+        payload = PromptBuilder.task_payload(task)
         description = payload["description"] || category
 
         task_id =
@@ -1175,7 +682,7 @@ defmodule Samgita.Agent.Worker do
 
         attrs = %{
           type: type,
-          path: "#{category}/#{data.agent_type}/#{task_type(task)}",
+          path: "#{category}/#{data.agent_type}/#{PromptBuilder.task_type(task)}",
           content: result,
           content_hash: :crypto.hash(:sha256, result) |> Base.encode16(case: :lower),
           metadata: %{
@@ -1204,78 +711,6 @@ defmodule Samgita.Agent.Worker do
       Logger.warning("[#{data.id}] Error saving #{category} artifact: #{inspect(e)}")
   end
 
-  defp maybe_git_checkpoint(data) do
-    task = data.current_task
-    working_path = get_working_path(data)
-
-    if working_path && File.dir?(working_path) do
-      create_git_checkpoint_if_changes(data, task, working_path)
-    end
-  rescue
-    e ->
-      Logger.warning("[#{data.id}] Git checkpoint error: #{inspect(e)}")
-  end
-
-  defp create_git_checkpoint_if_changes(data, task, working_path) do
-    if Worktree.has_changes?(working_path) do
-      phase =
-        case Samgita.Projects.get_project(data.project_id) do
-          {:ok, p} -> p.phase
-          _ -> "unknown"
-        end
-
-      message = build_commit_message(data.agent_type, task, phase)
-      commit_checkpoint(data, working_path, message)
-    end
-  rescue
-    _ ->
-      task_desc = build_task_description(task)
-      message = "[samgita] #{data.agent_type}: #{task_desc}"
-      commit_checkpoint(data, working_path, message)
-  end
-
-  @doc false
-  def build_task_description(task) do
-    case task do
-      %{type: type, payload: %{"description" => desc}} -> "#{type}: #{desc}"
-      %{type: type} -> type
-      _ -> "task"
-    end
-  end
-
-  @doc false
-  def build_commit_message(agent_type, task, phase) do
-    task_desc = build_task_description(task)
-
-    task_id =
-      case task do
-        %{id: id} -> id
-        _ -> "unknown"
-      end
-
-    message = """
-    [samgita] #{agent_type}: #{task_desc}
-
-    Agent-Type: #{agent_type}
-    Phase: #{phase}
-    Task-ID: #{task_id}
-    Samgita-Version: #{Application.spec(:samgita, :vsn)}
-    """
-
-    String.trim(message)
-  end
-
-  defp commit_checkpoint(data, working_path, message) do
-    case Worktree.commit(working_path, message) do
-      {:ok, hash} ->
-        Logger.info("[#{data.id}] Git checkpoint: #{hash}")
-        broadcast_activity(data, :verify, "Git checkpoint: #{hash}")
-
-      {:error, reason} ->
-        Logger.warning("[#{data.id}] Git checkpoint failed: #{inspect(reason)}")
-    end
-  end
-
   defp get_working_path(%{working_path: path} = _data) when not is_nil(path), do: path
 
   defp get_working_path(data) do
@@ -1287,39 +722,5 @@ defmodule Samgita.Agent.Worker do
     _ -> nil
   catch
     :exit, _ -> nil
-  end
-
-  defp persist_learning(project_id, learning) do
-    Memory.add_memory(project_id, :episodic, learning)
-  catch
-    :exit, _ -> :ok
-  end
-
-  defp emit_telemetry(:state_transition, data, metadata) do
-    :telemetry.execute(
-      [:samgita, :agent, :state_transition],
-      %{system_time: System.system_time()},
-      Map.merge(metadata, %{
-        agent_id: data.id,
-        agent_type: data.agent_type,
-        project_id: data.project_id
-      })
-    )
-  rescue
-    _ -> :ok
-  end
-
-  defp emit_telemetry(:error, data, metadata) do
-    :telemetry.execute(
-      [:samgita, :agent, :error],
-      %{system_time: System.system_time()},
-      Map.merge(metadata, %{
-        agent_id: data.id,
-        agent_type: data.agent_type,
-        project_id: data.project_id
-      })
-    )
-  rescue
-    _ -> :ok
   end
 end
