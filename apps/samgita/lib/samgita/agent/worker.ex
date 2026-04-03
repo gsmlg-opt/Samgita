@@ -356,43 +356,7 @@ defmodule Samgita.Agent.Worker do
 
     case data.act_result do
       {:error, reason} ->
-        error_category = RetryStrategy.classify_for_retry(reason)
-
-        if RetryStrategy.should_retry?(error_category, data.retry_count) do
-          Logger.warning("[#{data.id}] VERIFY: Failed, retrying from reason phase")
-
-          ActivityBroadcaster.broadcast_activity(
-            data,
-            :verify,
-            "Verification failed, retrying (attempt #{data.retry_count + 1}/#{@max_retries})"
-          )
-
-          {:next_state, :reason, %{data | retry_count: data.retry_count + 1}}
-        else
-          Logger.error("[#{data.id}] VERIFY: Max retries reached, marking failed")
-
-          if RetryStrategy.should_escalate?(error_category, data.retry_count) do
-            CircuitBreaker.record_failure(data.agent_type)
-          end
-
-          ActivityBroadcaster.broadcast_activity(
-            data,
-            :verify,
-            "Max retries reached, marking failed: #{inspect(reason)}"
-          )
-
-          notify_caller(data.reply_to, data.current_task, {:error, reason})
-
-          data = %{
-            data
-            | current_task: nil,
-              reply_to: nil,
-              learnings:
-                Enum.take(["Max retries: #{inspect(reason)}" | data.learnings], @max_learnings)
-          }
-
-          {:next_state, :idle, data}
-        end
+        handle_verify_error(data, reason)
 
       result when is_binary(result) ->
         # Gate 5: Output Guardrails
@@ -481,7 +445,52 @@ defmodule Samgita.Agent.Worker do
     :ok
   end
 
-  ## Internal
+  ## Internal — verify helpers
+
+  defp handle_verify_error(data, reason) do
+    error_category = RetryStrategy.classify_for_retry(reason)
+
+    if RetryStrategy.should_retry?(error_category, data.retry_count) do
+      Logger.warning("[#{data.id}] VERIFY: Failed, retrying from reason phase")
+
+      ActivityBroadcaster.broadcast_activity(
+        data,
+        :verify,
+        "Verification failed, retrying (attempt #{data.retry_count + 1}/#{@max_retries})"
+      )
+
+      {:next_state, :reason, %{data | retry_count: data.retry_count + 1}}
+    else
+      handle_verify_max_retries(data, reason, error_category)
+    end
+  end
+
+  defp handle_verify_max_retries(data, reason, error_category) do
+    Logger.error("[#{data.id}] VERIFY: Max retries reached, marking failed")
+
+    if RetryStrategy.should_escalate?(error_category, data.retry_count) do
+      CircuitBreaker.record_failure(data.agent_type)
+    end
+
+    ActivityBroadcaster.broadcast_activity(
+      data,
+      :verify,
+      "Max retries reached, marking failed: #{inspect(reason)}"
+    )
+
+    notify_caller(data.reply_to, data.current_task, {:error, reason})
+
+    data = %{
+      data
+      | current_task: nil,
+        reply_to: nil,
+        learnings: Enum.take(["Max retries: #{inspect(reason)}" | data.learnings], @max_learnings)
+    }
+
+    {:next_state, :idle, data}
+  end
+
+  ## Internal — caller notification
 
   defp notify_caller(nil, _task, _result), do: :ok
 

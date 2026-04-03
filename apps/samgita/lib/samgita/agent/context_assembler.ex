@@ -11,9 +11,9 @@ defmodule Samgita.Agent.ContextAssembler do
 
   require Logger
 
+  alias Samgita.Prds
   alias Samgita.Project.Memory
   alias Samgita.Projects
-  alias Samgita.Prds
 
   @doc """
   Assembles a full context map from worker data.
@@ -89,22 +89,9 @@ defmodule Samgita.Agent.ContextAssembler do
     memory_context = context[:memory_context] || %{}
     learnings = context[:learnings] || []
 
-    episodic_lines =
-      memory_context
-      |> Map.get(:episodic, [])
-      |> Enum.take(5)
-      |> Enum.map_join("\n", fn m -> "- #{m.content}" end)
-
-    semantic_lines =
-      memory_context
-      |> Map.get(:semantic, [])
-      |> Enum.take(5)
-      |> Enum.map_join("\n", fn m -> "- #{m.content}" end)
-
-    learnings_lines =
-      learnings
-      |> Enum.take(5)
-      |> Enum.map_join("\n", fn l -> "- #{l}" end)
+    episodic_lines = format_memory_section(memory_context, :episodic)
+    semantic_lines = format_memory_section(memory_context, :semantic)
+    learnings_lines = format_list_section(learnings)
 
     """
     # Samgita Continuity
@@ -112,14 +99,35 @@ defmodule Samgita.Agent.ContextAssembler do
     Current Task: #{task_desc}
 
     ## Episodic Memory
-    #{if episodic_lines == "", do: "(none)", else: episodic_lines}
+    #{episodic_lines}
 
     ## Semantic Knowledge
-    #{if semantic_lines == "", do: "(none)", else: semantic_lines}
+    #{semantic_lines}
 
     ## Session Learnings
-    #{if learnings_lines == "", do: "(none)", else: learnings_lines}
+    #{learnings_lines}
     """
+  end
+
+  defp format_memory_section(memory_context, key) do
+    memory_context
+    |> Map.get(key, [])
+    |> Enum.take(5)
+    |> Enum.map_join("\n", fn m -> "- #{m.content}" end)
+    |> then(fn
+      "" -> "(none)"
+      lines -> lines
+    end)
+  end
+
+  defp format_list_section(items) do
+    items
+    |> Enum.take(5)
+    |> Enum.map_join("\n", fn l -> "- #{l}" end)
+    |> then(fn
+      "" -> "(none)"
+      lines -> lines
+    end)
   end
 
   @doc """
