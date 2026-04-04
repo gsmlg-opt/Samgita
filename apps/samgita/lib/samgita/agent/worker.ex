@@ -32,6 +32,7 @@ defmodule Samgita.Agent.Worker do
     :act_result,
     :reply_to,
     :working_path,
+    :session,
     task_count: 0,
     token_count: 0,
     retry_count: 0,
@@ -170,6 +171,9 @@ defmodule Samgita.Agent.Worker do
         ContextAssembler.write_continuity_file(working_path, continuity_context)
       end
 
+      # Open a provider session if one doesn't exist yet
+      data = maybe_open_session(data, working_path)
+
       {:next_state, :act, data}
     rescue
       e ->
@@ -228,7 +232,7 @@ defmodule Samgita.Agent.Worker do
         if working_dir, do: Keyword.put(opts, :working_directory, working_dir), else: opts
       end)
 
-    raw_result = Claude.chat(prompt, chat_opts)
+    {raw_result, data} = execute_with_provider(data, prompt, chat_opts)
     classified = ResultParser.classify(raw_result)
 
     case classified do
@@ -385,12 +389,14 @@ defmodule Samgita.Agent.Worker do
         complete_and_notify(data)
         WorktreeManager.maybe_checkpoint(data)
         notify_caller(data.reply_to, data.current_task, :ok)
+        close_session_if_open(data)
 
         data = %{
           data
           | current_task: nil,
             act_result: nil,
             reply_to: nil,
+            session: nil,
             task_count: data.task_count + 1,
             retry_count: 0
         }
@@ -406,12 +412,14 @@ defmodule Samgita.Agent.Worker do
         complete_and_notify(data)
         WorktreeManager.maybe_checkpoint(data)
         notify_caller(data.reply_to, data.current_task, :ok)
+        close_session_if_open(data)
 
         data = %{
           data
           | current_task: nil,
             act_result: nil,
             reply_to: nil,
+            session: nil,
             task_count: data.task_count + 1,
             retry_count: 0
         }
@@ -440,6 +448,7 @@ defmodule Samgita.Agent.Worker do
 
   @impl true
   def terminate(reason, _state, data) do
+    close_session_if_open(data)
     notify_caller(data.reply_to, data.current_task, {:error, :worker_terminated})
     Logger.info("[#{data.id}] Worker terminated: #{inspect(reason)}")
     :ok
@@ -479,11 +488,13 @@ defmodule Samgita.Agent.Worker do
     )
 
     notify_caller(data.reply_to, data.current_task, {:error, reason})
+    close_session_if_open(data)
 
     data = %{
       data
       | current_task: nil,
         reply_to: nil,
+        session: nil,
         learnings: Enum.take(["Max retries: #{inspect(reason)}" | data.learnings], @max_learnings)
     }
 
@@ -731,5 +742,80 @@ defmodule Samgita.Agent.Worker do
     _ -> nil
   catch
     :exit, _ -> nil
+  end
+
+  ## Internal — provider session helpers
+
+  defp maybe_open_session(%{session: session} = data, _working_path) when not is_nil(session) do
+    data
+  end
+
+  defp maybe_open_session(data, working_path) do
+    system_prompt = "You are a #{data.agent_type} agent."
+    opts = [model: Types.model_for_type(data.agent_type)]
+    opts = if working_path, do: Keyword.put(opts, :working_directory, working_path), else: opts
+
+    case SamgitaProvider.start_session(system_prompt, opts) do
+      {:ok, session} ->
+        Samgita.Provider.SessionRegistry.register(data.project_id, data.id, %{
+          session_id: session.id,
+          provider: session.provider,
+          started_at: session.started_at,
+          message_count: 0,
+          total_tokens: 0
+        })
+
+        %{data | session: session}
+
+      {:error, reason} ->
+        Logger.debug(
+          "[#{data.id}] Session creation failed (#{inspect(reason)}), using query fallback"
+        )
+
+        data
+    end
+  rescue
+    e ->
+      Logger.debug("[#{data.id}] Session creation error (#{inspect(e)}), using query fallback")
+      data
+  end
+
+  defp execute_with_provider(%{session: session} = data, prompt, _chat_opts)
+       when not is_nil(session) do
+    case SamgitaProvider.send_message(session, prompt) do
+      {:ok, response, updated_session} ->
+        Samgita.Provider.SessionRegistry.register(data.project_id, data.id, %{
+          session_id: updated_session.id,
+          provider: updated_session.provider,
+          started_at: updated_session.started_at,
+          message_count: updated_session.message_count,
+          total_tokens: updated_session.total_tokens
+        })
+
+        {{:ok, response}, %{data | session: updated_session}}
+
+      {:error, reason} ->
+        {{:error, reason}, data}
+    end
+  rescue
+    e ->
+      Logger.warning(
+        "[#{data.id}] Session send_message error: #{inspect(e)}, falling back to query"
+      )
+
+      {{:error, inspect(e)}, %{data | session: nil}}
+  end
+
+  defp execute_with_provider(data, prompt, chat_opts) do
+    {Claude.chat(prompt, chat_opts), data}
+  end
+
+  defp close_session_if_open(%{session: nil}), do: :ok
+
+  defp close_session_if_open(%{session: session, project_id: project_id, id: id}) do
+    SamgitaProvider.close_session(session)
+    Samgita.Provider.SessionRegistry.unregister(project_id, id)
+  rescue
+    e -> Logger.debug("[#{id}] Session cleanup error: #{inspect(e)}")
   end
 end
