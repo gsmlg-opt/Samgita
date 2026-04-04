@@ -33,6 +33,11 @@ defmodule Samgita.Domain.Project do
     field :config, :map, default: %{}
     field :start_mode, Ecto.Enum, values: [:from_prd, :from_idea], default: :from_prd
     field :planning_auto_advance, :boolean, default: false
+    field :synapsis_endpoints, {:array, :map}, default: []
+
+    field :provider_preference, Ecto.Enum,
+      values: [:claude_code, :claude_api, :synapsis, :codex],
+      default: :claude_code
 
     has_many :tasks, Samgita.Domain.Task
     has_many :agent_runs, Samgita.Domain.AgentRun
@@ -57,7 +62,9 @@ defmodule Samgita.Domain.Project do
       :config,
       :active_prd_id,
       :start_mode,
-      :planning_auto_advance
+      :planning_auto_advance,
+      :synapsis_endpoints,
+      :provider_preference
     ])
     |> validate_required([:name, :git_url])
     |> validate_git_url()

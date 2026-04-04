@@ -442,6 +442,31 @@ defmodule Samgita.ProjectsTest do
     end
   end
 
+  describe "synapsis fields" do
+    test "default provider_preference is :claude_code" do
+      project = create_project()
+      assert project.provider_preference == :claude_code
+    end
+
+    test "default synapsis_endpoints is []" do
+      project = create_project()
+      assert project.synapsis_endpoints == []
+    end
+
+    test "can set provider_preference to :synapsis" do
+      project = create_project()
+      assert {:ok, updated} = Projects.update_project(project, %{provider_preference: :synapsis})
+      assert updated.provider_preference == :synapsis
+    end
+
+    test "can set synapsis_endpoints to a list of maps" do
+      project = create_project()
+      endpoints = [%{"url" => "https://api.example.com", "model" => "synapsis-1"}]
+      assert {:ok, updated} = Projects.update_project(project, %{synapsis_endpoints: endpoints})
+      assert updated.synapsis_endpoints == endpoints
+    end
+  end
+
   describe "task dependencies" do
     test "create_task_dependency/3 creates a dependency edge" do
       project = create_project()
