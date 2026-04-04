@@ -3,8 +3,8 @@ defmodule Samgita.Agent.TypesTest do
 
   alias Samgita.Agent.Types
 
-  test "defines 37 agent types" do
-    assert length(Types.all()) == 37
+  test "defines 41 agent types" do
+    assert length(Types.all()) == 41
   end
 
   test "all IDs are unique" do
@@ -73,13 +73,32 @@ defmodule Samgita.Agent.TypesTest do
     assert Types.model_for_type("growth-hacker") == "sonnet"
   end
 
-  test "model_for_type/1 returns a valid model string for all 37 agent types" do
+  test "model_for_type/1 returns a valid model string for all 41 agent types" do
     valid_models = ["opus", "sonnet", "haiku"]
 
     Enum.each(Types.all_ids(), fn type_id ->
       model = Types.model_for_type(type_id)
       assert model in valid_models, "#{type_id} returned invalid model: #{inspect(model)}"
     end)
+  end
+
+  test "planning swarm has 4 agents" do
+    assert length(Types.planning()) == 4
+  end
+
+  test "all planning types are in all()" do
+    all_ids = Types.all_ids()
+
+    Enum.each(Types.planning(), fn {id, _, _} ->
+      assert id in all_ids, "Expected #{id} to be in all()"
+    end)
+  end
+
+  test "model_for_type/1 returns opus for all planning types" do
+    assert Types.model_for_type("plan-researcher") == "opus"
+    assert Types.model_for_type("plan-architect") == "opus"
+    assert Types.model_for_type("plan-writer") == "opus"
+    assert Types.model_for_type("plan-reviewer") == "opus"
   end
 
   test "all agent types have non-empty id, name, and description" do
@@ -90,7 +109,7 @@ defmodule Samgita.Agent.TypesTest do
     end)
   end
 
-  test "all 7 swarms are represented" do
+  test "all 8 swarms are represented" do
     all_ids = Types.all_ids()
 
     # Engineering swarm prefix
@@ -107,9 +126,11 @@ defmodule Samgita.Agent.TypesTest do
     assert Enum.any?(all_ids, &String.starts_with?(&1, "growth-"))
     # Review swarm prefix
     assert Enum.any?(all_ids, &String.starts_with?(&1, "review-"))
+    # Planning swarm prefix
+    assert Enum.any?(all_ids, &String.starts_with?(&1, "plan-"))
   end
 
-  test "all() is the union of all 7 swarms" do
+  test "all() is the union of all 8 swarms" do
     swarm_total =
       length(Types.engineering()) +
         length(Types.operations()) +
@@ -117,12 +138,13 @@ defmodule Samgita.Agent.TypesTest do
         length(Types.data()) +
         length(Types.product()) +
         length(Types.growth()) +
-        length(Types.review())
+        length(Types.review()) +
+        length(Types.planning())
 
     assert swarm_total == length(Types.all())
   end
 
-  test "valid?/1 returns true for all 37 known types" do
+  test "valid?/1 returns true for all 41 known types" do
     Enum.each(Types.all_ids(), fn type_id ->
       assert Types.valid?(type_id), "Expected #{type_id} to be valid"
     end)

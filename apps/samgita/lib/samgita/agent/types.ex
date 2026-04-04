@@ -1,6 +1,6 @@
 defmodule Samgita.Agent.Types do
   @moduledoc """
-  Defines the 37 agent types organized by swarm.
+  Defines the 41 agent types organized by swarm.
   """
 
   @engineering [
@@ -61,7 +61,19 @@ defmodule Samgita.Agent.Types do
     {"review-security", "Security Reviewer", "Security review, threat modeling"}
   ]
 
-  @all_types @engineering ++ @operations ++ @business ++ @data ++ @product ++ @growth ++ @review
+  @planning [
+    {"plan-researcher", "Plan Researcher",
+     "Research analyst for planning phase. Conducts market research, competitive analysis, technical feasibility studies, and regulatory/compliance review to inform PRD creation."},
+    {"plan-architect", "Plan Architect",
+     "System architect for planning phase. Designs technical architecture, defines component boundaries, selects technology stack, and identifies scalability considerations and technical risks."},
+    {"plan-writer", "Plan Writer",
+     "PRD author for planning phase. Produces structured Product Requirements Documents with numbered requirements, acceptance criteria, milestones, and task decomposition hints."},
+    {"plan-reviewer", "Plan Reviewer",
+     "Adversarial reviewer for planning phase. Critiques draft PRDs for missing requirements, unrealistic scope, ambiguous acceptance criteria, security gaps, and contradictions."}
+  ]
+
+  @all_types @engineering ++
+               @operations ++ @business ++ @data ++ @product ++ @growth ++ @review ++ @planning
 
   def all, do: @all_types
   def engineering, do: @engineering
@@ -71,6 +83,7 @@ defmodule Samgita.Agent.Types do
   def product, do: @product
   def growth, do: @growth
   def review, do: @review
+  def planning, do: @planning
 
   def all_ids, do: Enum.map(@all_types, &elem(&1, 0))
 
@@ -79,6 +92,11 @@ defmodule Samgita.Agent.Types do
   end
 
   def valid?(type_id), do: type_id in all_ids()
+
+  def model_for_type("plan-researcher"), do: "opus"
+  def model_for_type("plan-architect"), do: "opus"
+  def model_for_type("plan-writer"), do: "opus"
+  def model_for_type("plan-reviewer"), do: "opus"
 
   def model_for_type(type_id) do
     cond do
