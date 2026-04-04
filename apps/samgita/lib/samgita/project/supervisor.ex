@@ -28,6 +28,7 @@ defmodule Samgita.Project.Supervisor do
 
     children = [
       {Samgita.Project.Memory, project_id: project_id},
+      {Samgita.Agent.MessageRouter, project_id: project_id},
       {Samgita.Project.Orchestrator, project_id: project_id}
     ]
 
