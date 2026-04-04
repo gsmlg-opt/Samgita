@@ -3,8 +3,12 @@ defmodule Samgita.Project.Orchestrator do
   Orchestrator state machine managing project lifecycle phases.
 
   Transitions through phases:
-  :bootstrap -> :discovery -> :architecture -> :infrastructure ->
+  :planning -> :bootstrap -> :discovery -> :architecture -> :infrastructure ->
   :development -> :qa -> :deployment -> :business -> :growth -> :perpetual
+
+  The planning phase is skipped when `start_mode == :from_prd`. When
+  `planning_auto_advance == false`, the orchestrator pauses after planning
+  completes and awaits human review before advancing to bootstrap.
   """
 
   @behaviour :gen_statem
@@ -16,6 +20,7 @@ defmodule Samgita.Project.Orchestrator do
   alias Samgita.Tasks.DependencyGraph
   alias Samgita.Workers.AgentTaskWorker
   alias Samgita.Workers.BootstrapWorker
+  alias Samgita.Workers.PlanningWorker
   alias Samgita.Workers.QualityGateWorker
   alias Samgita.Workers.SnapshotWorker
 
@@ -42,6 +47,7 @@ defmodule Samgita.Project.Orchestrator do
   ]
 
   @phases [
+    :planning,
     :bootstrap,
     :discovery,
     :architecture,
@@ -420,6 +426,9 @@ defmodule Samgita.Project.Orchestrator do
     end
   end
 
+  defp agents_for_phase(:planning),
+    do: ["plan-researcher", "plan-architect", "plan-writer", "plan-reviewer"]
+
   defp agents_for_phase(:bootstrap), do: ["prod-pm"]
   defp agents_for_phase(:discovery), do: ["prod-pm", "prod-design", "data-analytics"]
 
@@ -512,6 +521,13 @@ defmodule Samgita.Project.Orchestrator do
   defp requires_quality_gates?(:qa), do: true
   defp requires_quality_gates?(_), do: false
 
+  defp requires_planning_review?(:planning, data) do
+    project = refresh_project(data)
+    not (project.planning_auto_advance || false)
+  end
+
+  defp requires_planning_review?(_phase, _data), do: false
+
   defp trigger_quality_gates(current_phase, data) do
     prd_id = data.project && data.project.active_prd_id
 
@@ -540,6 +556,39 @@ defmodule Samgita.Project.Orchestrator do
 
   # Phase-specific task generation.
   # Returns the number of tasks enqueued (used to set phase_tasks_total).
+  defp enqueue_phase_tasks(:planning, data) do
+    project = refresh_project(data)
+
+    # Skip planning if project starts from PRD
+    if project.start_mode == :from_prd do
+      Logger.info("[Orchestrator] #{project.id}: Skipping planning phase (start_mode=from_prd)")
+
+      # Auto-advance to bootstrap
+      :gen_statem.cast(self(), :advance_phase)
+      0
+    else
+      # Enqueue PlanningWorker
+      case ObanClient.insert(
+             PlanningWorker.new(%{
+               "project_id" => project.id,
+               "sub_phase" => "research"
+             })
+           ) do
+        {:ok, _job} ->
+          broadcast_activity(data, :planning, "Started planning pipeline")
+          # PlanningWorker manages its own task count
+          0
+
+        {:error, reason} ->
+          Logger.error(
+            "[Orchestrator] #{project.id}: Failed to start planning: #{inspect(reason)}"
+          )
+
+          0
+      end
+    end
+  end
+
   defp enqueue_phase_tasks(:bootstrap, data) do
     project = refresh_project(data)
 
@@ -984,15 +1033,25 @@ defmodule Samgita.Project.Orchestrator do
   end
 
   defp handle_completed_phase(phase, data) do
-    if requires_quality_gates?(phase) do
-      Logger.info("[Orchestrator] #{data.project_id}: triggering quality gates for #{phase}")
-      broadcast_activity(data, :reason, "Phase tasks complete, running quality gates")
-      trigger_quality_gates(phase, data)
+    cond do
+      requires_quality_gates?(phase) ->
+        Logger.info("[Orchestrator] #{data.project_id}: triggering quality gates for #{phase}")
+        broadcast_activity(data, :reason, "Phase tasks complete, running quality gates")
+        trigger_quality_gates(phase, data)
 
-      {:keep_state, %{data | awaiting_quality_gates: true},
-       [{{:timeout, :quality_gate_timeout}, @quality_gate_timeout_ms, :check}]}
-    else
-      advance_to_next_phase(phase, data)
+        {:keep_state, %{data | awaiting_quality_gates: true},
+         [{{:timeout, :quality_gate_timeout}, @quality_gate_timeout_ms, :check}]}
+
+      requires_planning_review?(phase, data) ->
+        Logger.info(
+          "[Orchestrator] #{data.project_id}: Planning complete, pausing for human review"
+        )
+
+        broadcast_activity(data, phase, "Planning complete — awaiting human review")
+        {:keep_state, %{data | paused: true}}
+
+      true ->
+        advance_to_next_phase(phase, data)
     end
   end
 
