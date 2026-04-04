@@ -23,6 +23,7 @@ defmodule Samgita.Agent.Worker do
   alias Samgita.Agent.WorktreeManager
   alias Samgita.Domain.Artifact
   alias Samgita.Project.Orchestrator
+  alias Samgita.Provider.HealthChecker
   alias Samgita.Provider.SessionRegistry
   alias Samgita.Quality.OutputGuardrails
 
@@ -847,43 +848,46 @@ defmodule Samgita.Agent.Worker do
   end
 
   defp resolve_provider(project_id, base_opts) do
-    project =
-      try do
-        case Samgita.Projects.get_project(project_id) do
-          {:ok, p} -> p
-          _ -> nil
-        end
-      rescue
-        _ -> nil
-      end
+    project = fetch_project_for_provider(project_id)
+    preference = project && project.provider_preference
 
-    case project && project.provider_preference do
-      :synapsis ->
-        case Samgita.Provider.HealthChecker.healthy_endpoints(project) do
-          [endpoint | _] ->
-            opts =
-              base_opts
-              |> Keyword.put(:endpoint, endpoint["url"] || endpoint[:url])
-              |> Keyword.put(:api_key, endpoint["api_key"] || endpoint[:api_key] || "")
+    resolve_preference(preference, project, base_opts)
+  end
 
-            {SamgitaProvider.Synapsis, opts}
+  defp fetch_project_for_provider(project_id) do
+    case Samgita.Projects.get_project(project_id) do
+      {:ok, p} -> p
+      _ -> nil
+    end
+  rescue
+    _ -> nil
+  end
 
-          [] ->
-            Logger.warning("[resolve_provider] No healthy Synapsis endpoints, falling back")
-            :default
-        end
+  defp resolve_preference(:synapsis, project, base_opts) do
+    case HealthChecker.healthy_endpoints(project) do
+      [endpoint | _] ->
+        opts =
+          base_opts
+          |> Keyword.put(:endpoint, endpoint["url"] || endpoint[:url])
+          |> Keyword.put(:api_key, endpoint["api_key"] || endpoint[:api_key] || "")
 
-      :claude_api ->
-        {SamgitaProvider.ClaudeAPI, base_opts}
+        {SamgitaProvider.Synapsis, opts}
 
-      :codex ->
-        {SamgitaProvider.Codex, base_opts}
-
-      _ ->
-        # nil, :claude_code, or unrecognized — use global config provider
+      [] ->
+        Logger.warning("[resolve_provider] No healthy Synapsis endpoints, falling back")
         :default
     end
   end
+
+  defp resolve_preference(:claude_api, _project, base_opts) do
+    {SamgitaProvider.ClaudeAPI, base_opts}
+  end
+
+  defp resolve_preference(:codex, _project, base_opts) do
+    {SamgitaProvider.Codex, base_opts}
+  end
+
+  defp resolve_preference(_other, _project, _base_opts), do: :default
 
   defp start_session_with_provider(provider, system_prompt, opts) do
     if function_exported?(provider, :start_session, 2) do

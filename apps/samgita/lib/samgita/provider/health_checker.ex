@@ -88,23 +88,20 @@ defmodule Samgita.Provider.HealthChecker do
   end
 
   defp discover_endpoints(known) do
-    # Query all projects with synapsis_endpoints
-    try do
-      import Ecto.Query
+    import Ecto.Query
 
-      Samgita.Repo.all(
-        from p in Samgita.Domain.Project,
-          where: not is_nil(p.synapsis_endpoints),
-          select: p.synapsis_endpoints
-      )
-      |> List.flatten()
-      |> Enum.map(fn ep -> ep["url"] || ep[:url] end)
-      |> Enum.reject(&is_nil/1)
-      |> MapSet.new()
-      |> MapSet.union(known)
-    rescue
-      _ -> known
-    end
+    Samgita.Repo.all(
+      from p in Samgita.Domain.Project,
+        where: not is_nil(p.synapsis_endpoints),
+        select: p.synapsis_endpoints
+    )
+    |> List.flatten()
+    |> Enum.map(fn ep -> ep["url"] || ep[:url] end)
+    |> Enum.reject(&is_nil/1)
+    |> MapSet.new()
+    |> MapSet.union(known)
+  rescue
+    _ -> known
   end
 
   defp check_all_endpoints(endpoints) do
