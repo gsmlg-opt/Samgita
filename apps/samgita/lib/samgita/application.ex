@@ -21,6 +21,7 @@ defmodule Samgita.Application do
        name: Samgita.AgentSupervisor, strategy: :one_for_one, members: :auto},
       Samgita.Agent.CircuitBreaker,
       Samgita.Provider.SessionRegistry,
+      Samgita.Provider.HealthChecker,
       {Oban, Application.fetch_env!(:samgita, Oban)},
       Samgita.Project.Recovery
     ]
