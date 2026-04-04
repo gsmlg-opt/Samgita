@@ -7,6 +7,7 @@ defmodule Samgita.Projects do
   alias Samgita.Domain.AgentRun
   alias Samgita.Domain.Project
   alias Samgita.Domain.Task, as: TaskSchema
+  alias Samgita.Domain.TaskDependency
   alias Samgita.Project.Orchestrator
   alias Samgita.Repo
   alias Samgita.Workers.AgentTaskWorker
@@ -341,6 +342,117 @@ defmodule Samgita.Projects do
 
   def delete_artifact(%Artifact{} = artifact) do
     Repo.delete(artifact)
+  end
+
+  # Task dependency management
+
+  @doc "Create a dependency edge between two tasks."
+  def create_task_dependency(task_id, depends_on_id, type \\ "hard") do
+    %TaskDependency{}
+    |> TaskDependency.changeset(%{
+      task_id: task_id,
+      depends_on_id: depends_on_id,
+      dependency_type: type
+    })
+    |> Repo.insert()
+  end
+
+  @doc "Get all dependencies for a task."
+  def get_task_dependencies(task_id) do
+    from(td in TaskDependency, where: td.task_id == ^task_id, preload: [:depends_on])
+    |> Repo.all()
+  end
+
+  @doc "Get tasks that are blocked (status = :blocked) for a project."
+  def get_blocked_tasks(project_id) do
+    from(t in TaskSchema, where: t.project_id == ^project_id and t.status == :blocked)
+    |> Repo.all()
+  end
+
+  @doc """
+  Find tasks whose all hard dependencies are now complete, and transition them
+  from :blocked to :pending. Returns the list of newly unblocked task ids.
+  """
+  def unblock_tasks(_project_id, completed_task_id) do
+    # Get all tasks that depend on the completed task
+    dependent_task_ids =
+      from(td in TaskDependency,
+        where: td.depends_on_id == ^completed_task_id,
+        select: td.task_id
+      )
+      |> Repo.all()
+
+    # For each, check if ALL hard dependencies are completed
+    Enum.reduce(dependent_task_ids, [], fn task_id, acc ->
+      hard_dep_ids =
+        from(td in TaskDependency,
+          where: td.task_id == ^task_id and td.dependency_type == "hard",
+          select: td.depends_on_id
+        )
+        |> Repo.all()
+
+      all_complete? =
+        from(t in TaskSchema,
+          where: t.id in ^hard_dep_ids and t.status == :completed,
+          select: count(t.id)
+        )
+        |> Repo.one() == length(hard_dep_ids)
+
+      if all_complete? do
+        case get_task(task_id) do
+          {:ok, task} when task.status == :blocked ->
+            task
+            |> TaskSchema.changeset(%{status: :pending})
+            |> Repo.update()
+
+            [task_id | acc]
+
+          _ ->
+            acc
+        end
+      else
+        acc
+      end
+    end)
+  end
+
+  @doc "Write an output summary to all dependent tasks' dependency_outputs."
+  def propagate_dependency_output(completed_task_id, output_summary) do
+    dependent_task_ids =
+      from(td in TaskDependency,
+        where: td.depends_on_id == ^completed_task_id,
+        select: td.task_id
+      )
+      |> Repo.all()
+
+    Enum.each(dependent_task_ids, fn task_id ->
+      case get_task(task_id) do
+        {:ok, task} ->
+          outputs = Map.put(task.dependency_outputs || %{}, completed_task_id, output_summary)
+          task |> TaskSchema.changeset(%{dependency_outputs: outputs}) |> Repo.update()
+
+        _ ->
+          :ok
+      end
+    end)
+  end
+
+  @doc "Set the wave number for a task."
+  def set_task_wave(task_id, wave) do
+    case get_task(task_id) do
+      {:ok, task} -> task |> TaskSchema.changeset(%{wave: wave}) |> Repo.update()
+      error -> error
+    end
+  end
+
+  @doc "Get tasks for a project grouped by wave."
+  def tasks_by_wave(project_id) do
+    from(t in TaskSchema,
+      where: t.project_id == ^project_id and not is_nil(t.wave),
+      order_by: [asc: t.wave, asc: t.priority]
+    )
+    |> Repo.all()
+    |> Enum.group_by(& &1.wave)
   end
 
   def enqueue_task(project_id, task_type, agent_type, payload \\ %{}) do

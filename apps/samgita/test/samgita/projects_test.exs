@@ -441,4 +441,122 @@ defmodule Samgita.ProjectsTest do
       assert task.duration_ms == 3000
     end
   end
+
+  describe "task dependencies" do
+    test "create_task_dependency/3 creates a dependency edge" do
+      project = create_project()
+      {:ok, task_a} = Projects.create_task(project.id, %{type: "task-a"})
+      {:ok, task_b} = Projects.create_task(project.id, %{type: "task-b"})
+
+      assert {:ok, dep} = Projects.create_task_dependency(task_b.id, task_a.id)
+      assert dep.task_id == task_b.id
+      assert dep.depends_on_id == task_a.id
+      assert dep.dependency_type == "hard"
+
+      deps = Projects.get_task_dependencies(task_b.id)
+      assert length(deps) == 1
+      assert hd(deps).depends_on_id == task_a.id
+    end
+
+    test "create_task_dependency/3 supports soft dependency type" do
+      project = create_project()
+      {:ok, task_a} = Projects.create_task(project.id, %{type: "task-a"})
+      {:ok, task_b} = Projects.create_task(project.id, %{type: "task-b"})
+
+      assert {:ok, dep} = Projects.create_task_dependency(task_b.id, task_a.id, "soft")
+      assert dep.dependency_type == "soft"
+    end
+
+    test "get_blocked_tasks/1 returns only blocked tasks for a project" do
+      project = create_project()
+
+      {:ok, _pending} =
+        Projects.create_task(project.id, %{type: "pending-task", status: :pending})
+
+      {:ok, blocked} = Projects.create_task(project.id, %{type: "blocked-task", status: :blocked})
+
+      {:ok, _other_blocked} =
+        Projects.create_task(project.id, %{type: "blocked-task-2", status: :blocked})
+
+      blocked_tasks = Projects.get_blocked_tasks(project.id)
+      assert length(blocked_tasks) == 2
+      blocked_ids = Enum.map(blocked_tasks, & &1.id)
+      assert blocked.id in blocked_ids
+    end
+
+    test "unblock_tasks/2 transitions blocked task to pending when all hard deps complete" do
+      project = create_project()
+      {:ok, dep_task} = Projects.create_task(project.id, %{type: "dep", status: :completed})
+
+      {:ok, blocked_task} =
+        Projects.create_task(project.id, %{type: "blocked", status: :blocked})
+
+      {:ok, _dep} = Projects.create_task_dependency(blocked_task.id, dep_task.id)
+
+      unblocked_ids = Projects.unblock_tasks(project.id, dep_task.id)
+      assert blocked_task.id in unblocked_ids
+
+      {:ok, refreshed} = Projects.get_task(blocked_task.id)
+      assert refreshed.status == :pending
+    end
+
+    test "unblock_tasks/2 does NOT unblock when some hard deps still pending" do
+      project = create_project()
+      {:ok, dep_a} = Projects.create_task(project.id, %{type: "dep-a", status: :completed})
+      {:ok, dep_b} = Projects.create_task(project.id, %{type: "dep-b", status: :running})
+
+      {:ok, blocked_task} =
+        Projects.create_task(project.id, %{type: "blocked", status: :blocked})
+
+      {:ok, _} = Projects.create_task_dependency(blocked_task.id, dep_a.id)
+      {:ok, _} = Projects.create_task_dependency(blocked_task.id, dep_b.id)
+
+      unblocked_ids = Projects.unblock_tasks(project.id, dep_a.id)
+      assert unblocked_ids == []
+
+      {:ok, refreshed} = Projects.get_task(blocked_task.id)
+      assert refreshed.status == :blocked
+    end
+
+    test "propagate_dependency_output/2 writes output to dependent tasks" do
+      project = create_project()
+
+      {:ok, completed} =
+        Projects.create_task(project.id, %{type: "completed", status: :completed})
+
+      {:ok, dependent} = Projects.create_task(project.id, %{type: "dependent", status: :blocked})
+
+      {:ok, _} = Projects.create_task_dependency(dependent.id, completed.id)
+
+      Projects.propagate_dependency_output(completed.id, "built artifact.tar.gz")
+
+      {:ok, refreshed} = Projects.get_task(dependent.id)
+      assert refreshed.dependency_outputs[completed.id] == "built artifact.tar.gz"
+    end
+
+    test "tasks_by_wave/1 returns tasks grouped by wave number" do
+      project = create_project()
+      {:ok, _w1a} = Projects.create_task(project.id, %{type: "w1a", wave: 1, priority: 1})
+      {:ok, _w1b} = Projects.create_task(project.id, %{type: "w1b", wave: 1, priority: 5})
+      {:ok, _w2a} = Projects.create_task(project.id, %{type: "w2a", wave: 2, priority: 1})
+      {:ok, _no_wave} = Projects.create_task(project.id, %{type: "no-wave"})
+
+      grouped = Projects.tasks_by_wave(project.id)
+      assert Map.keys(grouped) |> Enum.sort() == [1, 2]
+      assert length(grouped[1]) == 2
+      assert length(grouped[2]) == 1
+
+      # Verify ordering within a wave (by priority)
+      wave1_types = Enum.map(grouped[1], & &1.type)
+      assert wave1_types == ["w1a", "w1b"]
+    end
+
+    test "set_task_wave/2 updates the wave field" do
+      project = create_project()
+      {:ok, task} = Projects.create_task(project.id, %{type: "waveable"})
+
+      assert {:ok, updated} = Projects.set_task_wave(task.id, 3)
+      assert updated.wave == 3
+    end
+  end
 end
