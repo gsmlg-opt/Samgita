@@ -367,6 +367,64 @@ defmodule Samgita.Agent.PromptBuilderTest do
   end
 
   # -------------------------------------------------------------------
+  # build/2 — teammate messages
+  # -------------------------------------------------------------------
+
+  describe "build/2 teammate messages" do
+    test "includes messages section when context has received_messages" do
+      messages = [
+        %{sender_agent_id: "eng-qa", message_type: "request", content: "Please add tests"},
+        %{sender_agent_id: "eng-frontend", message_type: "notify", content: "UI component ready"}
+      ]
+
+      ctx = base_context(%{received_messages: messages})
+      prompt = PromptBuilder.build(analysis_task(), ctx)
+
+      assert prompt =~ "## Messages from Teammates"
+      assert prompt =~ "[request] from eng-qa: Please add tests"
+      assert prompt =~ "[notify] from eng-frontend: UI component ready"
+    end
+
+    test "has no messages section when received_messages is empty" do
+      ctx = base_context(%{received_messages: []})
+      prompt = PromptBuilder.build(analysis_task(), ctx)
+
+      refute prompt =~ "Messages from Teammates"
+    end
+
+    test "has no messages section when received_messages key is absent" do
+      ctx = base_context()
+      prompt = PromptBuilder.build(analysis_task(), ctx)
+
+      refute prompt =~ "Messages from Teammates"
+    end
+
+    test "appends messages to all prompt types" do
+      messages = [
+        %{sender_agent_id: "eng-qa", message_type: "notify", content: "all green"}
+      ]
+
+      ctx = base_context(%{received_messages: messages})
+
+      for task <- [
+            bootstrap_task(),
+            prd_task(),
+            analysis_task(),
+            architecture_task(),
+            implement_task(),
+            review_task(),
+            test_task(),
+            generic_task()
+          ] do
+        prompt = PromptBuilder.build(task, ctx)
+
+        assert prompt =~ "## Messages from Teammates",
+               "Missing messages section for #{inspect(task["type"])}"
+      end
+    end
+  end
+
+  # -------------------------------------------------------------------
   # Graceful nil / empty context handling
   # -------------------------------------------------------------------
 

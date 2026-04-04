@@ -32,16 +32,19 @@ defmodule Samgita.Agent.PromptBuilder do
   """
   @spec build(map(), map()) :: String.t()
   def build(task, context) do
-    case task_type(task) do
-      "bootstrap" -> build_bootstrap_prompt(task, context)
-      "generate-prd" -> build_prd_prompt(task, context)
-      "analysis" -> build_analysis_prompt(task, context)
-      "architecture" -> build_architecture_prompt(task, context)
-      "implement" -> build_implement_prompt(task, context)
-      "review" -> build_review_prompt(task, context)
-      "test" -> build_test_prompt(task, context)
-      _ -> build_generic_prompt(task, context)
-    end
+    base_prompt =
+      case task_type(task) do
+        "bootstrap" -> build_bootstrap_prompt(task, context)
+        "generate-prd" -> build_prd_prompt(task, context)
+        "analysis" -> build_analysis_prompt(task, context)
+        "architecture" -> build_architecture_prompt(task, context)
+        "implement" -> build_implement_prompt(task, context)
+        "review" -> build_review_prompt(task, context)
+        "test" -> build_test_prompt(task, context)
+        _ -> build_generic_prompt(task, context)
+      end
+
+    base_prompt <> format_messages_section(context)
   end
 
   @doc """
@@ -441,4 +444,22 @@ defmodule Samgita.Agent.PromptBuilder do
 
   defp do_format_learnings([]), do: "None yet."
   defp do_format_learnings(items), do: Enum.map_join(items, "\n", &"- #{&1}")
+
+  defp format_messages_section(context) do
+    messages = Map.get(context, :received_messages, [])
+
+    case messages do
+      [] ->
+        ""
+
+      _ ->
+        formatted = Samgita.Agent.ContextAssembler.format_received_messages(messages)
+
+        """
+
+        ## Messages from Teammates
+        #{formatted}
+        """
+    end
+  end
 end

@@ -119,6 +119,39 @@ defmodule Samgita.Agent.ContextAssemblerTest do
     end
   end
 
+  describe "format_received_messages/1" do
+    test "returns nil for empty list" do
+      assert ContextAssembler.format_received_messages([]) == nil
+    end
+
+    test "formats messages with sender, type, and content" do
+      messages = [
+        %{sender_agent_id: "eng-backend", message_type: "request", content: "Need API schema"},
+        %{sender_agent_id: "eng-frontend", message_type: "notify", content: "UI ready"}
+      ]
+
+      result = ContextAssembler.format_received_messages(messages)
+
+      assert result =~ "- [request] from eng-backend: Need API schema"
+      assert result =~ "- [notify] from eng-frontend: UI ready"
+    end
+
+    test "defaults missing fields to unknown/notify/empty" do
+      messages = [%{}]
+      result = ContextAssembler.format_received_messages(messages)
+
+      assert result == "- [notify] from unknown: "
+    end
+
+    test "truncates to 10 messages" do
+      messages = for i <- 1..15, do: %{sender_agent_id: "agent-#{i}", content: "msg #{i}"}
+      result = ContextAssembler.format_received_messages(messages)
+
+      assert result =~ "agent-10"
+      refute result =~ "agent-11"
+    end
+  end
+
   describe "assemble/1" do
     test "returns map with all expected keys for non-existent project" do
       fake_id = Ecto.UUID.generate()
@@ -146,6 +179,7 @@ defmodule Samgita.Agent.ContextAssemblerTest do
       # Non-existent project yields empty strings
       assert result.project_info == ""
       assert result.prd_context == ""
+      assert result.received_messages == []
     end
 
     test "returns map with all expected keys when data has nil values" do
@@ -157,6 +191,23 @@ defmodule Samgita.Agent.ContextAssemblerTest do
       assert result.project_info == ""
       assert result.prd_context == ""
       assert result.memory_learnings == []
+      assert result.received_messages == []
+    end
+
+    test "passes through received_messages from input data" do
+      fake_id = Ecto.UUID.generate()
+      messages = [%{sender_agent_id: "eng-qa", message_type: "notify", content: "tests pass"}]
+
+      result =
+        ContextAssembler.assemble(%{
+          project_id: fake_id,
+          agent_type: "eng-backend",
+          task_count: 0,
+          learnings: [],
+          received_messages: messages
+        })
+
+      assert result.received_messages == messages
     end
   end
 

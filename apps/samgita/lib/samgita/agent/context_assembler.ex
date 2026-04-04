@@ -44,7 +44,8 @@ defmodule Samgita.Agent.ContextAssembler do
       project_info: fetch_project_info(project_id),
       prd_context: fetch_prd_context(data[:prd_id]),
       memory_learnings: filter_memory_learnings(memory_context),
-      memory_context: memory_context
+      memory_context: memory_context,
+      received_messages: data[:received_messages] || []
     }
   end
 
@@ -142,6 +143,21 @@ defmodule Samgita.Agent.ContextAssembler do
     e -> {:error, Exception.message(e)}
   catch
     :exit, reason -> {:error, {:exit, reason}}
+  end
+
+  @doc "Format received inter-agent messages as a context string."
+  @spec format_received_messages(list()) :: String.t() | nil
+  def format_received_messages([]), do: nil
+
+  def format_received_messages(messages) when is_list(messages) do
+    messages
+    |> Enum.take(10)
+    |> Enum.map_join("\n", fn msg ->
+      sender = msg[:sender_agent_id] || "unknown"
+      type = msg[:message_type] || "notify"
+      content = msg[:content] || ""
+      "- [#{type}] from #{sender}: #{content}"
+    end)
   end
 
   @doc """
