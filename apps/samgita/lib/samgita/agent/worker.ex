@@ -15,6 +15,7 @@ defmodule Samgita.Agent.Worker do
   alias Samgita.Agent.CircuitBreaker
   alias Samgita.Agent.Claude
   alias Samgita.Agent.ContextAssembler
+  alias Samgita.Agent.MessageRouter
   alias Samgita.Agent.PromptBuilder
   alias Samgita.Agent.ResultParser
   alias Samgita.Agent.RetryStrategy
@@ -851,7 +852,7 @@ defmodule Samgita.Agent.Worker do
   end
 
   defp reset_message_budget(%{project_id: project_id, id: id}) do
-    Samgita.Agent.MessageRouter.reset_budget(project_id, id)
+    MessageRouter.reset_budget(project_id, id)
   rescue
     _ -> :ok
   catch

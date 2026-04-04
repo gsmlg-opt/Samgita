@@ -19,6 +19,7 @@ defmodule Samgita.Agent.PromptBuilder do
     * `:memory_learnings` – list of strings from the memory system
   """
 
+  alias Samgita.Agent.ContextAssembler
   alias Samgita.Agent.Types
 
   # -------------------------------------------------------------------
@@ -453,7 +454,7 @@ defmodule Samgita.Agent.PromptBuilder do
         ""
 
       _ ->
-        formatted = Samgita.Agent.ContextAssembler.format_received_messages(messages)
+        formatted = ContextAssembler.format_received_messages(messages)
 
         """
 

@@ -8,6 +8,8 @@ defmodule Samgita.Agent.MessageRouter do
   the `agent_messages` table on a best-effort basis.
   """
 
+  alias Samgita.Domain.AgentMessage
+
   use GenServer
 
   require Logger
@@ -119,8 +121,8 @@ defmodule Samgita.Agent.MessageRouter do
   end
 
   defp log_message(project_id, message) do
-    %Samgita.Domain.AgentMessage{}
-    |> Samgita.Domain.AgentMessage.changeset(%{
+    %AgentMessage{}
+    |> AgentMessage.changeset(%{
       project_id: project_id,
       sender_agent_id: message.sender_agent_id,
       recipient_agent_id: message[:recipient_agent_id] || "*",
@@ -130,6 +132,8 @@ defmodule Samgita.Agent.MessageRouter do
       depth: message[:depth] || 0
     })
     |> Samgita.Repo.insert()
+
+    :ok
   rescue
     e -> Logger.debug("[MessageRouter] Failed to log message: #{inspect(e)}")
   end
