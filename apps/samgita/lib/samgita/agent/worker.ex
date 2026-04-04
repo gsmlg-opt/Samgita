@@ -784,19 +784,47 @@ defmodule Samgita.Agent.Worker do
 
   defp maybe_open_session(data, working_path) do
     system_prompt = "You are a #{data.agent_type} agent."
-    opts = [model: Types.model_for_type(data.agent_type)]
-    opts = if working_path, do: Keyword.put(opts, :working_directory, working_path), else: opts
+    model = Types.model_for_type(data.agent_type)
+    base_opts = [model: model]
 
+    base_opts =
+      if working_path,
+        do: Keyword.put(base_opts, :working_directory, working_path),
+        else: base_opts
+
+    # Get project's preferred provider (returns :default or {module, opts})
+    resolved = resolve_provider(data.project_id, base_opts)
+
+    case resolved do
+      :default ->
+        # Use global config provider (respects test mock config)
+        open_default_session(data, system_prompt, base_opts)
+
+      {provider, opts} ->
+        case start_session_with_provider(provider, system_prompt, opts) do
+          {:ok, session} ->
+            register_session(data, session)
+            %{data | session: session}
+
+          {:error, reason} ->
+            Logger.warning(
+              "[#{data.id}] Provider #{inspect(provider)} failed (#{inspect(reason)}), falling back to default"
+            )
+
+            # Fall back to global config provider
+            open_default_session(data, system_prompt, base_opts)
+        end
+    end
+  rescue
+    e ->
+      Logger.debug("[#{data.id}] Session creation error (#{inspect(e)}), using query fallback")
+      data
+  end
+
+  defp open_default_session(data, system_prompt, opts) do
     case SamgitaProvider.start_session(system_prompt, opts) do
       {:ok, session} ->
-        SessionRegistry.register(data.project_id, data.id, %{
-          session_id: session.id,
-          provider: session.provider,
-          started_at: session.started_at,
-          message_count: 0,
-          total_tokens: 0
-        })
-
+        register_session(data, session)
         %{data | session: session}
 
       {:error, reason} ->
@@ -806,10 +834,63 @@ defmodule Samgita.Agent.Worker do
 
         data
     end
-  rescue
-    e ->
-      Logger.debug("[#{data.id}] Session creation error (#{inspect(e)}), using query fallback")
-      data
+  end
+
+  defp register_session(data, session) do
+    SessionRegistry.register(data.project_id, data.id, %{
+      session_id: session.id,
+      provider: session.provider,
+      started_at: session.started_at,
+      message_count: 0,
+      total_tokens: 0
+    })
+  end
+
+  defp resolve_provider(project_id, base_opts) do
+    project =
+      try do
+        case Samgita.Projects.get_project(project_id) do
+          {:ok, p} -> p
+          _ -> nil
+        end
+      rescue
+        _ -> nil
+      end
+
+    case project && project.provider_preference do
+      :synapsis ->
+        case Samgita.Provider.HealthChecker.healthy_endpoints(project) do
+          [endpoint | _] ->
+            opts =
+              base_opts
+              |> Keyword.put(:endpoint, endpoint["url"] || endpoint[:url])
+              |> Keyword.put(:api_key, endpoint["api_key"] || endpoint[:api_key] || "")
+
+            {SamgitaProvider.Synapsis, opts}
+
+          [] ->
+            Logger.warning("[resolve_provider] No healthy Synapsis endpoints, falling back")
+            :default
+        end
+
+      :claude_api ->
+        {SamgitaProvider.ClaudeAPI, base_opts}
+
+      :codex ->
+        {SamgitaProvider.Codex, base_opts}
+
+      _ ->
+        # nil, :claude_code, or unrecognized — use global config provider
+        :default
+    end
+  end
+
+  defp start_session_with_provider(provider, system_prompt, opts) do
+    if function_exported?(provider, :start_session, 2) do
+      provider.start_session(system_prompt, opts)
+    else
+      {:ok, SamgitaProvider.Session.new(provider, system_prompt, opts)}
+    end
   end
 
   defp execute_with_provider(%{session: session} = data, prompt, _chat_opts)
