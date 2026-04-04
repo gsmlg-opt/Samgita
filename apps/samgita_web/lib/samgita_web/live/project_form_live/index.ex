@@ -15,7 +15,8 @@ defmodule SamgitaWeb.ProjectFormLive.Index do
        form: to_form(changeset),
        detected_path: nil,
        clone_needed: false,
-       prd_content: ""
+       prd_content: "",
+       start_mode: "from_prd"
      )}
   end
 
@@ -45,11 +46,24 @@ defmodule SamgitaWeb.ProjectFormLive.Index do
   end
 
   @impl true
+  def handle_event("set_start_mode", %{"mode" => mode}, socket) do
+    {:noreply, assign(socket, start_mode: mode)}
+  end
+
+  @impl true
   def handle_event("save", %{"project" => params}, socket) do
     params =
       params
+      |> Map.put("start_mode", socket.assigns.start_mode)
       |> maybe_set_path(socket.assigns)
       |> maybe_set_prd(socket.assigns)
+
+    params =
+      if params["start_mode"] == "from_idea" do
+        Map.put(params, "phase", "planning")
+      else
+        params
+      end
 
     case Projects.create_project(params) do
       {:ok, project} ->

@@ -34,11 +34,51 @@
       label="Working Path (optional)"
       placeholder="Auto-detected from git URL"
     />
+    <div>
+      <label class="block text-sm font-medium text-on-surface mb-2">Start Mode</label>
+      <div class="flex gap-6">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input
+            type="radio"
+            name="start_mode"
+            value="from_prd"
+            checked={@start_mode == "from_prd"}
+            phx-click="set_start_mode"
+            phx-value-mode="from_prd"
+            class="accent-primary"
+          />
+          <span class="text-sm text-on-surface">Start from PRD</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input
+            type="radio"
+            name="start_mode"
+            value="from_idea"
+            checked={@start_mode == "from_idea"}
+            phx-click="set_start_mode"
+            phx-value-mode="from_idea"
+            class="accent-primary"
+          />
+          <span class="text-sm text-on-surface">Start from idea</span>
+        </label>
+      </div>
+      <p class="text-xs text-on-surface-variant mt-1">
+        <%= if @start_mode == "from_prd" do %>
+          Provide a complete PRD. The project will begin executing immediately.
+        <% else %>
+          Describe your idea. Planning agents will generate a PRD before execution.
+        <% end %>
+      </p>
+    </div>
     <.dm_textarea
       name="prd_content"
       rows={12}
-      label="PRD Content"
-      placeholder="Paste your Product Requirements Document here..."
+      label={if @start_mode == "from_prd", do: "PRD Content", else: "Project Idea"}
+      placeholder={
+        if @start_mode == "from_prd",
+          do: "Paste your Product Requirements Document here...",
+          else: "Describe your project idea..."
+      }
       phx-change="update_prd"
       value={@prd_content}
     />
