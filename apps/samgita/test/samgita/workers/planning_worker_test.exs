@@ -33,7 +33,7 @@ defmodule Samgita.Workers.PlanningWorkerTest do
                })
 
       tasks = Projects.list_tasks(project.id)
-      assert length(tasks) >= 1
+      assert tasks != []
       assert Enum.all?(tasks, fn t -> t.type == "research" end)
     end
 
