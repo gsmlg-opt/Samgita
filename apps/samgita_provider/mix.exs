@@ -28,6 +28,7 @@ defmodule SamgitaProvider.MixProject do
   defp deps do
     [
       {:jason, "~> 1.2"},
+      {:finch, "~> 0.18"},
       {:mox, "~> 1.1", only: :test}
     ]
   end
