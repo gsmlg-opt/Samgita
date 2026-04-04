@@ -22,8 +22,11 @@ defmodule Samgita.Workers.BootstrapWorker do
 
   require Logger
 
+  alias Samgita.Domain.Task, as: TaskSchema
   alias Samgita.Project.Orchestrator
   alias Samgita.Projects
+  alias Samgita.Repo
+  alias Samgita.Tasks.DependencyGraph
   alias Samgita.Workers.AgentTaskWorker
 
   @impl true
@@ -40,6 +43,9 @@ defmodule Samgita.Workers.BootstrapWorker do
 
       # Enqueue all tasks via Oban
       enqueued = enqueue_tasks(project_id, prd_id, tasks)
+
+      # Infer dependencies and compute waves
+      infer_dependencies(project, enqueued)
 
       # Notify orchestrator of expected task count
       notify_orchestrator(project_id, length(enqueued))
@@ -476,7 +482,9 @@ defmodule Samgita.Workers.BootstrapWorker do
   end
 
   defp create_milestone_task(descriptor, project_id, prd_id, map, acc) do
-    payload = Map.merge(descriptor.payload, %{"prd_id" => prd_id})
+    payload =
+      descriptor.payload
+      |> Map.merge(%{"prd_id" => prd_id, "agent_type" => descriptor.agent_type})
 
     case Projects.create_task(project_id, %{
            type: descriptor.type,
@@ -502,7 +510,10 @@ defmodule Samgita.Workers.BootstrapWorker do
   end
 
   defp create_and_enqueue_task(descriptor, project_id, prd_id, milestone_map, acc) do
-    payload = Map.merge(descriptor.payload, %{"prd_id" => prd_id})
+    payload =
+      descriptor.payload
+      |> Map.merge(%{"prd_id" => prd_id, "agent_type" => descriptor.agent_type})
+
     parent_task_id = get_parent_task_id(descriptor, milestone_map)
 
     task_attrs = %{
@@ -592,5 +603,114 @@ defmodule Samgita.Workers.BootstrapWorker do
       Samgita.Events.build_log_entry(:orchestrator, "bootstrap", :completed, message)
 
     Samgita.Events.activity_log(project_id, entry)
+  end
+
+  ## Dependency Inference
+
+  defp infer_dependencies(project, _enqueued) do
+    created_tasks = Projects.list_tasks(project.id)
+
+    # Step 1: Express parent_task_id relationships as DAG edges
+    parent_edges =
+      created_tasks
+      |> Enum.filter(& &1.parent_task_id)
+      |> Enum.map(fn task -> {task.id, task.parent_task_id} end)
+
+    # Step 2: Apply swarm-level ordering rules
+    swarm_edges = infer_swarm_dependencies(created_tasks)
+
+    # Step 3: Create all dependency edges
+    all_edges = parent_edges ++ swarm_edges
+
+    Enum.each(all_edges, fn {task_id, depends_on_id} ->
+      Projects.create_task_dependency(task_id, depends_on_id)
+    end)
+
+    # Step 4: Update depends_on_ids on tasks
+    update_depends_on_ids(created_tasks, all_edges)
+
+    # Step 5: Build DAG and compute waves
+    updated_tasks = Projects.list_tasks(project.id)
+    graph = DependencyGraph.build(updated_tasks)
+
+    case DependencyGraph.validate(graph) do
+      {:ok, _sorted} ->
+        waves = DependencyGraph.compute_waves(graph)
+        assign_waves(waves)
+
+        # Mark tasks with unresolved dependencies as :blocked
+        mark_blocked_tasks(updated_tasks)
+
+      {:error, {:cycle, nodes}} ->
+        Logger.error("[BootstrapWorker] Cycle detected in task dependencies: #{inspect(nodes)}")
+
+        # Don't block bootstrap — continue without wave assignment
+        :ok
+    end
+  rescue
+    e ->
+      Logger.warning("[BootstrapWorker] Dependency inference failed: #{inspect(e)}")
+      :ok
+  end
+
+  defp infer_swarm_dependencies(tasks) do
+    # Group tasks by agent_type from payload
+    by_agent =
+      Enum.group_by(tasks, fn t ->
+        (t.payload || %{})["agent_type"] || (t.payload || %{})[:agent_type]
+      end)
+
+    []
+    # Rule: database → API (database schema must exist before API endpoints)
+    |> add_cross_agent_deps(by_agent, "eng-database", "eng-api")
+    # Rule: API → frontend (API must exist before frontend integration)
+    |> add_cross_agent_deps(by_agent, "eng-api", "eng-frontend")
+    # Rule: backend → frontend (backend logic before frontend)
+    |> add_cross_agent_deps(by_agent, "eng-backend", "eng-frontend")
+    # Rule: infrastructure → deployment
+    |> add_cross_agent_deps(by_agent, "eng-infra", "ops-devops")
+  end
+
+  defp add_cross_agent_deps(edges, by_agent, from_type, to_type) do
+    from_tasks = Map.get(by_agent, from_type, [])
+    to_tasks = Map.get(by_agent, to_type, [])
+
+    # Each "to" task depends on ALL "from" tasks
+    new_edges = for from <- from_tasks, to <- to_tasks, do: {to.id, from.id}
+    edges ++ new_edges
+  end
+
+  defp update_depends_on_ids(tasks, edges) do
+    edges_by_task = Enum.group_by(edges, &elem(&1, 0), &elem(&1, 1))
+
+    Enum.each(tasks, fn task ->
+      deps = Map.get(edges_by_task, task.id, [])
+
+      if deps != [] do
+        task
+        |> TaskSchema.changeset(%{depends_on_ids: deps})
+        |> Repo.update()
+      end
+    end)
+  end
+
+  defp assign_waves(waves) when is_map(waves) do
+    Enum.each(waves, fn {wave_num, task_ids} ->
+      Enum.each(task_ids, fn task_id ->
+        Projects.set_task_wave(task_id, wave_num)
+      end)
+    end)
+  end
+
+  defp assign_waves({:error, _}), do: :ok
+
+  defp mark_blocked_tasks(tasks) do
+    tasks
+    |> Enum.filter(fn t -> (t.depends_on_ids || []) != [] end)
+    |> Enum.each(fn task ->
+      if task.status == :pending do
+        task |> TaskSchema.changeset(%{status: :blocked}) |> Repo.update()
+      end
+    end)
   end
 end

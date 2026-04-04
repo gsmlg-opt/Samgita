@@ -285,6 +285,92 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
     end
   end
 
+  describe "dependency inference" do
+    test "assigns wave numbers to generated tasks", %{project: project, prd: prd} do
+      job = %Oban.Job{args: %{"project_id" => project.id, "prd_id" => prd.id}}
+      assert :ok = BootstrapWorker.perform(job)
+
+      tasks = Projects.list_tasks(project.id)
+      assert tasks != []
+
+      # At least some tasks should have wave numbers assigned
+      tasks_with_waves = Enum.filter(tasks, fn t -> t.wave != nil end)
+      assert length(tasks_with_waves) > 0
+
+      # Wave 0 should exist (root tasks with no dependencies)
+      assert Enum.any?(tasks_with_waves, fn t -> t.wave == 0 end)
+    end
+
+    test "creates dependency edges between agent types", %{project: project} do
+      prd_with_agents = %Prd{
+        content: """
+        # Full Stack App
+
+        ## Overview
+
+        A web application with database, API, and frontend layers.
+
+        ## Features
+
+        - PostgreSQL database schema with users and posts tables
+        - RESTful API endpoint for managing user accounts
+        - React frontend component for user dashboard display
+        - Backend service for processing user notifications
+        """,
+        title: "Agent Deps PRD"
+      }
+
+      {:ok, prd} =
+        %Prd{}
+        |> Prd.changeset(%{
+          title: prd_with_agents.title,
+          content: prd_with_agents.content,
+          status: :approved,
+          project_id: project.id
+        })
+        |> Repo.insert()
+
+      job = %Oban.Job{args: %{"project_id" => project.id, "prd_id" => prd.id}}
+      assert :ok = BootstrapWorker.perform(job)
+
+      tasks = Projects.list_tasks(project.id)
+
+      # Find tasks by agent type in payload
+      db_tasks =
+        Enum.filter(tasks, fn t -> (t.payload || %{})["agent_type"] == "eng-database" end)
+
+      api_tasks =
+        Enum.filter(tasks, fn t -> (t.payload || %{})["agent_type"] == "eng-api" end)
+
+      frontend_tasks =
+        Enum.filter(tasks, fn t -> (t.payload || %{})["agent_type"] == "eng-frontend" end)
+
+      # If we have database and API tasks, API should depend on database
+      if db_tasks != [] and api_tasks != [] do
+        db_ids = MapSet.new(db_tasks, & &1.id)
+
+        Enum.each(api_tasks, fn api_task ->
+          deps = api_task.depends_on_ids || []
+
+          assert Enum.any?(deps, fn dep -> MapSet.member?(db_ids, dep) end),
+                 "API task should depend on at least one database task"
+        end)
+      end
+
+      # If we have API and frontend tasks, frontend should depend on API
+      if api_tasks != [] and frontend_tasks != [] do
+        api_ids = MapSet.new(api_tasks, & &1.id)
+
+        Enum.each(frontend_tasks, fn fe_task ->
+          deps = fe_task.depends_on_ids || []
+
+          assert Enum.any?(deps, fn dep -> MapSet.member?(api_ids, dep) end),
+                 "Frontend task should depend on at least one API task"
+        end)
+      end
+    end
+  end
+
   describe "PRD parsing edge cases" do
     test "handles empty PRD", %{project: project} do
       empty_prd = %Prd{content: "", title: "Empty"}
