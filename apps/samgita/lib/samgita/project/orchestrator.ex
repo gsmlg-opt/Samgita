@@ -13,6 +13,7 @@ defmodule Samgita.Project.Orchestrator do
 
   alias Samgita.ObanClient
   alias Samgita.Projects
+  alias Samgita.Tasks.DependencyGraph
   alias Samgita.Workers.AgentTaskWorker
   alias Samgita.Workers.BootstrapWorker
   alias Samgita.Workers.QualityGateWorker
@@ -35,7 +36,9 @@ defmodule Samgita.Project.Orchestrator do
     last_progress_task_count: 0,
     stagnation_checks: 0,
     paused: false,
-    agent_monitors: %{}
+    agent_monitors: %{},
+    phase_dag: nil,
+    completed_task_ids: []
   ]
 
   @phases [
@@ -139,7 +142,9 @@ defmodule Samgita.Project.Orchestrator do
         data
         | phase_tasks_total: 0,
           phase_tasks_completed: 0,
-          phase_entered_at: DateTime.utc_now()
+          phase_entered_at: DateTime.utc_now(),
+          phase_dag: nil,
+          completed_task_ids: []
       }
 
       broadcast_phase_change(data, phase)
@@ -224,7 +229,8 @@ defmodule Samgita.Project.Orchestrator do
       data = %{
         data
         | task_count: data.task_count + 1,
-          phase_tasks_completed: data.phase_tasks_completed + 1
+          phase_tasks_completed: data.phase_tasks_completed + 1,
+          completed_task_ids: [task_id | data.completed_task_ids]
       }
 
       Logger.info(
@@ -237,6 +243,10 @@ defmodule Samgita.Project.Orchestrator do
         :task_completed,
         "Task completed (#{data.phase_tasks_completed}/#{data.phase_tasks_total})"
       )
+
+      # DAG-aware dependency unblocking: transition blocked dependents to pending
+      # and enqueue newly dispatchable tasks
+      dispatch_unblocked_dependents(data, task_id)
 
       handle_task_completion(phase, data)
     end
@@ -855,7 +865,13 @@ defmodule Samgita.Project.Orchestrator do
   end
 
   defp reset_phase_counters(data) do
-    %{data | phase_tasks_total: 0, phase_tasks_completed: 0}
+    %{
+      data
+      | phase_tasks_total: 0,
+        phase_tasks_completed: 0,
+        phase_dag: nil,
+        completed_task_ids: []
+    }
   end
 
   defp broadcast_activity(data, stage, message) do
@@ -884,6 +900,70 @@ defmodule Samgita.Project.Orchestrator do
     end
   rescue
     _ -> :ok
+  catch
+    :exit, _ -> :ok
+  end
+
+  # DAG-aware dependency dispatch: when a task completes, unblock dependents
+  # and enqueue newly dispatchable tasks via Oban. This is additive — phases
+  # without dependency graphs work exactly as before (counter-based completion).
+  defp dispatch_unblocked_dependents(data, completed_task_id) do
+    try do
+      # Transition blocked → pending for tasks whose hard deps are now met
+      newly_unblocked = Projects.unblock_tasks(data.project_id, completed_task_id)
+
+      # Propagate output summary to dependent tasks
+      Projects.propagate_dependency_output(completed_task_id, %{status: :completed})
+
+      # If we have a DAG, compute which tasks are now fully unblocked
+      # and enqueue them for execution
+      dispatchable =
+        if data.phase_dag do
+          DependencyGraph.unblocked_tasks(data.phase_dag, data.completed_task_ids)
+        else
+          newly_unblocked
+        end
+
+      if dispatchable != [] do
+        Logger.info(
+          "[Orchestrator] #{data.project_id}: unblocked #{length(dispatchable)} tasks after #{completed_task_id}"
+        )
+
+        enqueue_unblocked_tasks(data.project_id, dispatchable)
+      end
+    rescue
+      e ->
+        Logger.warning(
+          "[Orchestrator] #{data.project_id}: dependency dispatch failed: #{Exception.message(e)}"
+        )
+    catch
+      :exit, _ -> :ok
+    end
+  end
+
+  defp enqueue_unblocked_tasks(project_id, task_ids) do
+    Enum.each(task_ids, fn task_id ->
+      case Projects.get_task(task_id) do
+        {:ok, task} ->
+          agent_type = get_in(task.payload, ["agent_type"]) || "eng-backend"
+
+          ObanClient.insert(
+            AgentTaskWorker.new(%{
+              task_id: task.id,
+              project_id: project_id,
+              agent_type: agent_type
+            })
+          )
+
+        _ ->
+          :ok
+      end
+    end)
+  rescue
+    e ->
+      Logger.warning(
+        "[Orchestrator] #{project_id}: failed to enqueue unblocked tasks: #{Exception.message(e)}"
+      )
   catch
     :exit, _ -> :ok
   end
