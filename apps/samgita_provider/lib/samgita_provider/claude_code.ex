@@ -14,7 +14,7 @@ defmodule SamgitaProvider.ClaudeCode do
 
   @impl true
   def query(prompt, opts \\ []) do
-    command = Application.get_env(:samgita_provider, :claude_command, "claude")
+    command = claude_command()
     args = build_args(prompt, opts)
     timeout = opts[:timeout] || @default_timeout
 
@@ -127,6 +127,94 @@ defmodule SamgitaProvider.ClaudeCode do
 
   defp maybe_add_max_turns(args, _invalid), do: args
 
+  @impl true
+  def start_session(system_prompt, opts \\ []) do
+    session_id = generate_session_id()
+
+    session = SamgitaProvider.Session.new(__MODULE__, system_prompt, opts)
+    session = %{session | id: session_id, state: %{session_id: session_id}}
+
+    {:ok, session}
+  end
+
+  @impl true
+  def send_message(%SamgitaProvider.Session{} = session, message) do
+    command = claude_command()
+    session_id = session.state.session_id
+    is_resume = session.message_count > 0
+
+    args =
+      build_session_args(message, session.model, session.system_prompt, session_id, is_resume)
+
+    args = maybe_add_max_turns(args, Keyword.get(session.opts || [], :max_turns))
+
+    cmd_opts = build_cmd_opts(Keyword.get(session.opts || [], :working_directory))
+
+    Logger.debug("Claude CLI session #{session_id}: #{command} #{Enum.join(args, " ")}")
+
+    task = Task.async(fn -> execute_claude_command(command, args, cmd_opts) end)
+
+    case await_task_result(task, @default_timeout) do
+      {:ok, result} ->
+        updated = SamgitaProvider.Session.increment_message_count(session)
+        {:ok, result, updated}
+
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
+  @impl true
+  def close_session(%SamgitaProvider.Session{} = _session) do
+    # Claude CLI sessions are file-based; no explicit cleanup needed
+    :ok
+  end
+
+  @impl true
+  def capabilities do
+    %{
+      supports_streaming: false,
+      supports_tools: true,
+      supports_multi_turn: true,
+      max_context_tokens: 200_000,
+      available_models: ["opus", "sonnet", "haiku"]
+    }
+  end
+
+  @impl true
+  def health_check do
+    case System.cmd(claude_command(), ["--version"], stderr_to_stdout: true) do
+      {_output, 0} -> :ok
+      {output, _} -> {:error, output}
+    end
+  rescue
+    e -> {:error, Exception.message(e)}
+  end
+
+  @doc false
+  def build_session_args(prompt, model, system_prompt, session_id, is_resume) do
+    args = [
+      "--print",
+      "--output-format",
+      "json",
+      "--model",
+      to_string(model),
+      "--session-id",
+      session_id,
+      "--dangerously-skip-permissions"
+    ]
+
+    args = if is_resume, do: args ++ ["--resume"], else: args
+
+    args =
+      if !is_resume and system_prompt,
+        do: args ++ ["--system-prompt", system_prompt],
+        else: args
+
+    # Prompt is always last
+    args ++ [prompt]
+  end
+
   @doc false
   def classify_error(output, _exit_code \\ 1) do
     cond do
@@ -142,5 +230,13 @@ defmodule SamgitaProvider.ClaudeCode do
       true ->
         {:error, String.trim(output)}
     end
+  end
+
+  defp claude_command do
+    Application.get_env(:samgita_provider, :claude_command, "claude")
+  end
+
+  defp generate_session_id do
+    :crypto.strong_rand_bytes(16) |> Base.encode16(case: :lower)
   end
 end
