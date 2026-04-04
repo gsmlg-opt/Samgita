@@ -72,7 +72,55 @@ defmodule Samgita.Domain.TaskTest do
     end
 
     test "statuses/0 returns all valid statuses" do
-      assert Task.statuses() == [:pending, :running, :completed, :failed, :dead_letter]
+      assert Task.statuses() == [
+               :pending,
+               :blocked,
+               :assigned,
+               :running,
+               :completed,
+               :failed,
+               :skipped,
+               :dead_letter
+             ]
+    end
+
+    test "statuses/0 includes blocked, assigned, and skipped" do
+      statuses = Task.statuses()
+      assert :blocked in statuses
+      assert :assigned in statuses
+      assert :skipped in statuses
+    end
+
+    test "new dependency fields have correct defaults" do
+      changeset =
+        Task.changeset(%Task{}, %{type: "frontend", project_id: Ecto.UUID.generate()})
+
+      task = Ecto.Changeset.apply_changes(changeset)
+      assert task.depends_on_ids == []
+      assert task.dependency_outputs == %{}
+      assert task.estimated_duration_minutes == nil
+      assert task.wave == nil
+    end
+
+    test "accepts dependency fields" do
+      dep_id = Ecto.UUID.generate()
+
+      changeset =
+        Task.changeset(%Task{}, %{
+          type: "frontend",
+          project_id: Ecto.UUID.generate(),
+          depends_on_ids: [dep_id],
+          dependency_outputs: %{"result" => "ok"},
+          estimated_duration_minutes: 30,
+          wave: 2
+        })
+
+      assert changeset.valid?
+      task = Ecto.Changeset.apply_changes(changeset)
+      assert task.depends_on_ids == [dep_id]
+      assert task.dependency_outputs == %{"result" => "ok"}
+      assert task.estimated_duration_minutes == 30
+      assert task.wave == 2
     end
   end
 end

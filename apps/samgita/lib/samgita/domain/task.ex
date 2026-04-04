@@ -7,7 +7,7 @@ defmodule Samgita.Domain.Task do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  @statuses [:pending, :running, :completed, :failed, :dead_letter]
+  @statuses [:pending, :blocked, :assigned, :running, :completed, :failed, :skipped, :dead_letter]
 
   schema "tasks" do
     field :type, :string
@@ -23,9 +23,16 @@ defmodule Samgita.Domain.Task do
     field :completed_at, :utc_datetime
     field :tokens_used, :integer, default: 0
     field :duration_ms, :integer
+    field :depends_on_ids, {:array, :binary_id}, default: []
+    field :dependency_outputs, :map, default: %{}
+    field :estimated_duration_minutes, :integer
+    field :wave, :integer
 
     belongs_to :project, Samgita.Domain.Project
     belongs_to :parent_task, Samgita.Domain.Task
+
+    has_many :dependencies, Samgita.Domain.TaskDependency, foreign_key: :task_id
+    has_many :dependents, Samgita.Domain.TaskDependency, foreign_key: :depends_on_id
 
     timestamps(type: :utc_datetime)
   end
@@ -47,7 +54,11 @@ defmodule Samgita.Domain.Task do
       :tokens_used,
       :duration_ms,
       :project_id,
-      :parent_task_id
+      :parent_task_id,
+      :depends_on_ids,
+      :dependency_outputs,
+      :estimated_duration_minutes,
+      :wave
     ])
     |> validate_required([:type, :project_id])
     |> foreign_key_constraint(:project_id)
