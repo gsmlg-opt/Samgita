@@ -38,7 +38,8 @@ defmodule Samgita.Agent.Worker do
     token_count: 0,
     retry_count: 0,
     started_at: nil,
-    learnings: []
+    learnings: [],
+    received_messages: []
   ]
 
   @max_retries 3
@@ -92,6 +93,8 @@ defmodule Samgita.Agent.Worker do
       started_at: DateTime.utc_now()
     }
 
+    Phoenix.PubSub.subscribe(Samgita.PubSub, "samgita:agents:#{data.project_id}")
+
     {:ok, :idle, data}
   end
 
@@ -122,6 +125,15 @@ defmodule Samgita.Agent.Worker do
 
   def idle({:call, from}, :get_state, data) do
     {:keep_state_and_data, [{:reply, from, {:idle, data}}]}
+  end
+
+  def idle(:info, {:agent_message, message}, data) do
+    if message[:recipient_agent_id] in [data.id, "*"] do
+      messages = [message | data.received_messages] |> Enum.take(20)
+      {:keep_state, %{data | received_messages: messages}}
+    else
+      :keep_state_and_data
+    end
   end
 
   def idle(:info, _msg, _data), do: :keep_state_and_data
@@ -391,6 +403,7 @@ defmodule Samgita.Agent.Worker do
         WorktreeManager.maybe_checkpoint(data)
         notify_caller(data.reply_to, data.current_task, :ok)
         close_session_if_open(data)
+        reset_message_budget(data)
 
         data = %{
           data
@@ -398,6 +411,7 @@ defmodule Samgita.Agent.Worker do
             act_result: nil,
             reply_to: nil,
             session: nil,
+            received_messages: [],
             task_count: data.task_count + 1,
             retry_count: 0
         }
@@ -414,6 +428,7 @@ defmodule Samgita.Agent.Worker do
         WorktreeManager.maybe_checkpoint(data)
         notify_caller(data.reply_to, data.current_task, :ok)
         close_session_if_open(data)
+        reset_message_budget(data)
 
         data = %{
           data
@@ -421,6 +436,7 @@ defmodule Samgita.Agent.Worker do
             act_result: nil,
             reply_to: nil,
             session: nil,
+            received_messages: [],
             task_count: data.task_count + 1,
             retry_count: 0
         }
@@ -431,6 +447,18 @@ defmodule Samgita.Agent.Worker do
 
   def verify({:call, from}, :get_state, data) do
     {:keep_state_and_data, [{:reply, from, {:verify, data}}]}
+  end
+
+  ## Inter-agent message handlers — must be defined before catch-all handlers
+  for state <- [:reason, :act, :reflect, :verify] do
+    def unquote(state)(:info, {:agent_message, message}, data) do
+      if message[:recipient_agent_id] in [data.id, "*"] do
+        messages = [message | data.received_messages] |> Enum.take(20)
+        {:keep_state, %{data | received_messages: messages}}
+      else
+        :keep_state_and_data
+      end
+    end
   end
 
   ## Catch-all handlers — prevent gen_statem crash on unexpected messages
@@ -490,12 +518,14 @@ defmodule Samgita.Agent.Worker do
 
     notify_caller(data.reply_to, data.current_task, {:error, reason})
     close_session_if_open(data)
+    reset_message_budget(data)
 
     data = %{
       data
       | current_task: nil,
         reply_to: nil,
         session: nil,
+        received_messages: [],
         learnings: Enum.take(["Max retries: #{inspect(reason)}" | data.learnings], @max_learnings)
     }
 
@@ -818,5 +848,13 @@ defmodule Samgita.Agent.Worker do
     SessionRegistry.unregister(project_id, id)
   rescue
     e -> Logger.debug("[#{id}] Session cleanup error: #{inspect(e)}")
+  end
+
+  defp reset_message_budget(%{project_id: project_id, id: id}) do
+    Samgita.Agent.MessageRouter.reset_budget(project_id, id)
+  rescue
+    _ -> :ok
+  catch
+    :exit, _ -> :ok
   end
 end
