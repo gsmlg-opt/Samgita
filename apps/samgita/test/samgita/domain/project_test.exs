@@ -94,5 +94,44 @@ defmodule Samgita.Domain.ProjectTest do
       refute changeset.valid?
       assert %{git_url: [_]} = errors_on(changeset)
     end
+
+    test "defaults start_mode to :from_prd" do
+      changeset =
+        Project.changeset(%Project{}, %{name: "test", git_url: "git@github.com:org/repo.git"})
+
+      project = Ecto.Changeset.apply_changes(changeset)
+      assert project.start_mode == :from_prd
+    end
+
+    test "defaults planning_auto_advance to false" do
+      changeset =
+        Project.changeset(%Project{}, %{name: "test", git_url: "git@github.com:org/repo.git"})
+
+      project = Ecto.Changeset.apply_changes(changeset)
+      assert project.planning_auto_advance == false
+    end
+
+    test "can set start_mode to :from_idea" do
+      changeset =
+        Project.changeset(%Project{}, %{
+          name: "test",
+          git_url: "git@github.com:org/repo.git",
+          start_mode: :from_idea
+        })
+
+      assert changeset.valid?
+      project = Ecto.Changeset.apply_changes(changeset)
+      assert project.start_mode == :from_idea
+    end
+  end
+
+  describe "phases/0" do
+    test ":planning is included in phases" do
+      assert :planning in Project.phases()
+    end
+
+    test ":planning is the first phase" do
+      assert hd(Project.phases()) == :planning
+    end
   end
 end

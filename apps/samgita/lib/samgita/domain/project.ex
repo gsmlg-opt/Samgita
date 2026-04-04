@@ -8,6 +8,7 @@ defmodule Samgita.Domain.Project do
   @foreign_key_type :binary_id
 
   @phases [
+    :planning,
     :bootstrap,
     :discovery,
     :architecture,
@@ -30,6 +31,8 @@ defmodule Samgita.Domain.Project do
     field :phase, Ecto.Enum, values: @phases, default: :bootstrap
     field :status, Ecto.Enum, values: @statuses, default: :pending
     field :config, :map, default: %{}
+    field :start_mode, Ecto.Enum, values: [:from_prd, :from_idea], default: :from_prd
+    field :planning_auto_advance, :boolean, default: false
 
     has_many :tasks, Samgita.Domain.Task
     has_many :agent_runs, Samgita.Domain.AgentRun
@@ -52,7 +55,9 @@ defmodule Samgita.Domain.Project do
       :phase,
       :status,
       :config,
-      :active_prd_id
+      :active_prd_id,
+      :start_mode,
+      :planning_auto_advance
     ])
     |> validate_required([:name, :git_url])
     |> validate_git_url()
