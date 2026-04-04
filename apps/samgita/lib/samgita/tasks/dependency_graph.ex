@@ -33,18 +33,20 @@ defmodule Samgita.Tasks.DependencyGraph do
 
     reverse =
       Enum.reduce(tasks, Map.new(tasks, &{&1.id, MapSet.new()}), fn task, acc ->
-        Enum.reduce(task.depends_on_ids || [], acc, fn dep_id, inner_acc ->
-          if MapSet.member?(nodes, dep_id) do
-            Map.update!(inner_acc, dep_id, &MapSet.put(&1, task.id))
-          else
-            inner_acc
-          end
-        end)
+        Enum.reduce(task.depends_on_ids || [], acc, &add_reverse_edge(&1, &2, nodes, task.id))
       end)
 
     durations = Map.new(tasks, &{&1.id, &1.estimated_duration_minutes || 0})
 
     %{nodes: nodes, edges: edges, reverse: reverse, durations: durations}
+  end
+
+  defp add_reverse_edge(dep_id, acc, nodes, task_id) do
+    if MapSet.member?(nodes, dep_id) do
+      Map.update!(acc, dep_id, &MapSet.put(&1, task_id))
+    else
+      acc
+    end
   end
 
   @doc """
@@ -145,32 +147,38 @@ defmodule Samgita.Tasks.DependencyGraph do
     case validate(graph) do
       {:ok, sorted} ->
         {distances, predecessors} =
-          Enum.reduce(sorted, {%{}, %{}}, fn node, {dist, pred} ->
-            deps = Map.get(graph.edges, node, MapSet.new())
+          Enum.reduce(sorted, {%{}, %{}}, &compute_node_distance(&1, &2, graph))
 
-            if MapSet.size(deps) == 0 do
-              {Map.put(dist, node, graph.durations[node] || 0), pred}
-            else
-              {best_pred, best_dist} =
-                deps
-                |> Enum.map(fn dep -> {dep, Map.get(dist, dep, 0)} end)
-                |> Enum.max_by(&elem(&1, 1))
-
-              total = best_dist + (graph.durations[node] || 0)
-              {Map.put(dist, node, total), Map.put(pred, node, best_pred)}
-            end
-          end)
-
-        if map_size(distances) == 0 do
-          {[], 0}
-        else
-          {end_node, max_dist} = Enum.max_by(distances, &elem(&1, 1))
-          path = reconstruct_path(end_node, predecessors)
-          {path, max_dist}
-        end
+        build_critical_path(distances, predecessors)
 
       {:error, reason} ->
         {:error, reason}
+    end
+  end
+
+  defp compute_node_distance(node, {dist, pred}, graph) do
+    deps = Map.get(graph.edges, node, MapSet.new())
+
+    if MapSet.size(deps) == 0 do
+      {Map.put(dist, node, graph.durations[node] || 0), pred}
+    else
+      {best_pred, best_dist} =
+        deps
+        |> Enum.map(fn dep -> {dep, Map.get(dist, dep, 0)} end)
+        |> Enum.max_by(&elem(&1, 1))
+
+      total = best_dist + (graph.durations[node] || 0)
+      {Map.put(dist, node, total), Map.put(pred, node, best_pred)}
+    end
+  end
+
+  defp build_critical_path(distances, predecessors) do
+    if map_size(distances) == 0 do
+      {[], 0}
+    else
+      {end_node, max_dist} = Enum.max_by(distances, &elem(&1, 1))
+      path = reconstruct_path(end_node, predecessors)
+      {path, max_dist}
     end
   end
 

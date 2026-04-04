@@ -295,7 +295,7 @@ defmodule Samgita.Workers.BootstrapWorkerTest do
 
       # At least some tasks should have wave numbers assigned
       tasks_with_waves = Enum.filter(tasks, fn t -> t.wave != nil end)
-      assert length(tasks_with_waves) > 0
+      assert tasks_with_waves != []
 
       # Wave 0 should exist (root tasks with no dependencies)
       assert Enum.any?(tasks_with_waves, fn t -> t.wave == 0 end)

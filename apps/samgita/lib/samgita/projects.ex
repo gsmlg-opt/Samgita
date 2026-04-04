@@ -373,7 +373,8 @@ defmodule Samgita.Projects do
   Find tasks whose all hard dependencies are now complete, and transition them
   from :blocked to :pending. Returns the list of newly unblocked task ids.
   """
-  def unblock_tasks(_project_id, completed_task_id) do
+  def unblock_tasks(project_id, completed_task_id) do
+    _ = project_id
     # Get all tasks that depend on the completed task
     dependent_task_ids =
       from(td in TaskDependency,
@@ -383,37 +384,43 @@ defmodule Samgita.Projects do
       |> Repo.all()
 
     # For each, check if ALL hard dependencies are completed
-    Enum.reduce(dependent_task_ids, [], fn task_id, acc ->
-      hard_dep_ids =
-        from(td in TaskDependency,
-          where: td.task_id == ^task_id and td.dependency_type == "hard",
-          select: td.depends_on_id
-        )
-        |> Repo.all()
+    Enum.reduce(dependent_task_ids, [], &maybe_unblock_task(&1, &2))
+  end
 
-      all_complete? =
-        from(t in TaskSchema,
-          where: t.id in ^hard_dep_ids and t.status == :completed,
-          select: count(t.id)
-        )
-        |> Repo.one() == length(hard_dep_ids)
+  defp maybe_unblock_task(task_id, acc) do
+    hard_dep_ids =
+      from(td in TaskDependency,
+        where: td.task_id == ^task_id and td.dependency_type == "hard",
+        select: td.depends_on_id
+      )
+      |> Repo.all()
 
-      if all_complete? do
-        case get_task(task_id) do
-          {:ok, task} when task.status == :blocked ->
-            task
-            |> TaskSchema.changeset(%{status: :pending})
-            |> Repo.update()
+    all_complete? =
+      from(t in TaskSchema,
+        where: t.id in ^hard_dep_ids and t.status == :completed,
+        select: count(t.id)
+      )
+      |> Repo.one() == length(hard_dep_ids)
 
-            [task_id | acc]
+    if all_complete? do
+      unblock_if_blocked(task_id, acc)
+    else
+      acc
+    end
+  end
 
-          _ ->
-            acc
-        end
-      else
+  defp unblock_if_blocked(task_id, acc) do
+    case get_task(task_id) do
+      {:ok, task} when task.status == :blocked ->
+        task
+        |> TaskSchema.changeset(%{status: :pending})
+        |> Repo.update()
+
+        [task_id | acc]
+
+      _ ->
         acc
-      end
-    end)
+    end
   end
 
   @doc "Write an output summary to all dependent tasks' dependency_outputs."

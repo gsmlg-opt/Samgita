@@ -908,37 +908,35 @@ defmodule Samgita.Project.Orchestrator do
   # and enqueue newly dispatchable tasks via Oban. This is additive — phases
   # without dependency graphs work exactly as before (counter-based completion).
   defp dispatch_unblocked_dependents(data, completed_task_id) do
-    try do
-      # Transition blocked → pending for tasks whose hard deps are now met
-      newly_unblocked = Projects.unblock_tasks(data.project_id, completed_task_id)
+    # Transition blocked → pending for tasks whose hard deps are now met
+    newly_unblocked = Projects.unblock_tasks(data.project_id, completed_task_id)
 
-      # Propagate output summary to dependent tasks
-      Projects.propagate_dependency_output(completed_task_id, %{status: :completed})
+    # Propagate output summary to dependent tasks
+    Projects.propagate_dependency_output(completed_task_id, %{status: :completed})
 
-      # If we have a DAG, compute which tasks are now fully unblocked
-      # and enqueue them for execution
-      dispatchable =
-        if data.phase_dag do
-          DependencyGraph.unblocked_tasks(data.phase_dag, data.completed_task_ids)
-        else
-          newly_unblocked
-        end
-
-      if dispatchable != [] do
-        Logger.info(
-          "[Orchestrator] #{data.project_id}: unblocked #{length(dispatchable)} tasks after #{completed_task_id}"
-        )
-
-        enqueue_unblocked_tasks(data.project_id, dispatchable)
+    # If we have a DAG, compute which tasks are now fully unblocked
+    # and enqueue them for execution
+    dispatchable =
+      if data.phase_dag do
+        DependencyGraph.unblocked_tasks(data.phase_dag, data.completed_task_ids)
+      else
+        newly_unblocked
       end
-    rescue
-      e ->
-        Logger.warning(
-          "[Orchestrator] #{data.project_id}: dependency dispatch failed: #{Exception.message(e)}"
-        )
-    catch
-      :exit, _ -> :ok
+
+    if dispatchable != [] do
+      Logger.info(
+        "[Orchestrator] #{data.project_id}: unblocked #{length(dispatchable)} tasks after #{completed_task_id}"
+      )
+
+      enqueue_unblocked_tasks(data.project_id, dispatchable)
     end
+  rescue
+    e ->
+      Logger.warning(
+        "[Orchestrator] #{data.project_id}: dependency dispatch failed: #{Exception.message(e)}"
+      )
+  catch
+    :exit, _ -> :ok
   end
 
   defp enqueue_unblocked_tasks(project_id, task_ids) do
