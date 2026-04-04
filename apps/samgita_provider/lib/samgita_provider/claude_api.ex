@@ -144,29 +144,11 @@ defmodule SamgitaProvider.ClaudeAPI do
   defp do_request(body) do
     json_body = Jason.encode!(body)
 
-    request =
-      Finch.build(
-        :post,
-        @api_url,
-        headers(),
-        json_body
-      )
+    request = Finch.build(:post, @api_url, headers(), json_body)
 
     case Finch.request(request, finch_name()) do
       {:ok, %Finch.Response{status: 200, body: resp_body}} ->
-        case Jason.decode(resp_body) do
-          {:ok, %{"content" => [%{"text" => text} | _], "usage" => usage}} ->
-            {:ok, text, usage}
-
-          {:ok, %{"content" => []}} ->
-            {:error, :empty_response}
-
-          {:ok, other} ->
-            {:error, {:unexpected_response, other}}
-
-          {:error, _} ->
-            {:error, :json_parse_error}
-        end
+        parse_response_body(resp_body)
 
       {:ok, %Finch.Response{status: 429}} ->
         {:error, :rate_limit}
@@ -179,6 +161,22 @@ defmodule SamgitaProvider.ClaudeAPI do
 
       {:error, reason} ->
         {:error, reason}
+    end
+  end
+
+  defp parse_response_body(resp_body) do
+    case Jason.decode(resp_body) do
+      {:ok, %{"content" => [%{"text" => text} | _], "usage" => usage}} ->
+        {:ok, text, usage}
+
+      {:ok, %{"content" => []}} ->
+        {:error, :empty_response}
+
+      {:ok, other} ->
+        {:error, {:unexpected_response, other}}
+
+      {:error, _} ->
+        {:error, :json_parse_error}
     end
   end
 
@@ -207,14 +205,7 @@ defmodule SamgitaProvider.ClaudeAPI do
                acc
 
              {:data, data}, acc ->
-               # Parse SSE events
-               {new_text, new_usage} = parse_sse_chunk(data)
-
-               if new_text != "" do
-                 send(subscriber, {:stream_chunk, ref, new_text})
-               end
-
-               %{acc | text: acc.text <> new_text, usage: Map.merge(acc.usage, new_usage)}
+               handle_stream_data(data, acc, subscriber, ref)
            end
          ) do
       {:ok, %{text: text, usage: usage}} ->
@@ -225,30 +216,37 @@ defmodule SamgitaProvider.ClaudeAPI do
     end
   end
 
+  defp handle_stream_data(data, acc, subscriber, ref) do
+    {new_text, new_usage} = parse_sse_chunk(data)
+    if new_text != "", do: send(subscriber, {:stream_chunk, ref, new_text})
+    %{acc | text: acc.text <> new_text, usage: Map.merge(acc.usage, new_usage)}
+  end
+
   defp parse_sse_chunk(data) do
-    # Parse Server-Sent Events format
     data
     |> String.split("\n")
-    |> Enum.reduce({"", %{}}, fn line, {text, usage} ->
-      case String.trim_leading(line, "data: ") do
-        # Not a data line
-        ^line ->
-          {text, usage}
-
-        json_str ->
-          case Jason.decode(json_str) do
-            {:ok, %{"type" => "content_block_delta", "delta" => %{"text" => chunk}}} ->
-              {text <> chunk, usage}
-
-            {:ok, %{"type" => "message_delta", "usage" => u}} ->
-              {text, Map.merge(usage, u)}
-
-            _ ->
-              {text, usage}
-          end
-      end
-    end)
+    |> Enum.reduce({"", %{}}, fn line, acc -> parse_sse_line(line, acc) end)
   end
+
+  defp parse_sse_line("data: " <> json_str, {text, usage}) do
+    parse_sse_event(Jason.decode(json_str), text, usage)
+  end
+
+  defp parse_sse_line(_line, acc), do: acc
+
+  defp parse_sse_event(
+         {:ok, %{"type" => "content_block_delta", "delta" => %{"text" => chunk}}},
+         text,
+         usage
+       ) do
+    {text <> chunk, usage}
+  end
+
+  defp parse_sse_event({:ok, %{"type" => "message_delta", "usage" => u}}, text, usage) do
+    {text, Map.merge(usage, u)}
+  end
+
+  defp parse_sse_event(_other, text, usage), do: {text, usage}
 
   defp headers do
     api_key = Application.get_env(:samgita_provider, :anthropic_api_key, "")

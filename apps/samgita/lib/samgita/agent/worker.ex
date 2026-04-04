@@ -22,6 +22,7 @@ defmodule Samgita.Agent.Worker do
   alias Samgita.Agent.WorktreeManager
   alias Samgita.Domain.Artifact
   alias Samgita.Project.Orchestrator
+  alias Samgita.Provider.SessionRegistry
   alias Samgita.Quality.OutputGuardrails
 
   defstruct [
@@ -757,7 +758,7 @@ defmodule Samgita.Agent.Worker do
 
     case SamgitaProvider.start_session(system_prompt, opts) do
       {:ok, session} ->
-        Samgita.Provider.SessionRegistry.register(data.project_id, data.id, %{
+        SessionRegistry.register(data.project_id, data.id, %{
           session_id: session.id,
           provider: session.provider,
           started_at: session.started_at,
@@ -784,7 +785,7 @@ defmodule Samgita.Agent.Worker do
        when not is_nil(session) do
     case SamgitaProvider.send_message(session, prompt) do
       {:ok, response, updated_session} ->
-        Samgita.Provider.SessionRegistry.register(data.project_id, data.id, %{
+        SessionRegistry.register(data.project_id, data.id, %{
           session_id: updated_session.id,
           provider: updated_session.provider,
           started_at: updated_session.started_at,
@@ -814,7 +815,7 @@ defmodule Samgita.Agent.Worker do
 
   defp close_session_if_open(%{session: session, project_id: project_id, id: id}) do
     SamgitaProvider.close_session(session)
-    Samgita.Provider.SessionRegistry.unregister(project_id, id)
+    SessionRegistry.unregister(project_id, id)
   rescue
     e -> Logger.debug("[#{id}] Session cleanup error: #{inspect(e)}")
   end
