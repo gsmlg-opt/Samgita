@@ -307,6 +307,12 @@ PRD is the unit of execution. Activity log streams in real time via PubSub.
 - [x] Webhook delivery with HMAC-SHA256
 - [x] Project.Recovery (restart running projects on boot)
 - [x] All 12 database migrations
+- [x] Worker Decomposition (PromptBuilder, ResultParser, ContextAssembler, WorktreeManager, ActivityBroadcaster, RetryStrategy)
+- [x] Provider Session Lifecycle (`start_session`/`send_message`/`stream_message`/`close_session`/`capabilities`/`health_check`)
+- [x] Task Dependency DAG (`depends_on`/`blocks`/`wave` fields, wave-based dispatch, critical path, Kahn's cycle detection)
+- [x] Inter-Agent Communication (MessageRouter per project, PubSub message bus, budget/depth/timeout controls)
+- [x] Plan Mode (`:planning` phase, idea-to-PRD pipeline: research/architecture/draft/review/revise, 4 `@planning` agents)
+- [x] Synapsis Integration (HTTP API / Phoenix Channels provider with automatic fallback to ClaudeCode)
 
 ### Needs Fixing (see docs/plan.md for details)
 
@@ -328,12 +334,12 @@ PRD is the unit of execution. Activity log streams in real time via PubSub.
 
 ### v2 Planned (see [docs/design-v2.md](design-v2.md))
 
-- [ ] **Worker Decomposition** — Extract PromptBuilder, ResultParser, ContextAssembler, WorktreeManager, ActivityBroadcaster, RetryStrategy from 1300-line Worker monolith
-- [ ] **Provider Session Lifecycle** — Replace fire-and-forget `query/2` with `start_session`/`send_message`/`stream_message`/`close_session`/`capabilities`/`health_check`. Port-based ClaudeCode, HTTP-based ClaudeAPI
-- [ ] **Task Dependency DAG** — `depends_on`/`blocks`/`wave` fields, wave-based dispatch, critical path computation, cycle detection (Kahn's algorithm)
-- [ ] **Inter-Agent Communication** — MessageRouter per project, PubSub message bus, message budget (10/task), depth limiting (3), timeout (60s)
-- [ ] **Plan Mode** — `:planning` phase before `:bootstrap`. Idea-to-PRD pipeline: research, architecture, draft, review, revise. 4 new `@planning` swarm agents
-- [ ] **Synapsis Integration** — New provider connecting to Synapsis HTTP API / Phoenix Channels. Colocated, single remote, or multi-instance deployment with automatic fallback to ClaudeCode
+- [x] **Worker Decomposition** — Extract PromptBuilder, ResultParser, ContextAssembler, WorktreeManager, ActivityBroadcaster, RetryStrategy from 1300-line Worker monolith
+- [x] **Provider Session Lifecycle** — Replace fire-and-forget `query/2` with `start_session`/`send_message`/`stream_message`/`close_session`/`capabilities`/`health_check`. Port-based ClaudeCode, HTTP-based ClaudeAPI
+- [x] **Task Dependency DAG** — `depends_on`/`blocks`/`wave` fields, wave-based dispatch, critical path computation, cycle detection (Kahn's algorithm)
+- [x] **Inter-Agent Communication** — MessageRouter per project, PubSub message bus, message budget (10/task), depth limiting (3), timeout (60s)
+- [x] **Plan Mode** — `:planning` phase before `:bootstrap`. Idea-to-PRD pipeline: research, architecture, draft, review, revise. 4 new `@planning` swarm agents
+- [x] **Synapsis Integration** — New provider connecting to Synapsis HTTP API / Phoenix Channels. Colocated, single remote, or multi-instance deployment with automatic fallback to ClaudeCode
 
 ---
 
@@ -377,5 +383,5 @@ Implementation order: Worker Decomposition (prerequisite) -> Provider Evolution 
 
 ---
 
-**Last Updated:** 2026-04-03
+**Last Updated:** 2026-04-05
 **Status:** Active Development — see [docs/plan.md](plan.md) for the v1 roadmap, [docs/design-v2.md](design-v2.md) for v2 design
