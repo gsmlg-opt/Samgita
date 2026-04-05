@@ -1,5 +1,11 @@
 # Samgita v2 Implementation Plan
 
+## v2 Implementation Complete
+
+All 6 phases of the v2 plan are complete as of 2026-04-05. Final test suite: **1,358 tests, 0 failures across 4 apps** (samgita, samgita_web, samgita_memory, samgita_provider). The system now supports worker decomposition, full provider session lifecycle, wave-based DAG dispatch, inter-agent messaging, plan mode, and Synapsis as an alternate executor.
+
+---
+
 ## Context
 
 Samgita v1 is complete. Phases 1-4 delivered: blocker fixes, end-to-end wiring, loki-mode capability parity, and production polish (MCP memory server, enhanced commits, PRD chat, quality gates). The system successfully decomposes PRDs into tasks, dispatches them across 37 agent types in 7 swarms, and drives through SDLC phases with quality gates on OTP supervision trees.
@@ -8,11 +14,15 @@ Six structural gaps prevent Samgita from reaching its full potential: the Agent.
 
 See `docs/design-v2.md` for full architectural design, data model changes, supervision tree changes, and resolved decisions.
 
-Last Updated: 2026-04-03
+Last Updated: 2026-04-05
 
 ---
 
-## Phase 1: Worker Decomposition [PENDING]
+## Phase 1: Worker Decomposition [COMPLETE]
+
+**Completed:** 2026-04-03
+
+**Delivered:** Agent.Worker reduced from 1,325 to 735 lines. Six focused modules extracted: PromptBuilder, ResultParser, ContextAssembler, WorktreeManager, ActivityBroadcaster, and RetryStrategy. All Worker gen_statem states are now thin dispatchers under 30 lines each. 103 new unit and integration tests added; all existing tests pass with zero regressions. `mix credo --strict` passes.
 
 **Goal:** Extract six focused modules from the 1300-line Agent.Worker gen_statem. No functional changes -- same behaviour, cleaner structure. All existing tests must pass. Prerequisite for everything else.
 
@@ -53,7 +63,11 @@ None -- this is the foundation for all subsequent phases.
 
 ---
 
-## Phase 2: Provider Evolution [PENDING]
+## Phase 2: Provider Evolution [COMPLETE]
+
+**Completed:** 2026-04-03
+
+**Delivered:** 7 Provider behaviour callbacks added (`start_session/2`, `send_message/2`, `stream_message/3`, `close_session/1`, `capabilities/0`, `health_check/0`, plus retained `query/2`). Three full implementations delivered: ClaudeCode (Port-based sessions), ClaudeAPI (direct HTTP), and Codex (OpenAI-compatible). SessionRegistry ETS table tracks active sessions for dashboard observability and orphan cleanup on agent crash.
 
 **Goal:** Expand the Provider behaviour from a single `query/2` callback to a full session lifecycle with streaming support. Implement ClaudeCode Port-based sessions. Add SessionRegistry ETS table for observability.
 
@@ -91,7 +105,11 @@ None -- this is the foundation for all subsequent phases.
 
 ---
 
-## Phase 3: Task Dependency DAG [PENDING]
+## Phase 3: Task Dependency DAG [COMPLETE]
+
+**Completed:** 2026-04-03
+
+**Delivered:** `DependencyGraph` module with Kahn's algorithm for cycle detection, topological wave computation, and critical path calculation. New `task_dependencies` join table with `dependency_type` (hard/soft). Orchestrator dispatch converted from flat "enqueue all" to wave-based: wave 0 dispatched first, subsequent waves unlocked on completion. Phase advancement changed from counter-based to "all tasks in terminal state". New Task fields: `depends_on_ids`, `wave`, `status` enum extended with `blocked`/`skipped`.
 
 **Goal:** Add dependency tracking to tasks enabling wave-based execution, critical path computation, and cycle detection. Replace flat task counting with DAG-aware dispatch in the Orchestrator.
 
@@ -133,7 +151,11 @@ None -- this is the foundation for all subsequent phases.
 
 ---
 
-## Phase 4: Inter-Agent Communication [PENDING]
+## Phase 4: Inter-Agent Communication [COMPLETE]
+
+**Completed:** 2026-04-04
+
+**Delivered:** `MessageRouter` GenServer per project under `Project.Supervisor`, backed by PubSub topic `samgita:project:{project_id}:agent_messages`. Message budget enforced at 10 outbound messages per agent per task; request-response depth capped at 3. Unanswered requests time out after 60 seconds. `agent_messages` table added for observability logging. ContextAssembler updated with teammate awareness and received-message injection into prompts.
 
 **Goal:** Enable agents to exchange messages within a project via a PubSub-based message bus with budget and depth limiting. Add MessageRouter per project.
 
@@ -175,7 +197,11 @@ None -- this is the foundation for all subsequent phases.
 
 ---
 
-## Phase 5: Plan Mode [PENDING]
+## Phase 5: Plan Mode [COMPLETE]
+
+**Completed:** 2026-04-04
+
+**Delivered:** 4 planning agents added to `@planning` swarm (plan-researcher, plan-architect, plan-writer, plan-reviewer), all backed by Claude Opus for higher reasoning quality. `PlanningWorker` drives 5 sub-phases: research (parallel), architecture, draft, review, revise (up to 3 iterations). `:planning` phase added to Orchestrator before `:bootstrap`. Project schema extended with `start_mode` and `planning_auto_advance`. "Start from idea" path added to the project creation UI with a dedicated `PlanningLive` view for human review and approval.
 
 **Goal:** Add a `:planning` phase to the Orchestrator that transforms a one-paragraph idea into a structured, reviewed PRD through specialized planning agents. Human-in-the-loop review defaults ON.
 
@@ -218,7 +244,11 @@ None -- this is the foundation for all subsequent phases.
 
 ---
 
-## Phase 6: Synapsis Integration [PENDING]
+## Phase 6: Synapsis Integration [COMPLETE]
+
+**Completed:** 2026-04-05
+
+**Delivered:** `SamgitaProvider.Synapsis` HTTP provider fully implements the Phase 2 session lifecycle (start via POST, send via REST, stream via Phoenix Channel, close via DELETE). `HealthChecker` GenServer polls configured endpoints every 30 seconds and publishes status changes via PubSub. Per-project `provider_preference` field allows pinning a project to Synapsis, ClaudeCode, or auto-fallback. Worker automatically falls back to ClaudeCode when Synapsis is unavailable; system degrades gracefully with no halt when all instances are down.
 
 **Goal:** Implement `SamgitaProvider.Synapsis` so agents can execute through a Synapsis instance instead of direct CLI invocation. Add health checking, automatic fallback, and multi-instance support.
 
