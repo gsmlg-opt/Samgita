@@ -12,7 +12,7 @@ No authentication system by design — single-tenant, access controlled at infra
 
 ```
 apps/
-├── samgita_provider/ # Provider abstraction wrapping Claude Code CLI via ClaudeAgentSDK
+├── samgita_provider/ # Provider abstraction: ClaudeCode, ClaudeAPI, Synapsis, Codex
 ├── samgita/          # Core business logic, Repo, Oban, Horde, PubSub
 ├── samgita_memory/   # Memory system with pgvector, PRD tracking, thinking chains
 └── samgita_web/      # Phoenix web layer, LiveView, REST API
@@ -76,6 +76,8 @@ Samgita.Cache (ETS with TTL + PubSub invalidation)
 Horde.Registry (Samgita.AgentRegistry)
 Horde.DynamicSupervisor (Samgita.AgentSupervisor)
 Samgita.Agent.CircuitBreaker (GenServer, per-agent-type failure tracking)
+Samgita.Provider.SessionRegistry (ETS)
+Samgita.Provider.HealthChecker (GenServer)
 Oban (queues: agent_tasks:100, orchestration:10, snapshots:5)
 Samgita.Project.Recovery (GenServer, restores active projects on startup)
 ```
@@ -88,6 +90,11 @@ SamgitaMemory.Cache.Supervisor
 └── PrdTable (ETS LRU, max 100 entries)
 SamgitaMemory.Formation.Supervisor (telemetry handlers)
 Oban (name: SamgitaMemory.Oban, queues: embeddings:5, compaction:2, summarization:3)
+```
+
+**Per-project tree** (spawned under AgentSupervisor):
+```
+Samgita.Agent.MessageRouter (GenServer)
 ```
 
 **SamgitaWeb.Application** (web app):
@@ -105,22 +112,25 @@ SamgitaWeb.Endpoint
          └────── on failure ──────────┘
 ```
 Uses Horde.Registry for distributed naming. RARV cycle is the core execution model.
+Decomposed into 6 delegate modules: PromptBuilder, ResultParser, ContextAssembler, WorktreeManager, ActivityBroadcaster, RetryStrategy.
 
 **Project Orchestrator** (`apps/samgita/lib/samgita/project/orchestrator.ex`):
 ```
-:bootstrap → :discovery → :architecture → :infrastructure →
+:planning → :bootstrap → :discovery → :architecture → :infrastructure →
 :development → :qa → :deployment → :business → :growth → :perpetual
 ```
-Manages project lifecycle phases and coordinates agent spawning.
+Manages project lifecycle phases (11 total) and coordinates agent spawning.
 
 ### Claude Integration (SamgitaProvider)
 
-**SamgitaProvider** (`apps/samgita_provider/`) — provider abstraction:
-- Invokes `claude` CLI directly via `System.cmd/3` in print mode with JSON output
-- Used by `Samgita.Agent.Claude` and `PrdChatLive`
-- All Claude Code tools available automatically (CLI manages its own tools)
+**SamgitaProvider** (`apps/samgita_provider/`) — provider abstraction with 4 backends:
+- **ClaudeCode** — invokes `claude` CLI via `System.cmd/3` in print mode with JSON output
+- **ClaudeAPI** — direct Anthropic Messages API via HTTP
+- **Synapsis** — connects to Synapsis endpoints for self-hosted models
+- **Codex** — OpenAI Codex CLI integration
+- Session lifecycle: `start_session/2`, `send_message/3`, `stream_message/3`, `close_session/1`, `capabilities/1`, `health_check/1` (alongside legacy `query/2`)
 - `:mock` atom provider for tests (returns `"mock response"`)
-- CLI command configurable via `config :samgita_provider, :claude_command`
+- Used by `Samgita.Agent.Claude` and `PrdChatLive`
 - See `docs/architecture/claude-integration.md` for full documentation
 
 ### Oban Workers
@@ -139,16 +149,18 @@ Manages project lifecycle phases and coordinates agent spawning.
 
 ### Web Layer
 
-**LiveView pages** (9): Dashboard, ProjectForm, Project detail, PrdChat, Agents, MCP, Skills, References (index+show)
+**LiveView pages** (9): Dashboard, ProjectForm (includes "Start from idea" mode), Project detail, PrdChat, Agents, MCP, Skills, References (index+show)
 
 **REST API**: `/api/projects` (CRUD + pause/resume), `/api/projects/:id/tasks`, `/api/projects/:id/agents`, `/api/webhooks`, `/api/notifications`, `/api/features` (CRUD + enable/disable/archive). Rate limited (100 req/60s via `SamgitaWeb.Plugs.RateLimit`).
 
 ### Data Model
 
 Core Ecto schemas in `apps/samgita/lib/samgita/domain/`:
-- **Project** — `git_url` is canonical identifier (unique), phases: bootstrap→perpetual
-- **Task** — hierarchical (parent_task_id), tracks attempts/tokens/duration
-- **AgentRun** — tracks node, pid, metrics across 37 agent types
+- **Project** — `git_url` is canonical identifier (unique), phases: planning→perpetual. Fields: `start_mode`, `planning_auto_advance`, `synapsis_endpoints`, `provider_preference`
+- **Task** — hierarchical (parent_task_id), tracks attempts/tokens/duration. Fields: `depends_on_ids`, `dependency_outputs`, `wave`, `estimated_duration_minutes`. Expanded status enum
+- **TaskDependency** — explicit dependency edges between tasks
+- **AgentMessage** — inter-agent message passing with routing metadata
+- **AgentRun** — tracks node, pid, metrics across 41 agent types
 - **Artifact** — generated code/docs/configs
 - **Memory** — legacy (superseded by samgita_memory)
 - **Snapshot** — periodic state checkpoints
@@ -244,9 +256,10 @@ When you encounter a bug, missing feature, or API gap:
 3. Add a comment at the workaround site: `# TODO: upstream duskmoon-dev/<repo>#<issue>`
    Do NOT silently absorb upstream bugs.
 
-## Agent Types (37)
+## Agent Types (41)
 
-Defined in `apps/samgita/lib/samgita/agent/types.ex` across 7 swarms:
+Defined in `apps/samgita/lib/samgita/agent/types.ex` across 8 swarms:
+- **Planning** (4): plan-researcher, plan-architect, plan-writer, plan-reviewer
 - **Engineering** (8): eng-frontend, eng-backend, eng-database, eng-mobile, eng-api, eng-qa, eng-perf, eng-infra
 - **Operations** (8): ops-devops, ops-sre, ops-security, ops-monitor, ops-incident, ops-release, ops-cost, ops-compliance
 - **Business** (8): biz-marketing, biz-sales, biz-finance, biz-legal, biz-support, biz-hr, biz-investor, biz-partnerships
