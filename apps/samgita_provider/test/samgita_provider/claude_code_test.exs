@@ -97,6 +97,15 @@ defmodule SamgitaProvider.ClaudeCodeTest do
       assert {:error, "unexpected failure"} =
                ClaudeCode.parse_json_output("  unexpected failure  ")
     end
+
+    test "strips stderr warning prefix before parsing JSON" do
+      json = Jason.encode!(%{"result" => "Hello", "is_error" => false})
+
+      output =
+        "Warning: no stdin data received in 3s, proceeding without it.\n#{json}"
+
+      assert {:ok, "Hello"} = ClaudeCode.parse_json_output(output)
+    end
   end
 
   describe "classify_error/2" do

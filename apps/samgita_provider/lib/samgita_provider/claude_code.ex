@@ -100,7 +100,9 @@ defmodule SamgitaProvider.ClaudeCode do
 
   @doc false
   def parse_json_output(output) do
-    case Jason.decode(output) do
+    json_str = extract_json(output)
+
+    case Jason.decode(json_str) do
       {:ok, %{"result" => result, "is_error" => false}} ->
         {:ok, result}
 
@@ -113,6 +115,16 @@ defmodule SamgitaProvider.ClaudeCode do
       {:error, _} ->
         # If JSON parsing fails, the output might be plain text (e.g. an error message)
         classify_error(output, 1)
+    end
+  end
+
+  # stderr warnings (e.g. "Warning: no stdin data received") may be
+  # prepended to stdout when using stderr_to_stdout. Strip non-JSON
+  # prefix so we can parse the actual JSON payload.
+  defp extract_json(output) do
+    case :binary.match(output, <<"{">>) do
+      {pos, _} when pos > 0 -> binary_part(output, pos, byte_size(output) - pos)
+      _ -> output
     end
   end
 

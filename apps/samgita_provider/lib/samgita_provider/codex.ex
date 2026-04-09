@@ -57,9 +57,7 @@ defmodule SamgitaProvider.Codex do
   end
 
   defp handle_error_output(output, exit_code) do
-    Logger.error(
-      "Codex CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}"
-    )
+    Logger.error("Codex CLI exited with code #{exit_code}: #{String.slice(output, 0, 500)}")
 
     classify_error(output, exit_code)
   end
