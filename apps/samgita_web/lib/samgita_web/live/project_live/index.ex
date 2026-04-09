@@ -2,7 +2,7 @@ defmodule SamgitaWeb.ProjectLive.Index do
   use SamgitaWeb, :live_view
 
   alias Samgita.Domain.Project
-  alias Samgita.Projects
+  alias Samgita.{Git, Projects}
   alias Samgita.Workers.BootstrapWorker
 
   @impl true
@@ -27,6 +27,8 @@ defmodule SamgitaWeb.ProjectLive.Index do
            tasks: tasks,
            agent_runs: agent_runs,
            active_agents: %{},
+           editing_working_path: false,
+           detected_path: nil,
            show_task_form: false,
            task_form: %{type: "", payload: "{}"},
            log_count: 0,
@@ -193,6 +195,40 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
       {:error, _} ->
         {:noreply, put_flash(socket, :error, "Failed to terminate project")}
+    end
+  end
+
+  # Working path editing
+  def handle_event("edit_working_path", _, socket) do
+    detected =
+      case Git.find_local_repo(socket.assigns.project.git_url) do
+        {:ok, path} -> path
+        :not_found -> nil
+      end
+
+    {:noreply,
+     assign(socket,
+       editing_working_path: true,
+       detected_path: detected
+     )}
+  end
+
+  def handle_event("cancel_edit_working_path", _, socket) do
+    {:noreply, assign(socket, editing_working_path: false, detected_path: nil)}
+  end
+
+  def handle_event("save_working_path", %{"working_path" => path}, socket) do
+    path = String.trim(path)
+
+    case Projects.update_project(socket.assigns.project, %{working_path: path}) do
+      {:ok, project} ->
+        {:noreply,
+         socket
+         |> assign(project: project, editing_working_path: false, detected_path: nil)
+         |> put_flash(:info, "Working path updated")}
+
+      {:error, _} ->
+        {:noreply, put_flash(socket, :error, "Failed to update working path")}
     end
   end
 

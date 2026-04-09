@@ -10,6 +10,42 @@
       <span class="text-sm text-on-surface-variant">{@project.phase}</span>
     </div>
     <p class="text-sm text-on-surface-variant mt-1">{@project.git_url}</p>
+    <div class="mt-1">
+      <div :if={!@editing_working_path} class="flex items-center gap-2">
+        <span class="text-sm text-on-surface-variant">
+          Working path:
+          <span :if={@project.working_path} class="text-on-surface">{@project.working_path}</span>
+          <span :if={!@project.working_path} class="text-on-surface-variant/60 italic">Not set</span>
+        </span>
+        <button
+          phx-click="edit_working_path"
+          class="text-xs text-primary hover:text-primary/80 underline"
+        >
+          Edit
+        </button>
+      </div>
+      <form :if={@editing_working_path} phx-submit="save_working_path" class="flex items-end gap-2 mt-1">
+        <div class="flex-1">
+          <label class="text-xs text-on-surface-variant">Working Path</label>
+          <input
+            type="text"
+            name="working_path"
+            value={@project.working_path || @detected_path || ""}
+            placeholder="/path/to/local/repo"
+            class="mt-0.5 block w-full rounded border border-outline bg-surface px-2 py-1 text-sm text-on-surface"
+          />
+          <p :if={@detected_path && !@project.working_path} class="text-xs text-success mt-0.5">
+            Auto-detected: {@detected_path}
+          </p>
+        </div>
+        <button type="submit" class="rounded bg-primary px-3 py-1 text-sm text-on-primary">
+          Save
+        </button>
+        <button type="button" phx-click="cancel_edit_working_path" class="rounded bg-surface-container px-3 py-1 text-sm text-on-surface-variant">
+          Cancel
+        </button>
+      </form>
+    </div>
   </div>
 
   <%!-- Phase Progress --%>
