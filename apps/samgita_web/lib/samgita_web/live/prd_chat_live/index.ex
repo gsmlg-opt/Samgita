@@ -58,12 +58,23 @@ defmodule SamgitaWeb.PrdChatLive.Index do
   end
 
   @impl true
-  def handle_event("switch_tab", %{"tab" => tab}, socket) when tab in ["editor", "chat"] do
-    {:noreply, assign(socket, active_tab: String.to_existing_atom(tab))}
+  def handle_params(_params, _uri, socket) do
+    active_tab =
+      case socket.assigns.live_action do
+        action when action in [:new_chat, :edit_chat] -> :chat
+        _ -> :editor
+      end
+
+    {:noreply, assign(socket, active_tab: active_tab)}
   end
 
-  def handle_event("switch_tab", _params, socket) do
-    {:noreply, socket}
+  @impl true
+  def handle_event("switch_tab", %{"tab" => "editor"}, socket) do
+    {:noreply, push_patch(socket, to: editor_path(socket.assigns.project, socket.assigns.prd))}
+  end
+
+  def handle_event("switch_tab", %{"tab" => "chat"}, socket) do
+    {:noreply, push_patch(socket, to: chat_path(socket.assigns.project, socket.assigns.prd))}
   end
 
   @impl true
@@ -175,8 +186,9 @@ defmodule SamgitaWeb.PrdChatLive.Index do
   def handle_info({:prd_generated, {:ok, content}}, socket) do
     {:noreply,
      socket
-     |> assign(content: content, generating: false, active_tab: :editor)
-     |> put_flash(:info, "PRD generated from conversation")}
+     |> assign(content: content, generating: false)
+     |> put_flash(:info, "PRD generated from conversation")
+     |> push_patch(to: editor_path(socket.assigns.project, socket.assigns.prd))}
   end
 
   @impl true
@@ -269,6 +281,12 @@ defmodule SamgitaWeb.PrdChatLive.Index do
 
   defp prd_id(%{assigns: %{prd: %{id: id}}}), do: id
   defp prd_id(_), do: nil
+
+  defp editor_path(project, nil), do: ~p"/projects/#{project.id}/prds/new"
+  defp editor_path(project, prd), do: ~p"/projects/#{project.id}/prds/#{prd.id}"
+
+  defp chat_path(project, nil), do: ~p"/projects/#{project.id}/prds/new/chat"
+  defp chat_path(project, prd), do: ~p"/projects/#{project.id}/prds/#{prd.id}/chat"
 
   defp save_prd(%{assigns: %{prd: nil}} = socket, title, content) do
     status = if(content == "", do: :draft, else: :approved)

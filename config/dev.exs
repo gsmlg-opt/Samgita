@@ -8,10 +8,11 @@ db_socket_opts =
       [hostname: System.get_env("POSTGRES_HOST", "localhost"),
        port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))]
     pghost when is_binary(pghost) ->
+      port = String.to_integer(System.get_env("POSTGRES_PORT", "5432"))
+
       if String.starts_with?(pghost, "/"),
-        do: [socket_dir: pghost],
-        else: [hostname: pghost,
-               port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))]
+        do: [socket_dir: pghost, port: port],
+        else: [hostname: pghost, port: port]
   end
 
 config :samgita, Samgita.Repo,

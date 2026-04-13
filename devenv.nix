@@ -12,6 +12,7 @@ in {
   env.MIX_BUN_PATH = lib.getExe pkgs-stable.bun;
   env.MIX_TAILWIND_PATH = lib.getExe pkgs-stable.tailwindcss_4;
   env.PGHOST = "${config.env.DEVENV_STATE}/postgres";
+  env.POSTGRES_PORT = "5433";
 
   packages = with pkgs-stable;
     [
@@ -44,7 +45,7 @@ in {
     settings.unix_socket_directories = "${config.env.DEVENV_STATE}/postgres";
   };
 
-  processes.server = {
+  processes.samgita = {
     exec = "mix phx.server";
     process-compose = {
       depends_on.postgres.condition = "process_healthy";
