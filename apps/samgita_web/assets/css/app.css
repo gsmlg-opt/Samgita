@@ -30,10 +30,3 @@
 
 /* This file is for your main application CSS */
 
-/* TODO: upstream duskmoon-dev/duskmoonui#25
-   appbar-trailing has flex-grow:0 causing nav overflow with 5+ menu items.
-   Override to flex-1 + justify-end so the trailing section fills available space. */
-header.appbar .appbar-trailing {
-  flex-grow: 1;
-  justify-content: flex-end;
-}
