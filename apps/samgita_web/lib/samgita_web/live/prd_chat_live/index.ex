@@ -69,15 +69,6 @@ defmodule SamgitaWeb.PrdChatLive.Index do
   end
 
   @impl true
-  def handle_event("switch_tab", %{"tab" => "editor"}, socket) do
-    {:noreply, push_patch(socket, to: editor_path(socket.assigns.project, socket.assigns.prd))}
-  end
-
-  def handle_event("switch_tab", %{"tab" => "chat"}, socket) do
-    {:noreply, push_patch(socket, to: chat_path(socket.assigns.project, socket.assigns.prd))}
-  end
-
-  @impl true
   def handle_event("validate", %{"prd" => params}, socket) do
     {:noreply,
      assign(socket,
@@ -282,11 +273,11 @@ defmodule SamgitaWeb.PrdChatLive.Index do
   defp prd_id(%{assigns: %{prd: %{id: id}}}), do: id
   defp prd_id(_), do: nil
 
-  defp editor_path(project, nil), do: ~p"/projects/#{project.id}/prds/new"
-  defp editor_path(project, prd), do: ~p"/projects/#{project.id}/prds/#{prd.id}"
+  def editor_path(project, nil), do: ~p"/projects/#{project.id}/prds/new"
+  def editor_path(project, prd), do: ~p"/projects/#{project.id}/prds/#{prd.id}"
 
-  defp chat_path(project, nil), do: ~p"/projects/#{project.id}/prds/new/chat"
-  defp chat_path(project, prd), do: ~p"/projects/#{project.id}/prds/#{prd.id}/chat"
+  def chat_path(project, nil), do: ~p"/projects/#{project.id}/prds/new/chat"
+  def chat_path(project, prd), do: ~p"/projects/#{project.id}/prds/#{prd.id}/chat"
 
   defp save_prd(%{assigns: %{prd: nil}} = socket, title, content) do
     status = if(content == "", do: :draft, else: :approved)

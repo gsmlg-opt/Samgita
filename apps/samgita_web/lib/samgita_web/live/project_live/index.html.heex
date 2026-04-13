@@ -15,35 +15,37 @@
         <span class="text-sm text-on-surface-variant">
           Working path:
           <span :if={@project.working_path} class="text-on-surface">{@project.working_path}</span>
-          <span :if={!@project.working_path} class="text-on-surface-variant/60 italic">Not set</span>
+          <span :if={!@project.working_path} class="text-on-surface-variant/60 italic">
+            Not set
+          </span>
         </span>
-        <button
-          phx-click="edit_working_path"
-          class="text-xs text-primary hover:text-primary/80 underline"
-        >
+        <.dm_btn variant="link" size="xs" phx-click="edit_working_path">
           Edit
-        </button>
+        </.dm_btn>
       </div>
-      <form :if={@editing_working_path} phx-submit="save_working_path" class="flex items-end gap-2 mt-1">
+      <form
+        :if={@editing_working_path}
+        phx-submit="save_working_path"
+        class="flex items-end gap-2 mt-1"
+      >
         <div class="flex-1">
           <label class="text-xs text-on-surface-variant">Working Path</label>
-          <input
+          <.dm_input
             type="text"
             name="working_path"
             value={@project.working_path || @detected_path || ""}
             placeholder="/path/to/local/repo"
-            class="mt-0.5 block w-full rounded border border-outline bg-surface px-2 py-1 text-sm text-on-surface"
           />
           <p :if={@detected_path && !@project.working_path} class="text-xs text-success mt-0.5">
             Auto-detected: {@detected_path}
           </p>
         </div>
-        <button type="submit" class="rounded bg-primary px-3 py-1 text-sm text-on-primary">
+        <.dm_btn type="submit" variant="primary" size="sm">
           Save
-        </button>
-        <button type="button" phx-click="cancel_edit_working_path" class="rounded bg-surface-container px-3 py-1 text-sm text-on-surface-variant">
+        </.dm_btn>
+        <.dm_btn type="button" variant="ghost" size="sm" phx-click="cancel_edit_working_path">
           Cancel
-        </button>
+        </.dm_btn>
       </form>
     </div>
   </div>
@@ -112,15 +114,17 @@
                 >
                   <.dm_mdi name="pencil-outline" class="h-3.5 w-3.5" />
                 </.link>
-                <button
+                <.dm_btn
+                  variant="ghost"
+                  size="xs"
                   phx-click="delete_prd"
                   phx-value-id={prd.id}
                   data-confirm={"Delete PRD \"#{prd.title}\"?"}
-                  class="text-on-surface-variant hover:text-error p-1"
                   title="Delete"
+                  class="text-on-surface-variant hover:text-error"
                 >
                   <.dm_mdi name="trash-can-outline" class="h-3.5 w-3.5" />
-                </button>
+                </.dm_btn>
               </div>
             </div>
           </div>
@@ -147,7 +151,7 @@
           <div class="flex items-center justify-between mb-3">
             <div>
               <h2 class="text-lg font-semibold text-on-surface">{@selected_prd.title}</h2>
-              <div class="flex items-center gap-3 mt-1 text-xs text-on-surface-variant">
+              <div class="flex items-center gap-4 mt-1 text-xs text-on-surface-variant">
                 <.dm_badge variant={prd_status_badge_color(@selected_prd.status)}>
                   {@selected_prd.status}
                 </.dm_badge>
@@ -168,7 +172,7 @@
             >
               Start
             </.dm_btn>
-            <.dm_btn :if={can_pause?(@project)} variant="warning" size="sm" phx-click="pause">
+            <.dm_btn :if={can_pause?(@project)} variant="outline" size="sm" phx-click="pause">
               Pause
             </.dm_btn>
             <.dm_btn :if={can_resume?(@project)} variant="secondary" size="sm" phx-click="resume">
@@ -252,7 +256,7 @@
         <%!-- Active Agents (from PubSub) --%>
         <div :if={@active_agents != %{}} class="bg-surface-container rounded-lg shadow p-4">
           <h3 class="text-sm font-medium text-on-surface-variant mb-3">Active Agents</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div
               :for={{agent_id, info} <- @active_agents}
               class="border border-outline-variant rounded-lg p-3"
@@ -269,7 +273,7 @@
         <%!-- Working Agents (from DB) --%>
         <div :if={@agent_runs != []} class="bg-surface-container rounded-lg shadow p-4">
           <h3 class="text-sm font-medium text-on-surface-variant mb-3">Agents</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div :for={agent <- @agent_runs} class="border border-outline-variant rounded-lg p-3">
               <p class="text-sm font-medium text-on-surface truncate">{agent.agent_type}</p>
               <p class={"text-xs #{agent_state_color(agent.status)}"}>{agent.status}</p>
@@ -282,19 +286,19 @@
         <div :if={@tasks != []} class="bg-surface-container rounded-lg shadow p-4">
           <h3 class="text-sm font-medium text-on-surface-variant mb-3">Task Progress</h3>
           <div class="flex gap-4 text-sm">
-            <div class="flex items-center gap-1.5">
+            <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-success"></span>
               <span class="text-on-surface-variant">
                 {Enum.count(@tasks, &(&1.status == :completed))} completed
               </span>
             </div>
-            <div class="flex items-center gap-1.5">
+            <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
               <span class="text-on-surface-variant">
                 {Enum.count(@tasks, &(&1.status == :running))} running
               </span>
             </div>
-            <div class="flex items-center gap-1.5">
+            <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-warning"></span>
               <span class="text-on-surface-variant">
                 {Enum.count(@tasks, &(&1.status == :pending))} pending
@@ -302,7 +306,7 @@
             </div>
             <div
               :if={Enum.any?(@tasks, &(&1.status == :failed))}
-              class="flex items-center gap-1.5"
+              class="flex items-center gap-2"
             >
               <span class="w-2.5 h-2.5 rounded-full bg-error"></span>
               <span class="text-on-surface-variant">
@@ -311,7 +315,7 @@
             </div>
             <div
               :if={Enum.any?(@tasks, &(&1.status == :dead_letter))}
-              class="flex items-center gap-1.5"
+              class="flex items-center gap-2"
             >
               <span class="w-2.5 h-2.5 rounded-full bg-surface-container-high"></span>
               <span class="text-on-surface-variant">
@@ -320,7 +324,7 @@
             </div>
             <.dm_btn
               :if={Enum.any?(@tasks, &(&1.status in [:failed, :dead_letter]))}
-              variant="primary"
+              variant="secondary"
               size="xs"
               phx-click="retry_all_failed"
               class="ml-auto"
@@ -398,7 +402,12 @@
         <div class="bg-surface-container rounded-lg shadow p-4">
           <div class="flex justify-between items-center mb-3">
             <h3 class="text-sm font-medium text-on-surface-variant">Tasks</h3>
-            <.dm_btn :if={!@show_task_form} variant="success" size="xs" phx-click="show_task_form">
+            <.dm_btn
+              :if={!@show_task_form}
+              variant="secondary"
+              size="xs"
+              phx-click="show_task_form"
+            >
               + New Task
             </.dm_btn>
           </div>
@@ -475,7 +484,7 @@
               <.dm_badge variant={task_status_badge_color(task.status)}>{task.status}</.dm_badge>
               <.dm_btn
                 :if={task.status in [:failed, :dead_letter]}
-                variant="primary"
+                variant="secondary"
                 size="xs"
                 phx-click="retry_task"
                 phx-value-id={task.id}

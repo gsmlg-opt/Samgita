@@ -10,7 +10,11 @@
   </div>
 
   <%!-- Related References --%>
-  <.dm_card body_class="" variant="bordered" class="p-4 mb-6 bg-primary-container/20">
+  <.dm_card
+    body_class=""
+    variant="bordered"
+    class="p-4 mb-6 bg-primary-container text-on-primary-container"
+  >
     <div class="flex items-start gap-3">
       <.dm_mdi name="file-document-outline" class="w-5 h-5 text-primary shrink-0 mt-0.5" />
       <div class="flex-1">
@@ -65,10 +69,11 @@
             <div class="flex-1">
               <div class="flex items-center gap-3">
                 <h3 class="text-lg font-semibold text-on-surface font-mono">{agent.name}</h3>
-                <button
+                <.dm_btn
+                  variant="ghost"
+                  size="xs"
                   phx-click="toggle_agent"
                   phx-value-agent={agent.name}
-                  class="text-on-surface-variant hover:text-on-surface transition-colors"
                   title={
                     if expanded?(@expanded_agents, agent.name), do: "Collapse", else: "Expand"
                   }
@@ -77,7 +82,7 @@
                     name="chevron-down"
                     class={"w-5 h-5 transition-transform #{if expanded?(@expanded_agents, agent.name), do: "rotate-180", else: ""}"}
                   />
-                </button>
+                </.dm_btn>
               </div>
               <p class="text-sm text-on-surface-variant mt-2">{agent.description}</p>
             </div>
@@ -130,7 +135,7 @@
             <%!-- Quality Checks --%>
             <div>
               <h4 class="text-sm font-semibold text-on-surface mb-2">Quality Checks</h4>
-              <div class="bg-secondary-container/30 rounded-lg p-4">
+              <div class="bg-secondary-container text-on-secondary-container rounded-lg p-4">
                 <ul class="space-y-1">
                   <li
                     :for={check <- agent.quality_checks}
@@ -148,11 +153,11 @@
             <%!-- Model --%>
             <div :if={Map.get(agent, :model)}>
               <h4 class="text-sm font-semibold text-on-surface mb-2">Recommended Model</h4>
-              <div class="bg-tertiary-container/30 border border-tertiary-container rounded-lg p-3">
-                <span class="text-sm font-mono text-on-tertiary-container">
+              <div class="bg-tertiary-container text-on-tertiary-container border border-tertiary-container rounded-lg p-3">
+                <span class="text-sm font-mono">
                   {Map.get(agent, :model)}
                 </span>
-                <span class="text-xs text-on-tertiary-container/70 ml-2">
+                <span class="text-xs opacity-70 ml-2">
                   (required for deep analysis)
                 </span>
               </div>

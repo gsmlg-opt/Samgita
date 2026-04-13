@@ -16,6 +16,7 @@
 /* @duskmoon-dev/core - CSS theme system and components */
 @plugin "@duskmoon-dev/core/plugin";
 @import "@duskmoon-dev/core/components";
+@import "phoenix_duskmoon/components";
 
 /* Add variants based on LiveView classes */
 @custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
@@ -30,3 +31,18 @@
 
 /* This file is for your main application CSS */
 
+/* Typography — project font strategy */
+:root {
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body { font-family: var(--font-body); }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
+code, pre, .font-mono { font-family: var(--font-mono); }
+
+/* Reduced motion — respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

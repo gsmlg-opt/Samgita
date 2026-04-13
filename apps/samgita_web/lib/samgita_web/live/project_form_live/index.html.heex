@@ -37,30 +37,24 @@
     <div>
       <label class="block text-sm font-medium text-on-surface mb-2">Start Mode</label>
       <div class="flex gap-6">
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input
-            type="radio"
-            name="start_mode"
-            value="from_prd"
-            checked={@start_mode == "from_prd"}
-            phx-click="set_start_mode"
-            phx-value-mode="from_prd"
-            class="accent-primary"
-          />
-          <span class="text-sm text-on-surface">Start from PRD</span>
-        </label>
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input
-            type="radio"
-            name="start_mode"
-            value="from_idea"
-            checked={@start_mode == "from_idea"}
-            phx-click="set_start_mode"
-            phx-value-mode="from_idea"
-            class="accent-primary"
-          />
-          <span class="text-sm text-on-surface">Start from idea</span>
-        </label>
+        <.dm_radio
+          name="start_mode"
+          value="from_prd"
+          checked={@start_mode == "from_prd"}
+          label="Start from PRD"
+          horizontal
+          phx-click="set_start_mode"
+          phx-value-mode="from_prd"
+        />
+        <.dm_radio
+          name="start_mode"
+          value="from_idea"
+          checked={@start_mode == "from_idea"}
+          label="Start from idea"
+          horizontal
+          phx-click="set_start_mode"
+          phx-value-mode="from_idea"
+        />
       </div>
       <p class="text-xs text-on-surface-variant mt-1">
         <%= if @start_mode == "from_prd" do %>
@@ -82,7 +76,7 @@
       phx-change="update_prd"
       value={@prd_content}
     />
-    <div class="flex justify-end gap-3">
+    <div class="flex justify-end gap-4">
       <.link navigate={~p"/"}>
         <.dm_btn variant="ghost">Cancel</.dm_btn>
       </.link>

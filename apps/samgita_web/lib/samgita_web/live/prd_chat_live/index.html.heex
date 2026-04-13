@@ -15,27 +15,27 @@
 
   <%!-- Tab Switcher --%>
   <div class="flex gap-1 mb-6 border-b border-outline">
-    <.dm_btn
-      type="button"
-      variant={if @active_tab == :editor, do: "accent", else: "ghost"}
-      size="sm"
-      phx-click="switch_tab"
-      phx-value-tab="editor"
-    >
-      Editor
-    </.dm_btn>
-    <.dm_btn
-      type="button"
-      variant={if @active_tab == :chat, do: "accent", else: "ghost"}
-      size="sm"
-      phx-click="switch_tab"
-      phx-value-tab="chat"
-    >
-      Chat
-      <.dm_badge :if={length(@chat_messages) > 0} variant="info" class="ml-1">
-        {length(@chat_messages)}
-      </.dm_badge>
-    </.dm_btn>
+    <.link patch={editor_path(@project, @prd)}>
+      <.dm_btn
+        type="button"
+        variant={if @active_tab == :editor, do: "accent", else: "ghost"}
+        size="sm"
+      >
+        Editor
+      </.dm_btn>
+    </.link>
+    <.link patch={chat_path(@project, @prd)}>
+      <.dm_btn
+        type="button"
+        variant={if @active_tab == :chat, do: "accent", else: "ghost"}
+        size="sm"
+      >
+        Chat
+        <.dm_badge :if={length(@chat_messages) > 0} variant="info" class="ml-1">
+          {length(@chat_messages)}
+        </.dm_badge>
+      </.dm_btn>
+    </.link>
   </div>
 
   <%!-- Editor Tab --%>
@@ -81,7 +81,7 @@
       </div>
 
       <%!-- Actions --%>
-      <div class="flex justify-end gap-3">
+      <div class="flex justify-end gap-4">
         <.link navigate={~p"/projects/#{@project.id}"}>
           <.dm_btn variant="ghost">Cancel</.dm_btn>
         </.link>

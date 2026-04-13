@@ -503,9 +503,9 @@ defmodule SamgitaWeb.ProjectLive.Index do
   def log_stage_color(:failed), do: "text-error"
   def log_stage_color(_), do: "text-on-surface-variant"
 
-  def source_badge_class(:agent), do: "bg-primary/20 text-primary"
-  def source_badge_class(:orchestrator), do: "bg-secondary/20 text-secondary"
-  def source_badge_class(:task), do: "bg-success/20 text-success"
+  def source_badge_class(:agent), do: "bg-primary-container text-on-primary-container"
+  def source_badge_class(:orchestrator), do: "bg-secondary-container text-on-secondary-container"
+  def source_badge_class(:task), do: "bg-tertiary-container text-on-tertiary-container"
   def source_badge_class(_), do: "bg-surface-container text-on-surface-variant"
 
   def log_source_label(:agent), do: "AGT"

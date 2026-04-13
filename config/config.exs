@@ -25,7 +25,7 @@ config :samgita_web, SamgitaWeb.Endpoint,
 config :bun,
   version: "1.1.42",
   samgita_web: [
-    args: ~w(build assets/js/app.ts --outdir=priv/static/assets/js --target=browser),
+    args: ~w(build assets/js/app.ts assets/js/heavy-elements.ts --outdir=priv/static/assets/js --target=browser),
     cd: Path.expand("../apps/samgita_web", __DIR__)
   ]
 
