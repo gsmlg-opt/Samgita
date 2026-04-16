@@ -88,9 +88,6 @@ defmodule SamgitaWeb do
 
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components
-      import SamgitaWeb.CoreComponents
-
       # Phoenix Duskmoon UI components (dm_* prefix)
       use PhoenixDuskmoon.Component
       use PhoenixDuskmoon.ArtComponent

@@ -1,10 +1,11 @@
-// Register DuskMoon custom elements individually to avoid
-// @duskmoon-dev/el-code-engine crash (tags.function undefined in sunshine theme)
-// TODO: upstream duskmoon-dev/code-engine — tags.function undefined in sunshine theme
+// Register DuskMoon custom elements individually.
+// Elements depending on mermaid/d3 (markdown, markdown-input) and code-engine
+// are loaded via dynamic import() to keep them in a separate scope.
+// This prevents d3-selection's dispatchEvent from interfering with LiveView's
+// WebSocket connect, and @lezer/highlight's tags.function crash in code-engine.
 import { register as registerButton } from '@duskmoon-dev/el-button'
 import { register as registerCard } from '@duskmoon-dev/el-card'
 import { register as registerInput } from '@duskmoon-dev/el-input'
-import { register as registerMarkdown } from '@duskmoon-dev/el-markdown'
 import { register as registerSwitch } from '@duskmoon-dev/el-switch'
 import { register as registerAlert } from '@duskmoon-dev/el-alert'
 import { register as registerDialog } from '@duskmoon-dev/el-dialog'
@@ -33,7 +34,6 @@ import { register as registerBottomSheet } from '@duskmoon-dev/el-bottom-sheet'
 import { register as registerPopover } from '@duskmoon-dev/el-popover'
 import { register as registerTable } from '@duskmoon-dev/el-table'
 import { registerProDataGrid, registerGridColumn, registerGridColumnGroup } from '@duskmoon-dev/el-pro-data-grid'
-import { register as registerMarkdownInput } from '@duskmoon-dev/el-markdown-input'
 import { register as registerCodeBlock } from '@duskmoon-dev/el-code-block'
 import { register as registerFormGroup } from '@duskmoon-dev/el-form-group'
 import { register as registerNavigation } from '@duskmoon-dev/el-navigation'
@@ -44,10 +44,10 @@ import { register as registerSegmentControl } from '@duskmoon-dev/el-segment-con
 import { register as registerThemeController } from '@duskmoon-dev/el-theme-controller'
 import { register as registerTimeInput } from '@duskmoon-dev/el-time-input'
 
+// Register lightweight elements immediately
 registerButton()
 registerCard()
 registerInput()
-registerMarkdown()
 registerSwitch()
 registerAlert()
 registerDialog()
@@ -78,7 +78,6 @@ registerTable()
 registerProDataGrid()
 registerGridColumn()
 registerGridColumnGroup()
-registerMarkdownInput()
 registerCodeBlock()
 registerFormGroup()
 registerNavigation()
@@ -88,10 +87,3 @@ registerPinInput()
 registerSegmentControl()
 registerThemeController()
 registerTimeInput()
-
-// Lazy-load code-engine to isolate its @lezer/highlight bundling crash
-import('@duskmoon-dev/el-code-engine').then(({ register }) => {
-  register()
-}).catch(() => {
-  console.warn('el-dm-code-engine registration skipped (non-critical)')
-})
