@@ -28,6 +28,7 @@ bun.lockb
 # Per-app static and node_modules
 apps/samgita_web/priv/static/
 apps/samgita_web/node_modules/
+node_modules/
 
 # Database
 *.db
