@@ -215,15 +215,18 @@ Token budget truncation (default 4000 tokens) prevents oversized MCP responses.
 - **Bun** as JS bundler (not npm/webpack), TypeScript enabled
 - Frontend assets live in `apps/samgita_web/` — `package.json` references deps via `../../deps/` paths
 
-## UI System
+## UI Library
 
-### Stack
+This project uses the DuskMoon UI system:
 
-Two dependencies only:
-- `@duskmoon-dev/core` — TailwindCSS plugin (design tokens, utilities)
-- `phoenix_duskmoon` — Phoenix component module (HEEx components)
+- **`phoenix_duskmoon`** — Phoenix LiveView UI component library (primary web UI)
+- **`@duskmoon-dev/core`** — Core Tailwind CSS plugin and utilities
+- **`@duskmoon-dev/css-art`** — CSS art utilities
+- **`@duskmoon-dev/elements`** — Base web components
+- **`@duskmoon-dev/art-elements`** — Art/decorative web components
 
-`phoenix_duskmoon` wraps `duskmoon-elements` internally. Treat both as black boxes consumed via their published APIs only.
+Do NOT use DaisyUI or other CSS component libraries. Do NOT use `core_components.ex` — use `phoenix_duskmoon` components instead.
+Use `@duskmoon-dev/core/plugin` as the Tailwind CSS plugin.
 
 ### Skills
 
@@ -239,22 +242,15 @@ Load before any UI task:
 - NEVER patch `phoenix_duskmoon` component logic inline — wrap or compose only
 - Raw Tailwind classes not provided by `@duskmoon-dev/core` are PROHIBITED in templates
 
-### Upstream Issue Protocol
+### Reporting issues or feature requests
 
-When you encounter a bug, missing feature, or API gap:
+If you encounter missing features, bugs, or need functionality not yet available in any DuskMoon package, open a GitHub issue in the appropriate repository with the label `internal request`:
 
-1. Identify the correct repo:
-   - Token/CSS/plugin issue → `duskmoon-dev/duskmoonui` (`@duskmoon-dev/core`)
-   - Web component/element issue → `duskmoon-dev/duskmoon-elements`
-   - Phoenix component issue → `duskmoon-dev/phoenix-duskmoon-ui`
-
-2. Create a GitHub issue in that repo with:
-   - Label: `internal request`
-   - Expected vs actual behavior
-   - Minimal reproduction
-
-3. Add a comment at the workaround site: `# TODO: upstream duskmoon-dev/<repo>#<issue>`
-   Do NOT silently absorb upstream bugs.
+- **`phoenix_duskmoon`** — https://github.com/gsmlg-dev/phoenix_duskmoon/issues
+- **`@duskmoon-dev/core`** — https://github.com/gsmlg-dev/duskmoon-dev/issues
+- **`@duskmoon-dev/css-art`** — https://github.com/gsmlg-dev/duskmoon-dev/issues
+- **`@duskmoon-dev/elements`** — https://github.com/gsmlg-dev/duskmoon-dev/issues
+- **`@duskmoon-dev/art-elements`** — https://github.com/gsmlg-dev/duskmoon-dev/issues
 
 ## Agent Types (41)
 
