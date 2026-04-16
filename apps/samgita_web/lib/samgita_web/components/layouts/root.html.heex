@@ -22,21 +22,24 @@
       (() => {
         const resolveSystem = () =>
           window.matchMedia("(prefers-color-scheme: dark)").matches ? "moonlight" : "sunshine";
+        const applyTheme = () => {
+          const stored = localStorage.getItem("phx:theme");
+          const theme = stored || resolveSystem();
+          document.documentElement.setAttribute("data-theme", theme);
+        };
         const setTheme = (theme) => {
           if (theme === "system") {
             localStorage.removeItem("phx:theme");
-            document.documentElement.setAttribute("data-theme", resolveSystem());
           } else {
             localStorage.setItem("phx:theme", theme);
-            document.documentElement.setAttribute("data-theme", theme);
           }
+          applyTheme();
         };
-        const stored = localStorage.getItem("phx:theme");
-        if (stored) {
-          setTheme(stored);
-        } else {
-          setTheme("system");
-        }
+        applyTheme();
+        // Re-apply theme after LiveView DOM patches strip data-theme from <html>
+        new MutationObserver(() => {
+          if (!document.documentElement.getAttribute("data-theme")) applyTheme();
+        }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
         window.addEventListener("storage", (e) => e.key === "phx:theme" && setTheme(e.newValue || "system"));
         window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
           if (!localStorage.getItem("phx:theme")) setTheme("system");
