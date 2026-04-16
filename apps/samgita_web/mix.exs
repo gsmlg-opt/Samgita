@@ -19,7 +19,6 @@ defmodule SamgitaWeb.MixProject do
       test_coverage: [
         summary: [threshold: 70],
         ignore_modules: [
-          SamgitaWeb.CoreComponents,
           SamgitaWeb.Layouts,
           SamgitaWeb.PageHTML,
           SamgitaWeb.Gettext

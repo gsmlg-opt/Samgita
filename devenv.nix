@@ -11,6 +11,7 @@ in {
   env.GREET = "Samgita";
   env.MIX_BUN_PATH = lib.getExe pkgs-stable.bun;
   env.MIX_TAILWIND_PATH = lib.getExe pkgs-stable.tailwindcss_4;
+  env.NODE_PATH = "${toString ./.}/deps";
   env.PGHOST = "${config.env.DEVENV_STATE}/postgres";
   env.POSTGRES_PORT = "5433";
 
