@@ -45,6 +45,71 @@ if (!csrfToken) {
 // LiveView hooks (merge DuskMoon hooks with app hooks)
 const Hooks: Record<string, any> = { ...DuskmoonHooks, ...((window as any).PlaygroundHooks || {}) }
 
+Hooks.MarkdownInputWithSend = {
+  mounted() {
+    const el = this.el as HTMLElement & { shadowRoot: ShadowRoot | null }
+    const root = el.shadowRoot
+    if (!root) return
+
+    const sheet = new CSSStyleSheet()
+    sheet.replaceSync(`
+      .toolbar { display: none !important; }
+      .status-bar .send-btn {
+        appearance: none;
+        margin-left: 0.5rem;
+        padding: 0.25rem 0.75rem;
+        background: var(--color-tertiary, #5e35b1);
+        color: var(--color-on-tertiary, #fff);
+        border: none;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 0.75rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: opacity 150ms ease;
+      }
+      .status-bar .send-btn:hover:not(:disabled) { opacity: 0.9; }
+      .status-bar .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    `)
+    root.adoptedStyleSheets = [...root.adoptedStyleSheets, sheet]
+
+    const injectSendBtn = () => {
+      const statusBar = root.querySelector(".status-bar")
+      if (!statusBar) return
+      if (statusBar.querySelector(".send-btn")) return
+      const btn = document.createElement("button")
+      btn.type = "button"
+      btn.className = "send-btn"
+      btn.textContent = el.dataset.sending === "true" ? "Sending…" : "Send"
+      btn.disabled = el.dataset.sending === "true"
+      btn.addEventListener("click", () => {
+        const form = el.closest("form")
+        form?.requestSubmit()
+      })
+      statusBar.appendChild(btn)
+    }
+
+    injectSendBtn()
+
+    this._observer = new MutationObserver(() => injectSendBtn())
+    this._observer.observe(root, { childList: true, subtree: true })
+  },
+
+  updated() {
+    const el = this.el as HTMLElement
+    const root = (el as any).shadowRoot as ShadowRoot | null
+    const btn = root?.querySelector(".send-btn") as HTMLButtonElement | null
+    if (!btn) return
+    const sending = el.dataset.sending === "true"
+    btn.textContent = sending ? "Sending…" : "Send"
+    btn.disabled = sending
+  },
+
+  destroyed() {
+    this._observer?.disconnect()
+  },
+}
+
 Hooks.AutoScroll = {
   mounted() {
     this._autoScroll = true

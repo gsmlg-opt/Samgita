@@ -138,21 +138,16 @@
     </div>
 
     <%!-- Chat Input --%>
-    <form phx-submit="send_message" class="flex gap-2 mb-4">
-      <div class="flex-1">
-        <.dm_textarea
-          name="chat_input"
-          rows={3}
-          placeholder="Describe your product idea, ask questions, or refine requirements..."
-          value={@chat_input}
-          phx-change="update_chat_input"
-        />
-      </div>
-      <div class="flex flex-col justify-end">
-        <.dm_btn type="submit" variant="accent" disabled={@generating}>
-          {if @generating, do: "Sending...", else: "Send"}
-        </.dm_btn>
-      </div>
+    <form phx-submit="send_message" class="mb-4">
+      <.dm_markdown_input
+        id="chat-markdown-input"
+        name="chat_input"
+        value={@chat_input}
+        placeholder="Describe your product idea, ask questions, or refine requirements..."
+        phx-hook="MarkdownInputWithSend"
+        phx-change="update_chat_input"
+        data-sending={to_string(@generating)}
+      />
     </form>
 
     <%!-- Generate PRD Button --%>

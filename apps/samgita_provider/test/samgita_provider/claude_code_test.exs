@@ -67,6 +67,24 @@ defmodule SamgitaProvider.ClaudeCodeTest do
       args = ClaudeCode.build_args("test prompt", max_turns: 0)
       refute "--max-turns" in args
     end
+
+    test "includes --tools \"\" when disable_tools: true is given" do
+      args = ClaudeCode.build_args("test prompt", disable_tools: true)
+      tools_idx = Enum.find_index(args, &(&1 == "--tools"))
+      assert tools_idx != nil
+      assert Enum.at(args, tools_idx + 1) == ""
+      assert tools_idx < Enum.find_index(args, &(&1 == "test prompt"))
+    end
+
+    test "does not include --tools when disable_tools is not given" do
+      args = ClaudeCode.build_args("test prompt", [])
+      refute "--tools" in args
+    end
+
+    test "does not include --tools when disable_tools: false is given" do
+      args = ClaudeCode.build_args("test prompt", disable_tools: false)
+      refute "--tools" in args
+    end
   end
 
   describe "parse_json_output/1" do

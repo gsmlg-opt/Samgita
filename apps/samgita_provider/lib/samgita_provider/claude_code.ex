@@ -88,6 +88,7 @@ defmodule SamgitaProvider.ClaudeCode do
     ]
 
     args = maybe_add_max_turns(args, opts[:max_turns])
+    args = maybe_disable_tools(args, opts[:disable_tools])
 
     # Append prompt as the positional argument
     args ++ [prompt]
@@ -138,6 +139,9 @@ defmodule SamgitaProvider.ClaudeCode do
   end
 
   defp maybe_add_max_turns(args, _invalid), do: args
+
+  defp maybe_disable_tools(args, true), do: args ++ ["--tools", ""]
+  defp maybe_disable_tools(args, _), do: args
 
   @impl true
   def start_session(system_prompt, opts \\ []) do

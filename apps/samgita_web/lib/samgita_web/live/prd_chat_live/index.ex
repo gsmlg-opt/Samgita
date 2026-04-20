@@ -95,13 +95,13 @@ defmodule SamgitaWeb.PrdChatLive.Index do
   end
 
   @impl true
-  def handle_event("update_chat_input", %{"chat_input" => value}, socket) do
+  def handle_event("update_chat_input", %{"value" => value}, socket) do
     {:noreply, assign(socket, chat_input: value)}
   end
 
   @impl true
-  def handle_event("send_message", %{"chat_input" => message}, socket) do
-    message = String.trim(message)
+  def handle_event("send_message", params, socket) do
+    message = String.trim(params["chat_input"] || socket.assigns.chat_input || "")
 
     if message == "" do
       {:noreply, socket}
@@ -119,11 +119,12 @@ defmodule SamgitaWeb.PrdChatLive.Index do
       pid = self()
       messages = socket.assigns.chat_messages
       prd_id = prd_id(socket)
+      working_dir = project_working_dir(socket.assigns.project)
 
       Task.start(fn ->
         result =
           try do
-            generate_prd_from_chat(messages, prd_id)
+            generate_prd_from_chat(messages, prd_id, working_dir)
           rescue
             e -> {:error, Exception.message(e)}
           catch
@@ -159,18 +160,13 @@ defmodule SamgitaWeb.PrdChatLive.Index do
 
   @impl true
   def handle_info({:chat_response, {:error, reason}, user_message}, socket) do
-    user_msg = build_message(:user, user_message)
-    error_content = "Sorry, I encountered an error: #{inspect(reason)}"
-    error_msg = build_message(:assistant, error_content)
-
     {:noreply,
      socket
      |> assign(
-       chat_messages: socket.assigns.chat_messages ++ [user_msg, error_msg],
-       chat_input: "",
+       chat_input: user_message,
        generating: false
      )
-     |> put_flash(:error, "Claude request failed: #{inspect(reason)}")}
+     |> put_flash(:error, "Claude request failed: #{humanize_error(reason)}")}
   end
 
   @impl true
@@ -194,6 +190,7 @@ defmodule SamgitaWeb.PrdChatLive.Index do
     socket = assign(socket, generating: true)
     pid = self()
     chat_history = socket.assigns.chat_messages
+    working_dir = project_working_dir(socket.assigns.project)
 
     Task.start(fn ->
       prompt = build_prompt(chat_history, message)
@@ -201,7 +198,9 @@ defmodule SamgitaWeb.PrdChatLive.Index do
       result =
         SamgitaProvider.query(prompt,
           system_prompt:
-            "You are a helpful product manager assistant. Help the user define and refine their Product Requirements Document (PRD). Ask clarifying questions, suggest improvements, and help structure requirements clearly."
+            "You are a helpful product manager assistant. Help the user define and refine their Product Requirements Document (PRD). Ask clarifying questions, suggest improvements, and help structure requirements clearly.",
+          working_directory: working_dir,
+          disable_tools: true
         )
 
       send(pid, {:chat_response, result, message})
@@ -224,7 +223,7 @@ defmodule SamgitaWeb.PrdChatLive.Index do
     end
   end
 
-  defp generate_prd_from_chat(messages, prd_id) do
+  defp generate_prd_from_chat(messages, prd_id, working_dir) do
     conversation =
       Enum.map_join(messages, "\n\n", fn msg ->
         role = if msg.role in [:user, "user"], do: "User", else: "Assistant"
@@ -252,7 +251,9 @@ defmodule SamgitaWeb.PrdChatLive.Index do
 
     case SamgitaProvider.query(prompt,
            system_prompt:
-             "You are an expert product manager. Generate a comprehensive PRD in Markdown format based on the conversation provided. Output only the PRD content, no preamble."
+             "You are an expert product manager. Generate a comprehensive PRD in Markdown format based on the conversation provided. Output only the PRD content, no preamble.",
+           working_directory: working_dir,
+           disable_tools: true
          ) do
       {:ok, content} ->
         if prd_id do
@@ -270,8 +271,26 @@ defmodule SamgitaWeb.PrdChatLive.Index do
     %{role: role, content: content, inserted_at: DateTime.utc_now()}
   end
 
+  defp humanize_error(:timeout),
+    do: "Claude took too long to respond. Please try a shorter prompt or try again."
+
+  defp humanize_error(:rate_limit), do: "Rate limit reached. Please wait a moment and retry."
+  defp humanize_error(:overloaded), do: "Claude is overloaded. Please retry in a moment."
+  defp humanize_error(:claude_not_found), do: "Claude CLI is not installed on the server."
+  defp humanize_error(reason) when is_binary(reason), do: reason
+  defp humanize_error(reason), do: inspect(reason)
+
   defp prd_id(%{assigns: %{prd: %{id: id}}}), do: id
   defp prd_id(_), do: nil
+
+  defp project_working_dir(%{working_path: path}) when is_binary(path) and path != "" do
+    case File.mkdir_p(path) do
+      :ok -> path
+      {:error, _} -> System.tmp_dir!()
+    end
+  end
+
+  defp project_working_dir(_), do: System.tmp_dir!()
 
   def editor_path(project, nil), do: ~p"/projects/#{project.id}/prds/new"
   def editor_path(project, prd), do: ~p"/projects/#{project.id}/prds/#{prd.id}"
