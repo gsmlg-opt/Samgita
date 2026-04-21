@@ -10,7 +10,7 @@ defmodule SamgitaProvider.ClaudeCode do
 
   require Logger
 
-  @default_timeout 300_000
+  @default_timeout 600_000
 
   @impl true
   def query(prompt, opts \\ []) do
@@ -90,8 +90,9 @@ defmodule SamgitaProvider.ClaudeCode do
     args = maybe_add_max_turns(args, opts[:max_turns])
     args = maybe_disable_tools(args, opts[:disable_tools])
 
-    # Append prompt as the positional argument
-    args ++ [prompt]
+    # `--` separates options from the positional prompt so that variadic
+    # flags like `--tools` cannot greedily swallow the prompt as a value.
+    args ++ ["--", prompt]
   end
 
   defp cmd_env do
@@ -227,8 +228,9 @@ defmodule SamgitaProvider.ClaudeCode do
         do: args ++ ["--system-prompt", system_prompt],
         else: args
 
-    # Prompt is always last
-    args ++ [prompt]
+    # `--` separates options from the positional prompt so that variadic
+    # flags cannot greedily swallow the prompt as a value.
+    args ++ ["--", prompt]
   end
 
   @doc false

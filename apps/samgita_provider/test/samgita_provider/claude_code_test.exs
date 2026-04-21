@@ -85,6 +85,19 @@ defmodule SamgitaProvider.ClaudeCodeTest do
       args = ClaudeCode.build_args("test prompt", disable_tools: false)
       refute "--tools" in args
     end
+
+    test "separates prompt from variadic flags with --" do
+      # Without `--`, the variadic `--tools <tools...>` flag would consume
+      # the prompt as a tool name and the CLI would report no prompt given.
+      args = ClaudeCode.build_args("my prompt", disable_tools: true)
+      separator_idx = Enum.find_index(args, &(&1 == "--"))
+      prompt_idx = Enum.find_index(args, &(&1 == "my prompt"))
+      tools_idx = Enum.find_index(args, &(&1 == "--tools"))
+
+      assert separator_idx != nil
+      assert prompt_idx == separator_idx + 1
+      assert tools_idx < separator_idx
+    end
   end
 
   describe "parse_json_output/1" do

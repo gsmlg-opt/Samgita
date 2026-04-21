@@ -11,7 +11,7 @@ defmodule SamgitaProvider.Codex do
 
   require Logger
 
-  @default_timeout 300_000
+  @default_timeout 600_000
 
   @impl true
   def query(prompt, opts \\ []) do
