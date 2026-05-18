@@ -16,7 +16,8 @@ defmodule SamgitaWeb.ProjectFormLive.Index do
        detected_path: nil,
        clone_needed: false,
        prd_content: "",
-       start_mode: "from_prd"
+       start_mode: "from_prd",
+       launch_mode: "local"
      )}
   end
 
@@ -51,10 +52,16 @@ defmodule SamgitaWeb.ProjectFormLive.Index do
   end
 
   @impl true
+  def handle_event("set_launch_mode", %{"mode" => mode}, socket) when mode in ["local", "ssh"] do
+    {:noreply, assign(socket, launch_mode: mode)}
+  end
+
+  @impl true
   def handle_event("save", %{"project" => params}, socket) do
     params =
       params
       |> Map.put("start_mode", socket.assigns.start_mode)
+      |> put_codex_config(socket.assigns)
       |> maybe_set_path(socket.assigns)
       |> maybe_set_prd(socket.assigns)
 
@@ -82,6 +89,8 @@ defmodule SamgitaWeb.ProjectFormLive.Index do
     {:noreply, assign(socket, prd_content: content)}
   end
 
+  defp maybe_set_path(params, %{launch_mode: "ssh"}), do: params
+
   defp maybe_set_path(params, %{detected_path: path}) when not is_nil(path) do
     Map.put_new(params, "working_path", path)
   end
@@ -93,4 +102,30 @@ defmodule SamgitaWeb.ProjectFormLive.Index do
   end
 
   defp maybe_set_prd(params, _), do: params
+
+  defp put_codex_config(params, %{launch_mode: "ssh"}) do
+    codex_config = %{
+      "mode" => "ssh",
+      "ssh_target" => String.trim(params["ssh_target"] || ""),
+      "remote_working_path" => String.trim(params["remote_working_path"] || "")
+    }
+
+    params
+    |> Map.drop(["ssh_target", "remote_working_path"])
+    |> Map.put("config", %{"codex_app_server" => codex_config})
+    |> Map.put("working_path", nil)
+  end
+
+  defp put_codex_config(params, %{launch_mode: "local"}) do
+    working_path = String.trim(params["working_path"] || "")
+
+    codex_config =
+      if working_path == "" do
+        %{"mode" => "local"}
+      else
+        %{"mode" => "local", "working_path" => working_path}
+      end
+
+    Map.put(params, "config", %{"codex_app_server" => codex_config})
+  end
 end

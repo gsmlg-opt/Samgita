@@ -12,6 +12,7 @@ defmodule SamgitaWeb.DashboardLiveTest do
   test "renders empty dashboard", %{conn: conn} do
     {:ok, view, html} = live(conn, ~p"/")
     assert html =~ "Dashboard"
+    assert html =~ "Command Center"
     assert html =~ "No projects yet"
     assert has_element?(view, "a", "New Project")
   end
@@ -21,6 +22,23 @@ defmodule SamgitaWeb.DashboardLiveTest do
 
     {:ok, _view, html} = live(conn, ~p"/")
     assert html =~ "Test Project"
+    assert html =~ "Codex app-server"
+  end
+
+  test "shows command-center project rail with codex status", %{conn: conn} do
+    {:ok, _} =
+      Projects.create_project(%{
+        name: "Workspace Rail",
+        git_url: unique_git_url("workspace-rail"),
+        working_path: "/tmp/workspace-rail",
+        config: %{"codex_app_server" => %{"mode" => "local"}}
+      })
+
+    {:ok, view, html} = live(conn, ~p"/")
+    assert has_element?(view, "[data-role=workspace-rail]")
+    assert html =~ "Workspace Rail"
+    assert html =~ "stopped"
+    assert html =~ "Open workspace"
   end
 
   test "shows multiple projects", %{conn: conn} do

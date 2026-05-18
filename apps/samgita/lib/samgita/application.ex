@@ -16,6 +16,8 @@ defmodule Samgita.Application do
       {Phoenix.PubSub, name: Samgita.PubSub},
       {Finch, name: Samgita.Finch},
       Samgita.Cache,
+      {Registry, keys: :unique, name: Samgita.CodexAppServers.Registry},
+      {DynamicSupervisor, name: Samgita.CodexAppServers.Supervisor, strategy: :one_for_one},
       {Horde.Registry, name: Samgita.AgentRegistry, keys: :unique, members: :auto},
       {Horde.DynamicSupervisor,
        name: Samgita.AgentSupervisor, strategy: :one_for_one, members: :auto},

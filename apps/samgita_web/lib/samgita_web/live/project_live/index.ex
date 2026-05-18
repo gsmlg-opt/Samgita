@@ -1,6 +1,7 @@
 defmodule SamgitaWeb.ProjectLive.Index do
   use SamgitaWeb, :live_view
 
+  alias Samgita.CodexAppServers
   alias Samgita.Domain.Project
   alias Samgita.{Git, Projects}
   alias Samgita.Workers.BootstrapWorker
@@ -22,6 +23,8 @@ defmodule SamgitaWeb.ProjectLive.Index do
          |> assign(
            page_title: project.name,
            project: project,
+           projects: Projects.list_projects(),
+           codex_status: CodexAppServers.status(project.id),
            prds: prds,
            selected_prd: selected_prd,
            tasks: tasks,
@@ -44,6 +47,33 @@ defmodule SamgitaWeb.ProjectLive.Index do
          |> put_flash(:error, "Project not found")
          |> push_navigate(to: ~p"/")}
     end
+  end
+
+  # Codex app-server events
+  @impl true
+  def handle_event("start_codex_app_server", _, socket) do
+    case CodexAppServers.start(socket.assigns.project.id) do
+      {:ok, status} ->
+        {:noreply,
+         assign(socket, codex_status: status) |> put_flash(:info, "Codex app-server started")}
+
+      {:error, :working_path_not_available} ->
+        {:noreply,
+         put_flash(socket, :error, "Set an existing working path before starting Codex")}
+
+      {:error, :working_path_not_git_repo} ->
+        {:noreply, put_flash(socket, :error, "Working path must be a git repository")}
+
+      {:error, reason} ->
+        {:noreply,
+         put_flash(socket, :error, "Failed to start Codex app-server: #{inspect(reason)}")}
+    end
+  end
+
+  @impl true
+  def handle_event("stop_codex_app_server", _, socket) do
+    :ok = CodexAppServers.stop(socket.assigns.project.id)
+    {:noreply, assign(socket, codex_status: CodexAppServers.status(socket.assigns.project.id))}
   end
 
   # Project control events
@@ -224,7 +254,12 @@ defmodule SamgitaWeb.ProjectLive.Index do
       {:ok, project} ->
         {:noreply,
          socket
-         |> assign(project: project, editing_working_path: false, detected_path: nil)
+         |> assign(
+           project: project,
+           editing_working_path: false,
+           detected_path: nil,
+           codex_status: CodexAppServers.status(project.id)
+         )
          |> put_flash(:info, "Working path updated")}
 
       {:error, _} ->
@@ -399,6 +434,11 @@ defmodule SamgitaWeb.ProjectLive.Index do
   end
 
   @impl true
+  def handle_info({:codex_app_server_changed, _project_id, status}, socket) do
+    {:noreply, assign(socket, codex_status: status)}
+  end
+
+  @impl true
   def handle_info(_, socket), do: {:noreply, socket}
 
   # Helper functions
@@ -453,6 +493,10 @@ defmodule SamgitaWeb.ProjectLive.Index do
 
   def can_terminate?(project), do: project.status in [:running, :paused]
   def running?(project), do: project.status in [:running, :paused]
+
+  def codex_status_badge(%{state: :running}), do: "success"
+  def codex_status_badge(%{state: :stopped}), do: "warning"
+  def codex_status_badge(_), do: ""
 
   def status_text_color(:running), do: "text-success"
   def status_text_color(:paused), do: "text-warning"

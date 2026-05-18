@@ -2,7 +2,15 @@
   <.link navigate={~p"/"} class="text-sm text-on-surface-variant hover:text-on-surface">
     &larr; Dashboard
   </.link>
-  <h1 class="text-3xl font-bold text-on-surface mt-4 mb-8">New Project</h1>
+  <div class="mt-4 mb-8">
+    <p class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+      Codex Workspace
+    </p>
+    <h1 class="text-3xl font-bold text-on-surface">New Project Workspace</h1>
+    <p class="mt-2 text-sm text-on-surface-variant">
+      Set a GitHub repo, choose where Codex should run, then launch the app-server from the project page.
+    </p>
+  </div>
 
   <.dm_form for={@form} phx-change="validate" phx-submit="save" class="space-y-6">
     <.dm_input
@@ -16,8 +24,8 @@
       <.dm_input
         field={@form[:git_url]}
         type="text"
-        label="Git URL"
-        placeholder="git@github.com:org/repo.git"
+        label="GitHub Repository / Git URL"
+        placeholder="git@github.com:org/repo.git or https://github.com/org/repo.git"
         phx-blur="detect_path"
         required
       />
@@ -31,9 +39,65 @@
     <.dm_input
       field={@form[:working_path]}
       type="text"
-      label="Working Path (optional)"
-      placeholder="Auto-detected from git URL"
+      label="Local Working Path"
+      placeholder="Auto-detected from git URL or /path/to/repo"
     />
+    <div>
+      <label class="block text-sm font-medium text-on-surface mb-2">Codex Launch Mode</label>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <button
+          type="button"
+          phx-click="set_launch_mode"
+          phx-value-mode="local"
+          class={[
+            "rounded-lg border p-4 text-left transition-colors",
+            if(@launch_mode == "local",
+              do: "border-primary bg-primary-container/30",
+              else: "border-outline-variant bg-surface-container hover:bg-surface-container-high"
+            )
+          ]}
+        >
+          <span class="block text-sm font-semibold text-on-surface">Local</span>
+          <span class="mt-1 block text-xs text-on-surface-variant">
+            Samgita launches Codex on this host.
+          </span>
+        </button>
+        <button
+          type="button"
+          phx-click="set_launch_mode"
+          phx-value-mode="ssh"
+          class={[
+            "rounded-lg border p-4 text-left transition-colors",
+            if(@launch_mode == "ssh",
+              do: "border-primary bg-primary-container/30",
+              else: "border-outline-variant bg-surface-container hover:bg-surface-container-high"
+            )
+          ]}
+        >
+          <span class="block text-sm font-semibold text-on-surface">SSH</span>
+          <span class="mt-1 block text-xs text-on-surface-variant">
+            Samgita launches Codex on a remote host over SSH.
+          </span>
+        </button>
+      </div>
+    </div>
+    <div
+      :if={@launch_mode == "ssh"}
+      class="grid gap-4 rounded-lg border border-outline-variant bg-surface-container p-4"
+    >
+      <.dm_input
+        type="text"
+        name="project[ssh_target]"
+        label="SSH Target"
+        placeholder="devbox or user@host"
+      />
+      <.dm_input
+        type="text"
+        name="project[remote_working_path]"
+        label="Remote Working Path"
+        placeholder="/srv/apps/repo"
+      />
+    </div>
     <div>
       <label class="block text-sm font-medium text-on-surface mb-2">Start Mode</label>
       <div class="flex gap-6">

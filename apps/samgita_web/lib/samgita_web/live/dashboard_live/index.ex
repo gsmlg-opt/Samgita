@@ -1,6 +1,7 @@
 defmodule SamgitaWeb.DashboardLive.Index do
   use SamgitaWeb, :live_view
 
+  alias Samgita.CodexAppServers
   alias Samgita.Projects
 
   @max_activity_entries 50
@@ -18,6 +19,7 @@ defmodule SamgitaWeb.DashboardLive.Index do
      assign(socket,
        page_title: "Dashboard",
        projects: projects,
+       codex_statuses: load_codex_statuses(projects),
        project_stats: load_project_stats(projects),
        activity_log: []
      )}
@@ -27,13 +29,25 @@ defmodule SamgitaWeb.DashboardLive.Index do
   def handle_info({:project_updated, _project}, socket) do
     projects = Projects.list_projects()
     subscribe_new_projects(projects, socket.assigns.projects)
-    {:noreply, assign(socket, projects: projects, project_stats: load_project_stats(projects))}
+
+    {:noreply,
+     assign(socket,
+       projects: projects,
+       codex_statuses: load_codex_statuses(projects),
+       project_stats: load_project_stats(projects)
+     )}
   end
 
   @impl true
   def handle_info({:project_updated, _project_id, _phase}, socket) do
     projects = Projects.list_projects()
-    {:noreply, assign(socket, projects: projects, project_stats: load_project_stats(projects))}
+
+    {:noreply,
+     assign(socket,
+       projects: projects,
+       codex_statuses: load_codex_statuses(projects),
+       project_stats: load_project_stats(projects)
+     )}
   end
 
   @impl true
@@ -53,9 +67,21 @@ defmodule SamgitaWeb.DashboardLive.Index do
   end
 
   @impl true
+  def handle_info({:codex_app_server_changed, project_id, status}, socket) do
+    {:noreply,
+     assign(socket, codex_statuses: Map.put(socket.assigns.codex_statuses, project_id, status))}
+  end
+
+  @impl true
   def handle_info({:phase_changed, _project_id, _phase}, socket) do
     projects = Projects.list_projects()
-    {:noreply, assign(socket, projects: projects, project_stats: load_project_stats(projects))}
+
+    {:noreply,
+     assign(socket,
+       projects: projects,
+       codex_statuses: load_codex_statuses(projects),
+       project_stats: load_project_stats(projects)
+     )}
   end
 
   @impl true
@@ -80,6 +106,20 @@ defmodule SamgitaWeb.DashboardLive.Index do
     end)
   end
 
+  defp load_codex_statuses(projects) do
+    Map.new(projects, fn project -> {project.id, CodexAppServers.status(project.id)} end)
+  end
+
+  def codex_status(statuses, project) do
+    Map.get(statuses, project.id, %{
+      state: :stopped,
+      mode: nil,
+      endpoint: nil,
+      connect_command: nil,
+      logs: []
+    })
+  end
+
   def total_tasks(stats), do: stats |> Map.values() |> Enum.sum()
   def task_stat(stats, status), do: Map.get(stats, status, 0)
 
@@ -96,4 +136,8 @@ defmodule SamgitaWeb.DashboardLive.Index do
   def activity_dot_color(%{stage: :failed}), do: "bg-error"
   def activity_dot_color(%{stage: :reason}), do: "bg-tertiary"
   def activity_dot_color(_), do: "bg-on-surface-variant"
+
+  def codex_status_badge(%{state: :running}), do: "success"
+  def codex_status_badge(%{state: :stopped}), do: "warning"
+  def codex_status_badge(_), do: ""
 end

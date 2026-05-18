@@ -71,6 +71,21 @@ defmodule Samgita.Events do
     Phoenix.PubSub.broadcast(@pubsub, "projects", {:project_updated, project})
   end
 
+  @spec codex_app_server_changed(String.t(), map()) :: :ok
+  def codex_app_server_changed(project_id, status) do
+    Phoenix.PubSub.broadcast(
+      @pubsub,
+      "project:#{project_id}",
+      {:codex_app_server_changed, project_id, status}
+    )
+
+    Phoenix.PubSub.broadcast(
+      @pubsub,
+      "projects",
+      {:codex_app_server_changed, project_id, status}
+    )
+  end
+
   @spec quality_gate_completed(String.t(), atom(), [map()]) :: :ok
   def quality_gate_completed(project_id, verdict, gate_results) do
     Phoenix.PubSub.broadcast(

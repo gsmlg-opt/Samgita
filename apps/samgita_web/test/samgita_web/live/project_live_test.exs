@@ -54,8 +54,23 @@ defmodule SamgitaWeb.ProjectLiveTest do
     project = create_project()
     {:ok, _view, html} = live(conn, ~p"/projects/#{project}")
     assert html =~ "Live Test"
+    assert html =~ "Codex App Server"
+    assert html =~ "Connect with Codex"
     assert html =~ "bootstrap"
     assert html =~ "perpetual"
+  end
+
+  test "renders split command center project rail", %{conn: conn} do
+    current = create_project(%{name: "Current Workspace"})
+    _other = create_project(%{name: "Other Workspace"})
+
+    {:ok, view, html} = live(conn, ~p"/projects/#{current}")
+
+    assert has_element?(view, "[data-role=workspace-rail]")
+    assert html =~ "Current Workspace"
+    assert html =~ "Other Workspace"
+    assert html =~ "Launch settings"
+    assert html =~ "Health checks"
   end
 
   test "shows start button for pending project with selected PRD", %{conn: conn} do

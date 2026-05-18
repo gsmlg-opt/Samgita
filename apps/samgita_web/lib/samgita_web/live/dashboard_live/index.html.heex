@@ -1,9 +1,94 @@
 <div class="max-w-7xl mx-auto px-4 py-8">
   <div class="flex justify-between items-center mb-8">
-    <h1 class="text-3xl font-bold text-on-surface">Samgita Dashboard</h1>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+        Command Center
+      </p>
+      <h1 class="text-3xl font-bold text-on-surface">Samgita Dashboard</h1>
+    </div>
     <.link navigate={~p"/projects/new"}>
-      <.dm_btn variant="primary">New Project</.dm_btn>
+      <.dm_btn variant="primary">
+        <.dm_mdi name="plus" class="mr-1 h-4 w-4" /> New Project
+      </.dm_btn>
     </.link>
+  </div>
+
+  <%!-- Split Command Center --%>
+  <div class="grid gap-6 lg:grid-cols-[22rem_minmax(0,1fr)] mb-8">
+    <aside
+      data-role="workspace-rail"
+      class="rounded-lg border border-outline-variant bg-surface-container p-4"
+    >
+      <div class="mb-4 flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-semibold text-on-surface">Workspaces</h2>
+          <p class="text-xs text-on-surface-variant">Codex app-server launch targets</p>
+        </div>
+        <.dm_badge variant="secondary">{length(@projects)}</.dm_badge>
+      </div>
+
+      <div
+        :if={@projects == []}
+        class="rounded-md border border-dashed border-outline p-6 text-center"
+      >
+        <p class="text-sm text-on-surface-variant">No projects yet.</p>
+        <.link navigate={~p"/projects/new"} class="mt-3 inline-block text-sm text-primary">
+          Create your first project to get started.
+        </.link>
+      </div>
+
+      <div :if={@projects != []} class="space-y-2">
+        <.link
+          :for={project <- @projects}
+          navigate={~p"/projects/#{project}"}
+          class="block rounded-md border border-outline-variant bg-surface p-3 transition-colors hover:bg-surface-container-high"
+        >
+          <% codex = codex_status(@codex_statuses, project) %>
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <p class="truncate text-sm font-semibold text-on-surface">{project.name}</p>
+              <p class="truncate text-xs text-on-surface-variant">{project.git_url}</p>
+            </div>
+            <.dm_badge variant={codex_status_badge(codex)} size="xs">{codex.state}</.dm_badge>
+          </div>
+          <div class="mt-2 flex items-center justify-between text-xs">
+            <span class="text-on-surface-variant">
+              {codex.mode || "local"} · {project.status}
+            </span>
+            <span class="font-medium text-primary">Open workspace</span>
+          </div>
+        </.link>
+      </div>
+    </aside>
+
+    <section class="min-w-0 rounded-lg border border-outline-variant bg-surface-container p-5">
+      <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div>
+          <h2 class="text-2xl font-semibold text-on-surface">Codex app-server</h2>
+          <p class="mt-1 max-w-2xl text-sm text-on-surface-variant">
+            Launch a Codex workspace from a local path or SSH target, then connect with <span class="font-mono">codex --remote</span>.
+          </p>
+        </div>
+        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+          <div class="rounded-md bg-surface px-3 py-2">
+            <p class="text-on-surface-variant">Projects</p>
+            <p class="text-lg font-semibold text-on-surface">{length(@projects)}</p>
+          </div>
+          <div class="rounded-md bg-surface px-3 py-2">
+            <p class="text-on-surface-variant">Running</p>
+            <p class="text-lg font-semibold text-success">
+              {Enum.count(@projects, &(&1.status == :running))}
+            </p>
+          </div>
+          <div class="rounded-md bg-surface px-3 py-2">
+            <p class="text-on-surface-variant">Servers</p>
+            <p class="text-lg font-semibold text-primary">
+              {Enum.count(@codex_statuses, fn {_id, status} -> status.state == :running end)}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <%!-- Management Cards --%>
