@@ -16,7 +16,6 @@
 /* @duskmoon-dev/core - CSS theme system and components */
 @plugin "@duskmoon-dev/core/plugin";
 @import "@duskmoon-dev/core/components";
-@import "phoenix_duskmoon/components";
 
 /* Add variants based on LiveView classes */
 @custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
