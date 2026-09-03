@@ -42,11 +42,11 @@ defmodule SamgitaWeb.MixProject do
       {:samgita, in_umbrella: true},
       {:phoenix, "~> 1.8.3"},
       {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 1.1.0"},
+      {:phoenix_live_reload, "~> 1.7", only: :dev},
+      {:phoenix_live_view, "~> 1.2"},
       {:phoenix_ecto, "~> 4.5"},
       {:lazy_html, ">= 0.1.0", only: :test},
-      {:bun, "~> 1.6", runtime: Mix.env() == :dev},
+      {:bun, "~> 2.0", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
@@ -55,10 +55,10 @@ defmodule SamgitaWeb.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:phoenix_duskmoon, "~> 9.0"},
-      {:bandit, "~> 1.5"},
+      {:phoenix_duskmoon, "~> 9.12"},
+      {:bandit, "~> 1.12"},
       {:gettext, "~> 1.0"},
-      {:jason, "~> 1.2"}
+      {:jason, "~> 1.4"}
     ]
   end
 

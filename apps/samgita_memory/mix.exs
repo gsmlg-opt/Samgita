@@ -30,12 +30,12 @@ defmodule SamgitaMemory.MixProject do
 
   defp deps do
     [
-      {:ecto_sql, "~> 3.13"},
+      {:ecto_sql, "~> 3.14"},
       {:postgrex, ">= 0.0.0"},
-      {:pgvector, "~> 0.3"},
-      {:oban, "~> 2.18"},
-      {:jason, "~> 1.2"},
-      {:telemetry, "~> 1.0"}
+      {:pgvector, "~> 0.4"},
+      {:oban, "~> 2.24"},
+      {:jason, "~> 1.4"},
+      {:telemetry, "~> 1.4"}
     ]
   end
 

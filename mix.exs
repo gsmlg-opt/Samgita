@@ -20,7 +20,7 @@ defmodule Samgita.Umbrella.MixProject do
   defp deps do
     [
       # Dev/Test tools shared across all apps
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end

@@ -33,22 +33,22 @@ defmodule Samgita.MixProject do
       {:samgita_provider, in_umbrella: true},
       {:samgita_memory, in_umbrella: true},
       {:bcrypt_elixir, "~> 3.0"},
-      {:ecto_sql, "~> 3.13"},
+      {:ecto_sql, "~> 3.14"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_pubsub, "~> 2.1"},
+      {:phoenix_pubsub, "~> 2.3"},
       {:phoenix_ecto, "~> 4.5"},
-      {:oban, "~> 2.18"},
+      {:oban, "~> 2.24"},
       {:horde, "~> 0.9"},
       {:libcluster, "~> 3.4"},
       {:earmark, "~> 1.4"},
-      {:swoosh, "~> 1.16"},
-      {:finch, "~> 0.19"},
-      {:dns_cluster, "~> 0.2.0"},
+      {:swoosh, "~> 1.28"},
+      {:finch, "~> 0.23"},
+      {:dns_cluster, "~> 0.3"},
       {:gettext, "~> 1.0"},
-      {:telemetry_metrics, "~> 1.0"},
+      {:telemetry_metrics, "~> 1.2"},
       {:telemetry_poller, "~> 1.0"},
-      {:jason, "~> 1.2"},
-      {:mox, "~> 1.1", only: :test}
+      {:jason, "~> 1.4"},
+      {:mox, "~> 1.3", only: :test}
     ]
   end
 
