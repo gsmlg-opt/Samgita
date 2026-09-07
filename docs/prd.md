@@ -1,1123 +1,1278 @@
-# Product Requirements Document: Samgita Agent Hub Phase 1
+# Product Requirements Document: Samgita Agent Hub — First Milestone
 
-**Status:** Ready for implementation  
-**Target repository:** `gsmlg-opt/Samgita`  
-**Target path:** `docs/agent-hub-v1/prd.md`  
-**Related document:** `architecture.md`  
-**Release name:** Agent Hub v1 Foundation
+**Status:** Approved for implementation planning
+**Date:** 2026-09-06
+**Release:** Agent Hub clean-start foundation
+**Related design:** `docs/agent-hub-rebuild-design.md`
 
 ---
 
 ## 1. Product Summary
 
-Samgita Agent Hub Phase 1 allows long-running external agents to connect to Samgita, receive project-scoped tasks, and report execution state through a reliable protocol.
+Samgita Agent Hub is a self-hosted control plane for durable work performed by
+long-running external Agents. An operator registers Agents, grants each Agent
+access to selected Projects, creates Tasks, and observes execution. Agents
+authenticate over a versioned WebSocket protocol, claim bounded work, and
+report progress and terminal results.
 
-The release provides the first end-to-end control-plane workflow:
+The first milestone must prove this complete path:
 
 ```text
-connect agent
-  -> create project
-  -> bind agent to project
-  -> create task
-  -> dispatch task
-  -> receive progress
-  -> complete/fail/cancel/retry task
+register Agent and issue credential
+  -> create Project and authorize Agent
+  -> create Task
+  -> connect fake Agent
+  -> claim and start an Attempt
+  -> report progress
+  -> complete or fail
+  -> inspect Task, Attempt, and event history
 ```
 
-This release is intentionally smaller than the future autonomous software-development system. It does not integrate GitHub or implement PR/review/release workflows. Its purpose is to establish the durable Agent and Task contract that those future workflows will use.
+PostgreSQL is authoritative. A socket process may disappear at any time without
+losing accepted work or permitting a stale Agent to commit a result.
 
----
+## 2. Clean-Start Authority
 
-## 2. Problem Statement
+Samgita has no production data to preserve. This milestone replaces the prior
+product in the existing repository while retaining Git history. It does not
+migrate old records, preserve old runtime behavior, or maintain unused
+compatibility layers.
 
-Samgita currently orchestrates local workers around PRDs and fixed project phases. It does not have a durable mechanism for an independently running agent daemon to:
+The rebuilt umbrella contains two applications:
 
-- register as a stable Agent;
-- prove its identity;
-- advertise capabilities and capacity;
-- be authorized for selected projects;
-- claim work atomically;
-- keep work ownership alive during execution;
-- report ordered and idempotent progress;
-- recover after network or process failure;
-- safely reject late results after reassignment.
+- `samgita`: Repo, Projects, Agents, Tasks, Protocol, Events, and durable Oban
+  maintenance workers.
+- `samgita_web`: Phoenix endpoint, operator REST API, Agent Socket/Channel, and
+  DuskMoon LiveViews.
 
-Without these capabilities, Samgita cannot become a distributed Agent event hub. A direct WebSocket push or synchronous local process call would create duplicate execution and stale-result risks.
+The web application depends on core; core never depends on web. PostgreSQL owns
+durable state, PubSub carries post-commit notifications, and Channel processes
+own only transient transport state.
 
----
+Fresh migrations create only the Agent Hub domain, Oban infrastructure, and
+infrastructure required by the retained Phoenix application. Retained tooling,
+assets, API protection, CI, and release packaging must have an active Agent Hub
+purpose.
 
-## 3. Product Vision
+## 3. Users and Actors
 
-> Samgita is the authoritative control plane for projects and tasks. Connected agents are durable execution workers that claim bounded work, execute it independently, and report evidence and state through a versioned protocol.
+### 3.1 Operator
 
-Phase 1 should feel operationally simple:
+A trusted user of the self-hosted deployment. The Operator manages Projects,
+Agents, credentials, Project authorization, and Tasks, and inspects live and
+historical execution state. Browser access is single-tenant and protected by
+deployment infrastructure.
 
-- The operator sees which agents are connected.
-- The operator decides which projects an agent may access.
-- Creating a task makes it available to eligible agents.
-- The task page shows the current attempt and progress.
-- Failures, disconnects, retries, and duplicate messages do not corrupt state.
+### 3.2 Agent Runtime
 
----
+A long-running external daemon that authenticates using a machine credential,
+advertises capabilities and capacity, polls for work, executes an assignment,
+and reports ordered status. The milestone uses a deterministic fake Agent as
+the reference implementation.
 
-## 4. Users and Actors
+### 3.3 Samgita Maintenance Worker
 
-### 4.1 Operator
+Durable Oban jobs that expire missed start and execution deadlines, reap stale
+leases, and make retryable Tasks available again.
 
-A trusted user who can access the self-hosted Samgita deployment. The operator creates Agents, Projects, bindings, and Tasks; monitors execution; cancels or retries work; and rotates Agent credentials.
+## 4. Product Goals
 
-### 4.2 Agent Runtime
+### G-001 — Operational setup
 
-A long-running daemon, initially Synapsis, that connects to Samgita using a machine credential. It advertises capabilities, requests work, executes assignments, and reports status.
+An Operator can complete Agent registration, credential issuance, Project
+authorization, Task creation, and result inspection through the browser UI
+without direct database manipulation.
 
-### 4.3 Samgita System Worker
+### G-002 — Reliable external execution
 
-Internal Oban jobs that perform durable maintenance such as lease expiry and task requeueing.
+An authenticated Agent can connect, claim eligible work within its capacity,
+report state, disconnect, reconnect, and resume valid work.
 
----
+### G-003 — Exactly one valid active Attempt
 
-## 5. Goals
+A Task never has more than one database-valid active Attempt, and an Agent
+never receives work beyond its effective capacity.
 
-### G-001: Reliable Agent connection
+### G-004 — Deterministic idempotency
 
-A configured Synapsis daemon can authenticate, establish a long-running connection, heartbeat, disconnect, and reconnect.
+An identical replay of a committed protocol message returns the original
+response and creates no duplicate transition, Attempt, receipt, or event.
 
-### G-002: Explicit project authorization
+### G-005 — Safe recovery
 
-An Agent can claim tasks only for Projects to which it is explicitly bound.
+Lease expiry, start timeout, execution timeout, network loss, connection
+replacement, Agent disablement, credential revocation, and Samgita restart do
+not corrupt durable state.
 
-### G-003: Capability-based dispatch
+### G-006 — Stale-result fencing
 
-Samgita dispatches work only when the Agent's effective capabilities satisfy all Task requirements.
+A stale connection, expired lease, old Attempt, or old fencing token cannot
+change a Task or Attempt.
 
-### G-004: Exactly one valid active attempt
+### G-007 — Operational visibility
 
-A Task may be retried, but it must never have more than one valid active Task Attempt.
+The UI and API explain Agent presence and capacity, current execution state,
+pending eligibility, progress, failures, Attempt history, and audit events.
 
-### G-005: Idempotent state updates
+### G-008 — Focused foundation
 
-Duplicate Agent messages produce the same ACK and do not create duplicate transitions or events.
+The repository contains the Agent Hub product and only the infrastructure it
+needs at the first-milestone boundary.
 
-### G-006: Safe failure recovery
+## 5. User Stories
 
-Agent disconnection, Samgita restart, lease expiry, and late results are handled without corrupting Task state.
+1. As an Operator, I want to register an Agent and issue a credential so that
+   an external daemon can authenticate.
+2. As an Operator, I want a credential shown exactly once so that I can
+   provision an Agent without retaining plaintext secrets in Samgita.
+3. As an Operator, I want to authorize an Agent for selected Projects so that
+   it cannot claim work outside its scope.
+4. As an Operator, I want to constrain Agent capabilities and concurrency so
+   that assignments respect operational limits.
+5. As an Operator, I want to create a Project Task and see why it is pending so
+   that dispatch problems are diagnosable.
+6. As an Agent, I want to poll for work and receive a durable assignment so
+   that lost notifications do not lose Tasks.
+7. As an Agent, I want accepted message responses replayed after transport loss
+   so that retrying a request is safe.
+8. As an Agent, I want reconnect reconciliation so that I can resume valid work
+   and stop invalid work.
+9. As an Operator, I want live progress and terminal results so that I can
+   monitor execution.
+10. As an Operator, I want immutable Attempt and event history so that failures
+    and retries are auditable.
+11. As an Operator, I want credentials revoked and Agents disabled immediately
+    so that compromised or unhealthy runtimes cannot claim or renew work.
+12. As a maintainer, I want a fake Agent to exercise the real WebSocket protocol
+    so that CI does not require Synapsis or an LLM.
+
+## 6. Scope Exclusions
+
+The first milestone does not include:
+
+- real Synapsis integration;
+- operator cancellation or manual retry;
+- GitHub Apps, issues, pull requests, reviews, merge, release, or deployment
+  automation;
+- generic workflows, DAGs, phases, swarms, or Agent-to-Agent communication;
+- embedded/local Codex or Claude execution and provider adapters;
+- memory retrieval, vector storage, or PRD orchestration;
+- Agent-created child Tasks;
+- multiple repositories per Project or logical Agent pools;
+- artifact storage, binary upload, or streaming logs;
+- automatic remote process provisioning;
+- multi-tenant accounts, browser accounts, organizations, or browser RBAC;
+- mTLS identity;
+- fair-share or cost-aware scheduling; or
+- data migration, backfill, or compatibility with the replaced product.
+
+No milestone implementation may preemptively build these capabilities.
 
-### G-007: Operational visibility
+## 7. Domain Model and State Rules
 
-Operators can inspect registered Agents, connections, task attempts, progress, failures, and event history.
+### 7.1 Durable records
 
-### G-008: Backward compatibility
+The domain consists of nine PostgreSQL tables in addition to Oban tables:
 
-Existing PRD orchestration and local Agent Worker behavior continue to work without being claimed by the new dispatcher.
+| Record | Responsibility |
+|---|---|
+| Project | Project identity and canonical unique `git_url` |
+| Agent | Stable identity, enabled state, approved capabilities, and Operator concurrency limit |
+| Agent Credential | Credential hash, display prefix, expiry, and revocation |
+| Agent Connection | Connection history, negotiated capabilities/capacity, and heartbeat state |
+| Project Agent | Unique explicit authorization and optional capability restriction |
+| Task | Requested work, matching requirements, retry budget, availability, and current state |
+| Task Attempt | Agent ownership, Attempt number, deadlines, lease, fence, result, and error |
+| Protocol Receipt | Message identity/hash, Attempt sequence, and replayable response descriptor |
+| Domain Event | Append-only transactional audit history |
 
----
+All identifiers are UUIDs and all timestamps are UTC.
 
-## 6. Non-Goals
+### 7.2 Task states
 
-The release must not include:
+The only Task states are:
 
-- GitHub App or webhook integration.
-- Issue import or synchronization.
-- Repository checkout/worktree management for external agents.
-- Pull request creation.
-- Automated review, merge, deployment, or release.
-- Generic workflow definitions or DAG execution changes.
-- Agent-to-agent communication.
-- Multi-tenant accounts, organizations, or browser RBAC.
-- External brokers such as Kafka or NATS.
-- General binary artifact upload.
-- Automatic remote process provisioning.
-- Replacement of the existing PRD Orchestrator.
-- OpenClaw compatibility work.
+- `pending`: available now or after `available_at`, with no active Attempt;
+- `assigned`: owned by one leased Attempt that has not started;
+- `running`: owned by one running Attempt;
+- `completed`: terminal successful result; and
+- `failed`: terminal unsuccessful result.
 
----
+Allowed Task transitions are:
 
-## 7. Product Constraints
+```text
+pending  -> assigned
+assigned -> running
+assigned -> pending | failed
+running  -> pending | completed | failed
+```
 
-1. Samgita is an Elixir umbrella application.
-2. PostgreSQL remains the source of truth.
-3. Oban is used for durable background work.
-4. Phoenix PubSub is used for post-commit real-time updates.
-5. Phoenix Channels/WebSocket is used for Agent transport.
-6. The browser UI remains single-tenant and infrastructure-protected.
-7. Agent machine connections always require credentials.
-8. Existing Project `git_url` behavior remains canonical in this phase.
-9. Existing `Samgita.Agent.Worker`, `Project.Orchestrator`, and `AgentRun` semantics remain intact.
-10. Existing tasks default to legacy execution; only new Agent Hub tasks enter the new dispatcher.
+Returning to `pending` is automatic and occurs only when the terminated Attempt
+is retryable and the Task has remaining Attempt budget.
 
----
+### 7.3 Attempt states
 
-## 8. Primary User Journeys
+The only Attempt states are:
 
-## 8.1 Create and connect an Agent
+- `leased`: assigned but not started;
+- `running`: start was accepted by Samgita;
+- `succeeded`: terminal successful result;
+- `failed`: terminal Agent-reported failure; and
+- `expired`: terminal deadline or lease expiry.
 
-1. Operator opens Agents.
-2. Operator creates an Agent with name, runtime, approved capabilities, labels, and maximum concurrency.
-3. Operator creates a credential.
-4. Samgita displays the plaintext credential exactly once.
-5. Operator configures the Synapsis daemon with Agent ID, token, and Samgita URL.
-6. Synapsis connects and sends hello.
-7. Samgita shows the Agent as online and idle.
+Allowed Attempt transitions are:
 
-## 8.2 Create a Project and bind an Agent
+```text
+leased  -> running | expired
+running -> succeeded | failed | expired
+```
 
-1. Operator creates a Project through the existing project flow, including canonical `git_url`.
-2. Operator opens the Project Agent section.
-3. Operator selects an Agent, role, priority, and optional capability restriction.
-4. Samgita shows the Agent as eligible for the Project.
+Terminal Tasks and Attempts are immutable. State changes use server time.
 
-## 8.3 Create and execute a Task
+### 7.4 Required uniqueness
 
-1. Operator creates an Agent Hub Task with title, description, type, priority, and required capabilities.
-2. Task enters `pending`.
-3. An eligible Agent is awakened or requests work.
-4. Samgita leases the Task and creates Attempt 1.
-5. Agent accepts, starts, and reports progress.
-6. Task becomes `completed` when the Agent submits a valid terminal result.
-7. Operator can inspect the result, Attempt history, and event timeline.
+Database constraints must enforce:
 
-## 8.4 Recover from Agent failure
+- one active connection per Agent;
+- one Project-Agent binding per pair;
+- one active Attempt per Task;
+- unique Attempt number within a Task;
+- unique non-null idempotency key within a Project;
+- unique message ID within an Agent; and
+- unique sequence number within an Attempt.
 
-1. Agent starts a Task and loses connectivity.
-2. Samgita shows it as offline after the heartbeat threshold.
-3. The Task remains owned until its lease expires.
-4. Lease reaper expires Attempt 1 and requeues the Task.
-5. Another eligible Agent receives Attempt 2 with a higher fencing token.
-6. A late completion from Attempt 1 is rejected.
+Transactions, not unique indexes alone, enforce legal transitions,
+authorization, capacity, monotonically increasing Attempt/fencing numbers, and
+terminal immutability.
 
-## 8.5 Cancel a Task
+## 8. Functional Requirements
 
-1. Operator cancels a pending or running Task.
-2. Pending work becomes `cancelled` immediately.
-3. Running work receives a cancellation control message.
-4. Any later completion from the cancelled Attempt is rejected.
-5. The event timeline records the cancellation.
+### 8.1 Projects
 
-## 8.6 Retry failed work
+#### FR-P001 — Create and update Project
 
-1. A Task fails or reaches dead-letter state.
-2. Operator selects Retry.
-3. Samgita validates that the Task is retriable.
-4. A new Attempt number and fencing token are used.
-5. Previous Attempts remain immutable and visible.
+The UI and API shall create and update a Project with a required name and
+canonical `git_url`. `git_url` shall be unique after canonicalization.
 
----
+#### FR-P002 — List and inspect Projects
 
-## 9. Functional Requirements
+The UI and API shall list Projects with bounded pagination and show bindings,
+Task counts, active work, pending work, and recent failures for one Project.
 
-## 9.1 Agent Registry
+#### FR-P003 — Delete empty Project
 
-### FR-A001 — Create Agent
+A Project may be deleted only when it has no Tasks or Project-Agent bindings.
+Deletion with dependent history shall fail with a stable error and explain the
+blocking dependency.
 
-The system shall allow an operator to create an Agent with:
+### 8.2 Agents
 
-- name;
-- runtime;
-- approved capabilities;
-- labels;
-- maximum concurrency;
-- optional metadata.
+#### FR-A001 — Register Agent
 
-**Acceptance:** A valid Agent is persisted and emits `agent.created.v1`.
+The UI and API shall register an Agent with a required name, enabled state,
+approved capabilities, and a positive maximum concurrency.
 
-### FR-A002 — Validate Agent
+#### FR-A002 — Update Agent
 
-Agent name shall be required, and maximum concurrency shall be a positive integer.
+The Operator may change an Agent's name, approved capabilities, and maximum
+concurrency. A capacity reduction shall prevent new claims until active usage
+falls below the new effective capacity; it shall not terminate an Attempt.
 
-**Acceptance:** Invalid input returns changeset/API validation errors and creates no event.
+#### FR-A003 — Enable and disable Agent
 
-### FR-A003 — Enable and disable Agent
+The Operator may enable or disable an Agent. A disabled Agent cannot
+authenticate, claim work, send accepted status, or renew leases. Disabling an
+Agent invalidates its active connections; outstanding Attempts resolve through
+their existing deadlines.
 
-The operator shall be able to enable or disable an Agent.
+#### FR-A004 — Stable identity
 
-**Acceptance:** A disabled Agent cannot authenticate a new connection or claim new work.
+An Agent ID shall remain stable across daemon restart, credential rotation, and
+connection replacement.
 
-### FR-A004 — List and inspect Agents
+#### FR-A005 — Derived runtime state
 
-The API and UI shall show configured fields plus derived runtime state, last seen time, active connection, active attempt count, and effective capacity.
+Agent reads shall include configured fields, online/offline state, last
+heartbeat, current connection, effective capabilities, effective capacity,
+active Attempt count, and remaining capacity.
 
-### FR-A005 — Preserve logical identity
+### 8.3 Agent Credentials
 
-An Agent ID shall remain stable across daemon restart and connection replacement.
+#### FR-C001 — Issue credential
 
----
+The Operator may issue multiple overlapping credentials for an Agent. The
+successful creation response shall contain the plaintext token and display
+prefix exactly once.
 
-## 9.2 Agent Credentials
+#### FR-C002 — Store only credential hash
 
-### FR-C001 — Issue credential
+Samgita shall store a secure token hash, display prefix, issue time, optional
+expiry, and optional revocation metadata. Plaintext shall not be retrievable
+after creation.
 
-The operator shall be able to issue more than one credential for an Agent to support rotation.
+#### FR-C003 — Protect creation response
 
-### FR-C002 — Display plaintext once
+Credential creation responses shall use no-store cache headers. Plaintext shall
+not enter logs, events, receipts, telemetry, or ordinary API reads.
 
-The plaintext credential shall be returned only by the successful creation response and shall never be retrievable later.
+#### FR-C004 — Authenticate credential
 
-### FR-C003 — Store only hash
+The Agent Socket handshake shall reject unknown, malformed, expired, revoked,
+or mismatched credentials without creating an active connection or revealing
+which credential check failed.
 
-The database shall store a token hash and display prefix, not the plaintext token.
+#### FR-C005 — Revoke credential
 
-### FR-C004 — Revoke credential
+Revocation shall prevent new authentication and invalidate every active
+connection authenticated with that credential. Its outstanding Attempts shall
+expire normally without lease renewal.
 
-The operator shall be able to revoke a credential.
+### 8.4 Project-Agent Authorization
 
-**Acceptance:** A revoked credential cannot authenticate, and an active socket using it is closed.
+#### FR-B001 — Bind Agent to Project
 
-### FR-C005 — Expire credential
+The UI and API shall create one explicit binding between a Project and an
+Agent. An unbound Agent shall never claim that Project's Tasks.
 
-An optional expiration time shall be enforced during connection authentication.
+#### FR-B002 — Restrict capabilities
 
-### FR-C006 — Protect credential responses
+A binding may define allowed capabilities. An absent restriction imposes no
+additional limit; an explicitly empty restriction permits no capability.
 
-Credential creation responses shall not be cached and shall not include the token in logs or events.
+#### FR-B003 — Effective capabilities
 
----
+Effective capabilities shall be the intersection of Operator-approved Agent
+capabilities, capabilities reported by the active connection, and binding-
+allowed capabilities when present.
 
-## 9.3 Agent Connection
+#### FR-B004 — Change authorization safely
 
-### FR-CON001 — WebSocket endpoint
+Binding create, update, and delete operations shall serialize with claims
+through the affected Agent lock. Whichever operation obtains the lock first
+determines claim eligibility. Authorization changes shall affect later claims
+without rewriting historical Attempts.
 
-Samgita shall expose an Agent WebSocket endpoint at `/agent/socket`.
+### 8.5 Agent Connections
 
-### FR-CON002 — Mandatory machine authentication
+#### FR-CON001 — WebSocket transport
 
-The Agent Socket shall always require Agent ID and credential, independent of admin API-key configuration.
+Samgita shall expose a Phoenix Channels endpoint for Agents. Machine
+authentication is mandatory even when Operator API-key protection is disabled.
 
-### FR-CON003 — Protocol version
+#### FR-CON002 — Bearer authentication
 
-The connection shall require protocol version `1`; unsupported versions shall be rejected with a stable error code.
+The daemon shall send its credential in the WebSocket handshake
+`Authorization: Bearer` header. Credentials shall never be accepted from a
+query string. A real WebSocket integration test must verify that the installed
+transport exposes the header before the fake Agent fixture is frozen.
 
-### FR-CON004 — Hello handshake
+#### FR-CON003 — Identity-bound topic
 
-After join, the Agent shall send runtime version, capabilities, labels, maximum concurrency, and local active-attempt state.
+Samgita shall authenticate the Agent before Channel join, and the joined topic
+shall match the authenticated Agent identity.
 
-### FR-CON005 — Welcome response
+#### FR-CON004 — Protocol version
 
-Samgita shall return connection ID, timing configuration, accepted capabilities, and resume/invalid-attempt decisions.
+The Channel shall support protocol version `1` and reject unsupported versions
+with the stable `unsupported_version` error.
 
-### FR-CON006 — One active connection
+#### FR-CON005 — Hello required
 
-Only one active connection shall exist per logical Agent. A newer valid connection replaces the older connection.
+Each new Channel shall send `agent.hello.v1` with a fresh message ID before any
+heartbeat, work request, or Task message. Hello reports runtime information,
+capabilities, positive capacity, and locally active Attempt IDs.
 
-### FR-CON007 — Connection history
+#### FR-CON006 — Welcome and reconciliation
 
-Every connection and disconnection shall be persisted and visible to the operator.
+A valid hello shall receive `agent.welcome.v1` containing connection identity,
+server timing configuration, negotiated capabilities/capacity, and valid or
+invalid Attempt reconciliation decisions.
 
-### FR-CON008 — Heartbeat
+#### FR-CON007 — Idempotent hello
 
-The Agent shall send heartbeat messages at the configured interval. Accepted heartbeat updates connection and Agent last-seen timestamps.
+Hello shall be receipt-backed. Repeating the same hello message ID on the same
+Channel returns the same welcome without replacing the connection again.
+Reusing an earlier Channel's hello message ID from a different Channel shall be
+rejected.
 
-### FR-CON009 — Derived offline state
+#### FR-CON008 — One active connection
 
-The UI shall consider an Agent offline after the configured heartbeat threshold without requiring a manually persisted offline state transition.
+Only one connection may be active for a logical Agent. A newly committed valid
+connection replaces the former connection, records the replacement in history,
+and causes the old socket to close best-effort.
 
-### FR-CON010 — Lease renewal
+#### FR-CON009 — Current connection validation
 
-A valid heartbeat shall renew leases for listed active Attempts.
+Every post-hello message shall identify and match the Agent's current active
+connection. Messages from replaced connections shall be rejected.
 
-### FR-CON011 — Invalid attempt response
+#### FR-CON010 — Heartbeat and presence
 
-Heartbeat and hello ACKs shall identify attempts the Agent must stop because they are stale, cancelled, terminal, or reassigned.
+An Agent shall heartbeat at the configured interval. Accepted heartbeat
+updates connection and Agent last-seen data. Online/offline is derived from the
+last heartbeat threshold rather than stored as authoritative domain state.
 
-### FR-CON012 — Reconnect
+#### FR-CON011 — Connection history
 
-An Agent shall be able to reconnect after network or Samgita restart and reconcile active attempts.
+Samgita shall retain connection start, last-seen, end, authenticated credential,
+and end reason for Operator inspection without exposing credential material.
 
----
+### 8.6 Tasks
 
-## 9.4 Project-Agent Association
+#### FR-T001 — Create Task
 
-### FR-PA001 — Bind Agent to Project
+The UI and API shall create a Task with Project, title, description, type, JSON
+payload, priority, required capabilities, timeout, maximum Attempts, and an
+optional idempotency key. Title, description, and type are required; timeouts and Attempt
+limits must be positive.
 
-The operator shall be able to bind an Agent to an existing Project.
+#### FR-T002 — Initial state
 
-### FR-PA002 — Unique binding
+A valid Task shall start `pending` with `available_at` set to current server
+time. Automatic retry is the only milestone behavior that moves it into the
+future.
 
-A Project-Agent pair shall have at most one binding.
+#### FR-T003 — Idempotent creation
 
-### FR-PA003 — Binding configuration
+Repeating Task creation with the same non-null `(project_id, idempotency_key)`
+and the same canonical create input shall return the existing Task and shall not
+create a second Task or creation event. Reusing that key with different
+canonical create input shall return `idempotency_key_conflict` and change no
+durable state.
 
-A binding shall support enabled state, role, dispatch priority, optional allowed capabilities, and metadata.
+#### FR-T004 — List and filter Tasks
 
-### FR-PA004 — Explicit authorization
+Task reads shall support bounded pagination and filters for Project, state,
+Agent, type, and creation time.
 
-An Agent shall not claim work for an unbound Project.
+#### FR-T005 — Task detail
 
-### FR-PA005 — Disable binding
+Task detail shall include current state, availability, pending reason, current
+Agent/Attempt, progress, result or error, all Attempts, and chronological domain
+events.
 
-Disabling a binding shall stop new assignments but shall not silently invalidate an active Attempt. Operators may separately cancel active Tasks.
+#### FR-T006 — Pending reasons
 
-### FR-PA006 — Unbind safety
+Samgita shall derive useful pending reasons including no authorized online
+Agent, capability mismatch, exhausted capacity, future availability/retry
+delay, and disabled eligible Agents. A pending reason is diagnostic and not an
+authoritative Task state.
 
-Unbinding an Agent with active Attempts shall either be rejected with a clear error or require explicit cancellation; it shall not orphan active work.
+### 8.7 Dispatch and Capacity
 
-### FR-PA007 — Effective capabilities
+#### FR-D001 — Pull claim
 
-Dispatch shall use the intersection of configured Agent capabilities, connection-reported capabilities, and binding restrictions.
+An Agent shall poll with `work.request.v1`. When no eligible work exists, the
+response shall be successful and contain no assignment.
 
----
+#### FR-D002 — Optional wake-up
 
-## 9.5 Project Creation
+After Task creation or automatic requeue, Samgita may push
+`work.available.v1` to potentially eligible online Agents. Correctness shall
+not depend on delivery; idle Agents poll.
 
-### FR-P001 — Reuse current Project model
+#### FR-D003 — Effective capacity
 
-The existing Project creation flow and validation shall remain the canonical Phase 1 project flow.
+Effective connection capacity is the minimum of the Operator maximum and the
+positive capacity reported at hello. Claims count every active Attempt owned by
+the Agent, including disconnected but unexpired work.
 
-### FR-P002 — Preserve `git_url`
+#### FR-D004 — Task eligibility
 
-`git_url` shall remain required/canonical according to existing repository rules.
+A Task is eligible only when it is pending, `available_at` is not in the future,
+the Agent and connection are active, a Project-Agent binding exists, all
+required capabilities are effective, and the Agent has free capacity.
 
-### FR-P003 — No automatic orchestration
+#### FR-D005 — Deterministic ordering
 
-Creating a Project shall not automatically start the legacy PRD Orchestrator when the operator only intends to create Agent Hub Tasks.
+Eligible Tasks shall be considered by higher priority first, then earlier
+`available_at`, earlier creation time, and UUID. Null behavior and priority
+range shall be fixed in the schema contract before implementation.
 
-### FR-P004 — Project view
+#### FR-D006 — Atomic bounded claim
 
-The Project view shall expose bound Agents and Agent Hub Tasks without removing existing PRD and legacy orchestration views.
+A claim transaction shall lock the Agent row, validate its active connection
+and capacity, and select one eligible Task using bounded
+`FOR UPDATE SKIP LOCKED`. It shall recheck eligibility before assignment.
 
----
+#### FR-D007 — Lock order
 
-## 9.6 Task Creation
+Transactions shall acquire locks in this order: Agent, related credential /
+connection / binding rows, Task, then Attempt. Multiple rows at one level shall
+be ordered by UUID. Authorization mutations and reaping shall use compatible
+ordering.
 
-### FR-T001 — Create Agent Hub Task
+#### FR-D008 — Create assignment
 
-The API/UI shall allow creation of a Task with:
+A successful claim shall atomically create a `leased` Attempt with the next
+Attempt number and a fencing token greater than every prior fence for the Task,
+transition the Task to `assigned`, append events, and commit the protocol
+receipt.
 
-- title;
-- description;
-- type;
-- priority;
-- required capabilities;
-- optional preferred Agent;
-- optional payload;
-- timeout;
-- maximum attempts;
-- optional idempotency key.
+#### FR-D009 — Commit before response
 
-### FR-T002 — Execution-mode isolation
+Samgita shall commit the Attempt, Task, events, and receipt before returning
+`work.assignment.v1` or broadcasting state changes.
 
-New Agent Hub Tasks shall have `execution_mode = :agent_hub`. Existing internal/legacy task callers shall continue to default to `:legacy_local`.
+#### FR-D010 — Replay assignment
 
-### FR-T003 — Initial status
+Repeating a committed work-request message shall return the same canonical
+assignment. Its lease token shall be re-derived from immutable Attempt facts
+and the referenced signing key rather than stored in the receipt.
 
-A valid, unblocked Agent Hub Task shall start in `pending` with `available_at` set to now unless supplied.
+### 8.8 Execution Status
 
-### FR-T004 — Validate preferred Agent
+#### FR-S001 — Start Task
 
-A preferred Agent must have an enabled binding to the Project.
+`task.started.v1` is sequence `1`. A valid start shall atomically transition the
+leased Attempt and assigned Task to `running`, establish the server execution
+deadline, append events, and commit the receipt. The Agent shall wait for the
+successful ACK before beginning execution.
 
-### FR-T005 — Task idempotency
+#### FR-S002 — Report progress
 
-Repeated create requests using the same non-null `(project_id, idempotency_key)` shall return the existing Task rather than create a duplicate.
+`task.progress.v1` is valid only for a running current Attempt. Accepted
+progress shall update the bounded latest-progress projection, append a bounded
+progress event, and commit its receipt atomically.
 
-### FR-T006 — List and filter Tasks
+#### FR-S003 — Deterministic progress rate limit
 
-The operator shall be able to filter by execution mode, status, Agent, type, and creation time.
+A valid progress message inside the configured minimum interval shall be
+accepted as a no-op: it consumes the next sequence and commits a deterministic
+receipt, but does not change the progress projection or append a progress event.
 
-### FR-T007 — Task detail
+#### FR-S004 — Complete Task
 
-Task detail shall show current state, current Attempt, all prior Attempts, progress, result/error, and event timeline.
+`task.completed.v1` shall atomically transition the current running Attempt to
+`succeeded` and its Task to `completed`, persist the bounded result, append
+events, and commit the receipt when every ownership, lease, fence, connection,
+state, and sequence check passes.
 
-### FR-T008 — Preserve legacy fields
+#### FR-S005 — Fail Task
 
-The new implementation shall not repurpose the existing string `agent_id` field used by legacy tasks.
+`task.failed.v1` shall atomically transition the current running Attempt to
+`failed`, persist the bounded error, classify retryability using server policy,
+and either return the Task to delayed `pending` or terminate it as `failed`.
 
----
+#### FR-S006 — Contiguous sequence
 
-## 9.7 Dispatch and Matching
+After start at sequence `1`, accepted Attempt messages shall use contiguous
+increasing sequence numbers. A different message using an already consumed
+sequence or a message that skips a sequence shall be rejected with a stable
+error.
 
-### FR-D001 — Pull claim
+#### FR-S007 — Server authority
 
-Agents shall request work using `work.request.v1`; assignments shall be returned in the request ACK.
+Agent source time and retry advice may be retained as bounded metadata but
+shall not override server time, state, ownership, deadlines, fencing, or retry
+classification.
 
-### FR-D002 — Best-effort wake-up
+### 8.9 Leases, Deadlines, Reconnect, and Automatic Retry
 
-Samgita shall send `work.available.v1` to potentially eligible online Agents after Task creation/requeue, but correctness shall not depend on delivery.
+#### FR-R001 — Lease token
 
-### FR-D003 — Capacity enforcement
+Each Attempt shall have an opaque HMAC-derived lease token bound to stable
+Attempt, Task, Agent, fence, and signing-key-version facts. Only the token hash
+and signing key identifier shall be stored in domain rows.
 
-The number of active Attempts shall not exceed effective Agent connection capacity.
+#### FR-R002 — Versioned signing keys
 
-### FR-D004 — Project eligibility
+New Attempts shall use the configured current signing key. Retained prior keys
+shall permit replay of earlier assignments. Signing material shall come from
+runtime secrets and shall never enter source control, domain events, receipts,
+logs, telemetry, or ordinary reads.
 
-Only Tasks from enabled Project-Agent bindings shall be eligible.
+#### FR-R003 — Validate Attempt messages
 
-### FR-D005 — Capability eligibility
+Every Attempt-scoped message shall validate authenticated Agent, current
+connection, Attempt ownership, current Task Attempt, lease token, fencing token,
+lease time, relevant deadline, legal state, and sequence.
 
-All Task required capabilities must exist in the Agent's effective capabilities.
+#### FR-R004 — Immediate expiry enforcement
 
-### FR-D006 — Preferred Agent
+Message handling shall reject expired ownership immediately using server time,
+even when the maintenance worker has not yet persisted the expiry transition.
 
-A Task with a preferred Agent shall not be assigned to another Agent in Phase 1.
+#### FR-R005 — Heartbeat renewal
 
-### FR-D007 — Deterministic ordering
+Heartbeat shall renew leases only for submitted Attempts that remain valid and
+owned by the Agent. Renewal shall never extend the start deadline or execution
+deadline. The ACK shall classify each submitted Attempt as valid or invalid;
+the Agent must stop invalid Attempts.
 
-Eligible Tasks shall be ordered by pinned preference, binding priority, Task priority, availability time, creation time, and ID.
+#### FR-R006 — Start deadline
 
-### FR-D008 — Atomic claim
+A leased Attempt that does not start before its configured start deadline shall
+expire even if heartbeats continue.
 
-Claim shall use database locking so concurrent Agents cannot lease the same Task.
+#### FR-R007 — Execution deadline
 
-### FR-D009 — Create Attempt
+Execution timeout shall be measured from the server-accepted start time. A
+running Attempt that reaches it shall expire.
 
-Every successful claim shall create a new Task Attempt with a monotonic attempt number and fencing token.
+#### FR-R008 — Durable expiry
 
-### FR-D010 — Active-attempt uniqueness
+An idempotent Oban job shall be scheduled every 60 seconds. Each execution shall
+identify expired candidates without locks, then acquire locks in the canonical
+order, revalidate state and server time, expire the Attempt, and either delay
+the Task for another Attempt or fail it. Queue or database failures may delay
+execution; message validation remains the immediate ownership guard.
 
-A Task shall have at most one active Attempt enforced by both application logic and database constraint.
+#### FR-R009 — Retry budget and delay
 
-### FR-D011 — Assignment replay
+A retryable failure or expiry consumes one Attempt. When budget remains, the
+Task returns to `pending` with delay after Attempt `n` equal to
+`min(5 * 2^(n-1), 60)` seconds. Exhausting the configured maximum ends the Task
+as `failed`.
 
-Repeating the same work-request message ID after a lost response shall return the same canonical assignment. The lease token shall be re-derived from immutable Attempt data and a server-side signing key rather than stored in the Inbox.
+#### FR-R010 — Retry classification
 
-### FR-D012 — No eligible work
+Validated invalid-input and unsupported-task errors are non-retryable.
+Execution errors, unknown execution errors, lease expiry, start timeout, and
+execution timeout are retryable while budget remains. Agent retry advice is
+advisory only.
 
-When no eligible Task exists, the Agent shall receive a successful empty assignment response, not a server error.
+#### FR-R011 — Reconnect reconciliation
 
----
+A replacement connection's hello shall reconcile locally active Attempt IDs
+against PostgreSQL. Valid unexpired work shall be rebound transactionally to
+the replacement connection without creating an Attempt; invalid work shall
+receive `attempt.stop.v1` instructions.
 
-## 9.8 Lease and Fencing
+#### FR-R012 — Safe assignment resume
 
-### FR-L001 — Lease token
+An Agent shall deduplicate assignments locally. Before starting or resuming a
+replayed assignment, it shall confirm current ownership through fresh hello or
+heartbeat reconciliation.
 
-Every Attempt shall receive an opaque HMAC-derived lease token bound to the Attempt, Task, Agent, and fencing token. Only its hash is stored; the token can be re-derived for idempotent assignment replay.
+#### FR-R013 — Stale result rejection
 
-### FR-L002 — Lease expiration
+A replaced connection, terminal/expired/non-current Attempt, invalid lease
+token, or fencing token lower than the Task's current fence shall never produce
+a successful Task transition.
 
-Every active Attempt shall have `lease_expires_at` based on server time.
+### 8.10 Protocol Envelope and Receipts
 
-### FR-L003 — Lease renewal
+#### FR-I001 — Canonical wire contract
 
-Valid Agent heartbeat shall extend the lease for current Attempts.
+Before parallel implementation begins, version-controlled protocol schemas and
+fixtures shall define every inbound/outbound message, required field, type,
+UUID/integer constraint, response form, payload bound, and stable error code.
 
-### FR-L004 — Fencing token
+#### FR-I002 — Message set
 
-Every new Attempt for a Task shall have a fencing token greater than all previous Attempts for that Task.
+Protocol version `1` supports these inbound messages:
 
-### FR-L005 — Validate all Attempt messages
+- `agent.hello.v1`
+- `agent.heartbeat.v1`
+- `work.request.v1`
+- `task.started.v1`
+- `task.progress.v1`
+- `task.completed.v1`
+- `task.failed.v1`
 
-Attempt-scoped messages shall validate Agent, current connection, Attempt ownership, current Task Attempt, lease token, fencing token, lease time, sequence, and Task cancellation.
+It supports these outbound messages:
 
-### FR-L006 — Reject stale result
+- `agent.welcome.v1`
+- `work.available.v1`
+- `work.assignment.v1`
+- `attempt.stop.v1`
+- `ack.v1`
+- `error.v1`
 
-A result carrying an old fencing token or non-current Attempt ID shall be rejected and shall not modify Task state.
+#### FR-I003 — Envelope fields
 
-### FR-L007 — Durable lease reaper
+Every inbound message shall carry version, message ID, type, and payload. Every
+post-hello message shall carry connection ID. Attempt messages shall also carry
+Attempt ID, lease token, fencing token, and sequence.
 
-An Oban worker shall expire stale Attempts and requeue or dead-letter Tasks idempotently.
+#### FR-I004 — Payload bounds
 
-### FR-L008 — Accept timeout
+Samgita shall reject a message larger than the configured maximum before
+domain processing. Result, error, progress, metadata, and audit projections
+shall each have explicit bounds in the wire/schema contract.
 
-An Agent that does not accept an assignment within the configured timeout shall lose the Attempt through expiry/reaper processing.
+#### FR-I005 — Transactional receipt
 
----
+Each successfully handled inbound message shall commit a protocol receipt with
+its Agent, message ID, canonical payload hash, and secret-free response
+descriptor in the same transaction as its state and events.
 
-## 9.9 Agent Status Protocol
+#### FR-I006 — Identical replay
 
-### FR-S001 — Versioned envelope
+After authenticating the connection, Samgita shall replay the response for an
+identical committed message before checking mutable Attempt state or current
+lease validity. Replay shall preserve the original resulting states and event
+IDs and shall not mark the ACK as a duplicate.
 
-Every message shall contain protocol version, message ID, type, Agent ID, connection ID, source time, and payload. Attempt messages also require Attempt ID, lease token, fencing token, and sequence.
+#### FR-I007 — Conflicting message ID
 
-### FR-S002 — Accept Task
+Reuse of an Agent message ID with a different canonical payload shall return
+`message_id_conflict` and shall not change durable state.
 
-`task.accepted.v1` shall transition Attempt from `leased` to `accepted`.
+#### FR-I008 — Terminal response replay
 
-### FR-S003 — Reject Task
+A completion/failure response shall remain replayable after its Attempt becomes
+terminal. A historical response proves past processing but does not grant
+current execution permission.
 
-`task.rejected.v1` shall terminate the Attempt and let Samgita decide requeue/dead-letter behavior.
+#### FR-I009 — Failure atomicity
 
-### FR-S004 — Start Task
+An unexpected transaction failure shall commit no success receipt, state
+change, or event and shall return a retryable generic error without stack trace
+or secret detail.
 
-`task.started.v1` shall transition Attempt to `running` and Task to `running`.
+#### FR-I010 — Stable errors
 
-### FR-S005 — Report progress
+Expected failures shall use centralized stable codes including at least
+`unauthorized`, `invalid_envelope`, `unsupported_version`, `message_id_conflict`,
+`out_of_order`, `lease_expired`, `stale_fence`, and `illegal_transition`.
 
-`task.progress.v1` shall update the latest progress projection and append an audit event.
+### 8.11 Domain Events and Audit
 
-### FR-S006 — Complete Task
+#### FR-E001 — Append-only audit
 
-`task.completed.v1` shall atomically mark Attempt succeeded and Task completed when all lease/state checks pass.
+Every accepted state-changing Operator command and Agent message shall append
+one or more versioned, append-only domain events.
 
-### FR-S007 — Fail Task
+#### FR-E002 — Same transaction
 
-`task.failed.v1` shall atomically mark Attempt failed and apply Samgita retry policy.
+Aggregate state, domain events, and any protocol receipt shall commit in one
+database transaction.
 
-### FR-S008 — Report cancellation
+#### FR-E003 — Persist before publish
 
-`task.cancelled.v1` shall idempotently acknowledge local stop behavior for a cancelled Task.
+PubSub notification shall occur only after commit. Losing PubSub messages shall
+not lose state; subscribers reconstruct state from PostgreSQL.
 
-### FR-S009 — Sequence enforcement
+#### FR-E004 — Correlation
 
-Attempt message sequence shall be strictly increasing. Duplicate message IDs replay ACK; conflicting or out-of-order messages are rejected.
+Task and Attempt lifecycle events shall share a correlation identifier and
+record server time, actor identity/type, event type/version, and an allowlisted
+payload.
 
-### FR-S010 — Deterministic ACK
+#### FR-E005 — Secret-free payload
 
-Every accepted message shall return an ACK containing the resulting Task/Attempt status, current sequence, server time, and event ID.
+Event payloads shall be constructed from an allowlist and shall never copy raw
+protocol bodies, credentials, lease tokens, signing material, or stack traces.
 
-### FR-S011 — Payload limits
+#### FR-E006 — Bounded progress audit
 
-Messages exceeding the configured size or progress rate shall be rejected or throttled with a stable error.
+Accepted progress outside the minimum interval may append bounded progress
+metadata. Routine heartbeat and rate-limited no-op progress shall not append
+domain events.
 
-### FR-S012 — Server authority
+#### FR-E007 — Milestone retention
 
-Agent-provided source timestamps and retry suggestions shall be preserved as metadata but shall not override server lease time or retry policy.
+Connections, Attempts, receipts, and domain events shall have no automatic
+deletion in this milestone so replay and audit behavior have no hidden cutoff.
 
----
+### 8.12 Operator REST API
 
-## 9.10 Retry, Expiry, and Dead Letter
+#### FR-API001 — Protected administration
 
-### FR-R001 — Retry policy
+Operator REST endpoints shall use the retained API-key authentication and rate-
+limit pipeline and return JSON with stable machine-readable errors and
+validation details.
 
-A failed, rejected, or expired Attempt may requeue the Task when attempts remain and the Task is not cancelled.
+#### FR-API002 — Project resources
 
-### FR-R002 — Backoff
+The API shall provide Project create, list, show, update, and safe-delete
+operations, plus Project binding and Task reads.
 
-Requeued Tasks shall use configurable exponential backoff through `available_at`.
+#### FR-API003 — Agent resources
 
-### FR-R003 — Maximum attempts
+The API shall provide Agent create, list, show, update, enable, and disable
+operations, including derived connection and capacity state.
 
-When maximum attempts are exhausted, the Task shall enter `dead_letter` unless an explicit terminal-failure policy selects `failed`.
+#### FR-API004 — Credential resources
 
-### FR-R004 — Manual retry
+The API shall provide credential issue, metadata list, and revoke operations.
+Only issue may return plaintext, and that response shall be no-store.
 
-The operator shall be able to retry `failed` or `dead_letter` Agent Hub Tasks.
+#### FR-API005 — Binding resources
 
-### FR-R005 — Immutable history
+The API shall provide Project-Agent binding create, list, update, and delete
+operations with optional capability restrictions.
 
-Manual retry shall create a new Attempt later; it shall not delete or reset prior Attempt records.
+#### FR-API006 — Task resources
 
-### FR-R006 — Illegal retry
+The API shall provide Task create, list, and show operations plus Attempt and
+event history. It shall not expose controls for excluded Task operations.
 
-Completed, cancelled, assigned, and running Tasks shall not be retried.
+#### FR-API007 — API parity
 
----
+The API and UI shall invoke the same core context commands and reads; neither
+shall contain separate transition or authorization logic.
 
-## 9.11 Cancellation
+### 8.13 Operator LiveViews
 
-### FR-X001 — Cancel pending Task
+#### FR-UI001 — Dashboard
 
-The operator shall be able to cancel a pending Agent Hub Task immediately.
+The Dashboard shall show connected Agents, active work, pending work, and recent
+failures using durable queries and post-commit PubSub refresh.
 
-### FR-X002 — Cancel active Task
+#### FR-UI002 — Project journey
 
-The operator shall be able to cancel an assigned/running Task, and Samgita shall send a best-effort cancellation control message to its Agent.
+The Operator shall be able to create, edit, list, inspect, and safely delete
+Projects, manage bindings, create Project Tasks, and inspect Project work.
 
-### FR-X003 — Terminal authority
+#### FR-UI003 — Agent journey
 
-Once a Task is cancelled, terminal completion/failure from the old Attempt shall not alter it.
+The Operator shall be able to register, edit, enable, disable, list, and inspect
+Agents, including capability/capacity configuration, connection history,
+bindings, and current/recent Attempts.
 
-### FR-X004 — Idempotent cancellation
+#### FR-UI004 — Credential journey
 
-Repeated cancel commands shall return the already-cancelled state without duplicate events.
+The Agent detail view shall issue and revoke credentials, display non-secret
+credential metadata, and present a new plaintext credential exactly once with
+a clear non-recoverability warning.
 
-### FR-X005 — Agent stop acknowledgement
+#### FR-UI005 — Task creation
 
-The Agent may report `task.cancelled.v1`; this shall be idempotent and visible in Attempt history.
+The Task form shall expose Project, title, description, type, JSON payload,
+priority, required capabilities, timeout, maximum Attempts, and optional
+idempotency key with visible validation.
 
----
+#### FR-UI006 — Task detail
 
-## 9.12 Domain Events and Audit
+The Task view shall update after post-commit notifications and show current
+state, pending reason, Agent, Attempt number, deadlines/lease expiration,
+progress, result/error, immutable Attempt history, and audit timeline.
 
-### FR-E001 — Append-only events
+#### FR-UI007 — Durable reconnect
 
-Every accepted state-changing operator command or Agent message shall append one or more versioned domain events.
+A LiveView reconnect or refresh shall reconstruct all displayed state from
+PostgreSQL rather than socket or process memory.
 
-### FR-E002 — Same transaction
+#### FR-UI008 — Operational design
 
-Aggregate updates and their domain events shall commit in the same database transaction.
+LiveViews shall use existing DuskMoon layout conventions, responsive forms and
+tables, accessible labels, visible errors, useful empty states, and bounded
+pagination. No additional UI library shall be introduced.
 
-### FR-E003 — Correlation
+## 9. Non-Functional Requirements
 
-Task lifecycle events shall share a correlation ID so the full execution can be queried.
+### 9.1 Durability and Consistency
 
-### FR-E004 — Persist before broadcast
+#### NFR-DUR001
 
-PubSub and outgoing webhook notifications shall happen only after commit.
+A committed Project, Agent, Task, Attempt, connection, receipt, or event shall
+survive process/node restart.
 
-### FR-E005 — Event timeline
+#### NFR-DUR002
 
-Task detail shall show chronological events for the Task and Attempts.
+Samgita shall recover authoritative execution state from PostgreSQL, not
+Channel, LiveView, PubSub, or ETS process memory.
 
-### FR-E006 — No secrets
+#### NFR-CONS001
 
-Domain event payloads shall never include plaintext Agent credentials or lease tokens.
+Task and current Attempt states shall never contradict after a committed
+transition.
 
-### FR-E007 — Not full event sourcing
+#### NFR-CONS002
 
-Current aggregate tables remain authoritative; replay/rebuild of all aggregate state is not a release requirement.
+Concurrency tests shall demonstrate one active Attempt per Task and capacity
+enforcement using independent database transactions and real locks.
 
----
+#### NFR-CONS003
 
-## 9.13 Protocol Inbox and Idempotency
+Renewal, reconnect, Agent/authorization changes, claims, status transitions,
+and reaping shall use compatible lock order and revalidate after locking.
 
-### FR-I001 — Store message receipt
+### 9.2 Security
 
-Every accepted Agent message shall create an Agent Inbox receipt with a canonical non-secret ACK descriptor. Assignment lease tokens shall be re-derived only when serializing the ACK response.
+#### NFR-SEC001
 
-### FR-I002 — Duplicate replay
+Agent Socket authentication is mandatory and independent of Operator API
+configuration.
 
-A duplicate `(agent_id, message_id)` with the same payload shall return the stored ACK.
+#### NFR-SEC002
 
-### FR-I003 — Conflict detection
+Credential comparison shall be resistant to timing disclosure, authentication
+failures shall be rate-bounded, and error responses shall not distinguish
+secret-verification details.
 
-A duplicate message ID with different payload shall be rejected as `message_id_conflict`.
+#### NFR-SEC003
 
-### FR-I004 — Sequence uniqueness
+An Agent shall be unable to claim an unauthorized Project, exceed effective
+capacity, act on another Agent's Attempt, or use an old connection or fence.
 
-An Attempt sequence number shall be processed at most once.
+#### NFR-SEC004
 
-### FR-I005 — Transactional receipt
+Credentials, lease tokens, signing keys, and raw secret-bearing messages shall
+not appear in logs, telemetry, receipts, domain events, or ordinary API/UI
+reads.
 
-Inbox receipt, aggregate state, and domain events shall commit atomically.
+#### NFR-SEC005
 
----
+Runtime shall validate that a current lease-signing key exists and that every
+key identifier required for supported replay resolves to configured secret
+material.
 
-## 9.14 API Requirements
+#### NFR-SEC006
 
-### FR-API001 — Agent APIs
+Fencing protects Samgita's accepted state only. Product documentation shall
+state that disconnected execution can repeat external side effects and that
+future integrations require their own idempotency/fencing contract.
 
-Provide create/list/show/update/enable/disable endpoints.
+### 9.3 Performance and Availability
 
-### FR-API002 — Credential APIs
+#### NFR-PERF001
 
-Provide issue and revoke endpoints. Credential issue returns plaintext once.
+Dispatch shall use indexed eligibility predicates and bounded locking. It shall
+not scan or lock the complete pending queue or all Agents for one claim.
 
-### FR-API003 — Connection APIs
+#### NFR-PERF002
 
-Provide Agent connection/history inspection endpoints.
+List and detail reads shall use bounded pagination and batched queries/preloads
+without per-record N+1 query patterns.
 
-### FR-API004 — Binding APIs
+#### NFR-PERF003
 
-Provide list/create/update/delete Project-Agent binding endpoints.
+With 100 connected Agents and 1,000 pending Tasks on the recorded benchmark
+environment, warmed work requests shall complete at p95 within 500 ms excluding
+network latency and with no claim, capacity, or fencing invariant violation.
+The environment and results shall be retained with the verification evidence.
 
-### FR-API005 — Task APIs
+#### NFR-AVL001
 
-Provide Agent Hub Task create/list/show/cancel/retry, Attempts, and events endpoints.
+Loss of a wake-up or PubSub notification shall not lose a Task or accepted
+transition.
 
-### FR-API006 — Existing protection
+#### NFR-AVL002
 
-Admin endpoints shall use the existing API authentication and rate-limit pipeline.
+The fake Agent shall reconnect without Operator action after transient network
+loss or server restart.
 
-### FR-API007 — Stable errors
+### 9.4 Observability
 
-API errors shall provide stable machine-readable codes and useful validation details.
+#### NFR-OBS001
 
----
+Connection, authentication, claim, transition, expiry, automatic retry,
+duplicate replay, conflict, rejection, and maintenance activity shall emit
+telemetry without secret payloads.
 
-## 9.15 UI Requirements
+#### NFR-OBS002
 
-### FR-UI001 — Registered Agents list
+Logs shall carry correlation, Agent, Task, Attempt, and connection identifiers
+where relevant while excluding secrets and raw payloads.
 
-Show registered Agent state, runtime, capacity, active Attempts, and last heartbeat.
+#### NFR-OBS003
 
-### FR-UI002 — Create Agent
+The Operator shall be able to determine why a Task is pending or failed and why
+an Attempt expired or was rejected.
 
-Provide an operational form to create an Agent and then issue a credential.
+### 9.5 Maintainability and Testability
 
-### FR-UI003 — One-time secret presentation
+#### NFR-MNT001
 
-Display the new credential once with a clear warning that it cannot be viewed again.
+Channel, controller, and LiveView callbacks shall remain transport/presentation
+adapters. Core contexts and pure modules shall own state transitions, matching,
+protocol validation, and retry calculations.
 
-### FR-UI004 — Agent detail
+#### NFR-MNT002
 
-Show configuration, connection history, project bindings, active/recent Attempts, and credential metadata.
+The application dependency direction shall remain `samgita_web -> samgita`.
 
-### FR-UI005 — Project Agent management
+#### NFR-MNT003
 
-Allow operator to bind, configure, disable, and safely unbind Agents from a Project.
+Protocol message names, schemas, and error codes shall be centralized and
+version controlled.
 
-### FR-UI006 — Agent Hub Task creation
+#### NFR-TST001
 
-Allow creation of a Task from the Project page with capability and preferred-Agent fields.
+CI shall exercise the complete protocol with a deterministic fake Agent over a
+real WebSocket connection. No LLM or external Agent service is required.
 
-### FR-UI007 — Task status
+#### NFR-TST002
 
-Show status, progress, assigned Agent, current lease expiration, and Attempt number in real time.
+Pure tests shall cover every allowed/forbidden state transition, capability
+intersection, retry calculation, and protocol validation rule.
 
-### FR-UI008 — Task timeline
+#### NFR-TST003
 
-Show immutable Attempt and domain-event history.
+Database tests shall cover constraints, atomic rollback, Task idempotency,
+capacity, locks, and concurrency races.
 
-### FR-UI009 — Task controls
+#### NFR-TST004
 
-Show cancel or retry only when legal.
+UI and API tests shall assert observable behavior through public surfaces rather
+than private implementation details.
 
-### FR-UI010 — Existing design system
-
-Use Phoenix LiveView and existing DuskMoon components. Do not add another UI library.
-
----
-
-## 9.16 Legacy Compatibility
-
-### FR-B001 — Legacy default
-
-The Task schema shall default `execution_mode` to `legacy_local` so existing callers remain unchanged.
-
-### FR-B002 — Dispatcher isolation
-
-The new Dispatcher shall never claim `legacy_local` Tasks.
-
-### FR-B003 — Existing worker isolation
-
-The existing `AgentTaskWorker` shall not process `agent_hub` Tasks unless a future explicit adapter is implemented.
-
-### FR-B004 — Preserve Orchestrator
-
-No Phase 1 change shall alter the fixed project-phase behavior or task generation semantics of `Project.Orchestrator`.
-
-### FR-B005 — Preserve AgentRun
-
-`AgentRun` shall not be repurposed as Task Attempt.
-
-### FR-B006 — Preserve provider adapter
-
-`SamgitaProvider.Synapsis` shall not become the Agent Channel implementation.
-
----
-
-## 10. Non-Functional Requirements
-
-## 10.1 Durability
-
-### NFR-DUR001
-
-A committed Task, Attempt, message receipt, or domain event shall survive Samgita process/node restart.
-
-### NFR-DUR002
-
-A Task assignment shall be recoverable through repeated work request or reconnect even if the assignment response was lost.
-
-### NFR-DUR003
-
-Lease expiry shall be processed durably by Oban and remain safe under repeated execution.
-
-## 10.2 Consistency
-
-### NFR-CON001
-
-A Task shall never have two database-valid active Attempts.
-
-### NFR-CON002
-
-Task and current Attempt statuses shall not contradict each other after a committed transition.
-
-### NFR-CON003
-
-Task, Attempt, Domain Event, and Inbox ACK changes for one protocol message shall be atomic.
-
-### NFR-CON004
-
-Stale fencing tokens shall never produce a successful terminal transition.
-
-## 10.3 Availability and Recovery
-
-### NFR-AVL001
-
-Loss of PubSub messages shall not lose Tasks.
-
-### NFR-AVL002
-
-Agents shall reconnect with no operator action after transient disconnection.
-
-### NFR-AVL003
-
-Samgita shall recover authoritative state from PostgreSQL, not from socket process memory.
-
-## 10.4 Performance
-
-### NFR-PERF001
-
-With up to 100 connected Agents and 1,000 pending Tasks, a work request should normally return within 500 ms excluding network latency under a healthy local PostgreSQL deployment.
-
-### NFR-PERF002
-
-Task progress updates shall not block other Agent connections on external work.
-
-### NFR-PERF003
-
-The dispatch query shall use indexed predicates and bounded locking.
-
-### NFR-PERF004
-
-The UI shall use batched queries/preloads and avoid per-Agent/Task N+1 patterns.
-
-## 10.5 Security
-
-### NFR-SEC001
-
-Agent Socket authentication is mandatory.
-
-### NFR-SEC002
-
-Secrets shall not be stored or logged in plaintext. The Agent Hub lease-signing key shall be loaded from runtime secret configuration and remain stable across restarts.
-
-### NFR-SEC003
-
-An Agent shall be unable to operate on another Agent's Attempt.
-
-### NFR-SEC004
-
-An Agent shall be unable to claim an unbound Project.
-
-### NFR-SEC005
-
-Message size and authentication failure rates shall be bounded.
-
-## 10.6 Observability
-
-### NFR-OBS001
-
-Connection, dispatch, attempt transition, lease expiry, duplicate, and rejection activity shall emit telemetry.
-
-### NFR-OBS002
-
-Logs shall carry correlation identifiers without secret payloads.
-
-### NFR-OBS003
-
-Operators shall be able to inspect why a Task is pending, ineligible, expired, failed, or dead-lettered.
-
-## 10.7 Testability
-
-### NFR-TST001
-
-Samgita CI shall test the full protocol with a fake Agent and mock provider; a real Synapsis or LLM service is not required.
-
-### NFR-TST002
-
-State-machine and matcher logic shall be pure where practical.
-
-### NFR-TST003
-
-Concurrency tests shall verify claim, cancellation, reaper, and fencing races.
-
-## 10.8 Maintainability
-
-### NFR-MNT001
-
-Business logic shall remain in core contexts, not Channel/controller callbacks.
-
-### NFR-MNT002
-
-The new implementation shall preserve umbrella dependency direction.
-
-### NFR-MNT003
-
-Protocol type strings and error codes shall be centralized.
-
----
-
-## 11. Defaults and Configurability
+## 10. Configuration Defaults
 
 | Configuration | Default |
 |---|---:|
-| `agent_hub_v1_enabled` | false in production until rollout |
-| Protocol version | 1 |
-| Lease signing key | Required secret in production; stable across restarts |
+| Protocol version | `1` |
+| Current lease-signing key | Required runtime secret |
 | Agent heartbeat interval | 15 seconds |
 | Offline threshold | 45 seconds |
-| Assignment accept timeout | 20 seconds |
 | Lease duration | 120 seconds |
-| Lease renewal target | 30 seconds |
-| Lease reaper maximum cadence | 60 seconds |
-| Task timeout | 900 seconds |
-| Task maximum attempts | 3 |
+| Start deadline | 20 seconds after claim |
+| Execution timeout | 900 seconds after accepted start |
+| Maximum Attempts | 3 total Attempts |
+| Automatic retry delay | `min(5 * 2^(n-1), 60)` seconds |
 | Progress minimum interval | 2 seconds |
-| Maximum protocol payload | 256 KiB |
+| Maximum protocol message | 256 KiB |
 | Agent maximum concurrency | 1 |
+| Maintenance enqueue cadence | Every 60 seconds |
 
-Configuration belongs in runtime/application config and must be validated at startup where practical.
+Configuration belongs in runtime/application config and shall be validated at
+startup where practical. Tests may override timing without changing production
+semantics.
 
----
+## 11. Acceptance Scenarios
 
-## 12. Success Metrics
+### AS-001 — Complete UI-to-Agent journey
 
-The first release is successful when:
+**Given** a fresh database
 
-1. A fake or Synapsis Agent can remain connected for at least 24 hours with heartbeat and reconnect.
-2. Duplicate assignment/status messages create no duplicate Attempts or terminal transitions.
-3. Concurrent claim testing produces exactly one active Attempt for one Task.
-4. A stale completion after reassignment is rejected in every test run.
-5. Samgita restart during an active Attempt recovers through Agent reconnect.
-6. Operators can identify current Agent, Attempt, progress, and failure reason from UI/API.
-7. Legacy PRD orchestration tests remain passing.
-8. No plaintext Agent or lease secret appears in database event rows, logs, or API reads.
+**When** an Operator uses the UI to create a Project, register an Agent, issue a
+credential, create a binding and Task, and the fake Agent connects and executes
+it
 
----
+**Then** the Operator sees progress, terminal result, Attempt history, and audit
+events without direct database manipulation.
 
-## 13. Acceptance Scenarios
+### AS-002 — Protect one-time credential
 
-## AS-001 — Connect Agent
+**Given** an Operator issues a credential
 
-**Given** an enabled Agent and active credential  
-**When** Synapsis authenticates, joins its Agent topic, and sends valid hello  
-**Then** Samgita creates an active connection, returns welcome, and shows the Agent online.
+**When** the creation response has completed
 
-## AS-002 — Reject invalid credential
+**Then** plaintext cannot be retrieved through the database, logs, events,
+receipts, telemetry, API, or UI, and the original response used no-store
+headers.
 
-**Given** an unknown, revoked, expired, or incorrect token  
-**When** the client connects  
-**Then** the socket is rejected, no active connection is created, and no secret is logged.
+### AS-003 — Reject invalid credential
 
-## AS-003 — Replace connection
+**Given** an unknown, expired, revoked, malformed, or incorrect credential
 
-**Given** Agent A has an active connection  
-**When** another valid instance of Agent A connects  
-**Then** the newer connection becomes current and the older connection is closed as replaced.
+**When** a daemon attempts a WebSocket handshake
 
-## AS-004 — Bind Agent
+**Then** authentication fails, no active connection is created, and no secret
+or verification detail is exposed.
 
-**Given** a Project and Agent  
-**When** the operator creates a binding  
-**Then** the binding is visible and unique for the pair.
+### AS-004 — Replace connection and reconcile
 
-## AS-005 — Prevent unauthorized claim
+**Given** an Agent has an active connection and valid unexpired Attempt
 
-**Given** an Agent not bound to Project P  
-**And** a pending Task in Project P  
-**When** the Agent requests work  
-**Then** the Task is not returned.
+**When** a new authenticated Channel sends a fresh hello
 
-## AS-006 — Capability match
+**Then** the new connection becomes current, the old socket is invalidated, the
+Attempt is rebound without creating another Attempt, and the Agent receives its
+resume decision.
 
-**Given** a Task requires `language:elixir` and `role:implement`  
-**When** an Agent lacking one capability requests work  
-**Then** it receives no assignment.
+### AS-005 — Enforce authorization and capabilities
 
-## AS-007 — Atomic claim
+**Given** a pending Task
 
-**Given** one pending Task and two eligible Agents  
-**When** both request work concurrently  
-**Then** exactly one receives an assignment and exactly one active Attempt exists.
+**When** an unbound Agent or an Agent missing one required effective capability
+requests work
 
-## AS-008 — Complete Task
+**Then** no assignment is returned and no Attempt is created.
 
-**Given** a valid current running Attempt  
-**When** the Agent sends a valid next-sequence completion message  
-**Then** Attempt becomes succeeded, Task becomes completed, events are appended, and ACK is stored atomically.
+### AS-006 — Claim once under contention
 
-## AS-009 — Duplicate completion
+**Given** one eligible pending Task and two eligible Agents
 
-**Given** a completion message was accepted  
-**When** the Agent sends the same message ID and payload again  
-**Then** Samgita returns the stored ACK and creates no new transition/event.
+**When** both claim concurrently in independent database transactions
 
-## AS-010 — Conflicting duplicate
+**Then** exactly one assignment is returned and exactly one active Attempt
+exists.
 
-**Given** a message ID was accepted  
-**When** the Agent reuses it with a different payload  
-**Then** Samgita rejects it as `message_id_conflict`.
+### AS-007 — Enforce one Agent slot
 
-## AS-011 — Lease expiry and reassignment
+**Given** an Agent with effective capacity one and two eligible Tasks
 
-**Given** Attempt 1 stops heartbeating  
-**When** its lease expires and the reaper runs  
-**Then** Attempt 1 becomes expired and the Task is requeued when attempts remain.
+**When** two work requests race
 
-## AS-012 — Reject stale completion
+**Then** at most one active Attempt is owned by that Agent.
 
-**Given** Attempt 2 is now current with fencing token 2  
-**When** Attempt 1 sends completion with fencing token 1  
-**Then** Samgita rejects it and leaves Attempt 2/Task unchanged.
+### AS-008 — Replay lost assignment response
 
-## AS-013 — Reconnect and replay
+**Given** an assignment transaction committed but its response was lost
 
-**Given** an Agent has unacknowledged ordered status messages  
-**When** it reconnects and replays them  
-**Then** already accepted messages replay ACK and remaining messages apply once in sequence.
+**When** the Agent repeats the identical work-request message
 
-## AS-014 — Cancel running Task
+**Then** Samgita returns the same assignment and re-derived lease token without
+creating another Attempt or event.
 
-**Given** a running Task  
-**When** the operator cancels it  
-**Then** Task is terminally cancelled, the Agent receives cancellation, and later completion is rejected.
+### AS-009 — Replay terminal status
 
-## AS-015 — Manual retry
+**Given** completion committed and its ACK was lost
 
-**Given** a dead-letter Task  
-**When** the operator retries it  
-**Then** it becomes pending without deleting prior Attempts and the next claim uses a higher fencing token.
+**When** the identical completion is replayed after the Attempt is terminal
 
-## AS-016 — Legacy isolation
+**Then** the original ACK, resulting states, and event IDs are returned without
+another transition or event.
 
-**Given** a pending legacy-local Task  
-**When** an external Agent requests work  
-**Then** the legacy Task is never returned.
+### AS-010 — Reject conflicting message
 
-## AS-017 — Restart recovery
+**Given** a message ID already has a committed receipt
 
-**Given** an active Attempt  
-**When** Samgita restarts and the Agent reconnects before lease expiry  
-**Then** Samgita can resume the current Attempt from PostgreSQL state.
+**When** the Agent reuses it with different content
 
-## AS-018 — Event atomicity
+**Then** Samgita returns `message_id_conflict` and changes no durable state.
 
-**Given** a database error during a transition  
-**When** the transaction rolls back  
-**Then** Task/Attempt state, Inbox receipt, and Domain Events remain unchanged and no success broadcast occurs.
+### AS-011 — Consume throttled progress sequence
 
----
+**Given** a running Attempt recently accepted progress
+
+**When** valid next-sequence progress arrives inside two seconds
+
+**Then** its deterministic no-op receipt commits and sequence is consumed, but
+progress and events are unchanged and the following contiguous completion can
+succeed.
+
+### AS-012 — Expire missed start
+
+**Given** a leased Attempt continues heartbeating but does not start within 20
+seconds
+
+**When** it sends an Attempt message before maintenance has persisted expiry
+
+**Then** Samgita rejects the message as expired without committing that message
+or a success receipt; when the scheduled maintenance job executes, it persists
+the expired Attempt and delays the Task as pending when budget remains or fails
+the Task when budget is exhausted.
+
+### AS-013 — Expire, reassign, and fence
+
+**Given** Attempt 1 expires and the Task is later claimed as Attempt 2
+
+**When** Attempt 1 sends a terminal result
+
+**Then** Samgita rejects it and leaves Attempt 2 and the Task unchanged.
+
+### AS-014 — Classify automatic retry
+
+**Given** a running Attempt fails
+
+**When** the error is an execution error and budget remains
+
+**Then** the Attempt becomes failed and the Task returns to pending using the
+specified backoff; an invalid-input or unsupported-task error instead makes the
+Task failed immediately.
+
+### AS-015 — Revoke credential during work
+
+**Given** an Agent has a connection and active Attempt
+
+**When** the authenticating credential is revoked
+
+**Then** the connection is invalidated, no further message or lease renewal is
+accepted, and the Attempt resolves through expiry without state corruption.
+
+### AS-016 — Recover after Samgita restart
+
+**Given** an active Attempt is durably committed
+
+**When** Samgita restarts and the fake Agent reconnects before expiry
+
+**Then** hello reconciliation recovers and rebinds the Attempt from PostgreSQL
+without creating another Attempt.
+
+### AS-017 — Roll back atomically
+
+**Given** a forced database error during a protocol transition
+
+**When** its transaction rolls back
+
+**Then** Task, Attempt, event, and receipt state remain unchanged, no success is
+broadcast, and the Agent receives a retryable generic error.
+
+### AS-018 — Boot clean release
+
+**Given** the release artifact and an explicitly named fresh database
+
+**When** migrations run and the release boots
+
+**Then** health, UI, API, WebSocket transport, assets, Repo, and Oban start
+without any removed application, pgvector, Horde, provider, or external LLM.
+
+## 12. Verification Gates
+
+1. Canonical state tables, wire schemas, fixtures, and lock order are reviewed
+   before parallel implementation.
+2. Fresh migrations and all database constraints pass on an explicitly named
+   empty test/development database. No existing database is inferred as safe to
+   delete.
+3. Pure unit tests cover transitions, matching, retry, and protocol parsing.
+4. Database tests prove state/event/receipt atomicity and Task creation
+   idempotency.
+5. Independent-transaction race tests cover one-Task contention, one-Agent-slot
+   contention, connection replacement, authorization versus claim, and renewal
+   versus reaping.
+6. Fake Agent tests use the real WebSocket handshake and cover header auth,
+   hello, complete execution, no-op progress, duplicate/conflicting messages,
+   lost assignment/ACK, reconnect, expiry, stale fencing, revocation, and
+   restart recovery.
+7. UI/API tests cover Project and Agent management, authorization, Task
+   creation, progress/result inspection, validation, one-time secret behavior,
+   API protection, and rate limiting.
+8. Browser verification demonstrates the full Operator journey and responsive,
+   accessible layouts.
+9. Assets build, fresh-database migration, and the two-application release build
+   and boot successfully.
+10. A final repository scan confirms excluded product routes, modules,
+    configuration, dependencies, migrations, tests, and documentation are
+    absent.
+
+Checks run at the scope of each delivery slice. Unrelated failures are reported
+without unrelated repair.
+
+## 13. Success Metrics
+
+The milestone succeeds when:
+
+1. The UI and fake Agent complete AS-001 without database manipulation or an
+   external service.
+2. Repeated identical messages produce no duplicate Attempt, transition,
+   receipt, or event.
+3. Every concurrent claim test produces one active Attempt for one Task and
+   never exceeds Agent capacity.
+4. Every stale-fence test rejects the old executor without changing current
+   state.
+5. Reconnect and restart recovery preserve valid work without a duplicate
+   Attempt.
+6. Operators can diagnose current Agent state, Task eligibility, progress,
+   failure, automatic retry, and Attempt history through UI and API.
+7. Secret scans find no plaintext credential, token, or signing key in durable
+   rows, logs, telemetry, or ordinary responses.
+8. The rebuilt release starts from a fresh database with exactly the two scoped
+   applications and no external LLM requirement.
 
 ## 14. Definition of Done
 
-Agent Hub Phase 1 is complete only when all are true:
+Agent Hub first milestone is complete only when all are true:
 
-- [ ] Registered Agent CRUD and derived status are implemented.
-- [ ] Secure credential issue/rotate/revoke is implemented.
-- [ ] Agent Socket authentication and hello/welcome are implemented.
-- [ ] One-active-connection replacement is implemented.
-- [ ] Heartbeat, offline derivation, lease renewal, and reconnect reconciliation work.
-- [ ] Project-Agent binding and capability restrictions work.
-- [ ] Agent Hub Task creation is isolated from legacy tasks.
-- [ ] Atomic pull-claim creates a Task Attempt, lease, and fencing token.
-- [ ] Agent can accept, start, progress, complete, fail, reject, and acknowledge cancellation.
-- [ ] Inbox deduplication and deterministic ACK replay work.
-- [ ] Lease reaper safely requeues or dead-letters.
-- [ ] Cancellation and manual retry work.
-- [ ] Stale results are rejected.
-- [ ] Aggregate changes and domain events commit atomically.
-- [ ] API and minimum operational LiveViews are implemented.
-- [ ] Fake-Agent end-to-end test passes without an external LLM.
-- [ ] Concurrency and restart/reconnect tests pass.
-- [ ] Existing scoped legacy orchestration tests remain passing.
-- [ ] `mix format --check-formatted` passes for modified files.
-- [ ] Scoped Credo/Dialyzer/test checks pass as defined by the implementation plan.
-- [ ] No out-of-scope GitHub/workflow/release functionality is added.
-
----
-
-## 15. Risks and Mitigations
-
-| Risk | Mitigation |
-|---|---|
-| New dispatcher claims legacy tasks | Mandatory `execution_mode` filter and tests |
-| Duplicate execution during race | Row lock, active-attempt partial unique index, fencing |
-| Lost assignment response | Durable Inbox ACK replay and hello resume |
-| Agent lies about capabilities | Effective intersection with operator-approved capabilities |
-| Stale socket keeps sending | Active connection ID check on every message |
-| Database write volume from heartbeat/progress | Reasonable intervals, indexes, optional later coalescing |
-| Channel becomes business-logic monolith | Thin transport; contexts and pure state machine own behavior |
-| Credential leakage | One-time plaintext, hash storage, no logs/events, no-store response |
-| Reaper double-processing | Locks, terminal checks, idempotent transactions |
-| Phase scope expands into workflow/GitHub | Explicit non-goals and execution-plan stop boundary |
-| Synapsis implementation blocks Samgita CI | Fake-Agent conformance client in Samgita tests |
-
----
-
-## 16. Future Extensions
-
-The following are enabled by, but not included in, Phase 1:
-
-- Multiple repositories per Project.
-- Logical Agent pools with multiple active instances.
-- Managed local Codex/Claude Agents using the same Attempt protocol.
-- Agent-created child Tasks.
-- Workflow definitions and sagas.
-- GitHub Issue-to-Task ingestion.
-- PR creation and independent reviewer Agents.
-- Merge/release policy engines.
-- Artifact object storage and streaming logs.
-- mTLS Agent identity.
-- Fair-share and cost-aware scheduling.
-
-No Phase 1 implementation should preemptively build these features.
+- [ ] The repository contains a bootable `samgita` and `samgita_web` Agent Hub
+      system and no unused replaced-product scaffolding.
+- [ ] Fresh migrations create the nine domain tables, required indexes and
+      constraints, and Oban infrastructure.
+- [ ] Project, Agent, credential, binding, and Task contexts satisfy their
+      requirements through UI and API.
+- [ ] The authenticated version-1 Channel satisfies the frozen wire fixtures.
+- [ ] Atomic claim, capacity, lease, fencing, deadlines, and automatic retry
+      satisfy the state model.
+- [ ] Status transitions, deterministic progress handling, receipts, ACK replay,
+      and stable errors satisfy protocol tests.
+- [ ] Replacement connection, reconnect reconciliation, Agent disablement,
+      credential revocation, expiry, and restart recovery pass.
+- [ ] Aggregate changes, receipts, and allowlisted domain events commit
+      atomically and publish only after commit.
+- [ ] The complete fake Agent journey passes over a real WebSocket without an
+      LLM or Synapsis.
+- [ ] Concurrency tests exercise real database locks and pass consistently.
+- [ ] Operator UI and API expose the complete first-milestone journey and no
+      excluded controls.
+- [ ] Secret, payload-bound, authorization, API-protection, and rate-limit tests
+      pass.
+- [ ] Scoped format, static analysis, test, asset, migration, and release-build
+      gates pass.
+- [ ] The release boots against an explicitly named fresh database with no
+      removed service or dependency requirement.
+- [ ] The implementation stops at the first-milestone scope boundary.

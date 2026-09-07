@@ -1,5 +1,7 @@
 # Samgita (संगीत)
 
+> **Rebuild status:** The approved direction is a fresh-start external Agent Hub with two umbrella apps, an operator UI, and a fake reference Agent. Implementation has not started. Start with the [current PRD](docs/prd.md), [architecture](docs/architecture.md), and [implementation plan](docs/plan.md). The legacy product description below describes the code awaiting replacement and will be removed with the foundation stage.
+
 <p align="center">
   <img src="assets/static/images/icon.png" alt="Samgita Icon" width="200" />
 </p>
