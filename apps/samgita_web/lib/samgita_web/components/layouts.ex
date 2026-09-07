@@ -22,6 +22,7 @@ defmodule SamgitaWeb.Layouts do
   attr :id, :string, default: "flash-group", doc: "the optional id of flash container"
 
   def flash_group(assigns) do
+    # TODO(upstream): duskmoon-dev/phoenix-duskmoon-ui#162 - hide the connected toast from assistive technology.
     ~H"""
     <.dm_flash_group flash={@flash} />
     """

@@ -1,25 +1,17 @@
 defmodule SamgitaTest do
-  use Samgita.DataCase, async: false
+  use Samgita.DataCase, async: true
 
-  alias Ecto.Adapters.SQL.Sandbox
-
-  setup do
-    pid = Sandbox.start_owner!(SamgitaMemory.Repo, shared: true)
-    on_exit(fn -> Sandbox.stop_owner(pid) end)
-    :ok
+  test "health checks only the authoritative database" do
+    assert Samgita.health_checks() == %{samgita_repo: :ok}
   end
 
-  describe "health_checks/0" do
-    test "returns ok for both repos when connected" do
-      result = Samgita.health_checks()
-      assert %{samgita_repo: :ok, samgita_memory_repo: :ok} = result
-    end
+  test "the foundation supervises only Repo, PubSub and durable maintenance" do
+    children = Supervisor.which_children(Samgita.Supervisor)
 
-    test "returns exactly two check keys" do
-      result = Samgita.health_checks()
-      assert map_size(result) == 2
-      assert Map.has_key?(result, :samgita_repo)
-      assert Map.has_key?(result, :samgita_memory_repo)
-    end
+    assert Enum.sort(Enum.map(children, &elem(&1, 0))) ==
+             Enum.sort([Samgita.Repo, Phoenix.PubSub.Supervisor, Oban])
+
+    assert Application.fetch_env!(:samgita, :ecto_repos) == [Samgita.Repo]
+    assert Oban.config().testing == :manual
   end
 end

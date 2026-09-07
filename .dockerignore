@@ -1,6 +1,9 @@
 # Git
 .git
 .gitignore
+/.trees
+/.devenv
+/.direnv
 
 # Mix artifacts
 /_build
@@ -17,6 +20,7 @@ erl_crash.dump
 /apps/samgita_web/priv/static
 
 # Node modules and asset cache
+/node_modules
 /apps/samgita_web/node_modules
 /apps/samgita_web/.bun-cache
 

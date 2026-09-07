@@ -17,8 +17,6 @@ defmodule SamgitaWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
-  alias Ecto.Adapters.SQL.Sandbox
-
   using do
     quote do
       # The default endpoint for testing
@@ -35,9 +33,6 @@ defmodule SamgitaWeb.ConnCase do
 
   setup tags do
     Samgita.DataCase.setup_sandbox(tags)
-
-    pid = Sandbox.start_owner!(SamgitaMemory.Repo, shared: not tags[:async])
-    on_exit(fn -> Sandbox.stop_owner(pid) end)
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

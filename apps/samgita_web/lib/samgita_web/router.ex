@@ -18,62 +18,11 @@ defmodule SamgitaWeb.Router do
 
   scope "/", SamgitaWeb do
     pipe_through :browser
-
     live "/", DashboardLive.Index, :index
-    live "/projects/new", ProjectFormLive.Index, :new
-    live "/projects/:id", ProjectLive.Index, :show
-    live "/projects/:project_id/prds/new", PrdChatLive.Index, :new
-    live "/projects/:project_id/prds/new/chat", PrdChatLive.Index, :new_chat
-    live "/projects/:project_id/prds/:prd_id", PrdChatLive.Index, :edit
-    live "/projects/:project_id/prds/:prd_id/chat", PrdChatLive.Index, :edit_chat
-
-    live "/agents", AgentsLive.Index, :index
-    live "/mcp", McpLive.Index, :index
-    live "/skills", SkillsLive.Index, :index
-    live "/references", ReferencesLive.Index, :index
-    live "/references/*filename", ReferencesLive.Show, :show
   end
 
   scope "/api", SamgitaWeb do
     get "/health", HealthController, :index
     get "/info", InfoController, :index
-  end
-
-  scope "/api", SamgitaWeb do
-    pipe_through :api
-
-    resources "/projects", ProjectController, except: [:new, :edit] do
-      post "/pause", ProjectController, :pause
-      post "/resume", ProjectController, :resume
-      post "/start", ProjectController, :start
-      post "/stop", ProjectController, :stop
-      post "/restart", ProjectController, :restart
-      post "/terminate", ProjectController, :terminate_project
-
-      resources "/prds", PrdController, except: [:new, :edit]
-
-      resources "/tasks", TaskController, only: [:index, :show] do
-        post "/retry", TaskController, :retry
-      end
-
-      resources "/agents", AgentRunController, only: [:index, :show]
-      resources "/artifacts", ArtifactController, only: [:index, :show]
-    end
-
-    resources "/webhooks", WebhookController, only: [:index, :create, :delete]
-
-    get "/notifications/pending", NotificationController, :pending
-
-    resources "/notifications", NotificationController,
-      only: [:index, :show, :create, :update, :delete] do
-      post "/send", NotificationController, :send_notification
-      post "/retry", NotificationController, :retry
-    end
-
-    resources "/features", FeatureController, except: [:new, :edit] do
-      post "/enable", FeatureController, :enable
-      post "/disable", FeatureController, :disable
-      post "/archive", FeatureController, :archive
-    end
   end
 end

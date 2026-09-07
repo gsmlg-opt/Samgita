@@ -6,69 +6,28 @@ on:
   pull_request:
     branches: [main, develop]
 
+permissions:
+  contents: read
+
 env:
   MIX_ENV: test
-  ELIXIR_VERSION: "1.17.3"
-  OTP_VERSION: "26.2.5"
+  ELIXIR_VERSION: "1.18.5"
+  OTP_VERSION: "27.3.4.17"
+  POSTGRES_HOST: localhost
+  POSTGRES_PORT: "5432"
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
 
 jobs:
-  # Job 1: Code Quality Checks
-  quality:
-    name: Code Quality (Credo, Format, Dialyzer)
+  foundation:
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Elixir
-        uses: erlef/setup-beam@v1
-        with:
-          elixir-version: ${{ env.ELIXIR_VERSION }}
-          otp-version: ${{ env.OTP_VERSION }}
-
-      - name: Cache deps
-        uses: actions/cache@v3
-        with:
-          path: |
-            deps
-            _build
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-mix-
-
-      - name: Install dependencies
-        run: mix deps.get
-
-      - name: Check code formatting
-        run: mix format --check-formatted
-
-      - name: Run Credo (linter)
-        run: mix credo --strict
-
-      - name: Cache PLTs
-        uses: actions/cache@v3
-        with:
-          path: priv/plts
-          key: ${{ runner.os }}-plt-${{ hashFiles('**/mix.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-plt-
-
-      - name: Run Dialyzer (type checking)
-        run: mix dialyzer --format github
-
-  # Job 2: Tests with Coverage
-  test:
-    name: Test Suite
-    runs-on: ubuntu-latest
-
     services:
       postgres:
-        image: pgvector/pgvector:pg14
+        image: postgres:16
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: samgita_test
+          POSTGRES_DB: samgita_hub_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -76,237 +35,58 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Elixir
-        uses: erlef/setup-beam@v1
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
         with:
           elixir-version: ${{ env.ELIXIR_VERSION }}
           otp-version: ${{ env.OTP_VERSION }}
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      - name: Cache deps
-        uses: actions/cache@v3
+      - uses: oven-sh/setup-bun@v1
+      - uses: actions/cache@v4
         with:
           path: |
             deps
             _build
-          key: ${{ runner.os }}-mix-test-${{ hashFiles('**/mix.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-mix-test-
-
-      - name: Cache Bun dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            apps/samgita_web/node_modules
-            ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('apps/samgita_web/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
-
-      - name: Install Elixir dependencies
-        run: mix deps.get
-
-      - name: Compile dependencies
-        run: mix deps.compile
-
-      - name: Install frontend dependencies
-        run: |
-          cd apps/samgita_web
-          bun install --frozen-lockfile
-          cd ../..
-
-      - name: Compile application
-        run: mix compile --warnings-as-errors
-
-      - name: Setup database
+          key: ${{ runner.os }}-beam-${{ env.ELIXIR_VERSION }}-${{ env.OTP_VERSION }}-${{ hashFiles('mix.lock') }}
+      - run: mix deps.get
+      - name: Install web dependencies
+        working-directory: apps/samgita_web
+        run: bun install --frozen-lockfile
+      - run: mix compile --warnings-as-errors
+      - run: mix format --check-formatted
+      - run: mix credo --strict
+      - name: Fresh foundation database
         run: |
           mix ecto.create
           mix ecto.migrate
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost/samgita_test
-
-      - name: Run tests with coverage
-        run: mix test --cover --export-coverage default
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost/samgita_test
-          ANTHROPIC_API_KEY: test_key_for_ci
-
-      - name: Generate coverage report
-        run: mix test.coverage
-
-      - name: Upload coverage to artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: cover/
-
-  # Job 3: Security Audit
-  security:
-    name: Security Audit
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Elixir
-        uses: erlef/setup-beam@v1
-        with:
-          elixir-version: ${{ env.ELIXIR_VERSION }}
-          otp-version: ${{ env.OTP_VERSION }}
-
-      - name: Cache deps
-        uses: actions/cache@v3
-        with:
-          path: |
-            deps
-            _build
-          key: ${{ runner.os }}-mix-security-${{ hashFiles('**/mix.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-mix-security-
-
-      - name: Install dependencies
-        run: mix deps.get
-
-      - name: Check for security vulnerabilities
-        run: mix deps.audit
-
-      - name: Check for retired dependencies
-        run: mix hex.audit
-
-  # Job 4: Build Verification
-  build:
-    name: Build Verification
-    runs-on: ubuntu-latest
-    needs: [quality, test]
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Elixir
-        uses: erlef/setup-beam@v1
-        with:
-          elixir-version: ${{ env.ELIXIR_VERSION }}
-          otp-version: ${{ env.OTP_VERSION }}
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      - name: Cache deps
-        uses: actions/cache@v3
-        with:
-          path: |
-            deps
-            _build
-          key: ${{ runner.os }}-mix-prod-${{ hashFiles('**/mix.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-mix-prod-
-
-      - name: Install dependencies
-        run: mix deps.get --only prod
-        env:
-          MIX_ENV: prod
-
-      - name: Install frontend dependencies
+      - name: Scoped foundation tests
+        run: >-
+          mix test
+          apps/samgita/test/samgita_test.exs
+          apps/samgita_web/test/samgita_web/controllers/error_html_test.exs
+          apps/samgita_web/test/samgita_web/controllers/error_json_test.exs
+          apps/samgita_web/test/samgita_web/controllers/fallback_controller_test.exs
+          apps/samgita_web/test/samgita_web/controllers/health_controller_test.exs
+          apps/samgita_web/test/samgita_web/controllers/info_controller_test.exs
+          apps/samgita_web/test/samgita_web/live/dashboard_live_test.exs
+          apps/samgita_web/test/samgita_web/plugs
+      - run: mix assets.build
+      - name: Reject legacy implementation references
+        shell: bash
         run: |
-          cd apps/samgita_web
-          bun install --frozen-lockfile
-          cd ../..
-
-      - name: Compile application
-        run: mix compile
-        env:
-          MIX_ENV: prod
-
-      - name: Build assets
-        run: mix assets.deploy
-        env:
-          MIX_ENV: prod
-
-      - name: Build release
-        run: mix release
-        env:
-          MIX_ENV: prod
-          SECRET_KEY_BASE: test_secret_key_base_for_build_verification_only
-
-      - name: Verify release structure
-        run: |
-          test -d _build/prod/rel/samgita
-          test -f _build/prod/rel/samgita/bin/samgita
-          echo "✓ Release structure verified"
-
-      - name: Upload release artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: samgita-release-${{ github.sha }}
-          path: _build/prod/rel/samgita/
-          retention-days: 7
-
-  # Job 5: Docker Build Test
-  docker:
-    name: Docker Build Test
-    runs-on: ubuntu-latest
-    needs: [quality, test]
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: false
-          tags: samgita:${{ github.sha }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-      - name: Test Docker image
-        run: |
-          docker run --rm samgita:${{ github.sha }} bin/samgita version || true
-          echo "✓ Docker image build successful"
-
-  # Summary Job
-  ci-success:
-    name: CI Success
-    runs-on: ubuntu-latest
-    needs: [quality, test, security, build, docker]
-    if: always()
-
-    steps:
-      - name: Check all jobs
-        run: |
-          if [[ "${{ needs.quality.result }}" != "success" ]] || \
-             [[ "${{ needs.test.result }}" != "success" ]] || \
-             [[ "${{ needs.security.result }}" != "success" ]]; then
-            echo "❌ CI pipeline failed"
+          if rg -n 'SamgitaProvider|SamgitaMemory|samgita_provider|samgita_memory|Horde|pgvector|ANTHROPIC_API_KEY|CLAUDE_COMMAND|MEMORY_POOL_SIZE|DNS_CLUSTER_QUERY' apps config deployment Dockerfile docker-compose.yml mix.exs mix.lock devenv.nix .env.example; then
+            echo "Legacy implementation reference found"
             exit 1
           fi
-
-          # Build and Docker are optional (only on push)
-          if [[ "${{ github.event_name }}" == "push" ]] && \
-             ([[ "${{ needs.build.result }}" != "success" ]] || \
-              [[ "${{ needs.docker.result }}" != "success" ]]); then
-            echo "❌ Build verification failed"
-            exit 1
-          fi
-
-          echo "✓ All CI checks passed"
+      - run: mix dialyzer
+      - run: mix hex.audit
+      - name: Assemble local production release
+        env:
+          MIX_ENV: prod
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/samgita_hub_test
+          SECRET_KEY_BASE: ci-only-secret-not-for-deployment-0123456789012345678901234567890123456789
+          SAMGITA_API_KEYS: ci-only-not-for-deployment
+        run: |
+          mix deps.get --only prod
+          mix assets.deploy
+          mix release

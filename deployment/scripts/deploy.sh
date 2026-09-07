@@ -56,6 +56,7 @@ ssh "$TARGET_USER@$TARGET_HOST" "
 echo ""
 echo "3. Uploading release..."
 rsync -avz --delete \
+    --exclude='etc/samgita.env' \
     --exclude='*.log' \
     --exclude='tmp/*' \
     --exclude='var/*' \
@@ -67,6 +68,9 @@ echo ""
 echo "4. Running migrations..."
 ssh "$TARGET_USER@$TARGET_HOST" "
     cd $TARGET_PATH
+    set -a
+    . ./etc/samgita.env
+    set +a
     bin/samgita eval 'Samgita.Release.migrate()'
 "
 

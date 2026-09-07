@@ -1,14 +1,16 @@
 #!/bin/bash
 # Build Samgita production release
 
-set -e
+set -euo pipefail
+
+cd "$(dirname "$0")/../.."
 
 echo "========================================"
 echo "Building Samgita Production Release"
 echo "========================================"
 
 # Check required environment variables
-if [ -z "$SECRET_KEY_BASE" ]; then
+if [ -z "${SECRET_KEY_BASE:-}" ]; then
     echo "ERROR: SECRET_KEY_BASE is not set"
     echo "Generate one with: mix phx.gen.secret"
     exit 1
@@ -31,6 +33,7 @@ mix compile
 
 echo ""
 echo "4. Building assets..."
+(cd apps/samgita_web && bun install --frozen-lockfile)
 mix assets.deploy
 
 echo ""

@@ -1,26 +1,24 @@
 defmodule Samgita do
   @moduledoc """
-  Samgita keeps the contexts that define your domain
-  and business logic.
+  Samgita is an external Agent Hub control plane.
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
+  PostgreSQL is authoritative for durable state. Execution belongs to external
+  agents; this application does not run providers or local execution workers.
   """
 
   @doc """
-  Returns health check results for all supervised repos.
+  Checks the authoritative database without exposing connection details.
   """
   @spec health_checks() :: %{atom() => :ok | :error}
   def health_checks do
-    %{
-      samgita_repo: check_repo(Samgita.Repo),
-      samgita_memory_repo: check_repo(SamgitaMemory.Repo)
-    }
+    %{samgita_repo: check_repo()}
   end
 
-  defp check_repo(repo) do
-    repo.query!("SELECT 1")
-    :ok
+  defp check_repo do
+    case Samgita.Repo.query("SELECT 1", [], timeout: 1_000, log: false) do
+      {:ok, _} -> :ok
+      {:error, _} -> :error
+    end
   rescue
     _ -> :error
   end

@@ -20,8 +20,16 @@ defmodule SamgitaWeb.Plugs.ApiAuth do
 
   defp check_api_key(conn, valid_keys) do
     case get_req_header(conn, "x-api-key") do
-      [key] -> if key in valid_keys, do: conn, else: unauthorized(conn)
-      _ -> unauthorized(conn)
+      [key] ->
+        valid? =
+          Enum.reduce(valid_keys, false, fn valid_key, matched? ->
+            Plug.Crypto.secure_compare(key, valid_key) or matched?
+          end)
+
+        if valid?, do: conn, else: unauthorized(conn)
+
+      _ ->
+        unauthorized(conn)
     end
   end
 

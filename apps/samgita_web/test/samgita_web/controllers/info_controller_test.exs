@@ -13,12 +13,11 @@ defmodule SamgitaWeb.InfoControllerTest do
       assert is_binary(json["phoenix"])
       assert is_binary(json["endpoint"])
       assert is_list(json["umbrella_apps"])
-      assert length(json["umbrella_apps"]) == 4
+      assert json["product"] == "Agent Hub"
+      assert length(json["umbrella_apps"]) == 2
 
       app_names = Enum.map(json["umbrella_apps"], & &1["name"])
-      assert "samgita_provider" in app_names
       assert "samgita" in app_names
-      assert "samgita_memory" in app_names
       assert "samgita_web" in app_names
     end
 
