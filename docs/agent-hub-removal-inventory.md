@@ -12,6 +12,13 @@ Inventory basis: tracked files at commit
 imported reference files. Paths added by the rebuild are outside this legacy
 count.
 
+Stage 0 recheck on 2026-09-07 at implementation base `2bc3765` found 389
+tracked files (the two new rebuild documents account for the increase). The
+42/16/17/20 legacy group counts are unchanged. Explicit removal groups resolve
+to 249 tracked paths after including the root-level Git test below; rewrite
+targets and conditional removals are not included in that count. Resolve the
+manifest again immediately before applying deletion patches.
+
 ## Classification rules
 
 - **Remove** means the path has no milestone-one runtime or documentation role.
@@ -137,7 +144,7 @@ Remove every test below these directories:
 - `apps/samgita/test/samgita/tasks/**`
 - `apps/samgita/test/samgita/workers/**`
 
-Also remove `benchmark_test.exs`, `cache_test.exs`,
+Also remove `benchmark_test.exs`, `cache_test.exs`, `git_test.exs`,
 `codex_app_servers_test.exs`, `features_test.exs`, `notifications_test.exs`,
 `prds_test.exs`, `references_test.exs`, `webhooks_test.exs`,
 `e2e/project_lifecycle_test.exs`, every old domain test except the two rewrite
@@ -249,6 +256,8 @@ data.
 - `apps/samgita_web/tsconfig.json`
 - `apps/samgita_web/bunfig.toml`
 - Phoenix TypeScript declarations and static icons under the web app
+- `apps/samgita_web/assets/vendor/heroicons.js`, imported by the retained CSS;
+  keep its Heroicons dependency while this consumer remains
 - the existing DuskMoon/Tailwind packages that are actually imported by the
   rewritten interface
 
@@ -309,6 +318,12 @@ data.
 The current toolchain is inconsistent: CI declares Elixir 1.17/OTP 26 while the
 Docker image declares Elixir 1.18/OTP 27 and the local devenv currently runs
 Elixir 1.18.5. Select and pin one supported pair before treating CI as a gate.
+
+Stage 0 also found that `Dockerfile` contains `COPY priv priv` although there
+are no tracked files under root `priv/`. Remove that stale copy during the
+scoped Docker rewrite. Keep the root Bun workspace files until the local and
+release installers are verified: the current Mix `assets.setup` installs
+executables only, and `build-release.sh` does not install JavaScript packages.
 
 ## Documentation and repository guidance
 

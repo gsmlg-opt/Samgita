@@ -795,17 +795,38 @@ behaviors are visible in `deps/phoenix/lib/phoenix/endpoint.ex` and
 `deps/phoenix/lib/phoenix/transports/websocket.ex`. The subprotocol mechanism was
 evaluated and is not selected because it changes the approved external contract.
 
-Stage 0 must prove the narrow HTTP-upgrade bridge against the installed
-Phoenix/Bandit stack before protocol fixtures freeze. The application-owned
+Stage 0 proved the narrow HTTP-upgrade bridge against Phoenix 1.8.13/Bandit
+1.12.5 on Elixir 1.18.5/OTP 27 before protocol fixtures freeze. The application-owned
 boundary is `SamgitaWeb.AgentSocketAuth` at
 `apps/samgita_web/lib/samgita_web/agent_socket_auth.ex`; it extracts and validates
 exactly one Bearer header and passes only the opaque token into socket
-authentication. This may require an endpoint/transport adapter because a normal
-Plug does not continue after WebSocket upgrade. The spike must not fall back to a
-query parameter, custom `x-*` credential header, or WebSocket subprotocol. If the
-header cannot be bridged without replacing the selected Phoenix Channel
-transport, implementation stops for a design review before fixtures or client
-code are written.
+authentication. Phoenix injects socket dispatch before ordinary endpoint plugs,
+so use the endpoint's overridable `call/2` to invoke this bridge before `super`.
+On a rejected request return the halted connection without dispatching it.
+On success remove the Authorization request header and put only the extracted
+opaque token in `conn.private[:phoenix_transport_auth_token]`; socket
+`connect_info: [:auth_token]` delivers it to authentication. Leave Phoenix's
+native `auth_token` option disabled, since enabling it selects the rejected
+subprotocol mechanism. This is version-sensitive integration with Phoenix's
+private connection key, so preserve the real transport regression test across
+dependency upgrades. No dependency patch or replacement transport is required.
+
+Mount `socket "/agent", SamgitaWeb.AgentSocket` with websocket options
+`path: "/socket"`, `connect_info: [:auth_token]`, `transport_log: false`, and
+`max_frame_size: 262_144`, plus `longpoll: false`. This yields the exact approved
+upgrade path `/agent/socket`, not the default `/agent/socket/websocket`. Disable
+socket connection logging (`use Phoenix.Socket, log: false`) and keep protocol
+logs allowlisted. Do not accept query, custom `x-*` or subprotocol credentials.
+
+The isolated Stage 0 spike used a loopback Bandit endpoint and a synthetic
+in-memory credential checker, not the future database-backed credential
+context. Ten upgrade cases passed: valid Bearer yielded HTTP 101 and an actual
+Phoenix heartbeat reply; missing, malformed-scheme, empty, malformed-token,
+duplicate, query-only, custom-header-only and subprotocol-only credentials
+yielded HTTP 401; a syntactically valid unrecognized credential yielded HTTP
+403. It verified exact token delivery by hash, no token/subprotocol response
+echo, and no plaintext credential in captured debug-level logs. This proves
+transport wiring only, not persistent authentication or the Agent protocol.
 
 The fake Agent must prove the final bridge over real Bandit. An injected Channel
 test is insufficient.

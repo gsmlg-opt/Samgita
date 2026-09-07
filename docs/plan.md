@@ -9,7 +9,7 @@
 **Tech Stack:** Existing Elixir/Phoenix/Ecto, PostgreSQL, Oban, PubSub, DuskMoon, Tailwind, Bun, and TypeScript. Keep compatible installed dependency versions unless removal or a verified requirement necessitates a change.
 
 Date: 2026-09-07
-Status: Implementation plan ready; application implementation has not started.
+Status: Stage 0 preflight complete on `codex/agent-hub-rebuild`; Stage 1 is next. Application implementation has not started.
 Approved scope: [rebuild design](agent-hub-rebuild-design.md).
 Contracts: [PRD](prd.md), [architecture](architecture.md).
 Deletion boundaries: [removal inventory](agent-hub-removal-inventory.md).
@@ -26,9 +26,9 @@ All paths below are relative to the worktree root. Resolve them against that roo
 
 The checklist describes work to perform, not tests already passed.
 
-Planning preflight observation: the inventory's `mix app.tree` attempt triggered dependency compilation and failed in ThousandIsland/Elixir's ParallelChecker with `binary_to_atom` / `:badarg`. No application-tree baseline was obtained. Before stage 1, verify the selected toolchain and worktree-local dependency build; do not treat this observation as evidence that the new design or tests fail. No dependency repair was performed during planning.
+Planning preflight observation: the inventory's `mix app.tree` attempt triggered dependency compilation and failed in ThousandIsland/Elixir's ParallelChecker with `binary_to_atom` / `:badarg`. No application-tree baseline was obtained. Stage 0 verifies the selected toolchain and an isolated transport dependency build; Stage 1 verifies the complete worktree-local dependency/application build after replacing the foundation. Do not treat the planning failure as evidence that the new design or tests fail. No dependency repair was performed during planning.
 
-A separate transport exploration using `mix run --no-start` also stopped at a legacy `Samgita.Quality.InputGuardrails` compilation error. The approved removal inventory retires that module; no unrelated repair was attempted. The Authorization-header bridge therefore has source-inspection evidence only and still requires the stage 0 real-transport proof.
+A separate planning-time transport exploration using `mix run --no-start` stopped at a legacy `Samgita.Quality.InputGuardrails` compilation error. The approved removal inventory retires that module; no unrelated repair was attempted. Stage 0 subsequently proved the Authorization-header bridge with an isolated dependency-only endpoint; see its evidence below.
 
 ## Delivery stages and ownership
 
@@ -50,17 +50,51 @@ Stop at each bounded stage after its in-scope checks pass. Record the result and
 
 Files: the five documents linked above, `AGENTS.md`, and Git/worktree metadata only.
 
-- [ ] Read the current design, requirements, architecture, and removal inventory completely.
-- [ ] Inspect `git status --short --branch`, `git log -3 --oneline`, and `git worktree list --porcelain`.
-- [ ] Ensure approved documentation is present at the implementation base. Preserve unrelated dirty changes; do not use a blanket stash/reset.
-- [ ] Verify `.trees/` is ignored with `git check-ignore .trees/codex/agent-hub-rebuild`. If necessary add the scoped ignore entry.
-- [ ] Create the implementation worktree using `git worktree add .trees/codex/agent-hub-rebuild -b codex/agent-hub-rebuild HEAD`, only if neither target exists.
-- [ ] Compare the inventory with `git ls-files` in that worktree. Resolve every tracked deletion target before applying edits. Leave ignored build outputs and local data alone.
-- [ ] Confirm available Elixir/OTP/PostgreSQL/Bun versions using the repository environment. Verify dependency constraints before changing toolchain pins.
-- [ ] Confirm the installed Phoenix transport hook for capturing the Authorization header. The architecture defines the intended solution; its real transport test is mandatory.
-- [ ] Record the exact two fresh databases in configuration: `samgita_hub_dev` and `samgita_hub_test`. Preserve optional test partition suffixes. Integration tests use `samgita_hub_integration_test`. Do not drop the old `samgita_dev`/`samgita_test` databases.
+- [x] Read the current design, requirements, architecture, and removal inventory completely.
+- [x] Inspect `git status --short --branch`, `git log -3 --oneline`, and `git worktree list --porcelain`.
+- [x] Ensure approved documentation is present at the implementation base. Preserve unrelated dirty changes; do not use a blanket stash/reset.
+- [x] Verify `.trees/` is ignored with `git check-ignore .trees/codex/agent-hub-rebuild`. If necessary add the scoped ignore entry.
+- [x] Create the implementation worktree using `git worktree add .trees/codex/agent-hub-rebuild -b codex/agent-hub-rebuild HEAD`, only if neither target exists.
+- [x] Compare the inventory with `git ls-files` in that worktree. Resolve every tracked deletion target before applying edits. Leave ignored build outputs and local data alone.
+- [x] Confirm available Elixir/OTP/PostgreSQL/Bun versions using the repository environment. Verify dependency constraints before changing toolchain pins.
+- [x] Confirm the installed Phoenix transport hook for capturing the Authorization header. The architecture defines the intended solution; its real transport test is mandatory.
+- [x] Record the exact fresh-database configuration handoff: `samgita_hub_dev` and `samgita_hub_test`, preserving optional test partition suffixes. Integration tests use `samgita_hub_integration_test`. Apply these names with the Stage 1 configuration rewrite, not during the docs-only Stage 0. Do not drop the old `samgita_dev`/`samgita_test` databases.
 
 Commit checkpoint: `docs(agent-hub): define clean-start implementation contract`.
+
+### Stage 0 evidence — 2026-09-07
+
+- Documentation checkpoint: `2bc3765`, based on local `3f380e3`, not the older
+  remote branch. Implementation worktree: `.trees/codex/agent-hub-rebuild`.
+- Rechecked 389 tracked paths. Legacy group counts match the inventory;
+  corrected the missing `git_test.exs` classification (249 explicit removals),
+  retained the CSS-consumed Heroicons plugin, and recorded the stale Docker
+  `COPY priv priv` instruction. No application files have been deleted.
+- `devenv shell --no-reload -- sh -c 'elixir --version; mix --version; psql --version; bun --version'`
+  succeeded in the worktree: Elixir/Mix 1.18.5, OTP 27 (ERTS 15.2.7.13),
+  PostgreSQL client 16.15, Bun 1.3.13. Root dependency sources for Phoenix
+  1.8.13, LiveView 1.2.11, DuskMoon 9.12.3, Oban 2.24.1, Ecto SQL 3.14.0 and Postgrex 0.22.4
+  declare compatible Elixir requirements. Toolchain pins and lockfiles are
+  unchanged. A complete worktree-local dependency/application build remains
+  a Stage 1 gate; existing root build failures have not been repaired.
+- Database names are frozen above; no database was created, migrated, reset or
+  dropped during preflight. Configuration changes belong to Stage 1.
+- The exact `/agent/socket?vsn=2.0.0` Authorization bridge passed ten real HTTP
+  upgrade cases, an actual Phoenix heartbeat exchange, and response/log secret
+  checks on Phoenix 1.8.13/Bandit 1.12.5 with an isolated OTP 27 dependency
+  build. The integrator independently reran the spike with exit status 0.
+  Architecture section 11 records the selected endpoint wiring and limitations.
+  This is a synthetic transport preflight, not the full fake Agent or database
+  credential implementation. The latter remain later-stage acceptance gates.
+- Local, temporary reproduction artifacts (not product source):
+  `/tmp/samgita-transport-preflight.LUaSc7/preflight.exs` and `isolated.exs`.
+  Run from the worktree:
+  `devenv shell --no-reload -- env MIX_INSTALL_DIR=/tmp/samgita-transport-preflight.LUaSc7/mix-install elixir /tmp/samgita-transport-preflight.LUaSc7/isolated.exs`.
+  The wrapper compiles only local dependency sources into its temporary build;
+  it does not load the legacy app or reuse incompatible root OTP 28 beams.
+
+Stop at this bounded checkpoint. Next: Stage 1's atomic legacy removal and
+two-app foundation, followed by its own compile/database/UI/assets gates.
 
 ## Stage 1 — Replace the application foundation
 
@@ -102,7 +136,7 @@ Modify:
 - [ ] Remove unused direct dependencies only after inspecting retained imports. Remove pgvector, Horde, provider/LLM/mail dependencies and configuration; retain JSON/crypto used by the new protocol.
 - [ ] Start Repo, PubSub, and configured Oban in core; telemetry and Endpoint remain in web.
 - [ ] Replace legacy Oban queues with one `maintenance` queue. Initially use no scheduled worker until stage 4 adds its module.
-- [ ] Configure only `Samgita.Repo`; remove memory sandbox, Postgrex types, Mox provider setup, and old recovery flags.
+- [ ] Configure only `Samgita.Repo` with `samgita_hub_dev` and `samgita_hub_test` (plus optional test partition suffix); remove memory sandbox, Postgrex types, Mox provider setup, and old recovery flags.
 - [ ] Use Oban manual testing for deterministic worker tests; disable production scheduling in tests.
 - [ ] Add a new initial Oban migration at `apps/samgita/priv/repo/migrations/20260907000000_create_oban.exs` using the installed Oban migration API.
 - [ ] Make seeds empty of legacy/demo product data and credentials.
