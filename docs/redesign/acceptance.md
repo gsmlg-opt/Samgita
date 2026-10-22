@@ -1,6 +1,6 @@
 # Samgita redesign acceptance contract
 
-Date: 2026-10-23. This separates completed P0/P2/P3 evidence, bounded P4 coordination/GitHub implementation and future platform/cutover acceptance. A scenario spanning stages passes only for assertions evidenced by its owning stage. [P4 coordination](coordination-phase-4.md) covers manual/authenticated external facts, schedules and delivery/recovery; [P4 GitHub](github-phase-4.md) covers signed ingestion, read-only facts and bounded reconciliation. Real App conformance/B5 and P5 UI remain future gates.
+Date: 2026-10-23. This separates P0/P2/P3 evidence, bounded P4 coordination/GitHub implementation, persisted P5 UI/local qualification and target-specific cutover acceptance. A scenario passes only for evidenced assertions. [P4 coordination](coordination-phase-4.md) covers manual/external facts, schedules and delivery/recovery; [P4 GitHub](github-phase-4.md) covers signed ingestion, read-only facts and bounded reconciliation. [Qualification](qualification.md) records final UI/integration/browser/consumer checks and failing aggregate gates. Real App/service conformance, full historical backup/readers and production cutover remain open.
 
 Authority: [design](design.md), [implementation plan](implementation-plan.md), and `AGENTS.md`. The older clean-start documents are historical proposals and cannot waive preservation or cutover tests.
 
@@ -47,7 +47,7 @@ Given a trusted operator, create a Project without a PRD, Git URL, working path 
 
 Pass when stable UUIDs are returned; zero/multiple repository associations work; implementation labels do not affect authorization/capacity; no Agent/provider/SSH/CLI process starts; and no default destination/subscription appears. Disable an Agent/binding and verify new claims and event access fail while history remains readable.
 
-P3 tests: core `projects_test.exs`, `repositories_test.exs`, `agents_test.exs`, `legacy_isolation_test.exs` and web `controllers/domain_api_test.exs`. Event access, LiveViews and `integration/agent_journey_test.exs` remain P4/P5.
+P3 tests: core `projects_test.exs`, `repositories_test.exs`, `agents_test.exs`, `legacy_isolation_test.exs` and web `controllers/domain_api_test.exs`. P4 event authorization and P5 LiveViews/`integration/agent_journey_test.exs` extend this evidence. The complete signed-event/Task-review journey runs twice with `Synapsis` and `Orion` names through identical registration and authorization.
 
 ### A02 — Identity, history and migration preservation (P1/P3/P6)
 
@@ -73,7 +73,7 @@ Given an active Agent binding and an adopted open Task, race two independent cla
 
 Pass when exactly one active Attempt exists, configured capacity is never exceeded, each accepted state change has matching receipt/event/delivery intent, and version/scope/epoch/fence/expired-proof violations change nothing. A blocked relation or child Task never starts an executor or auto-completes its parent. Terminal Attempts remain immutable; appended resolution evidence cannot rewrite an outcome. Disconnect alone does not release ownership.
 
-P3 tests: `tasks/task_transitions_test.exs`, `tasks/ownership_race_test.exs`, `security_race_test.exs`, `tasks_test.exs`, `attempts_test.exs`, `platform_test.exs` and web `controllers/domain_api_test.exs`. Race tests use independent transactions and assert distinct backend PIDs. A real platform WebSocket/remote-execution journey remains P5.
+P3 tests: `tasks/task_transitions_test.exs`, `tasks/ownership_race_test.exs`, `security_race_test.exs`, `tasks_test.exs`, `attempts_test.exs`, `platform_test.exs` and web `controllers/domain_api_test.exs`. Race tests use independent transactions and assert distinct backend PIDs. P5 adds running-owner progress and real fake-WebSocket delivery with protected REST execution callbacks. A Samgita-hosted Task/lease WebSocket profile remains unimplemented and unadvertised; REST is the qualified management boundary.
 
 ### A05 — Receipts, reconnect and remote-effect holds (P2/P3/P5)
 
@@ -85,7 +85,7 @@ Reconnect as the same Agent: an explicit valid rebind increments fence and trans
 
 Invalidate an Attempt while its fake remote tool is still running, then reopen the Task. Pass only if the execution hold prevents another claim and counts against Agent capacity until authenticated cessation/outcome or audited operator reconciliation clears it. Reopen, timeout and connection presence cannot clear it.
 
-P3 context tests: `attempts_test.exs`, `platform_test.exs`, `projects_test.exs`, `security_race_test.exs` and web `controllers/domain_api_test.exs`, alongside P2 protocol conformance. These cover receipts, rebind, holds, expiry and key rotation without a remote runtime. The real execution journal/tool uncertainty and `integration/restart_reconcile_test.exs` remain P5/P6.
+P3 context tests: `attempts_test.exs`, `platform_test.exs`, `projects_test.exs`, `security_race_test.exs` and web `controllers/domain_api_test.exs`, alongside P2 conformance. P5 adds a persistent fake journal, dropped ACK, status-only reconnect, actual application/fake-host restart, stale report rejection and retained effect holds in `integration/restart_reconcile_test.exs`. UI tests cover interrupted actions, original receipt identity, concurrent/stale drafts and cancellation. This proves process restart, not OS power-loss or a real provider journal.
 
 ### A06 — Event transaction, replay and explicit routing (P3 foundation/P4)
 
@@ -105,7 +105,7 @@ Pass when no Samgita Repo/web/provider/Backplane app or implicit listener starts
 
 Then bring up isolated Samgita and send an explicit authenticated Task callback. Only that accepted callback changes its Task. Direct conversation output never changes the database implicitly. Pin exact reference schemas and real-client conformance before advertising Codex compatibility; current Sigma/Synapsis adapters remain unadvertised until their own B3 evidence passes. Do not claim full Codex support from a tested subset.
 
-P2 tests: core `test/{schema,fixtures,client,server,replay}_test.exs`, optional transport `test/*_test.exs`, pinned Codex adapter `test/*_test.exs`, standalone consumer test and temporary-copy build proof. `integration/direct_host_routing_test.exs` and authoritative Task callbacks remain P5; real selected-client B3/B6 evidence remains separate.
+P2 tests: core `test/{schema,fixtures,client,server,replay}_test.exs`, optional transport and pinned Codex adapter tests. P5's `scripts/verify_isolated_protocol.py` copies only core/transport packages to temporary directories outside the repository and builds two consumers without root configuration, lockfile, Repo or umbrella dependencies. The core consumer proves event receive/status/report, deduplication and unsupported sessions; the transport consumer proves direct thread/turn/steer/replay/approval-denial/interruption without Samgita or Sigma. The platform journey separately proves explicit protected Task callbacks. Real selected-client B3/B6 evidence remains separate.
 
 ### A08 — Legacy drain and complete mutual exclusion (P1/P6)
 
@@ -141,7 +141,7 @@ Verify infrastructure-protected browser routes retain CSRF/secure-header protect
 
 Pass when authorization fails closed for machines and resource scope. P3 accepts operator-supplied credentials, persists only digests and returns metadata with `no-store`; no plaintext credential is issued. Explicit current-owner proof reads are non-cacheable; proofs never enter receipts/events. Captured DOM/API/events/receipts/logs/telemetry must exclude plaintext credentials and legacy endpoint secrets; intentional proof responses are tested separately. Runtime permission requests are bound to their original host/request; no codec auto-approval occurs. Missing downstream authentication blocks integration rather than being inferred from a sent Bearer header.
 
-P3 tests: `agents_test.exs`, `projects_test.exs`, `attempts_test.exs`, `security_race_test.exs` and web `controllers/domain_api_test.exs`; retain existing `plugs/{api_auth,rate_limit}_test.exs`. P3 filters credential/proof parameters and validates stored endpoint descriptors but opens no remote connection. P4's connector/transport/API tests verify approved exact destinations, DNS/address pinning, redirect/plaintext rejection, safe failure projections, current machine membership and real authenticated loopback WebSockets. Browser/telemetry capture, deployed TLS/egress policy and actual-service credential/durability boundaries remain P5/B3/B5 gates.
+P3 tests: `agents_test.exs`, `projects_test.exs`, `attempts_test.exs`, `security_race_test.exs` and web `controllers/domain_api_test.exs`; retain existing `plugs/{api_auth,rate_limit}_test.exs`. P3 filters credential/proof parameters and validates stored endpoint descriptors but opens no remote connection. P4's connector/transport/API tests verify approved exact destinations, DNS/address pinning, redirect/plaintext rejection, safe failure projections, current machine membership and real authenticated loopback WebSockets. P5 captures credential-form logs, DOM, receipt/event data and digest-only persistence; browser markup excludes fixture secrets. Raw Phoenix telemetry contains framework event parameters/socket metadata before application handling; arbitrary raw export is not certified secret-free and no raw exporter is configured. This assertion remains open, as do deployed TLS/egress policy and actual-service credential/durability boundaries. See qualification for the instrumentation boundary; do not mark all A11 assertions passed.
 
 ### A12 — Durable scheduled events (P4)
 
@@ -159,6 +159,8 @@ Pass when durable state and counts survive, forms expose field validation, lists
 
 Tests: scoped affected/new LiveViews and `integration/agent_journey_test.exs`; browser evidence ties to the exact build/endpoint.
 
+P5 local evidence is complete for the operator journey: persisted Agent/Project/repository/membership setup; routed event decision and execution callbacks; child, progress and artifact; separate review/acceptance; rejected transitions and cancelled/held execution; repeated submission and interrupted schedule draft recovery; refresh/navigation/reconnect, keyboard submission and mobile/desktop layout. Final console checks found no warnings/errors. [Qualification](qualification.md) records database/ports, record IDs, served hashes, screenshots and the inherited disconnected-toast accessibility limitation. The signed-webhook journey runs twice with `Synapsis` and `Orion` through identical APIs and native fake WebSockets. This does not establish a real provider or production UI deployment.
+
 ### A14 — Storage/runtime and isolated release safety (P1/P6)
 
 Start the isolated bridge/new release with admissions closed and inspect application children, named Oban instances, queues, migration histories and history reads. Restore the legacy fixture and repeat after additive expansion.
@@ -169,9 +171,9 @@ P3 `migration/preservation_test.exs` and `legacy_isolation_test.exs` provide loc
 
 ### A15 — Scope, blockers and phase stop (all stages)
 
-For every stage, compare changed paths and behavior to its owning scope. Run only scoped tests plus required checks for that change. Record unrelated failures and stop without repairing them. Follow upstream issue routing for actual dependency blockers; do not silently patch/vendor them.
+For every stage, compare changed paths and behavior to its owning scope. Run scoped tests plus required checks; the current authorization explicitly includes aggregate release checks. Record unrelated failures without repairing them or weakening gates. Follow upstream issue routing for actual dependency blockers; do not silently patch/vendor them.
 
-Pass when each active checklist is complete, its checks pass, blockers B0–B6 are honestly open/cleared with evidence, and work stops at the requested boundary. P2 reconciles independent packages; P3 reconciles restored main sources/schema and local fixtures, without clearing deployment history/storage/reader gates. Cross-stage scenarios are checked only for current-stage assertions. P0 ended with the documentation commit; P2 ended with the package/test/docs commit; P3 ended with its scoped domain commit; the first P4 commit established coordination. The current bounded P4 GitHub read/event phase ends after its scoped checks and reviewable commit, without live GitHub setup/credentials/permission changes/webhooks, repository writes, P5 UI, production migration, push or deployment. Local P6 may leave disabled-integration/live gates open and labels the manifest not deployable where applicable. Real cutover clears every applicable target-specific gate and requires separate authorization.
+Pass when each active checklist is evidenced, applicable gates pass and blockers B0–B6 are honestly open/cleared. Cross-stage scenarios are checked only for current assertions. P0–P4 phase records remain historical evidence. The current scope completes persisted management/local qualification, commits and pushes; release requires all applicable gates and an existing successful publication workflow. Failing aggregate gates block release rather than being reclassified as passing. No live GitHub setup, repository writes, sibling-service changes, production migration, live credentials or deployment are authorized. Local qualification labels unresolved target manifests **not deployable**. Real cutover clears every applicable target-specific gate and requires separate authorization.
 
 ## 4. P2/P3/P4 and future gate records
 
@@ -202,3 +204,27 @@ The current bounded P4 phase establishes these additional local portions:
 | A15: phase stop | Scoped tests, independent protocol checks, additive migration and reviewable coordination commit | Native GitHub integration and P5/P6 remain unexecuted |
 
 P4's final scoped run passed **92 tests (75 core, 17 web), 0 failures**, seed `388086`, on `samgita_redesign_coordination_final_test`. Independent checks passed 24 optional transport tests, 30 protocol core tests and one outside-consumer test. Exact commands, build/format results, local migration evidence and remaining gates are in [the coordination phase record](coordination-phase-4.md). These results establish no real Synapsis/Sigma/Codex compatibility, GitHub ingress, production migration, deployment or browser journey.
+
+## 5. P5 local qualification ledger
+
+This ledger supersedes the earlier phase-boundary descriptions only for the assertions below. Final retained/redesign tests: **158 core, 104 web cases, 0 failures, 1 excluded dedicated restart case**, seed `437312`, fresh `samgita_redesign_management_qualified_test`. The separate restart test passed (1 test, seed `157470`); independent package suites passed (30 core, 24 WebSocket, 13 pinned Codex), and both copied outside-umbrella consumers passed. Full commands, browser/build evidence and limitations are in [qualification](qualification.md).
+
+| Scenario | Current local qualification | Remaining acceptance boundary |
+| --- | --- | --- |
+| A01 | Persisted neutral registration, Project/repository setup, explicit roles/routing; full signed-event journey with Synapsis and Orion names | Actual enabled Agent-service conformance |
+| A02 | Additive fresh/populated fixtures, pinned migration sources, unchanged IDs/references/content and repeat mappings | Actual deployment inventory, full readers, dual-Repo/memory/pgvector backup/restore and verified remote repository identity |
+| A03 | Legacy mapping, drift rejection, inert unadopted Tasks and explicit adoption tests retained | Target-specific unresolved ledger reconciliation before cutover |
+| A04 | Independent PostgreSQL claim/capacity/version/auth races; protected progress/result callbacks; pending review then explicit acceptance | Real external executors and host-owned effect journals; no management WebSocket profile advertised |
+| A05 | Command receipt/rebind/hold tests; lost ACK, status-only reconnect, actual application/fake-host restart; UI cancelled hold survives refresh/reconnect | Power-loss durability, real Agent journal/cessation guarantees |
+| A06 | Atomic outbox/jobs, cursor replay, delivery/error/retry/exhaustion/cancellation/fencing tests; real fake WebSocket and persisted UI history | Actual selected Agent durability and target operational recovery |
+| A07 | Core and direct runtime consumers copied outside umbrella; independent native methods, stream/approval/interruption and explicit REST callback boundary | Exact real-service/client conformance, optional adapter publication; no full Codex compatibility claim |
+| A08 | Legacy executors absent, new queues allowlisted, retained jobs refuse activation; restart does not restore old workers | Full guard-aware old-node/process/dual-Oban inventory, drain and external-effect cessation |
+| A09 | Closed authority/new epoch, stale results rejected, unknown effects retain holds and prevent activation after restart | Compatible guarded rollback binary, full backup restore and target-specific external-effect reconciliation |
+| A10 | Deterministic raw signed/replayed/mismatched fixtures, read-only loopback HTTP/token/rate-limit/reconciliation tests, one durable logical source event | Real GitHub App/installation/permissions/security validation; no writes enabled |
+| A11 | Existing API/machine/project auth, CSRF, filtered logs and safe DOM/receipt/event projections verified | Raw telemetry/export non-disclosure, target TLS/egress and real-service credential boundaries remain open |
+| A12 | Fixed-clock timezone/DST/missed-run/concurrent-scanner tests; recovered/repeated UI schedule submission persists once | Operational backlog monitoring and target timezone-data maintenance |
+| A13 | Persisted views, fake-Agent browser journey, error/hold/review states, keyboard/mobile, served asset hashes and no final console errors | Historical storage/readers and actual deployed build remain target-specific; inherited toast accessibility defect tracked upstream |
+| A14 | Isolated scratch databases, preserved main/history fixtures, explicit protocol consumers and local release assembly | Full dual-storage restore, guarded old/new binary smoke/restart and cutover manifest |
+| A15 | Scoped work and unchanged gates recorded; commit/push authorized; no production/live-service changes | Aggregate Credo/Dialyzer/legacy-reference/audit failures block release; normal publication workflow absent |
+
+The entire redesign is **not certified deployable or releasable**. The persisted management phase is locally qualified within the stated boundaries; open assertions remain open. Repeated aggregate execution on the reused scratch database also exposed two inherited GitHub reconciliation fixture-isolation failures; the same seed passed on fresh databases. No failing tests were removed, unrelated code repaired or gate weakened.

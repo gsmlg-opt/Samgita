@@ -1,14 +1,14 @@
 # Samgita agent-neutral platform design
 
-Date: 2026-10-22. Status: P0 accepted; P2 implemented; P3 persistent domain/APIs implemented locally. Live cutover remains gated.
+Date: 2026-10-23. Status: P0 accepted; P2–P4 implemented; persisted management UI and local qualification are recorded in [qualification](qualification.md). Release and live cutover remain gated.
 
 ## 1. Authority and phase boundary
 
 Samgita registers Projects and Agents, connects repositories/GitHub, owns validated project/task management state, and emits durable scheduled and external events. Agents decide how to reason, plan, delegate, and execute. No Samgita RARV loop, mandatory PRD, swarm taxonomy, development phase pipeline, or preferred Agent implementation remains in the target.
 
-This design, [implementation plan](implementation-plan.md), and [acceptance contract](acceptance.md) supersede conflicting target requirements in `docs/prd.md`, `docs/architecture.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those documents also record the separately authorized foundation refactor. Their fresh-database, no-migration, unique-Project-URL, and universal-Channel requirements do not establish this redesign's migration or target contract.
+This design, [implementation plan](implementation-plan.md), and [acceptance contract](acceptance.md) supersede conflicting target requirements in `docs/prd.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those historical documents also record the separately authorized foundation refactor. Their fresh-database, no-migration, unique-Project-URL, and universal-Channel requirements do not establish this redesign's migration or target contract. [Current architecture](../architecture.md) describes the implemented boundaries.
 
-P0 changed only these three documents and conflicting sections of `AGENTS.md`. P2 implements independent protocol packages; its bounded evidence is in [protocol phase 2](protocol-phase-2.md). The user's subsequent P3 authorization implements persistent models, scoped APIs and additive local migration tests, reconciled in [domain phase 3](domain-phase-3.md). No historical-data deletion, external service change, production migration, deployment or push is included. Other stages require separate authorization and stop at their own gates.
+P0 changed only these three documents and conflicting sections of `AGENTS.md`. P2 implements independent protocol packages; its bounded evidence is in [protocol phase 2](protocol-phase-2.md). P3 adds persistent models, scoped APIs and additive local migration tests, reconciled in [domain phase 3](domain-phase-3.md). P4 coordination and GitHub records define durable routing and read-only source ingestion. The current authorization adds persisted UI, fake-Agent/browser/isolated-consumer qualification, required aggregate checks and commit/push. It authorizes release only after applicable gates and the normal workflow pass. Historical-data deletion, sibling service changes, production migration, live credential changes and deployment remain excluded.
 
 ### Decisions and alternatives
 
