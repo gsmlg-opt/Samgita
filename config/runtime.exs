@@ -8,6 +8,30 @@ api_keys =
 
 config :samgita, :api_keys, api_keys
 
+if encoded_keys = System.get_env("SAMGITA_LEASE_KEYS") do
+  with {:ok, values} when is_map(values) <- Jason.decode(encoded_keys),
+       true <- map_size(values) > 0 do
+    keys =
+      Map.new(values, fn {id, encoded} ->
+        with true <- is_binary(id) && Regex.match?(~r/\A[A-Za-z0-9_-]{1,100}\z/, id),
+             true <- is_binary(encoded),
+             {:ok, key} <- Base.decode64(encoded),
+             true <- byte_size(key) >= 32 do
+          {id, key}
+        else
+          _ -> raise "SAMGITA_LEASE_KEYS must contain named base64 keys of at least 32 bytes"
+        end
+      end)
+
+    active = System.get_env("SAMGITA_LEASE_KEY_ID")
+    if !Map.has_key?(keys, active), do: raise("SAMGITA_LEASE_KEY_ID must name a configured key")
+    config :samgita, :lease_keys, keys
+    config :samgita, :lease_key_id, active
+  else
+    _ -> raise "SAMGITA_LEASE_KEYS must be a nonempty JSON object"
+  end
+end
+
 if port = System.get_env("PORT") do
   config :samgita_web, SamgitaWeb.Endpoint, http: [port: String.to_integer(port)]
 end

@@ -36,7 +36,7 @@ config :tailwind,
 
 config :samgita, Oban,
   repo: Samgita.Repo,
-  queues: [maintenance: 10],
+  queues: [],
   plugins: []
 
 config :samgita, :api_keys, []
@@ -46,4 +46,15 @@ config :logger, :default_formatter,
   metadata: [:request_id]
 
 config :phoenix, :json_library, Jason
+
+config :phoenix, :filter_parameters, [
+  "password",
+  "credential",
+  "token",
+  "authorization",
+  "secret",
+  "proof",
+  "api_key"
+]
+
 import_config "#{config_env()}.exs"

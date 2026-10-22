@@ -1,6 +1,21 @@
 defmodule SamgitaWeb.FallbackController do
   use SamgitaWeb, :controller
 
+  def call(conn, {:error, %Samgita.Error{} = error}) do
+    status =
+      case error.code do
+        :unauthorized -> :unauthorized
+        :forbidden -> :forbidden
+        :not_found -> :not_found
+        :invalid -> :bad_request
+        _ -> :conflict
+      end
+
+    conn
+    |> put_status(status)
+    |> json(%{errors: %{code: error.code, detail: error.message, fields: error.details}})
+  end
+
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)

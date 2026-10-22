@@ -1,27 +1,27 @@
 # Samgita agent-neutral platform implementation plan
 
-Date: 2026-10-22. Status: P0 accepted; independent P2 authorized and implemented. P1/P3–P6 remain unstarted and require their own authorization/gates.
+Date: 2026-10-22. Status: P0 accepted; independent P2 implemented; P3 implemented and locally verified in the commit containing this record. P1's deployment bridge and P4–P6 remain gated. Stop at P3.
 
 **Goal:** preserve existing Projects, Tasks and history while moving execution decisions to registered Agents and establishing repository associations, a reusable app-server implementation, GitHub connections and durable events.
 
-**Architecture:** keep the existing Ecto/Phoenix umbrella. Add independently consumable `samgita_protocol` packages, then neutral platform contexts and an exclusive execution fence in later stages. Adopt legacy work explicitly after a guarded drain; do not implement a second Sigma server or a Backplane protocol dependency.
+**Architecture:** keep the existing Ecto/Phoenix umbrella, independently consumable `samgita_protocol` packages and neutral platform contexts. P3 adds durable execution authority starting closed; a deployed legacy system still needs a guarded drain before cutover. Adopt legacy work explicitly; do not implement a second Sigma server or a Backplane protocol dependency.
 
 **Stack:** Elixir/OTP, Ecto/PostgreSQL, Oban, Phoenix LiveView, Tailwind 4, Bun/TypeScript and existing DuskMoon assets. No new account framework, embedded LLM runtime or component library.
 
-Read [design](design.md) and [acceptance](acceptance.md) first. Source paths below are repository-relative. P2 paths exist; other proposed files/tests become executable only in their owning stage. Each future change starts with its specified failing behavioral check, adds the smallest implementation, reruns only scoped checks, and makes a logical Conventional Commit. Do not use the former `docs/plan.md` deletion stages.
+Read [design](design.md) and [acceptance](acceptance.md) first. Source paths below are repository-relative. P2/P3 paths exist; proposed later files/tests become executable only in their owning stage. Each future change starts with its specified failing behavioral check, adds the smallest implementation, reruns only scoped checks, and makes a logical Conventional Commit. Do not use the former `docs/plan.md` deletion stages.
 
-Merged baseline: `d6e9eca` combines this design's `3a344f5` and the separately authorized source removal in `811eeb9`. The checkout is now a two-app foundation with one main Repo/Oban migration and no legacy domain, memory app or planned protocol implementation. The merge does not prove database migration, historical-data deletion or continuity. B0 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) blocks redesign implementation until source/migration reconciliation approves updated scopes. P1's legacy callsites and dual-Repo requirements below are a historical recipe against `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`; many listed files no longer exist. Do not execute those lists, restore runtime code or infer a recovery procedure from them. P0's completed checklist records the original documentation commit; the authorized foundation merge is a separate source change.
+Merged baseline: `d6e9eca` combines this design's `3a344f5` and the separately authorized source removal in `811eeb9`. P2 added the independent packages. P3 reconciles B0 for its local scope by restoring 17 main migration sources verbatim from `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`, retaining the foundation's September Oban upgrade, pinning main/memory source hashes and adding the neutral schema. This does not prove a live migration, backup restore, complete historical reader or dual-Repo/pgvector preservation. P1's legacy callsites below remain a historical recipe against that pinned revision; many no longer exist. Do not restore legacy runtime or execute the old callsite lists. An actual legacy deployment still requires inventory, old-writer exclusion and target-specific preservation/cutover evidence. See [P3's reconciled contract](domain-phase-3.md).
 
 ## 1. Delivery contract and dependencies
 
 | Stage | Dependency | Ownership | Gate / suggested commit units |
 | --- | --- | --- | --- |
 | P0: completed design phase | Historical baseline | Documentation owner; parallel read-only audits | Four-file document review/checks and scoped commit. |
-| P1: preservation harness and bridge | B0 reconciled scopes; separate authorization; P0 accepted | One runtime/migration owner | Isolated legacy fixture, complete writer guard where applicable, classified jobs and guarded restart; `test(migration)`, `feat(runtime)` commits. |
-| P2: independent protocol, current phase | Bounded B0 reconciliation in phase record; P0 accepted; independent of P1 | Core, optional transport and adapter owners; no shared config/migration edits | Independent consumer, versioned schema fixtures, real transport/fake-host conformance; `feat(protocol)` commit; STOP. |
-| P3: neutral identities/state and mappings | P1 fence; P2 token/receipt contracts before claims | Core owner + migration owner | Stable IDs, resumable mappings, adoption, fenced state/claim races; `feat(projects)`, `feat(agents)`, `feat(tasks)` commits. |
+| P1: preservation harness and bridge | Actual legacy deployment inventory and separate authorization | One runtime/migration owner | P3 supplies a bounded local fixture/authority foundation; full writer guard, job classifications, backup/dual-storage and guarded restart remain open. |
+| P2: independent protocol, implemented | Bounded B0 reconciliation in phase record; P0 accepted; independent of P1 | Core, optional transport and adapter owners; no shared config/migration edits | Independent consumer, versioned schema fixtures, real transport/fake-host conformance; commit `bce0308`. |
+| P3: neutral identities/state, mappings and REST APIs, current phase | Reconciled removed-source baseline; P2 contracts; isolated scratch databases | Core/shared migration owner, Task owner and web owner | Additive preservation, mapping/adoption, versioned commands, fenced independent-transaction races and protected APIs verified locally; commit and STOP. |
 | P4: events/GitHub/schedules | P3 Project/repository/authorization contracts | Event owner, integration owner, migration owner | Transactional outbox, signed GitHub ingress, deterministic occurrences; separate event/GitHub/schedule commits. |
-| P5: management API/UI and fake Agent | P2/P3; P4 for event journey | Web owner + protocol-fixture owner | Real operator journey and WebSocket proof without LLMs; `feat(api)`, `feat(ui)`, `test(integration)` commits. |
+| P5: remaining transports/UI and fake Agent | P2/P3; P4 for event journey | Web owner + protocol-fixture owner | P3 brings forward domain REST APIs; event/schedule transports, real operator journey and platform WebSocket proof remain. |
 | P6: full rehearsal and retirement preparation | P1–P5 and local contract blockers cleared | Integrator/runtime owner | Preservation, drain, restart and rollback rehearsal; reviewed cutover manifest with live/disabled-integration gates explicit. Deployment still requires explicit authorization. |
 
 Only the migration owner edits new migrations, shared configuration, root manifests/releases and test DB wiring. Parallel work begins after shared public types, context commands, profile methods and event schemas are frozen. Event and GitHub/schedule workers may be developed independently after the outbox contract exists; P5 views may use frozen context contracts while P4 finishes. Every agent has non-overlapping file ownership and preserves others' work.
@@ -43,7 +43,7 @@ No Mix compilation, database test, dependency installation, asset build or brows
 
 ## 3. P1 — Preservation harness and guard-aware bridge
 
-Historical scope pending B0: the main/memory Repos, their migration histories and legacy writer paths refer to migration sources at the audited revision. The merged checkout has neither the memory app nor those legacy callsites. Reconcile fixture/schema/reader provenance and any still-running legacy deployment before replacing this recipe with approved create/adapt paths; source restoration is not a prerequisite chosen by this plan.
+Historical scope: the main/memory Repos, their migration histories and legacy writer paths refer to migration sources at the audited revision. The merged checkout has neither the memory app nor those legacy callsites. P3 supplies main-source reconciliation, a populated additive-migration fixture, a memory sentinel and closed execution authority; it does not complete this bridge. The unchecked P1 lists below remain target-dependent requirements, not executable current file assignments. Reconcile any actual legacy deployment before approving replacement scopes.
 
 ### P1.1 Isolate test databases and measure legacy history
 
@@ -60,7 +60,7 @@ Create:
 Modify only the relevant wiring in `config/test.exs`, `config/runtime.exs`, `apps/samgita/lib/samgita/release.ex`, and the three apps' test helpers/DataCase/ConnCase. Preserve ordinary dev/prod database defaults.
 
 - [ ] Write a fixture with every main/memory historical table, stable UUID links, integer notification IDs, all legacy statuses, conflicting dependency representations, secret-shaped redacted endpoint data, opaque memory references and mixed worker jobs. No real credentials or user workspaces.
-- [ ] Configure an explicit future `SAMGITA_TEST_DATABASE` override for **both** test Repos. Refuse rehearsal targets outside a dedicated `samgita_redesign_*_test` naming allowlist. Current source does not honor this variable; implement/verify wiring before using the commands below.
+- [ ] Configure and prove isolation for every actual deployment Repo. P3's `config/test.exs` implements the `SAMGITA_TEST_DATABASE` allowlist for the sole current main Repo; there is no current memory Repo. Full dual-Repo preservation remains open.
 - [ ] Use manual Oban testing and disable all autonomous recovery/formation/pruning in this harness. Fail closed if the test authority row is missing. Do not let `mix test`'s create/migrate alias touch a default/shared database.
 - [ ] Make the manifest enumerate both migration directories, table/row/ID/FK counts, payload digests, orphan/ambiguous mappings and named Oban instances. Output IDs/counts/digests only; no secret values or raw prompts.
 - [ ] Prove fixture backup/restore on the named scratch DB. Do not treat the existing release helper as proof of memory migration coverage.
@@ -103,7 +103,7 @@ devenv shell --no-tui -- env MIX_ENV=test SAMGITA_TEST_DATABASE=samgita_redesign
 
 ## 4. P2 — Independent app-server implementation
 
-Owner: protocol owner. P2 was explicitly authorized after `1574130`; its bounded B0 reconciliation and frozen native contract are in [protocol phase 2](protocol-phase-2.md). Platform migrations/readers remain gated. This stage leaves the root application list, configuration, dependencies, Repo, UI and runtime untouched.
+Owner: protocol owner. P2 was explicitly authorized after `1574130`; its bounded B0 reconciliation and frozen native contract are in [protocol phase 2](protocol-phase-2.md). P2 left the root application list, configuration, dependencies, Repo, UI and runtime untouched; P3 later adds the core path dependency and platform domain.
 
 Implemented paths:
 
@@ -127,50 +127,44 @@ All three packages follow the repository's `apps/` layout but omit umbrella buil
 
 Run `devenv shell --no-tui --no-reload -- mix test`, `mix compile --warnings-as-errors` and `mix format --check-formatted` separately from each package directory, and the consumer's checks from its own directory. Use `python3 scripts/verify_standalone.py` from core for the outside-repository proof. No umbrella suite, database or real LLM is required.
 
-B6 is only partially satisfied: native/reference schema and isolated fake-transport evidence exist. Hub management/lease receipt/proof derivation and rotation remain P3 contracts, not native protocol claims. Live/full Codex and real Sigma/Synapsis compatibility remain unverified; no sibling endpoint or repository changes are in scope.
+B6 is only partially satisfied: native/reference schema and isolated fake-transport evidence exist. P3 adds Hub receipts/lease-proof derivation and rotation tests; they are platform contracts, not native protocol claims or production key-management evidence. Live/full Codex and real Sigma/Synapsis compatibility remain unverified; no sibling endpoint or repository changes are in scope.
 
 ## 5. P3 — Stable identities, migration mapping and authoritative commands
 
-Migration owner creates:
+Implemented and locally verified under the frozen [P3 contract](domain-phase-3.md). The removed-source baseline required a bounded reconciliation rather than restoring absent legacy executors. The domain REST API portion of P5 was explicitly brought forward into P3.
 
-- `apps/samgita/priv/repo/migrations/20261022000001_expand_agent_neutral_domain.exs`
-- `apps/samgita/lib/samgita/migration/{project_repository_mapping,state_mapping,backfill}.ex`
-- `apps/samgita/test/samgita/migration/{project_repository_mapping,state_mapping,backfill}_test.exs`
+Implemented paths:
 
-Core owner adapts `domain/{project,task}.ex`, `projects.ex` and creates:
+- `apps/samgita/priv/repo/migrations/`: 17 restored main migration files, retained September Oban upgrade, and additive `20261022000001_add_neutral_domain.exs`; no historical migration rewrite or destructive down migration.
+- `test/fixtures/redesign/migration-sources.json` and `memory_migrations/`: pinned main/memory source hashes and three inactive memory migration copies. No memory application or pgvector runtime is restored.
+- `apps/samgita/lib/samgita/{schema,principal,error,params,projection,commands,platform,legacy_mapping,projects,repositories,agents,tasks,task_transitions,attempts,events}.ex` and `domain/`: stable identities, associations, mapping/adoption, authorization, state, leases, receipts and transactional event/delivery intents.
+- `apps/samgita_web/lib/samgita_web/controllers/{project,agent,repository,execution_session,task,attempt,platform}_controller.ex`, `controllers/domain_api.ex`, `plugs/agent_auth.ex`, `controllers/fallback_controller.ex` and `router.ex`: protected operator and machine REST APIs delegating to core contexts.
+- `config/{config,runtime,test}.exs`, `apps/samgita/mix.exs` and `apps/samgita/test/support/{domain_fixtures,migration_repo}.ex`: sole-main-Repo isolation, external signing-key configuration, parameter filtering and inert Oban queues/plugins. The umbrella still runs only core/web; core consumes the independent protocol via a path dependency.
 
-- `apps/samgita/lib/samgita/{repositories,agents,tasks,attempts}.ex`
-- `apps/samgita/lib/samgita/tasks/{transitions,capabilities}.ex`
-- `apps/samgita/lib/samgita/agents/credentials.ex`
-- `apps/samgita/lib/samgita/protocol/{receipts,lease_proof}.ex` (Hub persistence/security, not the reusable wire package)
-- `apps/samgita/lib/samgita/domain/` schemas for repositories/aliases/associations, Agents/credentials/connections/bindings, Attempts, receipts, mappings and the minimal domain-event/subscription/delivery tables
-- `apps/samgita/test/samgita/{repositories,agents,tasks,attempts}_test.exs`
-- `apps/samgita/test/samgita/tasks/{ownership_race,reconnect,execution_hold}_test.exs`
-- `apps/samgita/test/samgita/events/transaction_test.exs`
+Implementation and local verification checklist:
 
-Adapt `apps/samgita/lib/samgita/events.ex` in P3 for transactional event/delivery-intent insertion only. P3's expansion migration owns those foundation tables; P4 extends them with external sources/schedules and implements delivery. Do not defer the atomic event foundation until after Task commands.
+- [x] Restore pinned main migration sources and add neutral columns/tables while preserving old IDs, fields, references and chronology in a populated scratch fixture. Keep fresh authority at `none`, admissions closed, with no fabricated Attempts.
+- [x] Provide `LegacyMapping.preview/1` and `apply/2`, resumable per-record digests/statuses, inert state mappings and separate unverified repository associations. Repeated mapping adds no duplicate associations. Unknown statuses, source drift and relationship conflicts require review; no automatic merge by URL or adoption.
+- [x] Require explicit audited adoption and unchanged recorded source mappings. Preserve Task identity/raw history; adopted, unheld work alone can be claimed after activation.
+- [x] Implement versioned Projects, Agents, membership, sessions, Tasks, decisions and artifact references. A successful report submits `awaiting_review`; distinct review and acceptance decisions are required for `accepted`.
+- [x] Authenticate current enabled credentials/connections and Project membership before receipt replay; reject changed semantics and stale execution epochs. Persist secret-free results/digests, command-linked events with allowlisted before/after snapshots, receipt event IDs and subscription delivery intents atomically.
+- [x] Accept operator-supplied credentials, store digests only and return metadata with `no-store`. Retrieve lease proofs only through an explicit current-owner read; no proof enters receipts/events. Test lease-key rotation with dedicated runtime test keys.
+- [x] Serialize capacity and active Attempts in PostgreSQL; use leases, deadlines, fences, epochs and explicit rebind. Expiry/closure preserve unresolved-effect holds and capacity; reopening does not clear uncertainty.
+- [x] Provide operator API-key/rate-limit boundaries and mandatory machine credentials/current connection, including empty operator-key configuration, role checks, bounded pagination and nested-resource Project checks. Paused Project context advertises existing-owner renew/report/rebind/resolve/proof while hiding claim/start.
+- [x] Add independent-transaction races for shared capacity, same-Task claims, expected versions, credential revocation and authority closure; assert distinct PostgreSQL backend PIDs. Keep expiry, reconnect and hold behavior in focused context tests.
+- [x] Keep all queues/plugins disabled, verify legacy runtime modules stay absent, inventory pending legacy jobs and refuse activation without running, rewriting or cancelling them. There is no job classification/quarantine API or deployed bridge.
+- [x] Complete the final root-owned scoped suite, warnings-as-errors compilation and scoped formatting checks, including the latest mapping hardening.
+- [x] Complete the final scoped diff review; record P3 in this commit and stop.
 
-Freeze context inputs first: authenticated principal, stable resource UUID, `command_id`, expected version, connection generation where machine-authenticated, and typed payload. New commands must not call legacy `start_project/enqueue_task/retry_task` internally. Legacy read adapters may continue projecting preserved fields.
-
-- [ ] Write migration tests for every mapping row/status in design §8, SSH/HTTPS aliases, duplicate normalized URLs, repository rename/transfer, local/unreachable paths, zero/multiple repository associations, opaque refs and conflicting dependencies.
-- [ ] Add nullable neutral columns and new tables without rewriting/dropping old migrations or values. Preserve existing UUID/parent/task links and integer history keys. Keep mapped states inert until the authority switch.
-- [ ] Implement resumable mapping ledger/upserts and dry-run reports; a rerun produces identical mappings and no additional records/events. Source digest changes require review instead of overriding a prior decision.
-- [ ] Keep all legacy Tasks unadopted. Adoption preserves ID, checks same-Project relationships and effect-resolution evidence, and records an explicit event. Enforce `adopted && !execution_hold` in every claim path.
-- [ ] Implement pure transition/capability/cycle checks, expected versions and atomic context commands. Project archive cannot cascade-delete history or assert remote stop.
-- [ ] Freeze the initial event catalog/envelopes from design §5 and implement same-transaction event/subscription-delivery inserts. Prove rollback leaves no receipt/event/delivery intent before adding any network dispatcher in P4.
-- [ ] Implement Agent registration, one-time non-cacheable credentials, scoped grants and neutral endpoint descriptors. Old worker IDs/endpoint maps are historical only; no automatic Synapsis registration.
-- [ ] Implement receipts in the correct order: authenticate/authorize current session/epoch, replay matching receipt, then evaluate mutable preconditions for new commands. Different semantics with the same command ID conflict.
-- [ ] Implement serialized capacity, leased Attempts, fences, starts/reports/renewals and explicit reconnect/rebind. Enforce execution deadlines and count unresolved effects against capacity. Expiry and operator closure create holds; reopen cannot clear a hold.
-- [ ] Test lost claim/start/report/rebind responses, terminal receipt replay, revoked/replaced connections, lease-key rotation and current/old proof behavior without persisting tokens.
-- [ ] Run independent-transaction claim/revoke/epoch/expiry races and reject cross-Project nested resources and relationship cycles. Do not use one shared sandbox connection as locking evidence.
-
-Gate: core/mapping/ownership portions of A01–A05/A11, using P2's protocol fixtures where needed. UI/direct-host A07 and post-Hub A09 are completed in P5/P6; they are not prerequisites for finishing P3. B2/B4/B6 must be cleared for claims on a production target; passing fixture tests is not that operational clearance.
-
-Scoped tests after P1 wiring:
+Scoped tests, from the repository root against an explicitly isolated PostgreSQL instance:
 
 ```sh
-devenv shell --no-tui -- env MIX_ENV=test SAMGITA_TEST_DATABASE=samgita_redesign_domain_test mix test apps/samgita/test/samgita/migration apps/samgita/test/samgita/repositories_test.exs apps/samgita/test/samgita/agents_test.exs apps/samgita/test/samgita/tasks_test.exs apps/samgita/test/samgita/attempts_test.exs apps/samgita/test/samgita/tasks/ownership_race_test.exs apps/samgita/test/samgita/tasks/reconnect_test.exs apps/samgita/test/samgita/tasks/execution_hold_test.exs apps/samgita/test/samgita/events/transaction_test.exs
+devenv shell --no-tui --no-reload -- env MIX_ENV=test PGHOST=/tmp/samgita-p3-pg/socket POSTGRES_PORT=55443 POSTGRES_USER=gao SAMGITA_TEST_DATABASE=samgita_redesign_p3_verified_test mix test apps/samgita/test/samgita apps/samgita_web/test/samgita_web/controllers/domain_api_test.exs apps/samgita_web/test/samgita_web/controllers/fallback_controller_test.exs apps/samgita_web/test/samgita_web/plugs/api_auth_test.exs apps/samgita_web/test/samgita_web/plugs/rate_limit_test.exs
 ```
+
+The root-owned final run passed **87 tests (48 core, 39 web), 0 failures**, seed `197697`, on the explicit socket/port/database above. `MIX_ENV=test mix compile --warnings-as-errors` and the scoped 66-file `mix format --check-formatted` passed. Verbatim pinned migrations/fixtures were excluded from formatting; their hashes passed in the suite. The test alias creates/migrates the selected database; inspect its resolved target before any rerun. `preservation_test.exs` creates another uniquely named `samgita_redesign_p3_migration_*_test` database for the historical expansion rehearsal. No reset/drop of an unresolved database is authorized. See the phase record for the final command and commit record.
+
+Gate: the implemented core/mapping/REST/ownership portions of A01–A05/A06/A11/A14, plus A15. The source/hash and opaque memory sentinel checks are local preservation evidence only. Full memory/pgvector/dual-Repo backup rehearsal, verified GitHub identity/rename/transfer, complete history readers, bridge/job classification, restart/release/rollback and real remote effects remain future gates. P3 supplies no network dispatcher, cron, automatic expiry maintenance, UI, platform WebSocket adapter or external Agent integration. B1/B2/B4 and applicable B3/B5/B6 must clear for an actual target before production claims. Commit P3 and stop before P4/P5.
 
 ## 6. P4 — Durable events, GitHub and schedules
 
@@ -196,11 +190,11 @@ Gate: event/GitHub/scheduler portions of A06/A10/A11/A12 against fakes. Real Git
 
 ## 7. P5 — Management transports, operator UI and reference Agent
 
-Web owner adapts `apps/samgita_web/lib/samgita_web/{router,endpoint}.ex`, existing Project/Task/Agent JSON/controllers and dashboard/project/Agent LiveViews/templates. Create `app_server/{socket,handler}.ex`, machine Agent/connection/repository/event/schedule controllers, and `live/{agent_form_live,task_live,repository_live,events_live,schedules_live}/` as the management journey requires. Do not preserve unsupported legacy execution controls as working buttons.
+P3 already implements the domain REST controllers, machine authentication and registration/connection/session/repository/Task/Attempt APIs. P5 extends the current `apps/samgita_web/lib/samgita_web/{router,endpoint}.ex` and controllers for event/schedule access, creates `app_server/{socket,handler}.ex` and builds dashboard/Project/Agent views and `live/{agent_form_live,task_live,repository_live,events_live,schedules_live}/` as the management journey requires. Do not recreate absent legacy controls or expose them as working buttons.
 
 Protocol-fixture owner creates `apps/samgita_web/test/support/fake_agent.ex`, `apps/samgita_web/test/samgita_web/integration/{agent_journey,direct_host_routing,restart_reconcile}_test.exs`, and fixtures under `test/fixtures/redesign/`.
 
-- [ ] Write protected API tests for registration/binding/one-time credentials, repository associations, versioned Task commands, event reads and schedule controls. Operator routes keep current API-key/rate-limit boundaries; machine routes require machine identity even when the operator key list is empty.
+- [ ] Extend P3's `controllers/domain_api_test.exs` coverage for event reads/schedule controls and the platform WebSocket adapter. Retain tested registration/membership, operator-supplied digest-only credentials, repository associations and versioned Task commands. Operator routes keep API-key/rate-limit boundaries; machine routes require machine identity even when the operator key list is empty.
 - [ ] Preserve old UUID read routes/legacy-history projections. Disable legacy start/restart/PRD generation/retry/local-Codex actions explicitly after the fence; do not redirect them into external execution.
 - [ ] Build accessible, paginated DuskMoon forms/lists for registration, repository/GitHub status, Task relationships/state/Attempt/effect holds, event delivery and historical records. Validation errors must name fields; failures/empty states and migration conflicts must be visible.
 - [ ] Keep Project creation independent of PRDs, Git URLs, cloning and runtime launch. Replace the static swarm catalog with registered identities/capabilities and no implementation-specific defaults.
@@ -238,6 +232,6 @@ Real integration/live cutover gate: remeasure B1/B2/B4 for the actual target, cl
 | Protocol/auth mismatch | Keep integration disabled; resolve with service/dependency owner | Start a substitute Sigma server or silently bypass authentication |
 | Hub regression after activation | Close admissions, owner none/new epoch, reconcile effects, compatible guarded rollback or fix forward | Re-enable the old PRD executor against new work |
 
-B0–B6 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) are the implementation blocker ledger. P2 reconciles only its independent package scope; B0 remains open for platform changes. Clear each only with the specified evidence; do not convert an assumption into a checked acceptance box. Host/credential/subscriber selection remains explicit operator configuration, not an agent-chosen deployment decision.
+B0–B6 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) are the blocker ledger. P2 reconciled its independent package scope; P3 locally reconciles B0 for the restored main migration sources, neutral schema and fixture tests. Neither clears target-specific history/storage drift, backup/reader coverage, old-writer exclusion or other cutover gates. Clear each applicable gate only with its specified evidence; do not convert an assumption into a checked acceptance box. Host/credential/subscriber selection remains explicit operator configuration, not an agent-chosen deployment decision.
 
 For every authorized stage, report changed paths/commit, scoped checks and results, preserved data/effect evidence, remaining blockers and the next unexecuted gate. If an out-of-scope test fails, list it and stop without repair. When the in-scope checklist and tests pass, stop at that stage boundary.

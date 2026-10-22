@@ -1,6 +1,6 @@
 # Samgita agent-neutral platform design
 
-Date: 2026-10-22. Status: executable design; P0 accepted and independent P2 authorized by the user. Platform implementation remains gated.
+Date: 2026-10-22. Status: P0 accepted; P2 implemented; P3 persistent domain/APIs implemented locally. Live cutover remains gated.
 
 ## 1. Authority and phase boundary
 
@@ -8,7 +8,7 @@ Samgita registers Projects and Agents, connects repositories/GitHub, owns valida
 
 This design, [implementation plan](implementation-plan.md), and [acceptance contract](acceptance.md) supersede conflicting target requirements in `docs/prd.md`, `docs/architecture.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those documents also record the separately authorized foundation refactor. Their fresh-database, no-migration, unique-Project-URL, and universal-Channel requirements do not establish this redesign's migration or target contract.
 
-P0 changed only these three documents and conflicting sections of `AGENTS.md`. The later user-authorized P2 implements independent protocol packages, an optional transport/fake Agent, a pinned scoped Codex adapter and standalone consumer. Its bounded scope and evidence are in [protocol phase 2](protocol-phase-2.md). No platform integration, database operation, historical-data deletion, external service change, deployment or push is included. Other stages require separate authorization and stop at their own gates.
+P0 changed only these three documents and conflicting sections of `AGENTS.md`. P2 implements independent protocol packages; its bounded evidence is in [protocol phase 2](protocol-phase-2.md). The user's subsequent P3 authorization implements persistent models, scoped APIs and additive local migration tests, reconciled in [domain phase 3](domain-phase-3.md). No historical-data deletion, external service change, production migration, deployment or push is included. Other stages require separate authorization and stop at their own gates.
 
 ### Decisions and alternatives
 
@@ -37,15 +37,17 @@ Audited historical baseline: Samgita `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`,
 | [Runtime config](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/config/runtime.exs), [release helper](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita/lib/samgita/release.ex) | Main and memory Repos use the same database but separate pools/migrations/Oban instances. The release helper enumerates only main `ecto_repos`; it does not establish that both migration histories are applied. |
 | [Router](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita_web/lib/samgita_web/router.ex), `controllers/*`, `live/*` | UUID routes and REST API-key/rate-limit boundaries exist. Browser controls start orchestration/Codex, PRD chat calls providers, and `/agents` is a static swarm catalog. These must become registration/management views. |
 
-No implemented GitHub connection or signed inbound GitHub webhook was found in the inspected core/web sources. Live databases, deployments, outstanding jobs, secrets, and remote servers were not inspected. All data-preservation and operational gates below remain future work.
+No implemented GitHub connection or signed inbound GitHub webhook was found in the inspected core/web sources. Live databases, deployments, outstanding jobs, secrets, and remote servers were not inspected. P3 supplies bounded local preservation evidence; target-specific preservation and operational gates remain open.
 
 ### Merged checkout and reconciliation gate
 
-Merge `d6e9eca` combines design commit `3a344f5` and the separately authorized clean-start source refactor `811eeb9`. The refactor removed legacy source and migration files. The merged checkout contains a two-app foundation: main Repo, PubSub and Oban, the existing web endpoint, and only `20260907000000_create_oban.exs` as its migration; the planned Project/Task domain and reusable protocol are absent. Historical source remains in Git. The merge proves neither a database migration nor historical-data deletion or continuity.
+Merge `d6e9eca` combines design commit `3a344f5` and the separately authorized clean-start source refactor `811eeb9`. The refactor removed legacy source and migration files. At that revision the checkout was a two-app foundation: main Repo, PubSub and Oban, the existing web endpoint, and only `20260907000000_create_oban.exs` as its migration. P2 subsequently added independent protocol packages; P3 restores historical main migration sources and adds the persistent domain. Historical source remains in Git. The merge itself proves neither a database migration nor historical-data deletion or continuity.
 
-The inventory in §7, mapping sources in §8, and P1 legacy/dual-Repo callsites describe the audited historical system, not files available to modify in this checkout. B0 blocks implementation until an explicit source/migration reconciliation maps the foundation and historical schemas/readers to the preservation contract, identifies any legacy deployment requiring a bridge, and revises bounded file/test scopes. No automatic source restoration, database recovery, migration, or redesign implementation is authorized by this note. The target contracts below remain unchanged.
+The inventory in §7, mapping sources in §8, and P1 legacy/dual-Repo callsites describe the audited historical system. B0 originally held implementation pending source/migration reconciliation. The authorized reconciliations below clear only their stated scopes; they do not authorize database recovery or production migration. Absent legacy runtime callsites must not be restored just to execute the historical checklist.
 
-P2 reconciliation: the independent protocol uses no legacy schema, migration, reader or platform configuration, so its authorized scope creates only standalone protocol packages and updates these contracts. Root app/config/migration wiring remains unchanged. This clears B0 for that bounded slice only; historical-source reconciliation still blocks P1/P3 and cutover.
+P2 reconciliation: the independent protocol uses no legacy schema, migration, reader or platform configuration. Its commit created only standalone protocol packages and contract updates, leaving root app/config/migration wiring unchanged. It cleared B0 for that bounded slice.
+
+P3 reconciliation supersedes the preceding implementation hold for its bounded local scope: restore the original main migration sources by hash, account for memory migration sources outside the active path, preserve legacy columns beside new fields, and rehearse fresh/populated schemas. No legacy executors are restored. PostgreSQL authority starts closed; queues/plugins stay disabled. Actual old binaries, writer credentials, external effects, memory extensions and backups still require target-specific B1/B2/B4 evidence before deployment.
 
 ## 3. Domain and application ownership
 
@@ -85,7 +87,7 @@ Synapsis, Sigma, Codex, and a fake reference Agent all use ordinary registration
 
 ### Durable model
 
-All new domain IDs are UUIDs; keep existing IDs and existing integer history IDs unchanged. Use UTC server timestamps and integer versions. These are additive target records, not an instruction to create tables now.
+All new domain IDs are UUIDs; keep existing IDs and existing integer history IDs unchanged. Use UTC server timestamps and integer versions. P3 implements the management, identity, receipt/event and mapping records below; GitHub, schedule and delivery-processing fields remain P4.
 
 | Record | Essential fields / constraints |
 | --- | --- |
@@ -93,15 +95,17 @@ All new domain IDs are UUIDs; keep existing IDs and existing integer history IDs
 | `repositories`, `repository_aliases` | UUID; kind, host, optional immutable provider repository ID, display owner/name/URLs, verification state. Unique verified `(provider, host, external_id)`; URLs are mutable aliases. Unverified aliases may remain ambiguous. |
 | `project_repositories` | Project UUID + Repository UUID, role, optional primary flag; unique pair and at most one primary per Project. Zero/many repositories per Project; a repository may serve several Projects. |
 | `agents`, `agent_credentials`, `agent_connections`, `project_agents` | Approved/advertised capabilities, configured capacity, credential digest or external secret reference, connection generation, expiry/revocation and explicit Project grants. Unique Project-Agent binding. |
+| `execution_sessions` | Separate external session reference scoped to Agent, Project and a connection; recording it launches nothing. |
 | existing `tasks` | Existing `id`/`project_id`/parent; add neutral title/description, `state`, `version`, adopted flag, execution hold, capability requirements, provenance. No PRD or repository required. |
-| `task_attempts` | Task/Agent UUIDs, attempt number, state, lease deadline/digest, fence, execution epoch, connection generation, terminal outcome and effect-resolution evidence. Unique Task+number; partial uniqueness for one active Attempt per Task. |
+| `task_attempts` | Task/Agent UUIDs, attempt number, state, lease/start/execution deadlines, proof key identifier, fence, execution epoch, connection generation, terminal outcome and effect-resolution evidence. Unique Task+number; partial uniqueness for one active Attempt per Task. No plaintext proof or signing key in the database. |
+| `decision_records`, `artifact_references` | Append-only review/acceptance decisions and external artifact locators; neither an output reference nor an execution report implicitly accepts work. |
 | `command_receipts`, `domain_events` | Principal+command ID unique; semantic request digest and secret-free result/version/event IDs. Events have stable UUIDs and per-Project monotonically allocated sequence, unique Project+sequence. |
 | `github_connections`, `external_deliveries` | Host/install/credential reference and enabled state; unique connection+GitHub delivery ID, payload digest and allowlisted event data. No unencrypted private key or installation token. |
 | `schedules`, `schedule_occurrences` | Project, expression/timezone, enabled state, revision and next due timestamp; unique schedule+revision+absolute due time. |
 | `event_subscriptions`, `event_deliveries` | Explicit source/type/Project filter and Agent binding or approved hook target; unique event+subscription, durable cursor, attempts and next delivery time. |
 | `platform_authority`, `migration_mappings` | Singleton execution owner/admission/epoch; resumable per-record mapping, raw identity digest, resolution state and operator decision. No secrets in mapping reports. |
 
-The preservation contract requires existing history tables and both historical migration sets to remain accounted for; their presence in a live database is unverified, and their source files are absent from the merged checkout. B0 must reconcile that gap. A schema expansion is not permission to drop a legacy column, table, extension, FK, or database.
+The preservation contract requires existing history tables and both historical migration sets to remain accounted for. P3 restores the 17 main migration files verbatim and pins the three memory migration sources as inactive fixtures. Their actual deployment state and complete memory/pgvector/history-reader coverage remain unverified. A schema expansion is not permission to drop a legacy column, table, extension, FK, or database.
 
 ### Project and Task commands
 
@@ -116,9 +120,10 @@ Task states describe management, not development stages:
 | create | New adopted Task starts `open`; explicit Project grant and idempotency key required. |
 | claim | An adopted `open` Task gets a `leased` Attempt; Task remains open until start. One active Attempt prevents a second claim. |
 | start | Current leased owner of an open Task changes Attempt to `running`, Task to `in_progress`. Agent waits for accepted start before effects. |
-| block | Current owner or operator changes open/in-progress Task to `blocked` with a reason; active ownership remains until explicitly released or expired. |
-| complete / fail | Current running Attempt owner from in-progress/blocked, or operator from open/in-progress/blocked, commits `completed` / `failed` with structured outcome/reason. Close any active Attempt; operator closure fences the former owner. |
-| cancel | Operator explicitly changes a nonterminal Task to `cancelled`, invalidates its Attempt, and emits a stop request. This records desired management state; remote stop acknowledgement is tracked separately. |
+| block | Explicit Project manager/operator changes open/in-progress Task to `blocked`; active ownership remains until explicitly resolved or expired. Worker-only Agents report outcomes or request management action. |
+| report success / failure | Current running Attempt owner commits `succeeded` / `failed` execution outcome with cessation attestation. Resolved success submits the Task to `awaiting_review`; unresolved effects block it. No acceptance is inferred. |
+| review / accept | A Project reviewer/operator records review approval or rejection separately. Acceptance approval requires a current approved review and changes `awaiting_review` to `accepted`. Rejection reopens work; neither action clears an execution hold. |
+| cancel | Explicit Project manager/operator changes eligible work to `cancelled` and invalidates ownership. P3 records the management/Attempt event and effect hold; remote stop delivery/acknowledgement is future integration, never presumed. In-progress work must first be blocked. |
 | reopen | Operator or explicitly granted management Agent changes blocked/terminal Task to `open`, closes/invalidate any active Attempt and increments fence/version. No automatic execution is implied. |
 | lease expiry / disconnect | Disconnect alone changes presence only. Expiry closes the Attempt as expired and blocks unfinished work with `ownership_lost`; it never silently replays work. |
 
@@ -167,9 +172,9 @@ The native `connection/initialize` selects a supported version and capability in
 
 The [P2 contract](protocol-phase-2.md) and [core README](../../apps/samgita_protocol/README.md) define stable event/delivery/causal IDs, UTC creation time, opaque refs, receipt/completion/management-acceptance distinctions, disconnect uncertainty, replay checkpoints, cancellation, bounded buffering, and transport-independent interfaces. Optional RFC 6455 JSON text at `/app-server` can mount on an existing web endpoint; no mandatory central hop or sibling server is introduced.
 
-Wire request IDs correlate one connection; durable Hub commands additionally carry UUID `command_id`, `project_id`, `expected_version` and command payload. Attempt commands include Attempt ID, epoch/fence and lease proof. Canonical semantic request digests exclude transport correlation IDs and all tokens. Duplicate principal+command ID with identical semantics returns the committed receipt; a different digest returns `command_id_conflict`. Reauthenticate and reauthorize connection ownership before receipt lookup. Historical ACKs describe accepted past state and do not authorize current execution. Database failure leaves no success receipt or side effect.
+Wire request IDs correlate one connection; durable Hub commands additionally carry UUID `command_id`, `project_id`, `expected_version` and command payload. Attempt ownership is bound to stored epoch/fence and presented proof. Canonical semantic request digests exclude transport correlation IDs and transient proofs; credential-install commands bind a credential fingerprint. Duplicate principal+command ID with identical semantics returns the committed secret-free receipt; different semantics return conflict. Reauthenticate and reauthorize connection ownership and the execution epoch before replay. Historical ACKs describe accepted past state and do not authorize current execution. Database failure leaves no success receipt or side effect.
 
-Use token digests for verification and a versioned server-key derivation for replayable lease proofs bound to Agent, Attempt, epoch and fence; key material lives outside database/event/log storage. Active authorization is checked on every command. A lost claim response is reconciled with the same command ID; any replayed proof still requires a fresh successful start/renew against current ownership before effects. Rotated/revoked identities and stale epochs fail closed. Freeze derivation/rotation fixtures before implementing claims.
+Agent credentials are verified by SHA-256 digest. P3 lease proofs use versioned HMAC-SHA256 over JSON ownership/deadline claims, with only the signing key identifier stored on the Attempt; keys live outside database/event/log storage. Command receipts never contain proofs. Reconcile a lost claim response with the same command ID, then retrieve the proof through the current-owner, non-cacheable read and obtain a successful start before effects. Renewal changes the signed deadline and may rotate the key identifier; retrieve the current proof afterward. Rebind requires the current proof, replaces the connection generation and increments the fence. Retained old keys validate former-owner cessation evidence, never current execution authority. Revoked identities and stale epochs fail closed. Derivation/rebind/rotation fixtures are in P3's Attempt tests; production key handling remains an operational gate.
 
 An authenticated reconnect establishes a new connection generation and disables the previous connection; it does not reassign existing Attempts. `samgita/attempt/reconcile` explicitly rebinds an unexpired Attempt only for the same registered Agent presenting its current proof/epoch/fence and still-valid Project grant. In the ordered transaction, increment its fence, bind the new generation, renew only within the execution deadline, and return a new proof/receipt. The old generation/proof then fails. The Agent must reconcile its durable local execution journal by Attempt ID and continue the same known execution, never start it twice because a socket reconnected. Lost proof, expired ownership or uncertain local effects requires the hold/resolution path, not a fresh claim. Receipt replay precedes mutable fence/version checks after current connection authorization.
 
@@ -201,7 +206,9 @@ A Schedule has an explicit Project, event type/payload template, timezone (UTC b
 
 Persist domain changes, append-only event rows and delivery intents in one transaction; send only after commit. Each delivery includes stable event ID, Project ID, source/occurrence ID, event type/schema version, sequence and occurred-at time. Subscribe only through explicit Agent-Project bindings or approved hook targets. Zero subscribers leaves the event inspectable; there is no implicit Synapsis subscriber.
 
-Freeze the initial event catalog before parallel implementation: `project.created`, `project.state_changed`, `project.repository_linked`, `task.created`, `task.state_changed`, `attempt.leased`, `attempt.started`, `attempt.closed`, `attempt.effects_resolved`, `schedule.tick`, and allowlisted `github.*` source types, each with `schema_version=1`. State events contain resource ID, before/after state and version, actor identity, command ID and a bounded reason code; never prompts, credentials or arbitrary tool output. Agent/credential registration audit uses the same envelope with no Project sequence until a binding supplies Project scope. Event projection and delivery retries do not create new management events.
+P3 freezes the local audit catalog at `schema_version="1.0"`: `agent.registered/updated/credential_added/credential_revoked/connected`, `session.recorded`, `project.created/updated/state_changed/membership_changed/repository_associated`, `task.created/updated/transitioned/adopted/decision_recorded/artifact_added`, `attempt.claimed/started/renewed/reported/rebound/expired/closed/effects_resolved/authority_lost`, and `platform.activated/closed` (slash suffixes expand under the preceding prefix). P4 will version `schedule.tick` and allowlisted `github.*` source types before their implementation.
+
+Events have stable IDs, resource/actor/command IDs, UTC creation time and Project sequence where scoped. State mutations include allowlisted before/after snapshots with version/state; an Attempt event also records its Task's before/after snapshot, and membership/repository mutations record the Project version change. Receipts store emitted event IDs atomically. No prompt, credential, lease proof or arbitrary tool result enters this audit envelope. Agent/credential/platform audit has no Project sequence. Mapping previews use their durable source-digest ledger and command receipt; they do not fabricate execution history. Replay of a receipt or a future delivery does not create new management events.
 
 Oban delivery is at least once with stable IDs. Receivers deduplicate IDs and acknowledge durable processing; socket PubSub is only a wake-up. Per-Project cursors detect gaps, and authenticated paginated reads recover history. Delivery retry does not change Task state. Recheck revocation, subscription and destination on each attempt. Moving targets or changing secrets does not redirect already accepted work silently; record subscription revision and require explicit redelivery choice.
 
@@ -222,7 +229,7 @@ Target active supervision: main Repo, PubSub, Finch and Oban in core; telemetry 
 
 ## 7. Legacy subsystem inventory
 
-Definitions: **retain** preserves an active responsibility; **adapt** changes its boundary/contract; **quarantine** preserves code/data for bounded drain or read-only history, with no new execution; **retire** removes active behavior only after quarantine/consumer checks. Retirement never means deleting historical rows or rewriting past migrations. Nothing in this table is executed during this phase.
+Definitions: **retain** preserves an active responsibility; **adapt** changes its boundary/contract; **quarantine** preserves code/data for bounded drain or read-only history, with no new execution; **retire** removes active behavior only after quarantine/consumer checks. Retirement never means deleting historical rows or rewriting past migrations. This inventories the audited historical baseline; the foundation's already-removed runtime stays absent. The table authorizes no additional removal.
 
 Paths below are repository-relative at the audited historical revision; grouped files share the stated owning behavior. Source removal in `811eeb9` is authorized and already merged; these dispositions specify remaining data/operational obligations, not instructions to restore removed files or evidence that runtime drain/preservation happened.
 
@@ -285,7 +292,7 @@ Paths below are repository-relative at the audited historical revision; grouped 
 
 `Git.normalize_url/1` strips prefixes and suffixes; it is not an identity authority. Backfill uses a mapping ledger keyed by source table+primary key+mapping version, deterministic upserts, source digests and resolution decisions. Different Project records pointing to one repository retain different Project IDs. Ambiguous URL-only lookups return an explicit ambiguity error; no first-match redirect.
 
-Keep `projects.git_url` unchanged and write-frozen for migrated Projects. New versioned APIs write repository associations. Make legacy URL optional and remove Project-level URL uniqueness only after legacy writers are fenced and clients use stable IDs; a later additive migration may relax those constraints without removing provenance. Retain old read projections for a measured deprecation period; old execution mutation routes return a typed disabled/gone error after the fence. They must not redirect into new execution silently.
+Keep `projects.git_url` unchanged and write-frozen for migrated Projects. New versioned APIs write repository associations. P3's additive expansion makes the old URL optional and relaxes Project-level URL uniqueness; this must run only after legacy writers are excluded on an actual target. It preserves raw URLs and never merges Project IDs. Migrated Project names and Task parent IDs also stay frozen as source history; neutral descriptions/titles remain editable. Source digests omit added neutral fields and managed `updated_at`, whose original value remains in ledger evidence. Source drift or contradictory dependency forms persist as review-required ledger states and block adoption/activation; P3 has no conflict-override API. Preserve old read projections for a measured deprecation period; absent old execution routes cannot redirect into new execution silently. Complete historical readers remain a later gate.
 
 ### State mapping and explicit adoption
 
@@ -300,7 +307,7 @@ Add neutral `state`/`version` columns alongside, rather than rewriting, legacy `
 | Task pending | open | Unadopted; validate content/relationships before any claim. |
 | Task blocked | blocked | Preserve reason/dependencies, require explicit adoption/reopen. |
 | Task assigned/running | blocked | Mark reconciliation-needed; no fabricated authenticated Attempt and no implicit replay. |
-| Task completed | completed | Historical result retained, no replay. |
+| Task completed | awaiting_review | Unadopted historical execution outcome, with no fabricated review/acceptance; original result/status retained, no replay. |
 | Task failed/dead_letter | failed | Retain distinct original status/error/counters. |
 | Task skipped | cancelled | Preserve `legacy_skipped` provenance; do not claim a remote cancellation happened. |
 
@@ -308,7 +315,7 @@ Adoption keeps the Task ID and must confirm resolved Project scope/relationships
 
 ### Exclusive authority and in-flight work
 
-Use a bridge release before any new execution. Its durable singleton stores `owner = legacy | none | hub`, `admission_open`, and monotonic `epoch`. Every writer validates it in the same transaction as its change. External dispatch also uses recorded dispatch intent and epoch; a preflight check alone cannot fence an already running CLI/network effect.
+On a target still running legacy code, use a separately reviewed guard-aware bridge before new execution. Its cutover contract covers legacy ownership, closed admissions, owner-none and Hub, with monotonic epochs. P3's singleton permits only `none | hub` and provides no legacy fallback; a deployment bridge must reconcile its schema with that constraint before use. Every writer validates authority in the same transaction as its change. External dispatch also needs recorded intent and epoch; a preflight check alone cannot fence an already running CLI/network effect.
 
 1. **Inventory/backup:** identify all deployment nodes, both Repos/migration sets/Oban instances, cron/timers, local Port/OS processes, remote provider sessions, nonterminal Tasks/jobs, subscriptions and filesystem effects. Capture sanitized counts/IDs/hashes and restorable backups. Do not infer absence from this source audit.
 2. **Install bridge with legacy ownership:** all old API/UI/context producers, recovery, orchestration retries, provider dispatch/completion and maintenance obey the guard. Unmodified old binaries are removed from writer credentials/network access before proceeding; a new-code flag cannot fence an old node.
@@ -317,7 +324,7 @@ Use a bridge release before any new execution. Its durable singleton stores `own
 5. **Quiesce:** set owner none, increment epoch and close all legacy dispatch paths. Verify all old nodes/credentials/producers are stopped or fenced and no legacy execution remains. Keep retained hook delivery separately fenced by delivery IDs. Backfill/rehearse preservation without any execution owner.
 6. **Enable Hub:** after data/reference and operational gates pass, atomically switch owner hub at a new epoch. Only adopted Tasks can be claimed. Legacy APIs, retries, Recovery, cron and stale completions remain rejected after restart or rollback of a node. No per-Project mixed old/new execution mode is permitted.
 
-No actual drain, kill, cancellation, backup, migration or replay is authorized now. Operators choose reconciliation actions for real in-flight work during a separately approved cutover. The acceptance gate proves both persistence fencing and absence of competing external dispatch.
+No production drain, kill, cancellation, backup, migration or replay is authorized by this phase. P3's isolated schema/mapping rehearsals confer no live authority. Operators choose reconciliation actions for real in-flight work during a separately approved cutover. That acceptance gate must prove both persistence fencing and absence of competing external dispatch.
 
 ### Rollback
 
@@ -333,12 +340,12 @@ The [plan](implementation-plan.md) assigns one owner per shared contract/migrati
 
 | ID | Blocker / owner | Blocks and resolution evidence |
 | --- | --- | --- |
-| B0 | Merged source/migration reconciliation; design + migration owner | Platform implementation. Independent P2 is reconciled in `protocol-phase-2.md` with no platform wiring changes. Before P1/P3 compare `d6e9eca` with the pinned historical baseline; account for removed schemas/migrations/readers, applicable deployments/bridge and revised scopes. Source removal proves neither data loss nor continuity; no restoration is implied. |
+| B0 | Merged source/migration reconciliation; design + migration owner | Cleared for independent P2 and P3's bounded local scope. `domain-phase-3.md` records verbatim main migration restoration, pinned inactive memory sources, additive schema and preservation fixtures. Legacy runtime stays absent. Target-specific schema/readers/bridge and deployment continuity still require B1/B2/B4. |
 | B1 | Live topology/data/in-flight inventory; operator + migration owner | Production cutover. Measured node/job/session/process inventory, named databases/backups, restoration proof and no unknown active effects. |
 | B2 | Legacy mapping quality and dual-Repo migration coverage; migration owner | Adoption/cutover. Row/ID/reference/digest manifest, both migration directories accounted for, dependency/opaque-ref conflicts resolved or explicitly historical. |
 | B3 | Endpoint protocol/security mismatch; protocol + respective service owners | Real Sigma/Synapsis integration. Pinned profiles, supported methods, actual authentication/authorization and real-client round trips; no package name can substitute for this evidence. |
-| B4 | Guard-aware legacy bridge and external-effect reconciliation; runtime owner | Any new execution. All writers/producers fenced, pre-bridge nodes excluded, drain/restart/race/rollback proof. |
+| B4 | Guard-aware legacy bridge and external-effect reconciliation; runtime owner | Actual-target execution. P3 has no legacy executors, queues or recovery, defaults closed, inventories jobs and refuses activation while jobs/conflicts/effects remain. It cannot fence an old binary or resolve external effects. Actual writers/producers must be excluded, pending jobs classified and drain/restart/rollback evidenced before deployment. |
 | B5 | GitHub installation/permissions, approved destinations and secret references; operator + integration owner | Real GitHub connection and remote subscriptions. Authorized installation, verified scope, key handling, signed ingress and egress tests. No consumer/host is selected by this design. |
-| B6 | Exact versioned protocol subset/lease derivation fixtures; protocol owner | P2 supplies native schemas, pinned Codex subset/provenance/license, negotiation/error/reconnect and independent consumer/real fake-transport tests. Live/full Codex compatibility remains unverified. Platform claims still require scoped receipt/proof derivation/rotation contracts and integration fixtures; P2 does not clear that gate. |
+| B6 | Exact versioned protocol subset/lease derivation fixtures; protocol owner | P2 supplies native schemas, pinned Codex subset/provenance/license and independent fake-transport/consumer tests. P3 adds scoped receipts, proof derivation, rebind/rotation, epoch and credential-race tests. Live/full Codex compatibility, actual-service integration and production key-management/release evidence remain unverified; only the local Hub contract portion is cleared. |
 
 These are implementation/integration gates, not reasons to leave this design phase incomplete. Current source facts and proposed future contracts are deliberately distinguished. Missing capabilities in an actual dependency must follow AGENTS.md upstream issue routing when encountered in implementation; do not hide them behind a local compatibility shim.

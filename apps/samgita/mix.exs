@@ -25,6 +25,7 @@ defmodule Samgita.MixProject do
 
   defp deps do
     [
+      {:samgita_protocol, path: "../samgita_protocol"},
       {:ecto_sql, "~> 3.14"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_pubsub, "~> 2.3"},

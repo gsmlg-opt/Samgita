@@ -1,0 +1,110 @@
+{
+  "source_revision": "2bc3765ac94e1faea50f061b6938c0ef51e6f92b",
+  "files": [
+    {
+      "source": "apps/samgita/priv/repo/migrations/.formatter.exs",
+      "sha256": "0214526079b381af52379d2b1fff614512fe4f5bb9a04394ef3246e5b1f61c87",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260129100000_create_projects.exs",
+      "sha256": "b1830fe2a76768ea7718d585f70406f17bfa8b5844e3fd64b0e77397ef7e2206",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260129100001_create_tasks.exs",
+      "sha256": "387ba7452c7fa4761fe1e94675d8a7f289ad111a3fdfff17201e03a5e1df933c",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260129100002_create_agent_runs.exs",
+      "sha256": "885aaad33c25667ed386c65120e415d1f11e6ea18eb6a4ac7d373dbd66435fc3",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260129100003_create_artifacts.exs",
+      "sha256": "7640aa2b5e585e891d532fb8f00dbbe0cfe58e39b9383d88ae170a8d9915a377",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260129100004_create_memories.exs",
+      "sha256": "84d503691e2e7dc8097ee367a0ded0e7deae37507997b545a6aba085d93fba82",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260129100005_create_snapshots.exs",
+      "sha256": "c8d74cf5bff266a2d02c026142412ae209a4ba6c57ba36cad4d006b93ba2d4a0",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260129100006_setup_oban.exs",
+      "sha256": "2226514a2eb685b4fa1f4cd0a74e43257f70401e4e20a732d42817383dc6354a",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260129100007_create_webhooks.exs",
+      "sha256": "c23c18cd15ea2da0e792a2f7b57dc9d2305543c8b59ba1805f10e9b5ac5614df",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260205063106_create_prds_and_chat_messages.exs",
+      "sha256": "a6e0d38b4d75ac2e137ef9b1f4165181d5c51ea1be03b5184fdcd6e47b6a5258",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260302100000_add_active_prd_id_to_projects.exs",
+      "sha256": "1a0f86f58d6c8f38012926670a581c32569ac01aac165e7284b9e6b5e8b3d508",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260302175754_create_features.exs",
+      "sha256": "00298227940f1508ed46448d1792859107a4abdbb2108f101b6c6a07103c5b60",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260302175844_create_notifications.exs",
+      "sha256": "7a0380c776c63c19129a6e0cbe5c019a9cb216ea706d1bb6f2910f09ae23b1f6",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260404100001_add_dependency_fields_to_tasks.exs",
+      "sha256": "5fecb93638164ea2707401afc9e974f5c60a261ba506d64ef33daf0933ce4f6c",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260404100002_create_task_dependencies.exs",
+      "sha256": "e51b3f05c224414b905793af9f92536995a1e43c9c7ae028e8d0eb0f41f898b9",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260404200001_create_agent_messages.exs",
+      "sha256": "32867d3761011a316f539f3ad933506f4bbba472ad1afaa9725dc3ddd81c5874",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260404300001_add_planning_fields_to_projects.exs",
+      "sha256": "5be7ff5b65cb41de511dcf9f666ce7ccbce8b44e3e26634d7853e9709a72ba0a",
+      "active": true
+    },
+    {
+      "source": "apps/samgita/priv/repo/migrations/20260404400001_add_synapsis_fields_to_projects.exs",
+      "sha256": "ced082e4c2226b2496def944395344734937aa88d57365f84e6d2dbd4b1d3ad3",
+      "active": true
+    },
+    {
+      "source": "apps/samgita_memory/priv/repo/migrations/20260209000001_create_memories.exs",
+      "sha256": "52ef9e70404dc783e654f68836c9c4cee39569b94969448b5583b5ed1a0f1a74",
+      "active": false
+    },
+    {
+      "source": "apps/samgita_memory/priv/repo/migrations/20260209000002_create_prd_executions.exs",
+      "sha256": "ca46c831a3efba10d274ef4ef206c319542dcf5aec0ffdd7f792b3ce6d03a4b8",
+      "active": false
+    },
+    {
+      "source": "apps/samgita_memory/priv/repo/migrations/20260209000003_create_thinking_chains.exs",
+      "sha256": "226c7c86a1733021ef2a77cef240c1c0c557b528a45495d761fba767e9d1fe43",
+      "active": false
+    }
+  ]
+}
