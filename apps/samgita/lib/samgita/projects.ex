@@ -249,7 +249,8 @@ defmodule Samgita.Projects do
         else: []
       ) ++
       if("worker" in roles && state in ~w(active paused),
-        do: ~w(attempt.renew attempt.report attempt.rebind attempt.resolve attempt.proof),
+        do:
+          ~w(attempt.renew attempt.progress attempt.report attempt.rebind attempt.resolve attempt.proof),
         else: []
       ) ++
       if("worker" in roles && state == "active", do: ~w(attempt.claim attempt.start), else: []) ++

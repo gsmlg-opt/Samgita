@@ -23,6 +23,9 @@ defmodule SamgitaWeb.AttemptController do
   def report(conn, %{"project_id" => project_id, "id" => id}),
     do: API.result(conn, Attempts.report(API.principal(conn), project_id, id, API.attrs(conn)))
 
+  def progress(conn, %{"project_id" => project_id, "id" => id}),
+    do: API.result(conn, Attempts.progress(API.principal(conn), project_id, id, API.attrs(conn)))
+
   def rebind(conn, %{"project_id" => project_id, "id" => id}),
     do: API.result(conn, Attempts.rebind(API.principal(conn), project_id, id, API.attrs(conn)))
 

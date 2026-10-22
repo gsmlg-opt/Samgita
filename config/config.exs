@@ -57,6 +57,8 @@ config :logger, :default_formatter,
 config :phoenix, :json_library, Jason
 
 config :phoenix, :filter_parameters, [
+  "endpoint_url",
+  "endpoint_metadata",
   "password",
   "credential",
   "token",

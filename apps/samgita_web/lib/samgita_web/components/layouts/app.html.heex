@@ -1,5 +1,31 @@
-<.dm_appbar title="Samgita" title_to={~p"/"} class="appbar-primary" sticky>
-  <:menu to={~p"/"} active={true}>{gettext("Agent Hub")}</:menu>
+<.dm_appbar
+  title="Samgita"
+  title_to={~p"/"}
+  class="appbar-primary max-sm:h-auto max-sm:flex-wrap max-sm:gap-y-2 max-sm:py-2 max-sm:[&_.appbar-trailing]:w-full max-sm:[&_.appbar-trailing]:justify-between"
+  sticky
+>
+  <:menu
+    to={~p"/"}
+    active={@socket.view == SamgitaWeb.DashboardLive.Index}
+    class="max-sm:!px-1"
+  >
+    <span class="hidden sm:inline">{gettext("Agent Hub")}</span>
+    <span class="sm:hidden">{gettext("Home")}</span>
+  </:menu>
+  <:menu
+    to={~p"/projects"}
+    active={@socket.view in [SamgitaWeb.ProjectsLive.Index, SamgitaWeb.ProjectsLive.Show]}
+    class="max-sm:!px-1"
+  >
+    {gettext("Projects")}
+  </:menu>
+  <:menu
+    to={~p"/agents"}
+    active={@socket.view in [SamgitaWeb.AgentsLive.Index, SamgitaWeb.AgentsLive.Show]}
+    class="max-sm:!px-1"
+  >
+    {gettext("Agents")}
+  </:menu>
   <:user_profile>
     <.dm_theme_switcher id="theme-toggle" />
   </:user_profile>

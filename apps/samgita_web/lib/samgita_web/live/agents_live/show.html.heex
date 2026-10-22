@@ -1,0 +1,213 @@
+<section class="space-y-6" aria-labelledby="agent-title">
+  <.dm_link navigate={~p"/agents"}>{gettext("All Agents")}</.dm_link>
+  <p :if={@load_error} role="alert" class="text-error">{@load_error}</p>
+  <div :if={@detail} class="space-y-6">
+    <header>
+      <h1 id="agent-title" class="text-3xl font-bold">{@detail["agent"]["name"]}</h1>
+      <p class="break-all text-sm text-on-surface-variant">{@detail["agent"]["id"]}</p>
+    </header>
+    <p :if={@error} id="agent-error" role="alert" class="text-error">{@error}</p>
+    <.dm_card id="agent-status" variant="bordered">
+      <:title>{gettext("Recorded status")}</:title>
+      <dl class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <dt class="font-semibold">{gettext("Availability")}</dt><dd>
+            {@detail["agent"]["availability"]}
+          </dd>
+        </div>
+        <div>
+          <dt class="font-semibold">{gettext("Connection record")}</dt><dd>
+            {@detail["agent"]["connection_state"]}
+          </dd>
+        </div>
+        <div>
+          <dt class="font-semibold">{gettext("Last recorded activity")}</dt><dd>
+            {@detail["agent"]["last_activity_at"] || gettext("None recorded")}
+          </dd>
+        </div>
+        <div>
+          <dt class="font-semibold">{gettext("Last delivery state")}</dt><dd>
+            {@detail["agent"]["last_delivery_state"] || gettext("None recorded")}
+          </dd>
+        </div>
+        <div>
+          <dt class="font-semibold">{gettext("Protocol")}</dt><dd>
+            {@detail["agent"]["protocol"]} {@detail["agent"]["protocol_version"]}
+          </dd>
+        </div>
+        <div>
+          <dt class="font-semibold">{gettext("Version / generation")}</dt><dd>
+            {@detail["agent"]["version"]} / {@detail["agent"]["generation"]}
+          </dd>
+        </div>
+      </dl>
+      <p class="mt-4 text-sm text-on-surface-variant">
+        {gettext(
+          "Health unverified. Connection records and observed activity are evidence only; there is no heartbeat or guarantee that an Agent is ready to execute."
+        )}
+      </p>
+    </.dm_card>
+    <.dm_card variant="bordered">
+      <:title>{gettext("Registration and approvals")}</:title>
+      <.form for={@form} id="agent-update" phx-submit="save" phx-change="change" class="space-y-4">
+        <.agent_fields form={@form} />
+        <.dm_btn
+          native_submit
+          type="submit"
+          variant="primary"
+          phx-disable-with={gettext("Saving…")}
+        >
+          {gettext("Save Agent")}
+        </.dm_btn>
+      </.form>
+    </.dm_card>
+    <.dm_card variant="bordered">
+      <:title>{gettext("Machine credentials")}</:title>
+      <p class="mb-4 text-sm text-on-surface-variant">
+        {gettext(
+          "Supply an independently generated credential of at least 32 bytes and provision it in the Agent separately. Samgita stores its digest, never returns the credential, and clears this field after submission. Project membership is still required."
+        )}
+      </p>
+      <p class="mb-4 text-sm text-on-surface-variant">
+        {gettext(
+          "Credentials are not recovered after reconnect. If submission was interrupted, reconcile the credential metadata below before re-entering a credential and retrying."
+        )}
+      </p>
+      <.form
+        for={@credential_form}
+        id="agent-credential"
+        phx-submit="put_credential"
+        class="space-y-4"
+      >
+        <input
+          type="hidden"
+          name="credential[command_id]"
+          value={@credential_form[:command_id].value}
+        />
+        <input
+          type="hidden"
+          name="credential[expected_version]"
+          value={@credential_form[:expected_version].value}
+        />
+        <.dm_input
+          field={@credential_form[:credential]}
+          id={"credential-value-#{@credential_reset}"}
+          type="password"
+          label={gettext("Write-only credential")}
+          autocomplete="new-password"
+          minlength="32"
+          maxlength="4096"
+          required
+        />
+        <.dm_input
+          field={@credential_form[:reference]}
+          label={gettext("Reference label (no secret)")}
+          maxlength="512"
+        />
+        <.dm_input
+          field={@credential_form[:expires_at]}
+          label={gettext("Expires at (optional ISO 8601 UTC)")}
+          placeholder="2027-01-01T00:00:00Z"
+        />
+        <.dm_btn
+          native_submit
+          type="submit"
+          variant="primary"
+          phx-disable-with={gettext("Registering…")}
+        >
+          {gettext("Register credential")}
+        </.dm_btn>
+      </.form>
+      <p :if={@detail["credentials"] == []} class="mt-4">
+        {gettext("No credentials on this page.")}
+      </p>
+      <ul class="mt-4 space-y-4">
+        <li
+          :for={credential <- @detail["credentials"]}
+          id={"credential-#{credential["id"]}"}
+          class="rounded border border-outline p-3"
+        >
+          <p class="break-all">
+            {credential["reference"] || gettext("Unlabelled credential")} · {credential["id"]}
+          </p>
+          <p class="text-sm">
+            {if credential["revoked_at"], do: gettext("Revoked"), else: gettext("Not revoked")} · {gettext(
+              "Expires"
+            )}: {credential["expires_at"] || gettext("No expiry")}
+          </p>
+          <.form
+            :if={!credential["revoked_at"]}
+            for={@revoke_forms[credential["id"]]}
+            id={"revoke-#{credential["id"]}"}
+            phx-submit="revoke_credential"
+            class="mt-2"
+          >
+            <input
+              type="hidden"
+              name="revoke[command_id]"
+              value={@revoke_forms[credential["id"]][:command_id].value}
+            />
+            <input
+              type="hidden"
+              name="revoke[expected_version]"
+              value={@revoke_forms[credential["id"]][:expected_version].value}
+            />
+            <input type="hidden" name="revoke[credential_id]" value={credential["id"]} />
+            <.dm_btn native_submit type="submit" variant="error">
+              {gettext("Revoke credential")}
+            </.dm_btn>
+          </.form>
+        </li>
+      </ul>
+    </.dm_card>
+    <.dm_card variant="bordered">
+      <:title>{gettext("Project memberships")}</:title>
+      <p :if={@detail["memberships"] == []}>
+        {gettext(
+          "No Project memberships on this page. Open a Project to bind this Agent and assign roles."
+        )}
+      </p>
+      <ul class="space-y-3">
+        <li :for={member <- @detail["memberships"]}>
+          <.dm_link navigate={~p"/projects/#{member["project_id"]}"}>{member["project_name"] ||
+            member["project_id"]}</.dm_link>
+          <span> · {Enum.join(member["roles"], ", ")} · {if member["enabled"],
+            do: gettext("Enabled"),
+            else: gettext("Disabled")}</span>
+        </li>
+      </ul>
+    </.dm_card>
+    <.dm_card variant="bordered">
+      <:title>{gettext("Connection history")}</:title>
+      <p :if={@detail["connections"] == []}>{gettext("No connection records on this page.")}</p>
+      <div class="overflow-x-auto">
+        <.dm_table :if={@detail["connections"] != []} data={@detail["connections"]}>
+          <:col :let={c} label={gettext("Connection")}>{c["id"]}</:col>
+          <:col :let={c} label={gettext("Generation")}>{c["generation"]}</:col>
+          <:col :let={c} label={gettext("State")}>{c["state"]}</:col>
+          <:col :let={c} label={gettext("Expires")}>{c["expires_at"]}</:col>
+        </.dm_table>
+      </div>
+    </.dm_card>
+    <.dm_card variant="bordered">
+      <:title>{gettext("External execution sessions")}</:title>
+      <p :if={@detail["sessions"] == []}>{gettext("No execution sessions on this page.")}</p>
+      <ul class="space-y-3">
+        <li :for={session <- @detail["sessions"]} class="break-all">
+          <.dm_link navigate={~p"/projects/#{session["project_id"]}"}>{session["project_id"]}</.dm_link>
+          <span> · {session["external_id"]} · {session["state"]}</span>
+        </li>
+      </ul>
+    </.dm_card>
+    <nav aria-label={gettext("Agent history pages")} class="flex items-center gap-4">
+      <.dm_link :if={@offset > 0} patch={~p"/agents/#{@agent_id}?offset=#{max(@offset - 25, 0)}"}>{gettext(
+        "Previous history"
+      )}</.dm_link>
+      <span>{gettext("Each section shows up to 25 records; offset %{offset}.", offset: @offset)}</span>
+      <.dm_link
+        :if={@offset + 25 < @total}
+        patch={~p"/agents/#{@agent_id}?offset=#{@offset + 25}"}
+      >{gettext("Next history")}</.dm_link>
+    </nav>
+  </div>
+</section>

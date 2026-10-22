@@ -140,6 +140,28 @@ defmodule Samgita.Attempts do
     end)
   end
 
+  @doc "Append bounded progress evidence without completing execution or renewing ownership."
+  def progress(principal, project_id, id, attrs) do
+    command(principal, project_id, id, attrs, "progress", fn ctx, _task, attempt, attrs ->
+      owner!(ctx, attempt, attrs["proof"])
+      if attempt.state != "running", do: Commands.fail!(:invalid_transition)
+      payload = Map.get(attrs, "payload", %{})
+
+      if Events.validate_payload(payload) != :ok || !evidence?(payload["summary"]),
+        do: Commands.fail!(:invalid, %{field: "payload.summary"})
+
+      current = attempt |> change(version: attempt.version + 1) |> Commands.update!()
+
+      Events.append!(project_id, "attempt.progress", ctx, "attempt", id, %{
+        "task_id" => current.task_id,
+        "summary" => payload["summary"],
+        "status" => payload["status"]
+      })
+
+      Projection.attempt(current)
+    end)
+  end
+
   def report(principal, project_id, id, attrs) do
     command(principal, project_id, id, attrs, "report", fn ctx, task, attempt, attrs ->
       owner!(ctx, attempt, attrs["proof"])

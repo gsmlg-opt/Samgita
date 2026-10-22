@@ -42,6 +42,11 @@ defmodule SamgitaWeb.Router do
   scope "/", SamgitaWeb do
     pipe_through :browser
     live "/", DashboardLive.Index, :index
+    live "/agents", AgentsLive.Index, :index
+    live "/agents/:id", AgentsLive.Show, :show
+    live "/projects", ProjectsLive.Index, :index
+    live "/projects/:id", ProjectsLive.Show, :show
+    live "/projects/:project_id/tasks/:id", TasksLive.Show, :show
   end
 
   scope "/api", SamgitaWeb do
@@ -148,6 +153,7 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/tasks/:task_id/claim", AttemptController, :claim
     post "/projects/:project_id/attempts/:id/start", AttemptController, :start
     post "/projects/:project_id/attempts/:id/renew", AttemptController, :renew
+    post "/projects/:project_id/attempts/:id/progress", AttemptController, :progress
     post "/projects/:project_id/attempts/:id/report", AttemptController, :report
     post "/projects/:project_id/attempts/:id/rebind", AttemptController, :rebind
     post "/projects/:project_id/attempts/:id/resolve", AttemptController, :resolve

@@ -99,6 +99,10 @@ defmodule Samgita.Events do
       fn ctx ->
         Commands.operator!(principal)
         Commands.expect!(ctx.project, attrs)
+
+        if !Params.uuid?(attrs["agent_id"]),
+          do: Commands.fail!(:invalid, %{field: "agent_id"})
+
         agent = Repo.get(Agent, attrs["agent_id"]) || Commands.fail!(:not_found)
         member = Repo.get_by(ProjectAgent, project_id: project_id, agent_id: agent.id)
 

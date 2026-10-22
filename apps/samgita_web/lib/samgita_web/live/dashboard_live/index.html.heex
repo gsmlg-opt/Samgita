@@ -6,10 +6,88 @@
     </p>
   </header>
 
-  <.dm_card id="hub-empty-state" class="w-full" variant="bordered">
-    <:title>{gettext("No projects yet")}</:title>
-    <p class="text-on-surface-variant">
-      {gettext("Your projects, connected agents, and task activity will appear here.")}
-    </p>
-  </.dm_card>
+  <p :if={@error} role="alert" class="text-error">{@error}</p>
+  <div :if={@overview} class="space-y-6">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <.dm_card id="hub-agents" variant="bordered">
+        <:title>{gettext("Registered Agents")}</:title>
+        <p class="text-3xl font-bold">{@overview["counts"]["agents"]}</p>
+        <.dm_link navigate={~p"/agents"}>{gettext("Manage Agents")}</.dm_link>
+      </.dm_card>
+      <.dm_card id="hub-projects" variant="bordered">
+        <:title>{gettext("Projects")}</:title>
+        <p class="text-3xl font-bold">{@overview["counts"]["projects"]}</p>
+        <.dm_link navigate={~p"/projects"}>{gettext("Manage Projects")}</.dm_link>
+      </.dm_card>
+      <.dm_card id="hub-tasks" variant="bordered">
+        <:title>{gettext("Tasks")}</:title>
+        <p class="text-3xl font-bold">{@overview["counts"]["tasks"]}</p>
+        <.dm_link navigate={~p"/projects"}>{gettext("Open a Project to inspect Tasks")}</.dm_link>
+      </.dm_card>
+    </div>
+    <.dm_card id="hub-review" variant="bordered">
+      <:title>{gettext("Needs operator attention")}</:title>
+      <dl class="grid gap-4 sm:grid-cols-3">
+        <div>
+          <dt>{gettext("Awaiting review")}</dt><dd
+            id="hub-awaiting-review"
+            class="text-2xl font-bold"
+          >
+            {@overview["counts"]["awaiting_review"]}
+          </dd>
+        </div>
+        <div>
+          <dt>{gettext("Uncertain Attempts")}</dt><dd
+            id="hub-uncertain-attempts"
+            class="text-2xl font-bold"
+          >
+            {@overview["counts"]["uncertain_attempts"]}
+          </dd>
+        </div>
+        <div>
+          <dt>{gettext("Exhausted deliveries")}</dt><dd
+            id="hub-exhausted-deliveries"
+            class="text-2xl font-bold"
+          >
+            {@overview["counts"]["exhausted_deliveries"]}
+          </dd>
+        </div>
+      </dl>
+      <.dm_link navigate={~p"/projects"} class="mt-4">{gettext(
+        "Inspect Project Tasks, holds and delivery history"
+      )}</.dm_link>
+    </.dm_card>
+    <.dm_card id="hub-authority" variant="bordered">
+      <:title>{gettext("Management authority")}</:title>
+      <dl class="grid gap-4 sm:grid-cols-3">
+        <div>
+          <dt>{gettext("Owner")}</dt><dd>{@overview["authority"]["owner"]}</dd>
+        </div>
+        <div>
+          <dt>{gettext("Execution admissions")}</dt><dd>
+            {if @overview["authority"]["admission_open"],
+              do: gettext("Open"),
+              else: gettext("Closed")}
+          </dd>
+        </div>
+        <div>
+          <dt>{gettext("Epoch")}</dt><dd>{@overview["authority"]["epoch"]}</dd>
+        </div>
+      </dl>
+    </.dm_card>
+    <.dm_card
+      :if={@overview["counts"]["projects"] == 0}
+      id="hub-empty-state"
+      class="w-full"
+      variant="bordered"
+    >
+      <:title>{gettext("No projects yet")}</:title>
+      <p class="text-on-surface-variant">
+        {gettext(
+          "Create a Project and bind a registered Agent to begin. Projects do not require a PRD, repository or provider."
+        )}
+      </p>
+      <.dm_link navigate={~p"/projects"}>{gettext("Set up a Project")}</.dm_link>
+    </.dm_card>
+  </div>
 </section>

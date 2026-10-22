@@ -1,0 +1,72 @@
+<section class="space-y-6" aria-labelledby="agents-title">
+  <header>
+    <h1 id="agents-title" class="text-3xl font-bold">{gettext("Agents")}</h1>
+    <p class="text-on-surface-variant">
+      {gettext("Registered machine identities and operator approvals.")}
+    </p>
+  </header>
+  <p :if={@load_error} role="alert" class="text-error">{@load_error}</p>
+  <.dm_card variant="bordered">
+    <:title>{gettext("Registered Agents")}</:title>
+    <p :if={@page["data"] == []} id="agents-empty">
+      {gettext("No Agents on this page. Register an Agent below.")}
+    </p>
+    <div class="overflow-x-auto">
+      <.dm_table :if={@page["data"] != []} id="agents-list" data={@page["data"]}>
+        <:col :let={agent} label={gettext("Agent")}>
+          <.dm_link navigate={~p"/agents/#{agent["id"]}"}>{agent["name"]}</.dm_link>
+        </:col>
+        <:col :let={agent} label={gettext("Availability")}>
+          <span>{agent["availability"]}</span>
+          <span class="block text-xs">{gettext("Health unverified")}</span>
+        </:col>
+        <:col :let={agent} label={gettext("Capacity")}>{agent["capacity"]}</:col>
+        <:col :let={agent} label={gettext("Last recorded activity")}>
+          {agent["last_activity_at"] || gettext("None recorded")}
+        </:col>
+      </.dm_table>
+    </div>
+    <nav aria-label={gettext("Agent pages")} class="mt-4 flex items-center gap-4">
+      <.dm_link
+        :if={@page["offset"] > 0}
+        patch={~p"/agents?offset=#{max(@page["offset"] - 25, 0)}"}
+      >{gettext("Previous")}</.dm_link>
+      <span>{gettext("%{total} registered", total: @page["total"])}</span>
+      <.dm_link
+        :if={@page["offset"] + 25 < @page["total"]}
+        patch={~p"/agents?offset=#{@page["offset"] + 25}"}
+      >{gettext("Next")}</.dm_link>
+    </nav>
+  </.dm_card>
+  <.dm_card variant="bordered">
+    <:title>{gettext("Register Agent")}</:title>
+    <p class="mb-4 text-sm text-on-surface-variant">
+      {gettext(
+        "Registration creates a stable identity. Configure its credential and Project membership separately; registration starts no execution."
+      )}
+    </p>
+    <p :if={@error} id="agent-error" role="alert" class="mb-4 text-error">{@error}</p>
+    <p class="mb-4 text-sm text-on-surface-variant">
+      {gettext(
+        "After reconnect, retry the recovered form unchanged. Reload this page before starting a different registration."
+      )}
+    </p>
+    <.form
+      for={@form}
+      id="agent-register"
+      phx-submit="register"
+      phx-change="change"
+      class="space-y-4"
+    >
+      <.agent_fields form={@form} />
+      <.dm_btn
+        native_submit
+        type="submit"
+        variant="primary"
+        phx-disable-with={gettext("Registering…")}
+      >
+        {gettext("Register Agent")}
+      </.dm_btn>
+    </.form>
+  </.dm_card>
+</section>
