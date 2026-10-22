@@ -17,6 +17,7 @@ env:
   POSTGRES_PORT: "5432"
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
+  SAMGITA_TEST_DATABASE: samgita_redesign_ci_test
 
 jobs:
   foundation:
@@ -59,17 +60,21 @@ jobs:
         run: |
           mix ecto.create
           mix ecto.migrate
-      - name: Scoped foundation tests
-        run: >-
+      - name: Retained and redesign tests
+        run: mix test
+      - name: Isolated application restart and rollback rehearsal
+        env:
+          SAMGITA_TEST_DATABASE: samgita_redesign_restart_test
+        run: mix test apps/samgita_web/test/samgita_web/integration/restart_reconcile_test.exs --include e2e
+      - name: Protocol packages and outside-umbrella consumers
+        run: |
+          python3 scripts/verify_isolated_protocol.py
+          cd apps/samgita_protocol_websocket
+          mix deps.get
           mix test
-          apps/samgita/test/samgita_test.exs
-          apps/samgita_web/test/samgita_web/controllers/error_html_test.exs
-          apps/samgita_web/test/samgita_web/controllers/error_json_test.exs
-          apps/samgita_web/test/samgita_web/controllers/fallback_controller_test.exs
-          apps/samgita_web/test/samgita_web/controllers/health_controller_test.exs
-          apps/samgita_web/test/samgita_web/controllers/info_controller_test.exs
-          apps/samgita_web/test/samgita_web/live/dashboard_live_test.exs
-          apps/samgita_web/test/samgita_web/plugs
+          cd ../samgita_protocol_codex
+          mix deps.get
+          mix test
       - run: mix assets.build
       - name: Reject legacy implementation references
         shell: bash
