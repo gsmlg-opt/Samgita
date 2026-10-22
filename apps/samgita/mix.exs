@@ -26,11 +26,13 @@ defmodule Samgita.MixProject do
   defp deps do
     [
       {:samgita_protocol, path: "../samgita_protocol"},
+      {:samgita_protocol_websocket, path: "../samgita_protocol_websocket"},
       {:ecto_sql, "~> 3.14"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_pubsub, "~> 2.3"},
       {:oban, "~> 2.24"},
-      {:jason, "~> 1.4"}
+      {:jason, "~> 1.4"},
+      {:tzdata, "~> 1.1"}
     ]
   end
 end

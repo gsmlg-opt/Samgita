@@ -168,25 +168,32 @@ Gate: the implemented core/mapping/REST/ownership portions of A01–A05/A06/A11/
 
 ## 6. P4 — Durable events, GitHub and schedules
 
-Migration owner creates `apps/samgita/priv/repo/migrations/20261022000002_add_events_github_schedules.exs` and the corresponding Domain schemas for GitHub connections/external deliveries and schedules/occurrences, extending P3's event foundation without recreating it. Event owner adapts `events.ex`, `webhooks.ex`, `workers/webhook_worker.ex`; creates `event_delivery.ex`, `schedules.ex`, `workers/{event_delivery,schedule_tick,attempt_expiry}_worker.ex`. Integration owner creates `github.ex`, `github/{client,signature,ingress}.ex` and `apps/samgita_web/lib/samgita_web/controllers/github_webhook_controller.ex`; adjusts only raw-body/route transport wiring in `endpoint.ex` and `router.ex` through the shared owner.
+The latest authorized implementation is the bounded coordination subset documented in [coordination-phase-4.md](coordination-phase-4.md): manual/external operator-authenticated facts, responsible-Agent routing, atomic outbox/Oban wakeups, fenced delivery/status/recovery, cursors, scheduled checks and scoped APIs. Its additive migration is `20261022000002_add_durable_coordination.exs`. The GitHub App/token/signature/repository-verification work below remains unimplemented and must not be inferred from generic external ingestion. P5 UI/platform WebSocket hosting remain separate. Existing legacy hooks are quarantined with explicit enqueue failure propagation; their executor is not restored.
 
-Tests:
+The migration owner adds `apps/samgita/priv/repo/migrations/20261022000002_add_durable_coordination.exs` and Domain delivery/acknowledgement/recovery/inbox/schedule schemas, extending P3's event foundation. The event owner adapts `events.ex` and the `webhooks.ex` quarantine boundary; creates `event_delivery.ex`, `schedules.ex`, the generic connector and dedicated delivery/schedule/maintenance/expiry workers. No legacy webhook executor is restored. Event/schedule controllers extend existing operator/machine routes. The later GitHub integration needs a subsequent additive migration for connections/installations and a signature-verified inbox; do not reuse migration version `20261022000002`. That integration owner creates `github.ex`, `github/{client,signature,ingress}.ex` and `apps/samgita_web/lib/samgita_web/controllers/github_webhook_controller.ex`; adjusts raw-body/route transport wiring in `endpoint.ex` and `router.ex` through the shared owner.
 
-- `apps/samgita/test/samgita/events/{transaction,delivery}_test.exs`
-- `apps/samgita/test/samgita/{github,schedules}_test.exs`
+Coordination tests (the exact command also includes affected P3 authority/authorization checks):
+
+- `apps/samgita/test/samgita/events/{transaction,delivery,concurrency}_test.exs`
+- `apps/samgita/test/samgita/connectors/app_server_test.exs`
+- `apps/samgita/test/samgita/schedules_test.exs`
 - `apps/samgita/test/samgita/workers/{event_delivery,schedule_tick,attempt_expiry}_worker_test.exs`
-- `apps/samgita_web/test/samgita_web/controllers/github_webhook_controller_test.exs`
-- Retained `apps/samgita/test/samgita/{events,webhooks}_test.exs` and `workers/webhook_worker_test.exs` only where their active behavior is adapted
+- `apps/samgita/test/samgita/{webhooks,legacy_isolation}_test.exs`
+- `apps/samgita/test/samgita/migration/coordination_preservation_test.exs`
+- `apps/samgita_web/test/samgita_web/controllers/coordination_api_test.exs`
+- Standalone optional transport tests and protocol outside-consumer proof
 
-- [ ] Prove a rolled-back Task transaction leaves no event/outbox/delivery. Crash after commit and before send; restart delivers the same event ID once logically, potentially more than once on the wire.
-- [ ] Implement explicit Project-scoped subscriptions, revisioned targets, cursor reads and duplicate/gap ACKs. No subscriber/recipient is created from an implementation name.
-- [ ] Move new delivery/maintenance to dedicated queues; retain old hook jobs/signature semantics until explicit translation/redelivery decisions are recorded. Simulate timeout/429/5xx/permanent failure and lost ACK; no retry may alter Task state.
+Future native GitHub tests: `apps/samgita/test/samgita/github_test.exs` and `apps/samgita_web/test/samgita_web/controllers/github_webhook_controller_test.exs`.
+
+- [x] Prove aggregate/event/outbox/job rollback and lost wakeup repair; kill a worker after committed claim/before wire send, then reconcile the original event/operation without blind receive replay. Notification delivery remains at least once.
+- [x] Implement explicit Project-scoped subscriptions, revisioned targets, cursor reads and duplicate/gap ACKs. No subscriber/recipient is created from an implementation name.
+- [x] Move new delivery/maintenance to dedicated queues; retain old hook jobs/signature semantics until explicit translation/redelivery decisions are recorded. Simulate timeout/429/5xx/permanent failure and lost ACK; no retry may alter Task state.
 - [ ] Implement operator-configured GitHub App references, short-lived token handling and verified repository-ID associations using a fake GitHub server. Do not request real secrets in test fixtures or store them in receipts/logs.
 - [ ] Test raw-body signature verification before parsing, delivery duplicates/conflicts, repository/install scope, suspension, unsupported event types and persistence failure. No unsigned request enters the event inbox.
-- [ ] Test schedule revision/disable/restart, two concurrent scanners, bounded catch-up and DST occurrences using fixed clocks. Every absolute due time emits at most one logical event; backlog remains inspectable.
-- [ ] Prove push/issue/schedule events create no PRD, Agent worker, tool invocation, automatic Task decomposition or workflow dispatch.
+- [x] Test schedule revision/disable/repeated scanning, two concurrent scanners, bounded catch-up and DST occurrences using fixed clocks. Every absolute due time emits at most one logical event; backlog remains inspectable. Whole-release restart remains a deployment gate.
+- [x] Prove manual/external/schedule facts create no PRD, Agent execution worker, tool invocation, automatic Task decomposition or workflow dispatch. Native GitHub push/issue integration remains unimplemented.
 
-Gate: event/GitHub/scheduler portions of A06/A10/A11/A12 against fakes. Real GitHub/network use waits for B5; fake-server tests can proceed independently. UI and actual-service security evidence belongs to P5/the separately authorized integration. Run only the test paths listed for this stage with `SAMGITA_TEST_DATABASE=samgita_redesign_events_test` and manual Oban isolation.
+Current boundary: the implemented event/scheduler portions of A06/A11/A12 against local fakes, plus A15, pass in the [coordination phase record](coordination-phase-4.md). Its final scoped suite uses `SAMGITA_TEST_DATABASE=samgita_redesign_coordination_final_test` with manual Oban isolation. Commit this bounded phase and stop. A10/GitHub remains unchecked; actual service security/idempotency, release restart/rollback and UI require separate integration/cutover evidence and authorization. Do not infer any of those from generic external facts or local WebSockets.
 
 ## 7. P5 — Management transports, operator UI and reference Agent
 

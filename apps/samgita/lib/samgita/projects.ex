@@ -216,12 +216,25 @@ defmodule Samgita.Projects do
       members =
         Repo.all(from m in ProjectAgent, where: m.project_id == ^id, order_by: m.id, limit: 100)
 
+      routing =
+        Repo.one(
+          from s in Samgita.Domain.EventSubscription,
+            where: s.project_id == ^id and s.purpose == "responsible" and s.enabled
+        )
+
+      event_operations =
+        if routing && principal.kind == :agent && routing.agent_id == principal.agent_id &&
+             "manager" in roles,
+           do: ~w(event.report events.ack_cursor),
+           else: []
+
       %{
         "project" => Projection.project(ctx.project),
         "memberships" => Enum.map(members, &Projection.member/1),
         "repositories" => Samgita.Repositories.list_locked(id),
         "tasks" => Enum.map(tasks, &Projection.task/1),
-        "allowed_operations" => allowed_operations(roles, ctx.project.state),
+        "event_routing" => if(routing, do: Events.subscription_projection(routing)),
+        "allowed_operations" => allowed_operations(roles, ctx.project.state) ++ event_operations,
         "limit" => limit,
         "offset" => offset
       }
@@ -229,10 +242,10 @@ defmodule Samgita.Projects do
   end
 
   defp allowed_operations(roles, state) do
-    ["context.read"] ++
+    ~w(context.read events.read deliveries.read schedules.read) ++
       if("manager" in roles && state in ~w(active paused),
         do:
-          ~w(project.update project.transition task.create task.update task.transition repository.associate),
+          ~w(project.update project.transition task.create task.update task.transition repository.associate event.trigger),
         else: []
       ) ++
       if("worker" in roles && state in ~w(active paused),

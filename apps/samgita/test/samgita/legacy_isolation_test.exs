@@ -3,7 +3,7 @@ defmodule Samgita.LegacyIsolationTest do
   import Samgita.DomainFixtures
   alias Samgita.{Error, Platform, Principal, Repo}
 
-  test "registration is inert and legacy entry points and all queues stay disabled" do
+  test "registration is inert and only new coordination queues and cron are enabled" do
     before_children = Supervisor.which_children(Samgita.Supervisor) |> Enum.map(&elem(&1, 0))
     before_jobs = Repo.aggregate(Oban.Job, :count)
     agent_fixture(%{"implementation" => "Synapsis"})
@@ -13,8 +13,16 @@ defmodule Samgita.LegacyIsolationTest do
 
     assert Repo.aggregate(Oban.Job, :count) == before_jobs
     config = Application.fetch_env!(:samgita, Oban)
-    assert config[:queues] == []
-    assert config[:plugins] == []
+
+    assert Keyword.keys(config[:queues]) |> Enum.sort() ==
+             ~w(hub_events hub_maintenance hub_schedules)a
+
+    assert [{Oban.Plugins.Cron, cron}] = config[:plugins]
+
+    assert Enum.map(cron[:crontab], &elem(&1, 1)) == [
+             Samgita.Workers.ScheduleTickWorker,
+             Samgita.Workers.CoordinationMaintenanceWorker
+           ]
 
     for module <- [
           Samgita.Project.Recovery,

@@ -1,5 +1,12 @@
 defmodule SamgitaProtocolWebSocket.Client do
-  @moduledoc "A bounded, explicitly connected WebSocket client; reconnect never replays requests."
+  @moduledoc """
+  A bounded, explicitly connected WebSocket client; reconnect never replays requests.
+
+  Hosts may provide `:connect_address` as a validated IPv4/IPv6 tuple after destination approval.
+  The socket dials that tuple directly while the URL hostname still controls Host, TLS hostname
+  verification and SNI. The transport does not follow redirects or approve destinations itself.
+  Failed upgrades retain only HTTP status and a syntactically bounded Retry-After value.
+  """
   use GenServer
   alias SamgitaProtocol.{Client, Codec, Error}
 
@@ -176,6 +183,9 @@ defmodule SamgitaProtocolWebSocket.Client do
         not is_nil(uri.query) or not is_nil(uri.fragment) ->
         {:error, Error.new("invalid_params")}
 
+      not valid_connect_address?(Keyword.get(opts, :connect_address)) ->
+        {:error, Error.new("invalid_params")}
+
       uri.scheme == "ws" and uri.host not in ["localhost", "127.0.0.1", "::1"] and
           not Keyword.get(opts, :allow_insecure, false) ->
         {:error, Error.new("invalid_params")}
@@ -187,6 +197,16 @@ defmodule SamgitaProtocolWebSocket.Client do
 
   defp validate_url(_url, _opts), do: {:error, Error.new("invalid_params")}
 
+  defp valid_connect_address?(nil), do: true
+
+  defp valid_connect_address?(address) when is_tuple(address) and tuple_size(address) == 4,
+    do: address |> Tuple.to_list() |> Enum.all?(&(is_integer(&1) and &1 in 0..255))
+
+  defp valid_connect_address?(address) when is_tuple(address) and tuple_size(address) == 8,
+    do: address |> Tuple.to_list() |> Enum.all?(&(is_integer(&1) and &1 in 0..65535))
+
+  defp valid_connect_address?(_), do: false
+
   defp open(state) do
     uri = state.uri
     scheme = if uri.scheme == "wss", do: :https, else: :http
@@ -195,12 +215,19 @@ defmodule SamgitaProtocolWebSocket.Client do
     timeout = Keyword.get(state.opts, :connect_timeout_ms, 5_000)
     token = Keyword.get(state.opts, :token)
     headers = if is_binary(token), do: [{"authorization", "Bearer " <> token}], else: []
+    address = Keyword.get(state.opts, :connect_address, uri.host)
+
+    transport_opts =
+      if is_tuple(address) and tuple_size(address) == 8,
+        do: [timeout: timeout, inet6: true, inet4: false],
+        else: [timeout: timeout]
 
     with {:ok, conn} <-
-           Mint.HTTP.connect(scheme, uri.host, port,
+           Mint.HTTP.connect(scheme, address, port,
+             hostname: uri.host,
              mode: :passive,
              protocols: [:http1],
-             timeout: timeout
+             transport_opts: transport_opts
            ) do
       case Mint.WebSocket.upgrade(ws_scheme, conn, uri.path || "/app-server", headers) do
         {:ok, conn, ref} ->
@@ -258,7 +285,31 @@ defmodule SamgitaProtocolWebSocket.Client do
     else
       _ ->
         Mint.HTTP.close(conn)
-        {:error, Error.new(if(status in [401, 403], do: "unauthorized", else: "upstream_error"))}
+
+        details =
+          if is_integer(status) do
+            retry_after =
+              Enum.find_value(headers, fn
+                {"retry-after", value} when is_binary(value) and byte_size(value) <= 64 ->
+                  if Regex.match?(
+                       ~r/\A(?:[0-9]+|[A-Z][a-z]{2}, [0-9]{2} [A-Z][a-z]{2} [0-9]{4} [0-9:]{8} GMT)\z/,
+                       value
+                     ),
+                     do: value
+
+                _ ->
+                  nil
+              end)
+
+            Map.reject(%{"http_status" => status, "retry_after" => retry_after}, fn {_, value} ->
+              is_nil(value)
+            end)
+          else
+            %{}
+          end
+
+        {:error,
+         Error.new(if(status in [401, 403], do: "unauthorized", else: "upstream_error"), details)}
     end
   end
 

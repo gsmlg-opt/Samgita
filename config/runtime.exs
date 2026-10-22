@@ -8,6 +8,48 @@ api_keys =
 
 config :samgita, :api_keys, api_keys
 
+if encoded_destinations = System.get_env("SAMGITA_EVENT_DESTINATIONS") do
+  with {:ok, values} when is_map(values) <- Jason.decode(encoded_destinations) do
+    destinations =
+      Map.new(values, fn {agent_id, value} ->
+        with %{"url" => url, "addresses" => addresses} <- value,
+             true <- is_binary(url) && is_list(addresses) && addresses != [] do
+          pins =
+            Enum.map(addresses, fn address ->
+              with true <- is_binary(address),
+                   {:ok, pin} <- :inet.parse_address(String.to_charlist(address)) do
+                pin
+              else
+                _ -> raise "SAMGITA_EVENT_DESTINATIONS requires explicit IP addresses"
+              end
+            end)
+
+          {agent_id,
+           %{url: url, addresses: pins, allow_insecure: value["allow_insecure"] == true}}
+        else
+          _ -> raise "SAMGITA_EVENT_DESTINATIONS requires Agent IDs, exact URLs and IP addresses"
+        end
+      end)
+
+    config :samgita, :event_destinations, destinations
+  else
+    _ -> raise "SAMGITA_EVENT_DESTINATIONS must be a JSON object"
+  end
+end
+
+if encoded_credentials = System.get_env("SAMGITA_EVENT_CREDENTIALS") do
+  with {:ok, values} when is_map(values) <- Jason.decode(encoded_credentials),
+       true <-
+         Enum.all?(values, fn {reference, token} ->
+           is_binary(reference) && is_binary(token) && byte_size(token) in 1..8192 &&
+             !String.contains?(token, ["\r", "\n"])
+         end) do
+    config :samgita, :event_credentials, values
+  else
+    _ -> raise "SAMGITA_EVENT_CREDENTIALS must map references to service credentials"
+  end
+end
+
 if encoded_keys = System.get_env("SAMGITA_LEASE_KEYS") do
   with {:ok, values} when is_map(values) <- Jason.decode(encoded_keys),
        true <- map_size(values) > 0 do

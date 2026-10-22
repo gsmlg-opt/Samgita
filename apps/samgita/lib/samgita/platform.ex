@@ -96,6 +96,7 @@ defmodule Samgita.Platform do
         # The exclusive authority lock excludes all command transactions while we
         # fence outstanding executions. Their unresolved effects still use capacity.
         hold_executions!(ctx)
+        Samgita.EventDelivery.fence_all!()
 
         authority =
           ctx.authority
@@ -127,13 +128,30 @@ defmodule Samgita.Platform do
   end
 
   def legacy_jobs do
-    Repo.all(
+    query =
       from j in "oban_jobs",
         where: j.state not in ["completed", "cancelled", "discarded"],
         order_by: j.id,
         select: %{id: j.id, worker: j.worker, queue: j.queue, state: j.state}
-    )
+
+    # Only these exact worker/queue pairs belong to the new mode. Unknown jobs,
+    # including historical hook/executor jobs, still block ownership activation.
+    query =
+      Enum.reduce(coordination_workers(), query, fn {worker, queue}, query ->
+        where(query, [j], not (j.worker == ^worker and j.queue == ^queue))
+      end)
+
+    Repo.all(query)
     |> Enum.map(fn j -> Map.new(j, fn {k, v} -> {to_string(k), v} end) end)
+  end
+
+  def coordination_workers do
+    [
+      {"Samgita.Workers.EventDeliveryWorker", "hub_events"},
+      {"Samgita.Workers.ScheduleTickWorker", "hub_schedules"},
+      {"Samgita.Workers.CoordinationMaintenanceWorker", "hub_maintenance"},
+      {"Samgita.Workers.AttemptExpiryWorker", "hub_maintenance"}
+    ]
   end
 
   defp hold_executions!(ctx) do

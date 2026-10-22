@@ -1,6 +1,6 @@
 # Samgita redesign acceptance contract
 
-Date: 2026-10-22. This separates completed P0/P2 evidence, locally verified P3 awaiting its reviewable commit, and future platform/cutover acceptance. A scenario spanning stages passes only for the assertions evidenced by its owning stage.
+Date: 2026-10-22. This separates completed P0/P2/P3 evidence, the bounded durable-coordination implementation and future platform/cutover acceptance. A scenario spanning stages passes only for the assertions evidenced by its owning stage. [P4's coordination contract and evidence](coordination-phase-4.md) covers manual/authenticated external facts, schedules, outbox delivery/recovery and scoped APIs; native GitHub App integration and P5 UI remain future gates.
 
 Authority: [design](design.md), [implementation plan](implementation-plan.md), and `AGENTS.md`. The older clean-start documents are historical proposals and cannot waive preservation or cutover tests.
 
@@ -95,7 +95,7 @@ Pass when rollback leaves no event/outbox, restart delivers stable IDs without a
 
 Existing generic hook jobs retain IDs/legacy signing until reviewed replacement; no mass resend occurs. Simulated legacy notification sends are labelled historical/simulated rather than proof of actual delivery.
 
-P3 `events/transaction_test.exs` covers same-transaction receipt/event/subscriber-delivery insertion, command IDs, allowlisted before/after snapshots, receipt event IDs, rollback and matching receipt replay. No dispatcher, cursor/subscription management API, network delivery or cron is implemented. P4 adds `events/delivery_test.exs`, `workers/event_delivery_worker_test.exs` and retained-hook compatibility tests after current absent-source scopes are reconciled.
+P3 `events/transaction_test.exs` covers same-transaction receipt/event/subscriber-delivery insertion, command IDs, allowlisted before/after snapshots, receipt event IDs, rollback and matching receipt replay. P4 adds explicit responsible-Agent routing, cursor APIs, atomic Oban wakeups, delivery/recovery, local WebSocket evidence and scheduled checks. Tests include `events/{delivery,concurrency}_test.exs`, `workers/event_delivery_worker_test.exs`, `connectors/app_server_test.exs` and `webhooks_test.exs`. P3 intents remain inert until explicit reviewed replay; no retained hook is sent automatically.
 
 ### A07 — Independently reusable protocol and direct service routing (P2/P5)
 
@@ -141,7 +141,7 @@ Verify infrastructure-protected browser routes retain CSRF/secure-header protect
 
 Pass when authorization fails closed for machines and resource scope. P3 accepts operator-supplied credentials, persists only digests and returns metadata with `no-store`; no plaintext credential is issued. Explicit current-owner proof reads are non-cacheable; proofs never enter receipts/events. Captured DOM/API/events/receipts/logs/telemetry must exclude plaintext credentials and legacy endpoint secrets; intentional proof responses are tested separately. Runtime permission requests are bound to their original host/request; no codec auto-approval occurs. Missing downstream authentication blocks integration rather than being inferred from a sent Bearer header.
 
-P3 tests: `agents_test.exs`, `projects_test.exs`, `attempts_test.exs`, `security_race_test.exs` and web `controllers/domain_api_test.exs`; retain existing `plugs/{api_auth,rate_limit}_test.exs`. P3 filters credential/proof parameters and validates stored endpoint descriptors but opens no remote connection. Browser/telemetry capture, egress SSRF/redirect enforcement and actual-service boundary proof remain P4/P5/B3/B5.
+P3 tests: `agents_test.exs`, `projects_test.exs`, `attempts_test.exs`, `security_race_test.exs` and web `controllers/domain_api_test.exs`; retain existing `plugs/{api_auth,rate_limit}_test.exs`. P3 filters credential/proof parameters and validates stored endpoint descriptors but opens no remote connection. P4's connector/transport/API tests verify approved exact destinations, DNS/address pinning, redirect/plaintext rejection, safe failure projections, current machine membership and real authenticated loopback WebSockets. Browser/telemetry capture, deployed TLS/egress policy and actual-service credential/durability boundaries remain P5/B3/B5 gates.
 
 ### A12 — Durable scheduled events (P4)
 
@@ -171,9 +171,9 @@ P3 `migration/preservation_test.exs` and `legacy_isolation_test.exs` provide loc
 
 For every stage, compare changed paths and behavior to its owning scope. Run only scoped tests plus required checks for that change. Record unrelated failures and stop without repairing them. Follow upstream issue routing for actual dependency blockers; do not silently patch/vendor them.
 
-Pass when each active checklist is complete, its checks pass, blockers B0–B6 are honestly open/cleared with evidence, and work stops at the requested boundary. P2 reconciles independent packages; P3 reconciles restored main sources/schema and local fixtures, without clearing deployment history/storage/reader gates. Cross-stage scenarios are checked only for current-stage assertions. P0 ended with the documentation commit; P2 ended with the package/test/docs commit. P3 ends after its final scoped checks and reviewable commit, with no P4/P5, production migration, push or deployment. Local P6 may leave disabled-integration/live gates open and labels the manifest not deployable where applicable. Real cutover clears every applicable target-specific gate and requires separate authorization.
+Pass when each active checklist is complete, its checks pass, blockers B0–B6 are honestly open/cleared with evidence, and work stops at the requested boundary. P2 reconciles independent packages; P3 reconciles restored main sources/schema and local fixtures, without clearing deployment history/storage/reader gates. Cross-stage scenarios are checked only for current-stage assertions. P0 ended with the documentation commit; P2 ended with the package/test/docs commit; P3 ended with its scoped domain commit. The current bounded P4 coordination phase ends after its scoped checks and reviewable commit, without native GitHub integration, P5 UI, production migration, push or deployment. Local P6 may leave disabled-integration/live gates open and labels the manifest not deployable where applicable. Real cutover clears every applicable target-specific gate and requires separate authorization.
 
-## 4. P2/P3 and future gate records
+## 4. P2/P3/P4 and future gate records
 
 For a later stage, record: stage/commit; database/endpoint/build/profile; exact scoped commands/results; preservation and external-effect evidence; each blocker's evidence or remaining owner/action; and the next unexecuted stage. Keep real credentials and sensitive payloads out of the record.
 
@@ -189,4 +189,16 @@ P3's final scoped suite and the commit containing this record establish the foll
 | A08/A09/A14: local closed authority/isolation | Inert registration, disabled queues/plugins, retained pending-job refusal, closure/new epoch and durable holds | Classified jobs, guard-aware bridge/old-writer exclusion, dual-Repo/pgvector restore, release/drain/rollback rehearsal |
 | A11/A15: access/scope | Protected operator/machine REST, role and cross-Project checks, explicit proof read, safe projections, paused-owner allowed operations, scratch DB allowlist and scoped commit | Browser/remote destination security and actual service credentials |
 
-The root-owned final run passed **87 tests (48 core, 39 web), 0 failures**, seed `197697`, on `samgita_redesign_p3_verified_test` using socket `/tmp/samgita-p3-pg/socket`, port `55443`, user `gao`. `MIX_ENV=test mix compile --warnings-as-errors` and scoped 66-file `mix format --check-formatted` also passed. The formatter excluded verbatim pinned migration sources/fixtures; the suite verified their hashes. The exact scoped command is in [plan §5](implementation-plan.md#5-p3--stable-identities-migration-mapping-and-authoritative-commands) and the [phase record](domain-phase-3.md). P3 ends with this scoped commit. No P3 result clears live cutover, production key rotation, actual Synapsis/Sigma/Codex compatibility, GitHub ingress, network delivery, cron, UI or a Samgita-hosted platform WebSocket.
+The root-owned final P3 run passed **87 tests (48 core, 39 web), 0 failures**, seed `197697`, on `samgita_redesign_p3_verified_test` using socket `/tmp/samgita-p3-pg/socket`, port `55443`, user `gao`. `MIX_ENV=test mix compile --warnings-as-errors` and scoped 66-file `mix format --check-formatted` also passed. The formatter excluded verbatim pinned migration sources/fixtures; the suite verified their hashes. The exact scoped command is in [plan §5](implementation-plan.md#5-p3--stable-identities-migration-mapping-and-authoritative-commands) and the [phase record](domain-phase-3.md). No P3 result clears live cutover, production key rotation, actual Synapsis/Sigma/Codex compatibility, GitHub ingress, network delivery, cron, UI or a Samgita-hosted platform WebSocket.
+
+The current bounded P4 phase establishes these additional local portions:
+
+| Assertions | Implemented evidence | Remaining gate |
+| --- | --- | --- |
+| A06: routing/outbox/delivery/replay | Atomic domain/event/Oban rollback, killed handler and lost wakeup recovery, duplicate/ACK-loss/status reconciliation, explicit responsible subscription and retarget replay, fenced concurrent results/cancellation, cursor gap checks | Real Agent persistent idempotency and deployment restart/effect reconciliation |
+| A08/A09/A14: retained history and isolation | P3 event/subscription/delivery preservation rehearsal, inert unapproved intents, exact new worker/queue admission, old hook enqueue-error propagation into disabled quarantine, retained legacy/memory sentinel hashes | Legacy producer drain, full memory/backup restore and compatible release/rollback rehearsal |
+| A11: connector/API boundaries | Authenticated local fake WebSocket, pinned destination dial, 429/authentication/permanent/ambiguous classification, bounded transport, protected operator/machine APIs | Actual-service TLS/authentication/durability and deployed egress controls |
+| A12: scheduled facts | IANA timezone/DST, bounded missed-run catch-up, revisions/disable, scoped Task references and independent scanner races | Operational backlog monitoring and deployed timezone-data maintenance |
+| A15: phase stop | Scoped tests, independent protocol checks, additive migration and reviewable coordination commit | Native GitHub integration and P5/P6 remain unexecuted |
+
+P4's final scoped run passed **92 tests (75 core, 17 web), 0 failures**, seed `388086`, on `samgita_redesign_coordination_final_test`. Independent checks passed 24 optional transport tests, 30 protocol core tests and one outside-consumer test. Exact commands, build/format results, local migration evidence and remaining gates are in [the coordination phase record](coordination-phase-4.md). These results establish no real Synapsis/Sigma/Codex compatibility, GitHub ingress, production migration, deployment or browser journey.

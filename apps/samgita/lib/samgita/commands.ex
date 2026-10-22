@@ -89,6 +89,13 @@ defmodule Samgita.Commands do
     _ in Ecto.CastError -> {:error, Error.new(:invalid)}
   end
 
+  @doc false
+  def system(project_id, agent_ids, callback) do
+    transaction(fn ->
+      callback.(lock_context!(Principal.operator(), project_id, agent_ids: agent_ids))
+    end)
+  end
+
   defp lock_context!(%Principal{} = principal, project_id, opts) do
     authority_query = from a in PlatformAuthority, where: a.id == 1
 
@@ -106,7 +113,10 @@ defmodule Samgita.Commands do
       |> Enum.sort()
 
     if Enum.any?(ids, &(!Params.uuid?(&1))), do: fail!(:invalid)
-    agents = Repo.all(from a in Agent, where: a.id in ^ids, order_by: a.id, lock: "FOR UPDATE")
+    # Agent identities are immutable. This still serializes capacity/credential
+    # updates, while allowing an outbox FK's KEY SHARE after its Project lock.
+    agents =
+      Repo.all(from a in Agent, where: a.id in ^ids, order_by: a.id, lock: "FOR NO KEY UPDATE")
 
     project =
       if project_id do

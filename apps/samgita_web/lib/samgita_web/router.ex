@@ -68,6 +68,19 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/tasks/:task_id/artifacts", TaskController, :add_artifact
     post "/projects/:project_id/attempts/:id/resolve", AttemptController, :resolve
 
+    get "/projects/:project_id/events", EventController, :index
+    post "/projects/:project_id/events/trigger", EventController, :trigger
+    post "/projects/:project_id/events/external", EventController, :external
+    post "/projects/:project_id/events/:event_id/redeliver", EventController, :redeliver
+    get "/projects/:project_id/event-routing", EventController, :routing
+    put "/projects/:project_id/event-routing", EventController, :configure
+    get "/projects/:project_id/deliveries", EventController, :deliveries
+    get "/projects/:project_id/deliveries/:id", EventController, :delivery
+    post "/projects/:project_id/deliveries/:id/recover", EventController, :recover
+    get "/projects/:project_id/schedules", ScheduleController, :index
+    post "/projects/:project_id/schedules", ScheduleController, :create
+    patch "/projects/:project_id/schedules/:id", ScheduleController, :update
+
     get "/platform", PlatformController, :show
     post "/platform/activate", PlatformController, :activate
     post "/platform/close", PlatformController, :close
@@ -102,6 +115,15 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/attempts/:id/rebind", AttemptController, :rebind
     post "/projects/:project_id/attempts/:id/resolve", AttemptController, :resolve
     get "/projects/:project_id/attempts/:id/proof", AttemptController, :proof
+
+    get "/projects/:project_id/events", EventController, :index
+    post "/projects/:project_id/events/trigger", EventController, :trigger
+    get "/projects/:project_id/event-routing", EventController, :routing
+    post "/projects/:project_id/event-routing/:subscription_id/ack", EventController, :ack_cursor
+    get "/projects/:project_id/deliveries", EventController, :deliveries
+    get "/projects/:project_id/deliveries/:id", EventController, :delivery
+    post "/projects/:project_id/deliveries/:id/report", EventController, :report
+    get "/projects/:project_id/schedules", ScheduleController, :index
   end
 
   defp operator_principal(conn, _opts) do

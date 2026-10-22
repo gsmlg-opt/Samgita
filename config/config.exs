@@ -36,8 +36,16 @@ config :tailwind,
 
 config :samgita, Oban,
   repo: Samgita.Repo,
-  queues: [],
-  plugins: []
+  queues: [hub_events: 10, hub_schedules: 1, hub_maintenance: 1],
+  plugins: [
+    {Oban.Plugins.Cron,
+     crontab: [
+       {"* * * * *", Samgita.Workers.ScheduleTickWorker},
+       {"* * * * *", Samgita.Workers.CoordinationMaintenanceWorker}
+     ]}
+  ]
+
+config :tzdata, :autoupdate, :disabled
 
 config :samgita, :api_keys, []
 

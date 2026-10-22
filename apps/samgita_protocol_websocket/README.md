@@ -126,6 +126,13 @@ Authorization header, and neither the transport nor fake logs them. Process
 status reports redact connection state. Hosts must likewise avoid logging their
 authentication input or handler state.
 
+Hosts that enforce destination policy can pass an already approved IP tuple as
+`connect_address`. The client dials that address while retaining the URL hostname
+for Host/SNI and TLS verification; it does not resolve or approve an allowlist.
+Failed HTTP upgrades expose only status and a bounded `retry_after`
+detail, without response bodies or authentication headers. A 429 upgrade remains
+an error, never delivery acceptance.
+
 Core defaults bound pending requests (64), notification buffers (128), completed
 responses (128), streams (64), JSON messages (1 MiB) and request timers (30 s).
 Client connection establishment is bounded by `connect_timeout_ms` (5 s).
