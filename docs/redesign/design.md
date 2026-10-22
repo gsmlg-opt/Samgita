@@ -6,7 +6,7 @@ Date: 2026-10-22. Status: executable design for review; implementation is not au
 
 Samgita registers Projects and Agents, connects repositories/GitHub, owns validated project/task management state, and emits durable scheduled and external events. Agents decide how to reason, plan, delegate, and execute. No Samgita RARV loop, mandatory PRD, swarm taxonomy, development phase pipeline, or preferred Agent implementation remains in the target.
 
-This design, [implementation plan](implementation-plan.md), and [acceptance contract](acceptance.md) supersede conflicting instructions in `docs/prd.md`, `docs/architecture.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those clean-start proposals remain unchanged as history. In particular, their fresh-database, no-migration, immediate-removal, unique-Project-URL, and universal-Channel requirements must not drive this redesign.
+This design, [implementation plan](implementation-plan.md), and [acceptance contract](acceptance.md) supersede conflicting target requirements in `docs/prd.md`, `docs/architecture.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those documents also record the separately authorized foundation refactor. Their fresh-database, no-migration, unique-Project-URL, and universal-Channel requirements do not establish this redesign's migration or target contract.
 
 This phase changes only these three documents and conflicting sections of `AGENTS.md`. It performs no runtime implementation, dependency update, service restart, database operation, historical-data deletion, external integration change, deployment, or push. Later stages require separate authorization and stop at their own gates.
 
@@ -23,21 +23,27 @@ A fresh replacement database would lose the required continuity. Renaming the pr
 
 ## 2. Inspected system and evidence limits
 
-Baseline: Samgita `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`, clean local HEAD before this phase; two existing local commits ahead of `origin/main`. Source inspection, not a production inventory, establishes the following:
+Audited historical baseline: Samgita `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`, clean local HEAD before the original design phase; then two local commits ahead of `origin/main`. The evidence links below use that immutable revision under the verified origin `https://github.com/gsmlg-opt/Samgita.git`, not the merged checkout. Source inspection, not a production inventory, established the following:
 
-| Current source | Observed behavior and implication |
+| Historical source at the audited revision | Observed behavior and implication |
 | --- | --- |
-| [Project schema](../../apps/samgita/lib/samgita/domain/project.ex), [initial migration](../../apps/samgita/priv/repo/migrations/20260129100000_create_projects.exs) | Project already has a UUID primary key. `git_url` is required and unique, but referencing tables use `projects.id`. Preserve UUIDs rather than rekeying records. |
-| [Task schema](../../apps/samgita/lib/samgita/domain/task.ex), `domain/task_dependency.ex`, `projects.ex` | Task management, execution counters, provider worker IDs, PRD payloads, dependency arrays, and edge-table scheduling are mixed. Task rows can survive while those responsibilities separate. |
-| [Core supervision](../../apps/samgita/lib/samgita/application.ex), `project/{supervisor,orchestrator,recovery}.ex` | Horde workers, provider health/sessions, Codex launchers, and automatic recovery run alongside Repo/Oban. Recovery can restart paused projects and reset running Tasks. Queue pausing alone cannot fence legacy execution. |
+| [Project schema](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita/lib/samgita/domain/project.ex), [initial migration](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita/priv/repo/migrations/20260129100000_create_projects.exs) | Project already has a UUID primary key. `git_url` is required and unique, but referencing tables use `projects.id`. Preserve UUIDs rather than rekeying records. |
+| [Task schema](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita/lib/samgita/domain/task.ex), `domain/task_dependency.ex`, `projects.ex` | Task management, execution counters, provider worker IDs, PRD payloads, dependency arrays, and edge-table scheduling are mixed. Task rows can survive while those responsibilities separate. |
+| [Core supervision](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita/lib/samgita/application.ex), `project/{supervisor,orchestrator,recovery}.ex` | Horde workers, provider health/sessions, Codex launchers, and automatic recovery run alongside Repo/Oban. Recovery can restart paused projects and reset running Tasks. Queue pausing alone cannot fence legacy execution. |
 | `agent/worker.ex`, `workers/{bootstrap,planning,agent_task,quality_gate}_worker.ex` | Local RARV, PRD decomposition, fixed phase progression, local tools and Git effects implement the former product. They are not the new architecture. |
 | `apps/samgita_provider/lib/**`, `codex_app_servers{,/runtime}.ex` | Local CLI/API providers and privileged Synapsis adapter; Codex management launches a CLI/SSH tunnel, rather than implementing an app-server wire protocol. |
-| [Events](../../apps/samgita/lib/samgita/events.ex), [webhook delivery](../../apps/samgita/lib/samgita/workers/webhook_worker.ex) | PubSub and generic outbound hooks exist without an atomic domain-event/outbox contract. WebhookWorker shares `agent_tasks` with execution jobs. It is not GitHub ingress. |
-| [Configuration](../../config/config.exs), `workers/snapshot_worker.ex`, `apps/samgita_memory/lib/samgita_memory/workers/compaction.ex` | Snapshot cleanup deletes history beyond ten snapshots; daily memory compaction prunes records. Disable those producers before taking a future preservation baseline. |
-| [Runtime config](../../config/runtime.exs), [release helper](../../apps/samgita/lib/samgita/release.ex) | Main and memory Repos use the same database but separate pools/migrations/Oban instances. The release helper enumerates only main `ecto_repos`; it does not establish that both migration histories are applied. |
-| [Router](../../apps/samgita_web/lib/samgita_web/router.ex), `controllers/*`, `live/*` | UUID routes and REST API-key/rate-limit boundaries exist. Browser controls start orchestration/Codex, PRD chat calls providers, and `/agents` is a static swarm catalog. These must become registration/management views. |
+| [Events](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita/lib/samgita/events.ex), [webhook delivery](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita/lib/samgita/workers/webhook_worker.ex) | PubSub and generic outbound hooks exist without an atomic domain-event/outbox contract. WebhookWorker shares `agent_tasks` with execution jobs. It is not GitHub ingress. |
+| [Configuration](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/config/config.exs), `workers/snapshot_worker.ex`, `apps/samgita_memory/lib/samgita_memory/workers/compaction.ex` | Snapshot cleanup deletes history beyond ten snapshots; daily memory compaction prunes records. Disable those producers before taking a future preservation baseline. |
+| [Runtime config](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/config/runtime.exs), [release helper](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita/lib/samgita/release.ex) | Main and memory Repos use the same database but separate pools/migrations/Oban instances. The release helper enumerates only main `ecto_repos`; it does not establish that both migration histories are applied. |
+| [Router](https://github.com/gsmlg-opt/Samgita/blob/2bc3765ac94e1faea50f061b6938c0ef51e6f92b/apps/samgita_web/lib/samgita_web/router.ex), `controllers/*`, `live/*` | UUID routes and REST API-key/rate-limit boundaries exist. Browser controls start orchestration/Codex, PRD chat calls providers, and `/agents` is a static swarm catalog. These must become registration/management views. |
 
 No implemented GitHub connection or signed inbound GitHub webhook was found in the inspected core/web sources. Live databases, deployments, outstanding jobs, secrets, and remote servers were not inspected. All data-preservation and operational gates below remain future work.
+
+### Merged checkout and reconciliation gate
+
+Merge `d6e9eca` combines design commit `3a344f5` and the separately authorized clean-start source refactor `811eeb9`. The refactor removed legacy source and migration files. The merged checkout contains a two-app foundation: main Repo, PubSub and Oban, the existing web endpoint, and only `20260907000000_create_oban.exs` as its migration; the planned Project/Task domain and reusable protocol are absent. Historical source remains in Git. The merge proves neither a database migration nor historical-data deletion or continuity.
+
+The inventory in §7, mapping sources in §8, and P1 legacy/dual-Repo callsites describe the audited historical system, not files available to modify in this checkout. B0 blocks implementation until an explicit source/migration reconciliation maps the foundation and historical schemas/readers to the preservation contract, identifies any legacy deployment requiring a bridge, and revises bounded file/test scopes. No automatic source restoration, database recovery, migration, or redesign implementation is authorized by this note. The target contracts below remain unchanged.
 
 ## 3. Domain and application ownership
 
@@ -93,7 +99,7 @@ All new domain IDs are UUIDs; keep existing IDs and existing integer history IDs
 | `event_subscriptions`, `event_deliveries` | Explicit source/type/Project filter and Agent binding or approved hook target; unique event+subscription, durable cursor, attempts and next delivery time. |
 | `platform_authority`, `migration_mappings` | Singleton execution owner/admission/epoch; resumable per-record mapping, raw identity digest, resolution state and operator decision. No secrets in mapping reports. |
 
-Existing history tables and main/memory migration histories remain. A schema expansion is not permission to drop a legacy column, table, extension, FK, or database.
+The preservation contract requires existing history tables and both historical migration sets to remain accounted for; their presence in a live database is unverified, and their source files are absent from the merged checkout. B0 must reconcile that gap. A schema expansion is not permission to drop a legacy column, table, extension, FK, or database.
 
 ### Project and Task commands
 
@@ -213,7 +219,7 @@ Target active supervision: main Repo, PubSub, Finch and Oban in core; telemetry 
 
 Definitions: **retain** preserves an active responsibility; **adapt** changes its boundary/contract; **quarantine** preserves code/data for bounded drain or read-only history, with no new execution; **retire** removes active behavior only after quarantine/consumer checks. Retirement never means deleting historical rows or rewriting past migrations. Nothing in this table is executed during this phase.
 
-Paths below are repository-relative; grouped files share the stated owning behavior.
+Paths below are repository-relative at the audited historical revision; grouped files share the stated owning behavior. Source removal in `811eeb9` is authorized and already merged; these dispositions specify remaining data/operational obligations, not instructions to restore removed files or evidence that runtime drain/preservation happened.
 
 | Subsystem / inspected path | Disposition | Required handling |
 | --- | --- | --- |
@@ -322,6 +328,7 @@ The [plan](implementation-plan.md) assigns one owner per shared contract/migrati
 
 | ID | Blocker / owner | Blocks and resolution evidence |
 | --- | --- | --- |
+| B0 | Merged source/migration reconciliation; design + migration owner | Redesign implementation. Compare `d6e9eca` with the pinned historical baseline; account for removed schemas/migrations/readers and the current foundation, identify applicable legacy deployment/bridge requirements, and approve revised bounded file/test scopes. Source removal alone proves neither data loss nor continuity; no recovery or restoration is implied. |
 | B1 | Live topology/data/in-flight inventory; operator + migration owner | Production cutover. Measured node/job/session/process inventory, named databases/backups, restoration proof and no unknown active effects. |
 | B2 | Legacy mapping quality and dual-Repo migration coverage; migration owner | Adoption/cutover. Row/ID/reference/digest manifest, both migration directories accounted for, dependency/opaque-ref conflicts resolved or explicitly historical. |
 | B3 | Endpoint protocol/security mismatch; protocol + respective service owners | Real Sigma/Synapsis integration. Pinned profiles, supported methods, actual authentication/authorization and real-client round trips; no package name can substitute for this evidence. |

@@ -4,6 +4,8 @@ Date: 2026-10-22. This separates acceptance of the current documentation phase f
 
 Authority: [design](design.md), [implementation plan](implementation-plan.md), and `AGENTS.md`. The older clean-start documents are historical proposals and cannot waive preservation or cutover tests.
 
+Merged-baseline note: `d6e9eca` combines documentation `3a344f5` and the separately authorized source refactor `811eeb9`. Legacy source/migrations were removed; only the two-app foundation is implemented, with one main Repo/Oban migration. This is not proof of a database migration, historical-data deletion or continuity. P0 checks below describe the original four-file documentation commit, not the separate source merge. B0 source/migration reconciliation must establish current file/test scopes and historical-source provenance before implementation; the legacy inventory, dual-Repo cases and P1 callsites are requirements against the pinned audit revision, not assertions that those files/readers exist now.
+
 ## 1. Current phase: document acceptance
 
 Only `AGENTS.md` and these three `docs/redesign/*.md` files may change. No production migration, source/dependency change, service restart, schema reset, historical-data deletion, push, PR or deployment belongs to this phase.
@@ -17,7 +19,7 @@ Only `AGENTS.md` and these three `docs/redesign/*.md` files may change. No produ
 | Stable Projects and preserved records | Design §8: existing UUIDs, repository associations/aliases, state adoption, opaque references, migration ledger. |
 | Legacy inventory and exclusive execution | Design §§7–8: each subsystem disposition, bridge, all producers/jobs/processes, drain, holds and rollback. |
 | Access boundaries/security | Design §6: single tenancy, infrastructure/browser/API boundaries, machine identity, secret handling, SSRF, host-owned approvals. |
-| Executable phases/blockers | Plan P0–P6 and design B1–B6: owned scopes, dependencies, focused checks, abort/stop conditions and unresolved evidence. |
+| Executable phases/blockers | Plan P0–P6 and design B0–B6: merged-source reconciliation, owned scopes, dependencies, focused checks, abort/stop conditions and unresolved evidence. |
 
 P0 completion checklist:
 
@@ -31,7 +33,7 @@ P0 completion checklist:
 
 ## 2. Future test isolation and evidence rules
 
-These cases run only in their authorized stage. Use explicitly named `samgita_redesign_*_test` databases with sanitized legacy fixtures/copies; never use production or an unresolved database. P1 must first implement/verify the test database override for both Repos. Both migration histories and vector storage are included until replaced historical readers are verified.
+These cases run only in their authorized stage after B0 reconciles the merged foundation with historical schemas/readers and revises file scopes. Use explicitly named `samgita_redesign_*_test` databases with sanitized legacy fixtures/copies; never use production or an unresolved database. P1 must first implement/verify the test database wiring for every required migration source. Dual-Repo, both-migration-history and vector-storage cases describe the legacy preservation fixture; the current checkout has only the main Repo. B0 must account for those historical sources without assuming removed applications/readers are present or automatically restoring them.
 
 Unit tests cover pure transitions, matching, schedule occurrence calculations and codecs. Context tests prove database effects and transactional rollback. Locking tests use independent connections/transactions with deterministic barriers, not a shared sandbox connection. Oban runs manually except in explicitly isolated restart/scheduler tests. Real WebSocket tests use a dedicated endpoint/port/database and a fake Agent/host, with no LLM, real tools or production credentials. Browser proof records the endpoint/build/assets actually served.
 
@@ -167,7 +169,7 @@ Tests: preservation/boot/restart tests and isolated release smoke. No full legac
 
 For every stage, compare changed paths and behavior to its owning scope. Run only scoped tests plus required checks for that change. Record unrelated failures and stop without repairing them. Follow upstream issue routing for actual dependency blockers; do not silently patch/vendor them.
 
-Pass when each active checklist is complete, its checks pass, blockers B1–B6 are honestly open/cleared with evidence, and work stops at the requested boundary. Cross-stage scenarios are checked only for the assertions owned by the current stage until their final gate. P0 ends with only a four-file documentation commit. Local P6 may leave live/disabled-integration gates open and labels the manifest not deployable where applicable. Real cutover clears every target-specific gate and requires separate authorization.
+Pass when each active checklist is complete, its checks pass, blockers B0–B6 are honestly open/cleared with evidence, and work stops at the requested boundary. B0 requires an approved comparison of merged and historical source/migrations/readers and revised implementation/test scopes before any redesign implementation; this documentation note does not clear it. Cross-stage scenarios are checked only for the assertions owned by the current stage until their final gate. P0 ends with only a four-file documentation commit. Local P6 may leave live/disabled-integration gates open and labels the manifest not deployable where applicable. Real cutover clears every target-specific gate and requires separate authorization.
 
 ## 4. Future gate record
 

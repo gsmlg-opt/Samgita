@@ -14,6 +14,8 @@ These documents supersede conflicting clean-start, deletion, unique-`git_url`, f
 
 The current authorized phase is design and migration planning only. Do not implement the redesign, migrate production, delete historical data, or start the next stage automatically. Existing records and references must be preserved. Retiring legacy execution behavior does not authorize deleting its data or migration history.
 
+Merged baseline: `d6e9eca` combines redesign documentation `3a344f5` with the separately authorized clean-start source refactor `811eeb9`. That refactor removed legacy source and migration files; the checkout now contains only the two-app foundation, without the planned domain/protocol implementation. This merge is not evidence of a database migration, historical-data deletion, or history continuity. Legacy evidence is pinned to `2bc3765ac94e1faea50f061b6938c0ef51e6f92b` in the design. Resolve its B0 source/migration reconciliation gate before implementing the redesign; do not automatically restore removed runtime code or apply the historical P1 callsite list.
+
 ## Target Umbrella
 
 - `apps/samgita_app_server` (planned): independently reusable app-server protocol, schemas, capability profiles, request/event handling, and host/transport contracts. No dependency on Samgita core, its Repo, web application, providers, or Backplane; no automatic endpoint or Agent runtime startup.
@@ -22,7 +24,7 @@ The current authorized phase is design and migration planning only. Do not imple
 
 Dependency direction is web -> core and web -> app-server protocol. Core must never depend on web. Protocol consumers can use the protocol package without starting Samgita. Actual Sigma/Synapsis endpoints remain in their existing services; do not create another Sigma server process or require all traffic to pass through Samgita.
 
-Classify legacy subsystems using the redesign inventory. Fence and drain PRD orchestration, local workers, RARV, swarms, automatic DAG execution, quality councils, provider sessions, and local Codex launchers before retiring them from active runtime. Quarantine historical PRDs, runs, messages, artifacts, snapshots, and memory records. Keep their IDs, references, storage, and migration history. Remove runtime code/dependencies only in a separately authorized stage after consumers and historical access are accounted for; do not copy dead source into archive directories.
+The redesign inventory describes the historical baseline; its legacy runtime and migration paths are absent from the merged checkout. Where a deployment still runs that legacy system, fence and drain PRD orchestration, local workers, RARV, swarms, automatic DAG execution, quality councils, provider sessions, and local Codex launchers before cutover. Preserve historical PRDs, runs, messages, artifacts, snapshots, memory records and their references. B0 must reconcile the removed source/migrations with the required preservation/read path before further changes; do not copy dead source into archive directories.
 
 ## Architecture Rules
 
@@ -78,7 +80,7 @@ mix dialyzer
 
 The redesign plan defines when these paths exist and which tests belong to each stage. This documentation phase uses document, link, scope, and diff checks only. Do not run full legacy tests as a redesign baseline. Use focused tests for each authorized implementation stage and the new/retained integration suite only at its final gate.
 
-Preserve coverage for both repositories while retained history readers still need them. Audit the main and memory migration histories explicitly; sharing a database does not mean the release helper migrates both. Concurrency tests must exercise independent database transactions; a shared sandbox connection does not prove locking correctness. WebSocket/restart/migration tests use explicitly isolated databases and endpoints with legacy side effects disabled.
+The audited legacy system had main and memory Repos sharing a database; the merged foundation has only the main Repo and a new Oban migration. Dual-Repo coverage and historical-reader requirements apply to migration sources, not existing checkout applications. B0 must account for both historical migration sets and their data before defining the implementation/test wiring. Concurrency tests must exercise independent database transactions; a shared sandbox connection does not prove locking correctness. WebSocket/restart/migration tests use explicitly isolated databases and endpoints with legacy side effects disabled.
 
 Use explicitly named scratch databases and sanitized legacy fixtures/copies for migration rehearsals. Never run `mix ecto.reset` against an unresolved or shared target. No production migration or historical-data deletion is authorized by the documentation phase.
 

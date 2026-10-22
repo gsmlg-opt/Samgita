@@ -10,13 +10,15 @@ Date: 2026-10-22. Status: design-phase deliverable; stages P1–P6 are not start
 
 Read [design](design.md) and [acceptance](acceptance.md) first. Source paths below are repository-relative. Proposed files/tests do not exist yet; commands using them become executable only in their owning stage. Each future change starts with its specified failing behavioral check, adds the smallest implementation, reruns only the scoped checks, and makes a logical Conventional Commit. Do not use the former `docs/plan.md` deletion stages.
 
+Merged baseline: `d6e9eca` combines this design's `3a344f5` and the separately authorized source removal in `811eeb9`. The checkout is now a two-app foundation with one main Repo/Oban migration and no legacy domain, memory app or planned protocol implementation. The merge does not prove database migration, historical-data deletion or continuity. B0 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) blocks redesign implementation until source/migration reconciliation approves updated scopes. P1's legacy callsites and dual-Repo requirements below are a historical recipe against `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`; many listed files no longer exist. Do not execute those lists, restore runtime code or infer a recovery procedure from them. P0's completed checklist records the original documentation commit; the authorized foundation merge is a separate source change.
+
 ## 1. Delivery contract and dependencies
 
 | Stage | Dependency | Ownership | Gate / suggested commit units |
 | --- | --- | --- | --- |
 | P0: this phase | Current local HEAD | Documentation owner; parallel read-only audits | Four-file document review/checks and scoped commit; STOP. |
-| P1: preservation harness and bridge | Separate authorization; P0 accepted | One runtime/migration owner | Isolated legacy fixture, complete writer guard, classified jobs and guarded restart; `test(migration)`, `feat(runtime)` commits. |
-| P2: standalone app-server | P0 contracts accepted; independent of P1 after profile scope freezes | Protocol owner; no shared config/migration edits | Independent consumer, schema fixtures, real transport/fake-host conformance; `feat(protocol)` commits. |
+| P1: preservation harness and bridge | B0 reconciled scopes; separate authorization; P0 accepted | One runtime/migration owner | Isolated legacy fixture, complete writer guard where applicable, classified jobs and guarded restart; `test(migration)`, `feat(runtime)` commits. |
+| P2: standalone app-server | B0 reconciled scopes; P0 contracts accepted; independent of P1 after profile scope freezes | Protocol owner; no shared config/migration edits | Independent consumer, schema fixtures, real transport/fake-host conformance; `feat(protocol)` commits. |
 | P3: neutral identities/state and mappings | P1 fence; P2 token/receipt contracts before claims | Core owner + migration owner | Stable IDs, resumable mappings, adoption, fenced state/claim races; `feat(projects)`, `feat(agents)`, `feat(tasks)` commits. |
 | P4: events/GitHub/schedules | P3 Project/repository/authorization contracts | Event owner, integration owner, migration owner | Transactional outbox, signed GitHub ingress, deterministic occurrences; separate event/GitHub/schedule commits. |
 | P5: management API/UI and fake Agent | P2/P3; P4 for event journey | Web owner + protocol-fixture owner | Real operator journey and WebSocket proof without LLMs; `feat(api)`, `feat(ui)`, `test(integration)` commits. |
@@ -40,6 +42,8 @@ Scope: `AGENTS.md`, `docs/redesign/design.md`, this file and `docs/redesign/acce
 No Mix compilation, database test, dependency installation, asset build or browser run is needed for this four-file documentation change. Those checks could start legacy apps or migrate databases and provide no runtime proof for unimplemented contracts.
 
 ## 3. P1 — Preservation harness and guard-aware bridge
+
+Historical scope pending B0: the main/memory Repos, their migration histories and legacy writer paths refer to migration sources at the audited revision. The merged checkout has neither the memory app nor those legacy callsites. Reconcile fixture/schema/reader provenance and any still-running legacy deployment before replacing this recipe with approved create/adapt paths; source restoration is not a prerequisite chosen by this plan.
 
 ### P1.1 Isolate test databases and measure legacy history
 
@@ -231,6 +235,6 @@ Real integration/live cutover gate: remeasure B1/B2/B4 for the actual target, cl
 | Protocol/auth mismatch | Keep integration disabled; resolve with service/dependency owner | Start a substitute Sigma server or silently bypass authentication |
 | Hub regression after activation | Close admissions, owner none/new epoch, reconcile effects, compatible guarded rollback or fix forward | Re-enable the old PRD executor against new work |
 
-B1–B6 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) are the implementation blocker ledger. They do not block a reviewed P0 documentation commit. Clear each only with the specified evidence; do not convert an assumption into a checked acceptance box. Host/credential/subscriber selection remains explicit operator configuration, not an agent-chosen deployment decision.
+B0–B6 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) are the implementation blocker ledger. They do not block a reviewed documentation reconciliation; B0 must clear before redesign implementation. Clear each only with the specified evidence; do not convert an assumption into a checked acceptance box. Host/credential/subscriber selection remains explicit operator configuration, not an agent-chosen deployment decision.
 
 For every authorized stage, report changed paths/commit, scoped checks and results, preserved data/effect evidence, remaining blockers and the next unexecuted gate. If an out-of-scope test fails, list it and stop without repair. When the in-scope checklist and tests pass, stop at that stage boundary.
