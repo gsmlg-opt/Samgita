@@ -1,5 +1,5 @@
 [Unit]
-Description=Samgita - Multi-Agent Orchestration System
+Description=Samgita Agent Hub
 After=network.target postgresql.service
 Wants=postgresql.service
 

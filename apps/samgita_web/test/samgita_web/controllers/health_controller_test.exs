@@ -10,8 +10,7 @@ defmodule SamgitaWeb.HealthControllerTest do
       assert json["version"] == "0.1.0"
       assert json["timestamp"]
       assert is_integer(json["uptime_seconds"])
-      assert json["checks"]["samgita_repo"] == "ok"
-      assert json["checks"]["samgita_memory_repo"] == "ok"
+      assert json["checks"] == %{"samgita_repo" => "ok"}
     end
 
     test "does not require API key auth", %{conn: conn} do

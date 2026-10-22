@@ -5,40 +5,32 @@ import Config
 db_socket_opts =
   case System.get_env("PGHOST") do
     nil ->
-      [hostname: System.get_env("POSTGRES_HOST", "localhost"),
-       port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))]
+      [
+        hostname: System.get_env("POSTGRES_HOST", "localhost"),
+        port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))
+      ]
+
     pghost when is_binary(pghost) ->
       if String.starts_with?(pghost, "/") do
-        [socket_dir: pghost,
-         port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))]
+        [socket_dir: pghost, port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))]
       else
-        [hostname: pghost,
-         port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))]
+        [hostname: pghost, port: String.to_integer(System.get_env("POSTGRES_PORT", "5432"))]
       end
   end
 
-config :samgita, Samgita.Repo,
-  [
-    username: System.get_env("POSTGRES_USER", System.get_env("USER", "postgres")),
-    password: System.get_env("POSTGRES_PASSWORD", ""),
-    database: System.get_env("POSTGRES_DB", "samgita_dev"),
-    stacktrace: true,
-    show_sensitive_data_on_connection_error: true,
-    pool_size: 10
-  ] ++ db_socket_opts
-
-config :samgita_memory, SamgitaMemory.Repo,
-  [
-    username: System.get_env("POSTGRES_USER", System.get_env("USER", "postgres")),
-    password: System.get_env("POSTGRES_PASSWORD", ""),
-    database: System.get_env("POSTGRES_DB", "samgita_dev"),
-    stacktrace: true,
-    show_sensitive_data_on_connection_error: true,
-    pool_size: 5,
-    types: SamgitaMemory.PostgrexTypes
-  ] ++ db_socket_opts
+config :samgita,
+       Samgita.Repo,
+       [
+         username: System.get_env("POSTGRES_USER", System.get_env("USER", "postgres")),
+         password: System.get_env("POSTGRES_PASSWORD", ""),
+         database: System.get_env("POSTGRES_DB", "samgita_hub_dev"),
+         stacktrace: true,
+         show_sensitive_data_on_connection_error: false,
+         pool_size: 10
+       ] ++ db_socket_opts
 
 config :samgita_web, SamgitaWeb.Endpoint,
+  check_origin: ["//localhost", "//127.0.0.1", "//samgita.local"],
   http: [ip: {0, 0, 0, 0, 0, 0, 0, 0}, port: 3110],
   code_reloader: true,
   debug_errors: true,
@@ -62,9 +54,6 @@ config :samgita_web, SamgitaWeb.Endpoint,
       ~r"apps/samgita_web/lib/samgita_web/(controllers|live|components)/.*\.(ex|heex)$"
     ]
   ]
-
-# Enable dev routes for dashboard and mailbox
-config :samgita_web, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :default_formatter, format: "[$level] $message\n"

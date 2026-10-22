@@ -29,18 +29,16 @@ in {
   languages.elixir.package = pkgs-stable.beam27Packages.elixir;
 
   languages.javascript.enable = true;
-  languages.javascript.pnpm.enable = true;
   languages.javascript.bun.enable = true;
   languages.javascript.bun.package = pkgs-stable.bun;
 
   services.postgres = {
     enable = true;
     package = pkgs-stable.postgresql_16;
-    extensions = ext: [ext.pgvector];
     listen_addresses = "";
     initialDatabases = [
-      {name = "samgita_dev";}
-      {name = "samgita_test";}
+      {name = "samgita_hub_dev";}
+      {name = "samgita_hub_test";}
     ];
     settings = {
       port = lib.mkForce 5433;

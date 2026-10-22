@@ -20,7 +20,6 @@ defmodule SamgitaWeb.MixProject do
         summary: [threshold: 70],
         ignore_modules: [
           SamgitaWeb.Layouts,
-          SamgitaWeb.PageHTML,
           SamgitaWeb.Gettext
         ]
       ]
@@ -57,6 +56,8 @@ defmodule SamgitaWeb.MixProject do
        depth: 1},
       {:phoenix_duskmoon, "~> 9.12"},
       {:bandit, "~> 1.12"},
+      {:telemetry_metrics, "~> 1.2"},
+      {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 1.0"},
       {:jason, "~> 1.4"}
     ]
@@ -65,13 +66,26 @@ defmodule SamgitaWeb.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
-      "assets.setup": ["tailwind.install --if-missing", "bun.install --if-missing"],
-      "assets.build": ["tailwind samgita_web", "bun samgita_web"],
+      "assets.setup": [
+        "tailwind.install --if-missing",
+        "bun.install --if-missing",
+        "bun packages"
+      ],
+      "assets.copy": [&copy_static_assets/1],
+      "assets.build": ["assets.copy", "tailwind samgita_web", "bun samgita_web"],
       "assets.deploy": [
+        "assets.copy",
         "tailwind samgita_web --minify",
         "bun samgita_web --minify",
         "phx.digest"
       ]
     ]
+  end
+
+  defp copy_static_assets(_) do
+    source = Path.join(__DIR__, "assets/static")
+    target = Path.join(__DIR__, "priv/static")
+    File.mkdir_p!(target)
+    File.cp_r!(source, target)
   end
 end

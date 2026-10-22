@@ -1,16 +1,12 @@
-<.dm_appbar title="Samgita" title_to={~p"/"} class="appbar-primary">
-  <:menu to={~p"/"} active={assigns[:page_title] == "Dashboard"}>Dashboard</:menu>
-  <:menu to={~p"/agents"} active={assigns[:page_title] == "Agent Definitions"}>Agents</:menu>
-  <:menu to={~p"/mcp"} active={assigns[:page_title] == "MCP Servers"}>MCP</:menu>
-  <:menu to={~p"/skills"} active={assigns[:page_title] == "Skills"}>Skills</:menu>
-  <:menu to={~p"/references"} active={assigns[:page_title] == "References"}>References</:menu>
+<.dm_appbar title="Samgita" title_to={~p"/"} class="appbar-primary" sticky>
+  <:menu to={~p"/"} active={true}>{gettext("Agent Hub")}</:menu>
   <:user_profile>
     <.dm_theme_switcher id="theme-toggle" />
   </:user_profile>
 </.dm_appbar>
 
-<main class="bg-surface px-4 py-6 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-full space-y-4">
+<main id="main-content" class="bg-surface text-on-surface px-4 py-6 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl">
     {@inner_content}
   </div>
 </main>

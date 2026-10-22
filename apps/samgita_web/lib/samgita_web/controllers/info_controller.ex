@@ -6,6 +6,7 @@ defmodule SamgitaWeb.InfoController do
   def index(conn, _params) do
     json(conn, %{
       app: "samgita",
+      product: "Agent Hub",
       version: Application.spec(:samgita, :vsn) |> to_string(),
       elixir: System.version(),
       otp: :erlang.system_info(:otp_release) |> to_string(),
@@ -17,7 +18,7 @@ defmodule SamgitaWeb.InfoController do
   end
 
   defp umbrella_apps do
-    for app <- [:samgita_provider, :samgita, :samgita_memory, :samgita_web],
+    for app <- [:samgita, :samgita_web],
         vsn = Application.spec(app, :vsn) do
       %{name: app, version: to_string(vsn)}
     end

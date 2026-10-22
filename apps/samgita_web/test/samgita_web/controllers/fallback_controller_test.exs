@@ -1,7 +1,6 @@
 defmodule SamgitaWeb.FallbackControllerTest do
   use SamgitaWeb.ConnCase, async: true
 
-  alias Samgita.Domain.Project
   alias SamgitaWeb.FallbackController
 
   defp json_conn(%{conn: conn}) do
@@ -68,8 +67,9 @@ defmodule SamgitaWeb.FallbackControllerTest do
 
     test "renders 422 for changeset error", %{conn: conn} do
       changeset =
-        %Project{}
-        |> Project.changeset(%{name: nil})
+        {%{}, %{name: :string}}
+        |> Ecto.Changeset.cast(%{name: nil}, [:name])
+        |> Ecto.Changeset.validate_required([:name])
 
       conn = FallbackController.call(conn, {:error, changeset})
       assert conn.status == 422

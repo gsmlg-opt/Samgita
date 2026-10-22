@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title default="Samgita" suffix=" · Phoenix Framework">
+    <link rel="icon" type="image/png" sizes="32x32" href={~p"/images/favicon-32.png"} />
+    <.live_title default="Samgita" suffix=" · Samgita">
       {assigns[:page_title]}
     </.live_title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,35 +17,13 @@
     <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
     </script>
-    <script defer phx-track-static type="module" src={~p"/assets/js/heavy-elements.js"}>
-    </script>
     <script>
       (() => {
-        const resolveSystem = () =>
-          window.matchMedia("(prefers-color-scheme: dark)").matches ? "moonlight" : "sunshine";
-        const applyTheme = () => {
-          const stored = localStorage.getItem("phx:theme");
-          const theme = stored || resolveSystem();
-          document.documentElement.setAttribute("data-theme", theme);
-        };
-        const setTheme = (theme) => {
-          if (theme === "system") {
-            localStorage.removeItem("phx:theme");
-          } else {
-            localStorage.setItem("phx:theme", theme);
-          }
-          applyTheme();
-        };
-        applyTheme();
-        // Re-apply theme after LiveView DOM patches strip data-theme from <html>
-        new MutationObserver(() => {
-          if (!document.documentElement.getAttribute("data-theme")) applyTheme();
-        }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-        window.addEventListener("storage", (e) => e.key === "phx:theme" && setTheme(e.newValue || "system"));
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-          if (!localStorage.getItem("phx:theme")) setTheme("system");
-        });
-        window.addEventListener("phx:set-theme", (e) => setTheme(e.target.dataset.phxTheme));
+        const theme = localStorage.getItem("theme") || "default";
+        const resolved = theme === "default"
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "moonlight" : "sunshine")
+          : theme;
+        document.documentElement.setAttribute("data-theme", resolved);
       })();
     </script>
   </head>
