@@ -15,13 +15,14 @@ defmodule Samgita.LegacyIsolationTest do
     config = Application.fetch_env!(:samgita, Oban)
 
     assert Keyword.keys(config[:queues]) |> Enum.sort() ==
-             ~w(hub_events hub_maintenance hub_schedules)a
+             ~w(hub_events hub_github hub_maintenance hub_schedules)a
 
     assert [{Oban.Plugins.Cron, cron}] = config[:plugins]
 
     assert Enum.map(cron[:crontab], &elem(&1, 1)) == [
              Samgita.Workers.ScheduleTickWorker,
-             Samgita.Workers.CoordinationMaintenanceWorker
+             Samgita.Workers.CoordinationMaintenanceWorker,
+             Samgita.Workers.GitHubMaintenanceWorker
            ]
 
     for module <- [

@@ -29,6 +29,16 @@ defmodule SamgitaWeb.Router do
     plug SamgitaWeb.Plugs.RateLimit, limit: 100, window_ms: 60_000
   end
 
+  pipeline :github_ingress do
+    plug :accepts, ["json"]
+    plug SamgitaWeb.Plugs.RateLimit, limit: 100, window_ms: 60_000
+  end
+
+  scope "/api/github", SamgitaWeb do
+    pipe_through :github_ingress
+    post "/webhooks/:connection_id", GitHubWebhookController, :create
+  end
+
   scope "/", SamgitaWeb do
     pipe_through :browser
     live "/", DashboardLive.Index, :index
@@ -45,6 +55,22 @@ defmodule SamgitaWeb.Router do
     resources "/projects", ProjectController, only: [:index, :show, :create, :update]
     post "/projects/:project_id/transition", ProjectController, :transition
     get "/projects/:project_id/context", ProjectController, :context
+    get "/github/connections", GitHubController, :connections
+    post "/github/connections", GitHubController, :configure
+    get "/projects/:project_id/github/repositories", GitHubController, :mappings
+    post "/projects/:project_id/github/repositories", GitHubController, :associate
+    patch "/projects/:project_id/github/repositories/:id", GitHubController, :update
+    get "/projects/:project_id/github/repositories/:id/facts", GitHubController, :facts
+
+    get "/projects/:project_id/github/repositories/:id/observations/:observation_id",
+        GitHubController,
+        :observation
+
+    get "/projects/:project_id/github/repositories/:id/deliveries/:delivery_id",
+        GitHubController,
+        :delivery
+
+    post "/projects/:project_id/github/repositories/:id/reconcile", GitHubController, :reconcile
     post "/projects/:project_id/members", ProjectController, :put_member
 
     resources "/agents", AgentController, only: [:index, :show, :create, :update]
@@ -93,6 +119,17 @@ defmodule SamgitaWeb.Router do
 
   scope "/api/agent", SamgitaWeb do
     pipe_through :agent_api
+
+    get "/projects/:project_id/github/repositories", GitHubController, :mappings
+    get "/projects/:project_id/github/repositories/:id/facts", GitHubController, :facts
+
+    get "/projects/:project_id/github/repositories/:id/observations/:observation_id",
+        GitHubController,
+        :observation
+
+    get "/projects/:project_id/github/repositories/:id/deliveries/:delivery_id",
+        GitHubController,
+        :delivery
 
     resources "/projects", ProjectController, only: [:index, :show, :update]
     post "/projects/:project_id/transition", ProjectController, :transition

@@ -150,7 +150,9 @@ defmodule Samgita.Platform do
       {"Samgita.Workers.EventDeliveryWorker", "hub_events"},
       {"Samgita.Workers.ScheduleTickWorker", "hub_schedules"},
       {"Samgita.Workers.CoordinationMaintenanceWorker", "hub_maintenance"},
-      {"Samgita.Workers.AttemptExpiryWorker", "hub_maintenance"}
+      {"Samgita.Workers.AttemptExpiryWorker", "hub_maintenance"},
+      {"Samgita.Workers.GitHubReconcileWorker", "hub_github"},
+      {"Samgita.Workers.GitHubMaintenanceWorker", "hub_github"}
     ]
   end
 

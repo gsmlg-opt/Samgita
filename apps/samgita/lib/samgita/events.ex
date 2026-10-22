@@ -46,7 +46,7 @@ defmodule Samgita.Events do
         project_id: project_id,
         sequence: sequence,
         type: type,
-        actor: Commands.actor_key(principal),
+        actor: Map.get(ctx, :source_actor, Commands.actor_key(principal)),
         command_id: command_id,
         correlation_id: Map.get(ctx, :correlation_id, command_id),
         causation_id: Map.get(ctx, :causation_id),

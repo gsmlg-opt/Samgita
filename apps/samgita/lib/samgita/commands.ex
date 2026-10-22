@@ -33,8 +33,12 @@ defmodule Samgita.Commands do
       digest = digest({operation, project_id, semantic(attrs)})
       actor = actor_key(principal)
 
-      case Repo.get_by(CommandReceipt, principal: actor, command_id: attrs["command_id"]) do
-        nil ->
+      case {Repo.get_by(CommandReceipt, principal: actor, command_id: attrs["command_id"]),
+            Keyword.get(opts, :replay_only, false)} do
+        {nil, true} ->
+          :missing
+
+        {nil, false} ->
           result =
             case callback.(context) do
               {:ok, result} -> result
@@ -65,7 +69,7 @@ defmodule Samgita.Commands do
 
           result
 
-        receipt ->
+        {receipt, _} ->
           if receipt.request_digest != digest,
             do: fail!(:conflict, %{reason: "command_id_reused"})
 
@@ -74,6 +78,13 @@ defmodule Samgita.Commands do
 
           receipt.result
       end
+    end)
+  end
+
+  @doc "Check an authenticated command receipt before external preparation; never creates a receipt."
+  def replay(principal, project_id, attrs, opts) do
+    run(principal, project_id, attrs, Keyword.put(opts, :replay_only, true), fn _ ->
+      raise "replay cannot execute a command"
     end)
   end
 

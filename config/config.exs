@@ -36,12 +36,13 @@ config :tailwind,
 
 config :samgita, Oban,
   repo: Samgita.Repo,
-  queues: [hub_events: 10, hub_schedules: 1, hub_maintenance: 1],
+  queues: [hub_events: 10, hub_schedules: 1, hub_maintenance: 1, hub_github: 2],
   plugins: [
     {Oban.Plugins.Cron,
      crontab: [
        {"* * * * *", Samgita.Workers.ScheduleTickWorker},
-       {"* * * * *", Samgita.Workers.CoordinationMaintenanceWorker}
+       {"* * * * *", Samgita.Workers.CoordinationMaintenanceWorker},
+       {"* * * * *", Samgita.Workers.GitHubMaintenanceWorker}
      ]}
   ]
 
@@ -62,7 +63,9 @@ config :phoenix, :filter_parameters, [
   "authorization",
   "secret",
   "proof",
-  "api_key"
+  "api_key",
+  "private_key",
+  "webhook_secret"
 ]
 
 import_config "#{config_env()}.exs"

@@ -8,6 +8,49 @@ api_keys =
 
 config :samgita, :api_keys, api_keys
 
+# Reuse the platform's external runtime-reference pattern; values never enter Repo.
+if encoded = System.get_env("SAMGITA_GITHUB_SECRETS") do
+  with {:ok, values} when is_map(values) <- Jason.decode(encoded),
+       true <-
+         Enum.all?(values, fn {reference, value} ->
+           is_binary(reference) && byte_size(reference) in 1..200 && is_binary(value) &&
+             byte_size(value) in 1..65_536
+         end) do
+    config :samgita, :github_secrets, values
+  else
+    _ -> raise "SAMGITA_GITHUB_SECRETS must map versioned references to secret values"
+  end
+end
+
+if encoded = System.get_env("SAMGITA_GITHUB_HOSTS") do
+  with {:ok, values} when is_map(values) <- Jason.decode(encoded) do
+    hosts =
+      Map.new(values, fn {host, value} ->
+        with %{"api_url" => api_url, "addresses" => addresses} <- value,
+             true <- is_binary(api_url) && is_list(addresses) && addresses != [] do
+          pins =
+            Enum.map(addresses, fn address ->
+              with true <- is_binary(address),
+                   {:ok, pin} <- :inet.parse_address(String.to_charlist(address)) do
+                pin
+              else
+                _ -> raise "SAMGITA_GITHUB_HOSTS requires explicit IP addresses"
+              end
+            end)
+
+          {host,
+           %{api_url: api_url, addresses: pins, allow_insecure: value["allow_insecure"] == true}}
+        else
+          _ -> raise "SAMGITA_GITHUB_HOSTS requires exact API bases and approved IP addresses"
+        end
+      end)
+
+    config :samgita, :github_hosts, hosts
+  else
+    _ -> raise "SAMGITA_GITHUB_HOSTS must be a JSON object"
+  end
+end
+
 if encoded_destinations = System.get_env("SAMGITA_EVENT_DESTINATIONS") do
   with {:ok, values} when is_map(values) <- Jason.decode(encoded_destinations) do
     destinations =

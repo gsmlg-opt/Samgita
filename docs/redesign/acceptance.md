@@ -1,6 +1,6 @@
 # Samgita redesign acceptance contract
 
-Date: 2026-10-22. This separates completed P0/P2/P3 evidence, the bounded durable-coordination implementation and future platform/cutover acceptance. A scenario spanning stages passes only for the assertions evidenced by its owning stage. [P4's coordination contract and evidence](coordination-phase-4.md) covers manual/authenticated external facts, schedules, outbox delivery/recovery and scoped APIs; native GitHub App integration and P5 UI remain future gates.
+Date: 2026-10-23. This separates completed P0/P2/P3 evidence, bounded P4 coordination/GitHub implementation and future platform/cutover acceptance. A scenario spanning stages passes only for assertions evidenced by its owning stage. [P4 coordination](coordination-phase-4.md) covers manual/authenticated external facts, schedules and delivery/recovery; [P4 GitHub](github-phase-4.md) covers signed ingestion, read-only facts and bounded reconciliation. Real App conformance/B5 and P5 UI remain future gates.
 
 Authority: [design](design.md), [implementation plan](implementation-plan.md), and `AGENTS.md`. The older clean-start documents are historical proposals and cannot waive preservation or cutover tests.
 
@@ -133,7 +133,7 @@ Use a fake GitHub App/installation API and raw webhook bodies. Verify correct si
 
 Pass when short-lived tokens stay server-side, only approved immutable repository IDs route to associated Projects, bad signatures are rejected before persistence, and one accepted delivery yields one logical source event. Persistence failure remains retryable. No automatic Task creation/decomposition, tool call or workflow dispatch follows the event. A repository rename preserves Project IDs.
 
-Tests: `github_test.exs`, `controllers/github_webhook_controller_test.exs`; real connection remains blocked by B5 until approved installation/security evidence exists.
+Local tests: core `github/{client,http,signature,payload,ingestion,reconciliation,concurrency}_test.exs`, `migration/github_preservation_test.exs` and web `controllers/{github,github_webhook}_controller_test.exs`. These add raw payload limits, explicit unsupported receipts, atomic enqueue rollback, current-state ordering, immutable historical text, credential/version fences, permission/rate-limit handling, missed-event scans and independent-transaction races. A loopback fake server exercises actual read-only HTTP/token traffic. Exact commands/evidence are in [the GitHub record](github-phase-4.md). Real connection remains blocked by B5 until approved installation/security evidence exists; no live setup or GitHub writes are authorized.
 
 ### A11 — Existing access boundaries and secret non-disclosure (P2–P5)
 
@@ -171,7 +171,7 @@ P3 `migration/preservation_test.exs` and `legacy_isolation_test.exs` provide loc
 
 For every stage, compare changed paths and behavior to its owning scope. Run only scoped tests plus required checks for that change. Record unrelated failures and stop without repairing them. Follow upstream issue routing for actual dependency blockers; do not silently patch/vendor them.
 
-Pass when each active checklist is complete, its checks pass, blockers B0–B6 are honestly open/cleared with evidence, and work stops at the requested boundary. P2 reconciles independent packages; P3 reconciles restored main sources/schema and local fixtures, without clearing deployment history/storage/reader gates. Cross-stage scenarios are checked only for current-stage assertions. P0 ended with the documentation commit; P2 ended with the package/test/docs commit; P3 ended with its scoped domain commit. The current bounded P4 coordination phase ends after its scoped checks and reviewable commit, without native GitHub integration, P5 UI, production migration, push or deployment. Local P6 may leave disabled-integration/live gates open and labels the manifest not deployable where applicable. Real cutover clears every applicable target-specific gate and requires separate authorization.
+Pass when each active checklist is complete, its checks pass, blockers B0–B6 are honestly open/cleared with evidence, and work stops at the requested boundary. P2 reconciles independent packages; P3 reconciles restored main sources/schema and local fixtures, without clearing deployment history/storage/reader gates. Cross-stage scenarios are checked only for current-stage assertions. P0 ended with the documentation commit; P2 ended with the package/test/docs commit; P3 ended with its scoped domain commit; the first P4 commit established coordination. The current bounded P4 GitHub read/event phase ends after its scoped checks and reviewable commit, without live GitHub setup/credentials/permission changes/webhooks, repository writes, P5 UI, production migration, push or deployment. Local P6 may leave disabled-integration/live gates open and labels the manifest not deployable where applicable. Real cutover clears every applicable target-specific gate and requires separate authorization.
 
 ## 4. P2/P3/P4 and future gate records
 
