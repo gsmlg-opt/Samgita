@@ -1,0 +1,1 @@
+{"schema_version":"1.0","type":"request","id":"approval-1","command_id":"approval-command-1","correlation_id":"turn-flow-1","method":"approval/request","params":{"approval_id":"permission-1","thread_id":"thread-1","turn_id":"turn-1","action":{"type":"command","command":"example"},"expires_at":"2026-10-22T08:05:00Z"}}

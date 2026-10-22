@@ -1,0 +1,1721 @@
+{
+  "$comment": "Runtime additionally enforces UTF-8 byte bounds, JSON depth 32, contextual result identities, stream order and capability state. Response result definitions require the original pending method. Unsequenced notifications are ephemeral.",
+  "$defs": {
+    "error": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "enum": [
+            "already_initialized",
+            "ambiguous_disconnect",
+            "buffer_full",
+            "cancelled",
+            "capability_mismatch",
+            "conflict",
+            "conflicting_response",
+            "correlation_mismatch",
+            "disconnected",
+            "handler_error",
+            "invalid_message",
+            "invalid_params",
+            "invalid_response",
+            "not_found",
+            "not_initialized",
+            "parse_error",
+            "replay_gap",
+            "stale_connection",
+            "stale_cursor",
+            "timeout",
+            "too_many_requests",
+            "unauthorized",
+            "unknown_response",
+            "unsupported_capability",
+            "unsupported_method",
+            "unsupported_version",
+            "upstream_error"
+          ]
+        },
+        "details": {
+          "type": "object"
+        },
+        "message": {
+          "maxLength": 512,
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "details",
+        "message",
+        "retryable"
+      ],
+      "type": "object"
+    },
+    "event": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "task_ref": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "task_ref"
+            ]
+          },
+          "then": {
+            "properties": {
+              "project_ref": {
+                "maxLength": 256,
+                "minLength": 1,
+                "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "project_ref"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "causation_id": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "correlation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "pattern": "(Z|[+-]00:00)$",
+          "type": "string"
+        },
+        "delivery_attempt_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "event_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "project_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            "1.0"
+          ]
+        },
+        "task_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "correlation_id",
+        "created_at",
+        "delivery_attempt_id",
+        "event_id",
+        "payload",
+        "schema_version",
+        "type"
+      ],
+      "type": "object"
+    },
+    "notification": {
+      "oneOf": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/notification_envelope"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "item/completed"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "item": {
+                      "type": "object"
+                    },
+                    "item_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "turn_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "item",
+                    "item_id",
+                    "thread_id",
+                    "turn_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/notification_envelope"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "item/delta"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "delta": {
+                      "maxLength": 65536,
+                      "type": "string"
+                    },
+                    "item_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "turn_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "delta",
+                    "item_id",
+                    "thread_id",
+                    "turn_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/notification_envelope"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "item/started"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "item": {
+                      "type": "object"
+                    },
+                    "item_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "turn_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "item",
+                    "item_id",
+                    "thread_id",
+                    "turn_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/notification_envelope"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "project/event.updated"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "acceptance": {
+                      "enum": [
+                        "received",
+                        "durable"
+                      ]
+                    },
+                    "event_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "processing_status": {
+                      "enum": [
+                        "pending",
+                        "processing",
+                        "completed",
+                        "failed",
+                        "rejected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "acceptance",
+                    "event_id",
+                    "processing_status"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/notification_envelope"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "thread/started"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "thread_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/notification_envelope"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "turn/completed"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "completed",
+                        "failed",
+                        "interrupted"
+                      ]
+                    },
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "turn_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "thread_id",
+                    "turn_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/notification_envelope"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "turn/started"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "turn_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "thread_id",
+                    "turn_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "notification_envelope": {
+      "additionalProperties": false,
+      "dependentRequired": {
+        "cursor": [
+          "stream_id"
+        ],
+        "stream_id": [
+          "cursor"
+        ]
+      },
+      "properties": {
+        "causation_id": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "correlation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "cursor": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "method": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "params": {
+          "type": "object"
+        },
+        "project_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            "1.0"
+          ]
+        },
+        "stream_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "task_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": {
+          "enum": [
+            "notification"
+          ]
+        }
+      },
+      "required": [
+        "correlation_id",
+        "method",
+        "params",
+        "schema_version",
+        "type"
+      ],
+      "type": "object"
+    },
+    "request": {
+      "additionalProperties": false,
+      "properties": {
+        "causation_id": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "command_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "correlation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "method": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "params": {
+          "type": "object"
+        },
+        "project_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            "1.0"
+          ]
+        },
+        "task_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": {
+          "enum": [
+            "request"
+          ]
+        }
+      },
+      "required": [
+        "correlation_id",
+        "id",
+        "method",
+        "params",
+        "schema_version",
+        "type"
+      ],
+      "type": "object"
+    },
+    "response": {
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "error"
+            ]
+          },
+          "required": [
+            "result"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "result"
+            ]
+          },
+          "required": [
+            "error"
+          ]
+        }
+      ],
+      "properties": {
+        "causation_id": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "command_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "correlation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "#/$defs/error"
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "project_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "result": {
+          "type": "object"
+        },
+        "schema_version": {
+          "enum": [
+            "1.0"
+          ]
+        },
+        "task_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": {
+          "enum": [
+            "response"
+          ]
+        }
+      },
+      "required": [
+        "correlation_id",
+        "id",
+        "schema_version",
+        "type"
+      ],
+      "type": "object"
+    },
+    "result.approval.request": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "decision": {
+          "enum": [
+            "approve",
+            "deny"
+          ]
+        },
+        "scope": {
+          "enum": [
+            "once"
+          ]
+        }
+      },
+      "required": [
+        "approval_id",
+        "decision",
+        "scope"
+      ],
+      "type": "object"
+    },
+    "result.connection.initialize": {
+      "additionalProperties": false,
+      "properties": {
+        "capabilities": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "connection_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "version": {
+          "enum": [
+            "1.0"
+          ]
+        }
+      },
+      "required": [
+        "capabilities",
+        "connection_id",
+        "version"
+      ],
+      "type": "object"
+    },
+    "result.project.event.receive": {
+      "additionalProperties": false,
+      "properties": {
+        "acceptance": {
+          "enum": [
+            "received",
+            "durable"
+          ]
+        },
+        "delivery_attempt_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "event_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "processing_status": {
+          "enum": [
+            "pending",
+            "processing",
+            "completed",
+            "failed",
+            "rejected"
+          ]
+        }
+      },
+      "required": [
+        "acceptance",
+        "delivery_attempt_id",
+        "event_id",
+        "processing_status"
+      ],
+      "type": "object"
+    },
+    "result.project.event.report": {
+      "additionalProperties": false,
+      "properties": {
+        "decision_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "event_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "management_acceptance": {
+          "enum": [
+            "not_requested",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "report_status": {
+          "enum": [
+            "recorded"
+          ]
+        }
+      },
+      "required": [
+        "decision_id",
+        "event_id",
+        "management_acceptance",
+        "report_status"
+      ],
+      "type": "object"
+    },
+    "result.project.event.status": {
+      "additionalProperties": false,
+      "properties": {
+        "acceptance": {
+          "enum": [
+            "received",
+            "durable"
+          ]
+        },
+        "decision": {
+          "type": "object"
+        },
+        "decision_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "event_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "processing_status": {
+          "enum": [
+            "pending",
+            "processing",
+            "completed",
+            "failed",
+            "rejected"
+          ]
+        },
+        "result": {}
+      },
+      "required": [
+        "acceptance",
+        "event_id",
+        "processing_status"
+      ],
+      "type": "object"
+    },
+    "result.request.cancel": {
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "requested",
+            "already_finished"
+          ]
+        }
+      },
+      "required": [
+        "request_id",
+        "status"
+      ],
+      "type": "object"
+    },
+    "result.stream.resume": {
+      "additionalProperties": false,
+      "properties": {
+        "cursor": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/notification"
+              },
+              {
+                "required": [
+                  "stream_id",
+                  "cursor"
+                ]
+              }
+            ]
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "stream_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cursor",
+        "events",
+        "stream_id"
+      ],
+      "type": "object"
+    },
+    "result.thread.read": {
+      "additionalProperties": false,
+      "properties": {
+        "thread": {},
+        "thread_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "thread_id"
+      ],
+      "type": "object"
+    },
+    "result.thread.resume": {
+      "additionalProperties": false,
+      "properties": {
+        "thread": {},
+        "thread_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "thread_id"
+      ],
+      "type": "object"
+    },
+    "result.thread.start": {
+      "additionalProperties": false,
+      "properties": {
+        "thread": {},
+        "thread_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "thread_id"
+      ],
+      "type": "object"
+    },
+    "result.turn.interrupt": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "requested",
+            "interrupted",
+            "already_finished"
+          ]
+        },
+        "thread_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "turn_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "thread_id",
+        "turn_id"
+      ],
+      "type": "object"
+    },
+    "result.turn.start": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "running"
+          ]
+        },
+        "thread_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "turn_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "thread_id",
+        "turn_id"
+      ],
+      "type": "object"
+    },
+    "result.turn.steer": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "running"
+          ]
+        },
+        "thread_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        },
+        "turn_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "thread_id",
+        "turn_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:samgita:protocol:1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "approval/request"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "action": {
+                      "type": "object"
+                    },
+                    "approval_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "expires_at": {
+                      "format": "date-time",
+                      "pattern": "(Z|[+-]00:00)$",
+                      "type": "string"
+                    },
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "turn_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "action",
+                    "approval_id",
+                    "thread_id",
+                    "turn_id"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command_id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "connection/initialize"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "capabilities": {
+                      "items": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                        "type": "string"
+                      },
+                      "maxItems": 64,
+                      "type": "array",
+                      "uniqueItems": true
+                    },
+                    "required_capabilities": {
+                      "items": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                        "type": "string"
+                      },
+                      "maxItems": 64,
+                      "type": "array",
+                      "uniqueItems": true
+                    },
+                    "versions": {
+                      "items": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                        "type": "string"
+                      },
+                      "maxItems": 64,
+                      "type": "array",
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "capabilities",
+                    "versions"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "project/event.receive"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "event": {
+                      "$ref": "#/$defs/event"
+                    }
+                  },
+                  "required": [
+                    "event"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command_id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "project/event.report"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "decision": {
+                      "type": "object"
+                    },
+                    "decision_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "event_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "result": {},
+                    "status": {
+                      "enum": [
+                        "completed",
+                        "failed",
+                        "rejected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "decision",
+                    "decision_id",
+                    "event_id",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command_id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "project/event.status"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "event_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "event_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "request/cancel"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "request_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "request_id"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command_id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "stream/resume"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "cursor": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "stream_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cursor",
+                    "stream_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "thread/read"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "thread_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "thread/resume"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "thread_id"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command_id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "thread/start"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "metadata": {
+                      "type": "object"
+                    },
+                    "title": {
+                      "maxLength": 65536,
+                      "type": "string"
+                    }
+                  },
+                  "required": [],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command_id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "turn/interrupt"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "turn_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "thread_id",
+                    "turn_id"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command_id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "turn/start"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "input": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "text": {
+                            "maxLength": 65536,
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "text"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "text",
+                          "type"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 64,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "input",
+                    "thread_id"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command_id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/request"
+            },
+            {
+              "properties": {
+                "method": {
+                  "const": "turn/steer"
+                },
+                "params": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "input": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "text": {
+                            "maxLength": 65536,
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "text"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "text",
+                          "type"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 64,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "thread_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    },
+                    "turn_id": {
+                      "maxLength": 256,
+                      "minLength": 1,
+                      "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "input",
+                    "thread_id",
+                    "turn_id"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command_id"
+              ]
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/notification"
+        },
+        {
+          "$ref": "#/$defs/response"
+        }
+      ]
+    },
+    {
+      "if": {
+        "properties": {
+          "task_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_ref"
+        ]
+      },
+      "then": {
+        "properties": {
+          "project_ref": {
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u0020\\u007f]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_ref"
+        ]
+      }
+    }
+  ],
+  "title": "Samgita neutral Agent protocol 1.0"
+}

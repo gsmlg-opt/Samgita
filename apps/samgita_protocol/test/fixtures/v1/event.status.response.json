@@ -1,0 +1,1 @@
+{"schema_version":"1.0","type":"response","id":"request-2","correlation_id":"flow-1","result":{"event_id":"event-1","acceptance":"durable","processing_status":"completed","decision_id":"decision-1","decision":{"action":"propose_task"},"result":{"proposal_ref":"proposal-1"}}}

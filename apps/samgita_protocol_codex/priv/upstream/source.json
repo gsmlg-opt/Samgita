@@ -1,0 +1,93 @@
+{
+  "repository": "https://github.com/openai/codex",
+  "release": "rust-v0.163.0",
+  "version": "0.163.0",
+  "tag_object": "129b8ec7ee6f4511557a4856279f529025c25af4",
+  "commit": "83086188ae0614bd882818ff1aa23f3194962012",
+  "verified_on": "2026-10-22",
+  "release_url": "https://github.com/openai/codex/releases/tag/rust-v0.163.0",
+  "documentation_url": "https://learn.chatgpt.com/docs/app-server",
+  "normalization": "JSON schema content is unchanged; a single terminal newline is added. License and notice are byte-identical.",
+  "files": {
+    "LICENSE": {
+      "source_path": "LICENSE",
+      "upstream_sha256": "d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc",
+      "vendored_sha256": "d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc"
+    },
+    "NOTICE": {
+      "source_path": "NOTICE",
+      "upstream_sha256": "9d71575ecfd9a843fc1677b0efb08053c6ba9fd686a0de1a6f5382fd3c220915",
+      "vendored_sha256": "9d71575ecfd9a843fc1677b0efb08053c6ba9fd686a0de1a6f5382fd3c220915"
+    },
+    "schema/ClientNotification.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/ClientNotification.json",
+      "upstream_sha256": "706cf248d75027c84a3c63348d0ed507182e8eba40069dd17541793de029145a",
+      "vendored_sha256": "f36c3cc912cb67c5f2543a3c8898d9b5e06be15782d9f34f2920b321b7601537"
+    },
+    "schema/JSONRPCError.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/JSONRPCError.json",
+      "upstream_sha256": "d7ea353d4875ae204625da5a00a1ecb5afc69101d5778b9acc253a49f8932992",
+      "vendored_sha256": "232419b67fb42391e76fc377f1328fee053b84d558cf3a584937f4490a0bc7fc"
+    },
+    "schema/JSONRPCMessage.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/JSONRPCMessage.json",
+      "upstream_sha256": "6da4cc373a7ccd01f5608ad4496eeb4d44b6a9b0d3158e85ed66b59f3c0b5114",
+      "vendored_sha256": "1321400ef0faaeb24c57edbe93d892358e2b81cd0ae233fa0baeb32e49392f38"
+    },
+    "schema/v1/InitializeParams.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v1/InitializeParams.json",
+      "upstream_sha256": "b55124e7c0f36a1789396daa5578217a92be67f053903696236686e59f6f212e",
+      "vendored_sha256": "71d400afa8e843b0a567167848e384fa316523774168cb24734b7b2adb52c961"
+    },
+    "schema/v1/InitializeResponse.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v1/InitializeResponse.json",
+      "upstream_sha256": "62ad689c2cb6379913c1d72749cfd8de5089d35760214123518eb92eef11acc9",
+      "vendored_sha256": "5ad5e3fdc499d12175f8c7b72d6ee93b267069d00c49e99373380d751d1bc234"
+    },
+    "schema/v2/AgentMessageDeltaNotification.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v2/AgentMessageDeltaNotification.json",
+      "upstream_sha256": "996e6c0ea65e57bed5a00f410b94381fe5ebf804333e5d00c2b6e6d47e5c55f6",
+      "vendored_sha256": "ddd87e04a01b837cbdb9488ebd51f7a48ac786b4f90d65765f3c3fe08944c86a"
+    },
+    "schema/v2/ThreadReadParams.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v2/ThreadReadParams.json",
+      "upstream_sha256": "dfe040c6ac71d30795b8be3f3ff232e66f362a37f883b491e5d1ea367f470db4",
+      "vendored_sha256": "21f9b34601b33b7db349aafa2bd41306a042052b9a51e994491cf027f745cefc"
+    },
+    "schema/v2/ThreadResumeParams.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v2/ThreadResumeParams.json",
+      "upstream_sha256": "8dceca415b2c16693b55658ea629cba5ffc82ac300dcd403db0ba7455e491496",
+      "vendored_sha256": "19299654f43a3caa5fe6f3b7be72ea6c6f3e15cfd31ad1dffa78d01944773782"
+    },
+    "schema/v2/ThreadStartParams.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v2/ThreadStartParams.json",
+      "upstream_sha256": "e9c6d3cc18d049bfbc0249add3808fb8e5a27e1a0b5a423767aafbc3859a9428",
+      "vendored_sha256": "92e5ac964240550711c6f7d09db37549d8ef6d54c9a8c3fb3c2aec856823d61c"
+    },
+    "schema/v2/TurnCompletedNotification.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v2/TurnCompletedNotification.json",
+      "upstream_sha256": "69413578ec3ecd02691424bdeb9d640c7244b4ca4c5c3ef26f69a2efe7c37db8",
+      "vendored_sha256": "9a1ba67884e4dd4815a18ac27116a14034dc55650c4d4519f70ec21aaf6bbaee"
+    },
+    "schema/v2/TurnInterruptParams.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v2/TurnInterruptParams.json",
+      "upstream_sha256": "6dff382dae73d1dbc58406ed045605f647e7a49660e2540fbd2c6c24d60c5f2b",
+      "vendored_sha256": "d0e0909fe178be5ce13bfb5df761722dc798ecd0a17b40e7f3158854da2e4547"
+    },
+    "schema/v2/TurnStartParams.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v2/TurnStartParams.json",
+      "upstream_sha256": "835e0d4ca1a0ddc4fb6db1e2b3249dd67f07c50ac2506092ba81543efc92829b",
+      "vendored_sha256": "99ee5280acede1a200a821f6251f7a8ae5f0da99523ba36f45fd81d3e5de8bf7"
+    },
+    "schema/v2/TurnStartedNotification.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v2/TurnStartedNotification.json",
+      "upstream_sha256": "74050381ae8a90db4893fc15fc26ef14560762c3d320c3fa8d9df9b1aba1273b",
+      "vendored_sha256": "3c0a3df2c88639b9b326344d58390e810b656de2aa65fffd64cd9402f3c11b1a"
+    },
+    "schema/v2/TurnSteerParams.json": {
+      "source_path": "codex-rs/app-server-protocol/schema/json/v2/TurnSteerParams.json",
+      "upstream_sha256": "857e7a2b061ae46ed6aedea6a5fddd3a6ce14f0334bf7eafaf10d4cbe68ec78b",
+      "vendored_sha256": "36576ae19ac75d4dd54ec881dfb0a72bf33d987f4d1b0144f992195269d54e6b"
+    }
+  }
+}

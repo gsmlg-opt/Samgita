@@ -1,0 +1,1 @@
+{"schema_version":"1.0","type":"request","id":"initialize-1","correlation_id":"connection-1","method":"connection/initialize","params":{"versions":["1.0"],"capabilities":["project_events.v1","sessions.v1"],"required_capabilities":["project_events.v1"]}}

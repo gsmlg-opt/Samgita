@@ -1,0 +1,1 @@
+{"schema_version":"1.0","type":"request","id":"request-3","command_id":"report-command-1","correlation_id":"flow-1","method":"project/event.report","params":{"event_id":"event-1","decision_id":"decision-1","status":"completed","decision":{"action":"propose_task"},"result":{"proposal_ref":"proposal-1"}}}

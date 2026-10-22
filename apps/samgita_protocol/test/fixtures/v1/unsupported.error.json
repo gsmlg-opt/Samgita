@@ -1,0 +1,1 @@
+{"schema_version":"1.0","type":"response","id":"request-4","correlation_id":"flow-1","error":{"code":"unsupported_capability","message":"Required capability is unavailable.","retryable":false,"details":{}}}

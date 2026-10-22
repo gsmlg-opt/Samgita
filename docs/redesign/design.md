@@ -1,6 +1,6 @@
 # Samgita agent-neutral platform design
 
-Date: 2026-10-22. Status: executable design for review; implementation is not authorized by this document.
+Date: 2026-10-22. Status: executable design; P0 accepted and independent P2 authorized by the user. Platform implementation remains gated.
 
 ## 1. Authority and phase boundary
 
@@ -8,7 +8,7 @@ Samgita registers Projects and Agents, connects repositories/GitHub, owns valida
 
 This design, [implementation plan](implementation-plan.md), and [acceptance contract](acceptance.md) supersede conflicting target requirements in `docs/prd.md`, `docs/architecture.md`, `docs/plan.md`, `docs/agent-hub-rebuild-design.md`, and `docs/agent-hub-removal-inventory.md`. Those documents also record the separately authorized foundation refactor. Their fresh-database, no-migration, unique-Project-URL, and universal-Channel requirements do not establish this redesign's migration or target contract.
 
-This phase changes only these three documents and conflicting sections of `AGENTS.md`. It performs no runtime implementation, dependency update, service restart, database operation, historical-data deletion, external integration change, deployment, or push. Later stages require separate authorization and stop at their own gates.
+P0 changed only these three documents and conflicting sections of `AGENTS.md`. The later user-authorized P2 implements independent protocol packages, an optional transport/fake Agent, a pinned scoped Codex adapter and standalone consumer. Its bounded scope and evidence are in [protocol phase 2](protocol-phase-2.md). No platform integration, database operation, historical-data deletion, external service change, deployment or push is included. Other stages require separate authorization and stop at their own gates.
 
 ### Decisions and alternatives
 
@@ -45,6 +45,8 @@ Merge `d6e9eca` combines design commit `3a344f5` and the separately authorized c
 
 The inventory in §7, mapping sources in §8, and P1 legacy/dual-Repo callsites describe the audited historical system, not files available to modify in this checkout. B0 blocks implementation until an explicit source/migration reconciliation maps the foundation and historical schemas/readers to the preservation contract, identifies any legacy deployment requiring a bridge, and revises bounded file/test scopes. No automatic source restoration, database recovery, migration, or redesign implementation is authorized by this note. The target contracts below remain unchanged.
 
+P2 reconciliation: the independent protocol uses no legacy schema, migration, reader or platform configuration, so its authorized scope creates only standalone protocol packages and updates these contracts. Root app/config/migration wiring remains unchanged. This clears B0 for that bounded slice only; historical-source reconciliation still blocks P1/P3 and cutover.
+
 ## 3. Domain and application ownership
 
 ### Target application graph
@@ -55,7 +57,7 @@ flowchart LR
   Agent[Registered Agent] --> Web
   GH[GitHub signed webhook] --> Web
   Web --> Core[samgita: contexts, Repo, Oban]
-  Web --> Protocol[samgita_app_server: reusable protocol]
+  Web --> Protocol[samgita_protocol: reusable protocol]
   Client[Independent client] --> Service[Existing Sigma / Synapsis / Codex endpoint]
   Client -. reusable library .-> Protocol
   Service -. optional library adoption .-> Protocol
@@ -64,7 +66,7 @@ flowchart LR
 
 - `apps/samgita`: Projects, repository associations/GitHub connection metadata, Agents and project bindings, Tasks/Attempts, schedules, event inbox/outbox, receipts, and migration authority. Uses Ecto/PostgreSQL and Oban. It does not depend on web or a provider runtime.
 - `apps/samgita_web`: existing Phoenix Endpoint, operator REST/LiveView, machine protocol host adapter, and GitHub ingress. It validates transport inputs and delegates to core contexts. It may mount an app-server WebSocket route on its existing endpoint; no separate Sigma server/listener is introduced.
-- `apps/samgita_app_server`: new independent Mix package with codecs, versioned schemas/profiles, method/capability registry, request correlation, errors, host handler and transport behaviours, event flow control, and conformance fixtures. It depends on neither core, Repo, Phoenix, provider apps, nor Backplane. Importing/starting the package opens no socket and launches no Agent. Optional per-connection processes exist only when a consumer explicitly starts a transport.
+- `apps/samgita_protocol`: independent Mix library with codecs, versioned schemas, capabilities, correlation/errors, pure connection state, host callbacks, bounded replay and conformance fixtures. It depends on neither core, Repo, Phoenix, providers nor Backplane. `samgita_protocol_websocket` holds the optional transport/fake Agent; `samgita_protocol_codex` holds the provider-specific scoped adapter. All three live under `apps/` but omit umbrella configuration/build inheritance and remain outside the platform's explicit app list. Loading core opens no socket or Agent; transport starts only on an explicit consumer call.
 
 The package's public types and callbacks use opaque host context, not Ecto schemas or Samgita database IDs as required base fields. Hub identity extensions are optional. A separate consumer project must compile and test against the package using only its declared dependencies and no umbrella configuration. Package adoption in sibling services is separate work; their actual endpoints remain there.
 
@@ -148,19 +150,22 @@ Codex schema evidence: `JSONRPCMessage.json` SHA-256 `6da4cc373a7ccd01f5608ad449
 
 ### Capability groups
 
-Group names below are Samgita package profile identifiers, not a claim that upstream hosts advertise these exact names. Each profile maps them to exact wire methods and parameter/result schemas. A host registers handlers explicitly. Unsupported groups return a stable unsupported-method/capability error; they never activate a fallback provider.
+Native group names below are defined by the independent P2 contract, not a claim that upstream hosts advertise these names. A host registers handlers explicitly. Unsupported groups return a stable unsupported-method/capability error; they never activate a fallback provider. The future management extensions are not implemented or advertised in P2.
 
 | Group | Contract and example profile methods | Host authority |
 | --- | --- | --- |
-| `base` | Parse request/response/error/notification, correlate IDs, initialize/initialized, profile/version compatibility, bounded message sizes and timeouts | Each connection host authenticates before dispatch. No business command before initialization. |
-| `sessions` | Discover/start/read/resume sessions/threads; Codex candidate subset: `thread/start`, `thread/read`, `thread/list`, `thread/resume` | Runtime host owns session content and lifetime. A session/thread ID is not a Task ID. |
-| `turns` | Submit/steer/interrupt a turn and observe completion; Codex candidate: `turn/start`, `turn/steer`, `turn/interrupt` | Agent runtime performs reasoning and tools; Samgita does not manufacture a turn loop. |
-| `interactions` | Tool/command/file permission requests, user input/elicitation and correlated responses; include `item/commandExecution/requestApproval`, `item/fileChange/requestApproval`, `item/tool/requestUserInput` only when implemented | The runtime host and its approver enforce execution permission. Project authorization is not shell/file approval. |
-| `events` | Lifecycle/item deltas, bounded buffers, disconnect/gap reporting; e.g. `turn/started`, `turn/completed`, `item/agentMessage/delta` | Live deltas are host runtime state. Resume/replay is advertised only if the specific host implements it. |
-| `hub.management.v1` | Namespaced `samgita/project/read`, `samgita/task/create`, `samgita/task/transition`, `samgita/task/claim`, `samgita/attempt/start`, `samgita/attempt/renew`, `samgita/attempt/report`, `samgita/attempt/reconcile`, `samgita/attempt/resolve` | Samgita contexts alone commit Project/Task/Attempt state. Requires machine identity, binding and receipts. |
-| `hub.events.v1` | `samgita/event/subscribe`, `samgita/event/read`, `samgita/event/ack`; durable cursor/gap/replay contract | Samgita owns durable source/audit events and delivery receipts. Subscription cannot widen Project access. |
+| Base envelope/handshake | Version `1.0` schemas, typed errors, IDs, `connection/initialize`, bounded sizes/timeouts | Host authenticates before dispatch; native handshake completes on response. |
+| `project_events.v1` | `project/event.receive`, `.status`, `.report` | Agent receives/acknowledges, processes and reports a decision; durable receipt, completion and management acceptance are distinct. |
+| `sessions.v1` | `thread/start`, `/read`, `/resume`; `turn/start`, `/steer`, `/interrupt`; lifecycle notifications | Runtime host owns reasoning/tools and session lifetime. A thread is not a Task. |
+| `streaming.v1` | `item/started`, `/delta`, `/completed`; `stream/resume`, bounded buffers and replay gaps | Host owns stream retention; processed checkpoints advance separately from transport receipt. |
+| `approvals.v1` | Bidirectional `approval/request` and correlated approve/deny | Runtime host checks exact request/action/connection/deadline. No automatic approval. |
+| `cancellation.v1` | `request/cancel` | Cancellation intent does not prove a running effect ceased. |
+| Future `hub.management.v1` | Namespaced `samgita/project/read`, `samgita/task/create`, `samgita/task/transition`, `samgita/task/claim`, `samgita/attempt/start`, `/renew`, `/report`, `/reconcile`, `/resolve` | Samgita contexts alone commit Project/Task/Attempt state. Requires machine identity, binding, proofs and receipts, outside P2. |
+| Future `hub.events.v1` | `samgita/event/subscribe`, `/read`, `/ack`; durable source/outbox cursor contract | Samgita owns durable source events/receipts. P2's bounded in-memory replay is not this outbox. |
 
-For the Samgita host profile, `initialize` selects a versioned profile; after `initialized`, a namespaced `samgita/capabilities/read` returns actually supported groups/versions/limits. The Codex profile retains its exact initialize schema and maps only capabilities demonstrated by that selected version; do not invent Hub negotiation fields in upstream responses. Optional tools/files/models/MCP/catalog groups are not advertised until separately scoped and tested. No model account or provider credentials are needed by the Hub profile.
+The native `connection/initialize` selects a supported version and capability intersection and fails missing required groups. It does not use Codex's `initialized` notification. The optional Codex adapter preserves the upstream initialize/initialized sequence, maps six methods and three notifications, and advertises no full native group. Its official reference is `rust-v0.163.0`, commit `83086188ae0614bd882818ff1aa23f3194962012`; selected schemas/hashes/LICENSE/NOTICE are committed in its package. Full/live Codex compatibility remains unverified. Optional tools/files/models/MCP/catalogs and Codex approvals are unsupported. No model account/provider credentials are needed by the native library or fake Agent.
+
+The [P2 contract](protocol-phase-2.md) and [core README](../../apps/samgita_protocol/README.md) define stable event/delivery/causal IDs, UTC creation time, opaque refs, receipt/completion/management-acceptance distinctions, disconnect uncertainty, replay checkpoints, cancellation, bounded buffering, and transport-independent interfaces. Optional RFC 6455 JSON text at `/app-server` can mount on an existing web endpoint; no mandatory central hop or sibling server is introduced.
 
 Wire request IDs correlate one connection; durable Hub commands additionally carry UUID `command_id`, `project_id`, `expected_version` and command payload. Attempt commands include Attempt ID, epoch/fence and lease proof. Canonical semantic request digests exclude transport correlation IDs and all tokens. Duplicate principal+command ID with identical semantics returns the committed receipt; a different digest returns `command_id_conflict`. Reauthenticate and reauthorize connection ownership before receipt lookup. Historical ACKs describe accepted past state and do not authorize current execution. Database failure leaves no success receipt or side effect.
 
@@ -328,12 +333,12 @@ The [plan](implementation-plan.md) assigns one owner per shared contract/migrati
 
 | ID | Blocker / owner | Blocks and resolution evidence |
 | --- | --- | --- |
-| B0 | Merged source/migration reconciliation; design + migration owner | Redesign implementation. Compare `d6e9eca` with the pinned historical baseline; account for removed schemas/migrations/readers and the current foundation, identify applicable legacy deployment/bridge requirements, and approve revised bounded file/test scopes. Source removal alone proves neither data loss nor continuity; no recovery or restoration is implied. |
+| B0 | Merged source/migration reconciliation; design + migration owner | Platform implementation. Independent P2 is reconciled in `protocol-phase-2.md` with no platform wiring changes. Before P1/P3 compare `d6e9eca` with the pinned historical baseline; account for removed schemas/migrations/readers, applicable deployments/bridge and revised scopes. Source removal proves neither data loss nor continuity; no restoration is implied. |
 | B1 | Live topology/data/in-flight inventory; operator + migration owner | Production cutover. Measured node/job/session/process inventory, named databases/backups, restoration proof and no unknown active effects. |
 | B2 | Legacy mapping quality and dual-Repo migration coverage; migration owner | Adoption/cutover. Row/ID/reference/digest manifest, both migration directories accounted for, dependency/opaque-ref conflicts resolved or explicitly historical. |
 | B3 | Endpoint protocol/security mismatch; protocol + respective service owners | Real Sigma/Synapsis integration. Pinned profiles, supported methods, actual authentication/authorization and real-client round trips; no package name can substitute for this evidence. |
 | B4 | Guard-aware legacy bridge and external-effect reconciliation; runtime owner | Any new execution. All writers/producers fenced, pre-bridge nodes excluded, drain/restart/race/rollback proof. |
 | B5 | GitHub installation/permissions, approved destinations and secret references; operator + integration owner | Real GitHub connection and remote subscriptions. Authorized installation, verified scope, key handling, signed ingress and egress tests. No consumer/host is selected by this design. |
-| B6 | Exact versioned protocol subset/lease derivation fixtures; protocol owner | Protocol release/claims. Commit selected schemas/provenance, license review, negotiation/error/token-rotation fixtures and independent consumer + real transport conformance. Generated Codex schemas alone do not clear this gate. |
+| B6 | Exact versioned protocol subset/lease derivation fixtures; protocol owner | P2 supplies native schemas, pinned Codex subset/provenance/license, negotiation/error/reconnect and independent consumer/real fake-transport tests. Live/full Codex compatibility remains unverified. Platform claims still require scoped receipt/proof derivation/rotation contracts and integration fixtures; P2 does not clear that gate. |
 
 These are implementation/integration gates, not reasons to leave this design phase incomplete. Current source facts and proposed future contracts are deliberately distinguished. Missing capabilities in an actual dependency must follow AGENTS.md upstream issue routing when encountered in implementation; do not hide them behind a local compatibility shim.

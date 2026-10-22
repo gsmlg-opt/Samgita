@@ -1,14 +1,14 @@
 # Samgita agent-neutral platform implementation plan
 
-Date: 2026-10-22. Status: design-phase deliverable; stages P1–P6 are not started or authorized by this commit.
+Date: 2026-10-22. Status: P0 accepted; independent P2 authorized and implemented. P1/P3–P6 remain unstarted and require their own authorization/gates.
 
 **Goal:** preserve existing Projects, Tasks and history while moving execution decisions to registered Agents and establishing repository associations, a reusable app-server implementation, GitHub connections and durable events.
 
-**Architecture:** keep the existing Ecto/Phoenix umbrella. Add an independently consumable `samgita_app_server` package, neutral core contexts and an exclusive execution fence. Adopt legacy work explicitly after a guarded drain; do not implement a second Sigma server or a Backplane protocol dependency.
+**Architecture:** keep the existing Ecto/Phoenix umbrella. Add independently consumable `samgita_protocol` packages, then neutral platform contexts and an exclusive execution fence in later stages. Adopt legacy work explicitly after a guarded drain; do not implement a second Sigma server or a Backplane protocol dependency.
 
 **Stack:** Elixir/OTP, Ecto/PostgreSQL, Oban, Phoenix LiveView, Tailwind 4, Bun/TypeScript and existing DuskMoon assets. No new account framework, embedded LLM runtime or component library.
 
-Read [design](design.md) and [acceptance](acceptance.md) first. Source paths below are repository-relative. Proposed files/tests do not exist yet; commands using them become executable only in their owning stage. Each future change starts with its specified failing behavioral check, adds the smallest implementation, reruns only the scoped checks, and makes a logical Conventional Commit. Do not use the former `docs/plan.md` deletion stages.
+Read [design](design.md) and [acceptance](acceptance.md) first. Source paths below are repository-relative. P2 paths exist; other proposed files/tests become executable only in their owning stage. Each future change starts with its specified failing behavioral check, adds the smallest implementation, reruns only scoped checks, and makes a logical Conventional Commit. Do not use the former `docs/plan.md` deletion stages.
 
 Merged baseline: `d6e9eca` combines this design's `3a344f5` and the separately authorized source removal in `811eeb9`. The checkout is now a two-app foundation with one main Repo/Oban migration and no legacy domain, memory app or planned protocol implementation. The merge does not prove database migration, historical-data deletion or continuity. B0 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) blocks redesign implementation until source/migration reconciliation approves updated scopes. P1's legacy callsites and dual-Repo requirements below are a historical recipe against `2bc3765ac94e1faea50f061b6938c0ef51e6f92b`; many listed files no longer exist. Do not execute those lists, restore runtime code or infer a recovery procedure from them. P0's completed checklist records the original documentation commit; the authorized foundation merge is a separate source change.
 
@@ -16,9 +16,9 @@ Merged baseline: `d6e9eca` combines this design's `3a344f5` and the separately a
 
 | Stage | Dependency | Ownership | Gate / suggested commit units |
 | --- | --- | --- | --- |
-| P0: this phase | Current local HEAD | Documentation owner; parallel read-only audits | Four-file document review/checks and scoped commit; STOP. |
+| P0: completed design phase | Historical baseline | Documentation owner; parallel read-only audits | Four-file document review/checks and scoped commit. |
 | P1: preservation harness and bridge | B0 reconciled scopes; separate authorization; P0 accepted | One runtime/migration owner | Isolated legacy fixture, complete writer guard where applicable, classified jobs and guarded restart; `test(migration)`, `feat(runtime)` commits. |
-| P2: standalone app-server | B0 reconciled scopes; P0 contracts accepted; independent of P1 after profile scope freezes | Protocol owner; no shared config/migration edits | Independent consumer, schema fixtures, real transport/fake-host conformance; `feat(protocol)` commits. |
+| P2: independent protocol, current phase | Bounded B0 reconciliation in phase record; P0 accepted; independent of P1 | Core, optional transport and adapter owners; no shared config/migration edits | Independent consumer, versioned schema fixtures, real transport/fake-host conformance; `feat(protocol)` commit; STOP. |
 | P3: neutral identities/state and mappings | P1 fence; P2 token/receipt contracts before claims | Core owner + migration owner | Stable IDs, resumable mappings, adoption, fenced state/claim races; `feat(projects)`, `feat(agents)`, `feat(tasks)` commits. |
 | P4: events/GitHub/schedules | P3 Project/repository/authorization contracts | Event owner, integration owner, migration owner | Transactional outbox, signed GitHub ingress, deterministic occurrences; separate event/GitHub/schedule commits. |
 | P5: management API/UI and fake Agent | P2/P3; P4 for event journey | Web owner + protocol-fixture owner | Real operator journey and WebSocket proof without LLMs; `feat(api)`, `feat(ui)`, `test(integration)` commits. |
@@ -103,28 +103,31 @@ devenv shell --no-tui -- env MIX_ENV=test SAMGITA_TEST_DATABASE=samgita_redesign
 
 ## 4. P2 — Independent app-server implementation
 
-Owner: protocol owner; root dependency wiring goes through migration/integration owner.
+Owner: protocol owner. P2 was explicitly authorized after `1574130`; its bounded B0 reconciliation and frozen native contract are in [protocol phase 2](protocol-phase-2.md). Platform migrations/readers remain gated. This stage leaves the root application list, configuration, dependencies, Repo, UI and runtime untouched.
 
-Create:
+Implemented paths:
 
-- `apps/samgita_app_server/mix.exs`
-- `apps/samgita_app_server/lib/samgita_app_server.ex`
-- `apps/samgita_app_server/lib/samgita_app_server/{codec,profile,capabilities,connection,handler,transport,error}.ex`
-- `apps/samgita_app_server/lib/samgita_app_server/profiles/{hub_v1,codex_0_163}.ex`
-- `apps/samgita_app_server/priv/schemas/` selected reference and Hub schema files with provenance/license notice
-- `apps/samgita_app_server/test/{codec,negotiation,connection,capabilities,conformance}_test.exs`
-- `apps/samgita_app_server/test/fixtures/consumer/mix.exs` and `test/consumer_test.exs`
-- `apps/samgita_app_server/test/fixtures/protocol/` named valid/invalid request/response/event fixtures
+- `apps/samgita_protocol/{mix.exs,lib,priv/schemas,test}`: dependency-free native version 1.0 schemas/validation, codec, errors, capabilities, client state, server callbacks and bounded replay.
+- `apps/samgita_protocol/examples/consumer`: separate Mix consumer with one core path dependency and application/socket isolation checks.
+- `apps/samgita_protocol/scripts/verify_standalone.py`: optional temporary-copy build proof outside the repository.
+- `apps/samgita_protocol_websocket`: optional standalone authenticated RFC 6455 JSON-text client/server at `/app-server`, fake Agent and real loopback conformance tests.
+- `apps/samgita_protocol_codex`: optional pure six-method/three-notification adapter with official pinned 0.163.0 schema sources, hashes, LICENSE/NOTICE and subset tests.
+- `AGENTS.md` and `docs/redesign/*.md`: reconciled package naming, phase scope, semantics, evidence and remaining gates.
 
-- [ ] Freeze B6: selected Codex version/schema hashes and exact supported method/notification subset; Hub profile version and `samgita/*` schemas; request IDs versus durable command IDs; error/timeout/size limits; lease derivation/rotation and receipt descriptors. Unsupported groups remain unadvertised.
-- [ ] First write parse/serialize fixtures including the observed Codex envelope without a required `jsonrpc` field, malformed JSON/IDs, unknown methods, unsupported profiles and initialize ordering. Test parse failure emits no host callback.
-- [ ] Implement codecs/registry/handler contracts without Repo, Phoenix, providers, Backplane, umbrella config or automatic listeners. A fake handler owns domain decisions; the package does not synthesize Task state.
-- [ ] Implement request correlation, duplicate response handling, bounded outstanding requests/event buffers, disconnection/gap semantics and explicit host callbacks. Never auto-replay a side-effecting turn on reconnect.
-- [ ] Implement Hub capability discovery separately from the exact upstream Codex initialize contract. Tests assert the registered handler set equals advertised support.
-- [ ] Compile/test a separate consumer using a path dependency and its own config/build directory. Assert Samgita/Repo/web/provider/Backplane are absent from started applications and no listener/Agent process appears.
-- [ ] Run fake-host real WebSocket round trips for initialization, a session/turn, a permission request/response, error and reconnect. Pin a real supported client round trip before claiming Codex compatibility. A fake profile test is insufficient for B3/B6.
+All three packages follow the repository's `apps/` layout but omit umbrella build/dependency/config inheritance. Core and provider adaptation contain no transport process; optional transport has no Phoenix or platform dependency.
 
-Run `devenv shell --no-tui -- mix test` with working directory `apps/samgita_app_server`, then the same command from its independent consumer fixture. These are scoped package tests, not a request to run the umbrella suite. No sibling-service code is in scope; unsupported Sigma/Synapsis integration remains blocked rather than launching a substitute server.
+- [x] Pin official Codex `rust-v0.163.0` / immutable commit `83086188ae0614bd882818ff1aa23f3194962012`, selected schemas/hashes and exact supported subset. Keep its handshake/fields separate from native schema.
+- [x] Implement versioned schemas, strict validation, safe typed errors, negotiation, correlation, duplicate handling and explicit unsupported operations. Malformed input cannot call host handlers.
+- [x] Separate project-event receive/status/decision-report operations from execution threads/turns/items/approvals/interruption. Preserve event identity/time across delivery attempts and distinguish receipt/durability/completion/management acceptance.
+- [x] Implement bounded buffers, timeouts, disconnect uncertainty, explicit reconciliation, processed replay checkpoints, restoration and replay gaps. Never automatically retry a mutation.
+- [x] Implement transport-independent client dispatch and bidirectional server callbacks. Handler registration must equal advertised request support; persistence, lifecycle decisions and permissions remain host-owned.
+- [x] Compile/test the standalone consumer outside the repository without Repo/platform/Phoenix/Backplane or new listener handles.
+- [x] Run real WebSocket fake-Agent initialization, event delivery/status/report, sessions/turns, approvals, errors, cancellation, disconnect/reconnect and overflow/replay checks.
+- [x] Record scoped checks and limitations, make a reviewable `feat(protocol)` commit and stop before platform implementation.
+
+Run `devenv shell --no-tui --no-reload -- mix test`, `mix compile --warnings-as-errors` and `mix format --check-formatted` separately from each package directory, and the consumer's checks from its own directory. Use `python3 scripts/verify_standalone.py` from core for the outside-repository proof. No umbrella suite, database or real LLM is required.
+
+B6 is only partially satisfied: native/reference schema and isolated fake-transport evidence exist. Hub management/lease receipt/proof derivation and rotation remain P3 contracts, not native protocol claims. Live/full Codex and real Sigma/Synapsis compatibility remain unverified; no sibling endpoint or repository changes are in scope.
 
 ## 5. P3 — Stable identities, migration mapping and authoritative commands
 
@@ -235,6 +238,6 @@ Real integration/live cutover gate: remeasure B1/B2/B4 for the actual target, cl
 | Protocol/auth mismatch | Keep integration disabled; resolve with service/dependency owner | Start a substitute Sigma server or silently bypass authentication |
 | Hub regression after activation | Close admissions, owner none/new epoch, reconcile effects, compatible guarded rollback or fix forward | Re-enable the old PRD executor against new work |
 
-B0–B6 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) are the implementation blocker ledger. They do not block a reviewed documentation reconciliation; B0 must clear before redesign implementation. Clear each only with the specified evidence; do not convert an assumption into a checked acceptance box. Host/credential/subscriber selection remains explicit operator configuration, not an agent-chosen deployment decision.
+B0–B6 in [design §9](design.md#9-implementation-gates-and-unresolved-blockers) are the implementation blocker ledger. P2 reconciles only its independent package scope; B0 remains open for platform changes. Clear each only with the specified evidence; do not convert an assumption into a checked acceptance box. Host/credential/subscriber selection remains explicit operator configuration, not an agent-chosen deployment decision.
 
 For every authorized stage, report changed paths/commit, scoped checks and results, preserved data/effect evidence, remaining blockers and the next unexecuted gate. If an out-of-scope test fails, list it and stop without repair. When the in-scope checklist and tests pass, stop at that stage boundary.

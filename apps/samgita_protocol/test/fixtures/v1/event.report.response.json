@@ -1,0 +1,1 @@
+{"schema_version":"1.0","type":"response","id":"request-3","command_id":"report-command-1","correlation_id":"flow-1","result":{"event_id":"event-1","decision_id":"decision-1","report_status":"recorded","management_acceptance":"not_requested"}}

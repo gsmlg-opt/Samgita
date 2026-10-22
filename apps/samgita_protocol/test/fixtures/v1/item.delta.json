@@ -1,0 +1,1 @@
+{"schema_version":"1.0","type":"notification","correlation_id":"turn-flow-1","method":"item/delta","stream_id":"thread-1-stream","cursor":1,"params":{"thread_id":"thread-1","turn_id":"turn-1","item_id":"item-1","delta":"hello"}}

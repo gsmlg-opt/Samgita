@@ -1,0 +1,1 @@
+{"schema_version":"1.0","type":"response","id":"approval-1","command_id":"approval-command-1","correlation_id":"turn-flow-1","result":{"approval_id":"permission-1","decision":"deny","scope":"once"}}
