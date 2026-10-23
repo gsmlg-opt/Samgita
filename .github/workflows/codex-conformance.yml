@@ -1,0 +1,89 @@
+name: Pinned Codex conformance
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  MIX_ENV: test
+  ELIXIR_VERSION: "1.18.5"
+  OTP_VERSION: "27.3.4.17"
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  selected-conformance:
+    name: Selected actual-binary and platform scenarios
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CODEX_BINARY: ${{ github.workspace }}/tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      SAMGITA_TEST_DATABASE: samgita_redesign_codex_ci_test
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: samgita_redesign_codex_ci_test
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
+        with:
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+          otp-version: ${{ env.OTP_VERSION }}
+      - name: Fetch and verify immutable source and executable
+        timeout-minutes: 6
+        run: python3 scripts/codex/fetch_pin.py
+      - name: Independent native protocol package
+        timeout-minutes: 6
+        working-directory: apps/samgita_protocol_codex
+        run: |
+          mix deps.get
+          mix compile --warnings-as-errors
+          mix format --check-formatted
+          mix test
+      - name: Independent driver and actual-binary scenarios
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: |
+          mix deps.get
+          mix compile --warnings-as-errors
+          mix format --check-formatted
+          mix test
+      - name: Outside-umbrella actual-binary consumer
+        timeout-minutes: 8
+        run: python3 scripts/codex/verify_consumer.py
+      - name: Resolve platform dependencies
+        timeout-minutes: 6
+        run: mix deps.get
+      - name: Fenced platform, API, concurrency and actual-binary journey
+        timeout-minutes: 8
+        run: |
+          mix compile --warnings-as-errors
+          mix test apps/samgita/test/samgita/runtime_registration_test.exs apps/samgita/test/samgita/codex_runtime_test.exs apps/samgita/test/samgita/codex_runtime_race_test.exs apps/samgita_web/test/samgita_web/controllers/codex_runtime_controller_test.exs apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs --include e2e
+
+  completeness:
+    name: Full compatibility evidence gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inventory regressions and source consistency
+        run: |
+          python3 -m unittest discover -s scripts/codex -p 'test_*.py' -v
+          python3 scripts/codex/inventory.py --check
+      - name: Require every compatibility entry and contract to be verified
+        run: python3 scripts/codex/inventory.py --check --require-verified
