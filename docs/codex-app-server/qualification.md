@@ -859,3 +859,27 @@ asserted notification fields gain scoped `implemented` evidence. Inventory:
 enter default driver discovery. Other source-eligibility, SQLite-disabled,
 cross-process and deployment profiles remain unqualified. The complete driver
 and required aggregate/hosted checks still need the integrated final revision.
+
+## Native user-shell lifecycle
+
+The isolated actual-binary `thread/shellCommand` profile passed eight cases at
+both `501432` and `987654` (16.3s / 17.3s), with warnings-as-errors compile,
+whole-driver format, Python AST and whitespace checks. Immediate ACK, `userShell`
+item/turn correlation, safe shell syntax, failed/time-limited items, active
+approval preservation, contextual history/restart and borrowed UDS reconnect
+all assert native messages and owned synthetic effects. Both controller and
+commands verify the private namespace/no-egress boundary; this is essential
+because the native API bypasses thread sandboxing. Every owned process is reaped.
+
+An initial **8 / 1** and a focused diagnostic established that redirected empty
+output is serialized as null, as pinned `v2/item.rs:939-941` specifies. The exact
+expectation was corrected without changing the native/runtime code or removing
+file-content/lifecycle assertions. [User-shell lifecycle](user-shell-qualification.md)
+contains commands, logs and limits. The coordinator reviewed the profile and
+synthetic controller; it is now a required explicit isolated CI step.
+
+Two exercised request/response entries and three exact input fields become
+`implemented`: **485 entries: 0 verified / 184 implemented / 296 missing /
+5 blocked**; **6,621 contracts: 0 verified / 50 implemented / 6,571 missing**.
+Other executors, direct-input authority variants and deployment profiles remain
+unqualified. Neither an ACK nor a completed native item accepts a Samgita Task.
