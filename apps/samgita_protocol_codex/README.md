@@ -1,7 +1,7 @@
 # SamgitaProtocolCodex
 
-A standalone, pure adapter between a selected Samgita native protocol subset and
-the official Codex app-server wire. It opens no listener, starts no runtime, and
+A standalone native wire/schema library for official Codex **0.163.0**, with a
+retained convenience adapter for selected Samgita protocol operations. It opens no listener, starts no runtime, and
 depends only on the sibling `samgita_protocol` library. It does not depend on
 Phoenix, Samgita persistence, providers, Backplane, or umbrella configuration.
 
@@ -13,14 +13,51 @@ The GitHub release/tag and official [app-server documentation](https://learn.cha
 were verified on 2026-10-22. `priv/upstream/source.json` records immutable source
 paths, upstream SHA-256 hashes and vendored SHA-256 hashes. Schemas have only an
 added terminal newline; Apache-2.0 LICENSE and NOTICE are preserved byte for byte.
-These are upstream reference schemas, not a schema for the native protocol.
+These describe Codex independently of Samgita's neutral event/session protocol.
 
-Tests demonstrate the selected field mapping and pinned source integrity. They
-do not implement a general JSON Schema validator or establish real-client/server
-compatibility. No live Codex generation or deployed Sigma/Synapsis integration
-has been verified. Upstream fields outside the documented subset are unsupported.
+The complete generated stable and experimental bundles, source gate metadata and
+per-file hashes now live in `priv/upstream/0.163.0/`. Generate/check them with
+`scripts/codex/inventory.py` from the repository root. The executable is fetched
+into ignored scratch storage by `scripts/codex/fetch_pin.py`; it is never installed
+globally or included in this package.
 
-## Handshake
+Tests distinguish generated schema examples, real executable journeys and the
+restricted convenience mapping. See `docs/codex-app-server/qualification.md` for
+current evidence and gaps. Complete behavioral compatibility, real account/backend
+acceptance and deployed Sigma/Synapsis integration remain unverified.
+
+## Native wire and schemas
+
+```elixir
+alias SamgitaProtocolCodex.{Schema, Wire}
+
+wire = %{"id" => "native-1", "method" => "thread/list", "params" => %{"limit" => 10}}
+:ok = Schema.validate_request(wire["method"], wire["params"])
+{:ok, json} = Wire.encode(wire)
+{:ok, ^wire} = Wire.decode(json)
+methods = Schema.methods(:client_request, experimental: true)
+```
+
+Native contracts cover all four directions and correlated results from the pinned
+release. They preserve string/integer IDs, omitted versus null fields, structured
+errors, trace metadata and unknown additions. Validation does not insert defaults
+or create atoms. Explicit experimental opt-in follows the pinned Rust request gate
+semantics, including nullable options and nonempty collections. The schema corpus
+provides structural evidence; it does not certify each operation's runtime behavior.
+
+Use `Schema.validate_request/3` with `direction: :server_request` for incoming
+interactions, `validate_notification/4` for either notification direction, and
+`validate_result/4` for correlated `:server_response` or `:client_response` values.
+`Wire` enforces JSON, envelope, nesting and byte bounds independently of transport.
+`Failure` retains complete upstream error wire for authorized programmatic callers;
+Inspect and Exception output redact upstream payloads. Never log raw wire blindly.
+
+The independent sibling `samgita_codex_driver` owns optional processes, transports,
+sessions and interactions. Neither loading this library nor validating a schema
+starts execution. The following sections describe the retained convenience API;
+its restrictions do not limit the native interface.
+
+## Convenience handshake
 
 ```elixir
 {:ok, initialize} = SamgitaProtocolCodex.initialize_request("init-1", %{
@@ -39,7 +76,7 @@ version field on its wire. Native `connection/initialize` and native capability
 negotiation cannot be translated into Codex negotiation; no capabilities are
 inferred from an initialize response. This adapter never enables experimental APIs.
 
-## Requests and responses
+## Convenience requests and responses
 
 `encode_request(native_request)` returns `{:ok, upstream_map}` or
 `{:error, %SamgitaProtocol.Error{}}`. Supported methods are available from
@@ -77,7 +114,7 @@ effects, Project/Task mutation or management acceptance. No command is automatic
 replayed. Hub references and native envelope metadata are never injected into
 Codex messages.
 
-## Notifications
+## Convenience notifications
 
 `supported_notifications/0` lists `turn/started`, `turn/completed` and
 `item/agentMessage/delta`; the last maps to native `item/delta`. A notification
