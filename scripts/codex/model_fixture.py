@@ -55,14 +55,7 @@ class ModelFixture:
                         temporary = fixture.requests_file.with_suffix(".partial")
                         temporary.write_text(json.dumps(fixture.requests))
                         temporary.replace(fixture.requests_file)
-                item = fixture.response_item(index, request)
-                body = "".join(f"event: {event['type']}\ndata: {json.dumps(event)}\n\n"
-                               for event in response_events(index, item)).encode()
-                self.send_response(200)
-                self.send_header("Content-Type", "text/event-stream")
-                self.send_header("Content-Length", str(len(body)))
-                self.end_headers()
-                self.wfile.write(body)
+                fixture.write_response(self, index, request)
 
         self.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
         self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
@@ -70,6 +63,16 @@ class ModelFixture:
     @property
     def url(self):
         return f"http://127.0.0.1:{self.server.server_port}"
+
+    def write_response(self, handler, index, request):
+        item = self.response_item(index, request)
+        body = "".join(f"event: {event['type']}\ndata: {json.dumps(event)}\n\n"
+                       for event in response_events(index, item)).encode()
+        handler.send_response(200)
+        handler.send_header("Content-Type", "text/event-stream")
+        handler.send_header("Content-Length", str(len(body)))
+        handler.end_headers()
+        handler.wfile.write(body)
 
     def response_item(self, index, request):
         if self.scenario == "compaction" and any(

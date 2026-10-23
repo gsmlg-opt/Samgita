@@ -251,6 +251,47 @@ orientation/color metadata and real visual inference remain unqualified. The
 driver's 8 MiB message limit and model fixture's 4 MiB HTTP limit do not prove the
 upstream image-byte boundary. No huge boundary allocation is attempted.
 
+## Controlled compaction interruption and retries
+
+`compaction_control_test.exs` adds two actual pinned-binary cases, using a new
+loopback Responses provider rather than an app-server replacement. The minimal
+`ModelFixture.write_response` extension runs after atomic request-journal
+replacement and preserves existing `item(index)` subclasses. Its regression
+first failed with the old handler, then passed with the extension.
+
+The held-compaction case waits for a provider notice proving that the original
+request is recorded and blocked. It obtains the real compaction turn/item IDs,
+interrupts that turn and requires an `interrupted` terminal before explicitly
+releasing late checkpoint output. Subsequent ordinary and cold-resumed requests
+retain original usable history and contain no cancelled checkpoint. Exactly one
+terminal result is retained; no second compaction is sent. This uses observed
+barriers, without sleeping or extending upstream deadlines.
+
+The retry case follows pinned upstream
+`core/tests/suite/compact_remote.rs:1183-1287`: request retries zero, stream
+retries two, then HTTP 500, provisional checkpoint without `response.completed`,
+and finally a completed checkpoint. Exactly three compact requests carry
+identical original input; only the final checkpoint enters subsequent ordinary
+and cold-resumed history. This is Codex's documented internal compaction retry,
+not driver replay of an ambiguous mutation. The driver never resends the RPC.
+Production references are `core/src/compact_remote_v2.rs:324-374,454-476` and
+task abortion in `core/src/tasks/mod.rs:930-994`, relative to the immutable pin.
+
+The initial experiment failed because a derived fixture passed its new control
+scenario into the existing assistant selector, unintentionally faulting the
+first ordinary request. A direct regression reproduced that error. Separating
+the control scenario from the assistant scenario fixed it; exact request counts
+and all history assertions remain. Logs retain both attempts.
+
+The two new cases passed at seed `501432`. Running
+`mix test test/compaction_test.exs test/compaction_control_test.exs` passed
+**six cases** at each of seeds `513498` and `987654`; independent compile and
+format passed. All **17 Python regressions** passed, including journal-before-
+response and legacy subclass preservation. Logs:
+`/tmp/samgita-compaction-control-{initial,repair-1,regressions,python-red,python-green,python-repair-1,python-all}.log`.
+These selected Linux/stdio cases do not complete all compaction fields,
+transports, concurrent-steering combinations or external backend profiles.
+
 ## Harness, verification and source
 
 `test/support/turn_fixture.ex` shares setup for the original three suites and the
