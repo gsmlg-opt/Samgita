@@ -2994,12 +2994,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/deferred-mcp-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:mcpServerStatus/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ListMcpServerStatusParams"
       },
@@ -3028,9 +3032,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpServerStatus/list"
     },
     {
@@ -7569,12 +7577,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/deferred-mcp-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:turn/interrupt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/TurnInterruptParams"
       },
@@ -7603,9 +7615,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turn/interrupt"
     },
     {
@@ -7661,13 +7677,16 @@
         "Selected Linux/stdio standalone toolOutput success, restart history, namespace/retention and invalid-input branches under both negotiation profiles: apps/samgita_codex_driver/test/tool_output_test.exs; retention annotation does not prove compaction survival",
         "Selected sticky/null model/effort/summary, collaboration precedence/preset and experimental/error branches: apps/samgita_codex_driver/test/turn_overrides_test.exs",
         "Paired controlled optional-MCP-startup selection and Direct tool exposure via mcp://fixture, actual synthetic call and explicit elicitation: apps/samgita_codex_driver/test/mcp_mention_test.exs; no permission or external-service qualification",
-        "Active-turn standalone text/media/encrypted toolOutput steering and retained history: apps/samgita_codex_driver/test/native_turn_steering_test.exs. Selected retain=true versus disabled/unmarked behavior across remote compaction/cold resume: apps/samgita_codex_driver/test/compaction_test.exs. No media inference or complete retention-budget qualification."
+        "Active-turn standalone text/media/encrypted toolOutput steering and retained history: apps/samgita_codex_driver/test/native_turn_steering_test.exs. Selected retain=true versus disabled/unmarked behavior across remote compaction/cold resume: apps/samgita_codex_driver/test/compaction_test.exs. No media inference or complete retention-budget qualification.",
+        "docs/codex-app-server/deferred-mcp-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:turn/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/TurnStartParams"
       },
@@ -7696,9 +7715,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turn/start"
     },
     {
@@ -9737,13 +9760,16 @@
       "evidence": [
         "Selected real-binary Linux/stdio UserMessage content and thread/turn association for all seven UserInput forms at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs and turn_attachment_test.exs",
         "Selected functionCallOutput lifecycle and restart history: apps/samgita_codex_driver/test/tool_output_test.exs; original mention and actual synthetic mcpToolCall lifecycle: apps/samgita_codex_driver/test/mcp_mention_test.exs",
-        "Remaining item types and full transport matrix are unqualified; docs/codex-app-server/turn-input-qualification.md"
+        "Remaining item types and full transport matrix are unqualified; docs/codex-app-server/turn-input-qualification.md",
+        "docs/codex-app-server/deferred-mcp-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:item/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ItemCompletedNotification"
       },
@@ -9763,9 +9789,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "item/completed"
     },
     {
@@ -10009,13 +10039,16 @@
       "evidence": [
         "Selected real-binary Linux/stdio UserMessage content and thread/turn association for all seven UserInput forms at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs and turn_attachment_test.exs",
         "Selected functionCallOutput lifecycle and restart history: apps/samgita_codex_driver/test/tool_output_test.exs; original mention and actual synthetic mcpToolCall lifecycle: apps/samgita_codex_driver/test/mcp_mention_test.exs",
-        "Remaining item types and full transport matrix are unqualified; docs/codex-app-server/turn-input-qualification.md"
+        "Remaining item types and full transport matrix are unqualified; docs/codex-app-server/turn-input-qualification.md",
+        "docs/codex-app-server/deferred-mcp-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:item/started",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ItemStartedNotification"
       },
@@ -10035,9 +10068,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "item/started"
     },
     {
@@ -11784,12 +11821,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/deferred-mcp-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:turn/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/TurnCompletedNotification"
       },
@@ -11809,9 +11850,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turn/completed"
     },
     {
@@ -14653,12 +14698,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/deferred-mcp-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:mcpServerStatus/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14673,9 +14722,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpServerStatus/list"
     },
     {
@@ -17921,12 +17974,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/deferred-mcp-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:turn/interrupt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17941,9 +17998,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turn/interrupt"
     },
     {
@@ -17983,13 +18044,16 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "Selected real-binary Linux/stdio turn identity and explicit rejection outcomes at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs, turn_attachment_test.exs and turn_parameters_test.exs",
-        "Full method/result behavior remains unqualified; docs/codex-app-server/turn-input-qualification.md"
+        "Full method/result behavior remains unqualified; docs/codex-app-server/turn-input-qualification.md",
+        "docs/codex-app-server/deferred-mcp-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:turn/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18004,9 +18068,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turn/start"
     },
     {
