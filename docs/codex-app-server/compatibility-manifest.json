@@ -204,12 +204,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/gatewayOAuth/cancel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "params": {
         "type": "null"
       },
@@ -231,27 +235,35 @@
         "source_line": 1143,
         "variant": "GatewayOAuthCancel"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/gatewayOAuth/cancel"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/gatewayOAuth/login",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "params": {
         "type": "null"
       },
@@ -273,27 +285,35 @@
         "source_line": 1138,
         "variant": "GatewayOAuthLogin"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/gatewayOAuth/login"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/gatewayOAuth/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "params": {
         "type": "null"
       },
@@ -315,16 +335,20 @@
         "source_line": 1133,
         "variant": "GatewayOAuthRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/gatewayOAuth/read"
     },
     {
@@ -10277,12 +10301,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:account/gatewayOAuth/changed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/GatewayOAuthChangedNotification"
       },
@@ -10295,16 +10323,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/gatewayOAuth/changed"
     },
     {
@@ -14732,12 +14764,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/gatewayOAuth/cancel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14745,16 +14781,20 @@
       "schema": "v2/GatewayOAuthCancelResponse.json",
       "schema_sha256": "4a9e0055de416774443ec00e3ecfe49a585fedc48da38dc14cb474f2019eb5fd",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/gatewayOAuth/cancel"
     },
     {
@@ -14790,12 +14830,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/gatewayOAuth/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14803,16 +14847,20 @@
       "schema": "v2/GatewayOAuthReadResponse.json",
       "schema_sha256": "db30683d7b042570533120f0effb2396ada3ac9cf5cf02d72e911a30e28534ae",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/gatewayOAuth/read"
     },
     {
@@ -26902,27 +26950,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/InitializeCapabilities/properties/explicitGatewayOauth",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/InitializeCapabilities/properties/explicitGatewayOauth",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "04eaeff9215e5f9579274763fd6a254b36eddf8a75348f999f3617ca195b221d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "explicitGatewayOauth"
     },
     {
@@ -74718,46 +74774,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GatewayOAuthStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "pointer": "/definitions/GatewayOAuthStatus/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "bbf8dc98d5be94bd8c11e2f0ae055849e0b286c64694dd7a3426d029f1a5c982",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GatewayOAuthStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "pointer": "/definitions/GatewayOAuthStatus/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "23ebb6e6bcc93ad306333902bfbbd7c5f6e38401f2175ce3ed91d28a8d87b78e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -74784,24 +74856,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GatewayOAuthStatus/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "pointer": "/definitions/GatewayOAuthStatus/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -123758,279 +123838,367 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GatewayOAuthChangedNotification.json#/properties/authUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/authUrl",
       "required": false,
       "schema": "v2/GatewayOAuthChangedNotification.json",
       "schema_sha256": "a049ce769dee18a077610c9218e2c7d92a37aa885b1d4d82ea290d4c4a8fad56",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "authUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GatewayOAuthChangedNotification.json#/properties/error",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/error",
       "required": false,
       "schema": "v2/GatewayOAuthChangedNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "error"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GatewayOAuthChangedNotification.json#/properties/providerId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/providerId",
       "required": true,
       "schema": "v2/GatewayOAuthChangedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "providerId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GatewayOAuthChangedNotification.json#/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/GatewayOAuthChangedNotification.json",
       "schema_sha256": "9dd23cda39c47e63a2b93fc186c8eb4f3225208e8145ca1a4236a48e348e57c5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GatewayOAuthReadResponse.json#/properties/error",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/error",
       "required": false,
       "schema": "v2/GatewayOAuthReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "error"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GatewayOAuthReadResponse.json#/properties/providerId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/providerId",
       "required": true,
       "schema": "v2/GatewayOAuthReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "providerId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GatewayOAuthReadResponse.json#/properties/providerName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/providerName",
       "required": true,
       "schema": "v2/GatewayOAuthReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "providerName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GatewayOAuthReadResponse.json#/properties/required",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/required",
       "required": true,
       "schema": "v2/GatewayOAuthReadResponse.json",
       "schema_sha256": "cf39a4d7de679186ac146635b8ac7b27249998f54b746075ff111ec0a94229f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "required"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GatewayOAuthReadResponse.json#/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/status",
       "required": false,
       "schema": "v2/GatewayOAuthReadResponse.json",
       "schema_sha256": "7f48cb4c425919e25a616fcda5617d3cd8109f1966777f49e5ac76282edf7d4c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GatewayOAuthReadResponse.json#/properties/status/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "pointer": "/properties/status/anyOf/0",
       "schema": "v2/GatewayOAuthReadResponse.json",
       "schema_sha256": "9dd23cda39c47e63a2b93fc186c8eb4f3225208e8145ca1a4236a48e348e57c5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-oauth-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GatewayOAuthReadResponse.json#/properties/status/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+      ],
       "pointer": "/properties/status/anyOf/1",
       "schema": "v2/GatewayOAuthReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

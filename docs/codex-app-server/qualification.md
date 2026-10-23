@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 440 implemented / 35 missing /
-10 blocked requirements** and **0 verified / 1,217 implemented / 5,404 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 446 implemented / 29 missing /
+10 blocked requirements** and **0 verified / 1,232 implemented / 5,389 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,217 directly exercised
+MCP entries have scoped implementation evidence. These 1,232 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -33,6 +33,14 @@ the explicitly deprecated non-emitting file-change output notification,
 three [unimplemented prediction entries](prediction-boundary-qualification.md)
 and the [intentionally suppressed compaction notification](compacted-boundary.md).
 Field contracts and external/platform success profiles remain incomplete.
+
+The [Gateway OAuth profile](gateway-oauth-qualification.md) passes five real
+native cases at both recorded seeds: passive readiness, gates, pending login,
+cancellation with immediate retry, and actual PKCE callback/token-exchange
+failure. Six entries and fifteen exact field/variant contracts gain scoped
+implementation evidence. Successful login and `succeeded` readiness still
+require an isolated OS keyring and remain incomplete; error-only results are
+not successful sign-in acceptance.
 
 Additional method records: [queues](queue-lifecycle-qualification.md),
 [commands](command-lifecycle-qualification.md),

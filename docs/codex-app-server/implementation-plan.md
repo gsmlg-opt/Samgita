@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 progress, deprecated file-change output, three prediction entries and
 `thread/compacted` are `blocked` by exact source-proven unavailable success
 paths: ten required entries, with no scope waiver. Selected native
-method/notification entries now total 440 `implemented`, with 1,217 exact
-field/variant schema contracts implemented; 35 requirements and 5,404 contracts
+method/notification entries now total 446 `implemented`, with 1,232 exact
+field/variant schema contracts implemented; 29 requirements and 5,389 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -412,6 +412,14 @@ Next concrete work (repair follow-up, 2026-10-24):
 Project-event delivery remains notification delivery; it cannot start a turn.
 No new background execution engine, production migration, sibling-service change,
 live credential setup or deployment is part of this checkpoint.
+
+Five [Gateway OAuth cases](gateway-oauth-qualification.md) now pass both seeds,
+including real native PKCE failure, sanitized errors, passive readiness and
+release-before-cancel-ACK immediate retry. Six entries and fifteen exact contracts
+gain evidence. Successful login/OS-keyring persistence remains incomplete; the
+login result and succeeded variant are not promoted. Continue the separately
+owned Bedrock auth-recovery and thread-environment notification profiles, then
+the complete final-source matrix; this unit does not finish the goal.
 
 ## Known boundaries
 
