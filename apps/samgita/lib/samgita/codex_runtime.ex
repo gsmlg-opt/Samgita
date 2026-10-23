@@ -373,7 +373,7 @@ defmodule Samgita.CodexRuntime do
           from(e in NativeRuntimeEvent,
             where:
               e.runtime_id == ^id and e.kind == "server_request" and
-                e.state != "resolution_observed"
+                e.state not in ["resolution_observed", "terminal_observed"]
           ),
           set: [state: "stale"],
           inc: [version: 1]

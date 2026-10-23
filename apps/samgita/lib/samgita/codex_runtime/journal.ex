@@ -131,7 +131,7 @@ defmodule Samgita.CodexRuntime.Journal do
       from e in NativeRuntimeEvent,
         where:
           e.runtime_id in subquery(runtimes) and e.kind == "server_request" and
-            e.state not in ["resolution_observed", "cessation_attested"]
+            e.state not in ["resolution_observed", "cessation_attested", "terminal_observed"]
     )
   end
 
@@ -287,7 +287,81 @@ defmodule Samgita.CodexRuntime.Journal do
     )
   end
 
+  defp observe_resolution!(
+         runtime,
+         %{
+           "method" => "item/completed",
+           "params" => %{"item" => %{"type" => "dynamicToolCall", "status" => status}} = params
+         }
+       )
+       when status in ["completed", "failed"] do
+    retire_dynamic_interactions!(runtime, params["threadId"], params["turnId"], fn request ->
+      get_in(request, ["params", "callId"]) == params["item"]["id"]
+    end)
+  end
+
+  defp observe_resolution!(
+         runtime,
+         %{"method" => "turn/completed", "params" => %{"turn" => %{"status" => status}} = params}
+       )
+       when status in ["completed", "interrupted", "failed"] do
+    retire_dynamic_interactions!(runtime, params["threadId"], params["turn"]["id"], fn _ ->
+      true
+    end)
+  end
+
   defp observe_resolution!(_runtime, _wire), do: :ok
+
+  defp retire_dynamic_interactions!(runtime, thread_id, turn_id, matches_item) do
+    # Runtime ownership is already locked by the command context. Stream bounded
+    # batches because turn/call IDs stay inside encrypted payloads, including for
+    # historical records. Terminal evidence cannot settle a dispatched response.
+    retirement_candidates(runtime, thread_id)
+    |> Repo.stream(max_rows: 128)
+    |> Enum.each(fn event ->
+      request = CodexRuntime.open!(event.native_payload, runtime.id, event.id, "event")
+
+      if get_in(request, ["params", "threadId"]) == thread_id and
+           get_in(request, ["params", "turnId"]) == turn_id and matches_item.(request),
+         do: retire_interaction!(event)
+    end)
+  end
+
+  defp retirement_candidates(runtime, thread_id) do
+    dispatched =
+      from o in NativeRuntimeOperation,
+        where:
+          o.interaction_id == parent_as(:interaction).id and
+            o.state not in ["prepared", "cancelled"],
+        select: 1
+
+    thread_digest = digest!(runtime, thread_id)
+
+    from(e in NativeRuntimeEvent,
+      as: :interaction,
+      where:
+        e.runtime_id == ^runtime.id and e.instance_id == ^runtime.instance_id and
+          e.driver_generation == ^runtime.driver_generation and
+          e.kind == "server_request" and e.method == "item/tool/call" and
+          e.state in ["pending", "reply_prepared"] and e.thread_id_digest == ^thread_digest and
+          not exists(subquery(dispatched)),
+      order_by: e.id
+    )
+  end
+
+  defp retire_interaction!(event) do
+    Repo.update_all(
+      from(o in NativeRuntimeOperation,
+        where: o.interaction_id == ^event.id and o.state == "prepared"
+      ),
+      set: [state: "cancelled"],
+      inc: [version: 1]
+    )
+
+    event
+    |> change(state: "terminal_observed", version: event.version + 1)
+    |> Commands.update!()
+  end
 
   defp resolution_interactions(runtime, params) do
     request_digest = digest!(runtime, params["requestId"])

@@ -988,3 +988,26 @@ totals: **485 entries: 0 verified / 211 implemented / 269 missing / 5 blocked**;
 enter default discovery. Multiple clients, raw response/notification ordering,
 duplicate-notice absence, fork copying, active-writer/deletion races and other
 stores/transports remain unqualified; no Task acceptance is inferred.
+
+## Durable dynamic-tool retirement
+
+Two context regressions reproduced a durable request remaining pending after
+matching terminal evidence and reconnect then turning a retired request stale.
+The journal now atomically marks only proved-unsent current-runtime/generation
+dynamic interactions `terminal_observed`, cancels only prepared replies and
+preserves that evidence on reconnect. Dispatched, unconfirmed and uncertain
+operations remain unresolved; no acknowledgement, replay or Task acceptance is
+invented. Encrypted identity matching streams candidates in 128-row batches.
+
+The retained populated database passed **53 cases, zero failures, one existing
+E2E exclusion at each of `501432` and `987654`** (52 executed each). The ten new
+context cases include exact matching, stale replies, historical receipt replay,
+129 candidates, ambiguity and generation/reconnect isolation; existing runtime,
+notification, independent-transaction and Attempt guards are included. Compile,
+format and strict Credo passed, **314 files, no issues**. The coordinator reviewed
+the scoped diff and final validation log. Exact commands, both original reds,
+rollback boundary and evidence limits are in
+[platform retirement](platform-tool-retirement-qualification.md). These are
+PostgreSQL context fixtures plus the separate actual-native driver profile,
+not a combined live-native/database journey. No manifest entry is promoted by
+this platform-only regression unit; final aggregate checks remain required.

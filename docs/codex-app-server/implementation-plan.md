@@ -225,6 +225,12 @@ Next concrete work (repair follow-up, 2026-10-24):
    Eleven message/lifecycle entries and 35 directly asserted fields/variants gain
    scoped `implemented` evidence; see
    [tool interactions](tool-interactions-qualification.md).
+   The corresponding PostgreSQL journal now retires only proved-unsent matching
+   dynamic requests and preserves that terminal evidence across reconnect.
+   Prepared replies are cancelled; dispatched and ambiguous replies remain held.
+   Ten context regressions, including 129 encrypted candidates across the
+   bounded query batch, pass with existing authority/Attempt suites at both seeds;
+   see [platform retirement](platform-tool-retirement-qualification.md).
    Eight native attachment cases now qualify durable arbitrary JSON and stable
    identity, unloaded reads, pagination/archive filters, cursor binding,
    removal/recreation, byte/count limits and concurrent duplicates, plus stable,
