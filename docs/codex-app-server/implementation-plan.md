@@ -158,6 +158,14 @@ Next concrete work:
    Complete native client-notification access and remaining initialization and
    deployment profiles still need assessment before advancing the entry to
    verified. Do not substitute client/fixture byte caps for upstream image limits.
+   Hosted checkpoint `3c54d74` has a new fixture-teardown failure in pinned run
+   `39975362507` (166 driver tests, one failure, seed `513498`); the outside
+   consumer and platform steps were skipped. Its aggregate `39975272562` passed
+   through Dialyzer and failed the retained Plug.Crypto audit. A source audit
+   found that fixture callbacks can skip the existing persistent Stdio shutdown
+   barrier after ExUnit's linked Session exits. A deterministic guardian-suspension
+   regression reproduces this ordering gap; complete the shared test-fixture
+   cleanup repair and repeat qualification before relying on this checkpoint.
 3. Run final independent-package/consumer, root, restart/recovery, static,
    security, assets, release-assembly and hosted checks on the delivered source.
    Keep unavailable external profiles and A11 visibly incomplete. Publish only

@@ -431,9 +431,72 @@ The 26 affected driver cases passed after these repairs, seed `999926`, plus
 strict Credo. Scoped initialization
 evidence is attached to its two manifest entries, with incomplete profiles and
 native Session notification access still recorded. No entry is promoted to full
-verification from selected examples. Hosted checks for this new test tree are
-recorded when they reach a terminal state; the preceding runs qualify their own
-source revisions only.
+verification from selected examples.
+
+Both hosted workflows reached terminal states at
+`3c54d748871313bd69858ff05d0fd2c606019e6a`:
+
+- Aggregate [39975272562](https://github.com/gsmlg-opt/Samgita/actions/runs/39975272562)
+  passed compilation, formatting, strict Credo, repeated root tests, fresh
+  restart/rollback, independent protocol consumers, assets, legacy scan and
+  Dialyzer. It failed `mix hex.audit` on retained `plug_crypto 2.2.0`,
+  `EEF-CVE-2026-105963` / `GHSA-ffw9-w85g-f2vh`; production assembly was skipped.
+  Passing restart and neutral WebSocket checks do not explain their earlier
+  failures or clear the reused-database restart result.
+- Pinned conformance [39975362507](https://github.com/gsmlg-opt/Samgita/actions/runs/39975362507)
+  passed the 34-test native schema suite. The driver reported **166 tests, one
+  failure**, seed `513498`: the Unicode-boundary test's `on_exit` scratch removal
+  raised `File.Error` (`file already exists`) after its assertions. Outside
+  consumer and platform steps were skipped. Its independent strict completeness
+  gate also failed as required. Local success above is not a substitute for this
+  failed hosted test. The log does not identify a writer or establish the exact
+  filesystem cause.
+
+### Fixture cleanup after linked Session death
+
+The subsequent source audit establishes a missing fixture barrier, without
+identifying the writer in that hosted failure. ExUnit 1.18.5 exits its test
+process with `:shutdown`; linked processes exit asynchronously before `on_exit`
+callbacks. The non-trapping Session can therefore die without `terminate/2`.
+Its independent Stdio guardian still confirms and records owned-process shutdown,
+but the fixture's `Process.alive?(session)` guard skipped the close call needed to
+wait for that confirmation. Closing the separate model-provider fixture does
+not wait for Codex.
+
+`StdioSessionFixture` now captures the initial Stdio connection immediately after
+Session startup. Its callback closes a live Session and always waits for the
+captured guardian in `after`, including when Session is dead or closing raises.
+TurnFixture and five older stdio test starters use this shared callback before
+their provider/root cleanup. Current callers never reconnect these owned stdio
+Sessions; future reconnecting fixtures must retain every replacement guardian.
+Borrowed WebSocket reconnect/resource ownership and production driver code are
+unchanged. The existing persistent completion and unconfirmed-shutdown failure
+contracts remain asserted; no deletion retry, sleep or swallowed cleanup error
+was added.
+
+The deterministic regression suspends the real guardian, terminates Session's
+linked owner, waits for Session death and proves cleanup must issue a guardian
+close before it can finish. It then resumes the guardian and requires confirmed
+completion. The old callback failed that ordering assertion (two tests, one
+failure, seed `513498`); the repaired helper passed both tests with the same seed.
+The second test covers live Session close and repeated cleanup after an explicit
+close. A third regression queues a live close on a suspended Session and then
+terminates its linked owner. It reproduced the expected `GenServer.call` shutdown
+race (three tests, one failure) before the helper handled only the exact close
+call's `:noproc`, `:normal` or `:shutdown` exits. All three regressions then passed
+with seed `513498`; the guardian barrier still runs in `after` and all other exits
+and unconfirmed shutdowns propagate. This is a local Python-child fault fixture, separate from actual-Codex
+behavior evidence. An initial harness run lacked required isolated `CODEX_HOME`
+and failed before reaching the assertion; the corrected harness produced the
+intended red/green result. No runtime change was based on that setup failure.
+
+Final independent driver verification for this fixture repair ran
+`mix compile --warnings-as-errors`, `mix format --check-formatted` and
+`mix test --seed 513498` under Devenv Elixir 1.18.5 / OTP 27.3.4.17 with the
+immutable executable: **169 tests, 0 failures**, 74.8 seconds. The full suite
+includes the three cleanup regressions; synthetic shutdown ordering and actual
+Codex scenarios remain distinct evidence. The local command log is
+`/tmp/samgita-repair-driver-final.log`. A new hosted run is still required.
 
 | Layer | Remaining requirement |
 | --- | --- |

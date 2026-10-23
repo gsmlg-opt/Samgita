@@ -1,7 +1,7 @@
 defmodule SamgitaCodexDriver.AuthInteractionsTest do
   use ExUnit.Case, async: false
 
-  alias SamgitaCodexDriver.{ModelFixture, Session}
+  alias SamgitaCodexDriver.{ModelFixture, Session, StdioSessionFixture}
   alias SamgitaCodexDriver.Transport.Stdio
   alias SamgitaProtocolCodex.Error
 
@@ -51,7 +51,7 @@ defmodule SamgitaCodexDriver.AuthInteractionsTest do
            ]}
       )
 
-    on_exit(fn -> if Process.alive?(pid), do: Session.close(pid) end)
+    StdioSessionFixture.register_cleanup(pid)
 
     assert {:ok, %{"result" => _}} =
              Session.initialize(

@@ -1,6 +1,6 @@
 defmodule SamgitaCodexDriver.RealSessionTest do
   use ExUnit.Case, async: false
-  alias SamgitaCodexDriver.{ModelFixture, Session}
+  alias SamgitaCodexDriver.{ModelFixture, Session, StdioSessionFixture}
   alias SamgitaCodexDriver.Transport.{Stdio, WebSocket}
   alias SamgitaProtocolCodex.Error
   @moduletag :real_codex
@@ -44,7 +44,7 @@ defmodule SamgitaCodexDriver.RealSessionTest do
 
   defp session(binary, fixture, experimental \\ false) do
     {:ok, pid} = Session.start_link(transport: {Stdio, process_opts(binary, fixture)})
-    on_exit(fn -> close_session(pid) end)
+    StdioSessionFixture.register_cleanup(pid)
     initialize(pid, experimental)
     pid
   end
