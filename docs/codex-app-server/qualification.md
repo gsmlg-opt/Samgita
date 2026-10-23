@@ -1761,3 +1761,23 @@ Six entries and thirty directly asserted positive contracts gain scoped
 `missing` under the retained evidence policy. Other raw item variants, UI-false,
 Bedrock auth-recovery, real account/provider and OS/replay/race profiles stay
 incomplete. Full manifest verification and A11 remain separate unmet gates.
+
+## CI acquisition and notification synchronization repairs
+
+The [native artifact acquisition repair](native-artifact-acquisition.md)
+reproduces the retained HTTP client's 10,240-byte header rejection against the
+official MDEx redirect. Six integrity/error cases and all 37 Python regressions
+pass; an empty outside consumer compiles and loads the unchanged checksum-pinned
+NIF through Rustler's documented cache. The selected workflow initializes that
+cache in a valid step context. New hosted execution remains required.
+
+The [notification test synchronization repair](notification-test-synchronization.md)
+reproduces the unsynchronized helper's 100 ms empty-mailbox failure under a
+controlled suspension. A same-sender Session status barrier replaces the
+assumed scheduling order while preserving deadlines and every uncertainty,
+reconnect and no-replay assertion. Focused tests pass **10/0** at seeds `728846`
+and `987654`; full driver with the actual pinned executable passes **418/0** at
+the original hosted seed `728846`, 305.0s. Scoped format and strict Credo pass.
+No production protocol implementation or task/recovery state is changed.
+These are scoped repairs; completeness, A11 and unavailable external/platform
+success profiles remain unmet.

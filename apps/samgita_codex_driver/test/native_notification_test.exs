@@ -64,6 +64,37 @@ defmodule SamgitaCodexDriver.NativeNotificationTest do
     assert_receive {:sent, ^pid, ^wire}
   end
 
+  test "initialization waits for its processed-state barrier before asserting transport output" do
+    pid = connection()
+    :ok = :sys.suspend(pid)
+    caller = self()
+
+    barrier =
+      Task.async(fn ->
+        receive do
+          {:trace, ^caller, :send, {:"$gen_call", _, {:initialize, _, _, _}}, ^pid} ->
+            receive do
+              {:trace, ^caller, :send, {:"$gen_call", _, :status}, ^pid} ->
+                :sys.resume(pid)
+            end
+        end
+      end)
+
+    :erlang.trace(self(), true, [:send, {:tracer, barrier.pid}])
+
+    try do
+      pending = begin_initialize(pid)
+      assert :ok = Task.await(barrier)
+      assert %{phase: :initializing, pending: 1} = Session.status(pid)
+      finish_initialize(pid, pending)
+      assert %{phase: :ready, pending: 0} = Session.status(pid)
+    after
+      :erlang.trace(self(), false, [:send])
+      if Process.alive?(pid), do: :sys.resume(pid)
+      Task.shutdown(barrier, :brutal_kill)
+    end
+  end
+
   test "malformed envelopes and non-keyword options send nothing and leave the session usable" do
     pid = connection()
 
@@ -177,8 +208,9 @@ defmodule SamgitaCodexDriver.NativeNotificationTest do
   test "failed notification write exposes its uncertain wire and preserves pending mutation uncertainty" do
     pid = connection([], fail_method: "future/fail")
     finish_initialize(pid, begin_initialize(pid))
-    pending = Task.async(fn -> Session.request(pid, "thread/start", %{}, id: "pending") end)
-    assert_receive {:sent, ^pid, %{"id" => "pending"}}
+    pending = :gen_server.send_request(pid, {:request, "thread/start", %{}, [id: "pending"]})
+    assert %{phase: :ready, pending: 1} = Session.status(pid)
+    assert_received {:sent, ^pid, %{"id" => "pending"}}
     wire = %{"method" => "future/fail", "params" => nil, "future" => ["kept"]}
 
     assert {:error, %Error{code: :send_failed, uncertain: true, wire: ^wire}} =
@@ -186,7 +218,10 @@ defmodule SamgitaCodexDriver.NativeNotificationTest do
 
     assert_receive {:sent, ^pid, ^wire}
     assert_receive {:codex_driver, ^pid, {:gap, %{reason: :send_failed, generation: 1}}}
-    assert {:error, %Error{code: :send_failed, uncertain: true}} = Task.await(pending)
+
+    assert {:reply, {:error, %Error{code: :send_failed, uncertain: true}}} =
+             :gen_server.receive_response(pending, 5_000)
+
     assert [%{id: "pending", reason: :send_failed}] = Session.uncertain_operations(pid)
     assert %{phase: :disconnected, pending: 0, uncertain: 1} = Session.status(pid)
     assert :ok = Session.reconnect(pid)
@@ -206,18 +241,16 @@ defmodule SamgitaCodexDriver.NativeNotificationTest do
   end
 
   defp begin_initialize(pid) do
-    task =
-      Task.async(fn ->
-        Session.initialize(
-          pid,
-          %{"name" => "native_notification_test", "version" => "0.1.0"},
-          %{},
-          id: "initialize"
-        )
-      end)
+    pending =
+      :gen_server.send_request(
+        pid,
+        {:initialize, %{"name" => "native_notification_test", "version" => "0.1.0"}, %{},
+         [id: "initialize"]}
+      )
 
-    assert_receive {:sent, ^pid, %{"id" => "initialize", "method" => "initialize"}}
-    task
+    assert %{phase: :initializing, pending: 1} = Session.status(pid)
+    assert_received {:sent, ^pid, %{"id" => "initialize", "method" => "initialize"}}
+    pending
   end
 
   defp finish_initialize(pid, task) do
@@ -229,7 +262,7 @@ defmodule SamgitaCodexDriver.NativeNotificationTest do
     }
 
     send(pid, {:incoming, %{"id" => "initialize", "result" => result}})
-    assert {:ok, %{"result" => ^result}} = Task.await(task)
+    assert {:reply, {:ok, %{"result" => ^result}}} = :gen_server.receive_response(task, 5_000)
     assert_receive {:sent, ^pid, %{"method" => "initialized"} = canonical}
     assert canonical == %{"method" => "initialized"}
   end
