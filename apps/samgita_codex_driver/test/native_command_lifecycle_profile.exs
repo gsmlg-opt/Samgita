@@ -494,7 +494,7 @@ defmodule SamgitaCodexDriver.NativeCommandLifecycleProfile do
             "priority" => 1,
             "model_messages" => %{"instructions_template" => "No turns are authorized."},
             "support_verbosity" => false,
-            "truncation_policy" => %{"mode" => "bytes", "limit" => 10000},
+            "truncation_policy" => %{"mode" => "bytes", "limit" => 10_000},
             "experimental_supported_tools" => []
           }
         ]

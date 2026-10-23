@@ -471,13 +471,15 @@ defmodule SamgitaCodexDriver.NativeQueueLifecycleTest do
   defp finish_queue(pid, id, queued, extra \\ fn _ -> true end) do
     await(pid, fn events ->
       extra.(events) and
-        Enum.all?(queued, fn item ->
-          case user_item(events, item["clientUserMessageId"]) do
-            nil -> false
-            event -> completed?(events, id, event["turnId"], "completed")
-          end
-        end)
+        Enum.all?(queued, &submission_completed?(events, id, &1))
     end)
+  end
+
+  defp submission_completed?(events, id, item) do
+    case user_item(events, item["clientUserMessageId"]) do
+      nil -> false
+      event -> completed?(events, id, event["turnId"], "completed")
+    end
   end
 
   defp user_item(events, client) do

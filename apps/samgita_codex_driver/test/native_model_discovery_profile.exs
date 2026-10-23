@@ -188,7 +188,7 @@ defmodule SamgitaCodexDriver.NativeModelDiscoveryProfile do
     empty = start(ctx)
 
     fallback = call(empty, "model/list", %{})
-    assert length(fallback["data"]) > 0
+    assert [_ | _] = fallback["data"]
     refute Enum.any?(fallback["data"], &String.starts_with?(&1["id"], "catalog-"))
 
     assert error(empty, "model/list", %{"cursor" => "invalid"}) == %{
