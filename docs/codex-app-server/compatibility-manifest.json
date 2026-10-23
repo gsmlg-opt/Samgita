@@ -5299,12 +5299,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/attachment/add",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadAttachmentAddParams"
       },
@@ -5326,27 +5330,35 @@
         "source_line": 672,
         "variant": "ThreadAttachmentAdd"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/attachment/add"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/attachment/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadAttachmentListParams"
       },
@@ -5368,27 +5380,35 @@
         "source_line": 677,
         "variant": "ThreadAttachmentList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/attachment/list"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/attachment/remove",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadAttachmentRemoveParams"
       },
@@ -5410,27 +5430,35 @@
         "source_line": 687,
         "variant": "ThreadAttachmentRemove"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/attachment/remove"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/attachmentOwner/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadAttachmentOwnerListParams"
       },
@@ -5452,16 +5480,20 @@
         "source_line": 682,
         "variant": "ThreadAttachmentOwnerList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/attachmentOwner/list"
     },
     {
@@ -11044,12 +11076,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:thread/attachment/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadAttachmentUpdatedNotification"
       },
@@ -11062,16 +11098,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/attachment/updated"
     },
     {
@@ -16782,12 +16822,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/attachment/add",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16795,28 +16839,36 @@
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "06fd0a224722c962687bf808bd3f4d5233e35ae9fbcccd88711fa6f55334d626",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/attachment/add"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/attachment/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16824,28 +16876,36 @@
       "schema": "v2/ThreadAttachmentListResponse.json",
       "schema_sha256": "1ba64dc8c5d173c044753e1207ba906550be15b67c4ee105957bdaf4489cc1e8",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/attachment/list"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/attachment/remove",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16853,28 +16913,36 @@
       "schema": "v2/ThreadAttachmentRemoveResponse.json",
       "schema_sha256": "905003d0d531365a3557f42dfdcc9a2d5ff13c4992f860d7e6145cbd74083dbe",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/attachment/remove"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/attachmentOwner/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16882,16 +16950,20 @@
       "schema": "v2/ThreadAttachmentOwnerListResponse.json",
       "schema_sha256": "3ce366f00d2f4fcebf16abba56d20752661789cc38189ce688f854c247754e58",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/attachmentOwner/list"
     },
     {
@@ -78798,46 +78870,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadAttachmentOperation/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "pointer": "/definitions/ThreadAttachmentOperation/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "0ae4a12a0955ea36299f4e09c53f58a2d0128dc6bea4692b25b05b83a81a7751",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadAttachmentOperation/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "pointer": "/definitions/ThreadAttachmentOperation/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b06274bc9dd4cfd28ff0f6bbc75c4c102bffe0614f53c0ef0e1c50d293db5219",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -144811,903 +144899,1183 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddParams.json#/properties/attachmentType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/attachmentType",
       "required": true,
       "schema": "v2/ThreadAttachmentAddParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "attachmentType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddParams.json#/properties/identityKey",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/identityKey",
       "required": true,
       "schema": "v2/ThreadAttachmentAddParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "identityKey"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddParams.json#/properties/payload",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/payload",
       "required": true,
       "schema": "v2/ThreadAttachmentAddParams.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "payload"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddParams.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadAttachmentAddParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddResponse.json#/definitions/ThreadAttachment/properties/attachmentType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadAttachment/properties/attachmentType",
       "required": true,
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "attachmentType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddResponse.json#/definitions/ThreadAttachment/properties/createdAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadAttachment/properties/createdAt",
       "required": true,
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "createdAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddResponse.json#/definitions/ThreadAttachment/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadAttachment/properties/id",
       "required": true,
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddResponse.json#/definitions/ThreadAttachment/properties/identityKey",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadAttachment/properties/identityKey",
       "required": true,
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "identityKey"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddResponse.json#/definitions/ThreadAttachment/properties/payload",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadAttachment/properties/payload",
       "required": true,
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "payload"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadAttachmentAddResponse.json#/definitions/ThreadAttachmentAddOutcome/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "pointer": "/definitions/ThreadAttachmentAddOutcome/enum/0",
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "0ae4a12a0955ea36299f4e09c53f58a2d0128dc6bea4692b25b05b83a81a7751",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadAttachmentAddResponse.json#/definitions/ThreadAttachmentAddOutcome/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "pointer": "/definitions/ThreadAttachmentAddOutcome/enum/1",
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "6b630a6ea706642b65db72b5d474ba27dc176816d4ffeaa05a3c11d2d3076bfe",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddResponse.json#/properties/attachment",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/attachment",
       "required": true,
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "908d60b0664978a55a260a4b2c859c66be69fa27044195841eaaf6d24aa02eae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "attachment"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentAddResponse.json#/properties/outcome",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/outcome",
       "required": true,
       "schema": "v2/ThreadAttachmentAddResponse.json",
       "schema_sha256": "8e060f42cedb08492aa2cd09e26c666dda8d0b22c7e2bd760ce26a6ca6d3c03c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "outcome"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentListParams.json#/properties/cursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/ThreadAttachmentListParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentListParams.json#/properties/limit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/ThreadAttachmentListParams.json",
       "schema_sha256": "80c78c2078367c04c0ef237db981a743ed785ac504a7837582217736021b046e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "limit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentListParams.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadAttachmentListParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentListResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/ThreadAttachmentListResponse.json",
       "schema_sha256": "452d763fb2593d028b3ba11ec5ceccd25f1dc139653ed3a73bd93b2037fe347f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentListResponse.json#/properties/nextCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ThreadAttachmentListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentOwnerListParams.json#/properties/archived",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/archived",
       "required": false,
       "schema": "v2/ThreadAttachmentOwnerListParams.json",
       "schema_sha256": "692197f51e7ec37ee60bddf1c63fd057b9cca996e18321f672b9311226bf81ed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "archived"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentOwnerListParams.json#/properties/attachmentType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/attachmentType",
       "required": true,
       "schema": "v2/ThreadAttachmentOwnerListParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "attachmentType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentOwnerListParams.json#/properties/cursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/ThreadAttachmentOwnerListParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentOwnerListParams.json#/properties/identityKey",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/identityKey",
       "required": true,
       "schema": "v2/ThreadAttachmentOwnerListParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "identityKey"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentOwnerListParams.json#/properties/limit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/ThreadAttachmentOwnerListParams.json",
       "schema_sha256": "80c78c2078367c04c0ef237db981a743ed785ac504a7837582217736021b046e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "limit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentOwnerListResponse.json#/definitions/ThreadAttachmentOwner/properties/archived",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadAttachmentOwner/properties/archived",
       "required": true,
       "schema": "v2/ThreadAttachmentOwnerListResponse.json",
       "schema_sha256": "acbbf4cf52e1ffde79990fb2f972cb1f78e3a87455d356b160cefa4284b81582",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "archived"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentOwnerListResponse.json#/definitions/ThreadAttachmentOwner/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadAttachmentOwner/properties/threadId",
       "required": true,
       "schema": "v2/ThreadAttachmentOwnerListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentOwnerListResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/ThreadAttachmentOwnerListResponse.json",
       "schema_sha256": "19dd0c09fcfe15406bd5da096a7fc0b85bf187c3ebc2dea6fc503bad64bafbd9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentOwnerListResponse.json#/properties/nextCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ThreadAttachmentOwnerListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentRemoveParams.json#/properties/attachmentType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/attachmentType",
       "required": true,
       "schema": "v2/ThreadAttachmentRemoveParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "attachmentType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentRemoveParams.json#/properties/identityKey",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/identityKey",
       "required": true,
       "schema": "v2/ThreadAttachmentRemoveParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "identityKey"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentRemoveParams.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadAttachmentRemoveParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentUpdatedNotification.json#/properties/attachmentId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/attachmentId",
       "required": true,
       "schema": "v2/ThreadAttachmentUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "attachmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentUpdatedNotification.json#/properties/attachmentType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/attachmentType",
       "required": true,
       "schema": "v2/ThreadAttachmentUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "attachmentType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentUpdatedNotification.json#/properties/identityKey",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/identityKey",
       "required": true,
       "schema": "v2/ThreadAttachmentUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "identityKey"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentUpdatedNotification.json#/properties/operation",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/operation",
       "required": true,
       "schema": "v2/ThreadAttachmentUpdatedNotification.json",
       "schema_sha256": "a19b62a85c2fb5cdbd39675257dfb6e976b291b825e23e1ca637992c48f3ef09",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "operation"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/attachment-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadAttachmentUpdatedNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover arbitrary JSON, stable existing identities, cold unloaded reads, pagination/archive filters/cursor binding, removal/recreation, UTF8/payload/count limits, concurrent duplicate identity and stable/backend/error boundaries. Response-before-notification wire ordering, duplicate-notice absence, multi-client and active-writer/delete races, fork copying and other stores/transports/platforms remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadAttachmentUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_attachment_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {

@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 202 implemented / 278 missing /
-5 blocked requirements** and **0 verified / 107 implemented / 6,514 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 211 implemented / 269 missing /
+5 blocked requirements** and **0 verified / 144 implemented / 6,477 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills and direct
-MCP entries have scoped implementation evidence. One hundred and seven directly exercised
+MCP entries have scoped implementation evidence. One hundred and forty-four directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -37,7 +37,8 @@ Additional method records: [queues](queue-lifecycle-qualification.md),
 [model discovery](model-discovery-qualification.md),
 [organization/read state](organization-lifecycle-qualification.md) and
 [skills lifecycle](skills-lifecycle-qualification.md) and
-[user-input/dynamic-tool interactions](tool-interactions-qualification.md).
+[user-input/dynamic-tool interactions](tool-interactions-qualification.md) and
+[native attachments](attachment-lifecycle-qualification.md).
 
 ## Delivered source and immutable reference
 
@@ -965,3 +966,25 @@ scoped `implemented` evidence: **485 entries: 0 verified / 202 implemented /
 6,514 missing**. Other input/tool registration, async input, backend/platform
 and legacy variants remain incomplete. Native completion and local handle
 retirement never confer Samgita Task acceptance or confirm an ambiguous reply.
+
+## Native thread attachment lifecycle
+
+Eight additional native stdio cases passed at `501432` and `987654`, **8/0**
+each (8.3s / 8.6s). They cover arbitrary JSON and stable identity/time/payload,
+cold unloaded reads, cursor binding and removal of an anchor, archived owner
+filters, idempotent removal/recreation, exact changes, byte/count limits,
+concurrent duplicates, unsupported memory storage and stable/error boundaries.
+Only private native fixture data is created/deleted. The initial compile attempt
+found three omitted empty maps for a required helper argument; after that test
+arity correction the first actual-native run passed without runtime, assertion
+or deadline changes. [Attachment qualification](attachment-lifecycle-qualification.md)
+retains exact commands, source anchors, failures and remaining profiles.
+
+Independent compile/format and repository test-environment compile/format/strict
+Credo passed, **313 files, no issues**. Nine message entries and 37 directly
+asserted field/variant contracts gain scoped `implemented` evidence. Regenerated
+totals: **485 entries: 0 verified / 211 implemented / 269 missing / 5 blocked**;
+**6,621 contracts: 0 verified / 144 implemented / 6,477 missing**. These cases
+enter default discovery. Multiple clients, raw response/notification ordering,
+duplicate-notice absence, fork copying, active-writer/deletion races and other
+stores/transports remain unqualified; no Task acceptance is inferred.
