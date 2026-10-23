@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 211 implemented / 269 missing /
-5 blocked requirements** and **0 verified / 144 implemented / 6,477 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 233 implemented / 247 missing /
+5 blocked requirements** and **0 verified / 239 implemented / 6,382 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
-commands, user-shell execution, model discovery, organization, skills and direct
-MCP entries have scoped implementation evidence. One hundred and forty-four directly exercised
+commands, user-shell execution, model discovery, organization, skills, realtime and direct
+MCP entries have scoped implementation evidence. Two hundred and thirty-nine directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -39,6 +39,10 @@ Additional method records: [queues](queue-lifecycle-qualification.md),
 [skills lifecycle](skills-lifecycle-qualification.md) and
 [user-input/dynamic-tool interactions](tool-interactions-qualification.md) and
 [native attachments](attachment-lifecycle-qualification.md).
+
+The [realtime V2 lifecycle](realtime-lifecycle-qualification.md) adds actual native
+startup/input/transcript/audio/closure behavior with an owned backend WebSocket
+peer. Other realtime versions and backend/transport profiles remain incomplete.
 
 ## Delivered source and immutable reference
 
@@ -1011,3 +1015,32 @@ rollback boundary and evidence limits are in
 PostgreSQL context fixtures plus the separate actual-native driver profile,
 not a combined live-native/database journey. No manifest entry is promoted by
 this platform-only regression unit; final aggregate checks remain required.
+
+## Native realtime V2 lifecycle
+
+Eight actual-native stdio cases use an owned Python realtime WebSocket backend,
+with no app-server emulation, inference or external authentication. They assert
+the builtin voice catalogue, exact startup URL/auth/settings and prompt
+precedence, translated audio/text/speech, correlated transcript/audio events,
+typed durable items and cold history, replacement/stop, distinct error/transport
+closure and explicit restart. Empty request results are submission ACKs; separate
+native notifications establish startup/outcome. Positive event/journal barriers
+replace timing assumptions. Every case requires zero Responses requests.
+
+Both initial seeds passed **8/0**. Strict Credo then required underscore spelling
+for three numerically identical native error literals; after that correction,
+both seeds passed again (**501432: 5.6s; 987654: 5.9s**), with compile/format,
+Python syntax and strict Credo (**315 files, no issues**). Owned native and peer
+processes were reaped. Exact commands, source anchors and all evidence limits
+are in [realtime lifecycle](realtime-lifecycle-qualification.md).
+
+Twenty-two method/response/notification entries and 95 directly asserted
+field/variant contracts gain scoped `implemented` evidence. Eleven fields with
+only native rejection evidence retain `missing` enabled success. Catalogue
+voice enum assertions do not qualify all voices' backend startup. Regenerated
+totals: **485 entries: 0 verified / 233 implemented / 247 missing / 5 blocked**;
+**6,621 contracts: 0 verified / 239 implemented / 6,382 missing**. The profile is
+a required explicit hosted CI step; default discovery does not include it.
+V1/V3, WebRTC/existing-call success, handoff/delegation, real audio/backend and
+platform/environment success remain unqualified, as does A11. No complete
+compatibility, publication or deployment is claimed.

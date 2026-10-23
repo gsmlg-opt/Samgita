@@ -34,8 +34,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries and the
 advertised MCP item-progress notification are `blocked` by source-proven absent
 production emitters. Selected native method/notification entries now total
-211 `implemented`, with 144 exact field/variant schema contracts
-implemented; 269 requirements and 6,477 contracts remain `missing`. None is fully verified.
+233 `implemented`, with 239 exact field/variant schema contracts
+implemented; 247 requirements and 6,382 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -237,6 +237,13 @@ Next concrete work (repair follow-up, 2026-10-24):
    unsupported-backend and malformed request behavior. Nine entries and 37
    asserted field/variant contracts are scoped `implemented`; see
    [native attachments](attachment-lifecycle-qualification.md).
+   Eight explicit actual-native realtime V2 cases now qualify backend WebSocket
+   setup, distinct submission ACK/asynchronous outcomes, audio/text/speech,
+   typed durable transcript history, stop/replacement, peer faults and negotiation.
+   Twenty-two entries and 95 directly asserted fields/variants gain scoped
+   `implemented` evidence, including voice catalogue listing rather than all
+   voice/backend success. Eleven rejection-only fields retain `missing` success
+   paths. See [realtime lifecycle](realtime-lifecycle-qualification.md).
    Continue remaining image-byte limits, account backend variants,
    environment/permission/turn variants and real-service authentication profiles.
    Preserve entry-specific evidence and
