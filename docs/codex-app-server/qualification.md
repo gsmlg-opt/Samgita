@@ -1839,3 +1839,20 @@ real service/OS profiles remain missing. The ledger has **425 implemented /
 50 missing / 10 blocked** requirements, **1,089 implemented / 5,532 missing**
 contracts and **zero verified**. This profile is now selected in CI; final-source
 aggregate/hosted evidence and A11 are separate gates.
+
+## Native retained-prefix revert
+
+Three [thread revert cases](thread-revert-qualification.md) pass **3/0** at both
+seeds, 3.0s each. Two fixed tool-free turns produce real native history; invalid
+turn, ephemeral and legacy rejection preserve it. A successful revert emits the
+actual notice, hydrates its opaque cursor to the unchanged first turn, and
+preserves that prefix after an owned native restart without a third provider
+request or workspace-file change. Compile, format and scoped strict Credo pass.
+
+One previously missing notification and seven positive contracts gain scoped
+`implemented` evidence; both existing method entries retain their earlier
+evidence. The generated ledger has **426 implemented / 49 missing / 10 blocked**
+requirements and **1,096 implemented / 5,525 missing** contracts, **zero verified**.
+The explicit profile is selected in CI. Ambiguous post-commit transport loss,
+active-turn/concurrency/reload failures, external profiles and A11 remain
+unqualified; the loopback dependency does not prove network-namespace confinement.

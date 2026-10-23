@@ -7701,14 +7701,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/thread-revert-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/revert",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
       ],
       "params": {
         "$ref": "#/definitions/ThreadRevertParams"
@@ -7739,7 +7741,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -13349,12 +13352,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:thread/reverted",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadRevertedNotification"
       },
@@ -13367,16 +13374,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/reverted"
     },
     {
@@ -20209,14 +20220,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/thread-revert-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/revert",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
       ],
       "prerequisites": [
         "initialized"
@@ -20233,7 +20246,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -178172,179 +178186,235 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertParams.json#/properties/beforeTurnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+      ],
       "nullable": false,
       "pointer": "/properties/beforeTurnId",
       "required": true,
       "schema": "v2/ThreadRevertParams.json",
       "schema_sha256": "ed7eb71efda2fd7fd875b728b3e951b0dd9f30f3a18831e66acea972feae0168",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "beforeTurnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadRevertParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertResponse.json#/properties/itemsBackwardsCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+      ],
       "nullable": true,
       "pointer": "/properties/itemsBackwardsCursor",
       "required": false,
       "schema": "v2/ThreadRevertResponse.json",
       "schema_sha256": "f2091c1e0e4aa5590dfa8c163136d95035774ca9df776de868ed026649b186cc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemsBackwardsCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertResponse.json#/properties/thread",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+      ],
       "nullable": false,
       "pointer": "/properties/thread",
       "required": true,
       "schema": "v2/ThreadRevertResponse.json",
       "schema_sha256": "51156f4b9d8c3234416f3026493c51d673fd768bed2877873379bc53846fc073",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadRevertResponse.json#/properties/thread/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+      ],
       "pointer": "/properties/thread/allOf/0",
       "schema": "v2/ThreadRevertResponse.json",
       "schema_sha256": "3ba2367dec2c324575ebd68440c4b4a00341e2f9f4a4df7570ee5e86378fff0e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertResponse.json#/properties/turnsBackwardsCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+      ],
       "nullable": true,
       "pointer": "/properties/turnsBackwardsCursor",
       "required": false,
       "schema": "v2/ThreadRevertResponse.json",
       "schema_sha256": "40b3fc7807084c699b114c7fa92390888143a0127cfb7c71b47bb905b130b7cc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turnsBackwardsCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-revert-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadRevertedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
