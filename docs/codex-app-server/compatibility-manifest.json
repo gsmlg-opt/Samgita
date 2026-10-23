@@ -306,12 +306,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/login/cancel",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/CancelLoginAccountParams"
       },
@@ -333,27 +337,35 @@
         "source_line": 1329,
         "variant": "CancelLoginAccount"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/login/cancel"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/login/start",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/LoginAccountParams"
       },
@@ -375,27 +387,35 @@
         "source_line": 1301,
         "variant": "LoginAccount"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/login/start"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/logout",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "params": {
         "type": "null"
       },
@@ -417,16 +437,20 @@
         "source_line": 1335,
         "variant": "LogoutAccount"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/logout"
     },
     {
@@ -523,12 +547,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/GetAccountParams"
       },
@@ -550,16 +578,20 @@
         "source_line": 1475,
         "variant": "GetAccount"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/read"
     },
     {
@@ -2368,12 +2400,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:getAuthStatus",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/GetAuthStatusParams"
       },
@@ -2395,16 +2431,20 @@
         "source_line": 1493,
         "variant": "GetAuthStatus"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "getAuthStatus"
     },
     {
@@ -8880,12 +8920,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:account/login/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/AccountLoginCompletedNotification"
       },
@@ -8898,16 +8942,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/login/completed"
     },
     {
@@ -8946,12 +8994,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:account/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/AccountUpdatedNotification"
       },
@@ -8964,16 +9016,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/updated"
     },
     {
@@ -12615,12 +12671,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/login/cancel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -12628,28 +12688,36 @@
       "schema": "v2/CancelLoginAccountResponse.json",
       "schema_sha256": "06bc17624df01600fdc399d3c0f222f875c010d2d952c1d1191cb84de9b59014",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/login/cancel"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/login/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -12657,28 +12725,36 @@
       "schema": "v2/LoginAccountResponse.json",
       "schema_sha256": "72e6d77f49bc5809c3af50f183e2a0862dd8f7836816d4796ff69bb13eae0e89",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/login/start"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/logout",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -12686,16 +12762,20 @@
       "schema": "v2/LogoutAccountResponse.json",
       "schema_sha256": "ac14ddfca2ec6092b0039be8720262d5a9930484d23e62544d2ef0b7e1db7926",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/logout"
     },
     {
@@ -12760,12 +12840,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -12773,16 +12857,20 @@
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "67ac3095b058a7d3c1627ff4dd9e52c8ee3c55f961cb1b980959ac15336d6827",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/read"
     },
     {
@@ -14078,12 +14166,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:getAuthStatus",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14091,16 +14183,20 @@
       "schema": "supplemental/v1/GetAuthStatusResponse.json",
       "schema_sha256": "740479306ecacda5f9d9e0db06048bca4995b487fa121f710e955a98ca7fb341",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "getAuthStatus"
     },
     {

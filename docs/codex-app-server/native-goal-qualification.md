@@ -44,7 +44,7 @@ Pinned source references, relative to `codex-rs/` at
   scalar objective length and positive/maximum budgets.
 - `core/src/config/mod.rs:4504-4512` and its `config_tests.rs:400-413`:
   `[goals].max_goal_token_budget` configuration.
-- `app-server/src/thread_goal_user_context.rs` and upstream
+- `app-server/src/request_processors/thread_goal_user_context.rs` and upstream
   `guardian_goal_tests.rs`: explicit user provenance and durable instruction order.
 
 Logs: `/tmp/samgita-native-goal-{initial,repair-1}.log` and
