@@ -12,6 +12,8 @@ defmodule SamgitaCodexDriver.Session do
   overflow exposes a gap. `thread/resume` may replay upstream pending interactions;
   it cannot reconstruct missing notification history. All server interactions
   require an explicit response to their exact generation and opaque handle.
+  Terminal dynamic-tool item/turn evidence retires unanswered matching handles;
+  it does not acknowledge a response or change a sent-unconfirmed outcome.
   """
   use GenServer, restart: :temporary
 
@@ -716,6 +718,8 @@ defmodule SamgitaCodexDriver.Session do
           method: wire["method"],
           thread_id:
             get_in(wire, ["params", "threadId"]) || get_in(wire, ["params", "conversationId"]),
+          turn_id: get_in(wire, ["params", "turnId"]),
+          item_id: get_in(wire, ["params", "callId"]),
           token: token,
           timer:
             Process.send_after(
@@ -837,7 +841,39 @@ defmodule SamgitaCodexDriver.Session do
     %{state | interaction_outcomes: outcomes}
   end
 
+  defp resolve_interaction(
+         %{
+           "method" => "item/completed",
+           "params" => %{"item" => %{"type" => "dynamicToolCall", "status" => status}} = params
+         },
+         state
+       )
+       when status in ["completed", "failed"] do
+    retire_dynamic_interactions(state, params["threadId"], params["turnId"], fn interaction ->
+      interaction.item_id == params["item"]["id"]
+    end)
+  end
+
+  defp resolve_interaction(
+         %{"method" => "turn/completed", "params" => %{"turn" => %{"status" => status}} = params},
+         state
+       )
+       when status in ["completed", "interrupted", "failed"] do
+    retire_dynamic_interactions(state, params["threadId"], params["turn"]["id"], fn _ -> true end)
+  end
+
   defp resolve_interaction(_, state), do: state
+
+  defp retire_dynamic_interactions(state, thread_id, turn_id, matches_item) do
+    Enum.reduce(state.interactions, state, fn {id, interaction}, state ->
+      if interaction.method == "item/tool/call" and
+           interaction.handle.generation == state.generation and
+           interaction.thread_id == thread_id and interaction.turn_id == turn_id and
+           matches_item.(interaction),
+         do: remove_interaction(state, id),
+         else: state
+    end)
+  end
 
   defp remove_interaction(state, id) do
     case Map.pop(state.interactions, id) do

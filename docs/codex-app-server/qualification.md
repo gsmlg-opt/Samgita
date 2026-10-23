@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 191 implemented / 289 missing /
-5 blocked requirements** and **0 verified / 72 implemented / 6,549 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 202 implemented / 278 missing /
+5 blocked requirements** and **0 verified / 107 implemented / 6,514 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills and direct
-MCP entries have scoped implementation evidence. Seventy-two directly exercised
+MCP entries have scoped implementation evidence. One hundred and seven directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -36,7 +36,8 @@ Additional method records: [queues](queue-lifecycle-qualification.md),
 [user shell](user-shell-qualification.md),
 [model discovery](model-discovery-qualification.md),
 [organization/read state](organization-lifecycle-qualification.md) and
-[skills lifecycle](skills-lifecycle-qualification.md).
+[skills lifecycle](skills-lifecycle-qualification.md) and
+[user-input/dynamic-tool interactions](tool-interactions-qualification.md).
 
 ## Delivered source and immutable reference
 
@@ -935,3 +936,32 @@ fields/variants gain scoped `implemented` evidence. Regenerated totals are
 dependency/interface, selector-null, remote/executor, watcher and cross-process
 variants are unqualified. The 23 Python inventory regressions and offline
 inventory check pass; the full completeness gate remains unsatisfied.
+
+## Native user-input and dynamic-tool retirement repair
+
+The actual-native regression failed before the runtime change: a dynamic request
+remained answerable locally after its native failed item and interrupted turn.
+The driver now retains thread/turn/call identity and retires only matching
+unanswered current-generation dynamic handles on validated terminal evidence.
+Timers are cancelled and stale replies are rejected. The repair emits no
+response, creates no acknowledgement and leaves sent-unconfirmed outcomes intact.
+
+The new private-network UDS profile passed **8 cases at both `501432` and
+`987654`**, 18.8s each. Its five deterministic retirement cases plus existing
+Session cases passed **33/0**; the existing actual-native Session suite passed
+**7/0** in an outer private network namespace. The explicit nonnative check
+executed **81/0**, reporting 335 cases with 254 real-binary exclusions. Compile,
+format, Python AST and whitespace passed. The coordinator's root static block
+also passed warnings-as-errors compile, format and strict Credo, **313 files**,
+after these runtime edits. All owned processes were reaped. Source, original
+RED, fixture expectation corrections, exact commands and logs remain in
+[tool interaction qualification](tool-interactions-qualification.md).
+
+The nine required namespace profiles now include the native tool-interaction
+file as an explicit CI step; default test discovery does not run that file.
+Eleven message/lifecycle entries and 35 directly asserted fields/variants gain
+scoped `implemented` evidence: **485 entries: 0 verified / 202 implemented /
+278 missing / 5 blocked**; **6,621 contracts: 0 verified / 107 implemented /
+6,514 missing**. Other input/tool registration, async input, backend/platform
+and legacy variants remain incomplete. Native completion and local handle
+retirement never confer Samgita Task acceptance or confirm an ambiguous reply.

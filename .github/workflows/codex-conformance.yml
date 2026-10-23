@@ -130,6 +130,10 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_user_shell_profile.exs --seed 501432
+      - name: Required native user-input and dynamic-tool profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_tool_interactions_profile.exs --seed 501432
 
   completeness:
     name: Full compatibility evidence gate
