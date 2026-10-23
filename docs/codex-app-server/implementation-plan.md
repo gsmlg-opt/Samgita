@@ -364,6 +364,14 @@ Next concrete work (repair follow-up, 2026-10-24):
    step again fails before tests fetching `mdex_native` (`header_too_long`),
    while the completeness gate correctly fails missing evidence. Keep these
    terminal outcomes separate; do not infer a release or full acceptance.
+   Eleven [account-control cases](account-control-qualification.md) now pass
+   both seeds for actual-native credit-consumption/nudge handling against owned
+   synthetic HTTP peers, exact routing/payloads, no-dispatch gates, errors and
+   ambiguous POST uncertainty without replay. Four entries and seventeen
+   positive contracts gain scoped evidence; CI explicitly selects the fifteenth
+   profile. Synthetic `sent`/`reset` results establish no real email or credit
+   effect. Full timeout/disconnect, service idempotency, gateway OAuth, OS
+   keyrings and user verification remain incomplete.
    At `085c4cc8`, foundation
    passed; conformance's thirteen isolated profiles passed, but all four default
    output-notice tests failed during namespace startup on Ubuntu 24.04. The

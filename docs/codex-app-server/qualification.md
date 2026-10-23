@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 397 implemented / 82 missing /
-6 blocked requirements** and **0 verified / 969 implemented / 5,652 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 401 implemented / 78 missing /
+6 blocked requirements** and **0 verified / 986 implemented / 5,635 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 969 directly exercised
+MCP entries have scoped implementation evidence. These 986 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1694,3 +1694,25 @@ The selected platform step failed before tests while downloading retained
 attempts. Platform conformance therefore did not run in that job. The separate
 completeness gate failed as required; its inventory regressions passed. These
 outcomes do not establish full hosted acceptance, release or A11 closure.
+
+## Native synthetic account controls
+
+Eleven [account-control cases](account-control-qualification.md) pass at both
+required seeds. The actual native process forwards exact selected/omitted credit
+and Unicode idempotency keys over two backend route styles, maps four consume
+outcomes and both nudge types, and preserves errors without retrying POSTs.
+Bodyless 204 is `sent`; the nudge API deliberately maps 429 to `cooldown_active`.
+This method-specific account outcome does not change generic event delivery's
+failure/retry classification for 429. A held consume POST times out locally,
+remains uncertain, receives a late native result after explicit fixture release,
+and is sent only once. No real credit or email effect is claimed.
+
+The first run exposed asynchronous `initialized` forwarding in the fixture's
+input-count baseline. A native-input observation barrier repairs that race;
+unchanged POST proofs were then extracted for strict Credo. Final unit seeds
+passed **11/0**, 20.9/22.6s. Namespace checks, format, independent compile and
+strict Credo pass. Four entries and seventeen directly asserted positive
+contracts gain scoped `implemented` evidence. CI now explicitly selects this
+fifteenth isolated profile. Full consume timeout, disconnect during POST, real
+account/backend idempotency and all gateway/user-verification profiles remain
+incomplete. No credential, deployment or A11 boundary is weakened.

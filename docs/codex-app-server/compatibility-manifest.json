@@ -462,12 +462,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/rateLimitResetCredit/consume",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected authenticated credit/nudge outcomes, exact two backend route styles, payloads, no-dispatch gates, structured errors and held-POST uncertainty with no retry. No real credit/email effect, backend idempotency guarantee, full timeout/disconnect or other account/platform success is qualified."
+      ],
       "params": {
         "$ref": "#/definitions/ConsumeAccountRateLimitResetCreditParams"
       },
@@ -489,16 +493,23 @@
         "source_line": 1347,
         "variant": "ConsumeAccountRateLimitResetCredit"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:160",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:206"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/rateLimitResetCredit/consume"
     },
     {
@@ -613,12 +624,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/sendAddCreditsNudgeEmail",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected authenticated credit/nudge outcomes, exact two backend route styles, payloads, no-dispatch gates, structured errors and held-POST uncertainty with no retry. No real credit/email effect, backend idempotency guarantee, full timeout/disconnect or other account/platform success is qualified."
+      ],
       "params": {
         "$ref": "#/definitions/SendAddCreditsNudgeEmailParams"
       },
@@ -640,16 +655,22 @@
         "source_line": 1365,
         "variant": "SendAddCreditsNudgeEmail"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:96",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:121",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/sendAddCreditsNudgeEmail"
     },
     {
@@ -14595,12 +14616,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/rateLimitResetCredit/consume",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected authenticated credit/nudge outcomes, exact two backend route styles, payloads, no-dispatch gates, structured errors and held-POST uncertainty with no retry. No real credit/email effect, backend idempotency guarantee, full timeout/disconnect or other account/platform success is qualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14608,16 +14633,23 @@
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "6d4144c00dcb7f73be6ad24693ff7e539bad56064e4432f7f2bf8d20b3bab724",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:160",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:206"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/rateLimitResetCredit/consume"
     },
     {
@@ -14700,12 +14732,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/sendAddCreditsNudgeEmail",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected authenticated credit/nudge outcomes, exact two backend route styles, payloads, no-dispatch gates, structured errors and held-POST uncertainty with no retry. No real credit/email effect, backend idempotency guarantee, full timeout/disconnect or other account/platform success is qualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14713,16 +14749,22 @@
       "schema": "v2/SendAddCreditsNudgeEmailResponse.json",
       "schema_sha256": "389978f741476c7cbcaec716b11a5bfb7f17581a28013e18cbf7a73ec8a45ae6",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:96",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:121",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/sendAddCreditsNudgeEmail"
     },
     {
@@ -22204,46 +22246,64 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/AddCreditsNudgeCreditType/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/AddCreditsNudgeCreditType/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9f2f08f345746a8b84f19f21645305a38d9029d7cb0bc964dbc6a5e271eeefda",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:96",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/AddCreditsNudgeCreditType/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/AddCreditsNudgeCreditType/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "18c8872478e9e836dd4245f9880eed76f9eb329fa845749ebf60426a10e1d58d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:96",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -117840,255 +117900,354 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditParams.json#/properties/creditId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/creditId",
       "required": false,
       "schema": "v2/ConsumeAccountRateLimitResetCreditParams.json",
       "schema_sha256": "5ea343536aa0f4ab71d338425c4f0670406bbcefa378d65a0b50c28451e3e441",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "creditId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditParams.json#/properties/idempotencyKey",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/idempotencyKey",
       "required": true,
       "schema": "v2/ConsumeAccountRateLimitResetCreditParams.json",
       "schema_sha256": "8836e24ab7f4758da353f9de3fe8c548003ef7ca972d07c7cb91e3b90081f06f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "idempotencyKey"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditResponse.json#/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/0",
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "60ee7df59e2fe6b6338ee119599deb47b25d23024374c7702a72a9d9213dac10",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditResponse.json#/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/0/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/0/enum/0",
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "c3b02848d7581aed9f37773aeeaa8e7a4925f12d406ec3119fdc846d56190ef7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditResponse.json#/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/1",
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "f9ca89a3e53511670b2b89684670646e20f82155b9443809a7a5a6bf727c0548",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditResponse.json#/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/1/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/1/enum/0",
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "e05c6167c9537153453c0a2cce0a6db54863032e4d6a2d1b2bc9b26f2373cb74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditResponse.json#/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/2",
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "6f57f4e1a07cc53d3d2fb228204aebfab7742b57360928463507199006cb6d10",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditResponse.json#/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/2/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/2/enum/0",
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "f00bef1d9771941cf7ad7ecffc2548a9f4bc956fa7d6d1fa66de196f783f11dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditResponse.json#/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/3",
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "3b85e2c0cd23bbcf1dd827ae0d7fce6cf991479b07f14cee11515958e5624e2e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditResponse.json#/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/3/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/ConsumeAccountRateLimitResetCreditOutcome/oneOf/3/enum/0",
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "3af8c434ba1f9c326f503815b48f9e916ccb8836f9a06948e4bbf9af472d703c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConsumeAccountRateLimitResetCreditResponse.json#/properties/outcome",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/outcome",
       "required": true,
       "schema": "v2/ConsumeAccountRateLimitResetCreditResponse.json",
       "schema_sha256": "2a876e343c06ade9f7c3b05ed4973b2589dd37261e950b223edf7af6544ca176",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:61",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:80"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "outcome"
     },
     {
@@ -150433,97 +150592,133 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SendAddCreditsNudgeEmailParams.json#/properties/creditType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/creditType",
       "required": true,
       "schema": "v2/SendAddCreditsNudgeEmailParams.json",
       "schema_sha256": "25cd054219b0dcda46f9e746a35884fe7f33c641fd068a6abd3c081a76180664",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:96",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "creditType"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SendAddCreditsNudgeEmailResponse.json#/definitions/AddCreditsNudgeEmailStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/AddCreditsNudgeEmailStatus/enum/0",
       "schema": "v2/SendAddCreditsNudgeEmailResponse.json",
       "schema_sha256": "98a042dc51335ec78d6255e46d42470cd7c7c400e4db90ae0202c33ecb39f239",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:96",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SendAddCreditsNudgeEmailResponse.json#/definitions/AddCreditsNudgeEmailStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "pointer": "/definitions/AddCreditsNudgeEmailStatus/enum/1",
       "schema": "v2/SendAddCreditsNudgeEmailResponse.json",
       "schema_sha256": "e445977f638a193b36168ed896b897ad3a1f3d773f6aabd271d91bddeff7dda8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:96",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SendAddCreditsNudgeEmailResponse.json#/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct consume key/selected-credit/outcome or nudge credit-type/status assertion with exact recorded HTTP forwarding. Credit omission/null and four consume outcomes, both nudge credit types/statuses are distinguished. Shared enum evidence applies only to the nudge call; real backend effects and other use sites remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/SendAddCreditsNudgeEmailResponse.json",
       "schema_sha256": "23559e1206c438b21bf4f915728d1b4840284deb4fb389058b871fe95eb04805",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:96",
+          "apps/samgita_codex_driver/test/native_account_control_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
