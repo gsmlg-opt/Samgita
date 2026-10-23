@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 355 implemented / 124 missing /
-6 blocked requirements** and **0 verified / 826 implemented / 5,795 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 375 implemented / 104 missing /
+6 blocked requirements** and **0 verified / 875 implemented / 5,746 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Eight hundred and twenty-six directly exercised
+MCP entries have scoped implementation evidence. Eight hundred and seventy-five directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1533,6 +1533,25 @@ and timer-cancellation races remain unqualified.
 
 Two lifecycle entries gain selected implementation evidence, with no native
 message or schema-field promotion. Offline inventory and whitespace checks pass.
+
+## Active current-turn settings
+
+The [seven-case native unit](active-turn-settings-qualification.md) now proves
+active `applied` publication with exact next-step model/effort/summary/tier
+capture, unchanged first/future settings, deliberate omission/null semantics,
+advertised custom effort, unavailable target identity, malformed requests and
+feature/capability gates. One source-derived repair corrects the invalid-input
+expectation for nonempty custom effort and adds a positive native capture case;
+no runtime behavior or deadlines change. Both seeds passed **7/0** (`501432`,
+5.2s; `987654`, 6.0s), independent compile/format and strict positional Credo
+(one file/69 checks) passed. Binary digest is unchanged and no owned scratch
+directory or process cwd remained after cleanup.
+
+Two entries and fifteen direct contracts gain selected `implemented` evidence.
+Reviewer routing, policy/cancellation races, remaining variants and full matrix
+remain incomplete. Hosted patch qualification still fails at a distinct sandbox
+boundary; MCP/root-static work and final populated-database/package/hosted checks
+are recorded separately. No full compatibility, publication or release is claimed.
 Totals: **485 entries: 0 verified / 373 implemented / 106 missing / 6 blocked**;
 **6,621 contracts: 0 verified / 860 implemented / 5,761 missing**. Full acceptance,
 A11, legacy/external/platform prerequisites and publication remain incomplete.

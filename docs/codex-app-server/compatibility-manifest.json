@@ -8345,15 +8345,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/active-turn-settings-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:turn/settings/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Boundary/partial evidence only; retain missing: Disabled feature rejects; runtime enablement excludes feature; cold enabled feature returns targetUnavailable for the expired turn, with no second provider request. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "No active target/applied publication; no later-step capture proof."
+        "Historical boundary-only checkpoint: Disabled feature rejects; runtime enablement excludes feature; cold enabled feature returns targetUnavailable for the expired turn, with no second provider request. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
       ],
       "params": {
         "$ref": "#/definitions/TurnSettingsUpdateParams"
@@ -8376,7 +8377,7 @@
         "source_line": 1064,
         "variant": "TurnSettingsUpdate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -8384,10 +8385,19 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:56",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:72",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:97",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:118",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:148",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:188",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:205"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turn/settings/update"
     },
     {
@@ -20296,15 +20306,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/active-turn-settings-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:turn/settings/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Boundary/partial evidence only; retain missing: Disabled feature rejects; runtime enablement excludes feature; cold enabled feature returns targetUnavailable for the expired turn, with no second provider request. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "No active target/applied publication; no later-step capture proof."
+        "Historical boundary-only checkpoint: Disabled feature rejects; runtime enablement excludes feature; cold enabled feature returns targetUnavailable for the expired turn, with no second provider request. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -20313,7 +20324,7 @@
       "schema": "v2/TurnSettingsUpdateResponse.json",
       "schema_sha256": "504e2ef2c3d06b13a107bf94a74791ff7f61c4a234f0beff78dca406ae2d1181",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -20321,10 +20332,19 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:56",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:72",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:97",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:118",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:148",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:188",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:205"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turn/settings/update"
     },
     {
@@ -186435,69 +186455,90 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/effort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected native field evidence: High and advertised custom effort reach actual native captures; numeric and empty values reject; null preserves published effort.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/effort",
       "required": false,
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "ac4935f76bdeb365aaabe5b244ff81b7eaa2eee710067f4826424dd44bd3283c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:97"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "effort"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/effort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected native field evidence: Positive high and fixture-effort strings are emitted exactly by native inference continuation.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
       "pointer": "/properties/effort/anyOf/0",
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:97"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/effort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected native field evidence: Explicit null after positive high publication retains high, with pending tool and later capture checked.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
       "pointer": "/properties/effort/anyOf/1",
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:72"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -186506,21 +186547,24 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/active-turn-settings-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Boundary/partial evidence only; retain missing: Only disabled/expired target boundary observed. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Boundary/partial evidence only; retain missing: Only disabled/expired target boundary observed. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "Selected native field evidence: Native continuation changes A to B; initial and future captures remain A; deliberate null preserves B in the second test.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
       ],
       "nullable": true,
       "pointer": "/properties/model",
       "required": false,
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "794b8e06cd6f3eb30d30a02be293b3d1b3b1097666c74aad673d2c136b1b8b5d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -186528,7 +186572,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:56"
         ]
       },
       "transport_coverage": [],
@@ -186537,25 +186582,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/serviceTier",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected native field evidence: Priority is emitted positively; omission preserves it and explicit null clears it on the actual continuation.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/serviceTier",
       "required": false,
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "aae669a39129c021eed33f14364186de0cc13fa33fa73b5c8810a77b4aa77099",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:72"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "serviceTier"
@@ -186563,69 +186615,90 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/summary",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected native field evidence: Detailed summary is emitted exactly on continuation; future stays concise; explicit null preserves detailed.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/summary",
       "required": false,
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "5469f43929a02fc780e3708580c7dd9dd41abb90c6d6d6626091a33e923da98a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:56"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "summary"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/summary/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected native field evidence: Positive detailed summary reaches continuation while first/future captures remain concise.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
       "pointer": "/properties/summary/anyOf/0",
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "1b53e765f5a08c3aeaf2d1c4d6662bfbe58b1c323363acdb57a53e2e0baa5a66",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:56"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/summary/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected native field evidence: Explicit null after detailed publication retains detailed rather than clearing to a default.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
       "pointer": "/properties/summary/anyOf/1",
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:72"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -186634,21 +186707,24 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/active-turn-settings-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Boundary/partial evidence only; retain missing: Only disabled/expired target boundary observed. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Boundary/partial evidence only; retain missing: Only disabled/expired target boundary observed. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "Selected native field evidence: Actual native thread ID is used and retained across applied/unavailable results and tool/turn associations.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -186656,7 +186732,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:56"
         ]
       },
       "transport_coverage": [],
@@ -186666,21 +186743,24 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/active-turn-settings-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnSettingsUpdateParams.json#/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Boundary/partial evidence only; retain missing: Only disabled/expired target boundary observed. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Boundary/partial evidence only; retain missing: Only disabled/expired target boundary observed. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "Selected native field evidence: Actual active turn ID applies; wrong, idle and completed targets cannot consume the pending tool or cause inference.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/TurnSettingsUpdateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -186688,7 +186768,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:118"
         ]
       },
       "transport_coverage": [],
@@ -186696,63 +186777,20 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnSettingsUpdateResponse.json#/definitions/TurnSettingsUpdateStatus/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected native field evidence: Positive applied status precedes explicit tool response and changed native continuation capture.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
       "pointer": "/definitions/TurnSettingsUpdateStatus/oneOf/0",
       "schema": "v2/TurnSettingsUpdateResponse.json",
       "schema_sha256": "674c713b4e95631c8bb8d86fbf5f0a50e178fdbaaf1899c796fe20f4a3b5e27c",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "oneOf"
-    },
-    {
-      "direction": "schema_variant",
-      "evidence": [],
-      "experimental": true,
-      "id": "schema:v2/TurnSettingsUpdateResponse.json#/definitions/TurnSettingsUpdateStatus/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "pointer": "/definitions/TurnSettingsUpdateStatus/oneOf/0/enum/0",
-      "schema": "v2/TurnSettingsUpdateResponse.json",
-      "schema_sha256": "c9aab1ab7ce96850168f82842a47bb6da19db609684823b0cbbd1aa8d3258931",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "enum"
-    },
-    {
-      "direction": "schema_variant",
-      "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
-      ],
-      "experimental": true,
-      "id": "schema:v2/TurnSettingsUpdateResponse.json#/definitions/TurnSettingsUpdateStatus/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [
-        "Boundary/partial evidence only; retain missing: Exact targetUnavailable response is boundary evidence, not active applied success. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
-      ],
-      "pointer": "/definitions/TurnSettingsUpdateStatus/oneOf/1",
-      "schema": "v2/TurnSettingsUpdateResponse.json",
-      "schema_sha256": "958245fa267638261983485af4611759d6b0586370ea901479e32d878312af3d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -186760,7 +186798,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:56"
         ]
       },
       "transport_coverage": [],
@@ -186769,18 +186807,19 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/active-turn-settings-qualification.md"
       ],
       "experimental": true,
-      "id": "schema:v2/TurnSettingsUpdateResponse.json#/definitions/TurnSettingsUpdateStatus/oneOf/1/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "id": "schema:v2/TurnSettingsUpdateResponse.json#/definitions/TurnSettingsUpdateStatus/oneOf/0/enum/0",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Boundary/partial evidence only; retain missing: Exact targetUnavailable response is boundary evidence, not active applied success. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Selected native field evidence: Positive applied status precedes explicit tool response and changed native continuation capture.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
       ],
-      "pointer": "/definitions/TurnSettingsUpdateStatus/oneOf/1/enum/0",
+      "pointer": "/definitions/TurnSettingsUpdateStatus/oneOf/0/enum/0",
       "schema": "v2/TurnSettingsUpdateResponse.json",
-      "schema_sha256": "5efcd2cfba21526200cc46a70abedbc1272a5e89e7d4810f9808580e986ae727",
-      "state": "missing",
+      "schema_sha256": "c9aab1ab7ce96850168f82842a47bb6da19db609684823b0cbbd1aa8d3258931",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -186788,7 +186827,71 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:56"
+        ]
+      },
+      "transport_coverage": [],
+      "wire_name": "enum"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
+      "experimental": true,
+      "id": "schema:v2/TurnSettingsUpdateResponse.json#/definitions/TurnSettingsUpdateStatus/oneOf/1",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Boundary/partial evidence only; retain missing: Exact targetUnavailable response is boundary evidence, not active applied success. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "Selected native field evidence: targetUnavailable is observed for idle, wrong active and completed targets with no implicit execution.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
+      "pointer": "/definitions/TurnSettingsUpdateStatus/oneOf/1",
+      "schema": "v2/TurnSettingsUpdateResponse.json",
+      "schema_sha256": "958245fa267638261983485af4611759d6b0586370ea901479e32d878312af3d",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:118"
+        ]
+      },
+      "transport_coverage": [],
+      "wire_name": "oneOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/active-turn-settings-qualification.md"
+      ],
+      "experimental": true,
+      "id": "schema:v2/TurnSettingsUpdateResponse.json#/definitions/TurnSettingsUpdateStatus/oneOf/1/enum/0",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Boundary/partial evidence only; retain missing: Exact targetUnavailable response is boundary evidence, not active applied success. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "Selected native field evidence: targetUnavailable is observed for idle, wrong active and completed targets with no implicit execution.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
+      ],
+      "pointer": "/definitions/TurnSettingsUpdateStatus/oneOf/1/enum/0",
+      "schema": "v2/TurnSettingsUpdateResponse.json",
+      "schema_sha256": "5efcd2cfba21526200cc46a70abedbc1272a5e89e7d4810f9808580e986ae727",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:118"
         ]
       },
       "transport_coverage": [],
@@ -186798,21 +186901,24 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/active-turn-settings-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnSettingsUpdateResponse.json#/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Boundary/partial evidence only; retain missing: Exact targetUnavailable response is boundary evidence, not active applied success. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Boundary/partial evidence only; retain missing: Exact targetUnavailable response is boundary evidence, not active applied success. Assertions: apps/samgita_codex_driver/test/additional_method_families_test.exs:287-324 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "Selected native field evidence: Exact applied and targetUnavailable statuses are observed against active, wrong, idle and completed targets.",
+        "Selected actual-pinned Linux stdio settings publication/capture evidence; reviewer routing, child/frozen consumers, policy/cancellation races, remaining enum/backend/transport profiles and full qualification remain incomplete."
       ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/TurnSettingsUpdateResponse.json",
       "schema_sha256": "5b540e6b69f5990d9885c85cd76171f2d431caf85766a16c879df7a07c6535a2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -186820,7 +186926,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_active_turn_settings_test.exs:118"
         ]
       },
       "transport_coverage": [],

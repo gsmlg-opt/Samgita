@@ -333,8 +333,13 @@ Next concrete work (repair follow-up, 2026-10-24):
    now indexes sixteen selected entries and 34 positive contracts without any
    `verified` promotion. Seven [deadline/quota cases](capacity-deadline-qualification.md)
    now pass both seeds with unchanged production bounds; the two lifecycle
-   entries gain selected `implemented` evidence only. Active-turn settings and
-   native MCP/OAuth controls are the next bounded units. At `085c4cc8`, foundation
+   entries gain selected `implemented` evidence only. Seven
+   [active-turn settings cases](active-turn-settings-qualification.md) now pass
+   both seeds with actual next-step capture, sparse/null semantics, custom
+   effort and unchanged future settings. Two entries and fifteen direct
+   contracts gain scoped evidence; reviewer/policy/race variants stay incomplete.
+   Native MCP/OAuth controls and background terminals are the next bounded units.
+   At `085c4cc8`, foundation
    passed; conformance's thirteen isolated profiles passed, but all four default
    output-notice tests failed during namespace startup on Ubuntu 24.04. The
    required namespace preflight at `fe5222d` diagnoses the actual prerequisite
