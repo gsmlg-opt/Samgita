@@ -282,6 +282,13 @@ declared and evidenced. An upstream unavailable response qualifies only that
 unavailable path. Success paths requiring another environment remain blocked.
 All profile claims remain provisional until qualification records exact evidence.
 
+Hosted native conformance uses Ubuntu 22.04 with a required user/network
+namespace preflight. The default output/patch notice cases also require this
+isolation. Hosted Ubuntu 24.04 denied `uid_map` in run `40030194617`; it is an
+unavailable qualification environment, not a passed alternate profile. Both
+native jobs retain the namespace requirement without changing host security
+policy, test deadlines or assertions. Foundation CI remains a separate job.
+
 Explicit Linux namespace profiles exercise native browser/device authentication,
 authenticated executor registration and Apps metadata against owned synthetic
 dependencies. Only loopback is available; native protocol output is forwarded

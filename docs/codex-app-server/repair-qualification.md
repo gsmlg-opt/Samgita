@@ -412,3 +412,22 @@ starts no listener or Codex process. Local `python3 -B
 scripts/codex/check_namespace_prerequisites.py` exited zero with all those
 properties true. The next hosted run must establish the actual prerequisite
 outcome before selecting a repair. Full compatibility and A11 remain incomplete.
+
+The diagnostic selected job at `fe5222d` in
+[40030194617](https://github.com/gsmlg-opt/Samgita/actions/runs/40030194617/job/120676271523)
+then reproduced the concrete prerequisite failure:
+`unshare: write failed /proc/self/uid_map: Operation not permitted`. Its native
+wire package passed 42 tests and audit; the preflight exited one before driver,
+consumer or platform execution. Job logs are saved in
+`/tmp/samgita-fe5222d-hosted-namespace-failure.log`. The initial attempt to obtain
+logs through `gh run view` was unavailable while the workflow was running;
+the completed job's API log supplies the actual diagnostic.
+
+The selected job is now explicitly pinned to Ubuntu 22.04, matching the existing
+successful namespace profile, and both jobs require the same preflight. The four
+output-notice cases remain in default discovery with every assertion and original
+deadline unchanged. No test moves/skips, host-network fallback, `sudo`, AppArmor
+change or host permission relaxation is introduced. This qualifies the declared
+namespace-capable environment; it does not claim support for the denied hosted
+Ubuntu 24.04 profile or identify which host security mechanism denied `uid_map`.
+Hosted validation of this environment repair is still required.

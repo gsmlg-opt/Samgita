@@ -15,7 +15,10 @@ env:
 jobs:
   selected-conformance:
     name: Selected actual-binary and platform scenarios
-    runs-on: ubuntu-latest
+    # Native output/patch qualification requires private user/network namespaces.
+    # Ubuntu 24.04's hosted policy denied uid_map in run 40030194617. Keep the
+    # same explicit prerequisite/profile as the isolated job, with no sudo change.
+    runs-on: ubuntu-22.04
     timeout-minutes: 30
     env:
       CODEX_BINARY: ${{ github.workspace }}/tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl
@@ -97,6 +100,9 @@ jobs:
       - name: Fetch and verify immutable source and executable
         timeout-minutes: 6
         run: python3 scripts/codex/fetch_pin.py
+      - name: Required private user and network namespace prerequisites
+        timeout-minutes: 1
+        run: python3 scripts/codex/check_namespace_prerequisites.py
       - name: Required private-network authentication profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
