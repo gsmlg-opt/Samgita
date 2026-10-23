@@ -31,12 +31,13 @@ Codex conformance.
 The official Linux musl executable and source archive are hash-pinned. Stable and
 experimental generation produced 318 and 452 JSON artifacts. The reproducible
 manifest now inventories 485 message/result/envelope/lifecycle requirements plus
-6,621 field/variant contracts. Four legacy approval method entries, the
-advertised MCP item-progress notification and the explicitly deprecated
-file-change output notification are `blocked` by source-proven absent production
-emitters. Selected native method/notification entries now total
-394 `implemented`, with 961 exact field/variant schema contracts
-implemented; 85 requirements and 5,660 contracts remain `missing`. None is fully verified.
+6,621 field/variant contracts. Four legacy approval method entries, MCP item
+progress, deprecated file-change output, three prediction entries and
+`thread/compacted` are `blocked` by exact source-proven unavailable success
+paths: ten required entries, with no scope waiver. Selected native
+method/notification entries now total 408 `implemented`, with 1,031 exact
+field/variant schema contracts implemented; 67 requirements and 5,590 contracts
+remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.

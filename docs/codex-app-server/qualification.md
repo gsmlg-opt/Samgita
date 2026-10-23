@@ -1781,3 +1781,22 @@ the original hosted seed `728846`, 305.0s. Scoped format and strict Credo pass.
 No production protocol implementation or task/recovery state is changed.
 These are scoped repairs; completeness, A11 and unavailable external/platform
 success profiles remain unmet.
+
+## Native rate-limit header updates
+
+Six [rate-limit notification cases](rate-limits-qualification.md) pass twice,
+**6/0** at seeds `501432`/`987654`, 9.9s each on final unit source. The fixed
+Responses HTTP peer supplies headers only; actual Codex emits rounded windows,
+normalized family IDs, sparse credit/window updates and native nulls for absent
+or invalid inputs. Every update is compared to an exact expected map, with
+one text response/request per owned Session and no tools. All process, canary,
+thread/turn and known-notification assertions pass. Namespace, compile, format
+and strict Credo pass after extracting unchanged assertions from one helper.
+
+One notification and fifteen positive field/object contracts gain scoped
+`implemented` evidence. All-null account fields and null-only branches remain
+missing. Real quota/enforcement, WebSocket header alternatives and required
+OS/race/replay profiles remain unqualified. The generated ledger has **408
+implemented / 67 missing / 10 blocked** requirements, **1,031 implemented /
+5,590 missing** contracts and **zero verified**. No complete compatibility,
+hosted success, real account, A11 closure or publication is inferred.

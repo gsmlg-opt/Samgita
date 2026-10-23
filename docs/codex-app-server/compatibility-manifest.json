@@ -10219,12 +10219,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:account/rateLimits/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/AccountRateLimitsUpdatedNotification"
       },
@@ -10237,16 +10241,23 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "account/rateLimits/updated"
     },
     {
@@ -73743,79 +73754,112 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CreditsSnapshot/properties/balance",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/CreditsSnapshot/properties/balance",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "balance"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CreditsSnapshot/properties/hasCredits",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/CreditsSnapshot/properties/hasCredits",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "hasCredits"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CreditsSnapshot/properties/unlimited",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/CreditsSnapshot/properties/unlimited",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "unlimited"
     },
     {
@@ -79667,49 +79711,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/credits",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/credits",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "d264ed4b02f979f18b4316f325136daa1f6da6821dc341a87c3fa194e7b4df60",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "credits"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/credits/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/credits/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "361aa2cb9cad82ae695f3c2e5b1b677dd03c9602af301e335a449de6b2d15fee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -79807,53 +79873,75 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/limitId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/limitId",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "limitId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/limitName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/limitName",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "limitName"
     },
     {
@@ -79955,49 +80043,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/primary",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/primary",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "3b969a7e3d6ba8cad547b65faeb67490af37f49792554c36d8f22b0f1ce3760b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "primary"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/primary/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/primary/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "af77b6e9cf64838669a8157ce016b4272bbb05351f89c0a50378a361074f73a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -80095,49 +80205,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/secondary",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/secondary",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "3b969a7e3d6ba8cad547b65faeb67490af37f49792554c36d8f22b0f1ce3760b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "secondary"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/secondary/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/secondary/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "af77b6e9cf64838669a8157ce016b4272bbb05351f89c0a50378a361074f73a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -80191,79 +80323,112 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitWindow/properties/resetsAt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitWindow/properties/resetsAt",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "resetsAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitWindow/properties/usedPercent",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/RateLimitWindow/properties/usedPercent",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "47085548d16f4f9691d4e236f5b406942fd4c028ed6d749a409881235bd051e8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "usedPercent"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitWindow/properties/windowDurationMins",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitWindow/properties/windowDurationMins",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "windowDurationMins"
     },
     {
@@ -103896,27 +104061,38 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-limits-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AccountRateLimitsUpdatedNotification.json#/properties/rateLimits",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six one-text-turn response-header cases qualify rounded named windows, normalized family identity, sparse/malformed input and credit values. Only directly positive header fields/object branches are mapped; null-only account fields/null branches remain missing. Real account quota/enforcement, WebSocket producer, other OS/transport/race/replay profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/rateLimits",
       "required": true,
       "schema": "v2/AccountRateLimitsUpdatedNotification.json",
       "schema_sha256": "fa9f8087ca307da61d87b3c73884689e87a9cb89c5dac77943140feca1d7f305",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:117",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:139",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:153",
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "rateLimits"
     },
     {
