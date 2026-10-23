@@ -77,10 +77,16 @@ jobs:
           python3 scripts/verify_isolated_protocol.py
           cd apps/samgita_protocol_websocket
           mix deps.get
+          mix compile --warnings-as-errors
+          mix format --check-formatted
           mix test
+          mix hex.audit
           cd ../samgita_protocol_codex
           mix deps.get
+          mix compile --warnings-as-errors
+          mix format --check-formatted
           mix test
+          mix hex.audit
       - run: mix assets.build
       - name: Reject legacy implementation references
         run: |

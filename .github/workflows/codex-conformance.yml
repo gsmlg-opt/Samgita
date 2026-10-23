@@ -55,6 +55,7 @@ jobs:
           mix compile --warnings-as-errors
           mix format --check-formatted
           mix test
+          mix hex.audit
       - name: Independent driver and actual-binary scenarios
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
@@ -63,6 +64,7 @@ jobs:
           mix compile --warnings-as-errors
           mix format --check-formatted
           mix test
+          mix hex.audit
       - name: Outside-umbrella actual-binary consumer
         timeout-minutes: 8
         run: python3 scripts/codex/verify_consumer.py
