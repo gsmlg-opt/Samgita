@@ -2616,12 +2616,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:getConversationSummary",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/GetConversationSummaryParams"
       },
@@ -2643,27 +2647,35 @@
         "source_line": 1482,
         "variant": "GetConversationSummary"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "getConversationSummary"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:gitDiffToRemote",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/GitDiffToRemoteParams"
       },
@@ -2685,16 +2697,20 @@
         "source_line": 1487,
         "variant": "GitDiffToRemote"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "gitDiffToRemote"
     },
     {
@@ -5155,12 +5171,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:rollout/compress",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "params": {
         "type": "null"
       },
@@ -5182,16 +5202,20 @@
         "source_line": 724,
         "variant": "RolloutCompress"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rollout/compress"
     },
     {
@@ -6504,12 +6528,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/memoryMode/set",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadMemoryModeSetParams"
       },
@@ -6531,16 +6559,20 @@
         "source_line": 705,
         "variant": "ThreadMemoryModeSet"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/memoryMode/set"
     },
     {
@@ -15688,12 +15720,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:getConversationSummary",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15701,28 +15737,36 @@
       "schema": "supplemental/v1/GetConversationSummaryResponse.json",
       "schema_sha256": "ad8fd50b7f7567acc5916b3efcb491e8f3104d3e8496149e653ef8c943946b8b",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "getConversationSummary"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:gitDiffToRemote",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15730,16 +15774,20 @@
       "schema": "supplemental/v1/GitDiffToRemoteResponse.json",
       "schema_sha256": "c2b517c77c027f07865c070603f777cfb52ffc0137d1396d4d96fc03c0242bbf",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "gitDiffToRemote"
     },
     {
@@ -17550,12 +17598,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:rollout/compress",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17563,16 +17615,20 @@
       "schema": "v2/RolloutCompressResponse.json",
       "schema_sha256": "4079ce97e285df4c7a0a93994df14872111c9e452cb84f7320a7d81d0150cb0c",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rollout/compress"
     },
     {
@@ -18548,12 +18604,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/memoryMode/set",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18561,16 +18621,20 @@
       "schema": "v2/ThreadMemoryModeSetResponse.json",
       "schema_sha256": "908b6eadcd2909936ff1a44152721baee9400f8bebd4ea99dc613551824236d9",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/memoryMode/set"
     },
     {
@@ -101006,90 +101070,119 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/cliVersion",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/cliVersion",
       "required": true,
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cliVersion"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/conversationId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/conversationId",
       "required": true,
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "058aa6b620d3d27a8fdad20420f0333d0467e32d6c189d86534c1993b5ce1dba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "conversationId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/cwd",
       "required": true,
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/gitInfo",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified.",
+        "Limited empty-preview/null-gitInfo observation only; no positive value/variant promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/gitInfo",
       "required": false,
@@ -101102,7 +101195,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "gitInfo"
@@ -101154,64 +101249,85 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/modelProvider",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/modelProvider",
       "required": true,
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/path",
       "required": true,
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/preview",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified.",
+        "Limited empty-preview/null-gitInfo observation only; no positive value/variant promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/preview",
       "required": true,
@@ -101224,7 +101340,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "preview"
@@ -101232,53 +101350,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/source",
       "required": true,
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "bb7f6162e3c3f64c5c64ed0c8e3a694f124a83acaa7d62713226a3738b3c3bea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "source"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/timestamp",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/timestamp",
       "required": false,
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "timestamp"
     },
     {
@@ -101328,27 +101462,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/ConversationSummary.json#/properties/updatedAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/updatedAt",
       "required": false,
       "schema": "supplemental/v1/ConversationSummary.json",
       "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "updatedAt"
     },
     {
@@ -101747,202 +101889,266 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "pointer": "/anyOf/0",
       "schema": "supplemental/v1/GetConversationSummaryParams.json",
       "schema_sha256": "953013f88223f4b36a071f0b63ad504b05c0d212866385895fc1bd263c9be223",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/0/properties/rolloutPath",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/anyOf/0/properties/rolloutPath",
       "required": true,
       "schema": "supplemental/v1/GetConversationSummaryParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rolloutPath"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "pointer": "/anyOf/1",
       "schema": "supplemental/v1/GetConversationSummaryParams.json",
       "schema_sha256": "b521f0973c0dec64875426ef695cd42e9d3bfeb9554cd14a1321655aaa7845bf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/1/properties/conversationId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/anyOf/1/properties/conversationId",
       "required": true,
       "schema": "supplemental/v1/GetConversationSummaryParams.json",
       "schema_sha256": "058aa6b620d3d27a8fdad20420f0333d0467e32d6c189d86534c1993b5ce1dba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "conversationId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/GetConversationSummaryResponse.json#/properties/summary",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/summary",
       "required": true,
       "schema": "supplemental/v1/GetConversationSummaryResponse.json",
       "schema_sha256": "f4282c6a75ac13eb45649db54eeafb5ca126e2f717ea9c29b1dee78f9df52625",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "summary"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/GitDiffToRemoteParams.json#/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/cwd",
       "required": true,
       "schema": "supplemental/v1/GitDiffToRemoteParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/GitDiffToRemoteResponse.json#/properties/diff",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/diff",
       "required": true,
       "schema": "supplemental/v1/GitDiffToRemoteResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "diff"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:supplemental/v1/GitDiffToRemoteResponse.json#/properties/sha",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/sha",
       "required": true,
       "schema": "supplemental/v1/GitDiffToRemoteResponse.json",
       "schema_sha256": "4ef9e5e157e1c9902741df5192a9f4bb483c9000196c6352c4b3ca36f53118c9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sha"
     },
     {
@@ -164886,98 +165092,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadMemoryModeSetParams.json#/definitions/ThreadMemoryMode/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadMemoryMode/enum/0",
       "schema": "v2/ThreadMemoryModeSetParams.json",
       "schema_sha256": "2f6d91e1c710dde210d022f2cddcb44985df2ff9b851c03194ba2e69737cf49f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadMemoryModeSetParams.json#/definitions/ThreadMemoryMode/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadMemoryMode/enum/1",
       "schema": "v2/ThreadMemoryModeSetParams.json",
       "schema_sha256": "8084c32c3acf29e3072793e9d2b7c536453e34a7a008df660af345ae1cb2e23a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadMemoryModeSetParams.json#/properties/mode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/mode",
       "required": true,
       "schema": "v2/ThreadMemoryModeSetParams.json",
       "schema_sha256": "9420ae62ce66f8432899d729002430ee1510a2e5a9f4eadb402ecc035b4a5b61",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-history-controls-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadMemoryModeSetParams.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux stdio local-history controls: loaded/cold memory metadata, eligible native-created rollout compression, retained summaries and cached local Git refs. No model requests. Compression ACK is trigger-only; concurrency/lock/disk failures, arbitrary Git histories, real remote freshness, other transports/platforms, external services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadMemoryModeSetParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_local_history_controls_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {

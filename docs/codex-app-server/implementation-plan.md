@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 advertised MCP item-progress notification and the explicitly deprecated
 file-change output notification are `blocked` by source-proven absent production
 emitters. Selected native method/notification entries now total
-340 `implemented`, with 761 exact field/variant schema contracts
-implemented; 139 requirements and 5,860 contracts remain `missing`. None is fully verified.
+348 `implemented`, with 781 exact field/variant schema contracts
+implemented; 131 requirements and 5,840 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -298,6 +298,13 @@ Next concrete work (repair follow-up, 2026-10-24):
    qualify unasserted values or other methods. CI explicitly selects this
    thirteenth profile. Real publication/auth, startup-enabled behavior,
    pagination, hostile inputs, concurrency and atomicity remain incomplete.
+   Eight [local-history cases](local-history-controls-qualification.md) now
+   qualify real memory metadata, explicit physical compression/cold resume,
+   retained summaries and owned cached Git diffs. One source-derived repair
+   preserves all exact maps, byte checks and deadlines; both seeds pass and
+   every case makes zero model requests. Eight entries and twenty positive
+   fields gain evidence; empty preview/null gitInfo and unexercised locks,
+   concurrency, disk faults and remote freshness remain incomplete.
    Continue remaining image-byte limits, account backend variants,
    environment/permission/turn variants and real-service authentication profiles.
    Preserve entry-specific evidence and
@@ -314,9 +321,10 @@ Next concrete work (repair follow-up, 2026-10-24):
    Conformance **40025258588** passed all twelve profiles and independent
    driver/consumer steps, but the platform job again failed before tests while
    fetching `mdex_native` with `header_too_long`; the completeness job remains
-   failed. Preserve those distinct outcomes. Thread-control and plugin-sharing
-   now have focused evidence; local-history controls and seven active output
-   notices are the next bounded units. Final aggregate/hosted checks must include
+   failed. Preserve those distinct outcomes. Thread-control, plugin-sharing
+   and local-history controls now have focused evidence; seven active output
+   notices and the auth/envelope/lifecycle audit are the next bounded units.
+   Final aggregate/hosted checks must include
    all subsequent executable changes, with serialized validation and direct
    positive schema evidence only.
 7. Track the unexplained immediate Fake Agent listener rebind failure separately

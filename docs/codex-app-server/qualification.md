@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 340 implemented / 139 missing /
-6 blocked requirements** and **0 verified / 761 implemented / 5,860 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 348 implemented / 131 missing /
+6 blocked requirements** and **0 verified / 781 implemented / 5,840 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Seven hundred and sixty-one directly exercised
+MCP entries have scoped implementation evidence. Seven hundred and eighty-one directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1408,3 +1408,35 @@ definitions establish the exercised structure, not execution of another method.
 Regenerated totals: **485 entries: 0 verified / 340 implemented / 139 missing /
 6 blocked**; **6,621 contracts: 0 verified / 761 implemented / 5,860 missing**.
 The full goal, A11, real-service and publication gates remain incomplete.
+
+## Native local-history controls
+
+Eight new default-discovered native cases passed **8/0** at seeds `501432`
+and `501433` (**10.5s / 10.3s**) after one bounded assertion repair. They
+observe loaded/cold memory-mode persistence in actual native JSONL and read-only
+SQLite, compress an eligible closed native-created rollout into Zstandard,
+preserve a recent sibling and original bytes through cold resume, query retained
+summaries, and inspect local Git diffs from owned cached refs. Every case asserts
+zero model requests. No Samgita data or runtime is used by these tests.
+
+The first run was **8 tests / 3 failures / 9.7s**. Exact pinned source explains
+all three incorrect expectations: missing-ID fallback wording, SQLite versus
+file-mtime timestamps for empty legacy ID/path summaries, and serde's acceptance
+of an empty map for the internally tagged optional-unit request. The repair
+keeps all cases, full separate summary maps, physical compression/byte checks
+and original deadlines; nonempty maps/scalars still reject. Exported schema
+validation and wire-only native acceptance are labeled separately.
+
+Independent/root warnings-as-errors compilation, focused formatting and strict
+Credo (**323 files loaded, 69 checks, no issues**) passed; owned process cleanup
+was checked. These original runs retain tool-session output rather than a
+fabricated log file. [Local-history qualification](local-history-controls-qualification.md)
+records exact commands, immutable source, direct fields and limitations.
+Compression acknowledgement remains only a trigger, not completion; locks,
+cooldowns, concurrency/disk faults and real remote freshness remain unqualified.
+
+Eight method/response entries and twenty positive fields become implemented.
+Empty preview and null gitInfo remain limited evidence without promotion.
+Regenerated totals: **485 entries: 0 verified / 348 implemented / 131 missing /
+6 blocked**; **6,621 contracts: 0 verified / 781 implemented / 5,840 missing**.
+Full compatibility, A11, external service/platform and publication gates stay open.
