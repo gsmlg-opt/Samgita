@@ -5,9 +5,11 @@ the independent driver's suite to 125 tests. The follow-up below adds standalone
 tool-output/settings (`50abfe3`) and controlled MCP-startup (`9791d54`) evidence.
 These changes affect
 tests and documentation; the native schema, driver and platform runtime are
-unchanged. Full compatibility remains incomplete. The method and field contracts
-stay `missing` until all their
-required behavior and deployment profiles have evidence.
+unchanged. Full compatibility remains incomplete. The later
+[core thread/turn evidence audit](core-thread-turn-qualification.md) indexes
+directly asserted methods and fields as scoped `implemented` evidence. Unasserted
+branches remain `missing`; none is `verified` until all required behavior and
+deployment profiles have evidence.
 
 The immutable reference remains Codex `rust-v0.163.0`, source
 `83086188ae0614bd882818ff1aa23f3194962012`, Linux musl executable SHA-256

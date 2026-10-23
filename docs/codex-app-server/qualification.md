@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 264 implemented / 216 missing /
-5 blocked requirements** and **0 verified / 351 implemented / 6,270 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 289 implemented / 191 missing /
+5 blocked requirements** and **0 verified / 419 implemented / 6,202 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Three hundred and fifty-one directly exercised
+MCP entries have scoped implementation evidence. Four hundred and nineteen directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1148,3 +1148,43 @@ actual session import. Regenerated totals are **485 entries: 0 verified /
 264 implemented / 216 missing / 5 blocked**; **6,621 contracts: 0 verified /
 351 implemented / 6,270 missing**. The complete driver matrix must include the
 new default-discovered cases. External/platform profiles and A11 remain incomplete.
+
+## Existing native thread and turn evidence audit
+
+The [core thread/turn audit](core-thread-turn-qualification.md) indexes existing
+actual-binary assertions for twelve operations, correlated turn/item lifecycle,
+cold persisted history and selected request/result fields. The cited sources
+passed in the complete **343/0** driver runs at `513498` and `987654` recorded
+above; this audit changes no executable behavior. It adds scoped evidence to
+28 entries, promotes **25** previously missing entries and **68** directly
+asserted fields to `implemented`, and marks none `verified`.
+
+Canonical shared shapes do not establish notification emission. Streamed deltas,
+thread notices, timestamps, additional nullable/enum branches and deployment
+profiles remain incomplete where no direct assertion exists. Regenerated totals:
+**485 entries: 0 verified / 289 implemented / 191 missing / 5 blocked**;
+**6,621 contracts: 0 verified / 419 implemented / 6,202 missing**.
+
+## Local assembly and hosted checkpoint at `dd6ec5b`
+
+The coordinator also completed `mix assets.build` and isolated production
+`mix deps.get --only prod`, `mix compile --warnings-as-errors`,
+`mix assets.deploy`, and `mix release --overwrite`. Production assembly used
+synthetic runtime settings, a non-listening loopback database address and
+`MIX_BUILD_PATH=/tmp/samgita-codex-followup-current-production-build`.
+The local `samgita-0.1.0.tar.gz` has SHA-256
+`4df884ba156d32a7db88f19629a4eef030e53411cb07fbba23d2a337669a6a31`.
+It was not started, tagged, published or deployed. The log is
+`/tmp/samgita-codex-followup-current-assets-assembly.log`.
+
+Hosted [foundation 40022715603](https://github.com/gsmlg-opt/Samgita/actions/runs/40022715603)
+is terminal **success** at `dd6ec5b6422fdd52243e94af1c4ed95a2b023902`, including
+populated-database repeats, restart, isolated protocol consumers, static/audit
+checks and local assembly. In
+[conformance 40022793860](https://github.com/gsmlg-opt/Samgita/actions/runs/40022793860),
+the independent wire/driver/outside-consumer steps and all eleven explicit
+native profiles passed. Its platform step failed during `mdex_native` NIF
+download with `header_too_long` before platform tests ran; no platform pass is
+claimed for that attempt. The failed job was rerun unchanged. Its separate
+complete-evidence gate failed because contracts remain incomplete. These are
+distinct results; an unchanged rerun cannot erase the initial failure.
