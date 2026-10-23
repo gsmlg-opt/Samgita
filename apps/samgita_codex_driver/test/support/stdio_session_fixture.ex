@@ -12,15 +12,13 @@ defmodule SamgitaCodexDriver.StdioSessionFixture do
   end
 
   def close(pid, connection) do
-    try do
-      if Process.alive?(pid), do: assert(:ok = Session.close(pid))
+    if Process.alive?(pid), do: assert(:ok = Session.close(pid))
+    :ok
+  catch
+    :exit, {reason, {GenServer, :call, [^pid, :close, :infinity]}}
+    when reason in [:noproc, :normal, :shutdown] ->
       :ok
-    catch
-      :exit, {reason, {GenServer, :call, [^pid, :close, :infinity]}}
-      when reason in [:noproc, :normal, :shutdown] ->
-        :ok
-    after
-      assert :ok = Stdio.close(connection)
-    end
+  after
+    assert :ok = Stdio.close(connection)
   end
 end
