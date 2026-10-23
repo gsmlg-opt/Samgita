@@ -62,6 +62,9 @@ jobs:
       - name: Required private user and network namespace prerequisites
         timeout-minutes: 1
         run: python3 scripts/codex/check_namespace_prerequisites.py
+      - name: Required pinned native sandbox write and denial
+        timeout-minutes: 1
+        run: python3 scripts/codex/check_native_sandbox_prerequisites.py
       - name: Independent driver and actual-binary scenarios
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
@@ -103,6 +106,9 @@ jobs:
       - name: Required private user and network namespace prerequisites
         timeout-minutes: 1
         run: python3 scripts/codex/check_namespace_prerequisites.py
+      - name: Required pinned native sandbox write and denial
+        timeout-minutes: 1
+        run: python3 scripts/codex/check_native_sandbox_prerequisites.py
       - name: Required private-network authentication profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver

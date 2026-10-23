@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 import subprocess
 import tarfile
+import tempfile
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -20,6 +21,10 @@ TAG_OBJECT = "129b8ec7ee6f4511557a4856279f529025c25af4"
 ASSET = "codex-x86_64-unknown-linux-musl.tar.gz"
 ARCHIVE_SHA256 = "beb339e8ecd9ba057a6bb2dc81ad8ca474812edfbf0fc5056ca818797648dde4"
 BINARY_SHA256 = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+BWRAP_ASSET = "bwrap-x86_64-unknown-linux-musl.tar.gz"
+BWRAP_MEMBER = "bwrap-x86_64-unknown-linux-musl"
+BWRAP_ARCHIVE_SHA256 = "bcc196b1d25dc2c2b912dcedf780b562deb0552f3c50648761ced145c3466a23"
+BWRAP_SHA256 = "77360cb751ccedc5971391444ac86a8a33c15b04d6b4a6fe45f5d25496e62c4c"
 SOURCE_SHA256 = "e57f1d4f914c71c3532a12d5c14f740909fca4e7e041fa1b3db71618c88e5567"
 CACHE = ROOT / "tmp/codex" / VERSION
 
@@ -46,6 +51,31 @@ def fetch(url, path, expected):
     temporary.replace(path)
 
 
+def install_bwrap(archive_path, destination):
+    """Install unchanged release bytes, never an archive-selected path/link."""
+    if destination.is_symlink() or destination.parent.is_symlink():
+        raise SystemExit("Pinned bubblewrap destination must not use symlinks")
+    if not destination.exists() or digest(destination) != BWRAP_SHA256:
+        with tarfile.open(archive_path) as archive:
+            members = archive.getmembers()
+            if len(members) != 1 or members[0].name != BWRAP_MEMBER or not members[0].isfile():
+                raise SystemExit("Unexpected pinned bubblewrap archive members")
+            contents = archive.extractfile(members[0]).read()
+        if hashlib.sha256(contents).hexdigest() != BWRAP_SHA256:
+            raise SystemExit("Pinned bubblewrap payload SHA-256 mismatch")
+        destination.parent.mkdir(exist_ok=True)
+        with tempfile.NamedTemporaryFile(dir=destination.parent, prefix="bwrap-", delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(contents)
+        try:
+            temporary.chmod(0o755)
+            temporary.replace(destination)
+        finally:
+            temporary.unlink(missing_ok=True)
+    if digest(destination) != BWRAP_SHA256 or destination.stat().st_mode & 0o111 == 0:
+        raise SystemExit("Installed pinned bubblewrap verification failed")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-only", action="store_true")
@@ -69,10 +99,18 @@ def main():
                 archive.extract(member, CACHE, filter="data")
         if digest(binary) != BINARY_SHA256:
             raise SystemExit("Extracted binary SHA-256 mismatch")
+        # The bare executable archive omits resources. The unchanged matching
+        # release sidecar is also checked by Codex's embedded expected digest.
+        bwrap_archive = CACHE / BWRAP_ASSET
+        fetch(f"https://github.com/openai/codex/releases/download/rust-v{VERSION}/{BWRAP_ASSET}",
+              bwrap_archive, BWRAP_ARCHIVE_SHA256)
+        bwrap = CACHE / "codex-resources/bwrap"
+        install_bwrap(bwrap_archive, bwrap)
         version = subprocess.check_output([str(binary), "--version"], text=True).strip()
         if version != f"codex-cli {VERSION}":
             raise SystemExit(f"Unexpected executable version: {version}")
-        result.update(binary=str(binary), binary_sha256=BINARY_SHA256)
+        result.update(binary=str(binary), binary_sha256=BINARY_SHA256,
+                      bundled_bwrap=str(bwrap), bundled_bwrap_sha256=BWRAP_SHA256)
     print(json.dumps(result, indent=2))
 
 

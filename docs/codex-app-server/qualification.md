@@ -1616,3 +1616,16 @@ remaining approvals and OS/backend profiles are unqualified.
 Totals: **485 entries: 0 verified / 394 implemented / 85 missing / 6 blocked**;
 **6,621 contracts: 0 verified / 961 implemented / 5,660 missing**. No complete
 compatibility, external integration, publication, deployment or A11 claim follows.
+
+## Required native sandbox resources
+
+The [sandbox prerequisite](native-sandbox-prerequisites.md) adds the exact
+official bwrap sidecar matching the unchanged pinned executable and requires a
+fixed native write/deny probe in both hosted jobs. The first local probe passed
+using an empty tool PATH to force the verified bundled fallback: allowed write,
+EROFS outside-write denial and unchanged outside bytes. The native output suite
+passed **4/0**, hosted failure seed `354233`, 7.0s, with no escalation response,
+deadline or assertion weakening. Eight resource-integrity tests and existing
+Python regressions passed **31/0**. The earlier runner's exact bwrap availability
+remains unproven because it discarded stderr. Hosted validation of the resource
+change remains required; no manifest state is promoted by this environment check.
