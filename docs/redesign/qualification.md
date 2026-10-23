@@ -4,6 +4,14 @@ Date: 2026-10-23. Scope: persisted management UI, complete fake-Agent journey, l
 
 The reliability repair below supersedes the original P5 aggregate failures and reused-database limitation. The original P5 commands, browser observations and totals remain prior evidence from `91567e5116cb10f702a57012485ceed812b87d21`; they are not new browser runs. A11 remains blocked. No release or deployment is certified.
 
+The [current repair qualification](../codex-app-server/repair-qualification.md)
+updates both Plug.Crypto locks to 2.2.1, diagnoses the WebSocket control-mailbox
+race, preserves and explicitly reconciles only each recovery test's owned
+simulated execution, and adds real HTTP evidence of the pre-application A11
+blocker. Original unresolved database records remain blocked. Read that record
+for current commands/results; the following failures describe their earlier
+checkpoint and are not current dependency or fixture repair claims.
+
 The subsequent Codex source/test checkpoint `d63dcddae49c0c7c7b5565482134d4282275a86c`
 has separate [current qualification](../codex-app-server/qualification.md).
 Its local root tests, driver/consumer, static checks, assets and assembly passed,
@@ -88,6 +96,14 @@ Decimal is now **3.2.0**, Bandit **1.13.1**, and test-only lazy_html **0.1.13**,
 Local evidence logs are `/tmp/samgita-reliability-final/{results.json,*.log}`, `/tmp/samgita-reliability-{red,focused2,static-final2}.log`, `/tmp/samgita-github-{deletion,maintain}-red.log`, `/tmp/samgita_ws_red.log`, `/tmp/samgita-schedule-legacy-nil-red.log`, `/tmp/samgita-frozen-compatible-{final,workspace}.log` and `/tmp/samgita-bun-1313-regenerated.log`. These are local logs, not published artifacts. Browser screenshots/hashes in the original P5 section below were not rerun in this repair; current automated LiveView cases and the rebuilt assets are the new evidence.
 
 ### A11 confidentiality gate remains blocked
+
+The subsequent [repair investigation](../codex-app-server/repair-qualification.md#a11-source-proven-pre-application-blocker)
+also exercises real Bandit HTTP/1 requests. Its request-start event exposes
+coalesced body bytes through the adapter buffer before any application Plug;
+exception metadata retains that original connection. Merely moving this form to
+a controller or earlier Plug cannot close the gate. The four passing exposure
+tests are not confidentiality acceptance. Source-level pre-emission controls or
+a separately reviewed encrypted entry contract remain prerequisites.
 
 `telemetry_confidentiality_test.exs` attaches real raw LiveView `handle_event` start/stop and Repo query handlers, submits a synthetic credential canary, captures debug logs and DOM, and evaluates configured metric projections. Logs, rendered markup and metric projections exclude the canary. The raw LiveView start **and** stop metadata contain the exact plaintext at `metadata.params["credential"]["credential"]` before application handling. The regression intentionally records this exposure; its passing result is not a passing A11 confidentiality gate.
 

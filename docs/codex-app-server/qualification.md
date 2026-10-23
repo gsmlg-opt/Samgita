@@ -3,12 +3,16 @@
 Status: **incomplete**. The manifest records **0 verified / 485 missing requirements**
 and **0 verified / 6,621 missing field/variant contracts**. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
-accepted contract remains [the full goal](goal.md); A11 and the security advisory
-below also prevent a platform-readiness or release claim.
+accepted contract remains [the full goal](goal.md). The
+[current repair record](repair-qualification.md) supersedes the dependency-audit,
+WebSocket synchronization and reused-database fixture failure claims below for
+its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
+can enter server telemetry before application handling. Full compatibility and
+release readiness remain incomplete.
 
 ## Delivered source and immutable reference
 
-The runtime checkpoint remains
+The historical runtime checkpoint is
 `d63dcddae49c0c7c7b5565482134d4282275a86c`, on existing `main`. It adds
 `49d1c37e23404f6255fd742c70f7dd23bc27f4c9` (confirmed owned-process shutdown)
 and retained legacy contract tests to the previous native platform checkpoint

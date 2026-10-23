@@ -102,74 +102,40 @@ combined-source checks passed 89 driver tests, independent consumers, 188 core
 tests and 112 executed web tests twice, plus the selected actual-binary/API
 journey. Exact remaining aggregate and hosted outcomes belong in qualification.
 
-Next concrete work:
+Next concrete work (repair follow-up, 2026-10-24):
 
-1. The lifecycle repair `49d1c37`, legacy contract evidence `d63dcdd` and documents
-   were pushed through `6e19d69`. Hosted pinned conformance run `39958930872`
-   passed its selected protocol/driver/consumer/platform job, including all 102
-   driver tests and four actual-binary platform journeys. Its independent full
-   evidence gate failed as required. Aggregate run `39958837990` passed root
-   checks and fresh restart, then failed the retained neutral WebSocket
-   overflow/replay test (40 tests, one failure); later aggregate steps were
-   skipped. Report this out-of-scope result without changing its test or
-   transport in the Codex repair. Repeated local restart on the retained scratch
-   database still failed before driver startup with
-   `unmapped_or_unresolved_tasks`; fresh hosted success cannot clear that result.
-   Retained `plug_crypto 2.2.0` still fails local audit for CVE-2026-105963;
-   dependency remediation remains a separate scoped change.
-2. The native turn suites are implemented at `73258c5`: 23 actual-binary cases
-   cover every UserInput form, selected overrides and persisted UTF-8 spans/client
-   IDs. The final local driver suite passed 125 tests after source-grounded
-   correction of model metadata and media-processing assumptions, plus stronger
-   skill/cleanup/isolation assertions. See [turn qualification](turn-input-qualification.md).
-   The follow-up adds ten stable/experimental standalone `toolOutput` scenarios,
-   four settings/validation scenarios and a paired controlled MCP-startup scenario.
-   See the same qualification document for exact annotation, history, precedence
-   and startup-selection contracts. The image follow-up `9193def` adds eight real-binary
-   resize/preparation/Unicode-boundary cases across user and structured output.
-   Next cover active-turn output steering, remaining structured output
-   media/encrypted content, compaction retention, upstream image-byte limits,
-   enabled app/plugin and deferred MCP routing, and
-   remaining environment/permission/turn overrides. Complete differential
-   profiles and manifest-specific evidence. Preserve
-   all 485 requirements and 6,621 contracts as missing until their full acceptance
-   conditions are established. Selected payload capture does not establish media
-   understanding, file resolution, external permissions or every transport.
-   The turn-input Credo literal repair is `8970df8`; its hosted aggregate
-   `39964413395` passes compilation, formatting, strict Credo, repeated platform
-   tests, fresh restart, protocol consumers, assets, legacy scan and Dialyzer,
-   then fails the retained Plug.Crypto audit. The prior pinned run `39963631668`
-   passes its selected actual-binary/platform job, while completeness fails.
-   The delivered follow-up at `4690295` passes the selected pinned job in
-   `39966435643`; its full-evidence gate fails. Aggregate `39966363211` fails the
-   retained restart test with `:eaddrinuse` at `restart_reconcile_test.exs:138`.
-   No platform repair is included; later aggregate gates were skipped. See the
-   qualification record before resuming. All implementation remains incomplete.
-   Aggregate `39967256870` on `9684fdd` subsequently passed repeated platform
-   tests, restart, independent consumers, assets, legacy scan and Dialyzer, then
-   failed the retained Plug.Crypto audit; assembly was skipped. It does not erase
-   the prior restart failure or certify a repeated local scratch database.
-   Initialization commit `c48dd08` adds nine raw-transport actual-binary cases
-   covering early/duplicate/omitted/params
-   variants across stdio, capability-token WS and UDS under absent/false/true
-   negotiation. Eight scripted cases establish Session send-failure and
-   generation ordering. The generator regression corrects initialized's
-   self-prerequisite. See [initialization qualification](initialization-qualification.md).
-   Complete native client-notification access and remaining initialization and
-   deployment profiles still need assessment before advancing the entry to
-   verified. Do not substitute client/fixture byte caps for upstream image limits.
-   Hosted checkpoint `3c54d74` has a new fixture-teardown failure in pinned run
-   `39975362507` (166 driver tests, one failure, seed `513498`); the outside
-   consumer and platform steps were skipped. Its aggregate `39975272562` passed
-   through Dialyzer and failed the retained Plug.Crypto audit. A source audit
-   found that fixture callbacks can skip the existing persistent Stdio shutdown
-   barrier after ExUnit's linked Session exits. A deterministic guardian-suspension
-   regression reproduces this ordering gap; complete the shared test-fixture
-   cleanup repair and repeat qualification before relying on this checkpoint.
-3. Run final independent-package/consumer, root, restart/recovery, static,
-   security, assets, release-assembly and hosted checks on the delivered source.
-   Keep unavailable external profiles and A11 visibly incomplete. Publish only
-   after applicable gates and the normal workflow pass.
+1. The production shutdown fix stays intact. The new test cleanup barrier is
+   `5964db9`, followed by its strict-Credo syntax correction `20277f1`.
+   The full independent driver suite passed 169 tests, seed `513498`; its three
+   deterministic shutdown regressions also passed after the syntax correction.
+2. Plug.Crypto repair `b674b8c` updates both retained locks and the standalone
+   consumer floor to 2.2.1. All four retained package audits pass. WebSocket test
+   synchronization `04fb7f4` preserves production bounds and passes 42 package
+   cases at the recorded failure seed and two additional seeds. Recovery repair
+   `db896d3` preserves the activation guard and historical records, explicitly
+   journals cessation of only its own simulated effect, and passes fresh plus
+   consecutive populated-database repeats. Original unresolved databases stay
+   blocked. Exact causes, RED/GREEN evidence, commands and limits are in
+   [repair qualification](repair-qualification.md).
+3. A11 is still blocked. Real retained Bandit HTTP/1 tests establish raw
+   credential/header exposure before any application Plug and retained exposure
+   in exception metadata. An early HTTP/controller entry alone cannot solve it.
+   No dependency offers a supported pre-emission redaction hook in this stack;
+   source-level controls or a separately reviewed encrypted ingress contract are
+   required. Continue independent compatibility work; never call exposure tests
+   passing confidentiality acceptance.
+4. Continue the native Session client-notification surface with complete envelopes,
+   explicit local-send outcomes, generation/deadline fences and no fabricated ACK
+   or automatic replay. Then qualify active-turn structured output steering,
+   remaining media/encrypted content, compaction retention, upstream image-byte
+   limits, enabled app/plugin/deferred MCP routing and environment/permission/turn
+   variants. Preserve manifest-specific evidence and external/legacy blockers;
+   generic forwarding and scripted peers cannot establish real acceptance.
+5. Run final independent packages/consumers, populated root suites, repeated
+   restart/recovery, static/security/assets/scanner/Dialyzer/assembly and hosted
+   checks against final delivered code. Keep the strict completeness gate red
+   while required evidence is missing. Publish only after applicable gates and
+   an existing normal publication workflow succeed; no deployment is authorized.
 
 Project-event delivery remains notification delivery; it cannot start a turn.
 No new background execution engine, production migration, sibling-service change,
