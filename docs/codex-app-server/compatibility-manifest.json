@@ -10771,12 +10771,17 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/fileChange/patchUpdated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Selected actual pinned native emission/fields only; not full compatibility."
+      ],
       "params": {
         "$ref": "#/definitions/FileChangePatchUpdatedNotification"
       },
@@ -10789,16 +10794,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "item/fileChange/patchUpdated"
     },
     {
@@ -10841,12 +10850,17 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/plan/delta",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Selected actual pinned native emission/fields only; not full compatibility."
+      ],
       "params": {
         "$ref": "#/definitions/PlanDeltaNotification"
       },
@@ -10859,27 +10873,36 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "item/plan/delta"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/reasoning/summaryPartAdded",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Selected actual pinned native emission/fields only; not full compatibility."
+      ],
       "params": {
         "$ref": "#/definitions/ReasoningSummaryPartAddedNotification"
       },
@@ -10892,27 +10915,36 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "item/reasoning/summaryPartAdded"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/reasoning/summaryTextDelta",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Selected actual pinned native emission/fields only; not full compatibility."
+      ],
       "params": {
         "$ref": "#/definitions/ReasoningSummaryTextDeltaNotification"
       },
@@ -10925,27 +10957,36 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "item/reasoning/summaryTextDelta"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/reasoning/textDelta",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Selected actual pinned native emission/fields only; not full compatibility."
+      ],
       "params": {
         "$ref": "#/definitions/ReasoningTextDeltaNotification"
       },
@@ -10958,16 +10999,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "item/reasoning/textDelta"
     },
     {
@@ -13036,12 +13081,17 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:turn/diff/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Selected actual pinned native emission/fields only; not full compatibility."
+      ],
       "params": {
         "$ref": "#/definitions/TurnDiffUpdatedNotification"
       },
@@ -13054,16 +13104,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turn/diff/updated"
     },
     {
@@ -13108,12 +13162,17 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:turn/plan/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Selected actual pinned native emission/fields only; not full compatibility."
+      ],
       "params": {
         "$ref": "#/definitions/TurnPlanUpdatedNotification"
       },
@@ -13126,16 +13185,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turn/plan/updated"
     },
     {
@@ -73155,67 +73218,88 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/FileUpdateChange/properties/diff",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileUpdateChange/properties/diff",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "diff"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/FileUpdateChange/properties/kind",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileUpdateChange/properties/kind",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "8d12ef91f2a2ea2d9fce45bf54fffff9c7b0b55f35140366bb704079d07649c5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "kind"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/output-notice-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/FileUpdateChange/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Positive selected behavior: Native started patch target path and completed/declined patch status; diff/kind not compared. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Native started patch target path and completed/declined patch status; diff/kind not compared. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
       ],
       "nullable": false,
       "pointer": "/definitions/FileUpdateChange/properties/path",
@@ -73231,11 +73315,13 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "path"
     },
@@ -77811,35 +77897,49 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "9b46ddc17e7b930f7480fe86bf6728e5e3a58ebcf532355f1f30bcfc22b4e417",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/2/properties/move_path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Limited null evidence only; no populated field promotion: Exact final update kind has move_path null. No populated rename target evidence."
+      ],
       "nullable": true,
       "pointer": "/definitions/PatchChangeKind/oneOf/2/properties/move_path",
       "required": false,
@@ -77852,7 +77952,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "move_path"
@@ -77860,49 +77962,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/PatchChangeKind/oneOf/2/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "aa630fe9052ade1ec598a9a4a8d4724b1129e6088fa16be159af912e7b074a77",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/2/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "8c957d8ccbb76dcf6868deb54805a0d2361c7c7aaf8b02044eb2c83faf67cc78",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -89572,119 +89692,164 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/TurnPlanStep/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact steps cover pending/inProgress/completed; canonical definitions equal exercised TurnPlanUpdatedNotification definitions."
+      ],
       "nullable": false,
       "pointer": "/definitions/TurnPlanStep/properties/status",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "7d7531b7a52b814ca0d4d08d3d0e3d5266472f37d65b0c30ccf37dac0c038be7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/TurnPlanStep/properties/step",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact steps cover pending/inProgress/completed; canonical definitions equal exercised TurnPlanUpdatedNotification definitions."
+      ],
       "nullable": false,
       "pointer": "/definitions/TurnPlanStep/properties/step",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "step"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/TurnPlanStepStatus/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact steps cover pending/inProgress/completed; canonical definitions equal exercised TurnPlanUpdatedNotification definitions."
+      ],
       "pointer": "/definitions/TurnPlanStepStatus/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "6006c8517af64611108324ddb24ea0332b6a2114b53e75acf4bf55ae285d66ca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/TurnPlanStepStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact steps cover pending/inProgress/completed; canonical definitions equal exercised TurnPlanUpdatedNotification definitions."
+      ],
       "pointer": "/definitions/TurnPlanStepStatus/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/TurnPlanStepStatus/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact steps cover pending/inProgress/completed; canonical definitions equal exercised TurnPlanUpdatedNotification definitions."
+      ],
       "pointer": "/definitions/TurnPlanStepStatus/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -120000,105 +120165,141 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangePatchUpdatedNotification.json#/properties/changes",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Actual native streamed freeform apply_patch update binds every notice to exact thread/turn/call ID and fixed regular-file path. Final complete streamed changes exact."
+      ],
       "nullable": false,
       "pointer": "/properties/changes",
       "required": true,
       "schema": "v2/FileChangePatchUpdatedNotification.json",
       "schema_sha256": "a622dd7e7e62105a3fd2a8b88d9fe1342e31bc7ecf31985ca1e70449827f8ddb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "changes"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangePatchUpdatedNotification.json#/properties/itemId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Actual native streamed freeform apply_patch update binds every notice to exact thread/turn/call ID and fixed regular-file path. Final complete streamed changes exact."
+      ],
       "nullable": false,
       "pointer": "/properties/itemId",
       "required": true,
       "schema": "v2/FileChangePatchUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangePatchUpdatedNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Actual native streamed freeform apply_patch update binds every notice to exact thread/turn/call ID and fixed regular-file path. Final complete streamed changes exact."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/FileChangePatchUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangePatchUpdatedNotification.json#/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Actual native streamed freeform apply_patch update binds every notice to exact thread/turn/call ID and fixed regular-file path. Final complete streamed changes exact."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/FileChangePatchUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
@@ -133327,105 +133528,141 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PlanDeltaNotification.json#/properties/delta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee."
+      ],
       "nullable": false,
       "pointer": "/properties/delta",
       "required": true,
       "schema": "v2/PlanDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "delta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PlanDeltaNotification.json#/properties/itemId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee."
+      ],
       "nullable": false,
       "pointer": "/properties/itemId",
       "required": true,
       "schema": "v2/PlanDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PlanDeltaNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/PlanDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PlanDeltaNotification.json#/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/PlanDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
@@ -146738,365 +146975,491 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningSummaryPartAddedNotification.json#/properties/itemId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Two actual native notices use exact reasoning item/thread/turn identity and summary indices0,1. They occur within native reasoning item lifecycle."
+      ],
       "nullable": false,
       "pointer": "/properties/itemId",
       "required": true,
       "schema": "v2/ReasoningSummaryPartAddedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningSummaryPartAddedNotification.json#/properties/summaryIndex",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Two actual native notices use exact reasoning item/thread/turn identity and summary indices0,1. They occur within native reasoning item lifecycle."
+      ],
       "nullable": false,
       "pointer": "/properties/summaryIndex",
       "required": true,
       "schema": "v2/ReasoningSummaryPartAddedNotification.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "summaryIndex"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningSummaryPartAddedNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Two actual native notices use exact reasoning item/thread/turn identity and summary indices0,1. They occur within native reasoning item lifecycle."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ReasoningSummaryPartAddedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningSummaryPartAddedNotification.json#/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Two actual native notices use exact reasoning item/thread/turn identity and summary indices0,1. They occur within native reasoning item lifecycle."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/ReasoningSummaryPartAddedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningSummaryTextDeltaNotification.json#/properties/delta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact Unicode fragments and index pairs(0,first),(0,second),(1,third), bound to native reasoning item identities and ordering."
+      ],
       "nullable": false,
       "pointer": "/properties/delta",
       "required": true,
       "schema": "v2/ReasoningSummaryTextDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "delta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningSummaryTextDeltaNotification.json#/properties/itemId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact Unicode fragments and index pairs(0,first),(0,second),(1,third), bound to native reasoning item identities and ordering."
+      ],
       "nullable": false,
       "pointer": "/properties/itemId",
       "required": true,
       "schema": "v2/ReasoningSummaryTextDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningSummaryTextDeltaNotification.json#/properties/summaryIndex",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact Unicode fragments and index pairs(0,first),(0,second),(1,third), bound to native reasoning item identities and ordering."
+      ],
       "nullable": false,
       "pointer": "/properties/summaryIndex",
       "required": true,
       "schema": "v2/ReasoningSummaryTextDeltaNotification.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "summaryIndex"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningSummaryTextDeltaNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact Unicode fragments and index pairs(0,first),(0,second),(1,third), bound to native reasoning item identities and ordering."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ReasoningSummaryTextDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningSummaryTextDeltaNotification.json#/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact Unicode fragments and index pairs(0,first),(0,second),(1,third), bound to native reasoning item identities and ordering."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/ReasoningSummaryTextDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningTextDeltaNotification.json#/properties/contentIndex",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Two exact synthetic raw fragments at contentIndex2; native identities and lifecycle ordering. Source/provider data is synthetic and clearly labeled."
+      ],
       "nullable": false,
       "pointer": "/properties/contentIndex",
       "required": true,
       "schema": "v2/ReasoningTextDeltaNotification.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "contentIndex"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningTextDeltaNotification.json#/properties/delta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Two exact synthetic raw fragments at contentIndex2; native identities and lifecycle ordering. Source/provider data is synthetic and clearly labeled."
+      ],
       "nullable": false,
       "pointer": "/properties/delta",
       "required": true,
       "schema": "v2/ReasoningTextDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "delta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningTextDeltaNotification.json#/properties/itemId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Two exact synthetic raw fragments at contentIndex2; native identities and lifecycle ordering. Source/provider data is synthetic and clearly labeled."
+      ],
       "nullable": false,
       "pointer": "/properties/itemId",
       "required": true,
       "schema": "v2/ReasoningTextDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningTextDeltaNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Two exact synthetic raw fragments at contentIndex2; native identities and lifecycle ordering. Source/provider data is synthetic and clearly labeled."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ReasoningTextDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ReasoningTextDeltaNotification.json#/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Two exact synthetic raw fragments at contentIndex2; native identities and lifecycle ordering. Source/provider data is synthetic and clearly labeled."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/ReasoningTextDeltaNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
@@ -156332,79 +156695,106 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/FileUpdateChange/properties/diff",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileUpdateChange/properties/diff",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "diff"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/FileUpdateChange/properties/kind",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileUpdateChange/properties/kind",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "8d12ef91f2a2ea2d9fce45bf54fffff9c7b0b55f35140366bb704079d07649c5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "kind"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/FileUpdateChange/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileUpdateChange/properties/path",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "path"
     },
     {
@@ -158151,35 +158541,49 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchChangeKind/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/2",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "9b46ddc17e7b930f7480fe86bf6728e5e3a58ebcf532355f1f30bcfc22b4e417",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchChangeKind/oneOf/2/properties/move_path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Limited null evidence only; no populated field promotion: Exact final update kind has move_path null. No populated rename target evidence."
+      ],
       "nullable": true,
       "pointer": "/definitions/PatchChangeKind/oneOf/2/properties/move_path",
       "required": false,
@@ -158192,7 +158596,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "move_path"
@@ -158200,49 +158606,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchChangeKind/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/PatchChangeKind/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "aa630fe9052ade1ec598a9a4a8d4724b1129e6088fa16be159af912e7b074a77",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchChangeKind/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact final streamed change for fixed relative path, update type and nonempty hunk diff; canonical shared definitions do not prove thread/items/read executed. No add/delete/rename branch."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/2/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "8c957d8ccbb76dcf6868deb54805a0d2361c7c7aaf8b02044eb2c83faf67cc78",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -184967,79 +185391,106 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnDiffUpdatedNotification.json#/properties/diff",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Nonempty retained diff snapshots: every whole map and final snapshot equal exact expected native thread/turn/Git blob IDs/hunk/Unicode bytes. All snapshots precede turn completion; fixed regular-file and sentinel effects verified."
+      ],
       "nullable": false,
       "pointer": "/properties/diff",
       "required": true,
       "schema": "v2/TurnDiffUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "diff"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnDiffUpdatedNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Nonempty retained diff snapshots: every whole map and final snapshot equal exact expected native thread/turn/Git blob IDs/hunk/Unicode bytes. All snapshots precede turn completion; fixed regular-file and sentinel effects verified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/TurnDiffUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnDiffUpdatedNotification.json#/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Nonempty retained diff snapshots: every whole map and final snapshot equal exact expected native thread/turn/Git blob IDs/hunk/Unicode bytes. All snapshots precede turn completion; fixed regular-file and sentinel effects verified."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/TurnDiffUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
@@ -185191,105 +185642,141 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnPlanUpdatedNotification.json#/properties/explanation",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact entire native checklist notice includes nonempty explanation, actual thread/turn, and three statuses outside Plan mode."
+      ],
       "nullable": true,
       "pointer": "/properties/explanation",
       "required": false,
       "schema": "v2/TurnPlanUpdatedNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "explanation"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnPlanUpdatedNotification.json#/properties/plan",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact entire native checklist notice includes nonempty explanation, actual thread/turn, and three statuses outside Plan mode."
+      ],
       "nullable": false,
       "pointer": "/properties/plan",
       "required": true,
       "schema": "v2/TurnPlanUpdatedNotification.json",
       "schema_sha256": "d229aeb7d961e8e98a521a83a940dfe19d3ec6ee701c6b8fba218df3d75f8fd2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "plan"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnPlanUpdatedNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact entire native checklist notice includes nonempty explanation, actual thread/turn, and three statuses outside Plan mode."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/TurnPlanUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/output-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnPlanUpdatedNotification.json#/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
+        "Exact entire native checklist notice includes nonempty explanation, actual thread/turn, and three statuses outside Plan mode."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/TurnPlanUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {

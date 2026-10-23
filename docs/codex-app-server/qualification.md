@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 348 implemented / 131 missing /
-6 blocked requirements** and **0 verified / 781 implemented / 5,840 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 355 implemented / 124 missing /
+6 blocked requirements** and **0 verified / 826 implemented / 5,795 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Seven hundred and eighty-one directly exercised
+MCP entries have scoped implementation evidence. Eight hundred and twenty-six directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1440,3 +1440,36 @@ Empty preview and null gitInfo remain limited evidence without promotion.
 Regenerated totals: **485 entries: 0 verified / 348 implemented / 131 missing /
 6 blocked**; **6,621 contracts: 0 verified / 781 implemented / 5,840 missing**.
 Full compatibility, A11, external service/platform and publication gates stay open.
+
+## Native reasoning, plans and streamed patch notices
+
+Four new default-discovered cases passed **4/0** at seeds `501432` and
+`987654` (**7.5s / 7.0s**) over an actual native Unix socket. A provider-only
+SSE fixture causes pinned Codex to emit seven previously unasserted notices:
+reasoning summary-part/summary-text/raw-text, proposed-plan deltas, ordinary
+checklist updates, streamed patch updates and complete turn diffs. Tests assert
+exact Unicode, indices, identities and lifecycle ordering. The fixed patch
+changes only one existing owned regular file; exact final bytes, Git-style diff
+and untouched sentinel/directory contents are checked. Unexpected server
+requests fail without approval.
+
+The initial run was **4 tests / 1 failure / 7.5s** because the test assumed a
+single turn diff. Pinned code emits the retained diff after patch completion
+and each sampling pass, producing three identical snapshots here. One bounded
+repair requires a nonempty list and checks every complete map and the final map
+against the exact expected value, all before turn completion. Original deadlines,
+patch assertions and filesystem checks remain. The fixture emits Responses
+provider events only, never native app-server messages.
+
+Independent/root compilation, focused format/check, strict positional Credo
+(**one source file, 69 checks, no issues**), AST/whitespace, binary hash and
+owned-process/scratch cleanup passed. [Output-notice qualification](output-notice-qualification.md)
+records source callsites, commands, mappings and limits. Seven entries and 46
+positive contracts gain evidence; **seven entries and 45 fields** were missing.
+Two null move targets retain limited evidence without promotion. Shared file
+definitions do not establish execution of `thread/items/read` in this unit.
+
+Regenerated totals: **485 entries: 0 verified / 355 implemented / 124 missing /
+6 blocked**; **6,621 contracts: 0 verified / 826 implemented / 5,795 missing**.
+The deprecated non-emitting output notice, real providers, other variants,
+external/platform profiles, A11, full compatibility and publication remain open.

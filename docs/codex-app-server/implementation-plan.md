@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 advertised MCP item-progress notification and the explicitly deprecated
 file-change output notification are `blocked` by source-proven absent production
 emitters. Selected native method/notification entries now total
-348 `implemented`, with 781 exact field/variant schema contracts
-implemented; 131 requirements and 5,840 contracts remain `missing`. None is fully verified.
+355 `implemented`, with 826 exact field/variant schema contracts
+implemented; 124 requirements and 5,795 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -287,8 +287,14 @@ Next concrete work (repair follow-up, 2026-10-24):
    non-emitting in this pin. Its [retained contract](retained-output-qualification.md)
    now has two executed synthetic codec/handler cases; its native requirement
    is blocked, and no field is promoted from synthetic evidence. The other
-   seven audited output notices have production routes and still need direct
-   native assertions.
+   seven audited output notices have production routes. Four new
+   [output-notice cases](output-notice-qualification.md) directly assert all
+   seven over a native Unix socket using provider-only SSE. Exact reasoning
+   indices/fragments, proposed plan/checklist, streamed patch, repeated complete
+   diffs and actual owned-file effects pass both seeds. The single repair
+   preserves all content/effect checks and deadlines while following pinned
+   repeated-snapshot semantics. Seven entries and 45 new positive fields gain
+   evidence; null move targets and other variants remain incomplete.
    Eight [plugin-sharing cases](plugin-share-qualification.md) now directly
    exercise all five share methods against isolated authenticated metadata and
    CA-verified HTTPS objects, including actual archive bytes, ETag origin,
@@ -322,8 +328,9 @@ Next concrete work (repair follow-up, 2026-10-24):
    driver/consumer steps, but the platform job again failed before tests while
    fetching `mdex_native` with `header_too_long`; the completeness job remains
    failed. Preserve those distinct outcomes. Thread-control, plugin-sharing
-   and local-history controls now have focused evidence; seven active output
-   notices and the auth/envelope/lifecycle audit are the next bounded units.
+   and local-history controls plus seven active output notices now have focused
+   evidence; the auth/envelope/lifecycle audit and native MCP/OAuth controls are
+   the next bounded units.
    Final aggregate/hosted checks must include
    all subsequent executable changes, with serialized validation and direct
    positive schema evidence only.
