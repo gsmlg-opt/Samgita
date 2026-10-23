@@ -6764,12 +6764,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/prediction/request",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "upstream_unimplemented: Immutable production dispatcher message_processor.rs:1450-1453 unconditionally returns method-not-found. Complete source search finds no prediction-notification producer. Actual native enabled error, capability/parser negatives and synthetic retained codec coverage do not establish enabled prediction success or notification emission. An explicit target/evidence-policy decision is required; no requirement is waived."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadPredictionRequestParams"
       },
@@ -6791,16 +6795,23 @@
         "source_line": 610,
         "variant": "ThreadPredictionRequest"
       },
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:25",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:42",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:60",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/prediction/request"
     },
     {
@@ -12465,12 +12476,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:thread/prediction/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "upstream_unimplemented: Immutable production dispatcher message_processor.rs:1450-1453 unconditionally returns method-not-found. Complete source search finds no prediction-notification producer. Actual native enabled error, capability/parser negatives and synthetic retained codec coverage do not establish enabled prediction success or notification emission. An explicit target/evidence-policy decision is required; no requirement is waived."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadPredictionUpdatedNotification"
       },
@@ -12487,16 +12502,23 @@
         "source_line": 1964,
         "variant": "ThreadPredictionUpdated"
       },
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:25",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:42",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:60",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/prediction/updated"
     },
     {
@@ -19278,12 +19300,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/prediction/request",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "upstream_unimplemented: Immutable production dispatcher message_processor.rs:1450-1453 unconditionally returns method-not-found. Complete source search finds no prediction-notification producer. Actual native enabled error, capability/parser negatives and synthetic retained codec coverage do not establish enabled prediction success or notification emission. An explicit target/evidence-policy decision is required; no requirement is waived."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -19291,16 +19317,23 @@
       "schema": "v2/ThreadPredictionRequestResponse.json",
       "schema_sha256": "273a681d7d72dcfaed6a4dc5fa823d9ea673ae1ef13ac573bd73cdd766278e1f",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:25",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:42",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:60",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/prediction/request"
     },
     {
@@ -87332,11 +87365,16 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "pointer": "/definitions/ThreadPredictionResult/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "d3af7ac58e93d885619f256ab44003ba3cc07c8d423d2fadc17b92d376e6034e",
@@ -87347,7 +87385,10 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -87355,12 +87396,17 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/0/properties/text",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadPredictionResult/oneOf/0/properties/text",
       "required": false,
@@ -87373,7 +87419,10 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "text"
@@ -87381,12 +87430,17 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadPredictionResult/oneOf/0/properties/type",
       "required": true,
@@ -87399,18 +87453,26 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "pointer": "/definitions/ThreadPredictionResult/oneOf/0/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
@@ -87421,18 +87483,26 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "pointer": "/definitions/ThreadPredictionResult/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "f3f7ae333c3e347354a73b0e58c48de9e1dc9b27cb99f3a07d31da98fe1cc193",
@@ -87443,7 +87513,10 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -87451,12 +87524,17 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadPredictionResult/oneOf/1/properties/type",
       "required": true,
@@ -87469,18 +87547,26 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadPredictionResult/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "pointer": "/definitions/ThreadPredictionResult/oneOf/1/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
@@ -87491,7 +87577,10 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -167838,12 +167927,17 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadPredictionRequestParams.json#/properties/sourceTurnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "rejection_only_actual_native",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "nullable": false,
       "pointer": "/properties/sourceTurnId",
       "required": true,
@@ -167856,20 +167950,30 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:25",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:60"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sourceTurnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadPredictionRequestParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "rejection_only_actual_native",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
@@ -167882,20 +167986,30 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:25",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:60"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadPredictionUpdatedNotification.json#/properties/result",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "nullable": false,
       "pointer": "/properties/result",
       "required": true,
@@ -167908,7 +168022,10 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "result"
@@ -167916,12 +168033,17 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadPredictionUpdatedNotification.json#/properties/sourceTurnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "nullable": false,
       "pointer": "/properties/sourceTurnId",
       "required": true,
@@ -167934,7 +168056,10 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "sourceTurnId"
@@ -167942,12 +168067,17 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/prediction-boundary-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadPredictionUpdatedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "synthetic_contract_only",
+        "The immutable upstream dispatcher is unimplemented and no notification producer exists. These schema/codec or native-negative checks do not qualify enabled success; state remains missing."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
@@ -167960,7 +168090,10 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:101",
+          "apps/samgita_codex_driver/test/native_prediction_boundary_test.exs:123"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "threadId"

@@ -1,7 +1,7 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 401 implemented / 78 missing /
-6 blocked requirements** and **0 verified / 986 implemented / 5,635 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 401 implemented / 75 missing /
+9 blocked requirements** and **0 verified / 986 implemented / 5,635 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
@@ -1716,3 +1716,21 @@ contracts gain scoped `implemented` evidence. CI now explicitly selects this
 fifteenth isolated profile. Full consume timeout, disconnect during POST, real
 account/backend idempotency and all gateway/user-verification profiles remain
 incomplete. No credential, deployment or A11 boundary is weakened.
+
+## Upstream prediction boundary
+
+The [prediction source/behavior audit](prediction-boundary-qualification.md)
+establishes an unconditional production method-not-found arm and no native
+prediction-notification producer in this exact pin. Three real-binary negative
+cases and two separate synthetic codec cases pass at both seeds; the combined
+notice/account/prediction repeat passes **21/0**. No inference, turn or tool is
+started. Initial codec tests required one explicit experimental validation
+opt-in repair; native cases passed throughout, with unchanged deadlines.
+
+Three advertised prediction request/response/notification entries become
+`blocked`; twelve associated schema success contracts remain `missing`.
+Source and negative evidence cannot supply the absent success path. No target
+or completeness requirement is waived. The ledger now has **401 implemented /
+75 missing / 9 blocked** entries and **986 implemented / 5,635 missing** contracts,
+with **zero verified** in either group. Existing legacy/OS/service, A11 and
+publication prerequisites remain incomplete.

@@ -372,6 +372,13 @@ Next concrete work (repair follow-up, 2026-10-24):
    profile. Synthetic `sent`/`reset` results establish no real email or credit
    effect. Full timeout/disconnect, service idempotency, gateway OAuth, OS
    keyrings and user verification remain incomplete.
+   The [prediction boundary](prediction-boundary-qualification.md) now has
+   exact immutable source proof of an unimplemented dispatcher and absent
+   notification producer, three actual-native negative cases and two synthetic
+   codec cases (5/0 at both seeds). The combined notice/account/prediction repeat
+   passes 21/0. Three entries are explicitly blocked; twelve fields retain
+   missing success evidence. Do not manufacture a producer or silently exclude
+   the advertised surface from the completion contract.
    At `085c4cc8`, foundation
    passed; conformance's thirteen isolated profiles passed, but all four default
    output-notice tests failed during namespace startup on Ubuntu 24.04. The
