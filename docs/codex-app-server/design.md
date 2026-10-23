@@ -70,6 +70,14 @@ still passes envelope validation and retains upstream error data. Failures redac
 payloads in Inspect, exception messages and GenServer status output. Authorized
 callers remain responsible for handling raw native data as potentially secret.
 
+`notify_native/3` supplies the separate native client-notification path. It
+preserves the envelope without inventing an ID, uses the same serialized
+instance/generation/deadline dispatch guards, and returns only a local
+`sent_unconfirmed` outcome. It cannot allocate request correlation, acknowledge
+upstream processing or change readiness. Failed writes retain uncertain evidence;
+reconnect never replays a notification. Platform preparation permits only pinned
+notification schemas and uses a separate local operation identity.
+
 The event queue is bounded by count and encoded bytes, with one availability
 wakeup while nonempty. Interaction handles contain the connection generation and
 an opaque reference. Resolution notifications must also match the thread. Local
@@ -85,6 +93,9 @@ JSON text framing, controls, negotiated transport/auth options and explicit
 destination policy. Borrowed resources remain owned by the caller. REST is not a
 Codex transport. Actual listener/authentication support is derived from pinned
 source and tested against the pinned executable.
+Bytes received during WebSocket upgrade stay in bounded transport state and
+precede later active-socket data. A mailbox wakeup cannot confer wire order or
+replay consumed upgrade bytes; deterministic tests cover this boundary.
 
 Stdio drains stderr separately. A guardian owns the port, monitors the Session,
 and survives its death long enough to await the Python process-group helper's
@@ -151,8 +162,9 @@ export, pinned `v1.rs` serde declarations and existing official shared definitio
 `source/export.rs` records the exporter boundary. Original official JSON bytes
 remain unchanged. Conversion fails on unsupported declaration syntax or serde
 semantics; it does not establish runtime behavior. The resulting inventory has
-485 requirements and 6,621 field/variant contracts, all still `missing` for full
-behavioral qualification. Exact declaration-branch matching also prevents a gate
+485 requirements (one `implemented`, 480 `missing`, four `blocked`) and 6,621
+field/variant contracts (three `implemented`, 6,618 `missing`) for full behavioral
+qualification. Exact declaration-branch matching also prevents a gate
 on one untagged variant from rejecting another variant with the same field name.
 
 ## Implemented platform boundary

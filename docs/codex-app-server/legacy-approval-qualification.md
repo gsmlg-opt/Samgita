@@ -7,6 +7,13 @@ investigation found no production path that emits either request in
 enabled interaction with the real executable. Neither family is excluded or
 fully qualified by this finding.
 
+The manifest now records the two `server_request` entries and their two
+`client_response` entries as **blocked**, rather than missing: the concrete
+enabled-success prerequisite is an absent production emitter in the immutable
+target. All four remain required and fail completeness. Their schema contracts
+retain missing status where local parameter/variant qualification remains to be
+completed; source unreachability does not erase that independent work.
+
 ## Exact target and source evidence
 
 Upstream source commit: `83086188ae0614bd882818ff1aa23f3194962012`.

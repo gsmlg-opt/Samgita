@@ -1,7 +1,10 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The manifest records **0 verified / 485 missing requirements**
-and **0 verified / 6,621 missing field/variant contracts**. Selected passing
+Status: **incomplete**. The manifest records **0 verified / 1 implemented / 480 missing /
+4 blocked requirements** and **0 verified / 3 implemented / 6,618 missing
+field/variant contracts**. The native client notification and its three exact
+schema contracts are implemented with scoped local evidence; that status does
+not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
 accepted contract remains [the full goal](goal.md). The
 [current repair record](repair-qualification.md) supersedes the dependency-audit,
@@ -502,9 +505,76 @@ includes the three cleanup regressions; synthetic shutdown ordering and actual
 Codex scenarios remain distinct evidence. The local command log is
 `/tmp/samgita-repair-driver-final.log`. A new hosted run is still required.
 
+## Native notification, steering and compaction checkpoint
+
+Date: 2026-10-24. Runtime implementation is `89c7488` (native notification API
+and fenced platform intents), following `d873756` (upgrade-byte ordering).
+The real attestation fixture correction is `e8a6f4a`. This checkpoint adds
+selected active-turn steering, compaction/retention and approval-decision
+qualification; see [turn inputs](turn-input-qualification.md),
+[approval decisions](approval-qualification.md) and the
+[repair evidence](repair-qualification.md). The complete goal remains active.
+
+The first independent run passed 34 protocol cases and failed one of 203 driver
+cases at seed `501432`: the test blocked incoming attestation while waiting for
+`turn/start`. After the source-backed correction, the complete independent suite
+passed twice. Its original failure and exact timeout/refusal regressions remain
+recorded; no timeout was extended or assertion removed.
+
+The first binary-free aggregate run exposed a test-profile error: the core's
+`ExUnit.start()` did not exclude the newly tagged actual-binary `e2e` test, while
+the web helper already did. It failed fetching the deliberately absent binary,
+before executing that case. Core now declares the same default `e2e` exclusion.
+The selected conformance workflow explicitly includes both `e2e` and `real_codex`;
+the real core case also ran successfully with those flags locally. This separates
+foundation from real-binary qualification and does not relax completeness.
+
+Commands use Devenv Elixir 1.18.5 / OTP 27.3.4.17. Database overrides were set
+after entering Devenv and name only the existing populated isolated
+`samgita_redesign_recovery_repair_test` on socket
+`/tmp/samgita-p3-pg/socket`, port `55443`, user `gao`. No database reset, fixture
+deletion, activation bypass or historical-data removal occurred.
+
+| Check | Observed result |
+| --- | --- |
+| Native protocol package | Warnings-as-errors compile, format, **34 tests passed**, seed `501432`, and audit passed. |
+| Independent native driver | Warnings-as-errors compile, format, **208 tests passed at each of seeds `501432` and `513498`**, and audit passed. Includes the retained owned-process regressions, new upgrade-ordering cases, notification API, steering, seven compaction cases, eight decision variants and five auth cases. Actual-binary and scripted fault tests retain their distinct labels. |
+| Outside-umbrella driver consumer | Fresh copy containing only the three reusable packages: dependency resolution, compile, format and **one actual-binary test passed**, including an explicit native notification and a subsequent correlated read. No Repo/Phoenix/platform configuration supplied. |
+| Binary-free root suites | `mix test --seed 437312` then `mix test --seed 501432`, with `CODEX_BINARY` absent: each reports **203 core cases, zero failures, one designated e2e excluded; 125 web cases, zero failures, two designated e2e excluded**. Both use the same populated database. |
+| Repeated recovery | Recovery activation, fake listener lifecycle and restart reconciliation explicitly included: **four core + three web passed** at each of `366499` and `888788`, after the populated root runs. Original deliberately unresolved databases remain blocked. |
+| Explicit platform conformance | Notification/context/race/API/actual-binary journey files with `--include e2e --include real_codex --seed 501432`: **30 core + five web passed**, including the otherwise excluded core notification test. |
+| Neutral portability and transport | Outside core suite **32 passed**, standalone core consumer **one passed**, direct WebSocket consumer **one passed**; optional WebSocket package **42 passed**, seed `455834`, plus compile/format/audit. |
+| Static/security gates | Root warnings-as-errors compile, format and strict Credo (**279 files**) passed; scanner and **four scanner regressions** passed; Dialyzer **zero errors/skips**; all four retained lockfile audits passed. No advisory suppression or rule exclusion. |
+| Web dependencies/assets | Bun **1.3.13** frozen isolated install **14.19s**, workspace **0.32s**; `mix assets.build` passed. |
+| Production assembly | Separate `/tmp/samgita-codex-continuation-prod-build`: production dependencies, `mix assets.deploy` and `mix release --overwrite` passed with synthetic assembly-only configuration. No release process started. |
+| Inventory/evidence | **15 Python regressions** and `inventory.py --check` passed. `--require-verified` failed as required; generated totals are stated at the top of this record. |
+
+Independent commands ran from each package's own directory. The driver consumer
+ran through `python3 -B scripts/codex/verify_consumer.py`. The recovery command
+names `recovery_activation_test.exs`, `fake_agent_lifecycle_test.exs` and
+`restart_reconcile_test.exs` with `--include e2e`. Explicit platform files are
+the same five notification/context/race/controller/integration files selected
+by `codex-conformance.yml`. All actual Codex tests use the exact binary hash in
+the immutable reference table, with only owned disposable workspaces and local
+synthetic dependencies.
+
+Logs:
+`/tmp/samgita-codex-continuation-independent-verified.log`,
+`/tmp/samgita-codex-continuation-aggregate-verified.log`,
+`/tmp/samgita-codex-continuation-platform-assembly.log` and
+`/tmp/samgita-codex-notification-platform-final.log`.
+Failed predecessors remain
+`/tmp/samgita-codex-continuation-independent-final.log` and
+`/tmp/samgita-codex-continuation-aggregate-final.log`.
+The unpublished assembly archive is
+`/tmp/samgita-codex-continuation-prod-build/samgita-0.1.0.tar.gz`, SHA256
+`f525b95649edcfa84e21c96f3abfdd84ed7f5a88bcc271c74803a3e59b33ba9d`.
+Hosted qualification for the delivered commit is recorded separately; local
+assembly and selected tests do not establish full compatibility or readiness.
+
 | Layer | Remaining requirement |
 | --- | --- |
-| Manifest | Per-entry and field/behavior evidence; all 485 / 6,621 entries remain missing, not mass-marked verified from forwarding or fixtures |
+| Manifest | Per-entry and field/behavior evidence: one implemented, 480 missing and four source-proven blocked requirements; three implemented and 6,618 missing contracts. No mass verification from forwarding or fixtures |
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory repaired; A11 raw server/LiveView credential telemetry still blocked; target-specific egress/key/legacy-cutover and real backup/memory rehearsals remain |

@@ -55,7 +55,7 @@ class ModelFixture:
                         temporary = fixture.requests_file.with_suffix(".partial")
                         temporary.write_text(json.dumps(fixture.requests))
                         temporary.replace(fixture.requests_file)
-                item = fixture.item(index)
+                item = fixture.response_item(index, request)
                 body = "".join(f"event: {event['type']}\ndata: {json.dumps(event)}\n\n"
                                for event in response_events(index, item)).encode()
                 self.send_response(200)
@@ -71,8 +71,16 @@ class ModelFixture:
     def url(self):
         return f"http://127.0.0.1:{self.server.server_port}"
 
+    def response_item(self, index, request):
+        if self.scenario == "compaction" and any(
+                item.get("type") == "compaction_trigger"
+                for item in request.get("input", [])):
+            return {"type": "compaction",
+                    "encrypted_content": "SYNTHETIC_COMPACTION_CHECKPOINT"}
+        return self.item(index)
+
     def item(self, index):
-        if index == 1 and self.scenario != "assistant":
+        if index == 1 and self.scenario not in {"assistant", "compaction"}:
             if self.scenario == "command":
                 arguments = {"cmd": "printf samgita_fixture", "workdir": self.workspace,
                              "shell": "/bin/sh", "login": False,
@@ -126,7 +134,7 @@ stream_max_retries = 0
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--scenario", choices=["assistant", "command", "dynamic_tool", "user_input"],
+    parser.add_argument("--scenario", choices=["assistant", "command", "dynamic_tool", "user_input", "compaction"],
                         default="assistant")
     parser.add_argument("--workspace")
     parser.add_argument("--codex-home")

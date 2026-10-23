@@ -31,9 +31,12 @@ Codex conformance.
 The official Linux musl executable and source archive are hash-pinned. Stable and
 experimental generation produced 318 and 452 JSON artifacts. The reproducible
 manifest now inventories 485 message/result/envelope/lifecycle requirements plus
-6,621 field/variant contracts. These entries remain `missing` until required
-entry-specific behavior evidence is attached; generic transport and synthetic
-schema examples cannot advance them to verified.
+6,621 field/variant contracts. Four legacy approval method entries are now
+`blocked` by source-proven absent production emitters. The native notification
+and three exact schema contracts are `implemented` with scoped local evidence;
+480 requirements and 6,618 contracts remain `missing`. Required entry-specific
+behavior evidence and qualification are still needed. Generic transport and
+synthetic schema examples cannot advance entries to verified.
 
 Implemented native `Wire`, `Schema`, source-semantic gates and redacted `Error`,
 with an independent `Session` and stdio/WebSocket/WebSocket-over-UDS transports.
@@ -124,18 +127,27 @@ Next concrete work (repair follow-up, 2026-10-24):
    source-level controls or a separately reviewed encrypted ingress contract are
    required. Continue independent compatibility work; never call exposure tests
    passing confidentiality acceptance.
-4. Continue the native Session client-notification surface with complete envelopes,
-   explicit local-send outcomes, generation/deadline fences and no fabricated ACK
-   or automatic replay. Then qualify active-turn structured output steering,
-   remaining media/encrypted content, compaction retention, upstream image-byte
-   limits, enabled app/plugin/deferred MCP routing and environment/permission/turn
-   variants. Preserve manifest-specific evidence and external/legacy blockers;
-   generic forwarding and scripted peers cannot establish real acceptance.
-5. Run final independent packages/consumers, populated root suites, repeated
-   restart/recovery, static/security/assets/scanner/Dialyzer/assembly and hosted
-   checks against final delivered code. Keep the strict completeness gate red
-   while required evidence is missing. Publish only after applicable gates and
-   an existing normal publication workflow succeed; no deployment is authorized.
+4. Native Session notifications and fenced platform intents are implemented in
+   `89c7488`, including an independent consumer and explicitly selected actual
+   platform test. Active steering adds seven real cases; compaction adds seven
+   local/remote/retention/failure cases; approval decisions add eight real cases.
+   The full independent driver passed **208 tests twice**, and the populated
+   root/recovery/static/security/assets/assembly matrix passed. The full run also
+   exposed and repaired attestation prewarm test ownership in `e8a6f4a` without
+   extending the native deadline. Exact outcomes are in qualification.
+5. Continue all seven Codex-native `project/*` methods with actual persisted
+   create/read/import/update/list/move/delete behavior, presence semantics,
+   membership, idempotency and cold restart. These native Projects are distinct
+   from Samgita Projects. Then continue compaction interruption/retry, remaining
+   image-byte limits, enabled app/plugin/deferred MCP routing and
+   environment/permission/turn variants. Preserve entry-specific evidence and
+   external/legacy blockers; generic forwarding and scripted peers cannot
+   establish real acceptance.
+6. Verify hosted checks against the delivered checkpoint, and rerun affected and
+   final aggregate checks for subsequent executable changes. Keep the strict
+   completeness gate red while required evidence is missing. Publish only after
+   applicable gates and an existing normal publication workflow succeed; no
+   deployment is authorized.
 
 Project-event delivery remains notification delivery; it cannot start a turn.
 No new background execution engine, production migration, sibling-service change,

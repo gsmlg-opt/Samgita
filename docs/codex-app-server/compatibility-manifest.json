@@ -12,7 +12,7 @@
       "legacy": false,
       "limitations": [
         "Selected Linux stdio/capability-token WebSocket/UDS behavior; other deployment profiles remain unqualified.",
-        "Session emits the canonical notification automatically; arbitrary native notification envelopes currently require Wire/Transport access."
+        "Session now exposes complete native notification envelopes with sent_unconfirmed outcomes; broader initialization and external deployment profiles remain unqualified."
       ],
       "params": null,
       "params_required": false,
@@ -22,7 +22,7 @@
       "schema_sha256": "706cf248d75027c84a3c63348d0ed507182e8eba40069dd17541793de029145a",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -33,6 +33,8 @@
           "apps/samgita_protocol_codex/test/initialized_notification_test.exs",
           "apps/samgita_codex_driver/test/initialized_transport_test.exs",
           "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs",
           "scripts/codex/test_inventory.py:test_initialized_notification_has_no_server_readiness_prerequisite"
         ]
       },
@@ -5064,12 +5066,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-input-qualification.md#compaction-and-retained-outputs"
+      ],
       "experimental": false,
       "id": "client_request:thread/compact/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local/remote-v2 lifecycle, whole-output retention budgets, cold resume and failed-compaction ordinary-turn recovery; automatic compaction, interruption, successful retry and other profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadCompactStartParams"
       },
@@ -5098,9 +5104,14 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/compaction_test.exs",
+          "apps/samgita_codex_driver/test/compaction_retention_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/compact/start"
     },
     {
@@ -7179,7 +7190,8 @@
         "Scope, exact upstream normalization and residual requirements: docs/codex-app-server/turn-input-qualification.md; payload capture does not qualify media understanding, file resolution or full behavior",
         "Selected Linux/stdio standalone toolOutput success, restart history, namespace/retention and invalid-input branches under both negotiation profiles: apps/samgita_codex_driver/test/tool_output_test.exs; retention annotation does not prove compaction survival",
         "Selected sticky/null model/effort/summary, collaboration precedence/preset and experimental/error branches: apps/samgita_codex_driver/test/turn_overrides_test.exs",
-        "Paired controlled optional-MCP-startup selection and Direct tool exposure via mcp://fixture, actual synthetic call and explicit elicitation: apps/samgita_codex_driver/test/mcp_mention_test.exs; no permission or external-service qualification"
+        "Paired controlled optional-MCP-startup selection and Direct tool exposure via mcp://fixture, actual synthetic call and explicit elicitation: apps/samgita_codex_driver/test/mcp_mention_test.exs; no permission or external-service qualification",
+        "Active-turn standalone text/media/encrypted toolOutput steering and retained history: apps/samgita_codex_driver/test/native_turn_steering_test.exs. Selected retain=true versus disabled/unmarked behavior across remote compaction/cold resume: apps/samgita_codex_driver/test/compaction_test.exs. No media inference or complete retention-budget qualification."
       ],
       "experimental": false,
       "id": "client_request:turn/start",
@@ -7222,7 +7234,9 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "Seven selected actual Linux/stdio active/idle steering scenarios, expected-turn and input rejection, accepted context/metadata association, structured media/encrypted toolOutput and cold-resume history: apps/samgita_codex_driver/test/native_turn_steering_test.exs; docs/codex-app-server/turn-input-qualification.md. Remaining fields/profiles and real media semantics remain unqualified."
+      ],
       "experimental": false,
       "id": "client_request:turn/steer",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -7607,7 +7621,7 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": true,
       "limitations": [
-        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and missing."
+        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and blocked; codec/handler tests do not satisfy enabled real-binary acceptance."
       ],
       "prerequisites": [
         "initialized"
@@ -7616,14 +7630,16 @@
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "a5e145b4794ea91da6eb478626fac96bbbd4485c3399fabd1c9972d53d2d9010",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "applyPatchApproval"
@@ -7632,12 +7648,16 @@
       "capabilities": [],
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/repair-qualification.md#attestation-prewarm-event-ownership"
+      ],
       "experimental": false,
       "id": "client_response:attestation/generate",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Actual binary and synthetic local Responses WebSocket acceptance cover token forwarding, explicit refusal and native timeout; real attestation-service/account acceptance remains unverified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -7652,9 +7672,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "attestation/generate"
     },
     {
@@ -7699,7 +7723,7 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": true,
       "limitations": [
-        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and missing."
+        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and blocked; codec/handler tests do not satisfy enabled real-binary acceptance."
       ],
       "prerequisites": [
         "initialized"
@@ -7708,14 +7732,16 @@
       "schema": "ExecCommandApprovalResponse.json",
       "schema_sha256": "80dba6d9f28d19c57960db72340554c193624f014cd496714a0c7aabe1120046",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "execCommandApproval"
@@ -7724,7 +7750,9 @@
       "capabilities": [],
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-qualification.md"
+      ],
       "experimental": false,
       "id": "client_response:item/commandExecution/requestApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -7744,7 +7772,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "item/commandExecution/requestApproval"
@@ -7753,7 +7783,9 @@
       "capabilities": [],
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-qualification.md"
+      ],
       "experimental": false,
       "id": "client_response:item/fileChange/requestApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -7773,7 +7805,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "item/fileChange/requestApproval"
@@ -7782,7 +7816,9 @@
       "capabilities": [],
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-qualification.md"
+      ],
       "experimental": false,
       "id": "client_response:item/permissions/requestApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -7802,7 +7838,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "item/permissions/requestApproval"
@@ -11511,7 +11549,7 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": true,
       "limitations": [
-        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and missing."
+        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and blocked; codec/handler tests do not satisfy enabled real-binary acceptance."
       ],
       "params": {
         "$ref": "#/definitions/ApplyPatchApprovalParams"
@@ -11534,14 +11572,16 @@
         "source_line": 1854,
         "variant": "ApplyPatchApproval"
       },
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "applyPatchApproval"
@@ -11549,12 +11589,16 @@
     {
       "capabilities": [],
       "direction": "server_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/repair-qualification.md#attestation-prewarm-event-ownership"
+      ],
       "experimental": false,
       "id": "server_request:attestation/generate",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Actual binary and synthetic local Responses WebSocket acceptance cover token forwarding, explicit refusal and native timeout; real attestation-service/account acceptance remains unverified."
+      ],
       "params": {
         "$ref": "#/definitions/AttestationGenerateParams"
       },
@@ -11583,9 +11627,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "attestation/generate"
     },
     {
@@ -11642,7 +11690,7 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": true,
       "limitations": [
-        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and missing."
+        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and blocked; codec/handler tests do not satisfy enabled real-binary acceptance."
       ],
       "params": {
         "$ref": "#/definitions/ExecCommandApprovalParams"
@@ -11665,14 +11713,16 @@
         "source_line": 1860,
         "variant": "ExecCommandApproval"
       },
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "execCommandApproval"
@@ -11680,7 +11730,9 @@
     {
       "capabilities": [],
       "direction": "server_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-qualification.md"
+      ],
       "experimental": false,
       "id": "server_request:item/commandExecution/requestApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -11714,7 +11766,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "item/commandExecution/requestApproval"
@@ -11722,7 +11776,9 @@
     {
       "capabilities": [],
       "direction": "server_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-qualification.md"
+      ],
       "experimental": false,
       "id": "server_request:item/fileChange/requestApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -11756,7 +11812,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "item/fileChange/requestApproval"
@@ -11764,7 +11822,9 @@
     {
       "capabilities": [],
       "direction": "server_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-qualification.md"
+      ],
       "experimental": false,
       "id": "server_request:item/permissions/requestApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -11798,7 +11858,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "item/permissions/requestApproval"
@@ -15404,12 +15466,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/turn-input-qualification.md#compaction-and-retained-outputs"
+      ],
       "experimental": false,
       "id": "server_response:thread/compact/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local/remote-v2 lifecycle, whole-output retention budgets, cold resume and failed-compaction ordinary-turn recovery; automatic compaction, interruption, successful retry and other profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15424,9 +15490,14 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/compaction_test.exs",
+          "apps/samgita_codex_driver/test/compaction_retention_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/compact/start"
     },
     {
@@ -18360,72 +18431,111 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientNotification.json#/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Complete exact notification method and lossless native-envelope delivery implemented and locally tested on three Linux transports; final-source hosted and other required deployment-profile qualification remain incomplete."
+      ],
       "pointer": "/oneOf/0",
       "schema": "ClientNotification.json",
       "schema_sha256": "8b40473d8e9243315c7f1f3868bc1842786eefd6c9db29a20e3f0b69426b0c48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/initialized_notification_test.exs",
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientNotification.json#/oneOf/0/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Complete exact notification method and lossless native-envelope delivery implemented and locally tested on three Linux transports; final-source hosted and other required deployment-profile qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/method",
       "required": true,
       "schema": "ClientNotification.json",
       "schema_sha256": "f0ee07ff5c4ac603b6db0198068621f555e6b8897132944fe92df4b642df2ab7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/initialized_notification_test.exs",
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientNotification.json#/oneOf/0/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Complete exact notification method and lossless native-envelope delivery implemented and locally tested on three Linux transports; final-source hosted and other required deployment-profile qualification remain incomplete."
+      ],
       "pointer": "/oneOf/0/properties/method/enum/0",
       "schema": "ClientNotification.json",
       "schema_sha256": "4f14e1c6beff098ec3284342205b2b4a43afa30bbf6b9f18115b4d5c0abaf9f6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/initialized_notification_test.exs",
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {

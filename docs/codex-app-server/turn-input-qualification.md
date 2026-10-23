@@ -97,8 +97,9 @@ tool runs in these assistant-only cases. Omitted/null `toolOutput` with empty
 deserialization; aggregate text over 1,048,576 Unicode characters returns native
 `-32602` with `input_too_large`, maximum and actual character counts. Structured
 HTTP(S) image references return `-32600` before model execution. Structured image
-preparation is qualified below; audio and encrypted-content success, active-turn
-steering and compaction retention remain to be qualified.
+preparation is qualified below. The subsequent active-steering and compaction
+sections add selected audio/encrypted-content and retention evidence; other
+profiles remain incomplete.
 
 `turn_overrides_test.exs` adds four scenarios. Successive requests demonstrate
 sticky model, effort and summary settings; public null preserves those settings,
@@ -112,6 +113,80 @@ new settings leak. Disabled experimental negotiation rejects `environments`,
 environment and conflicting permissions/sandbox fail explicitly; a later valid
 turn succeeds. These are request/settings outcomes, not evidence of model reasoning
 quality, remote environments or sandbox enforcement during command execution.
+
+## Active-turn steering and structured output
+
+Seven actual-binary cases in `native_turn_steering_test.exs` hold a turn at a real
+`item/tool/call` and release it only through an explicit synthetic tool reply.
+Accepted `turn/steer` text, untrusted/application context and metadata enter the
+next captured provider request and the existing turn. Reserved causal IDs cannot
+be spoofed. Started/completed item identity, one turn lifecycle and persisted
+history survive confirmed process shutdown and cold resume.
+
+Wrong active-turn IDs, empty input and oversized Unicode input fail without
+merging rejected content, context or metadata. Idle steering cannot start a turn
+or inference; empty/absent/null expected IDs and disabled experimental fields
+retain actual upstream errors. Fresh-thread `thread/read(includeTurns: true)`
+returns the pinned `list_turns is not supported yet` before the first turn. The
+test therefore establishes no provider/start event, completes one valid turn,
+then proves the history contains exactly that turn rather than assuming an
+unsupported history operation succeeds.
+
+Standalone `turn/start.toolOutput` also steers the pending turn. String and
+structured text/image/audio/encrypted outputs retain item identity and opaque
+encrypted content in native history and the next provider request. The audio
+input is preserved under an audio-capable model; otherwise the pinned omission
+placeholder is asserted. These are request preparation and lifecycle checks,
+not actual media understanding or ciphertext interpretation. Both local runs
+passed **7 tests**, seeds `455834` and `987654`.
+
+## Compaction and retained outputs
+
+Four actual-binary tests in `compaction_test.exs` exercise explicit
+`thread/compact/start`. The empty RPC result acknowledges the request; correlated
+`contextCompaction` item and turn events establish completion separately.
+Invalid and unknown thread IDs fail before any turn or provider request.
+
+A custom loopback Responses provider advertises remote compaction `v2`. Its
+fixture returns an opaque synthetic compaction item only when the real Codex
+request includes `compaction_trigger`, irrespective of request count. With
+`retain_client_tool_outputs` enabled, a marked named output survives compaction,
+confirmed owned-process close, fresh process/resume and a new turn unchanged;
+an unmarked output is absent. With the feature disabled, even the marked output
+is absent. The synthetic checkpoint survives cold resume in the next provider
+request; internal retention flags never enter the provider payload.
+
+The separate local-compaction route uses the configured summary prompt over
+ordinary Responses input, emits the same correlated item lifecycle and puts its
+summary into the next request without leaking the compaction prompt as ordinary
+conversation input. These selected Linux/stdio checks passed **4 tests**, seed
+`501432`. Two Python regressions cover actual HTTP fixture routing and its
+existing one-argument item override contract. The backend supplies deterministic
+data; it proves no summary quality or decryption.
+
+Three further actual-binary cases in `compaction_retention_test.exs` qualify the
+64,000-estimated-token shared retention budget from pinned
+`core/src/compact_remote_v2.rs:87,606–702`. Each first proves complete, untruncated
+outputs reached the actual compaction request. The model catalog permits a large
+context and 1 MB per output so ingestion clipping cannot masquerade as retention.
+The newest output survives whole; a middle output exceeding the remaining budget
+stops the traversal, so an older output that would fit cannot backfill it. An
+oversized newest output instead drops whole and prevents older backfill. A cold
+process resume and next ordinary provider request prove the resulting history,
+opaque checkpoint and absence of internal retention metadata.
+
+The third case deliberately supplies an assistant item instead of a checkpoint.
+The RPC acknowledges `{}` before the native asynchronous error and failed turn;
+there is no completed compaction item or installed checkpoint. Ordinary turns
+in the same process and after cold resume retain pre-failure history. This is
+ordinary-turn recovery, not a successful compaction retry. All three passed at
+seeds `501432` and `987654`. Log:
+`/tmp/samgita-compaction-retention-validation.log`. An initial root-development
+formatter command failed in cached dependency type checking before tests ran;
+the independent package's test environment compiled and formatted successfully.
+
+Automatic/background compaction, fork/prediction variants, interruption,
+successful compaction retry and other transports/backends remain unqualified.
 
 ## Controlled MCP mention follow-up
 
