@@ -169,4 +169,3 @@ if __name__ == "__main__":
     except (AssertionError, KeyError, OSError, RuntimeError, ValueError) as error:
         print("BLOCKED_ENV: native sandbox prerequisite: " + str(error), file=sys.stderr)
         sys.exit(1)
-
