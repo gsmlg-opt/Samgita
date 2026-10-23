@@ -20,6 +20,16 @@ defmodule StandaloneCodexTest do
     {:ok, pid} = StandaloneCodex.start(binary, home, codex, workspace)
     on_exit(fn -> if Process.alive?(pid), do: StandaloneCodex.close(pid) end)
 
+    assert {:ok, %{outcome: :sent_unconfirmed}} =
+             StandaloneCodex.notify(pid, %{
+               "method" => "initialized",
+               "params" => nil,
+               "future" => %{"preserved" => [true, "é🙂"]}
+             })
+
+    assert %{phase: :ready, pending: 0, interactions: 0} =
+             SamgitaCodexDriver.Session.status(pid)
+
     assert {:ok, %{"result" => %{"data" => [], "nextCursor" => nil}}} =
              StandaloneCodex.list_threads(pid)
 

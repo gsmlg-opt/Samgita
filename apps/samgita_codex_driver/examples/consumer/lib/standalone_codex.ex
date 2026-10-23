@@ -28,6 +28,9 @@ defmodule StandaloneCodex do
   @doc "Keep the complete native result, including pagination and future extension fields."
   def list_threads(pid), do: Session.request(pid, "thread/list", %{"limit" => 10}, effect: :read)
 
+  @doc "Send a native notification; local sent_unconfirmed is not a remote acknowledgement."
+  def notify(pid, wire), do: Session.notify_native(pid, wire)
+
   @doc "Pull full ordered messages and exact interaction handles; no automatic approval."
   def events(pid), do: Session.drain(pid)
 

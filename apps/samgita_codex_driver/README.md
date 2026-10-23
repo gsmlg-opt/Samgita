@@ -44,13 +44,24 @@ itself establishes readiness; client notifications are logging-only. The Session
 keeps its canonical send-before-ready policy and fails initialization if that
 send fails. Early, omitted or duplicate notifications do not change server state.
 See [initialization qualification](../../docs/codex-app-server/initialization-qualification.md).
+
+`Session.notify_native/3` sends a complete client-notification envelope, including
+omitted versus null parameters and future fields. It checks the pinned schema by
+default; `validation: :wire` explicitly permits extensions without claiming their
+compatibility. `{:ok, %{outcome: :sent_unconfirmed}}` means only a local transport
+write. It allocates no request ID, awaits no ACK, changes no handshake readiness
+and never replays after reconnect. Failed writes return uncertain native evidence
+and disconnect. Do not resend an extension with possible effects without
+reconciliation. The pinned `initialized` notification only logs on the server.
+
 Requests correlate typed IDs in their connection
 generation; native server requests have a separate direction and opaque handles.
 Notifications/items retain their complete payloads in a bounded ordered pull
 queue. The owner receives one `:events_available` wakeup and drains the queue.
 
 `Session.status/1` exposes a non-secret process-lifetime `instance_id` and a
-connection `generation`. For fenced callers, `request_native/3` and `respond/4`
+connection `generation`. For fenced callers, `request_native/3`, `notify_native/3`
+and `respond/4`
 accept `:expected_instance_id`, `:expected_generation` and
 `:dispatch_deadline_ms` (absolute Unix milliseconds). The serialized Session
 checks them immediately before sending, so a queued request cannot cross a

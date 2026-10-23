@@ -2,8 +2,9 @@
 
 This evidence targets immutable Codex `rust-v0.163.0`, source
 `83086188ae0614bd882818ff1aa23f3194962012`, and the pinned Linux musl executable
-in [qualification](qualification.md). It adds tests and corrects inventory
-metadata; no protocol schema or driver runtime is changed.
+in [qualification](qualification.md). The initial checkpoint added tests and
+corrected inventory metadata. The subsequent native-notification checkpoint
+adds an explicit driver API without changing the pinned schema.
 
 ## Server readiness and client policy
 
@@ -54,12 +55,34 @@ presence of a helper process or socket file.
 
 These checks qualify selected Linux initialization behavior. They do not qualify
 other operating systems, signed-JWT success, every initialization capability or
-all transport failure profiles. The Session currently exposes its automatic
-canonical notification; arbitrary client-notification envelopes remain available
-through the native codec/transports rather than a Session notification API.
-Keep that driver surface and the remaining deployment profiles visible in the
-full compatibility assessment. Selected evidence is attached to the initialized
-and initialization-order entries without marking either fully verified.
+all transport failure profiles. The subsequent `Session.notify_native/3` fills
+the native client-notification driver surface: it preserves full envelopes and
+params presence, applies wire/schema/size bounds and checks instance,
+generation and absolute dispatch deadline immediately before sending. A local
+write returns `sent_unconfirmed`; there is no ID allocation or fabricated ACK.
+Notifications do not alter handshake/correlation state, and reconnect never
+replays them. Explicit wire extensions are not a compatibility claim.
+
+Nine deterministic tests first failed for the missing API, then passed with the
+implementation. They cover complete native values/additions, sending during
+initialization, bounds, invalid inputs, dispatch fences, queued reconnect and
+failed writes preserving pending mutation uncertainty. Three further tests use
+the real pinned binary over stdio, capability-token WebSocket and UDS. Early,
+duplicate and parameter-varied Session notifications leave readiness under
+initialize control; subsequent correlated reads work, with no fabricated
+notification responses. Independent server notifications may arrive during the
+local send and remain in the checked event queue. Borrowed endpoints survive a
+fresh-client initialize/read after client closure.
+
+The focused command covering these 12 new cases and 28 retained Session cases
+passed **40 tests**, seed `362646`; logs are
+`/tmp/samgita-native-notification-{red,green,focused,static}.log`. An initial
+real-transport assertion compared asynchronous incoming-event counters as though
+they were notification-send state; excluding those counters while still checking
+every drained event corrected that test assumption. No runtime workaround was
+needed. Parent full-package/final-source checks remain separate in qualification.
+Selected evidence is attached to the initialized and initialization-order entries
+without marking either fully verified or completing unavailable profiles.
 
 Upstream references, relative to `codex-rs/`:
 

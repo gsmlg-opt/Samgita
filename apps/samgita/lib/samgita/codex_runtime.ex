@@ -102,12 +102,11 @@ defmodule Samgita.CodexRuntime do
       command(principal, project_id, id, safe, "prepare", fn ctx ->
         runtime = ctx.runtime
         Commands.expect!(runtime, attrs)
-        Native.request!(attrs["native"], runtime)
+        direction = Native.outgoing!(attrs["native"], runtime)
 
-        active_mutation!(ctx.project, attrs["native"]["method"])
+        active_mutation!(ctx.project, attrs["native"]["method"], direction)
 
-        operation =
-          insert_operation!(ctx, attrs["native"], "client_request", nil, timeout!(attrs))
+        operation = insert_operation!(ctx, attrs["native"], direction, nil, timeout!(attrs))
 
         operation_projection(operation)
       end)
@@ -612,6 +611,10 @@ defmodule Samgita.CodexRuntime do
 
     if pending >= 128, do: Commands.fail!(:capacity_exceeded)
 
+    # Notifications have no wire ID. Keep their local journal identity separate
+    # from the unchanged native envelope, allowing distinct explicit sends.
+    identity = if direction == "client_notification", do: [direction, id], else: native["id"]
+
     operation = %NativeRuntimeOperation{
       id: id,
       runtime_id: runtime.id,
@@ -619,10 +622,10 @@ defmodule Samgita.CodexRuntime do
       driver_generation: runtime.driver_generation,
       direction: direction,
       method: method,
-      effect: if(interaction, do: "mutation", else: Native.effect(method)),
+      effect: if(interaction, do: "mutation", else: Native.effect(method, direction)),
       interaction_id: interaction && interaction.id,
       timeout_ms: timeout_ms,
-      wire_id_digest: take!(Payload.fingerprint(native["id"], runtime.fingerprint_key_id)),
+      wire_id_digest: take!(Payload.fingerprint(identity, runtime.fingerprint_key_id)),
       request_payload: seal!(native, runtime.id, id, "request"),
       inserted_at: now,
       updated_at: now
@@ -709,7 +712,8 @@ defmodule Samgita.CodexRuntime do
 
   defp token!(_operation, _token), do: Commands.fail!(:unauthorized)
 
-  defp settlement!(_runtime, %{direction: "client_response"}, attrs) do
+  defp settlement!(_runtime, %{direction: direction}, attrs)
+       when direction in ~w(client_response client_notification) do
     if attrs["native"] != nil || attrs["delivery_outcome"] not in ~w(sent_unconfirmed uncertain),
       do: Commands.fail!(:invalid_native_payload)
 
@@ -766,8 +770,8 @@ defmodule Samgita.CodexRuntime do
   defp pending_interaction!(%{state: "pending"}), do: :ok
   defp pending_interaction!(_), do: Commands.fail!(:conflict)
 
-  defp active_mutation!(project, method) do
-    if method != "turn/interrupt" && Native.effect(method) == "mutation",
+  defp active_mutation!(project, method, direction) do
+    if method != "turn/interrupt" && Native.effect(method, direction) == "mutation",
       do: active_project!(project)
   end
 

@@ -66,6 +66,13 @@ defmodule Samgita.CodexRuntime.Driver do
     end
   end
 
+  defp send_current(session, %{"direction" => "client_notification"} = ticket, wire, _opts) do
+    case Session.notify_native(session, wire, dispatch_guards(ticket)) do
+      {:ok, %{outcome: :sent_unconfirmed}} -> %{"delivery_outcome" => "sent_unconfirmed"}
+      {:error, _} -> %{"delivery_outcome" => "uncertain"}
+    end
+  end
+
   defp send_current(session, %{"direction" => "client_response"} = ticket, wire, opts) do
     handle = Keyword.get(opts, :interaction_handle)
 

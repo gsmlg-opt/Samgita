@@ -73,7 +73,7 @@ jobs:
         timeout-minutes: 8
         run: |
           mix compile --warnings-as-errors
-          mix test apps/samgita/test/samgita/runtime_registration_test.exs apps/samgita/test/samgita/codex_runtime_test.exs apps/samgita/test/samgita/codex_runtime_race_test.exs apps/samgita_web/test/samgita_web/controllers/codex_runtime_controller_test.exs apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs --include e2e
+          mix test apps/samgita/test/samgita/runtime_registration_test.exs apps/samgita/test/samgita/codex_runtime_test.exs apps/samgita/test/samgita/codex_runtime_notification_test.exs apps/samgita/test/samgita/codex_runtime_race_test.exs apps/samgita_web/test/samgita_web/controllers/codex_runtime_controller_test.exs apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs --include e2e --include real_codex
 
   completeness:
     name: Full compatibility evidence gate

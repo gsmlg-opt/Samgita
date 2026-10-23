@@ -60,6 +60,18 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   @doc """
+  Send a complete native client notification without allocating an ID or awaiting an ACK.
+
+  Success reports only `%{outcome: :sent_unconfirmed}` for the local transport write.
+  The pinned client-notification schema is checked unless `validation: :wire` is
+  explicit. Accepts the same dispatch fences as `request_native/3`; notifications
+  never change initialization readiness and are never replayed after reconnect.
+  """
+  def notify_native(pid, wire, opts \\ []) do
+    GenServer.call(pid, {:notify_native, wire, opts}, :infinity)
+  end
+
+  @doc """
   Respond explicitly to a drained server-request handle with {:ok, result} or {:error, error}.
   Accepts the same optional dispatch fences as `request_native/3`.
   """
@@ -171,6 +183,22 @@ defmodule SamgitaCodexDriver.Session do
 
   def handle_call({:request_native, _, _}, _from, state) do
     {:reply, {:error, Error.new(:invalid_options)}, state}
+  end
+
+  def handle_call({:notify_native, wire, opts}, _from, state) do
+    cond do
+      not (is_list(opts) and Keyword.keyword?(opts)) ->
+        {:reply, {:error, Error.new(:invalid_options)}, state}
+
+      Wire.classify(wire) != :notification ->
+        {:reply, {:error, Error.new(:invalid_envelope)}, state}
+
+      is_nil(state.connection) ->
+        {:reply, {:error, Error.new(:disconnected)}, state}
+
+      true ->
+        send_notification(wire, opts, state)
+    end
   end
 
   def handle_call({:respond, handle, result, opts}, _from, state) do
@@ -452,6 +480,34 @@ defmodule SamgitaCodexDriver.Session do
       Schema.validate_request(method, params,
         experimental: state.experimental,
         params_present: Keyword.get(opts, :params_present, true)
+      )
+    end
+  end
+
+  defp send_notification(wire, opts, state) do
+    with {:ok, encoded} <- Wire.encode(wire, max_bytes: state.opts[:max_message_bytes]),
+         :ok <- validate_notification(wire, opts, state),
+         :ok <- dispatch_guard(state, opts) do
+      case send_encoded(state, encoded) do
+        {:ok, state} ->
+          {:reply, {:ok, %{outcome: :sent_unconfirmed}}, state}
+
+        {:error, failure, state} ->
+          failure = %{failure | uncertain: true, wire: wire}
+          {:reply, {:error, failure}, disconnect(state, :send_failed)}
+      end
+    else
+      {:error, failure} -> {:reply, {:error, failure}, state}
+    end
+  end
+
+  defp validate_notification(wire, opts, state) do
+    if Keyword.get(opts, :validation, :schema) == :wire do
+      :ok
+    else
+      Schema.validate_notification(:client_notification, wire["method"], wire["params"],
+        experimental: state.experimental,
+        params_present: Map.has_key?(wire, "params")
       )
     end
   end

@@ -112,6 +112,60 @@ defmodule SamgitaWeb.CodexRuntimeControllerTest do
     assert settled["data"]["state"] == "completed"
   end
 
+  test "native notifications keep absent IDs and permit only local unconfirmed settlement", ctx do
+    wire = %{"method" => "initialized", "params" => nil, "future" => [true, "é🙂"]}
+
+    attrs =
+      command(%{
+        "expected_version" => ctx.runtime["version"],
+        "proof" => ctx.proof,
+        "native" => wire
+      })
+
+    response = post(ctx.conn, ctx.prefix <> "/operations", attrs)
+    assert get_resp_header(response, "cache-control") == ["no-store"]
+    operation = json_response(response, 201)["data"]
+    assert operation["direction"] == "client_notification"
+    assert operation["effect"] == "read"
+    refute Map.has_key?(operation, "native")
+
+    assert post(ctx.conn, ctx.prefix <> "/operations", attrs) |> json_response(201) ==
+             %{"data" => operation}
+
+    path = ctx.prefix <> "/operations/#{operation["id"]}"
+
+    ticket =
+      post(ctx.conn, path <> "/dispatch", %{
+        "expected_version" => operation["version"],
+        "proof" => ctx.proof
+      })
+      |> json_response(200)
+      |> Map.fetch!("data")
+
+    assert ticket["native"] == wire
+    refute Map.has_key?(ticket["native"], "id")
+
+    settlement = %{
+      "expected_version" => ticket["version"],
+      "dispatch_token" => ticket["dispatch_token"],
+      "delivery_outcome" => "sent_unconfirmed"
+    }
+
+    fabricated =
+      command(Map.put(settlement, "native", %{"id" => nil, "result" => %{}}))
+
+    rejected = post(ctx.conn, path <> "/settle", fabricated)
+    assert json_response(rejected, 400)["errors"]["code"] == "invalid_native_payload"
+    assert get_resp_header(rejected, "cache-control") == ["no-store"]
+
+    settled = post(ctx.conn, path <> "/settle", command(settlement)) |> json_response(200)
+    assert settled["data"]["state"] == "sent_unconfirmed"
+    payload = get(ctx.conn, path <> "/native")
+    assert get_resp_header(payload, "cache-control") == ["no-store"]
+    assert json_response(payload, 200)["data"]["request"] == wire
+    refute Map.has_key?(json_response(payload, 200)["data"], "response")
+  end
+
   test "another member gets safe metadata and cannot read native payloads or cross project scopes",
        ctx do
     other = agent_fixture()
@@ -125,19 +179,25 @@ defmodule SamgitaWeb.CodexRuntimeControllerTest do
 
     assert get(conn, ctx.prefix) |> json_response(200)
 
-    response =
-      post(
-        conn,
-        ctx.prefix <> "/operations",
-        command(%{
-          "expected_version" => 1,
-          "proof" => ctx.proof,
-          "native" => %{"id" => 1, "method" => "thread/list", "params" => %{}}
-        })
-      )
+    for wire <- [
+          %{"id" => 1, "method" => "thread/list", "params" => %{}},
+          %{"method" => "initialized"}
+        ] do
+      response =
+        post(
+          conn,
+          ctx.prefix <> "/operations",
+          command(%{
+            "expected_version" => 1,
+            "proof" => ctx.proof,
+            "native" => wire
+          })
+        )
 
-    assert json_response(response, 403)["errors"]["code"] == "forbidden"
-    assert get_resp_header(response, "cache-control") == ["no-store"]
+      assert json_response(response, 403)["errors"]["code"] == "forbidden"
+      assert get_resp_header(response, "cache-control") == ["no-store"]
+    end
+
     hidden = "/api/agent/projects/#{project_fixture()["id"]}/codex-runtimes/#{ctx.runtime["id"]}"
     assert get(conn, hidden) |> json_response(403)
   end

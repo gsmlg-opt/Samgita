@@ -5,7 +5,37 @@ defmodule Samgita.CodexRuntime.Native do
 
   @reads ~w(initialize thread/list thread/loaded/list thread/read thread/turns/list model/list config/read configRequirements/read account/read skills/list)
 
-  def effect(method), do: if(method in @reads, do: "read", else: "mutation")
+  def effect(method, direction \\ "client_request")
+
+  # rust-v0.163.0 (83086188ae0614bd882818ff1aa23f3194962012):
+  # app-server/src/message_processor.rs:740-751 only logs client notifications;
+  # app-server-protocol/src/protocol/common.rs:2097-2099 declares only Initialized.
+  def effect("initialized", "client_notification"), do: "read"
+  def effect(method, "client_request"), do: if(method in @reads, do: "read", else: "mutation")
+  def effect(_method, _direction), do: "mutation"
+
+  def outgoing!(wire, runtime) do
+    case Wire.classify(wire) do
+      :request ->
+        request!(wire, runtime)
+        "client_request"
+
+      :notification ->
+        encode!(wire)
+
+        validate!(
+          Schema.validate_notification(:client_notification, wire["method"], wire["params"],
+            experimental: runtime.experimental,
+            params_present: Map.has_key?(wire, "params")
+          )
+        )
+
+        "client_notification"
+
+      _ ->
+        Commands.fail!(:invalid_native_payload)
+    end
+  end
 
   def request!(wire, runtime) do
     encode!(wire)

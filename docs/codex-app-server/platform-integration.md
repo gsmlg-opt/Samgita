@@ -4,9 +4,10 @@ This document describes the current source implementation, not full compatibilit
 or deployment acceptance. It supplements [design](design.md) and the
 [implementation ledger](implementation-plan.md); exact executed checks and release
 status belong in [qualification](qualification.md). The coordinating local run
-passed the selected platform real-binary journey. Local aggregate results include
-a retained dependency security blocker. Hosted checkpoint failures and the
-subsequent owned-process shutdown repair are tracked in that qualification record.
+passed selected platform real-binary journeys. The retained dependency advisory
+is repaired; raw-telemetry confidentiality remains blocked. Current aggregate,
+driver transport repairs and hosted results are tracked in qualification and the
+[repair record](repair-qualification.md).
 
 ## Ownership and identities
 
@@ -40,7 +41,7 @@ the Repo-dependent bridge lives in `apps/samgita`, outside those packages.
 
 The sending Agent chooses the native action. Samgita validates and records it:
 
-1. **Prepare:** persist a native request with a command UUID, current lease proof,
+1. **Prepare:** persist a native request or client notification with a command UUID, current lease proof,
    binding `expected_version`, full `native` envelope and optional `timeout_ms`.
    The intent has state `prepared`. This performs no network I/O.
 2. **Dispatch:** supply the operation's `expected_version` and current lease proof.
@@ -48,12 +49,27 @@ The sending Agent chooses the native action. Samgita validates and records it:
    dispatch token and returns the native envelope plus token once. The deadline
    is bounded by the requested timeout, Attempt lease and execution deadline.
 3. **Send:** after that transaction commits, use the selected native Session to
-   send the exact request. No database lock spans the transport operation.
+   send the exact envelope. No database lock spans the transport operation.
 4. **Settle:** submit a new command UUID, operation version and dispatch token,
    together with the correlated native response/error or
    `delivery_outcome: "uncertain"`. Current credentials, Project membership,
    connection, Attempt state, lease, fence, authority epoch and native instance
    are checked again. Native response IDs must match the original typed ID.
+
+Client notifications retain an absent wire ID. Their required journal identity
+is a keyed fingerprint of `["client_notification", operation_uuid]`, never an ID
+injected into the native envelope. Replaying a command returns its existing
+intent; a distinct explicit command may prepare the same notification again.
+The platform validates only the pinned client-notification schema; the
+standalone Session's wire-extension option cannot bypass platform validation.
+
+For notifications, settlement accepts only absent/null native response with
+`sent_unconfirmed` or `uncertain`. A successful local write is neither a remote
+ACK nor a completion result. The bridge cannot store a failed send's outgoing
+notification as an invented server response. Notification dispatch uses the same
+one-use ticket, instance/generation/deadline fences and current authorization as
+requests. It does not advance the incoming journal sequence, create a Task/turn,
+change readiness or clear gaps and other unresolved effects.
 
 Preparation and settlement support command-receipt replay under current
 authorization. A reused command ID with changed semantics conflicts. Dispatch
@@ -80,8 +96,10 @@ independent proof of remote process identity. No mandatory Samgita transport pro
 is introduced.
 
 Unknown methods are rejected by the pinned schema. The effect classifier uses a
-small explicit read allowlist and conservatively treats other methods as
-mutations. Paused Projects cannot dispatch new mutations except explicit
+small explicit request-read allowlist and conservatively treats other methods as
+mutations. Only `initialized/client_notification` is separately classified as
+logging-only read, following pinned `message_processor.rs:740–751`; an in-flight
+notification still blocks resolved-execution claims. Paused Projects cannot dispatch new mutations except explicit
 `turn/interrupt`. Ambiguous mutations, including unconfirmed interaction replies,
 block fresh mutation dispatch; current interaction replies and interruption remain
 available for control. Registration, schedules, event delivery, recovery and
@@ -136,7 +154,7 @@ and infrastructure boundaries. This introduces no accounts or tenant system.
 | `GET` base path, `GET /:id` | Project read role | Yes |
 | `POST` base path | Worker owner: bind running Attempt | No |
 | `GET /:id/operations`, `GET /:id/events` | Project read role, safe metadata | Yes |
-| `POST /:id/operations` | Worker owner: prepare request | No |
+| `POST /:id/operations` | Worker owner: prepare request or pinned client notification | No |
 | `POST /:id/events` | Worker owner: record original driver event | No |
 | `POST /:id/events/:event_id/reply` | Worker owner: prepare decision | Yes, with current execution fences |
 | `POST /:id/operations/:operation_id/dispatch` | Worker owner: one-use ticket | No |
@@ -230,8 +248,11 @@ tables, delete records or replay uncertain operations to make a downgrade work.
 The immutable target remains official `rust-v0.163.0`, source
 `83086188ae0614bd882818ff1aa23f3194962012`. Its separate Rust/TypeScript-backed
 export supplement is locally derived and preserves official JSON bytes. The
-manifest contains **485 requirements and 6,621 contracts, all still missing** for
-full behavioral acceptance. Selected local tests cover nine of eleven interaction
+manifest contains **485 requirements (one implemented, 480 missing, four blocked)
+and 6,621 contracts (three implemented, 6,618 missing)** for full behavioral
+acceptance. The four blocked entries retain the
+legacy approval emitter prerequisite documented in the source audit. Selected
+local tests cover nine of eleven interaction
 families; neither their presence nor generated schemas verifies all variants.
 
 Context, API and independent-PostgreSQL-backend race tests cover selected domain

@@ -14,7 +14,8 @@ mix test
 ```
 
 The test creates disposable HOME, CODEX_HOME and workspace directories, initializes
-the actual process and lists threads. It performs no model call or authentication.
+the actual process, sends a native notification with an unconfirmed local outcome
+and lists threads through a correlated real read. It performs no model call or authentication.
 A missing binary is a failed prerequisite, never a skipped compatibility claim.
 
 `StandaloneCodex.start/4` starts an owned process. `events/1` returns full native
@@ -22,6 +23,8 @@ messages and opaque server-interaction handles. Decide and authorize each approv
 or tool response in your application before calling `respond/3`; this example
 never approves a request automatically. A sent response is not confirmed upstream
 processing. Examine driver interaction outcomes and subsequent native events.
+`notify/2` preserves complete native notification envelopes without allocating
+IDs or fabricating response/ACK evidence; reconnect never replays them.
 
 Run `scripts/codex/verify_consumer.py` from the repository to repeat this proof in
 a temporary directory outside the umbrella. This verifies independent consumption
