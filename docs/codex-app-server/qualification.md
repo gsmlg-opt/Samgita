@@ -1,7 +1,7 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 407 implemented / 69 missing /
-9 blocked requirements** and **0 verified / 1,016 implemented / 5,605 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 407 implemented / 68 missing /
+10 blocked requirements** and **0 verified / 1,016 implemented / 5,605 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
@@ -27,9 +27,11 @@ Latest method records: [history](thread-history-qualification.md),
 [persisted metadata](thread-metadata-qualification.md),
 [isolated authentication](isolated-auth.md), [native executor environments](isolated-environment.md)
 [Apps metadata](isolated-apps.md) and [realtime output contracts](realtime-output-qualification.md).
-The six blocked requirements retain four legacy approval entries, the
+The ten blocked requirements retain four legacy approval entries, the
 advertised MCP progress notification with no discovered production emitter,
-and the explicitly deprecated non-emitting file-change output notification.
+the explicitly deprecated non-emitting file-change output notification,
+three [unimplemented prediction entries](prediction-boundary-qualification.md)
+and the [intentionally suppressed compaction notification](compacted-boundary.md).
 Field contracts and external/platform success profiles remain incomplete.
 
 Additional method records: [queues](queue-lifecycle-qualification.md),

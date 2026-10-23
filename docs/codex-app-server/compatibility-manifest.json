@@ -12245,12 +12245,17 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/compacted-boundary.md"
+      ],
       "experimental": false,
       "id": "server_notification:thread/compacted",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "The immutable production dispatcher deliberately suppresses the deprecated ContextCompacted event; complete Rust-tree search finds no v2 notification producer. Canonical contextCompaction items do not qualify this notification.",
+        "Source-proven upstream-unreachable success remains blocked; no synthetic or schema-only evidence establishes native emission."
+      ],
       "params": {
         "$ref": "#/definitions/ContextCompactedNotification"
       },
@@ -12263,7 +12268,7 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",

@@ -387,6 +387,12 @@ Next concrete work (repair follow-up, 2026-10-24):
    positive contracts gain scoped evidence; two null-only variants stay missing.
    Other raw items, UI-false, Bedrock auth-recovery and real service/OS profiles
    remain incomplete.
+   The [retained compaction notice](compacted-boundary.md) is now explicitly
+   blocked: exact pinned source suppresses its production event and an exhaustive
+   Rust-tree search finds only declarations/classification/consumers. Canonical
+   compaction item success does not qualify this deprecated notification. Its
+   two field contracts retain missing native-success evidence; no scope or gate
+   is waived.
    At `085c4cc8`, foundation
    passed; conformance's thirteen isolated profiles passed, but all four default
    output-notice tests failed during namespace startup on Ubuntu 24.04. The
