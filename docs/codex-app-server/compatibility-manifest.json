@@ -5500,12 +5500,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-goal-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/goal/clear",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected inactive native goal, budget/objective and explicit user provenance behavior including cold writes. Active continuation, usage/budget-limited automation, every field/interaction variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadGoalClearParams"
       },
@@ -5527,27 +5531,35 @@
         "source_line": 625,
         "variant": "ThreadGoalClear"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/goal/clear"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-goal-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/goal/get",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected inactive native goal, budget/objective and explicit user provenance behavior including cold writes. Active continuation, usage/budget-limited automation, every field/interaction variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadGoalGetParams"
       },
@@ -5569,27 +5581,35 @@
         "source_line": 620,
         "variant": "ThreadGoalGet"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/goal/get"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-goal-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/goal/set",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected inactive native goal, budget/objective and explicit user provenance behavior including cold writes. Active continuation, usage/budget-limited automation, every field/interaction variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadGoalSetParams"
       },
@@ -5611,16 +5631,20 @@
         "source_line": 615,
         "variant": "ThreadGoalSet"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/goal/set"
     },
     {
@@ -10679,12 +10703,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-goal-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:thread/goal/cleared",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected inactive native goal, budget/objective and explicit user provenance behavior including cold writes. Active continuation, usage/budget-limited automation, every field/interaction variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadGoalClearedNotification"
       },
@@ -10697,27 +10725,35 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/goal/cleared"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-goal-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:thread/goal/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected inactive native goal, budget/objective and explicit user provenance behavior including cold writes. Active continuation, usage/budget-limited automation, every field/interaction variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadGoalUpdatedNotification"
       },
@@ -10730,16 +10766,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/goal/updated"
     },
     {
@@ -16198,12 +16238,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-goal-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/goal/clear",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected inactive native goal, budget/objective and explicit user provenance behavior including cold writes. Active continuation, usage/budget-limited automation, every field/interaction variant and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16211,28 +16255,36 @@
       "schema": "v2/ThreadGoalClearResponse.json",
       "schema_sha256": "2652c2d0072be8ccb71c8dcaaa054aa74f974e68156a73451baf72c8597669c2",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/goal/clear"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-goal-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/goal/get",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected inactive native goal, budget/objective and explicit user provenance behavior including cold writes. Active continuation, usage/budget-limited automation, every field/interaction variant and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16240,28 +16292,36 @@
       "schema": "v2/ThreadGoalGetResponse.json",
       "schema_sha256": "f610000963194731c96ce2b45e46722ca700f1b6ccc1fc55a2fd95e526018fd9",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/goal/get"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-goal-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/goal/set",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected inactive native goal, budget/objective and explicit user provenance behavior including cold writes. Active continuation, usage/budget-limited automation, every field/interaction variant and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16269,16 +16329,20 @@
       "schema": "v2/ThreadGoalSetResponse.json",
       "schema_sha256": "b1c61b6068b3b73dd3d97b38f8a269593f8f7added4643bfdb2016315b71ad8e",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/goal/set"
     },
     {
