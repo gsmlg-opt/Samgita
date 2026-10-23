@@ -70,7 +70,13 @@ Six server-interaction scenarios and three synthetic auth/attestation scenarios
 exercise selected decisions and actual local effects. Together with prior driver
 tests, nine of eleven server-request families have selected behavior evidence.
 Legacy `applyPatchApproval` and `execCommandApproval`, remaining decision/field
-variants and external service success profiles remain unqualified. Synthetic JWT
+variants and external service success profiles remain unqualified. A follow-up
+pinned-source audit found no production emission path for either legacy family:
+current thread events always emit v2 approval requests, their former client APIs
+are absent, and initialization has no legacy selector. Keep these advertised
+contracts in scope and record the unmet real-binary success requirement in
+[legacy approval qualification](legacy-approval-qualification.md); an older or
+modified executable would not qualify the immutable target. Synthetic JWT
 refresh and attestation header forwarding are not real authentication or
 attestation-service acceptance.
 
@@ -98,14 +104,18 @@ journey. Exact remaining aggregate and hosted outcomes belong in qualification.
 
 Next concrete work:
 
-1. Push the logical scoped units and complete final-source hosted checks. Local
-   compilation, tests, static checks, assets, consumers and assembly passed, but
-   retained `plug_crypto 2.2.0` now fails security audit for CVE-2026-105963; preserve
-   that blocker and address dependency remediation as its own scoped change.
-   Run the manual pinned-Codex hosted workflow: its selected actual-binary matrix
-   and strict completeness job have separate outcomes. The selected platform
-   journey already passed for two ordinary Agent names; it does not establish
-   broader provider, field/variant or deployment acceptance.
+1. Push the repaired owned-stdio lifecycle `49d1c37` and legacy contract evidence
+   `d63dcdd` with the qualification documents, then rerun both hosted workflows. The
+   final local driver suite passed 102 tests, the outside consumer passed, and
+   the platform/API journey passed four cases. Root tests passed twice and strict
+   static checks passed. Repeated restart on the retained scratch database failed
+   in the existing activation fixture before driver startup with
+   `unmapped_or_unresolved_tasks`; preserve that result and do not repair unrelated
+   fixture/mapping policy in this scope. Retained `plug_crypto 2.2.0` fails audit
+   for CVE-2026-105963; dependency remediation remains a separate scoped change.
+   The strict completeness job must continue failing until entry-specific
+   acceptance is complete. Selected two-Agent success does not establish broader
+   provider, field/variant or deployment acceptance.
 2. Complete remaining method/interaction variants, differential profiles and
    manifest-specific evidence. Preserve all 485 requirements and 6,621 contracts
    as missing until their full acceptance conditions are established.

@@ -4,10 +4,13 @@ Date: 2026-10-23. Scope: persisted management UI, complete fake-Agent journey, l
 
 The reliability repair below supersedes the original P5 aggregate failures and reused-database limitation. The original P5 commands, browser observations and totals remain prior evidence from `91567e5116cb10f702a57012485ceed812b87d21`; they are not new browser runs. A11 remains blocked. No release or deployment is certified.
 
-The subsequent Codex source checkpoint `39ff43fa32961282628d9616f0b015b8d072fd5d`
+The subsequent Codex source/test checkpoint `d63dcddae49c0c7c7b5565482134d4282275a86c`
 has separate [current qualification](../codex-app-server/qualification.md).
-Its local aggregate tests, static checks, consumers, assets and assembly passed,
-but the retained `plug_crypto 2.2.0` dependency now fails security audit for
+Its local root tests, driver/consumer, static checks, assets and assembly passed,
+but repeat restart on the retained scratch database failed activation before
+driver startup with `unmapped_or_unresolved_tasks`. That failure remains visible,
+and no existing fixture, mapping or data was changed to bypass it. In addition,
+the retained `plug_crypto 2.2.0` dependency now fails security audit for
 CVE-2026-105963. That advisory, A11 and incomplete Codex behavioral evidence remain
 open; the historical passing audit below does not qualify the current dependency
 advisory state. No dependency repair, release or deployment is claimed here.

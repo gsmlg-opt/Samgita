@@ -5,7 +5,8 @@ or deployment acceptance. It supplements [design](design.md) and the
 [implementation ledger](implementation-plan.md); exact executed checks and release
 status belong in [qualification](qualification.md). The coordinating local run
 passed the selected platform real-binary journey. Local aggregate results include
-a retained dependency security blocker; final hosted qualification follows push.
+a retained dependency security blocker. Hosted checkpoint failures and the
+subsequent owned-process shutdown repair are tracked in that qualification record.
 
 ## Ownership and identities
 

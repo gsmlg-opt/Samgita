@@ -8,13 +8,16 @@ below also prevent a platform-readiness or release claim.
 
 ## Delivered source and immutable reference
 
-The current executable checkpoint is
-`39ff43fa32961282628d9616f0b015b8d072fd5d`, on existing `main`. It includes
+The current executable/test checkpoint is
+`d63dcddae49c0c7c7b5565482134d4282275a86c`, on existing `main`. It adds
+`49d1c37e23404f6255fd742c70f7dd23bc27f4c9` (confirmed owned-process shutdown)
+and retained legacy contract tests to the previous native platform checkpoint
+`39ff43fa32961282628d9616f0b015b8d072fd5d`. The previous checkpoint includes
 `f14afc2` (omitted source contracts), `f5d6530` (additional actual-binary scenarios)
-and `a88a456` (atomic Session dispatch fences). Following documentation/workflow
-changes do not change the executable source tested below. Baseline inspection
-started at `4fe354f2ce916aa32517c361a171b8878bf6ca84`; prior checkpoint evidence
-is historical and cannot qualify this source.
+and `a88a456` (atomic Session dispatch fences). Its table below is historical;
+current checks are in the owned-process repair section. Baseline inspection
+started at `4fe354f2ce916aa32517c361a171b8878bf6ca84`. Following documentation
+changes do not change the executable/test source.
 
 | Artifact | Immutable identity |
 | --- | --- |
@@ -40,10 +43,11 @@ TypeScript and Rust/serde declarations. Provenance and source hashes live in
 now includes 175 client methods and 87 server notifications. This is inventory
 coverage, not runtime acceptance.
 
-## Final executable-source local checks, 2026-10-23
+## Previous executable checkpoint local checks, 2026-10-23
 
-All checks in this table were actually run by the coordinator after the final
-executable edits, serializing Mix builds. Package commands run from their own
+All checks in this table were actually run by the coordinator after the
+`39ff43f` executable edits, before the shutdown repair, serializing Mix builds.
+Package commands run from their own
 directories inside `devenv shell --no-tui --`, with Elixir 1.18.5 / OTP
 27.3.4.17. Root test commands additionally use:
 
@@ -101,7 +105,13 @@ tools, plan input and reconnect/read/resume without a second execution. Two
 method-family suites contain 28 selected scenarios. Existing plus new journeys
 cover selected behavior across 9/11 server-interaction families. Legacy
 `applyPatchApproval` and `execCommandApproval`, remaining decisions/fields and
-external success profiles remain unqualified. Synthetic token refresh/header
+external success profiles remain unqualified. The subsequent
+[legacy approval audit](legacy-approval-qualification.md) documents that the
+immutable target retains those schemas but has no production emission path or
+legacy negotiation switch. Scripted contract tests and actual rejection of
+removed client APIs cannot qualify an enabled legacy approval success path.
+Neither family is excluded from the target or counted as verified.
+Synthetic token refresh/header
 forwarding is not real account, signed-JWT or attestation-service acceptance.
 
 Scripted faults separately exercise framing, TLS rejection, correlation,
@@ -137,6 +147,77 @@ exports are now accounted for separately. Early shell-discovery, image-fixture,
 skill/config and provider-capability fixture assumptions were corrected against
 matching source/runtime behavior; those changes did not weaken assertions or gates.
 
+## Owned-process shutdown repair
+
+The hosted teardown failure led to a deterministic regression: a delayed SIGTERM
+handler writes a cleanup marker, and `close` must wait for that marker before
+returning, including after the original owner dies. It failed against immediate
+`Port.close/1`. The repair adds a port guardian and shared completion reference;
+success requires the helper's protected cleanup acknowledgement and exit, rather
+than port disappearance. Later close calls retain that confirmed outcome.
+
+The helper bounds input buffering, accepts private shutdown control under input
+backpressure, rejects child NUL output, and reaps owned descendants on Linux.
+Only an explicitly unsent control byte may be retried within the shutdown
+deadline; native requests and directory deletion are never retried. The direct
+child stays unreaped until the main thread finishes signalling its process group,
+preventing group identity reuse. A deterministic helper regression checks child
+waitability and thread identity at each group signal.
+
+Session settles pending mutations as uncertain before attempting shutdown.
+Unconfirmed cleanup leaves a visible `shutdown_failed` state, returns a typed
+error and refuses reconnect. Framing-overflow cleanup failures follow the same
+uncertainty path. The model fixture now uses the same owned-process cleanup.
+Borrowed servers/sockets remain untouched and `File.rm_rf!` assertions remain
+strict. Non-Linux lifecycle behavior remains unqualified.
+
+The expanded repair exposed two implementation failures before final validation:
+backpressure initially closed the cleanup-ACK channel too early, and a boolean
+test incorrectly used the tuple returned by `Port.info/1`. Both were corrected;
+review then found and fixed the process-group identity and overflow propagation
+issues above. One recovery test invocation omitted `CODEX_BINARY`; its two
+environment failures passed after restoring the pin without changing source.
+
+Final focused command, in the independent driver package with the pinned binary:
+
+```sh
+mix test test/transport_stdio_test.exs test/session_test.exs test/legacy_approval_contract_test.exs
+```
+
+Observed: **45 tests, zero failures**. Subsequent coordinator checks used the
+final source, including the added legacy tests and corrected alias ordering:
+
+| Check | Observed result |
+| --- | --- |
+| Independent driver compile/format/full suite | Passed; **102 tests, zero failures**, seed `689291` |
+| Outside-umbrella actual-binary consumer | Fresh independent resolution, compile, **1 test**, formatting passed; seed `921459` |
+| Root compile/format/strict Credo | Passed; 253 files, 69 checks, no issues |
+| Root suite and populated-database repeat | Each: **188 core tests; 114 web cases, 2 excluded; zero failures** |
+| Native platform/API journey | **4 passed**, including both ordinary Agent names and explicit approval/review/acceptance |
+| Restart/rollback on reused `samgita_redesign_restart_test` | **Failed before driver startup**: activation returned `conflict`, reason `unmapped_or_unresolved_tasks` |
+| Dialyzer/assets | Passed; zero Dialyzer errors/skips; assets built |
+| Security audit | **Failed** on retained `plug_crypto 2.2.0`, CVE-2026-105963; no dependency change |
+| Local production compile/assets/archive | Passed; archive and extracted helper bytes match final source; not started, published or deployed |
+| Inventory consistency/regressions | Passed; **12 tests**; all 485 requirements and 6,621 contracts remain missing |
+| Legacy scan/regressions | Passed; **4 tests** |
+| Strict completeness | Failed as required on unverified entries |
+
+The repeated restart failure occurs in the existing `activate_fixture/0`, before
+the selected driver code runs. The prior successful restart used that database
+when it was fresh. No test, activation rule, mapping or retained database record
+was changed to bypass the failure. It remains a failed local reused-database
+check; a fresh hosted run cannot retroactively make that repeat pass. Initial
+final-source static checks also caught an unformatted blank line and alias order;
+both were corrected without suppressing checks.
+
+The production archive is
+`/tmp/samgita-codex-production-build/samgita-0.1.0.tar.gz`, SHA-256
+`6bb5d46051d12297f09f5e9f1c74e2c15b67f863f053fd3de86ddb17fcd7f355`.
+Its initial verification used an incorrect extra `/prod/` path component. The
+assembly itself had succeeded; checking the actual release path and tar member
+confirmed both contain the current helper. This is local packaging evidence,
+not a passed security gate or a published release.
+
 ## Hosted evidence and remaining gates
 
 Historical hosted [39928300713](https://github.com/gsmlg-opt/Samgita/actions/runs/39928300713)
@@ -150,9 +231,29 @@ The new manual `Pinned Codex conformance` workflow has two independent jobs:
 selected actual-binary/package/consumer/platform tests and a strict full-manifest
 evidence gate. Missing entries intentionally fail the latter; it is not
 continue-on-error and cannot be replaced by selected scenario success. Ordinary
-CI retains its aggregate security and assembly gates. At documentation authoring,
-final-source push/hosted runs are pending; report their actual run URLs, SHA and
-terminal results after delivery rather than infer success from dispatch.
+CI retains its aggregate security and assembly gates.
+
+The six logical checkpoint commits were pushed through
+`af6cebb0f3e409a5f50ff667640e63e0f217cd06`; HEAD, `origin/main` and the live
+remote agreed. Both hosted workflows reached terminal failure on that revision:
+
+- Aggregate [39952609810](https://github.com/gsmlg-opt/Samgita/actions/runs/39952609810)
+  passed compilation, formatting, Credo, repeated root tests, restart, independent
+  packages/consumers, assets, legacy scan and Dialyzer. It failed `mix hex.audit`
+  on the retained Plug.Crypto advisory; production assembly was skipped.
+- Pinned conformance [39952677405](https://github.com/gsmlg-opt/Samgita/actions/runs/39952677405)
+  passed the native wire suite, then failed four of 89 driver tests during
+  `File.rm_rf!` teardown. Outside-consumer and platform steps were skipped. Its
+  independent strict completeness job failed on missing evidence as required.
+
+The teardown failure exposed an owned-process lifetime bug: `Port.close/1`
+returned while the Python helper was still terminating Codex. An ExUnit test
+process could also die before its `on_exit` callback, leaving the callback unable
+to await the already closed port. The Codex process could continue writing into
+the fixture directory during deletion. This invalidates the earlier local-only
+shutdown qualification; cleanup errors must remain asserted. The repair and
+renewed local results appear above. Hosted reruns for the repair remain pending
+until the new commits are pushed and the workflows reach terminal states.
 
 | Layer | Remaining requirement |
 | --- | --- |
@@ -160,7 +261,7 @@ terminal results after delivery rather than infer success from dispatch.
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory; A11 raw LiveView credential telemetry; target-specific egress/key/legacy-cutover and real backup/memory rehearsals |
-| Hosted | Final pushed aggregate and pinned-binary jobs; full evidence gate remains red until actual acceptance is complete |
+| Hosted | Aggregate security failure and pinned driver teardown failure above; full evidence gate remains red until actual acceptance is complete |
 | Publication/deployment | No normal package/tag publication workflow currently exists; CD remains disabled; no package publication or deployment is claimed |
 
 New migrations are additive and refuse destructive down migration. Rollback

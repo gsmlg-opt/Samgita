@@ -80,8 +80,16 @@ destination policy. Borrowed resources remain owned by the caller. REST is not a
 Codex transport. Actual listener/authentication support is derived from pinned
 source and tested against the pinned executable.
 
-Stdio drains stderr separately and an owned Python process-group supervisor bounds
-cleanup on owner/port exit. It excludes ambient home, provider and credential
+Stdio drains stderr separately. A guardian owns the port, monitors the Session,
+and survives its death long enough to await the Python process-group helper's
+cleanup acknowledgement and exit. A shared completion reference preserves the
+confirmed outcome for later close calls without a global registry. The helper
+bounds input buffering and termination, reaps owned descendants on Linux, and
+keeps its cleanup control separate from native JSONL. A five-second shutdown
+deadline fails explicitly; helper disappearance alone is not proof of cleanup.
+Session preserves pending mutation uncertainty and refuses reconnect after
+unconfirmed shutdown, so failure cannot launch a replacement owned process.
+It excludes ambient home, provider and credential
 environment unless explicitly supplied. Consumers must provide an isolated
 absolute CODEX_HOME. WebSocket supports explicit Bearer headers, destination
 pinning, WSS trust/hostname/SNI checks, control frames and upgrade error metadata.
