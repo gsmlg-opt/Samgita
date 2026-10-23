@@ -76,7 +76,7 @@ jobs:
           mix test apps/samgita/test/samgita/runtime_registration_test.exs apps/samgita/test/samgita/codex_runtime_test.exs apps/samgita/test/samgita/codex_runtime_notification_test.exs apps/samgita/test/samgita/codex_runtime_race_test.exs apps/samgita_web/test/samgita_web/controllers/codex_runtime_controller_test.exs apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs --include e2e --include real_codex
 
   isolated-auth:
-    name: Isolated native browser and device authentication
+    name: Isolated native authentication and executor environments
     # This explicit Linux profile needs unprivileged user/network namespaces.
     # It fails on a denied prerequisite; never fall back to host callback ports.
     runs-on: ubuntu-22.04
@@ -100,6 +100,10 @@ jobs:
           mix compile --warnings-as-errors
           mix format --check-formatted
           mix test test/native_auth_flow_profile.exs --seed 501432
+      - name: Required real executor environment profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_environment_profile.exs --seed 501432
 
   completeness:
     name: Full compatibility evidence gate

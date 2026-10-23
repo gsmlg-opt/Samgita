@@ -307,14 +307,15 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "client_request:account/login/cancel",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/CancelLoginAccountParams"
@@ -345,7 +346,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -357,14 +359,15 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "client_request:account/login/start",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/LoginAccountParams"
@@ -395,7 +398,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -407,14 +411,15 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "client_request:account/logout",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "params": {
         "type": "null"
@@ -445,7 +450,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -548,14 +554,15 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "client_request:account/read",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/GetAccountParams"
@@ -586,7 +593,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -1313,14 +1321,15 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/environment-qualification.md"
+        "docs/codex-app-server/environment-qualification.md",
+        "docs/codex-app-server/isolated-environment.md"
       ],
       "experimental": true,
       "id": "client_request:environment/add",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/EnvironmentAddParams"
@@ -1351,7 +1360,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs",
+          "apps/samgita_codex_driver/test/native_environment_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -1365,14 +1375,15 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/environment-qualification.md"
+        "docs/codex-app-server/environment-qualification.md",
+        "docs/codex-app-server/isolated-environment.md"
       ],
       "experimental": true,
       "id": "client_request:environment/info",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/EnvironmentInfoParams"
@@ -1403,7 +1414,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs",
+          "apps/samgita_codex_driver/test/native_environment_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -1417,14 +1429,15 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/environment-qualification.md"
+        "docs/codex-app-server/environment-qualification.md",
+        "docs/codex-app-server/isolated-environment.md"
       ],
       "experimental": true,
       "id": "client_request:environment/status",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/EnvironmentStatusParams"
@@ -1455,7 +1468,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs",
+          "apps/samgita_codex_driver/test/native_environment_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -8953,14 +8967,15 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "server_notification:account/login/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/AccountLoginCompletedNotification"
@@ -8982,7 +8997,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -9027,14 +9043,15 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "server_notification:account/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/AccountUpdatedNotification"
@@ -9056,7 +9073,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -12708,14 +12726,15 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "server_response:account/login/cancel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -12732,7 +12751,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -12745,14 +12765,15 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "server_response:account/login/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -12769,7 +12790,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -12782,14 +12804,15 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "server_response:account/logout",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -12806,7 +12829,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -12877,14 +12901,15 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/account-qualification.md"
+        "docs/codex-app-server/account-qualification.md",
+        "docs/codex-app-server/isolated-auth.md"
       ],
       "experimental": false,
       "id": "server_response:account/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected local API-key persistence/replacement/logout, account projections, explicit legacy token sensitivity and policy/invalid-token/cancellation errors. Positive browser/device/external-token login, active cancellation, managed refresh/revocation, every field and other deployment profiles remain unqualified."
+        "Selected local API-key/account-state evidence plus isolated native browser/device success, cancellation, issuer failures, persistence and logout revocation. Real provider authentication, complete token refresh/rotation/error behavior, every field and other deployment profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -12901,7 +12926,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+          "apps/samgita_codex_driver/test/native_account_state_test.exs",
+          "apps/samgita_codex_driver/test/native_auth_flow_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -13414,14 +13440,15 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/environment-qualification.md"
+        "docs/codex-app-server/environment-qualification.md",
+        "docs/codex-app-server/isolated-environment.md"
       ],
       "experimental": true,
       "id": "server_response:environment/add",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -13438,7 +13465,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs",
+          "apps/samgita_codex_driver/test/native_environment_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -13453,14 +13481,15 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/environment-qualification.md"
+        "docs/codex-app-server/environment-qualification.md",
+        "docs/codex-app-server/isolated-environment.md"
       ],
       "experimental": true,
       "id": "server_response:environment/info",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -13477,7 +13506,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs",
+          "apps/samgita_codex_driver/test/native_environment_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -13492,14 +13522,15 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/environment-qualification.md"
+        "docs/codex-app-server/environment-qualification.md",
+        "docs/codex-app-server/isolated-environment.md"
       ],
       "experimental": true,
       "id": "server_response:environment/status",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -13516,7 +13547,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs",
+          "apps/samgita_codex_driver/test/native_environment_profile.exs"
         ]
       },
       "transport_coverage": [
