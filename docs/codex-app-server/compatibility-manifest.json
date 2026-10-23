@@ -3072,12 +3072,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-selection-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:plugin/install",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/PluginInstallParams"
       },
@@ -3099,16 +3103,20 @@
         "source_line": 1047,
         "variant": "PluginInstall"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/install"
     },
     {
@@ -3156,12 +3164,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-selection-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:plugin/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/PluginListParams"
       },
@@ -3183,27 +3195,35 @@
         "source_line": 924,
         "variant": "PluginList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/list"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-selection-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:plugin/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/PluginReadParams"
       },
@@ -3225,16 +3245,20 @@
         "source_line": 945,
         "variant": "PluginRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/read"
     },
     {
@@ -6698,12 +6722,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/settings/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadSettingsUpdateParams"
       },
@@ -6725,16 +6753,20 @@
         "source_line": 698,
         "variant": "ThreadSettingsUpdate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/settings/update"
     },
     {
@@ -14165,12 +14197,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-selection-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:plugin/install",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14178,16 +14214,20 @@
       "schema": "v2/PluginInstallResponse.json",
       "schema_sha256": "ae283e1ecb9f454f7614c6a4348fda5a7aba5af99e9ab9177b9a0cd3e1cd7db7",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/install"
     },
     {
@@ -14223,12 +14263,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-selection-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:plugin/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14236,28 +14280,36 @@
       "schema": "v2/PluginListResponse.json",
       "schema_sha256": "a405d2514d6236df75130c87c749e0e070b946a889f143a0448bbcd27d1d8501",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/list"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-selection-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:plugin/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14265,16 +14317,20 @@
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "b622caca02860968f6a417be5b44ff6f63546707d2a2cd60f1338d988b17691b",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/read"
     },
     {
@@ -16711,12 +16767,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/settings/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected installed local-plugin discovery, installation, explicit selection, duplicate handling and disabled-plugin settings behavior. Remaining remote/app/auth/MCP/field/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16724,16 +16784,20 @@
       "schema": "v2/ThreadSettingsUpdateResponse.json",
       "schema_sha256": "adb6c5232ff2474b61ac1811c9fe0faf8beae7f629c9bb2182190679d82bf0b1",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/settings/update"
     },
     {
