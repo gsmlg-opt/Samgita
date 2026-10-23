@@ -34,8 +34,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries and the
 advertised MCP item-progress notification are `blocked` by source-proven absent
 production emitters. Selected native method/notification entries now total
-137 `implemented`, with three exact notification schema contracts implemented;
-343 requirements and 6,618 contracts remain `missing`. None is fully verified.
+143 `implemented`, with thirteen exact notification/workspace-message schema contracts
+implemented; 337 requirements and 6,608 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -176,7 +176,13 @@ Next concrete work (repair follow-up, 2026-10-24):
    and credential withholding, while [file search](fuzzy-search-qualification.md)
    distinguishes removal/cessation from unproven in-flight cancellation. Their
    15 native entries are scoped `implemented`, not fully verified.
-   Continue remaining image-byte limits, account read/backend variants,
+   Ten isolated native account-metadata cases now exercise rate limits, profile
+   and thread usage, workspace messages, authentication, nullable projections,
+   HTTP errors and fresh reads. Six method/response entries and ten exact
+   workspace-message field/variant contracts are scoped `implemented`; see
+   [account metadata](account-metadata-qualification.md). They do not qualify
+   live billing/accounts or any notification behavior.
+   Continue remaining image-byte limits, account backend variants,
    environment/permission/turn variants and real-service authentication profiles.
    Preserve entry-specific evidence and
    external/legacy blockers; generic forwarding and scripted peers cannot

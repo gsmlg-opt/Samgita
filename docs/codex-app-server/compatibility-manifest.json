@@ -504,12 +504,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/rateLimits/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native authentication, multi-quota/null/banner identity projection, reset-credit detail fallback, reserve header and explicit HTTP/malformed errors. Full quota/credit variants, live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+      ],
       "params": {
         "anyOf": [
           {
@@ -538,16 +542,20 @@
         "source_line": 1341,
         "variant": "GetAccountRateLimits"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/rateLimits/read"
     },
     {
@@ -647,12 +655,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/usage/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native summary/daily/null/fresh reads, canonical single-thread read-only POST, projected usage fields, route absence, missing-row and 429/500 errors. Live billing/backend changes, remaining usage variants, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+      ],
       "params": {
         "anyOf": [
           {
@@ -681,27 +693,35 @@
         "source_line": 1353,
         "variant": "GetAccountTokenUsage"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/usage/read"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:account/workspaceMessages/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native known/unknown message types, untrusted text/IDs, converted/null timestamps, fresh no-store reads, 404-only feature absence and explicit HTTP/malformed errors. Live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+      ],
       "params": {
         "type": "null"
       },
@@ -723,16 +743,20 @@
         "source_line": 1359,
         "variant": "GetWorkspaceMessages"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/workspaceMessages/read"
     },
     {
@@ -12996,12 +13020,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/rateLimits/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native authentication, multi-quota/null/banner identity projection, reset-credit detail fallback, reserve header and explicit HTTP/malformed errors. Full quota/credit variants, live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13009,16 +13037,20 @@
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "cb9655e68130116f634ed9353e45b336492e6069a6628f424d1cd52e54eda0e0",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/rateLimits/read"
     },
     {
@@ -13093,12 +13125,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/usage/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native summary/daily/null/fresh reads, canonical single-thread read-only POST, projected usage fields, route absence, missing-row and 429/500 errors. Live billing/backend changes, remaining usage variants, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13106,28 +13142,36 @@
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "a58e58c852c888e5de925d99a66688d55ebb2fff038e795aadf04f8a8426dff8",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/usage/read"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/workspaceMessages/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native known/unknown message types, untrusted text/IDs, converted/null timestamps, fresh no-store reads, 404-only feature absence and explicit HTTP/malformed errors. Live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13135,16 +13179,20 @@
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "3ebd00f0acca088e5ee0309ec09b9a571e7f2eea5b63a32cda67be01c6886d67",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/workspaceMessages/read"
     },
     {
@@ -118554,249 +118602,329 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/definitions/WorkspaceMessage/properties/archivedAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/WorkspaceMessage/properties/archivedAt",
       "required": false,
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "1e9436fa72c17e5b8099d00fa9c45d33458223a9ed1cf508992beb39425547e6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "archivedAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/definitions/WorkspaceMessage/properties/createdAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/WorkspaceMessage/properties/createdAt",
       "required": false,
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "e2a6f1aa44ec37cc61c1436feaf4cd03bc149cdc3f17ff7113eb73e1cd9ce4ef",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "createdAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/definitions/WorkspaceMessage/properties/messageBody",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/WorkspaceMessage/properties/messageBody",
       "required": true,
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "messageBody"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/definitions/WorkspaceMessage/properties/messageId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/WorkspaceMessage/properties/messageId",
       "required": true,
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "messageId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/definitions/WorkspaceMessage/properties/messageType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/WorkspaceMessage/properties/messageType",
       "required": true,
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "b9454a78c2b7ce7643e385e2b0d65c9ba3145f461c3043ed094ac54a873377c5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "messageType"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/definitions/WorkspaceMessageType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "pointer": "/definitions/WorkspaceMessageType/enum/0",
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "559938f7ddd0e7273481e4aeca7b2233a51bfadda94467d7f4b50f9efa0e03c7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/definitions/WorkspaceMessageType/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "pointer": "/definitions/WorkspaceMessageType/enum/1",
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "d70bec343df28a17db84818a73f6da0108642f32e367e679b7e2ff898ca0e7b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/definitions/WorkspaceMessageType/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "pointer": "/definitions/WorkspaceMessageType/enum/2",
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/properties/featureEnabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/featureEnabled",
       "required": true,
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "192b1409070d9ae885439de809f6838c4314a6c175549178de18be95f94cb549",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "featureEnabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/account-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetWorkspaceMessagesResponse.json#/properties/messages",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native workspace-message projection asserted with known/unknown enums, text/IDs, valid/null timestamps, empty data and feature absence in a private synthetic account profile. Broader live/backend/transport/OS qualification remains incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/messages",
       "required": true,
       "schema": "v2/GetWorkspaceMessagesResponse.json",
       "schema_sha256": "f4c6018e65a236945bd3db3e1e9655defdb3ad1e9619c0979b748e21c7bdfe1c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "messages"
     },
     {

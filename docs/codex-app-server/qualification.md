@@ -1,11 +1,11 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 137 implemented / 343 missing /
-5 blocked requirements** and **0 verified / 3 implemented / 6,618 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 143 implemented / 337 missing /
+5 blocked requirements** and **0 verified / 13 implemented / 6,608 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
-Apps catalog/installed snapshots, fuzzy search and direct MCP
-entries have scoped implementation evidence; three exact notification schema
+Apps catalog/installed snapshots, fuzzy search, account metadata and direct MCP
+entries have scoped implementation evidence; thirteen exact notification/workspace-message schema
 contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -21,6 +21,7 @@ release readiness remain incomplete.
 Latest method records: [history](thread-history-qualification.md),
 [configuration](configuration-qualification.md), [goals](native-goal-qualification.md),
 [local account state](account-qualification.md), [direct MCP](mcp-direct-qualification.md),
+[account metadata](account-metadata-qualification.md),
 [diagnostics/memory](diagnostics-memory-qualification.md),
 [persisted metadata](thread-metadata-qualification.md),
 [isolated authentication](isolated-auth.md), [native executor environments](isolated-environment.md)
@@ -717,3 +718,57 @@ publication, deployment or confidentiality acceptance. The original unexplained
 listener failure, full manifest evidence, A11 and external/platform prerequisites
 remain open. Subsequent source units require their affected checks and hosted
 checks against their own delivered revision.
+
+## Hosted repair checkpoint at `4171dfe`
+
+The final hosted results for
+`4171dfe0a6dcf3b5e85fb5eca08da6d56431aefb` are terminal:
+
+| Workflow | Observed result |
+| --- | --- |
+| [Foundation 40010190937](https://github.com/gsmlg-opt/Samgita/actions/runs/40010190937) | **Passed** all required steps: strict compile/format/Credo, repeated populated **203 core / 125 web** suites, restart, independent protocol packages/consumers and retained-lock audits, assets, legacy scan, forced dependency-PLT check, root audit and local production assembly. The existing **1 / 2** dedicated e2e exclusions remain explicit and are exercised separately. |
+| [Pinned conformance 40010211224](https://github.com/gsmlg-opt/Samgita/actions/runs/40010211224) | Selected actual-binary/platform job **passed**, including independent driver, outside consumer and **32 core + 5 web** platform/API/race cases. The isolated authentication/executor/Apps job **passed**. The full compatibility evidence gate **failed**, so the workflow's overall result is **failed**. |
+
+This confirms the output-contract helper extraction repairs the earlier hosted
+Credo failure without weakening the gate. It does not establish the cause of the
+earlier listener rebind failure, close A11 or verify the whole compatibility
+manifest. No tag, publication or deployment was performed. Later account, queue,
+command and catalog units require their own final-source hosted evidence.
+
+## Account metadata and complete driver repeat
+
+The coordinator reviewed the three account-profile files and ran them with all
+retained native namespace profiles. The serialized Devenv command used canonical
+absolute `CODEX_BINARY` and `MIX_ENV=test`, with no Samgita/database dependency:
+
+```sh
+mix compile --warnings-as-errors
+mix format --check-formatted
+mix test --seed 513498
+mix test --seed 987654
+mix test test/native_auth_flow_profile.exs test/native_environment_profile.exs \
+  test/native_apps_profile.exs test/native_app_catalog_profile.exs \
+  test/native_account_metadata_profile.exs --seed 501432
+mix test test/native_auth_flow_profile.exs test/native_environment_profile.exs \
+  test/native_apps_profile.exs test/native_app_catalog_profile.exs \
+  test/native_account_metadata_profile.exs --seed 987654
+```
+
+All commands passed: **306 driver cases** at each seed (203.3s / 203.5s) and
+**36 explicit profile cases** at each seed (59.9s / 59.4s). Log:
+`/tmp/samgita-codex-followup-driver-account-integration-canonical.log`. The
+preceding invocation used an absolute path containing `../..`; two retained
+diagnostics assertions compared that spelling with `/proc`'s canonical path and
+failed. Its complete **306 cases / 2 failures** remain recorded in
+`/tmp/samgita-codex-followup-driver-account-integration.log`. Correcting only the
+invocation resolved the mismatch; no assertion, deadline or product code changed.
+
+The **10 account cases** also passed independently at both `501432`, `987654`;
+[account metadata](account-metadata-qualification.md) states each behavior and
+its source. This unit adds six method/response entries and ten directly asserted
+workspace-message field/variant contracts as `implemented`, never `verified`.
+The explicit account profile is now a required hosted step. The source inventory
+check and **23 Python regressions** passed; `--require-verified` still exited 1
+on the incomplete entries. New queue/command/catalog source units are subsequent
+checks, not implicitly qualified by these results. A11 and external/legacy
+acceptance remain incomplete.
