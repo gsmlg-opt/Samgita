@@ -252,8 +252,36 @@ process could also die before its `on_exit` callback, leaving the callback unabl
 to await the already closed port. The Codex process could continue writing into
 the fixture directory during deletion. This invalidates the earlier local-only
 shutdown qualification; cleanup errors must remain asserted. The repair and
-renewed local results appear above. Hosted reruns for the repair remain pending
-until the new commits are pushed and the workflows reach terminal states.
+renewed local results appear above.
+
+The repair, legacy contract evidence and qualification documents were pushed
+through `6e19d696f537907869087fe916b0227819b098aa`; HEAD, `origin/main` and the
+live remote agreed. Both hosted reruns reached terminal states on that revision:
+
+- Aggregate [39958837990](https://github.com/gsmlg-opt/Samgita/actions/runs/39958837990)
+  **failed**. Compilation, formatting, strict Credo, repeated root tests and the
+  fresh isolated restart/rollback rehearsal passed. The independent neutral
+  WebSocket suite then reported **40 tests, one failure**, seed `455834`:
+  `overflow leaves an unforwarded event recoverable, then replay and live checkpoints advance`.
+  `take_owned_notification/1` received no matching message within 100 ms while
+  waiting for replay cursor 2 (`test/integration_test.exs:424,490`). The cause is
+  unqualified; this result is not classified as a harmless timing failure. No
+  transport code, test timeout or assertion was changed. Assets, legacy scan,
+  Dialyzer, security audit and production assembly were skipped in this run.
+  The earlier local checks and retained audit failure remain separate evidence.
+- Pinned conformance [39958930872](https://github.com/gsmlg-opt/Samgita/actions/runs/39958930872)
+  **passed its selected actual-binary and platform job**: 32 native protocol
+  tests, 102 driver tests, one outside-umbrella consumer test, 21 fenced
+  platform/API/concurrency tests and four actual-binary platform journey tests,
+  all with zero failures. This supplies hosted evidence for the shutdown repair;
+  it does not qualify every advertised behavior. The workflow's independent
+  strict completeness job **failed as required** with all 485 requirements and
+  6,621 field/variant contracts still missing. The overall workflow is failed.
+
+The neutral WebSocket failure is outside the delivered Codex shutdown/legacy
+contract scope and remains reported without a repair. The successful fresh
+hosted restart does not clear the failed local reused-database rehearsal above.
+Subsequent documentation-only changes do not alter this tested executable tree.
 
 | Layer | Remaining requirement |
 | --- | --- |
@@ -261,7 +289,7 @@ until the new commits are pushed and the workflows reach terminal states.
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory; A11 raw LiveView credential telemetry; target-specific egress/key/legacy-cutover and real backup/memory rehearsals |
-| Hosted | Aggregate security failure and pinned driver teardown failure above; full evidence gate remains red until actual acceptance is complete |
+| Hosted | Latest aggregate fails the retained neutral WebSocket overflow/replay test; selected pinned Codex scenarios pass; full evidence gate remains red until actual acceptance is complete |
 | Publication/deployment | No normal package/tag publication workflow currently exists; CD remains disabled; no package publication or deployment is claimed |
 
 New migrations are additive and refuse destructive down migration. Rollback

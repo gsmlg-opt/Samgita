@@ -104,21 +104,29 @@ journey. Exact remaining aggregate and hosted outcomes belong in qualification.
 
 Next concrete work:
 
-1. Push the repaired owned-stdio lifecycle `49d1c37` and legacy contract evidence
-   `d63dcdd` with the qualification documents, then rerun both hosted workflows. The
-   final local driver suite passed 102 tests, the outside consumer passed, and
-   the platform/API journey passed four cases. Root tests passed twice and strict
-   static checks passed. Repeated restart on the retained scratch database failed
-   in the existing activation fixture before driver startup with
-   `unmapped_or_unresolved_tasks`; preserve that result and do not repair unrelated
-   fixture/mapping policy in this scope. Retained `plug_crypto 2.2.0` fails audit
-   for CVE-2026-105963; dependency remediation remains a separate scoped change.
-   The strict completeness job must continue failing until entry-specific
-   acceptance is complete. Selected two-Agent success does not establish broader
-   provider, field/variant or deployment acceptance.
-2. Complete remaining method/interaction variants, differential profiles and
-   manifest-specific evidence. Preserve all 485 requirements and 6,621 contracts
-   as missing until their full acceptance conditions are established.
+1. The lifecycle repair `49d1c37`, legacy contract evidence `d63dcdd` and documents
+   were pushed through `6e19d69`. Hosted pinned conformance run `39958930872`
+   passed its selected protocol/driver/consumer/platform job, including all 102
+   driver tests and four actual-binary platform journeys. Its independent full
+   evidence gate failed as required. Aggregate run `39958837990` passed root
+   checks and fresh restart, then failed the retained neutral WebSocket
+   overflow/replay test (40 tests, one failure); later aggregate steps were
+   skipped. Report this out-of-scope result without changing its test or
+   transport in the Codex repair. Repeated local restart on the retained scratch
+   database still failed before driver startup with
+   `unmapped_or_unresolved_tasks`; fresh hosted success cannot clear that result.
+   Retained `plug_crypto 2.2.0` still fails local audit for CVE-2026-105963;
+   dependency remediation remains a separate scoped change.
+2. Continue a dedicated real-binary turn-input/parameter suite with the existing
+   loopback model fixture: nonempty UTF-8 `text_elements`/`byteRange` and persisted
+   client message IDs; local/image-reference inputs; audio/localAudio fallbacks;
+   structured skill/mention selection. Use pinned source behavior for each case,
+   distinguish captured provider payloads from real multimodal understanding,
+   and then cover remaining turn overrides and method/interaction variants.
+   Complete differential profiles and manifest-specific evidence. Preserve all
+   485 requirements and 6,621 contracts as missing until their full acceptance
+   conditions are established. Selected two-Agent success does not establish
+   broader provider, field/variant or deployment acceptance.
 3. Run final independent-package/consumer, root, restart/recovery, static,
    security, assets, release-assembly and hosted checks on the delivered source.
    Keep unavailable external profiles and A11 visibly incomplete. Publish only
