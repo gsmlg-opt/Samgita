@@ -5,7 +5,7 @@ defmodule SamgitaProtocolCodex.Schema do
   Official JSON exports remain unchanged. A separately labelled, source-derived
   supplement covers the three omitted legacy requests/results and two internal
   raw-response notifications. Its provenance is shipped with the pinned source.
-  A separately source-checked timeline output correction follows the native
+  Separately source-checked timeline and realtime output corrections follow the native
   serializer's camelCase fields where that release's JSON exporter disagrees.
 
   All four message directions and correlated result schemas are available.
@@ -135,6 +135,13 @@ defmodule SamgitaProtocolCodex.Schema do
          :ok <- method_available(direction, method, opts) do
       document = method_document(filename, profile(opts), method)
       full = method_document(filename, "experimental", method)
+
+      full =
+        if direction == :server_notification and
+             method in ["thread/realtime/item/started", "thread/realtime/item/completed"],
+           do: Output.contract(filename, full),
+           else: full
+
       schema = Enum.find(document["oneOf"], &(wire_name(&1) == method))
       full_schema = Enum.find(full["oneOf"], &(wire_name(&1) == method))
 

@@ -1,0 +1,23 @@
+{
+  "definition": "ThreadRealtimeItem",
+  "generator": "scripts/codex/generate_output_semantics.py",
+  "kind": "locally-derived-output-contract-not-official-export",
+  "renames": {
+    "bemItemPromoted": {
+      "item_id": "itemId",
+      "turn_id": "turnId"
+    }
+  },
+  "schemas_sha256": {
+    "ServerNotification.json": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
+    "v2/ThreadRealtimeItemCompletedNotification.json": "b2a5e38840b8afc2111620c332801603e832b91ad4c95dd1f13c926923b760ef",
+    "v2/ThreadRealtimeItemStartedNotification.json": "ef1a68a635ce680b321e276fd9144ef614b37bab16942368bdc16bb8ee217f46",
+    "v2/ThreadTimelineListResponse.json": "278589ca8a0b432599b74d3c26bb7b4979d82f9181e1991835f72409d4fc8b12"
+  },
+  "semantics": "Only output contract property/required names change; values, types, bounds, nullability, unions and original exports remain unchanged.",
+  "source_sha256": {
+    "source/output-typescript/ThreadRealtimeItem.ts": "59640a5c18dc6d81dd68c2fcaff7e0da50e9555ee89da664b13787e162843c8f",
+    "source/realtime.rs": "d86584ad3d3285672112ccc997b50579822d402a8d0ac2d058efba4ed976ca0c"
+  },
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+}

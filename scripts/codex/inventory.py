@@ -239,6 +239,8 @@ def schema_contracts(full, stable, filename):
 def inventory(source):
     experimental = schema_documents("experimental")
     stable = schema_documents("stable")
+    from generate_output_semantics import applies, corrections, native_contract
+    output_corrections = corrections(VENDOR)
     entries = []
     notification_gates = source_notification_gates(source)
     for filename, direction in DIRECTIONS.items():
@@ -280,6 +282,10 @@ def inventory(source):
                         params_required="params" in variant.get("required", []),
                         source=(notification_gates.get(wire) if direction == "server_notification"
                                 else annotations.get(wire)), schema_version=VERSION)
+            if direction == "server_notification" and wire in {"thread/realtime/item/started", "thread/realtime/item/completed"}:
+                corrected = native_contract(document, path, output_corrections)
+                item.update(output_semantics=output_corrections[1][0],
+                            native_output_sha256=hashlib.sha256(encode(corrected).encode()).hexdigest())
             if direction.endswith("request"):
                 if wire not in annotations:
                     raise ValueError(f"Missing source response mapping: {wire}")
@@ -293,11 +299,13 @@ def inventory(source):
                               legacy=item["legacy"], schema_version=VERSION,
                               error_schema="JSONRPCError.json", capabilities=item["capabilities"],
                               prerequisites=item["prerequisites"])
-                from generate_output_semantics import SCHEMA, SEMANTICS, contract_hash, derive
-                if result_schema == SCHEMA:
-                    semantics = derive(VENDOR)
-                    result.update(output_semantics=SEMANTICS,
-                                  native_output_sha256=contract_hash(experimental[result_schema], semantics))
+                applicable = [relative for relative, semantics in output_corrections if applies(semantics, result_schema)]
+                if applicable:
+                    corrected = native_contract(experimental[result_schema], result_schema, output_corrections)
+                    result.update(output_semantics=applicable[0],
+                                  native_output_sha256=hashlib.sha256(encode(corrected).encode()).hexdigest())
+                    if len(applicable) > 1:
+                        result["additional_output_semantics"] = applicable[1:]
                 entries.append(result)
             entries.append(item)
     for name in ("JSONRPCError", "JSONRPCErrorError", "JSONRPCResponse", "JSONRPCMessage"):
@@ -336,17 +344,19 @@ def inventory(source):
                     row["pointer"] = pointer + row["pointer"]
                     row["id"] = f"schema:{filename}#{row['pointer']}"
                 contracts.extend(nested)
-    from generate_output_semantics import SCHEMA, SEMANTICS, derive
-    semantics = derive(VENDOR)
-    branches = experimental[SCHEMA]["definitions"][semantics["definition"]]["oneOf"]
-    for index, branch in enumerate(branches):
-        renames = semantics["renames"].get(branch["properties"]["type"]["enum"][0], {})
-        for row in contracts:
-            prefix = f"/definitions/{semantics['definition']}/oneOf/{index}/properties/"
-            if row["schema"] == SCHEMA and row["pointer"].startswith(prefix):
-                field = row["pointer"].removeprefix(prefix)
-                if field in renames:
-                    row.update(native_wire_name=renames[field], output_semantics=SEMANTICS)
+    for relative, semantics in output_corrections:
+        for filename, document in experimental.items():
+            if not applies(semantics, filename):
+                continue
+            branches = document["definitions"][semantics["definition"]]["oneOf"]
+            for index, branch in enumerate(branches):
+                renames = semantics["renames"].get(branch["properties"]["type"]["enum"][0], {})
+                for row in contracts:
+                    prefix = f"/definitions/{semantics['definition']}/oneOf/{index}/properties/"
+                    if row["schema"] == filename and row["pointer"].startswith(prefix):
+                        field = row["pointer"].removeprefix(prefix)
+                        if field in renames:
+                            row.update(native_wire_name=renames[field], output_semantics=relative)
     return {"manifest_version": 1, "upstream_version": VERSION, "source_commit": COMMIT,
             "entries": sorted(entries, key=lambda row: row["id"]),
             "schema_contracts": sorted(contracts, key=lambda row: row["id"])}
@@ -395,12 +405,14 @@ def generate(source):
         output_ts = VENDOR / "source/output-typescript"
         output_ts.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ts_output / "v2/ThreadTimelineEntry.ts", output_ts / "ThreadTimelineEntry.ts")
+        shutil.copyfile(ts_output / "v2/ThreadRealtimeItem.ts", output_ts / "ThreadRealtimeItem.ts")
     (VENDOR / "source").mkdir(parents=True, exist_ok=True)
     shutil.copyfile(source / PROTOCOL / "common.rs", VENDOR / "source/common.rs")
     for name in ("v1.rs", "export.rs"):
         origin = source / PROTOCOL / name if name == "v1.rs" else source / "codex-rs/app-server-protocol/src/export.rs"
         shutil.copyfile(origin, VENDOR / "source" / name)
     shutil.copyfile(source / PROTOCOL / "v2/thread.rs", VENDOR / "source/thread.rs")
+    shutil.copyfile(source / PROTOCOL / "v2/realtime.rs", VENDOR / "source/realtime.rs")
     from generate_output_semantics import write as write_output_semantics
     write_output_semantics(VENDOR)
     (VENDOR / "source/supplemental-origin.json").write_text(encode({
@@ -443,7 +455,8 @@ def merge_progress(expected, actual):
         for row in expected[section]:
             previous = old.get(row["id"], {})
             if (row.get("schema_sha256") == previous.get("schema_sha256")
-                    and row.get("native_output_sha256") == previous.get("native_output_sha256")):
+                    and row.get("native_output_sha256") == previous.get("native_output_sha256")
+                    and row.get("native_wire_name") == previous.get("native_wire_name")):
                 row.update({key: previous[key] for key in PROGRESS if key in previous})
                 if row["implementation_module"] in {"SamgitaProtocolCodex.Native", "SamgitaProtocolCodex.Native.Schema", "SamgitaProtocolCodex.Session"}:
                     row["implementation_module"] = "SamgitaCodexDriver.Session" if row["direction"] in {"lifecycle_rule", "client_notification", "server_notification"} else "SamgitaProtocolCodex.Wire" if row["direction"] == "response_error_envelope" else "SamgitaProtocolCodex.Schema"
@@ -468,9 +481,10 @@ def main():
     actual = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {}
     expected = merge_progress(expected, actual)
     if args.check or args.require_verified:
-        from generate_output_semantics import SEMANTICS, derive
-        if (VENDOR / SEMANTICS).read_text() != encode(derive(VENDOR)):
-            raise SystemExit("Source-derived output semantics changed")
+        from generate_output_semantics import corrections
+        for relative, semantics in corrections(VENDOR):
+            if (VENDOR / relative).read_text() != encode(semantics):
+                raise SystemExit("Source-derived output semantics changed: " + relative)
         from generate_supplement import generate as supplemental_contracts
         for relative, schema in supplemental_contracts(VENDOR).items():
             if (VENDOR / "supplemental" / relative).read_text() != encode(schema):

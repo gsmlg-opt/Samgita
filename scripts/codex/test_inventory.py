@@ -160,12 +160,64 @@ class InventoryTest(unittest.TestCase):
         result = next(row for row in manifest["entries"] if row["id"] == "server_response:thread/timeline/list")
         self.assertEqual(result["output_semantics"], generate_output_semantics.SEMANTICS)
         self.assertEqual(len(result["native_output_sha256"]), 64)
-        corrected = [row for row in manifest["schema_contracts"] if "native_wire_name" in row]
+        corrected = [row for row in manifest["schema_contracts"] if "native_wire_name" in row
+                     and "/definitions/ThreadTimelineEntry/" in row["pointer"]]
         self.assertEqual(len(corrected), 6)
         for row in corrected:
             self.assertEqual(row["output_semantics"], generate_output_semantics.SEMANTICS)
             self.assertTrue(row["pointer"].endswith("/" + row["wire_name"]))
             self.assertNotEqual(row["wire_name"], row["native_wire_name"])
+
+    def test_native_realtime_contract_metadata_retains_exported_field_identity(self):
+        manifest = json.loads(inventory.MANIFEST.read_text())
+        for identity in ("server_response:thread/timeline/list",
+                         "server_notification:thread/realtime/item/started",
+                         "server_notification:thread/realtime/item/completed"):
+            row = next(row for row in manifest["entries"] if row["id"] == identity)
+            self.assertIn("native_output_sha256", row)
+        rows = [row for row in manifest["schema_contracts"]
+                if "/definitions/ThreadRealtimeItem/" in row["pointer"]
+                and row["wire_name"] in {"turn_id", "item_id"}]
+        self.assertEqual(len(rows), 4)
+        for row in rows:
+            self.assertEqual(row.get("native_wire_name"), generate_output_semantics.camel(row["wire_name"]))
+
+    def test_realtime_correction_preserves_exports_and_all_other_contract_constraints(self):
+        semantics = generate_output_semantics.derive_realtime(inventory.VENDOR)
+        for filename in generate_output_semantics.REALTIME_SCHEMAS:
+            path = inventory.VENDOR / "experimental" / filename
+            original_bytes = path.read_bytes()
+            original = json.loads(original_bytes)
+            corrected = generate_output_semantics.corrected(original, semantics)
+            restored = json.loads(json.dumps(corrected))
+            branch = restored["definitions"]["ThreadRealtimeItem"]["oneOf"][2]
+            reverse = {"turnId": "turn_id", "itemId": "item_id"}
+            branch["properties"] = {reverse.get(k, k): v for k, v in branch["properties"].items()}
+            branch["required"] = [reverse.get(k, k) for k in branch["required"]]
+            self.assertEqual(restored, original)
+            self.assertEqual(path.read_bytes(), original_bytes)
+
+    def test_realtime_derivation_refuses_source_typescript_and_export_drift(self):
+        files = (generate_output_semantics.REALTIME_RUST, generate_output_semantics.REALTIME_TYPESCRIPT,
+                 *("experimental/" + name for name in generate_output_semantics.REALTIME_SCHEMAS))
+        for relative, old, new in (
+                (files[0], 'rename_all_fields = "camelCase"', 'rename_all_fields = "snake_case"'),
+                (files[0], 'turn_id: String,', '#[serde(rename = "other")] turn_id: String,'),
+                (files[0], '#[serde(flatten)]', '#[serde(default)]'),
+                (files[1], 'turnId: string,', 'turn_id: string,'),
+                (files[2], '"item_id":', '"other_item_id":')):
+            with tempfile.TemporaryDirectory(prefix="codex-realtime-semantics-") as temporary:
+                root = Path(temporary)
+                for name in files:
+                    target = root / name
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    text = (inventory.VENDOR / name).read_text()
+                    if name == relative:
+                        self.assertIn(old, text)
+                        text = text.replace(old, new)
+                    target.write_text(text)
+                with self.assertRaises(ValueError):
+                    generate_output_semantics.derive_realtime(root)
 
     def test_unfinished_requirements_fail_full_compatibility_gate(self):
         manifest = json.loads(inventory.MANIFEST.read_text())

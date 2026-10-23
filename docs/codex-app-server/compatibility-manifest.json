@@ -11205,6 +11205,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [],
+      "native_output_sha256": "a0a6ebbcca19b797b35c16d2c389e349d7b394543e114033491b8cc7a958157f",
+      "output_semantics": "source/realtime-output-semantics.json",
       "params": {
         "$ref": "#/definitions/ThreadRealtimeItemCompletedNotification"
       },
@@ -11244,6 +11246,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [],
+      "native_output_sha256": "a0a6ebbcca19b797b35c16d2c389e349d7b394543e114033491b8cc7a958157f",
+      "output_semantics": "source/realtime-output-semantics.json",
       "params": {
         "$ref": "#/definitions/ThreadRealtimeItemStartedNotification"
       },
@@ -17608,13 +17612,17 @@
       "wire_name": "thread/start"
     },
     {
+      "additional_output_semantics": [
+        "source/realtime-output-semantics.json"
+      ],
       "capabilities": [
         "experimentalApi"
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/realtime-output-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:thread/timeline/list",
@@ -17623,7 +17631,7 @@
       "limitations": [
         "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
       ],
-      "native_output_sha256": "79431856c25a3bb105617d58ff6d95a170bb6939fdcd5a0dd9069866d5c58b1c",
+      "native_output_sha256": "bdc277aad9083bea532c202a282bb851ad7eaf432e7c080c44804209cf7ab293",
       "output_semantics": "source/output-semantics.json",
       "prerequisites": [
         "initialized"
@@ -17641,7 +17649,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
-          "apps/samgita_protocol_codex/test/timeline_schema_test.exs"
+          "apps/samgita_protocol_codex/test/timeline_schema_test.exs",
+          "apps/samgita_protocol_codex/test/realtime_schema_test.exs"
         ]
       },
       "transport_coverage": [
@@ -83215,7 +83224,9 @@
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/item_id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "itemId",
       "nullable": false,
+      "output_semantics": "source/realtime-output-semantics.json",
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/item_id",
       "required": true,
       "schema": "ServerNotification.json",
@@ -83267,7 +83278,9 @@
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/turn_id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "turnId",
       "nullable": false,
+      "output_semantics": "source/realtime-output-semantics.json",
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/turn_id",
       "required": true,
       "schema": "ServerNotification.json",
@@ -174246,7 +174259,9 @@
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/item_id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "itemId",
       "nullable": false,
+      "output_semantics": "source/realtime-output-semantics.json",
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/item_id",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
@@ -174298,7 +174313,9 @@
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/turn_id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "turnId",
       "nullable": false,
+      "output_semantics": "source/realtime-output-semantics.json",
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/turn_id",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
