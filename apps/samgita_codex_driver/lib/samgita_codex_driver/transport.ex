@@ -7,6 +7,9 @@ defmodule SamgitaCodexDriver.Transport do
   stderr from stdio JSONL, and never log payloads or credentials. Errors contain
   safe local codes and allowlisted metadata. `close/1` closes only owned resources;
   closing a borrowed server connection never stops its server or removes a socket.
+  Successful `close/1` returns `:ok` only after owned process cleanup is confirmed.
+  Unconfirmed cleanup raises a safe local `Error`; Session retains uncertainty
+  and refuses replacement execution after that failure.
   """
 
   alias SamgitaProtocolCodex.Error

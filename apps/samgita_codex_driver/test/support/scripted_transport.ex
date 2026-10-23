@@ -32,6 +32,7 @@ defmodule SamgitaCodexDriver.ScriptedTransport do
   @impl true
   def close(state) do
     Kernel.send(state.observer, {:transport_closed, self()})
+    if state[:fail_close], do: raise(Error.new(:owned_process_shutdown_unconfirmed))
     :ok
   end
 

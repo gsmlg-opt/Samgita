@@ -130,6 +130,141 @@ defmodule SamgitaCodexDriver.TransportStdioTest do
     await(fn -> Enum.all?(pids, &(not process_running?(&1))) end)
   end
 
+  test "close waits for owned child shutdown after explicit close and owner death", %{dir: dir} do
+    for scenario <- [:explicit, :owner_down] do
+      marker = Path.join(dir, Atom.to_string(scenario))
+
+      script = """
+      import signal,time
+      def stop(*_args):
+        time.sleep(0.2)
+        open(#{inspect(marker)},'w').write('stopped')
+        raise SystemExit(0)
+      signal.signal(signal.SIGTERM,stop)
+      print('{}',flush=True)
+      while True: time.sleep(1)
+      """
+
+      parent = self()
+
+      owner =
+        spawn(fn ->
+          {:ok, state} = Stdio.open(opts(dir, script))
+          {[_ready], state} = receive_events(state, 1)
+          send(parent, {:shutdown_fixture, state})
+
+          receive do
+            :stop -> :ok
+          end
+        end)
+
+      assert_receive {:shutdown_fixture, state}, 5_000
+      if scenario == :owner_down, do: Process.exit(owner, :kill)
+      assert :ok = Stdio.close(state)
+      assert File.read!(marker) == "stopped"
+      assert :ok = Stdio.close(state)
+      if Process.alive?(owner), do: send(owner, :stop)
+    end
+  end
+
+  test "close reaps a TERM-ignoring owned descendant before returning", %{dir: dir} do
+    ready = Path.join(dir, "descendant-ready")
+
+    script = """
+    import os,subprocess,time,json
+    grandchild = subprocess.Popen(['python3','-c',
+      'import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);open(#{inspect(ready)},"w").close();time.sleep(60)'])
+    while not os.path.exists(#{inspect(ready)}): time.sleep(0.01)
+    print(json.dumps([os.getpid(),grandchild.pid]),flush=True)
+    time.sleep(60)
+    """
+
+    {:ok, state} = Stdio.open(opts(dir, script))
+    {[{:message, json}], _} = receive_events(state, 1)
+    pids = JSON.decode!(json)
+    assert :ok = Stdio.close(state)
+    assert Enum.all?(pids, &(not process_running?(&1)))
+    assert Enum.all?(pids, &(not File.exists?("/proc/#{&1}")))
+  end
+
+  test "helper crash remains unconfirmed after its guardian exits", %{dir: dir} do
+    marker = Path.join(dir, "orphan-finished")
+
+    script = """
+    import os,signal,time
+    print('{}',flush=True)
+    time.sleep(0.05)
+    os.kill(os.getppid(),signal.SIGKILL)
+    time.sleep(0.1)
+    open(#{inspect(marker)},'w').write('finished')
+    """
+
+    {:ok, state} = Stdio.open(opts(dir, script, max_message_bytes: 8))
+    {_events, _} = receive_events(state, 2)
+
+    assert {:error, %Error{code: :owned_process_shutdown_unconfirmed}, closed_state} =
+             Stdio.handle_info({state.port, {:data, String.duplicate("a", 9)}}, state)
+
+    assert closed_state.closed
+    assert closed_state.buffer == <<>>
+
+    for _ <- 1..2 do
+      assert_raise Error, "Codex request failed: owned_process_shutdown_unconfirmed", fn ->
+        Stdio.close(state)
+      end
+    end
+
+    await(fn -> File.exists?(marker) end)
+  end
+
+  test "helper retains the group leader until its final main-thread signal", %{dir: dir} do
+    helper = Path.join(:code.priv_dir(:samgita_codex_driver), "stdio_owner.py")
+    marker = Path.join(dir, "group-signals.json")
+
+    script = """
+    import importlib.util,json,os,signal,sys,threading
+    spec=importlib.util.spec_from_file_location('owned_helper',sys.argv[1])
+    helper=importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(helper)
+    marker=sys.argv[2]
+    original_killpg=os.killpg
+    signals=[]
+    def checked_killpg(pid,sig):
+      assert threading.current_thread() is threading.main_thread()
+      # Raises ChildProcessError if the leader was already reaped.
+      os.waitid(os.P_PID,pid,os.WEXITED|os.WNOHANG|os.WNOWAIT)
+      original_killpg(pid,sig)
+      signals.append(int(sig))
+    os.killpg=checked_killpg
+    source,keep_open=os.pipe()
+    os.dup2(source,0)
+    sys.argv=['owned_helper',sys.executable,'-c','pass']
+    result=helper.main()
+    with open(marker,'w') as output: json.dump(signals,output)
+    sys.exit(result)
+    """
+
+    assert {<<0>>, 0} = System.cmd("python3", ["-c", script, helper, marker])
+    assert File.read!(marker) |> JSON.decode!() == [15, 9]
+  end
+
+  test "invalid child NUL output cannot become a cleanup acknowledgement", %{dir: dir} do
+    {:ok, state} =
+      Stdio.open(opts(dir, "import os,time;os.write(1,b'\\0');time.sleep(60)"))
+
+    assert {[{:closed, _}], _} = receive_events(state, 1)
+    assert :ok = Stdio.close(state)
+  end
+
+  test "close remains bounded when the owned child never reads its input", %{dir: dir} do
+    {:ok, state} = Stdio.open(opts(dir, "import time;print('{}',flush=True);time.sleep(60)"))
+    {[_ready], state} = receive_events(state, 1)
+    assert {:ok, state} = Stdio.send(state, String.duplicate("x", 1_048_576))
+    started = System.monotonic_time(:millisecond)
+    assert :ok = Stdio.close(state)
+    assert System.monotonic_time(:millisecond) - started < 5_000
+  end
+
   defp process_running?(pid) do
     case File.read("/proc/#{pid}/stat") do
       {:ok, stat} -> not String.contains?(stat, ") Z ")

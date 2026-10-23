@@ -10,6 +10,7 @@ defmodule SamgitaCodexDriver.Transport.Stdio do
   Child stderr is continuously discarded, never mixed into protocol output.
   """
   @behaviour SamgitaCodexDriver.Transport
+  alias SamgitaCodexDriver.Transport.Stdio.Owner
   alias SamgitaProtocolCodex.Error
   @inherit ~w(PATH LANG LC_ALL LC_CTYPE TMPDIR TEMP TMP SystemRoot WINDIR)
   @default_limit 8_388_608
@@ -35,8 +36,10 @@ defmodule SamgitaCodexDriver.Transport.Stdio do
       ]
 
       port_opts = if cwd, do: [{:cd, cwd} | port_opts], else: port_opts
-      port = Port.open({:spawn_executable, python}, port_opts)
-      {:ok, %{port: port, buffer: <<>>, max_message_bytes: limit, closed: false}}
+
+      with {:ok, owner, port} <- Owner.open(python, port_opts) do
+        {:ok, %{port: port, owner: owner, buffer: <<>>, max_message_bytes: limit, closed: false}}
+      end
     else
       {:error, %Error{} = failure} -> {:error, failure}
       _ -> {:error, Error.new(:invalid_transport_options)}
@@ -53,7 +56,7 @@ defmodule SamgitaCodexDriver.Transport.Stdio do
       byte_size(json) > state.max_message_bytes ->
         {:error, Error.new(:message_too_large), state}
 
-      String.contains?(json, ["\n", "\r"]) ->
+      String.contains?(json, ["\n", "\r", <<0>>]) ->
         {:error, Error.new(:invalid_jsonl_message), state}
 
       true ->
@@ -74,8 +77,14 @@ defmodule SamgitaCodexDriver.Transport.Stdio do
         {:ok, Enum.map(messages, &{:message, &1}), %{state | buffer: buffer}}
 
       :overflow ->
-        close(state)
-        {:error, Error.new(:message_too_large), %{state | buffer: <<>>, closed: true}}
+        closed_state = %{state | buffer: <<>>, closed: true}
+
+        try do
+          close(state)
+          {:error, Error.new(:message_too_large), closed_state}
+        rescue
+          failure in Error -> {:error, failure, closed_state}
+        end
     end
   end
 
@@ -92,12 +101,7 @@ defmodule SamgitaCodexDriver.Transport.Stdio do
   def handle_info(_, _), do: :unknown
 
   @impl true
-  def close(%{port: port}) do
-    if Port.info(port), do: Port.close(port)
-    :ok
-  rescue
-    _ -> :ok
-  end
+  def close(%{owner: owner}), do: Owner.close(owner)
 
   @impl true
   def metadata(state),

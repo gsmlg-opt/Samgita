@@ -1,5 +1,6 @@
 defmodule SamgitaCodexDriver.ModelFixture do
   @moduledoc false
+  alias SamgitaCodexDriver.Transport.Stdio
   @script Path.expand("../../../../scripts/codex/model_fixture.py", __DIR__)
 
   def start(root, scenario) do
@@ -16,10 +17,10 @@ defmodule SamgitaCodexDriver.ModelFixture do
     script = System.get_env("CODEX_MODEL_FIXTURE_SCRIPT") || @script
     unless File.regular?(script), do: raise("BLOCKED_ENV: model-provider fixture script missing")
 
-    port =
-      Port.open({:spawn_executable, python}, [
-        :binary,
-        :exit_status,
+    {:ok, transport} =
+      Stdio.open(
+        executable: python,
+        env: %{"CODEX_HOME" => codex_home, "HOME" => home},
         args: [
           script,
           "--codex-home",
@@ -31,10 +32,13 @@ defmodule SamgitaCodexDriver.ModelFixture do
           "--requests-file",
           requests
         ]
-      ])
+      )
+
+    port = transport.port
 
     wait_startup(port, <<>>, %{
       port: port,
+      transport: transport,
       home: home,
       codex_home: codex_home,
       workspace: workspace,
@@ -62,12 +66,7 @@ defmodule SamgitaCodexDriver.ModelFixture do
     end
   end
 
-  def close(%{port: port}) do
-    if Port.info(port), do: Port.close(port)
-    :ok
-  rescue
-    _ -> :ok
-  end
+  def close(%{transport: transport}), do: Stdio.close(transport)
 
   def requests(fixture) do
     fixture.requests |> File.read!() |> JSON.decode!()

@@ -117,7 +117,8 @@ defmodule SamgitaCodexDriver.Session do
          event_count: 0,
          event_bytes: 0,
          uncertain: %{},
-         gap: nil
+         gap: nil,
+         shutdown_error: nil
        }}
     else
       {:error, failure} -> {:stop, failure}
@@ -198,6 +199,7 @@ defmodule SamgitaCodexDriver.Session do
        buffered_bytes: state.event_bytes,
        uncertain: map_size(state.uncertain),
        gap: state.gap,
+       shutdown_error: if(state.shutdown_error, do: state.shutdown_error.code),
        transport:
          if(state.connection,
            do: state.transport.metadata(state.connection),
@@ -226,20 +228,10 @@ defmodule SamgitaCodexDriver.Session do
   def handle_call(:reconnect, _from, state) do
     state = disconnect(state, :explicit_reconnect)
 
-    case state.transport.open(transport_opts(state.opts, state.transport_opts)) do
-      {:ok, connection} ->
-        {:reply, :ok,
-         %{
-           state
-           | connection: connection,
-             generation: state.generation + 1,
-             phase: :new,
-             experimental: false,
-             used_ids: MapSet.new()
-         }}
-
-      {:error, failure} ->
-        {:reply, {:error, failure}, state}
+    if state.shutdown_error do
+      {:reply, {:error, state.shutdown_error}, state}
+    else
+      open_replacement(state)
     end
   end
 
@@ -273,7 +265,11 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   def handle_call(:close, _from, state) do
-    {:stop, :normal, :ok, disconnect(state, :closed)}
+    state = disconnect(state, :closed)
+
+    if state.shutdown_error,
+      do: {:reply, {:error, state.shutdown_error}, state},
+      else: {:stop, :normal, :ok, state}
   end
 
   @impl true
@@ -355,6 +351,24 @@ defmodule SamgitaCodexDriver.Session do
   @impl true
   def format_status(status) do
     Map.merge(status, %{state: :redacted, message: :redacted, log: []})
+  end
+
+  defp open_replacement(state) do
+    case state.transport.open(transport_opts(state.opts, state.transport_opts)) do
+      {:ok, connection} ->
+        {:reply, :ok,
+         %{
+           state
+           | connection: connection,
+             generation: state.generation + 1,
+             phase: :new,
+             experimental: false,
+             used_ids: MapSet.new()
+         }}
+
+      {:error, failure} ->
+        {:reply, {:error, failure}, state}
+    end
   end
 
   defp submit(method, params, opts, from, state) when is_list(opts) do
@@ -818,9 +832,9 @@ defmodule SamgitaCodexDriver.Session do
   defp disconnect(%{connection: nil} = state, _reason), do: state
 
   defp disconnect(state, reason) do
-    state.transport.close(state.connection)
     state = Enum.reduce(Map.keys(state.pending), state, &fail_pending(&2, &1, reason))
     state = Enum.reduce(Map.keys(state.interactions), state, &remove_interaction(&2, &1))
+    shutdown_error = close_transport(state)
 
     outcomes =
       Map.new(state.interaction_outcomes, fn {handle, outcome} ->
@@ -831,7 +845,24 @@ defmodule SamgitaCodexDriver.Session do
 
     gap = %{reason: reason, generation: state.generation, after_sequence: state.next_sequence}
     send(state.owner, {:codex_driver, self(), {:gap, gap}})
-    %{state | connection: nil, phase: :disconnected, gap: gap, interaction_outcomes: outcomes}
+
+    %{
+      state
+      | connection: nil,
+        phase: if(shutdown_error, do: :shutdown_failed, else: :disconnected),
+        shutdown_error: shutdown_error,
+        gap: gap,
+        interaction_outcomes: outcomes
+    }
+  end
+
+  defp close_transport(state) do
+    :ok = state.transport.close(state.connection)
+    nil
+  rescue
+    failure in Error -> failure
+  catch
+    :exit, _ -> Error.new(:owned_process_shutdown_unconfirmed)
   end
 
   defp enqueue(state, event, bytes) do

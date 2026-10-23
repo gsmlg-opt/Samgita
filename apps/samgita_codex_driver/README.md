@@ -75,6 +75,16 @@ resources; reconnect, process restart and execution recovery require an explicit
 consumer decision. Task completion/review/acceptance belong to Samgita or the
 consumer, never this package.
 
+Owned stdio shutdown waits for the helper to confirm child/descendant cleanup and
+exit, including when the Session owner has already died. The shutdown wait is
+bounded to five seconds. `Session.close/1` returns a typed error if termination
+cannot be confirmed; its surviving Session exposes `phase: :shutdown_failed` and
+`shutdown_error`. Pending mutations remain uncertain and reconnect is refused.
+Investigate the original process before starting a replacement. Calling the
+stdio transport directly raises the corresponding safe typed error on failure.
+An already confirmed close remains idempotent. Borrowed WebSocket/UDS server
+processes and sockets remain under their original owner's control.
+
 ## Transports and limits
 
 | Transport | Options and ownership |

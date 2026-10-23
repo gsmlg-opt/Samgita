@@ -254,6 +254,20 @@ defmodule SamgitaCodexDriver.SessionTest do
     assert length(Session.uncertain_operations(pid)) == 1
   end
 
+  test "unconfirmed owned shutdown settles mutations uncertain and blocks reconnect" do
+    pid = ready([], fail_close: true)
+    task = Task.async(fn -> Session.request(pid, "thread/start", %{}, id: "held") end)
+    assert_receive {:sent, ^pid, %{"id" => "held"}}, 2_000
+
+    assert {:error, %Error{code: :owned_process_shutdown_unconfirmed}} = Session.close(pid)
+    assert {:error, %Error{uncertain: true}} = Task.await(task)
+    assert %{phase: :shutdown_failed, pending: 0, uncertain: 1} = Session.status(pid)
+
+    assert {:error, %Error{code: :owned_process_shutdown_unconfirmed}} = Session.reconnect(pid)
+    refute_receive {:transport_opened, ^pid}
+    assert [%{id: "held"}] = Session.uncertain_operations(pid)
+  end
+
   test "bounded pull delivery has one wakeup and overflow exposes the lost-history gap" do
     pid = ready(max_events: 2)
     wire = %{"method" => "future/event", "params" => %{"data" => "kept"}}
