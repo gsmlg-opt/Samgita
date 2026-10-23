@@ -146,6 +146,10 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_feedback_profile.exs --seed 501432
+      - name: Required native remote-control lifecycle profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_remote_control_profile.exs --seed 501432
       - name: Required native command lifecycle profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver

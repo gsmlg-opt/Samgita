@@ -4867,12 +4867,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:remoteControl/client/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "params": {
         "$ref": "#/definitions/RemoteControlClientsListParams"
       },
@@ -4894,16 +4898,24 @@
         "source_line": 1199,
         "variant": "RemoteControlClientsList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/client/list"
     },
     {
@@ -4911,12 +4923,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:remoteControl/client/revoke",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "params": {
         "$ref": "#/definitions/RemoteControlClientsRevokeParams"
       },
@@ -4938,16 +4954,24 @@
         "source_line": 1205,
         "variant": "RemoteControlClientsRevoke"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/client/revoke"
     },
     {
@@ -4955,12 +4979,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:remoteControl/disable",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "params": {
         "anyOf": [
           {
@@ -4989,16 +5017,24 @@
         "source_line": 1175,
         "variant": "RemoteControlDisable"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/disable"
     },
     {
@@ -5006,12 +5042,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:remoteControl/enable",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "params": {
         "anyOf": [
           {
@@ -5040,16 +5080,24 @@
         "source_line": 1169,
         "variant": "RemoteControlEnable"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/enable"
     },
     {
@@ -5057,12 +5105,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:remoteControl/pairing/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "params": {
         "$ref": "#/definitions/RemoteControlPairingStartParams"
       },
@@ -5084,16 +5136,24 @@
         "source_line": 1187,
         "variant": "RemoteControlPairingStart"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/pairing/start"
     },
     {
@@ -5101,12 +5161,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:remoteControl/pairing/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "params": {
         "$ref": "#/definitions/RemoteControlPairingStatusParams"
       },
@@ -5128,16 +5192,24 @@
         "source_line": 1193,
         "variant": "RemoteControlPairingStatus"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/pairing/status"
     },
     {
@@ -5145,12 +5217,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:remoteControl/status/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "params": {
         "type": "null"
       },
@@ -5172,16 +5248,24 @@
         "source_line": 1181,
         "variant": "RemoteControlStatusRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/status/read"
     },
     {
@@ -12029,12 +12113,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:remoteControl/status/changed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "params": {
         "$ref": "#/definitions/RemoteControlStatusChangedNotification"
       },
@@ -12047,16 +12135,24 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/status/changed"
     },
     {
@@ -17995,12 +18091,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:remoteControl/client/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18008,16 +18108,24 @@
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "f8b283a238c8b5ef6eb543af2f659cfa4ed42ec0ad696eabbcba8c8cae74c8ea",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/client/list"
     },
     {
@@ -18026,12 +18134,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:remoteControl/client/revoke",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18039,16 +18151,24 @@
       "schema": "v2/RemoteControlClientsRevokeResponse.json",
       "schema_sha256": "66968cc1d1a9e2ec01168b459bac90ebe8e58f14755d3b14fb2dc5ab02e3ed65",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/client/revoke"
     },
     {
@@ -18057,12 +18177,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:remoteControl/disable",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18070,16 +18194,24 @@
       "schema": "v2/RemoteControlDisableResponse.json",
       "schema_sha256": "a8a61df25583fa0a32f0ab90efa56ab256c712adc461174eaf8ad01781cefd7b",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/disable"
     },
     {
@@ -18088,12 +18220,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:remoteControl/enable",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18101,16 +18237,24 @@
       "schema": "v2/RemoteControlEnableResponse.json",
       "schema_sha256": "955555c2bd534d6e404eb86b52a23af91ec8af0af9f32ca79d0a3eb903703750",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/enable"
     },
     {
@@ -18119,12 +18263,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:remoteControl/pairing/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18132,16 +18280,24 @@
       "schema": "v2/RemoteControlPairingStartResponse.json",
       "schema_sha256": "9a1adbbed53d369cfc95e285ba8f1db9f64a1308aef5c92b79d63b5d7a77a435",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/pairing/start"
     },
     {
@@ -18150,12 +18306,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:remoteControl/pairing/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18163,16 +18323,24 @@
       "schema": "v2/RemoteControlPairingStatusResponse.json",
       "schema_sha256": "298061860624a52b245c824e9f7fda08fddecb0e7fdb1c2dd0736854d2950759",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/pairing/status"
     },
     {
@@ -18181,12 +18349,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:remoteControl/status/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18194,16 +18366,24 @@
       "schema": "v2/RemoteControlStatusReadResponse.json",
       "schema_sha256": "6504a09081b79fc0c222ff72be6a983bd553bf4712151e37a77daf106e04be90",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteControl/status/read"
     },
     {
@@ -30053,76 +30233,112 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/definitions/RemoteControlClientsListOrder/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/definitions/RemoteControlClientsListOrder/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "43cfe35802aad855961da8d867f5fee5e8a3383f64ecb11fc9b3b2bc68b55939",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/RemoteControlDisableParams/properties/ephemeral",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/definitions/RemoteControlDisableParams/properties/ephemeral",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "ephemeral"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/RemoteControlEnableParams/properties/ephemeral",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/definitions/RemoteControlEnableParams/properties/ephemeral",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "ephemeral"
     },
     {
@@ -80457,90 +80673,138 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RemoteControlConnectionStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/definitions/RemoteControlConnectionStatus/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "8084c32c3acf29e3072793e9d2b7c536453e34a7a008df660af345ae1cb2e23a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RemoteControlConnectionStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/definitions/RemoteControlConnectionStatus/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b2a38b6fa989482a7f60254544e9b408fa2c4e297744e320d128cfe150f59c15",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RemoteControlConnectionStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/definitions/RemoteControlConnectionStatus/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "3594e22c060f6fcb43c5b26368cd3383aa5606ed999dc4be5727a58fa2844619",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RemoteControlConnectionStatus/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/definitions/RemoteControlConnectionStatus/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "d93e2f1028afa503cbc4e1e44da8eaa6e46ee05f3c57b2a57a7f67c041de4aa7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -135465,94 +135729,142 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/NullableRemoteControlDisableParams.json#/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/anyOf/0",
       "schema": "v2/NullableRemoteControlDisableParams.json",
       "schema_sha256": "79b0d2d480a093b9abf3acb4d6336b95e55a198e2ff98e56a5cad7b5dca25487",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/NullableRemoteControlDisableParams.json#/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/anyOf/1",
       "schema": "v2/NullableRemoteControlDisableParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/NullableRemoteControlDisableParams.json#/definitions/RemoteControlDisableParams/properties/ephemeral",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/definitions/RemoteControlDisableParams/properties/ephemeral",
       "required": false,
       "schema": "v2/NullableRemoteControlDisableParams.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "ephemeral"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/NullableRemoteControlEnableParams.json#/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/anyOf/0",
       "schema": "v2/NullableRemoteControlEnableParams.json",
       "schema_sha256": "8a90392cc872a25095238165c6f92b2344497e384b0766855ac83edde5f98f0e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -135580,27 +135892,39 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/NullableRemoteControlEnableParams.json#/definitions/RemoteControlEnableParams/properties/ephemeral",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/definitions/RemoteControlEnableParams/properties/ephemeral",
       "required": false,
       "schema": "v2/NullableRemoteControlEnableParams.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "ephemeral"
     },
     {
@@ -149866,127 +150190,187 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListParams.json#/properties/cursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/RemoteControlClientsListParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListParams.json#/properties/environmentId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/environmentId",
       "required": true,
       "schema": "v2/RemoteControlClientsListParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListParams.json#/properties/limit",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/RemoteControlClientsListParams.json",
       "schema_sha256": "80c78c2078367c04c0ef237db981a743ed785ac504a7837582217736021b046e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "limit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListParams.json#/properties/order",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/order",
       "required": false,
       "schema": "v2/RemoteControlClientsListParams.json",
       "schema_sha256": "9ec0a3cb585214c3abd84e598c11e2cd4a84bd7a80d4f40a6840be83d6790e22",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "order"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/RemoteControlClientsListParams.json#/properties/order/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/properties/order/anyOf/0",
       "schema": "v2/RemoteControlClientsListParams.json",
       "schema_sha256": "9b20adb2154303f055396c8600e62b8c7e24a3da3c169d44c19f65c3c9504069",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -150014,335 +150398,491 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/definitions/RemoteControlClient/properties/appVersion",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/definitions/RemoteControlClient/properties/appVersion",
       "required": false,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "appVersion"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/definitions/RemoteControlClient/properties/clientId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/definitions/RemoteControlClient/properties/clientId",
       "required": true,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "clientId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/definitions/RemoteControlClient/properties/deviceModel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/definitions/RemoteControlClient/properties/deviceModel",
       "required": false,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "deviceModel"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/definitions/RemoteControlClient/properties/deviceType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/definitions/RemoteControlClient/properties/deviceType",
       "required": false,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "deviceType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/definitions/RemoteControlClient/properties/displayName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/definitions/RemoteControlClient/properties/displayName",
       "required": false,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "displayName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/definitions/RemoteControlClient/properties/lastSeenAt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/definitions/RemoteControlClient/properties/lastSeenAt",
       "required": false,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "lastSeenAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/definitions/RemoteControlClient/properties/osVersion",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/definitions/RemoteControlClient/properties/osVersion",
       "required": false,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "osVersion"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/definitions/RemoteControlClient/properties/platform",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/definitions/RemoteControlClient/properties/platform",
       "required": false,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "platform"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/properties/data",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "9442ae6a7a3fca1f3005663980db769423ee9f89e50f4a3b66b0b24d1d36caec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsListResponse.json#/properties/nextCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/RemoteControlClientsListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsRevokeParams.json#/properties/clientId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/clientId",
       "required": true,
       "schema": "v2/RemoteControlClientsRevokeParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "clientId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlClientsRevokeParams.json#/properties/environmentId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/environmentId",
       "required": true,
       "schema": "v2/RemoteControlClientsRevokeParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/RemoteControlDisableResponse.json#/definitions/RemoteControlConnectionStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "pointer": "/definitions/RemoteControlConnectionStatus/enum/0",
       "schema": "v2/RemoteControlDisableResponse.json",
       "schema_sha256": "8084c32c3acf29e3072793e9d2b7c536453e34a7a008df660af345ae1cb2e23a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -150440,599 +150980,875 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlDisableResponse.json#/properties/installationId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/installationId",
       "required": true,
       "schema": "v2/RemoteControlDisableResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installationId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlDisableResponse.json#/properties/serverName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/serverName",
       "required": true,
       "schema": "v2/RemoteControlDisableResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serverName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlDisableResponse.json#/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/RemoteControlDisableResponse.json",
       "schema_sha256": "c8376f4f88992009edc5efcecdb14770e09ea397d3616033af3885b878cc974d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlEnableResponse.json#/properties/environmentId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/environmentId",
       "required": false,
       "schema": "v2/RemoteControlEnableResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlEnableResponse.json#/properties/installationId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/installationId",
       "required": true,
       "schema": "v2/RemoteControlEnableResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installationId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlEnableResponse.json#/properties/serverName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/serverName",
       "required": true,
       "schema": "v2/RemoteControlEnableResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serverName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlEnableResponse.json#/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/RemoteControlEnableResponse.json",
       "schema_sha256": "c8376f4f88992009edc5efcecdb14770e09ea397d3616033af3885b878cc974d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlPairingStartParams.json#/properties/manualCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/manualCode",
       "required": false,
       "schema": "v2/RemoteControlPairingStartParams.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "manualCode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlPairingStartResponse.json#/properties/environmentId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/environmentId",
       "required": true,
       "schema": "v2/RemoteControlPairingStartResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlPairingStartResponse.json#/properties/expiresAt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/expiresAt",
       "required": true,
       "schema": "v2/RemoteControlPairingStartResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "expiresAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlPairingStartResponse.json#/properties/manualPairingCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/manualPairingCode",
       "required": false,
       "schema": "v2/RemoteControlPairingStartResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "manualPairingCode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlPairingStartResponse.json#/properties/pairingCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/pairingCode",
       "required": true,
       "schema": "v2/RemoteControlPairingStartResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pairingCode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlPairingStatusParams.json#/properties/manualPairingCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/manualPairingCode",
       "required": false,
       "schema": "v2/RemoteControlPairingStatusParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "manualPairingCode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlPairingStatusParams.json#/properties/pairingCode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/pairingCode",
       "required": false,
       "schema": "v2/RemoteControlPairingStatusParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pairingCode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlPairingStatusResponse.json#/properties/claimed",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/claimed",
       "required": true,
       "schema": "v2/RemoteControlPairingStatusResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "claimed"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RemoteControlStatusChangedNotification.json#/properties/environmentId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/environmentId",
       "required": false,
       "schema": "v2/RemoteControlStatusChangedNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RemoteControlStatusChangedNotification.json#/properties/installationId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/installationId",
       "required": true,
       "schema": "v2/RemoteControlStatusChangedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installationId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RemoteControlStatusChangedNotification.json#/properties/serverName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/serverName",
       "required": true,
       "schema": "v2/RemoteControlStatusChangedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serverName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RemoteControlStatusChangedNotification.json#/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/RemoteControlStatusChangedNotification.json",
       "schema_sha256": "c8376f4f88992009edc5efcecdb14770e09ea397d3616033af3885b878cc974d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlStatusReadResponse.json#/properties/environmentId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": true,
       "pointer": "/properties/environmentId",
       "required": false,
       "schema": "v2/RemoteControlStatusReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlStatusReadResponse.json#/properties/installationId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/installationId",
       "required": true,
       "schema": "v2/RemoteControlStatusReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installationId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlStatusReadResponse.json#/properties/serverName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/serverName",
       "required": true,
       "schema": "v2/RemoteControlStatusReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serverName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/RemoteControlStatusReadResponse.json#/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Sixteen isolated native remote-control cases cover seven gated RPCs, real changed notices/WS handshake, persisted preference and identity, pairing/401 refresh, pagination/revocation/errors and held mutation uncertainty without replay. Only 53 explicit positive contracts are mapped; unobserved/null-only output variants, managed policy, external accounts/relay dispatch/chunk/replay/backpressure, mTLS and full OS/service profiles remain unqualified. Null-disable has an explicitly asserted persisted-false effect."
+      ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/RemoteControlStatusReadResponse.json",
       "schema_sha256": "c8376f4f88992009edc5efcecdb14770e09ea397d3616033af3885b878cc974d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:123",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:192",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:280",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:398",
+          "apps/samgita_codex_driver/test/native_remote_control_profile.exs:434"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {

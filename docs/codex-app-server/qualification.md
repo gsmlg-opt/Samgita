@@ -1819,3 +1819,23 @@ unexercised fields remain missing. The ledger has **410 implemented / 65 missing
 10 blocked** requirements and **1,036 implemented / 5,585 missing** contracts,
 with **zero verified**. Full-source aggregate/hosted, external and A11 gates
 remain separate and incomplete.
+
+## Native remote-control lifecycle and management
+
+Sixteen [remote-control cases](remote-control-qualification.md) pass both seeds,
+**16/0**, 29.8s each. Actual native outputs cover all seven RPCs and changed
+notices using a private HTTP/real-WebSocket dependency. Enrollment barriers make
+connecting observable; native replacements retain SQLite identity/preference,
+refresh a server bearer and honor persisted disable. Pairing, exact 401 recovery,
+claims, encoded pagination, revoke effects and backend/auth errors pass. A held
+pair mutation times out once, yields a late native result, retains uncertainty
+after explicit reconnect and is never resent. No relay message starts work.
+
+Namespace, AST, compile, format and strict Credo pass; all owned process,
+socket, canary and token checks pass. Fifteen native entries and 53 directly
+positive field/variant contracts gain `implemented` evidence. Null-only output
+facts, unobserved variants, managed policy, complete relay dispatch/replay and
+real service/OS profiles remain missing. The ledger has **425 implemented /
+50 missing / 10 blocked** requirements, **1,089 implemented / 5,532 missing**
+contracts and **zero verified**. This profile is now selected in CI; final-source
+aggregate/hosted evidence and A11 are separate gates.
