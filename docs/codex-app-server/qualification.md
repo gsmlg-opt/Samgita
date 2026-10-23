@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 233 implemented / 247 missing /
-5 blocked requirements** and **0 verified / 239 implemented / 6,382 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 236 implemented / 244 missing /
+5 blocked requirements** and **0 verified / 245 implemented / 6,376 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Two hundred and thirty-nine directly exercised
+MCP entries have scoped implementation evidence. Two hundred and forty-five directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -45,6 +45,12 @@ startup/input/transcript/audio/closure behavior with an owned backend WebSocket
 peer. Other realtime versions and backend/transport profiles remain incomplete.
 
 ## Delivered source and immutable reference
+
+The current pushed runtime/test checkpoint is
+`bc437ca91d52b19bc98e8f74f179d9e3edee296f`. Its fresh aggregate checks are
+recorded in the following checkpoint section. Subsequent scoped native profiles
+remain separate until validated and integrated; this checkpoint is not full
+compatibility or a release.
 
 The historical runtime checkpoint is
 `d63dcddae49c0c7c7b5565482134d4282275a86c`, on existing `main`. It adds
@@ -1044,3 +1050,49 @@ a required explicit hosted CI step; default discovery does not include it.
 V1/V3, WebRTC/existing-call success, handoff/delegation, real audio/backend and
 platform/environment success remain unqualified, as does A11. No complete
 compatibility, publication or deployment is claimed.
+
+## Repeated aggregate checkpoint after durable retirement and realtime
+
+The coordinator reran the following checks against executable/test checkpoint
+`bc437ca91d52b19bc98e8f74f179d9e3edee296f`, serializing all Mix/Devenv/native
+work. Root commands used the retained populated
+`samgita_redesign_recovery_repair_test` database at
+`PGHOST=/tmp/samgita-p3-pg/socket`, `POSTGRES_PORT=55443`,
+`POSTGRES_USER=gao`, `MIX_ENV=test`, and the absolute pinned `CODEX_BINARY`
+from the immutable-reference section. No database was reset or cleaned.
+
+| Check | Observed result |
+| --- | --- |
+| Root warnings-as-errors compile, format and strict Credo | Passed; **315 files**, no issues |
+| Root `mix test --seed 437312`, then `--seed 987654` on the same populated database | Each **213 core / 125 web cases**, zero failures; the existing **1 / 2** E2E exclusions remain visible |
+| Explicit runtime registration, journal, notifications, terminal retirement, independent-transaction races, API and actual-native platform journey, `--include e2e --include real_codex --seed 501432` | **42 core + 5 web**, zero failures |
+| Correct recovery activation plus restart/rollback/lifecycle tests, `--include e2e` at `366499` and `888788` | Each **4 core + 3 web**, zero failures |
+| `mix dialyzer --force-check`; root `mix hex.audit` | Passed; **2,166 PLT modules**, zero errors/skips; no advisory or retired packages |
+| `python3 scripts/verify_isolated_protocol.py` | **32 protocol + 1 pure consumer + 1 WebSocket consumer**, all passed outside umbrella/platform dependencies |
+| Independent optional WebSocket compile/format/audit and tests at `455834`, `501432`, `987654` | Each **42/0**, including the original failing seed; no bounds or timeouts changed |
+| Independent Codex wire compile/format/test/audit | **42/0**, all checks passed |
+| Independent complete driver compile/format/test at `513498`, `987654` | **343/0** each, **244.8s / 237.7s** |
+| All ten required explicit native profiles together at `501432`, `987654` | **74/0** each, **120.8s / 118.8s**; authentication, executor environments, Apps metadata/catalog, account metadata, command lifecycle, model discovery, user shell, tool interactions and realtime V2 |
+| Driver security audit and outside actual-binary consumer | Passed; consumer fresh dependency resolution, warnings-as-errors compilation, **1/0** actual-native test and formatting; no Repo/Phoenix/platform inheritance |
+| Frozen isolated Bun dependency installation | **1,212 packages**, **5.07s**, exit zero; tracked lock unchanged |
+| Python inventory regressions / offline inventory / legacy scanner regressions and scan | **23/0** and **4/0** respectively; consistency and runtime scan passed |
+| Strict `python3 scripts/codex/inventory.py --check --require-verified` | **Failed as required**; missing, blocked and partially implemented contracts remain incomplete |
+
+The initial platform command mistyped the core recovery filename as
+`recovery_qualification_test.exs`. Umbrella Mix reported that missing path but
+returned success after executing web tests. That invocation is not core
+recovery evidence. The coordinator corrected it to
+`apps/samgita/test/samgita/recovery_activation_test.exs`, then observed all
+**4 core + 3 web** cases pass at both recorded seeds. This correction did not
+change tests, activation safeguards or database contents.
+
+Logs are `/tmp/samgita-codex-followup-final-platform-current.log`,
+`/tmp/samgita-codex-followup-final-packages-current.log` and
+`/tmp/samgita-codex-followup-final-frozen-web-current.log`. The exact checkpoint's
+[foundation run 40019181988](https://github.com/gsmlg-opt/Samgita/actions/runs/40019181988)
+is terminal **success**. This is foundation evidence, not completeness or a
+new conformance run. Assets/production assembly and final-source checks after
+subsequent native profiles still require their own recorded results. A11,
+source-proven un-emitted legacy approvals, unavailable external/platform success
+profiles and the unexplained immediate listener rebind remain incomplete.
+No tag, publication or deployment follows this checkpoint.

@@ -2702,12 +2702,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:initialize",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/InitializeParams"
       },
@@ -2727,16 +2731,24 @@
         "source_line": 500,
         "variant": "Initialize"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "initialize"
     },
     {
@@ -9052,12 +9064,13 @@
       "id": "lifecycle:initialization-order",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected Linux readiness and scripted Session failure/generation evidence; complete initialization capabilities and deployment profiles remain unqualified."
+        "Selected Linux readiness and scripted Session failure/generation evidence; complete initialization capabilities and deployment profiles remain unqualified.",
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
       ],
       "required_behavior": "initialize response precedes initialized; other requests require initialization; repeated initialize rejects",
       "schema_sha256": "09c41c42fe37bf87a37b8dcca70c814a371191b4711a3367c2eb51de253c9913",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -9066,7 +9079,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/initialized_transport_test.exs",
-          "apps/samgita_codex_driver/test/initialization_test.exs"
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
         ]
       },
       "transport_coverage": [
@@ -15082,27 +15096,39 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:initialize",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+      ],
       "prerequisites": [],
       "request": "client_request:initialize",
       "schema": "v1/InitializeResponse.json",
       "schema_sha256": "62ad689c2cb6379913c1d72749cfd8de5089d35760214123518eb92eef11acc9",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "initialize"
     },
     {
@@ -99078,49 +99104,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v1/InitializeParams.json#/properties/capabilities",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/capabilities",
       "required": false,
       "schema": "v1/InitializeParams.json",
       "schema_sha256": "d0e950413790a634784519a2dfc1523e85656a67a7c6ba99e1efdd50380d8de6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "capabilities"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v1/InitializeParams.json#/properties/capabilities/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+      ],
       "pointer": "/properties/capabilities/anyOf/0",
       "schema": "v1/InitializeParams.json",
       "schema_sha256": "da057f72821de40630307f96674d7f7028a54b6e8708c1dd81c297c594849582",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -99148,75 +99198,111 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v1/InitializeParams.json#/properties/clientInfo",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/clientInfo",
       "required": true,
       "schema": "v1/InitializeParams.json",
       "schema_sha256": "79dc1efb1de40ed73060fc9fa0a9349a9401654409eb886e518105e53e900393",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "clientInfo"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v1/InitializeResponse.json#/properties/codexHome",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/codexHome",
       "required": true,
       "schema": "v1/InitializeResponse.json",
       "schema_sha256": "2355411278160fa392a2d1a9e8530957686cc60e6d504f920bdcb42b5530c3fa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "codexHome"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v1/InitializeResponse.json#/properties/codexHome/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+      ],
       "pointer": "/properties/codexHome/allOf/0",
       "schema": "v1/InitializeResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -99248,27 +99334,39 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v1/InitializeResponse.json#/properties/platformOs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected Linux stdio, capability-token WebSocket and UDS initialization/readiness plus deterministic fault behavior; explicit-null capabilities, other identity/result fields, signed-JWT and other deployment variants remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/platformOs",
       "required": true,
       "schema": "v1/InitializeResponse.json",
       "schema_sha256": "78eac19372c07792ce9ffd4144738015fbf855a721990036822884ce5b0440fa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "apps/samgita_codex_driver/test/native_notification_real_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "platformOs"
     },
     {

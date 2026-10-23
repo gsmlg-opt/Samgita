@@ -77,6 +77,11 @@ path. A successful local send is not proof of upstream consumption: inspect
 interaction outcomes and later upstream resolution/item events. Timeout errors do
 not authorize a new approval or prove a tool stopped.
 
+Validated terminal dynamic-item or turn evidence retires only matching unanswered
+dynamic handles and timers. A reply through that old handle fails explicitly.
+This does not create an acknowledgement, settle a previously sent reply or retire
+another interaction family. Reconcile any unconfirmed reply separately.
+
 `Session.reconnect/1` closes this connection and opens a new one. It never resends
 requests. Initialize again and explicitly read/resume an existing thread.
 Upstream may replay its pending ordinary interactions during thread resume; this

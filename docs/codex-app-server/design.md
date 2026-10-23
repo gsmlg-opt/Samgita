@@ -36,8 +36,10 @@ or agent. The root umbrella's explicit application list remains core and web.
 `apps/samgita` and `apps/samgita_web` own management authorization, durable links
 and audit, approvals and operator/programmatic presentation. Native capability
 advertisement grants no Project permission. A turn completion report cannot
-accept a Task. Secrets use existing external references; real secrets must not
-enter the A11-affected LiveView parameter path.
+accept a Task. Secrets use existing external references. The separate
+[A11 boundary](a11-ingress-boundary.md) includes raw HTTP metadata before
+application Plugs and raw LiveView parameters; neither controller entry nor
+at-rest encryption establishes confidentiality for real credentials.
 
 ## Session contract
 
@@ -93,6 +95,16 @@ Reply outcomes distinguish `sent_unconfirmed`, `uncertain` after a failed send o
 disconnect, and `resolution_observed`. Resolution may represent another client's
 response or cancellation, so it does not prove this decision was accepted. Owners
 acknowledge local outcome records explicitly to release their bounded capacity.
+
+Validated terminal dynamic-item or turn evidence retires only matching unanswered
+dynamic handles and their timers. It sends no reply, creates no resolution or
+outcome and never clears an already unconfirmed reply. The platform journal
+applies the corresponding current-instance/generation/identity check under its
+authority locks, retiring only requests proved unsent and cancelling prepared
+responses atomically. It preserves that terminal evidence across reconnect;
+dispatched or ambiguous operations still require explicit reconciliation. See
+[native interactions](tool-interactions-qualification.md) and
+[durable retirement](platform-tool-retirement-qualification.md).
 
 Transport adapters own framing and only the resources they create. Stdio uses
 JSONL and an owned child process with bounded cleanup. WebSocket uses upstream
@@ -160,6 +172,15 @@ structured-output paths, including dimension/patch budgets and preparation befor
 model-detail normalization. Exact Unicode scalar boundaries are distinct from
 client/fixture byte caps. These are request-construction outcomes; no provider
 vision, GiB-boundary or optional image-feature acceptance is implied.
+
+Realtime operation submission and session startup are different boundaries.
+The pinned server can return an empty result before asynchronous preparation
+fails; consumers must observe started/error/closed events. Selected V2 behavior
+uses the actual native app-server with an owned WebSocket backend, including
+typed durable transcript items, replacement and explicit restart. Nonblank
+configured prompts override request prompts. This evidence does not qualify
+V1/V3, WebRTC/existing-call success, handoffs, delegated model execution or real
+audio/backends; see [realtime lifecycle](realtime-lifecycle-qualification.md).
 
 The official JSON exporter omits `getAuthStatus`, `getConversationSummary` and
 `gitDiffToRemote`, plus `rawResponse/completed` and `rawResponseItem/completed`.

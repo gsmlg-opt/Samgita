@@ -34,8 +34,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries and the
 advertised MCP item-progress notification are `blocked` by source-proven absent
 production emitters. Selected native method/notification entries now total
-233 `implemented`, with 239 exact field/variant schema contracts
-implemented; 247 requirements and 6,382 contracts remain `missing`. None is fully verified.
+236 `implemented`, with 245 exact field/variant schema contracts
+implemented; 244 requirements and 6,376 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.

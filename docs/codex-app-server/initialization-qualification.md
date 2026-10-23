@@ -95,3 +95,26 @@ Upstream references, relative to `codex-rs/`:
 
 Exact local/hosted commands, counts and residual gates belong in
 [the qualification record](qualification.md).
+
+## Entry and field evidence audit
+
+The repeated complete-driver checkpoint at `bc437ca` executes the raw transport,
+Session initialization and native-notification cases above. The manifest now
+records `initialize` request/response and `initialization-order` as scoped
+`implemented`, in addition to the existing notification entry. This closes an
+evidence-index gap; it adds no executable behavior or full-verification claim.
+
+Six directly exercised fields/branches receive that same scoped status:
+`clientInfo`, the capabilities object and its nonnull branch, exact disposable
+`codexHome` including its path branch, and Linux `platformOs`. The nine raw
+transport combinations prove absent/false/true negotiation; native Session
+notification cases assert the exact home and platform and subsequent usable
+reads. Scripted lifecycle tests separately prove matching-result readiness,
+late/duplicate/malformed/deadline/reconnect behavior. They do not establish
+native production emission of any unrelated server request.
+
+Explicit-null capabilities, full client identity semantics, user-agent and
+platform-family values, every opt-out/gating interaction, signed-JWT success
+and other deployment profiles remain unqualified. The manifest does not promote
+those fields because the selected tests only construct or forward them, or do
+not assert their actual native meaning. No entry is marked `verified`.
