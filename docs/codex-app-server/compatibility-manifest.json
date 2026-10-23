@@ -1214,12 +1214,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:config/mcpServer/reload",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "params": {
         "type": "null"
       },
@@ -1241,16 +1245,20 @@
         "source_line": 1252,
         "variant": "McpServerRefresh"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:129"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "config/mcpServer/reload"
     },
     {
@@ -2970,12 +2978,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:mcpServer/event/stream/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/McpServerEventStreamStartParams"
       },
@@ -2997,16 +3009,20 @@
         "source_line": 1271,
         "variant": "McpServerEventStreamStart"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:267"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mcpServer/event/stream/start"
     },
     {
@@ -3014,12 +3030,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:mcpServer/event/stream/stop",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/McpServerEventStreamStopParams"
       },
@@ -3041,27 +3061,35 @@
         "source_line": 1278,
         "variant": "McpServerEventStreamStop"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:315"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mcpServer/event/stream/stop"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:mcpServer/oauth/login",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/McpServerOauthLoginParams"
       },
@@ -3083,16 +3111,20 @@
         "source_line": 1246,
         "variant": "McpServerOauthLogin"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:154"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mcpServer/oauth/login"
     },
     {
@@ -3199,14 +3231,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/deferred-mcp-qualification.md"
+        "docs/codex-app-server/deferred-mcp-qualification.md",
+        "docs/codex-app-server/mcp-control-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:mcpServerStatus/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified.",
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/ListMcpServerStatusParams"
@@ -3229,7 +3263,7 @@
         "source_line": 1258,
         "variant": "McpServerStatusList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -3237,11 +3271,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:83"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "mcpServerStatus/list"
     },
@@ -11334,12 +11370,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:mcpServer/event/stream/notification",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/McpServerEventStreamNotification"
       },
@@ -11356,27 +11396,35 @@
         "source_line": 2016,
         "variant": "McpServerEventStream"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:267"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mcpServer/event/stream/notification"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:mcpServer/oauthLogin/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/McpServerOauthLoginCompletedNotification"
       },
@@ -11389,16 +11437,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:154"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mcpServer/oauthLogin/completed"
     },
     {
@@ -15015,12 +15067,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:config/mcpServer/reload",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15028,16 +15084,20 @@
       "schema": "v2/McpServerRefreshResponse.json",
       "schema_sha256": "54a77812db02175dc69053870e582d3b314af6f161f0c76846f3563b0f9487c4",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:129"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "config/mcpServer/reload"
     },
     {
@@ -16316,12 +16376,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:mcpServer/event/stream/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16329,16 +16393,20 @@
       "schema": "v2/McpServerEventStreamStartResponse.json",
       "schema_sha256": "6a5ed2ae51b16912331a249d4c71c88bcd259d135adc6fd2e04a5a17b74d1b90",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:267"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mcpServer/event/stream/start"
     },
     {
@@ -16347,12 +16415,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:mcpServer/event/stream/stop",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16360,28 +16432,36 @@
       "schema": "v2/McpServerEventStreamStopResponse.json",
       "schema_sha256": "71af082ca05d2d7af9671d28e9ee53df0d9f484f54ef1afebdd0455107bec2d2",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:315"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mcpServer/event/stream/stop"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:mcpServer/oauth/login",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16389,16 +16469,20 @@
       "schema": "v2/McpServerOauthLoginResponse.json",
       "schema_sha256": "dd17c57725bfda17c1f4ab7319a3bfd78aa084ec0191fa0fcf0d17b4106bc597",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:154"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mcpServer/oauth/login"
     },
     {
@@ -16480,14 +16564,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/deferred-mcp-qualification.md"
+        "docs/codex-app-server/deferred-mcp-qualification.md",
+        "docs/codex-app-server/mcp-control-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:mcpServerStatus/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified."
+        "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified.",
+        "Selected actual pinned Linux UDS behavior with isolated synthetic MCP/OAuth dependencies only; real accounts/Apps authentication, registration strategies, stream capacity/timeouts, remaining values and deployment profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -16496,7 +16582,7 @@
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "00c56c0faacbd4950b7f446f20b11b8a95456c5108de2f1e7366a1b2e60db8c6",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -16504,11 +16590,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/deferred_mcp_test.exs"
+          "apps/samgita_codex_driver/test/deferred_mcp_test.exs",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:83"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "mcpServerStatus/list"
     },
@@ -26819,46 +26907,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/McpServerStatusDetail/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Both full and toolsAndAuthOnly native discovery paths executed.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "pointer": "/definitions/McpServerStatusDetail/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "dd71892cc339ebd9bb8256e3c0e93d56b62ae460a55442f0d0d86b82288ec2a8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:110",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:118"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/McpServerStatusDetail/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Both full and toolsAndAuthOnly native discovery paths executed.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "pointer": "/definitions/McpServerStatusDetail/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "d8f1cfff88eaca08d510423efd2bafe674462b40f5c0879087408bc15b7d195d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:110",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:118"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -77243,53 +77351,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpServerEventNotification/properties/method",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact methods and params including native request ID, provider metadata, Unicode/nested event body.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerEventNotification/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:595",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:620"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "method"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/McpServerEventNotification/properties/params",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact methods and params including native request ID, provider metadata, Unicode/nested event body.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerEventNotification/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:595",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:620"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "params"
     },
     {
@@ -126514,75 +126642,111 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusParams.json#/properties/cursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Real native requests use cursor 1, limits 0/1, both details and selected live thread/server.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/ListMcpServerStatusParams.json",
       "schema_sha256": "8c4f3653fe1a44eb8a01affe5e4eb2cbe3b209bfa6c0e62c2e15dfbb450d0142",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:95",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:107",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:118",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:133"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusParams.json#/properties/detail",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Real native requests use cursor 1, limits 0/1, both details and selected live thread/server.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/detail",
       "required": false,
       "schema": "v2/ListMcpServerStatusParams.json",
       "schema_sha256": "1d24668a5be4b231be4e80fc4994b9ea6f2ba77bca0a61bbfc88f35828299a1d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:95",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:107",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:118",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:133"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "detail"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusParams.json#/properties/detail/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Real native requests use cursor 1, limits 0/1, both details and selected live thread/server.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "pointer": "/properties/detail/anyOf/0",
       "schema": "v2/ListMcpServerStatusParams.json",
       "schema_sha256": "012c746efaf90cbd451ca7817c0448d466eee96b8fc6be4958986e4e569964a9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:95",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:107",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:118",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:133"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -126610,79 +126774,115 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusParams.json#/properties/limit",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Real native requests use cursor 1, limits 0/1, both details and selected live thread/server.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/ListMcpServerStatusParams.json",
       "schema_sha256": "b3edd1fb0c697047904f39ece92eecadd49d4da26eb5e9e37892f5928342e859",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:95",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:107",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:118",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:133"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "limit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusParams.json#/properties/serverName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Real native requests use cursor 1, limits 0/1, both details and selected live thread/server.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/serverName",
       "required": false,
       "schema": "v2/ListMcpServerStatusParams.json",
       "schema_sha256": "aebc1cd77763c38a5683edaa6cb7b5ed19a720d8ecc98ea03b9df6d495ecf3a8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:95",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:107",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:118",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:133"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "serverName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Real native requests use cursor 1, limits 0/1, both details and selected live thread/server.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/threadId",
       "required": false,
       "schema": "v2/ListMcpServerStatusParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:95",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:107",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:118",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:133"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -126753,46 +126953,68 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpAuthStatus/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Native bearerToken and oAuth only.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "pointer": "/definitions/McpAuthStatus/enum/3",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "c86ebf9019f438ff15bd34a37de025bbbf86c9d8ec6edbee938744f2f43ea264",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:521"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpAuthStatus/enum/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Native bearerToken and oAuth only.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "pointer": "/definitions/McpAuthStatus/enum/4",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "983120c582f045c8fdc10b256ce64becaccf1eb1f7bca123c2c4eaa08d417df3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:521"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -126841,24 +127063,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerConnectionStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Connected only; other six states remain unqualified.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "pointer": "/definitions/McpServerConnectionStatus/enum/2",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "3594e22c060f6fcb43c5b26368cd3383aa5606ed999dc4be5727a58fa2844619",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -126952,27 +127183,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerInfo/properties/description",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact serverInfo equality with nonempty native output values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpServerInfo/properties/description",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:494"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "description"
     },
     {
@@ -127004,183 +127244,252 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerInfo/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact serverInfo equality with nonempty native output values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerInfo/properties/name",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:494"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerInfo/properties/title",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact serverInfo equality with nonempty native output values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpServerInfo/properties/title",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:494"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "title"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerInfo/properties/version",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact serverInfo equality with nonempty native output values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerInfo/properties/version",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:494"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "version"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerInfo/properties/websiteUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact serverInfo equality with nonempty native output values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpServerInfo/properties/websiteUrl",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:494"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "websiteUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/authStatus",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerStatus/properties/authStatus",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "96529b018e5a5390f9ba2f2865c23c294ed3b92ea7dde26811b05a559568c7b1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "authStatus"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/httpOrigin",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpServerStatus/properties/httpOrigin",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "20744d4bace5c3054e13092359190b2d51ca0c1605d340ff2643c4a164123ccc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "httpOrigin"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerStatus/properties/name",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
@@ -127212,101 +127521,145 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/resourceTemplates",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerStatus/properties/resourceTemplates",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "75a4634e5b18b210220345a28580bd97a31c43c1986fe4eaae4fd01e5f5f172a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "resourceTemplates"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/resources",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerStatus/properties/resources",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "eaf3aaa2511bb655ab86d38d843f29df050233fc3343764f7d56e1745cdb8f70",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "resources"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/runtimeStatus",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpServerStatus/properties/runtimeStatus",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "e6aa421fa4525686aad3aa5d0af168e280aa774d29738ced7dda44ec50ffc895",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "runtimeStatus"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/runtimeStatus/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "pointer": "/definitions/McpServerStatus/properties/runtimeStatus/anyOf/0",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "17c318883f4ffd86c83b940e22cd4a17e2d90dfcc15ea7ceac5b79a3436a57dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -127334,75 +127687,108 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/serverCapabilities",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerStatus/properties/serverCapabilities",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "f8731c93d6c516562ce27f6f358ded8ed0f2238543e847a6ea005c32d5332b14",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "serverCapabilities"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/serverInfo",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpServerStatus/properties/serverInfo",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "5cfdea7a6a3fdbaf76929fc131937d54f5427c78e5a79ca81b465738d8193de4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "serverInfo"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/serverInfo/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "pointer": "/definitions/McpServerStatus/properties/serverInfo/anyOf/0",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "ac9e1a8771d1f22dd00f640d4cffe348808feeb22f8bcc2d794367fcae4be0df",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -127430,27 +127816,38 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/tools",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty synthetic inventories, bearer/OAuth states and connected thread runtime; no other runtime variants.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpServerStatus/properties/tools",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "41f5b17f078c5125f26355f165a311cd56e7d5d39805b554f334852ceb41413e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:121",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:479",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:490"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "tools"
     },
     {
@@ -127534,27 +127931,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Resource/properties/description",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty native resource list.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Resource/properties/description",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:523"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "description"
     },
     {
@@ -127586,53 +127992,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Resource/properties/mimeType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty native resource list.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Resource/properties/mimeType",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:523"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mimeType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Resource/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty native resource list.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Resource/properties/name",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:523"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
@@ -127690,27 +128114,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Resource/properties/uri",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty native resource list.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Resource/properties/uri",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:523"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "uri"
     },
     {
@@ -127768,53 +128201,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/ResourceTemplate/properties/mimeType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty native template list.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResourceTemplate/properties/mimeType",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:532"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mimeType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/ResourceTemplate/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty native template list.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResourceTemplate/properties/name",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:532"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
@@ -127846,27 +128297,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/ResourceTemplate/properties/uriTemplate",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact nonempty native template list.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResourceTemplate/properties/uriTemplate",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:532"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "uriTemplate"
     },
     {
@@ -127898,53 +128358,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Tool/properties/annotations",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact native tool map; object inputSchema and readonly/destructive boolean annotations.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Tool/properties/annotations",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:509"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "annotations"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Tool/properties/description",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact native tool map; object inputSchema and readonly/destructive boolean annotations.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Tool/properties/description",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:509"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "description"
     },
     {
@@ -127976,53 +128454,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Tool/properties/inputSchema",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact native tool map; object inputSchema and readonly/destructive boolean annotations.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Tool/properties/inputSchema",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:509"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "inputSchema"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/Tool/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact native tool map; object inputSchema and readonly/destructive boolean annotations.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Tool/properties/name",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:509"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
@@ -128080,53 +128576,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/properties/data",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Nonempty two-server and single-page inventories; next cursor exactly 1.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "edd54abea5ed460e23c3269d3c9a65565b139b9712b84cf40625448a24e71251",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:87",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:94"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/properties/nextCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Nonempty two-server and single-page inventories; next cursor exactly 1.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "327f5fc7ab4df2df6babe1388e1263eab8ad0618eeac767724e649225442afc2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:87",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:94"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "nextCursor"
     },
     {
@@ -130468,365 +130984,517 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerEventStreamNotification.json#/properties/notification",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact active/event/terminated outer maps from native; no other connection receives notice.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/notification",
       "required": true,
       "schema": "v2/McpServerEventStreamNotification.json",
       "schema_sha256": "619cb32911a66162e804d48d9eae1cee0f95ed644e89f9343833806e0fadaee7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:300",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:595"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "notification"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerEventStreamNotification.json#/properties/subscriptionId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact active/event/terminated outer maps from native; no other connection receives notice.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/subscriptionId",
       "required": true,
       "schema": "v2/McpServerEventStreamNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:300",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:595"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "subscriptionId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/McpServerEventStreamStartParams.json#/properties/_meta",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Hosted codex_apps start uses nonempty nested Unicode arguments and object metadata; provider journal verifies forwarded values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/_meta",
       "required": false,
       "schema": "v2/McpServerEventStreamStartParams.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:275",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:276",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:541"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "_meta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/McpServerEventStreamStartParams.json#/properties/arguments",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Hosted codex_apps start uses nonempty nested Unicode arguments and object metadata; provider journal verifies forwarded values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/arguments",
       "required": true,
       "schema": "v2/McpServerEventStreamStartParams.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:275",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:276",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:541"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "arguments"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/McpServerEventStreamStartParams.json#/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Hosted codex_apps start uses nonempty nested Unicode arguments and object metadata; provider journal verifies forwarded values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/name",
       "required": true,
       "schema": "v2/McpServerEventStreamStartParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:275",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:276",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:541"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/McpServerEventStreamStartParams.json#/properties/server",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Hosted codex_apps start uses nonempty nested Unicode arguments and object metadata; provider journal verifies forwarded values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/server",
       "required": true,
       "schema": "v2/McpServerEventStreamStartParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:275",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:276",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:541"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "server"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/McpServerEventStreamStartParams.json#/properties/subscriptionId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Hosted codex_apps start uses nonempty nested Unicode arguments and object metadata; provider journal verifies forwarded values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/subscriptionId",
       "required": true,
       "schema": "v2/McpServerEventStreamStartParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:275",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:276",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:541"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "subscriptionId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/McpServerEventStreamStartParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Hosted codex_apps start uses nonempty nested Unicode arguments and object metadata; provider journal verifies forwarded values.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/McpServerEventStreamStartParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:275",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:276",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:541"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/McpServerEventStreamStopParams.json#/properties/subscriptionId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Stop known/repeated/unknown IDs; active stream peer EOF/reset mapped to native request.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/subscriptionId",
       "required": true,
       "schema": "v2/McpServerEventStreamStopParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:319",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:321",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:570"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "subscriptionId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginCompletedNotification.json#/properties/error",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Success map exactly matches nonnull thread/id/name/true and omits error; failure has correlated id/name/false and nonempty error. Global thread lookup nil does not distinguish omission.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/error",
       "required": false,
       "schema": "v2/McpServerOauthLoginCompletedNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:173",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:211",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:212"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "error"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginCompletedNotification.json#/properties/loginId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Success map exactly matches nonnull thread/id/name/true and omits error; failure has correlated id/name/false and nonempty error. Global thread lookup nil does not distinguish omission.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/loginId",
       "required": false,
       "schema": "v2/McpServerOauthLoginCompletedNotification.json",
       "schema_sha256": "c778baec11a95496f7d63d807ebe867e4a066a2a247ab8024023e0d943a236ba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:173",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:211",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:212"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "loginId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginCompletedNotification.json#/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Success map exactly matches nonnull thread/id/name/true and omits error; failure has correlated id/name/false and nonempty error. Global thread lookup nil does not distinguish omission.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/name",
       "required": true,
       "schema": "v2/McpServerOauthLoginCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:173",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:211",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:212"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginCompletedNotification.json#/properties/success",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Success map exactly matches nonnull thread/id/name/true and omits error; failure has correlated id/name/false and nonempty error. Global thread lookup nil does not distinguish omission.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/success",
       "required": true,
       "schema": "v2/McpServerOauthLoginCompletedNotification.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:173",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:211",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:212"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "success"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginCompletedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Success map exactly matches nonnull thread/id/name/true and omits error; failure has correlated id/name/false and nonempty error. Global thread lookup nil does not distinguish omission.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/threadId",
       "required": false,
       "schema": "v2/McpServerOauthLoginCompletedNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:173",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:211",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:212"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -130902,157 +131570,213 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginParams.json#/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Preregistered client with nonempty scopes, live thread and timeout10; registration strategy omitted.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/name",
       "required": true,
       "schema": "v2/McpServerOauthLoginParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:460"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginParams.json#/properties/scopes",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Preregistered client with nonempty scopes, live thread and timeout10; registration strategy omitted.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/scopes",
       "required": false,
       "schema": "v2/McpServerOauthLoginParams.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:460"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "scopes"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Preregistered client with nonempty scopes, live thread and timeout10; registration strategy omitted.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/threadId",
       "required": false,
       "schema": "v2/McpServerOauthLoginParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:460"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginParams.json#/properties/timeoutSecs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Preregistered client with nonempty scopes, live thread and timeout10; registration strategy omitted.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/timeoutSecs",
       "required": false,
       "schema": "v2/McpServerOauthLoginParams.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:460"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "timeoutSecs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerOauthLoginResponse.json#/properties/authorizationUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Actual native authorization URL validated and used; UUID loginId correlates exact completion.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/authorizationUrl",
       "required": true,
       "schema": "v2/McpServerOauthLoginResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:158",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:469"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "authorizationUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/McpServerOauthLoginResponse.json#/properties/loginId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Actual native authorization URL validated and used; UUID loginId correlates exact completion.",
+        "Only directly asserted positive values; null/omitted/empty observations, other methods sharing a definition and other schema variants are not qualified."
+      ],
       "nullable": true,
       "pointer": "/properties/loginId",
       "required": false,
       "schema": "v2/McpServerOauthLoginResponse.json",
       "schema_sha256": "76abc932b596dcb1bd401b1c642b2f468bd61fcae9af1850d6746d3dd00627f2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:158",
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:469"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "loginId"
     },
     {

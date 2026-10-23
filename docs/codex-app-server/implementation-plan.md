@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 advertised MCP item-progress notification and the explicitly deprecated
 file-change output notification are `blocked` by source-proven absent production
 emitters. Selected native method/notification entries now total
-355 `implemented`, with 826 exact field/variant schema contracts
-implemented; 124 requirements and 5,795 contracts remain `missing`. None is fully verified.
+387 `implemented`, with 937 exact field/variant schema contracts
+implemented; 92 requirements and 5,684 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -338,7 +338,13 @@ Next concrete work (repair follow-up, 2026-10-24):
    both seeds with actual next-step capture, sparse/null semantics, custom
    effort and unchanged future settings. Two entries and fifteen direct
    contracts gain scoped evidence; reviewer/policy/race variants stay incomplete.
-   Native MCP/OAuth controls and background terminals are the next bounded units.
+   Eight [MCP control/OAuth/event cases](mcp-control-qualification.md) now pass
+   both seeds, including native PKCE/token/callback/cold reuse and real HTTP
+   event-stream teardown/reconnect. Twelve entries and 62 positive contracts gain
+   scoped evidence; null/empty/omitted observations, other shared-schema methods,
+   real accounts/Apps authorization and remaining variants stay incomplete.
+   Coordinating-owner MCP/background integration passed 13 cases at both seeds.
+   Background-terminal manifest integration remains the next bounded unit.
    At `085c4cc8`, foundation
    passed; conformance's thirteen isolated profiles passed, but all four default
    output-notice tests failed during namespace startup on Ubuntu 24.04. The

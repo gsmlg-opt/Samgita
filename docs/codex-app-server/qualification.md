@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 375 implemented / 104 missing /
-6 blocked requirements** and **0 verified / 875 implemented / 5,746 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 387 implemented / 92 missing /
+6 blocked requirements** and **0 verified / 937 implemented / 5,684 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Eight hundred and seventy-five directly exercised
+MCP entries have scoped implementation evidence. These 937 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1552,8 +1552,38 @@ Reviewer routing, policy/cancellation races, remaining variants and full matrix
 remain incomplete. Hosted patch qualification still fails at a distinct sandbox
 boundary; MCP/root-static work and final populated-database/package/hosted checks
 are recorded separately. No full compatibility, publication or release is claimed.
-Totals: **485 entries: 0 verified / 373 implemented / 106 missing / 6 blocked**;
-**6,621 contracts: 0 verified / 860 implemented / 5,761 missing**. Full acceptance,
+Totals: **485 entries: 0 verified / 375 implemented / 104 missing / 6 blocked**;
+**6,621 contracts: 0 verified / 875 implemented / 5,746 missing**. Full acceptance,
 A11, legacy/external/platform prerequisites and publication remain incomplete.
 The deprecated non-emitting output notice, real providers, other variants,
 external/platform profiles, A11, full compatibility and publication remain open.
+
+## Native MCP control, OAuth and hosted-event streams
+
+The [eight-case MCP unit](mcp-control-qualification.md) exercises real native
+inventory/pagination, strict reload and recovery, ordinary loopback OAuth/PKCE,
+cold credential reuse, event activation, exact subscription routing, connection
+ownership, teardown and reconnect. The peers supply MCP/OAuth dependencies only;
+the pinned app-server creates every native response and notification. A stop ACK
+alone cannot pass: the exact active HTTP stream must observe physical peer
+EOF/reset and close within the unchanged five-second bound. Native locally
+intercepts cancellation; no remote cancellation POST or business effect is claimed.
+
+Both original unit seeds passed **8/0** (18.3s / 18.0s). Coordinating-owner
+current-source integration with the background-terminal profile passed **13/0**
+at each of `501432` and `987654` (39.0s each), with namespace preflight,
+independent compile and focused format passing. Log:
+`/tmp/samgita-native-mcp-background-parent-20261024.log`. The independent test and
+fixture hashes match the reviewed evidence mapping. Root test-environment compile
+and one-file strict Credo passed; an incompatible retained default-dev telemetry
+BEAM remains separately recorded and was not repaired by changing dependencies.
+
+Twelve entries and 62 directly asserted positive contracts gain selected
+`implemented` evidence. Null/omitted/empty-only observations and canonical types
+shared by other methods do not promote additional fields or methods. Real
+OAuth/Apps authorization, registration strategies, stream capacity/timeouts,
+remaining variants, other deployment profiles, A11 and full acceptance stay open.
+Regenerated totals: **485 entries: 0 verified / 387 implemented / 92 missing /
+6 blocked**; **6,621 contracts: 0 verified / 937 implemented / 5,684 missing**.
+The active-settings checkpoint arithmetic above is corrected to its actual
+regenerated totals; no evidence state is changed by that correction.
