@@ -146,8 +146,10 @@ outcome reconciliation. Overdue or already-expired responses cannot settle the
 request again. An untrappable socket process kill cannot run callbacks; hosts
 must also monitor their connections and reconcile durable outstanding work.
 The adapter drains core notifications into the explicit owner mailbox and
-disconnects when that mailbox reaches `max_buffer`; the owner should be a
-dedicated consumer. It never silently drops a notification while staying
+disconnects when that mailbox reaches `max_buffer`; the bound includes application
+control messages as well as protocol notifications. The owner should be a
+dedicated consumer; acknowledge any forwarding command before asking the server
+to emit into a one-message buffer. It never silently drops a notification while staying
 connected. When forwarding fails, the unforwarded notification does not advance
 the core cursor; reconnect and replay from the processed checkpoint can recover
 it. An entire replay batch must fit the core and owner buffers or the connection

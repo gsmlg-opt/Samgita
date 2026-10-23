@@ -420,8 +420,9 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
 
     assert %{"method" => "turn/started", "cursor" => 2} = take_owned_notification(owner)
     assert :ok = Client.ack_cursor(client, stream, 2)
+    ref = arm_owned_notification(owner)
     assert :ok = FakeAgent.emit_delta(agent, thread, turn, "Next live event")
-    assert %{"method" => "item/delta", "cursor" => 3} = take_owned_notification(owner)
+    assert %{"method" => "item/delta", "cursor" => 3} = await_owned_notification(ref)
     assert :ok = Client.ack_cursor(client, stream, 3)
     checkpoints = Client.checkpoints(client)
     assert checkpoints == %{stream => 3}
@@ -436,6 +437,105 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
 
     assert Client.checkpoints(restored) == checkpoints
     assert Client.replay_cursor(restored, stream) == 3
+  end
+
+  test "a queued owner control consumes capacity and the unforwarded live event remains replayable",
+       %{agent: agent, client: first} do
+    initialize(first)
+    {thread, turn} = start_turn(first)
+    stream = "thread:" <> thread
+    assert_receive {:samgita_protocol, ^first, {:notification, %{"cursor" => 1}}}
+    assert_receive {:samgita_protocol, ^first, {:notification, %{"cursor" => 2}}}
+    assert :ok = Client.ack_cursor(first, stream, 2)
+    owner = spawn(fn -> controlled_owner() end)
+    on_exit(fn -> if Process.alive?(owner), do: send(owner, :stop) end)
+
+    {:ok, client} =
+      Client.connect(FakeAgent.url(agent),
+        token: "isolated-test-token",
+        capabilities: @capabilities,
+        owner: owner,
+        max_buffer: 1,
+        checkpoints: %{stream => 2}
+      )
+
+    on_exit(fn -> if Process.alive?(client), do: Client.close(client) end)
+    initialize(client)
+    assert {:ok, _} = request(client, "thread/resume", %{"thread_id" => thread})
+
+    hold_ref = make_ref()
+    send(owner, {:hold, self(), hold_ref})
+    assert_receive {^hold_ref, :held}
+    on_exit(fn -> send(owner, {:release, hold_ref}) end)
+    ref = make_ref()
+    send(owner, {:forward_one, self(), ref})
+    assert {:messages, [{:forward_one, _, ^ref}]} = Process.info(owner, :messages)
+
+    state =
+      after_socket_disconnect(client, fn ->
+        assert :ok = FakeAgent.emit_delta(agent, thread, turn, "Retained after control overflow")
+      end)
+
+    assert state.conn == nil
+    assert Client.checkpoints(client) == %{stream => 2}
+    assert Client.replay_cursor(client, stream) == 2
+    assert {:messages, [{:forward_one, _, ^ref}]} = Process.info(owner, :messages)
+    send(owner, {:release, hold_ref})
+    assert_receive {^ref, :ready}
+
+    assert :ok = Client.reconnect(client)
+    initialize(client)
+    assert {:ok, _} = request(client, "thread/resume", %{"thread_id" => thread})
+
+    assert {:ok, %{"cursor" => 3, "events" => [%{"method" => "item/delta", "cursor" => 3}]}} =
+             request(client, "stream/resume", %{"stream_id" => stream, "cursor" => 2})
+
+    assert %{"method" => "item/delta", "cursor" => 3} = await_owned_notification(ref)
+    assert :ok = Client.ack_cursor(client, stream, 3)
+    assert Client.checkpoints(client) == %{stream => 3}
+  end
+
+  test "an oversized replay batch preserves checkpoints and later retention loss reports a gap",
+       %{agent: agent, client: first} do
+    initialize(first)
+    {thread, turn} = start_turn(first)
+    stream = "thread:" <> thread
+    owner = spawn(fn -> controlled_owner() end)
+    on_exit(fn -> if Process.alive?(owner), do: send(owner, :stop) end)
+
+    {:ok, client} =
+      Client.connect(FakeAgent.url(agent),
+        token: "isolated-test-token",
+        capabilities: @capabilities,
+        owner: owner,
+        max_buffer: 1,
+        checkpoints: %{stream => 0}
+      )
+
+    on_exit(fn -> if Process.alive?(client), do: Client.close(client) end)
+    initialize(client)
+    assert {:ok, _} = request(client, "thread/resume", %{"thread_id" => thread})
+
+    assert {:error, %{code: "disconnected"}} =
+             request(client, "stream/resume", %{"stream_id" => stream, "cursor" => 0})
+
+    assert Client.checkpoints(client) == %{stream => 0}
+    assert Client.replay_cursor(client, stream) == 0
+    assert {:message_queue_len, 0} = Process.info(owner, :message_queue_len)
+
+    for n <- 1..5, do: assert(:ok = FakeAgent.emit_delta(agent, thread, turn, "Eviction #{n}"))
+    assert :ok = Client.reconnect(client)
+    initialize(client)
+    assert {:ok, _} = request(client, "thread/resume", %{"thread_id" => thread})
+
+    assert {:error, %{code: "replay_gap"}} =
+             request(client, "stream/resume", %{"stream_id" => stream, "cursor" => 0})
+
+    assert Client.checkpoints(client) == %{stream => 0}
+    assert {:message_queue_len, 0} = Process.info(owner, :message_queue_len)
+
+    assert {:ok, %{"thread_id" => ^thread}} =
+             request(client, "thread/read", %{"thread_id" => thread})
   end
 
   test "cancellation IDs belong to a connection", %{agent: agent, client: first} do
@@ -472,12 +572,25 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
 
   defp controlled_owner do
     receive do
-      {:forward_one, caller, ref} ->
+      {:hold, caller, ref} ->
+        send(caller, {ref, :held})
+
         receive do
-          {:samgita_protocol, _client, {:notification, message}} -> send(caller, {ref, message})
+          {:release, ^ref} -> controlled_owner()
+          :stop -> :ok
         end
 
-        controlled_owner()
+      {:forward_one, caller, ref} ->
+        send(caller, {ref, :ready})
+
+        receive do
+          {:samgita_protocol, _client, {:notification, message}} ->
+            send(caller, {ref, message})
+            controlled_owner()
+
+          :stop ->
+            :ok
+        end
 
       :stop ->
         :ok
@@ -485,10 +598,43 @@ defmodule SamgitaProtocolWebSocket.IntegrationTest do
   end
 
   defp take_owned_notification(owner) do
+    owner |> arm_owned_notification() |> await_owned_notification()
+  end
+
+  defp arm_owned_notification(owner) do
     ref = make_ref()
     send(owner, {:forward_one, self(), ref})
+    assert_receive {^ref, :ready}
+    ref
+  end
+
+  defp await_owned_notification(ref) do
     assert_receive {^ref, message}
     message
+  end
+
+  defp after_socket_disconnect(client, action) do
+    :erlang.trace(client, true, [:receive])
+
+    try do
+      action.()
+      await_socket_disconnect(client, System.monotonic_time(:millisecond) + 1_000)
+    after
+      :erlang.trace(client, false, [:receive])
+    end
+  end
+
+  defp await_socket_disconnect(client, deadline) do
+    receive do
+      {:trace, ^client, :receive, {:tcp, _, _}} ->
+        case :sys.get_state(client) do
+          %{conn: nil} = state -> state
+          _state -> await_socket_disconnect(client, deadline)
+        end
+    after
+      max(deadline - System.monotonic_time(:millisecond), 0) ->
+        flunk("Client did not disconnect after receiving the overflow frame")
+    end
   end
 
   defp assert_disconnected(client, attempts) do
