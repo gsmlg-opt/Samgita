@@ -34,8 +34,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries and the
 advertised MCP item-progress notification are `blocked` by source-proven absent
 production emitters. Selected native method/notification entries now total
-184 `implemented`, with fifty exact field/variant schema contracts
-implemented; 296 requirements and 6,571 contracts remain `missing`. None is fully verified.
+191 `implemented`, with seventy-two exact field/variant schema contracts
+implemented; 289 requirements and 6,549 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -213,6 +213,11 @@ Next concrete work (repair follow-up, 2026-10-24):
    commands are fixed synthetic effects inside a proven namespace because this
    native API bypasses thread sandboxing. See
    [user-shell lifecycle](user-shell-qualification.md).
+   Eight native skills cases now qualify ordered local discovery with per-skill
+   errors, durable path/name settings, concurrent independent writes, process-only
+   root replacement, installed local plugin refresh and environment filesystem
+   boundaries. Their seven entries and 22 directly asserted fields/variants are
+   scoped `implemented`; see [skills lifecycle](skills-lifecycle-qualification.md).
    Continue remaining image-byte limits, account backend variants,
    environment/permission/turn variants and real-service authentication profiles.
    Preserve entry-specific evidence and

@@ -1,12 +1,13 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 143 implemented / 337 missing /
-5 blocked requirements** and **0 verified / 13 implemented / 6,608 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 191 implemented / 289 missing /
+5 blocked requirements** and **0 verified / 72 implemented / 6,549 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
-Apps catalog/installed snapshots, fuzzy search, account metadata and direct MCP
-entries have scoped implementation evidence; thirteen exact notification/workspace-message schema
-contracts are implemented. That status does
+Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
+commands, user-shell execution, model discovery, organization, skills and direct
+MCP entries have scoped implementation evidence. Seventy-two directly exercised
+field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
 accepted contract remains [the full goal](goal.md). The
@@ -29,6 +30,13 @@ Latest method records: [history](thread-history-qualification.md),
 The five blocked requirements retain four legacy approval entries plus the
 advertised MCP progress notification with no discovered production emitter.
 Field contracts and external/platform success profiles remain incomplete.
+
+Additional method records: [queues](queue-lifecycle-qualification.md),
+[commands](command-lifecycle-qualification.md),
+[user shell](user-shell-qualification.md),
+[model discovery](model-discovery-qualification.md),
+[organization/read state](organization-lifecycle-qualification.md) and
+[skills lifecycle](skills-lifecycle-qualification.md).
 
 ## Delivered source and immutable reference
 
@@ -883,3 +891,47 @@ Two exercised request/response entries and three exact input fields become
 5 blocked**; **6,621 contracts: 0 verified / 50 implemented / 6,571 missing**.
 Other executors, direct-input authority variants and deployment profiles remain
 unqualified. Neither an ACK nor a completed native item accepts a Samgita Task.
+
+## Integrated queue, command, model, organization and user-shell checkpoint
+
+Before the skills and interaction follow-ups, integrated source at `1f1dc5e`
+passed root warnings-as-errors compile, format and strict Credo (309 files), then
+the complete default driver suite at seeds `513498` and `987654`: **322 tests,
+zero failures each**, 220.5s / 219.1s. All eight required explicit namespace
+profiles ran together at `501432` and `987654`: **58 tests, zero failures each**,
+95.1s / 95.8s. No exclusions, retry loop, relaxed assertion or extended timeout
+were used. The canonical executable path was supplied. Log:
+`/tmp/samgita-codex-followup-queue-organization-integration.log`.
+
+Terminal hosted results for that exact source:
+
+| Workflow | Result |
+| --- | --- |
+| [Foundation 40015181470](https://github.com/gsmlg-opt/Samgita/actions/runs/40015181470) | **Passed**, including populated-database repeats, restart, standalone packages/consumers, static/security checks, assets and local production assembly. |
+| [Pinned conformance 40015345772](https://github.com/gsmlg-opt/Samgita/actions/runs/40015345772) | Selected actual-binary/platform job **passed**; all eight explicit isolated profiles **passed**. Full compatibility evidence job **failed** on required missing evidence, so the overall workflow **failed**. |
+
+These terminal results were read using `gh run view` and match
+`1f1dc5ec27f4cfb07efb4502eb1152968b81c98e`. They do not qualify subsequent
+executable edits or override the completeness gate, A11 or external prerequisites.
+No tag, publication, release process or deployment followed.
+
+## Native skills lifecycle
+
+Eight additional actual-native stdio cases passed at each of `501432` and
+`987654` (5.1s each), with independent warnings-as-errors compile and format.
+The root strict-Credo check in the established `MIX_ENV=test` environment passed
+310 files with no issues. Each test asserts zero model requests. Ordered
+discovery/errors, canonical durable path/name settings, concurrent independent
+writes, ephemeral runtime roots, installed local plugin refresh and filesystem
+boundaries are source-grounded in [skills lifecycle](skills-lifecycle-qualification.md).
+No runtime, timeout or assertion repair was needed. An accidental development
+environment lint invocation failed in dependency compilation before lint; the
+original failure and scope are preserved in that record without unrelated edits.
+
+Seven skills method/response/notification entries and 22 directly asserted
+fields/variants gain scoped `implemented` evidence. Regenerated totals are
+**485 entries: 0 verified / 191 implemented / 289 missing / 5 blocked**;
+**6,621 contracts: 0 verified / 72 implemented / 6,549 missing**. Remaining
+dependency/interface, selector-null, remote/executor, watcher and cross-process
+variants are unqualified. The 23 Python inventory regressions and offline
+inventory check pass; the full completeness gate remains unsatisfied.

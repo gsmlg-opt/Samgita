@@ -5057,12 +5057,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:skills/config/write",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/SkillsConfigWriteParams"
       },
@@ -5084,27 +5088,35 @@
         "source_line": 1042,
         "variant": "SkillsConfigWrite"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills/config/write"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:skills/extraRoots/set",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/SkillsExtraRootsSetParams"
       },
@@ -5126,27 +5138,35 @@
         "source_line": 899,
         "variant": "SkillsExtraRootsSet"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills/extraRoots/set"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:skills/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/SkillsListParams"
       },
@@ -5168,16 +5188,20 @@
         "source_line": 894,
         "variant": "SkillsList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills/list"
     },
     {
@@ -10882,12 +10906,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:skills/changed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/SkillsChangedNotification"
       },
@@ -10900,16 +10928,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills/changed"
     },
     {
@@ -16486,12 +16518,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:skills/config/write",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16499,28 +16535,36 @@
       "schema": "v2/SkillsConfigWriteResponse.json",
       "schema_sha256": "628bc112ca64f5475eb02a0eda718e82d670c40299444494e02a8dc278a772c7",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills/config/write"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:skills/extraRoots/set",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16528,28 +16572,36 @@
       "schema": "v2/SkillsExtraRootsSetResponse.json",
       "schema_sha256": "b659ec17a196eaa3a23273a3e2d5596460ea329bc3ade249971576bc723d9e96",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills/extraRoots/set"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:skills/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16557,16 +16609,20 @@
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "d11084bd4bfa50f747e880ab9a08eb8e8073c67d67c79907f4cff090db7b48f4",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills/list"
     },
     {
@@ -142891,101 +142947,133 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsConfigWriteParams.json#/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/enabled",
       "required": true,
       "schema": "v2/SkillsConfigWriteParams.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsConfigWriteParams.json#/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/name",
       "required": false,
       "schema": "v2/SkillsConfigWriteParams.json",
       "schema_sha256": "d0f0020217631dc41a9f251c118f0ea58646db94e4f24ef0773f1ba39aced1c1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsConfigWriteParams.json#/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/path",
       "required": false,
       "schema": "v2/SkillsConfigWriteParams.json",
       "schema_sha256": "26c3cbf272d717631a2fc741bdfb5cc46640d1b80cc69230927ddd2a5892d76b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsConfigWriteParams.json#/properties/path/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "pointer": "/properties/path/anyOf/0",
       "schema": "v2/SkillsConfigWriteParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -143013,105 +143101,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsConfigWriteResponse.json#/properties/effectiveEnabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/effectiveEnabled",
       "required": true,
       "schema": "v2/SkillsConfigWriteResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "effectiveEnabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsExtraRootsSetParams.json#/properties/extraRoots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/extraRoots",
       "required": true,
       "schema": "v2/SkillsExtraRootsSetParams.json",
       "schema_sha256": "cfe942436b07057238b8c268c0340f8ccb417b0963c949808b539594f69377cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "extraRoots"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListParams.json#/properties/cwds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/cwds",
       "required": false,
       "schema": "v2/SkillsListParams.json",
       "schema_sha256": "18d47094737e35dcd6dfdcbb0b3583d4cf02fac206d54ded4910abd441fc0931",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListParams.json#/properties/forceReload",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/forceReload",
       "required": false,
       "schema": "v2/SkillsListParams.json",
       "schema_sha256": "70a054adf4717f1abce30a04b37616440b22619b763b6da216db1e0ce0c2aaa7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "forceReload"
     },
     {
@@ -143143,53 +143263,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillErrorInfo/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillErrorInfo/properties/message",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillErrorInfo/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillErrorInfo/properties/path",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
@@ -143265,53 +143401,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillMetadata/properties/description",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillMetadata/properties/enabled",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
@@ -143387,105 +143539,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillMetadata/properties/name",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillMetadata/properties/path",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/pluginId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/SkillMetadata/properties/pluginId",
       "required": false,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "041ee2af896d9174f7a838c3a9b224211aea9b81d7399574bd6d56c3830be918",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pluginId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/scope",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillMetadata/properties/scope",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "3fdaeefc75dd52daa66fdf9e8b698d479f732222d027f61272f9b20308333dea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "scope"
     },
     {
@@ -143516,46 +143700,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillScope/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "pointer": "/definitions/SkillScope/enum/0",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "9a7d469ee31c85617b47990418cdcf535c45728d90c73d4195d16cf3ec1d2b41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillScope/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "pointer": "/definitions/SkillScope/enum/1",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "85a73b01d0e42e1aa51f0ab9b9c8baaaa2f933f7584eccde7b5496d020a17e8b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -143761,105 +143961,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillsListEntry/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillsListEntry/properties/cwd",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillsListEntry/properties/errors",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillsListEntry/properties/errors",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "c71fe91c5b9af0a4a5495a0bd804f85f094354fd35a430eb30cf2b192297ef6d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "errors"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillsListEntry/properties/skills",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillsListEntry/properties/skills",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "041300d983c2c0479e23c71e2b9c08300eaa1403718bc02f03384486a005b65b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/skills-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "df2b182174a37294cbb092f1fa4385a02c2a21b014355adcd059cc83c41c1a7a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
