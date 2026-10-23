@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 291 implemented / 189 missing /
-5 blocked requirements** and **0 verified / 428 implemented / 6,193 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 300 implemented / 180 missing /
+5 blocked requirements** and **0 verified / 489 implemented / 6,132 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Four hundred and twenty-eight directly exercised
+MCP entries have scoped implementation evidence. Four hundred and eighty-nine directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1216,3 +1216,31 @@ fields** were previously missing. Regenerated totals: **485 entries: 0 verified 
 428 implemented / 6,193 missing**. The profile is a required explicit hosted CI
 step. Real accounts/services, other platforms, A11, full compatibility and
 publication remain incomplete.
+
+## Native streamed thread/turn event lifecycle
+
+Eight default-discovered actual-native cases passed **8/0** at `501432` and
+`987654` (**7.0s / 7.1s**). The provider wrapper emits only Responses SSE;
+the pinned app-server emits the asserted thread notices, five exact Unicode
+text deltas, correlated item/turn lifecycle, direct timing and usage fields.
+Tests cover independent thread association, normalized names and cold durability,
+archive/unarchive/delete notices, explicit zero-delay idle eviction, cold resume
+without historical lifecycle replay or inference, and exact notification opt-out
+versus a prefix on sequential initialized stdio processes.
+
+The first native run passed seven cases and failed one because a test predicate
+used a nullable terminal event as a boolean. Requiring both matching results to
+be non-null fixed that harness defect. A preceding Credo helper extraction and
+the predicate repair retain all timing, order and identity assertions. Final
+driver/root compile, scoped format, full root strict Credo (**319 files**),
+Python AST, whitespace and owned-process cleanup passed. Exact commands and
+the initial failure are in
+[thread-event qualification](thread-event-lifecycle-qualification.md).
+
+Thirty-three entries and 85 positive fields gain evidence; **nine entries and
+61 fields** were previously missing. Four empty/null-only fields gain limited
+evidence without promotion. Regenerated totals: **485 entries: 0 verified /
+300 implemented / 180 missing / 5 blocked**; **6,621 contracts: 0 verified /
+489 implemented / 6,132 missing**. Concurrent service connections, other
+transports/platforms, unasserted variants and external backend success remain
+incomplete. Full compatibility, A11 and publication are not established.

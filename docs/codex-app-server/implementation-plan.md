@@ -34,8 +34,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries and the
 advertised MCP item-progress notification are `blocked` by source-proven absent
 production emitters. Selected native method/notification entries now total
-291 `implemented`, with 428 exact field/variant schema contracts
-implemented; 189 requirements and 6,193 contracts remain `missing`. None is fully verified.
+300 `implemented`, with 489 exact field/variant schema contracts
+implemented; 180 requirements and 6,132 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -266,6 +266,11 @@ Next concrete work (repair follow-up, 2026-10-24):
    entries and nine more fields gain scoped implementation evidence. Normal
    enabled-at-startup sync, remote sharing/pagination and runtime effects remain
    incomplete; capability declarations do not establish activation or authority.
+   Eight [thread-event cases](thread-event-lifecycle-qualification.md) directly
+   assert previously missing native notices and exact Unicode deltas, identity,
+   ordering, timing/usage, configured idle eviction, cold non-replay and sequential
+   connection opt-out. Nine entries and 61 fields gain implementation evidence;
+   empty/null-only fields and concurrent service fan-out remain incomplete.
    Continue remaining image-byte limits, account backend variants,
    environment/permission/turn variants and real-service authentication profiles.
    Preserve entry-specific evidence and

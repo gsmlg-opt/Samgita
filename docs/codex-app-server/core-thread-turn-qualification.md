@@ -88,3 +88,8 @@ unsubscribe statuses, and preserve no-reexecution proof across cold resume.
 Real external backends/accounts, other OS/transport profiles, A11 and absent
 legacy production emitters remain incomplete. This evidence audit neither
 publishes a package nor establishes full compatibility or production readiness.
+
+The subsequent [thread-event qualification](thread-event-lifecycle-qualification.md)
+directly exercises the nine notices absent from this audit's baseline, including
+exact streamed deltas. It does not retroactively turn this evidence index into
+emission proof; its new tests, assertions and limits are recorded separately.
