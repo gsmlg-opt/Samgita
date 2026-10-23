@@ -3,6 +3,21 @@ defmodule SamgitaCodexDriver.SessionTest do
   alias SamgitaCodexDriver.{ScriptedTransport, Session}
   alias SamgitaProtocolCodex.Error
 
+  test "process identity is stable across reconnects and distinct from another Session" do
+    one = connection()
+    two = connection()
+    assert %{instance_id: instance, generation: 1} = Session.status(one)
+
+    assert Regex.match?(
+             ~r/\A[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\z/,
+             instance
+           )
+
+    refute Session.status(two).instance_id == instance
+    assert :ok = Session.reconnect(one)
+    assert %{instance_id: ^instance, generation: 2} = Session.status(one)
+  end
+
   test "initialization gates calls and sends initialized only after success" do
     pid = connection()
     assert {:error, %Error{code: :not_initialized}} = Session.request(pid, "thread/list")
@@ -14,6 +29,79 @@ defmodule SamgitaCodexDriver.SessionTest do
 
     assert {:error, %Error{code: :use_initialize}} = Session.request(pid, "initialize")
     refute_receive {:sent, ^pid, %{"method" => "initialize"}}
+  end
+
+  test "native dispatch rejects a ticket captured before reconnect and another process instance" do
+    pid = ready()
+    previous = Session.status(pid)
+    assert :ok = Session.reconnect(pid)
+    initialize(pid)
+    wire = %{"id" => "stale-ticket", "method" => "thread/start", "params" => %{}}
+
+    for expected <- [
+          [expected_instance_id: previous.instance_id, expected_generation: previous.generation],
+          [expected_instance_id: "another-instance", expected_generation: 2]
+        ] do
+      assert {:error, %Error{code: :stale_session, uncertain: false}} =
+               Session.request_native(pid, wire, expected ++ [timeout_ms: 30])
+
+      refute_receive {:sent, ^pid, ^wire}
+    end
+
+    assert Session.status(pid).pending == 0
+    assert Session.uncertain_operations(pid) == []
+  end
+
+  test "a dispatch deadline expires while the native request waits in the Session mailbox" do
+    pid = ready()
+    status = Session.status(pid)
+    wire = %{"id" => "queued-ticket", "method" => "thread/start", "params" => %{}}
+    assert :ok = :sys.suspend(pid)
+    deadline = System.system_time(:millisecond) + 100
+
+    task =
+      Task.async(fn ->
+        Session.request_native(pid, wire,
+          expected_instance_id: status.instance_id,
+          expected_generation: status.generation,
+          dispatch_deadline_ms: deadline,
+          timeout_ms: 30
+        )
+      end)
+
+    assert Task.yield(task, 120) == nil
+    assert :ok = :sys.resume(pid)
+    assert {:error, %Error{code: :dispatch_expired, uncertain: false}} = Task.await(task)
+    refute_receive {:sent, ^pid, ^wire}
+    assert Session.uncertain_operations(pid) == []
+  end
+
+  test "response dispatch guards reject expired or wrong-instance tickets without consuming approval" do
+    pid = ready()
+    status = Session.status(pid)
+    send(pid, {:incoming, approval("guarded-response")})
+    assert_receive {:codex_driver, ^pid, :events_available}, 2_000
+    assert {:ok, [%{handle: handle}]} = Session.drain(pid)
+    decision = {:ok, %{"decision" => "decline"}}
+
+    for {opts, code} <- [
+          {[expected_instance_id: "other"], :stale_session},
+          {[expected_generation: status.generation + 1], :stale_session},
+          {[dispatch_deadline_ms: System.system_time(:millisecond) - 1], :dispatch_expired}
+        ] do
+      assert {:error, %Error{code: ^code, uncertain: false}} =
+               Session.respond(pid, handle, decision, opts)
+
+      refute_receive {:sent, ^pid, %{"id" => "guarded-response", "result" => _}}
+      assert Session.status(pid).interactions == 1
+    end
+
+    assert :ok =
+             Session.respond(pid, handle, decision,
+               expected_instance_id: status.instance_id,
+               expected_generation: status.generation,
+               dispatch_deadline_ms: System.system_time(:millisecond) + 5_000
+             )
   end
 
   test "concurrent out-of-order replies settle by typed ID without field loss" do

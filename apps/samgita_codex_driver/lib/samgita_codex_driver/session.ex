@@ -48,13 +48,23 @@ defmodule SamgitaCodexDriver.Session do
     GenServer.call(pid, {:request, method, params, opts}, :infinity)
   end
 
-  @doc "Send a complete native request, retaining trace context and future envelope fields."
+  @doc """
+  Send a complete native request, retaining trace context and future envelope fields.
+
+  Optional `:expected_instance_id`, `:expected_generation` and
+  `:dispatch_deadline_ms` (absolute Unix milliseconds) fence dispatch inside the
+  Session immediately before sending. Expired or stale calls send nothing.
+  """
   def request_native(pid, wire, opts \\ []) do
     GenServer.call(pid, {:request_native, wire, opts}, :infinity)
   end
 
-  @doc "Respond explicitly to a drained server-request handle with {:ok, result} or {:error, error}."
-  def respond(pid, handle, result), do: GenServer.call(pid, {:respond, handle, result})
+  @doc """
+  Respond explicitly to a drained server-request handle with {:ok, result} or {:error, error}.
+  Accepts the same optional dispatch fences as `request_native/3`.
+  """
+  def respond(pid, handle, result, opts \\ []),
+    do: GenServer.call(pid, {:respond, handle, result, opts})
 
   def drain(pid, limit \\ 100), do: GenServer.call(pid, {:drain, limit})
   def status(pid), do: GenServer.call(pid, :status)
@@ -93,6 +103,7 @@ defmodule SamgitaCodexDriver.Session do
          owner: Keyword.fetch!(opts, :owner),
          owner_monitor: Process.monitor(Keyword.fetch!(opts, :owner)),
          incarnation: Base.url_encode64(:crypto.strong_rand_bytes(16), padding: false),
+         instance_id: instance_id(),
          generation: 1,
          phase: :new,
          experimental: false,
@@ -161,8 +172,8 @@ defmodule SamgitaCodexDriver.Session do
     {:reply, {:error, Error.new(:invalid_options)}, state}
   end
 
-  def handle_call({:respond, handle, result}, _from, state) do
-    respond_to_interaction(handle, result, state)
+  def handle_call({:respond, handle, result, opts}, _from, state) do
+    respond_to_interaction(handle, result, opts, state)
   end
 
   def handle_call({:drain, limit}, _from, state) when is_integer(limit) and limit in 1..10_000 do
@@ -178,6 +189,7 @@ defmodule SamgitaCodexDriver.Session do
     {:reply,
      %{
        phase: state.phase,
+       instance_id: state.instance_id,
        generation: state.generation,
        pending: map_size(state.pending),
        interactions: map_size(state.interactions),
@@ -351,7 +363,8 @@ defmodule SamgitaCodexDriver.Session do
          :ok <- validate_request(method, params, opts, state),
          {:ok, id, state} <- request_id(state, opts),
          {:ok, timeout} <- timeout(opts, state.opts),
-         {:ok, encoded} <- encode_request(id, method, params, opts, state) do
+         {:ok, encoded} <- encode_request(id, method, params, opts, state),
+         :ok <- dispatch_guard(state, opts) do
       token = make_ref()
 
       pending = %{
@@ -447,6 +460,46 @@ defmodule SamgitaCodexDriver.Session do
     if is_integer(value) and value in 1..86_400_000,
       do: {:ok, value},
       else: {:error, Error.new(:invalid_deadline)}
+  end
+
+  defp dispatch_guard(state, opts) when is_list(opts) do
+    cond do
+      not Keyword.keyword?(opts) ->
+        {:error, Error.new(:invalid_options)}
+
+      Keyword.has_key?(opts, :expected_instance_id) &&
+          opts[:expected_instance_id] != state.instance_id ->
+        {:error, Error.new(:stale_session)}
+
+      Keyword.has_key?(opts, :expected_generation) &&
+          opts[:expected_generation] != state.generation ->
+        {:error, Error.new(:stale_session)}
+
+      true ->
+        dispatch_deadline(Keyword.fetch(opts, :dispatch_deadline_ms))
+    end
+  end
+
+  defp dispatch_guard(_, _), do: {:error, Error.new(:invalid_options)}
+
+  defp dispatch_deadline(:error), do: :ok
+
+  defp dispatch_deadline({:ok, deadline}) when is_integer(deadline) do
+    if System.system_time(:millisecond) >= deadline,
+      do: {:error, Error.new(:dispatch_expired)},
+      else: :ok
+  end
+
+  defp dispatch_deadline(_), do: {:error, Error.new(:invalid_deadline)}
+
+  defp instance_id do
+    <<a::32, b::16, _::4, c::12, _::2, d::14, e::48>> = :crypto.strong_rand_bytes(16)
+    encoded = Base.encode16(<<a::32, b::16, 4::4, c::12, 2::2, d::14, e::48>>, case: :lower)
+
+    <<a::binary-size(8), b::binary-size(4), c::binary-size(4), d::binary-size(4), e::binary>> =
+      encoded
+
+    Enum.join([a, b, c, d, e], "-")
   end
 
   defp send_wire(%{connection: nil} = state, _wire) do
@@ -622,11 +675,12 @@ defmodule SamgitaCodexDriver.Session do
     end
   end
 
-  defp respond_to_interaction(%{id: id} = handle, result, state) do
+  defp respond_to_interaction(%{id: id} = handle, result, opts, state) do
     case state.interactions[id] do
       %{handle: ^handle} = interaction when state.phase == :ready ->
         with {:ok, wire} <- interaction_response(id, interaction.method, result, state),
-             {:ok, encoded} <- Wire.encode(wire, max_bytes: state.opts[:max_message_bytes]) do
+             {:ok, encoded} <- Wire.encode(wire, max_bytes: state.opts[:max_message_bytes]),
+             :ok <- dispatch_guard(state, opts) do
           # Transport send has no Codex response ACK. Keep this fact inspectable
           # until the owner journals it; a resolved notification is not approval
           # acceptance either (another connection or cancellation may resolve it).
@@ -656,7 +710,7 @@ defmodule SamgitaCodexDriver.Session do
     end
   end
 
-  defp respond_to_interaction(_, _, state) do
+  defp respond_to_interaction(_, _, _, state) do
     {:reply, {:error, Error.new(:stale_interaction)}, state}
   end
 

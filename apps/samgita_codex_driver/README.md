@@ -44,6 +44,14 @@ generation; native server requests have a separate direction and opaque handles.
 Notifications/items retain their complete payloads in a bounded ordered pull
 queue. The owner receives one `:events_available` wakeup and drains the queue.
 
+`Session.status/1` exposes a non-secret process-lifetime `instance_id` and a
+connection `generation`. For fenced callers, `request_native/3` and `respond/4`
+accept `:expected_instance_id`, `:expected_generation` and
+`:dispatch_deadline_ms` (absolute Unix milliseconds). The serialized Session
+checks them immediately before sending, so a queued request cannot cross a
+reconnect or begin dispatch after its deadline. A prior status read alone cannot
+provide this guarantee. A send already begun can still have an uncertain outcome.
+
 For a drained `%{kind: :server_request, wire: wire, handle: handle}`, inspect the
 exact action, check your current authorization, and explicitly call
 `Session.respond(session, handle, {:ok, native_result})` or return a native error.
