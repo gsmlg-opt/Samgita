@@ -430,4 +430,24 @@ deadline unchanged. No test moves/skips, host-network fallback, `sudo`, AppArmor
 change or host permission relaxation is introduced. This qualifies the declared
 namespace-capable environment; it does not claim support for the denied hosted
 Ubuntu 24.04 profile or identify which host security mechanism denied `uid_map`.
-Hosted validation of this environment repair is still required.
+Hosted validation at `38e47451ebbd7020977a8104d74bf1d71cd0fc7b` in
+[40030585186](https://github.com/gsmlg-opt/Samgita/actions/runs/40030585186)
+passed the namespace preflight in both native jobs. All thirteen explicit native
+profiles passed. The selected default driver ran **381 tests / one failure**,
+seed `853090`, in 239.1s: its streamed patch case received an unexpected native
+approval/tool request. The other three output-notice cases passed. Thus the
+namespace startup failure is resolved for this declared hosted profile, while
+patch execution still has a distinct unresolved environment/authorization
+boundary. No native approval is granted by this fixture. Outside-consumer and
+platform stages were skipped; the completeness gate also failed. The job log is
+`/tmp/samgita-38e4745-hosted-driver-failure.log`.
+
+The failing assertion now reports only the unexpected native method and the
+synthetic fixture's reason/thread/turn/item/grant-root context. It still rejects
+every server request, with no response, retry, sandbox change or deadline change.
+The next hosted run must expose the actual native reason before choosing a
+behavioral repair; source inspection alone does not establish it. Foundation
+[40031002577](https://github.com/gsmlg-opt/Samgita/actions/runs/40031002577)
+passed at `b217123e74c46f5d5b4cc4b5978d3b6cc8febaa7`, independently of the
+failed conformance gate. A11, external profiles and full compatibility remain
+incomplete.

@@ -270,8 +270,16 @@ defmodule SamgitaCodexDriver.NativeOutputNoticeLifecycleTest do
     assert {:ok, events} = Session.drain(pid)
     acc = acc ++ events
 
-    refute Enum.any?(acc, &(&1.kind == :server_request)),
-           "Unexpected approval/tool request; no response is authorized"
+    unexpected =
+      for event <- acc, event.kind == :server_request do
+        %{
+          method: event.wire["method"],
+          context: Map.take(event.wire["params"], ~w(reason threadId turnId itemId grantRoot))
+        }
+      end
+
+    assert unexpected == [],
+           "Unexpected approval/tool request; no response is authorized: #{inspect(unexpected)}"
 
     cond do
       notice(acc, "turn/completed", &(&1["turn"]["id"] == turn)) ->
