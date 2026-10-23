@@ -113,7 +113,7 @@ defmodule SamgitaCodexDriver.TurnInputTest do
           validation: :wire
         )
 
-      assert error["code"] == -32600
+      assert error["code"] == -32_600
       assert error["message"] =~ "Invalid request"
     end
 
@@ -211,7 +211,7 @@ defmodule SamgitaCodexDriver.TurnInputTest do
         })
 
       assert error == %{
-               "code" => -32600,
+               "code" => -32_600,
                "message" => "remote image URLs are not supported; use an inline data URL instead"
              }
     end
