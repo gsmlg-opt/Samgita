@@ -34,6 +34,10 @@ defmodule SamgitaWeb.ConnCase do
   setup tags do
     Samgita.DataCase.setup_sandbox(tags)
 
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    # Each test represents an independent client. Requests within a test retain
+    # their address and quota; unrelated cases cannot exhaust the shared limiter.
+    <<a::16, b::16, c::16, d::16>> = <<System.unique_integer([:positive, :monotonic])::64>>
+    conn = Phoenix.ConnTest.build_conn()
+    {:ok, conn: %{conn | remote_ip: {0x2001, 0xDB8, 0, 0, a, b, c, d}}}
   end
 end

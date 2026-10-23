@@ -6,6 +6,7 @@ defmodule SamgitaWeb.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      SamgitaWeb.RateLimiter,
       SamgitaWeb.Telemetry,
       SamgitaWeb.Endpoint
     ]
