@@ -1248,12 +1248,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:environment/add",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/EnvironmentAddParams"
       },
@@ -1275,16 +1279,20 @@
         "source_line": 1226,
         "variant": "EnvironmentAdd"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environment/add"
     },
     {
@@ -1292,12 +1300,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:environment/info",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/EnvironmentInfoParams"
       },
@@ -1319,16 +1331,20 @@
         "source_line": 1233,
         "variant": "EnvironmentInfo"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environment/info"
     },
     {
@@ -1336,12 +1352,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:environment/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/EnvironmentStatusParams"
       },
@@ -1363,16 +1383,20 @@
         "source_line": 1240,
         "variant": "EnvironmentStatus"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environment/status"
     },
     {
@@ -3102,12 +3126,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:permissionProfile/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/PermissionProfileListParams"
       },
@@ -3129,16 +3157,20 @@
         "source_line": 1158,
         "variant": "PermissionProfileList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "permissionProfile/list"
     },
     {
@@ -13012,12 +13044,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:environment/add",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13025,16 +13061,20 @@
       "schema": "v2/EnvironmentAddResponse.json",
       "schema_sha256": "d3cc7b30fa2505d2e75322ce904574984c63bb0b809b691b6b075509b1c8c300",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environment/add"
     },
     {
@@ -13043,12 +13083,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:environment/info",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13056,16 +13100,20 @@
       "schema": "v2/EnvironmentInfoResponse.json",
       "schema_sha256": "9b3fdf205daedad7ce230c8b8b2423b325a087b9b960ea3f82289667ecc2e7d4",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environment/info"
     },
     {
@@ -13074,12 +13122,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:environment/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13087,16 +13139,20 @@
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "43798149b75ee5c6fb8e3113019f9b0db9860102ec87be4f17fb84d8f10068b6",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environment/status"
     },
     {
@@ -14320,12 +14376,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:permissionProfile/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local environment metadata, rejected registration, experimental negotiation and permission-profile discovery behavior. Successful remote registration/connection states, sandbox enforcement, field/transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14333,16 +14393,20 @@
       "schema": "v2/PermissionProfileListResponse.json",
       "schema_sha256": "4a290b5b9d47c2fc671033e22754671161bc563027ba387e861bd935398f0def",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "permissionProfile/list"
     },
     {
