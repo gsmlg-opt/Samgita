@@ -18,6 +18,7 @@ defmodule SamgitaWeb.RestartReconcileTest do
     Tasks
   }
 
+  alias Samgita.Domain.{DomainEvent, TaskAttempt}
   alias Samgita.Domain.EventDelivery, as: Delivery
   alias SamgitaWeb.FakeAgent
 
@@ -42,11 +43,7 @@ defmodule SamgitaWeb.RestartReconcileTest do
     end)
 
     path = Path.join(System.tmp_dir!(), "samgita-restart-#{Ecto.UUID.generate()}.json")
-
-    on_exit(fn ->
-      File.rm(path)
-      File.rm(path <> ".tmp")
-    end)
+    # Retain the fsynced synthetic journal referenced by committed resolution evidence.
 
     fake = start_supervised!({FakeAgent, journal: path, token: "restart-service-token"})
     url = FakeAgent.url(fake)
@@ -204,9 +201,68 @@ defmodule SamgitaWeb.RestartReconcileTest do
                )
     end)
 
-    assert FakeAgent.snapshot(restarted)["calls"] == ["receive", "status"]
+    snapshot = FakeAgent.snapshot(restarted)
+    assert snapshot["calls"] == ["receive", "status"]
     # The simulated remote effect is still running. Closing Samgita didn't undo it.
-    assert FakeAgent.snapshot(restarted)["starts"] == [attempt["id"]]
+    assert snapshot["starts"] == [attempt["id"]]
+    assert snapshot["stops"] == %{}
+
+    # Only this test-owned simulated effect is now explicitly stopped. The
+    # durable journal is checked before the operator records cessation evidence.
+    operation = attempt["id"]
+    assert {:ok, evidence} = FakeAgent.stop_once(restarted, operation)
+    assert {:ok, ^evidence} = FakeAgent.stop_once(restarted, operation)
+
+    assert %{"stops" => %{^operation => ^evidence}} = path |> File.read!() |> Jason.decode!()
+    resolve_fixture_effect(p, attempt, evidence)
+
+    assert :already_started = FakeAgent.start_once(restarted, operation)
+    assert FakeAgent.snapshot(restarted)["starts"] == [operation]
+    assert FakeAgent.snapshot(restarted)["events"] == snapshot["events"]
+    assert FakeAgent.snapshot(restarted)["calls"] == ["receive", "status"]
+  end
+
+  defp resolve_fixture_effect(project, attempt, evidence) do
+    committed(fn ->
+      project_id = project["id"]
+      events = from e in DomainEvent, where: e.project_id == ^project_id, order_by: e.sequence
+      history = Repo.all(from e in events, select: e.id)
+      current = Repo.get!(TaskAttempt, attempt["id"])
+
+      attrs =
+        command(%{
+          "expected_version" => current.version,
+          "effects_resolved" => true,
+          "evidence_ref" => evidence["evidence_ref"]
+        })
+
+      assert {:ok, resolved} =
+               Attempts.resolve(Principal.operator(), project_id, current.id, attrs)
+
+      assert {:ok, ^resolved} =
+               Attempts.resolve(Principal.operator(), project_id, current.id, attrs)
+
+      assert resolved["state"] == "expired"
+      assert resolved["effects_resolved"]
+
+      assert Repo.get!(TaskAttempt, current.id).resolution_evidence ==
+               Map.take(evidence, ["evidence_ref"])
+
+      assert {:ok, preserved} = Management.task(Principal.operator(), project_id, current.task_id)
+      assert preserved["task"]["state"] == "blocked"
+      refute preserved["task"]["execution_hold"]
+      assert is_nil(preserved["task"]["accepted_at"])
+      assert length(preserved["attempts"]) == 1
+      assert Enum.take(Repo.all(from e in events, select: e.id), length(history)) == history
+
+      assert Repo.aggregate(
+               from(e in events, where: e.type == "attempt.effects_resolved"),
+               :count
+             ) ==
+               1
+
+      assert activate_fixture()["owner"] == "hub"
+    end)
   end
 
   defp committed(fun), do: Sandbox.unboxed_run(Repo, fun)

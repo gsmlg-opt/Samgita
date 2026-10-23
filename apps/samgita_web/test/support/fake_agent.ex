@@ -12,9 +12,11 @@ defmodule SamgitaWeb.FakeAgent do
   def snapshot(pid), do: GenServer.call(pid, :snapshot)
   def lose_ack(pid, owner), do: GenServer.call(pid, {:lose_ack, owner})
   def start_once(pid, operation), do: GenServer.call(pid, {:start_once, operation})
+  def stop_once(pid, operation), do: GenServer.call(pid, {:stop_once, operation})
 
   @impl true
   def init(opts) do
+    Process.flag(:trap_exit, true)
     path = Keyword.fetch!(opts, :journal)
     token = Keyword.fetch!(opts, :token)
 
@@ -22,6 +24,8 @@ defmodule SamgitaWeb.FakeAgent do
       if File.exists?(path),
         do: path |> File.read!() |> Jason.decode!(),
         else: %{"events" => %{}, "starts" => [], "calls" => []}
+
+    data = Map.put_new(data, "stops", %{})
 
     store = self()
 
@@ -57,6 +61,27 @@ defmodule SamgitaWeb.FakeAgent do
       data = Map.update!(state.data, "starts", &(&1 ++ [operation]))
       persist!(state.path, data)
       {:reply, :started, %{state | data: data}}
+    end
+  end
+
+  def handle_call({:stop_once, operation}, _from, state) do
+    cond do
+      operation not in state.data["starts"] ->
+        {:reply, {:error, :not_started}, state}
+
+      evidence = state.data["stops"][operation] ->
+        {:reply, {:ok, evidence}, state}
+
+      true ->
+        evidence = %{
+          "operation_id" => operation,
+          "state" => "stopped",
+          "evidence_ref" => "fake-agent-journal:#{state.path}##{operation}"
+        }
+
+        data = put_in(state.data, ["stops", operation], evidence)
+        persist!(state.path, data)
+        {:reply, {:ok, evidence}, %{state | data: data}}
     end
   end
 
@@ -113,6 +138,10 @@ defmodule SamgitaWeb.FakeAgent do
         end
     end
   end
+
+  @impl true
+  def handle_info({:EXIT, listener, reason}, %{listener: listener} = state),
+    do: {:stop, reason, state}
 
   @impl true
   def terminate(_reason, state) do
