@@ -11587,12 +11587,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:model/rerouted",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ModelReroutedNotification"
       },
@@ -11605,27 +11609,36 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:202",
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:142"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "model/rerouted"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:model/safetyBuffering/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ModelSafetyBufferingUpdatedNotification"
       },
@@ -11638,27 +11651,36 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:220",
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:142"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "model/safetyBuffering/updated"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:model/verification",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ModelVerificationNotification"
       },
@@ -11671,16 +11693,21 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:212",
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:142"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "model/verification"
     },
     {
@@ -11894,12 +11921,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:rawResponse/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/RawResponseCompletedNotification"
       },
@@ -11912,27 +11943,37 @@
       "schema_sha256": "ecee759716e9ec50e342e033cfeab5a650f51e480cfa2180d29b127b23792757",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182",
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:134",
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:152"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "rawResponse/completed"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:rawResponseItem/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/RawResponseItemCompletedNotification"
       },
@@ -11945,16 +11986,21 @@
       "schema_sha256": "ecee759716e9ec50e342e033cfeab5a650f51e480cfa2180d29b127b23792757",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:316",
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:144"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "rawResponseItem/completed"
     },
     {
@@ -13524,12 +13570,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:turn/moderationMetadata",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Four owned one-text-turn Responses metadata cases; thread experimentalRawEvents is explicitly enabled for raw positives and omitted for stable absence. Only actual assistant raw items, one verification value, UI true, selected safety/usage/moderation values and synthetic model mismatch are qualified. HighRiskCyberActivity is a native hardcoded mismatch reason, not a real risk/account conclusion. Other item/OS/provider/race/replay/auth profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/TurnModerationMetadataNotification"
       },
@@ -13546,16 +13596,22 @@
         "source_line": 2035,
         "variant": "TurnModerationMetadata"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:120",
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:160",
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:175"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turn/moderationMetadata"
     },
     {
@@ -134532,391 +134588,526 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelReroutedNotification.json#/properties/fromModel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Synthetic model mismatch; hardcoded highRiskCyberActivity does not establish actual account risk or routing."
+      ],
       "nullable": false,
       "pointer": "/properties/fromModel",
       "required": true,
       "schema": "v2/ModelReroutedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "fromModel"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelReroutedNotification.json#/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Synthetic model mismatch; hardcoded highRiskCyberActivity does not establish actual account risk or routing."
+      ],
       "nullable": false,
       "pointer": "/properties/reason",
       "required": true,
       "schema": "v2/ModelReroutedNotification.json",
       "schema_sha256": "cb3c657b08c9e473fe6d7e307915f5ae4004faa07462e9247517d20ac6207149",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "reason"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelReroutedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Synthetic model mismatch; hardcoded highRiskCyberActivity does not establish actual account risk or routing."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ModelReroutedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelReroutedNotification.json#/properties/toModel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Synthetic model mismatch; hardcoded highRiskCyberActivity does not establish actual account risk or routing."
+      ],
       "nullable": false,
       "pointer": "/properties/toModel",
       "required": true,
       "schema": "v2/ModelReroutedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "toModel"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelReroutedNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Synthetic model mismatch; hardcoded highRiskCyberActivity does not establish actual account risk or routing."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/ModelReroutedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelSafetyBufferingUpdatedNotification.json#/properties/fasterModel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "UI true only; fasterModel explicit string, omitted with header fallback, and explicit null."
+      ],
       "nullable": true,
       "pointer": "/properties/fasterModel",
       "required": false,
       "schema": "v2/ModelSafetyBufferingUpdatedNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "fasterModel"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelSafetyBufferingUpdatedNotification.json#/properties/model",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "UI true only; fasterModel explicit string, omitted with header fallback, and explicit null."
+      ],
       "nullable": false,
       "pointer": "/properties/model",
       "required": true,
       "schema": "v2/ModelSafetyBufferingUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelSafetyBufferingUpdatedNotification.json#/properties/reasons",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "UI true only; fasterModel explicit string, omitted with header fallback, and explicit null."
+      ],
       "nullable": false,
       "pointer": "/properties/reasons",
       "required": true,
       "schema": "v2/ModelSafetyBufferingUpdatedNotification.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "reasons"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelSafetyBufferingUpdatedNotification.json#/properties/showBufferingUi",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "UI true only; fasterModel explicit string, omitted with header fallback, and explicit null."
+      ],
       "nullable": false,
       "pointer": "/properties/showBufferingUi",
       "required": true,
       "schema": "v2/ModelSafetyBufferingUpdatedNotification.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "showBufferingUi"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelSafetyBufferingUpdatedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "UI true only; fasterModel explicit string, omitted with header fallback, and explicit null."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ModelSafetyBufferingUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelSafetyBufferingUpdatedNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "UI true only; fasterModel explicit string, omitted with header fallback, and explicit null."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/ModelSafetyBufferingUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelSafetyBufferingUpdatedNotification.json#/properties/useCases",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "UI true only; fasterModel explicit string, omitted with header fallback, and explicit null."
+      ],
       "nullable": false,
       "pointer": "/properties/useCases",
       "required": true,
       "schema": "v2/ModelSafetyBufferingUpdatedNotification.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:220"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "useCases"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelVerificationNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Only trustedAccessForCyber; unknown/duplicate provider values filtered; once per turn."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ModelVerificationNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:212"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelVerificationNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Only trustedAccessForCyber; unknown/duplicate provider values filtered; once per turn."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/ModelVerificationNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:212"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelVerificationNotification.json#/properties/verifications",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Only trustedAccessForCyber; unknown/duplicate provider values filtered; once per turn."
+      ],
       "nullable": false,
       "pointer": "/properties/verifications",
       "required": true,
       "schema": "v2/ModelVerificationNotification.json",
       "schema_sha256": "de4a361d045d8f4f80922295711c8786531a311d190a41d2deb8cbd4d4c5cc7f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:212"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "verifications"
     },
     {
@@ -148457,188 +148648,248 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/definitions/ResponseUsageMetadata/properties/amount",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn."
+      ],
       "nullable": true,
       "pointer": "/definitions/ResponseUsageMetadata/properties/amount",
       "required": false,
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "amount"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/definitions/ResponseUsageMetadata/properties/metadata",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn."
+      ],
       "nullable": false,
       "pointer": "/definitions/ResponseUsageMetadata/properties/metadata",
       "required": false,
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "metadata"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/properties/responseId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn."
+      ],
       "nullable": false,
       "pointer": "/properties/responseId",
       "required": true,
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "responseId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/properties/usage",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn."
+      ],
       "nullable": true,
       "pointer": "/properties/usage",
       "required": false,
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "2af9f02dc4b7d2431c0e3a48e8f172c0aafd1a3fd2030354531994cc158628a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "usage"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/properties/usage/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn."
+      ],
       "pointer": "/properties/usage/anyOf/0",
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "6669c66cda7e986a38a98712a456448c464610b2f01e90b4abe3979e9ed0d7ef",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/properties/usage/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "null_only: Exact explicit null variant observed; retained incomplete under current positive-value evidence policy, with no nonnull success promotion from this observation."
+      ],
       "pointer": "/properties/usage/anyOf/1",
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
@@ -148649,66 +148900,90 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:134"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/properties/usageMetadata",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn."
+      ],
       "nullable": true,
       "pointer": "/properties/usageMetadata",
       "required": false,
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "149f515bee68133b3e13def3ad141ed1221ca80f1fbdca7028376324e0217837",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "usageMetadata"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/properties/usageMetadata/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn."
+      ],
       "pointer": "/properties/usageMetadata/anyOf/0",
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "a0465b21156f82ef35e7b4ad9e58b5b62563f52811c1c4e45cd2611e81b6e667",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/RawResponseCompletedNotification.json#/properties/usageMetadata/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "null_only: Exact explicit null variant observed; retained incomplete under current positive-value evidence policy, with no nonnull success promotion from this observation."
+      ],
       "pointer": "/properties/usageMetadata/anyOf/1",
       "schema": "v2/RawResponseCompletedNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
@@ -148719,87 +148994,118 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:134"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseItemCompletedNotification.json#/properties/item",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Actual assistant message only; no other ResponseItem variant qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/item",
       "required": true,
       "schema": "v2/RawResponseItemCompletedNotification.json",
       "schema_sha256": "29404dfe56a1ddb7a37f8806bda89a3b935cd96316cce0501b7944483c3e23b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:316"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "item"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseItemCompletedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Actual assistant message only; no other ResponseItem variant qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/RawResponseItemCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:316"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/RawResponseItemCompletedNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Actual assistant message only; no other ResponseItem variant qualified."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/RawResponseItemCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:316"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
@@ -187648,79 +187954,106 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnModerationMetadataNotification.json#/properties/metadata",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Object and explicit null shown; not every arbitrary JSON shape."
+      ],
       "nullable": false,
       "pointer": "/properties/metadata",
       "required": true,
       "schema": "v2/TurnModerationMetadataNotification.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:120"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "metadata"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnModerationMetadataNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Object and explicit null shown; not every arbitrary JSON shape."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/TurnModerationMetadataNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:120"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/response-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TurnModerationMetadataNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Direct positive value/variant asserted for the selected fixed assistant text turn.",
+        "Object and explicit null shown; not every arbitrary JSON shape."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/TurnModerationMetadataNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_response_metadata_test.exs:120"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {

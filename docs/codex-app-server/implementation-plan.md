@@ -379,6 +379,14 @@ Next concrete work (repair follow-up, 2026-10-24):
    passes 21/0. Three entries are explicitly blocked; twelve fields retain
    missing success evidence. Do not manufacture a producer or silently exclude
    the advertised surface from the completion contract.
+   Four [provider-metadata cases](response-metadata-qualification.md) now pass
+   both seeds for native raw response/assistant item, usage metadata, synthetic
+   model mismatch, verification, moderation and safety notifications. One
+   source-derived repair enables the actual per-thread raw-events opt-in while
+   retaining stable absence checks and all deadlines. Six entries and thirty
+   positive contracts gain scoped evidence; two null-only variants stay missing.
+   Other raw items, UI-false, Bedrock auth-recovery and real service/OS profiles
+   remain incomplete.
    At `085c4cc8`, foundation
    passed; conformance's thirteen isolated profiles passed, but all four default
    output-notice tests failed during namespace startup on Ubuntu 24.04. The

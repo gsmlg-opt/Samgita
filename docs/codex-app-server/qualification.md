@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 401 implemented / 75 missing /
-9 blocked requirements** and **0 verified / 986 implemented / 5,635 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 407 implemented / 69 missing /
+9 blocked requirements** and **0 verified / 1,016 implemented / 5,605 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 986 directly exercised
+MCP entries have scoped implementation evidence. These 1,016 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1734,3 +1734,28 @@ or completeness requirement is waived. The ledger now has **401 implemented /
 75 missing / 9 blocked** entries and **986 implemented / 5,635 missing** contracts,
 with **zero verified** in either group. Existing legacy/OS/service, A11 and
 publication prerequisites remain incomplete.
+
+## Native provider metadata notices
+
+Four [Responses metadata cases](response-metadata-qualification.md) now pass
+both seeds, **4/0**, 6.6s each. Native Codex generates correlated raw completion
+and assistant-item messages, exact usage breakdown/metadata, model mismatch,
+filtered and deduplicated verification, arbitrary moderation JSON and three
+safety-buffering variants from one fixed local text response per case. These
+are real app-server outputs from synthetic Responses input; no service account,
+actual risk decision, inference service or human verification is established.
+
+The initial four cases reached the unchanged five-second barrier because raw
+events require the separate per-thread `experimentalRawEvents` opt-in. One
+source-derived test repair enables it for experimental cases. The stable case
+asserts three stable metadata notices and completed assistant text, while raw
+and experimental moderation notices remain absent. No positive assertion or
+deadline was weakened. Exact-one-request, no-tools, canary and owned-process
+cleanup checks pass, as do namespace preflight, format, independent/root compile
+and scoped strict Credo.
+
+Six entries and thirty directly asserted positive contracts gain scoped
+`implemented` evidence. Two explicit-null-only variant observations remain
+`missing` under the retained evidence policy. Other raw item variants, UI-false,
+Bedrock auth-recovery, real account/provider and OS/replay/race profiles stay
+incomplete. Full manifest verification and A11 remain separate unmet gates.
