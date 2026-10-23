@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 407 implemented / 68 missing /
-10 blocked requirements** and **0 verified / 1,016 implemented / 5,605 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 440 implemented / 35 missing /
+10 blocked requirements** and **0 verified / 1,217 implemented / 5,404 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,016 directly exercised
+MCP entries have scoped implementation evidence. These 1,217 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -49,7 +49,7 @@ peer. Other realtime versions and backend/transport profiles remain incomplete.
 
 ## Delivered source and immutable reference
 
-The current pushed runtime/test checkpoint is
+The historical thread/remote-plugin aggregate checkpoint is
 `5c4ea77018f11b4f06bbe6c70301402b8fe29924`. The thread/remote-plugin package and
 hosted checkpoint below records its complete independent driver and twelve
 explicit native profiles. Earlier populated-database, restart and assembly
@@ -1931,3 +1931,21 @@ entries and 39 positive contracts gain scoped implemented evidence. Ledger:
 5,432 missing** contracts and **zero verified**. CI explicitly selects this
 profile; classifier scoring, other actions/reasons/statuses, external profiles,
 final aggregate/hosted and A11 remain unqualified.
+
+## Native quota-read fields and fallback
+
+Ten [quota-read cases](rate-read-qualification.md) pass **10/0** at both seeds,
+19.9/20.0s. Actual Codex projects both backend route styles, two windows, plan/
+reached enums, credit/detail states and timestamps, duplicate-ID map behavior,
+summary/detail/null distinctions and invalid-expiry fallback. A held detail GET
+outlasts the official five-second detail deadline; native returns current usage
+without redemption or a timeout override. Namespace, no-turn/no-execution,
+correlation, canary and owned-process checks pass.
+
+AST, compile, format and strict Credo pass after extracting unchanged helper
+assertions. Twenty-eight read-result contracts gain scoped implemented evidence;
+both existing method entries retain their earlier links. Shared notification
+types/emission are not promoted by read-only evidence. Ledger: **440 implemented /
+35 missing / 10 blocked** requirements, **1,217 implemented / 5,404 missing**
+contracts, **zero verified**. CI selects the profile. Real quota services,
+external/platform/OS profiles, final aggregate/hosted and A11 remain unqualified.

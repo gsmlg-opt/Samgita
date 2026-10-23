@@ -540,14 +540,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/account-metadata-qualification.md"
+        "docs/codex-app-server/account-metadata-qualification.md",
+        "docs/codex-app-server/rate-read-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:account/rateLimits/read",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native authentication, multi-quota/null/banner identity projection, reset-credit detail fallback, reserve header and explicit HTTP/malformed errors. Full quota/credit variants, live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+        "Selected private-network native authentication, multi-quota/null/banner identity projection, reset-credit detail fallback, reserve header and explicit HTTP/malformed errors. Full quota/credit variants, live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
       ],
       "params": {
         "anyOf": [
@@ -585,7 +587,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs",
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -14974,14 +14977,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/account-metadata-qualification.md"
+        "docs/codex-app-server/account-metadata-qualification.md",
+        "docs/codex-app-server/rate-read-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:account/rateLimits/read",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected private-network native authentication, multi-quota/null/banner identity projection, reset-credit detail fallback, reserve header and explicit HTTP/malformed errors. Full quota/credit variants, live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed."
+        "Selected private-network native authentication, multi-quota/null/banner identity projection, reset-credit detail fallback, reserve header and explicit HTTP/malformed errors. Full quota/credit variants, live account/backend changes, FedRAMP, timeout and other transport/OS profiles remain unqualified; no notification acceptance claimed.",
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -14998,7 +15003,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs",
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -26662,53 +26668,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/GetAccountRateLimitsParams/properties/excludeResetCreditDetails",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/GetAccountRateLimitsParams/properties/excludeResetCreditDetails",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "cce4e06c89adea32669974bca488c5c5bd80f2330c94c8932ec2db607ee695b2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "excludeResetCreditDetails"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/GetAccountRateLimitsParams/properties/supportsLunaReserve",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/GetAccountRateLimitsParams/properties/supportsLunaReserve",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "e1c158034732992d6d36ac6a49792c6f83de0764cd2fe94fabbed88bc932d83b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "supportsLunaReserve"
     },
     {
@@ -124040,589 +124062,781 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCredit/properties/description",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitResetCredit/properties/description",
       "required": false,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "4590fae4fc3cf680262d4bdc8e73a7c92ee60545d3e3b1a11861102bdb8a1b6d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCredit/properties/expiresAt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitResetCredit/properties/expiresAt",
       "required": false,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "2ed4c2ad76c0406adbff43f02e74e2c27a078b9f578d253133035ab7b0292d15",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "expiresAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCredit/properties/grantedAt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/RateLimitResetCredit/properties/grantedAt",
       "required": true,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "b630ae6104c5e9b624b0237e35f38dff9f01880fc5d9b5d6b28b36f536248b20",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "grantedAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCredit/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/RateLimitResetCredit/properties/id",
       "required": true,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "17cf88d13bb5e30d8e2f92ed6fcf4db08af4fb134e7f5aa99db92e02232049bc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCredit/properties/resetType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/RateLimitResetCredit/properties/resetType",
       "required": true,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "3ff3c876c61f9fcb8a8b97b8cb1321056033f5d4ea0e008edae13e97e4645554",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "resetType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCredit/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/RateLimitResetCredit/properties/status",
       "required": true,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "4bf464c47fa2e7dcd7271fd2c43762d50713b62815cef03c3357056a6ce931a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCredit/properties/title",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitResetCredit/properties/title",
       "required": false,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "6fcc8dfd59300645e8a72394dfb91ab170ab9101879f018d2ee9171e8f498bd0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCreditStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/definitions/RateLimitResetCreditStatus/enum/0",
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "d8b8395f7d10740ed692ba93356d9979aa4012f22a7502cfb3e53663e5bf877a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCreditStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/definitions/RateLimitResetCreditStatus/enum/1",
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "8384a2f5011cb571f48ce9db1503b2db3a80aafab22233e4d7d6b78d94f6bc42",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCreditStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/definitions/RateLimitResetCreditStatus/enum/2",
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "db105a26b9b03038ebda543f4f49718313e8b557ffa33a7bf902f0c14b5d91f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCreditStatus/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/definitions/RateLimitResetCreditStatus/enum/3",
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCreditsSummary/properties/availableCount",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/RateLimitResetCreditsSummary/properties/availableCount",
       "required": true,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "availableCount"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetCreditsSummary/properties/credits",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitResetCreditsSummary/properties/credits",
       "required": false,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "7cf5292786c9e3f000f8b4194ae66444bf6cb7865b399dd836d56bc2f1c054d6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "credits"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetType/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/definitions/RateLimitResetType/enum/0",
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "26c3bdcb00931550714134db8f061f2dac8da6d682b69d1811e0e82dc5dcfa36",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/definitions/RateLimitResetType/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/definitions/RateLimitResetType/enum/1",
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/properties/accountId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/accountId",
       "required": false,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "33c45e6ef8dc68abe5558bb2c9393cf53a3db736a420744214a6824abe655c20",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "accountId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/properties/ordinaryUsageAllowed",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/ordinaryUsageAllowed",
       "required": false,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "c3634c961448d1c31963d42963ed079aa0a96894b363f0baa4ab97355f654325",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "ordinaryUsageAllowed"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/properties/rateLimitResetCredits",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/rateLimitResetCredits",
       "required": false,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "629213d584f8610969c447830a399cf5bd44cac2a70056c66f8f77b7ee4f821a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rateLimitResetCredits"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/properties/rateLimitResetCredits/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/properties/rateLimitResetCredits/anyOf/0",
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "9814483bd1ca566271d2ed24697218e1a107fa219587ca043abbe12b39357d1c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/properties/rateLimitResetCredits/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/properties/rateLimitResetCredits/anyOf/1",
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/properties/rateLimitUpsell",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/rateLimitUpsell",
       "required": false,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "62251c284311b252e806e35a5d4dfa3a8a3cac9f3193b8efd65e77810dbf995e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rateLimitUpsell"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/properties/rateLimits",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/rateLimits",
       "required": true,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "68204fe8977b53a24ee07b85eb436ad2b0eccfd8564b11caa2d0db3ceace39cf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rateLimits"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/properties/rateLimits/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/properties/rateLimits/allOf/0",
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "fa9f8087ca307da61d87b3c73884689e87a9cb89c5dac77943140feca1d7f305",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountRateLimitsResponse.json#/properties/rateLimitsByLimitId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/rateLimitsByLimitId",
       "required": false,
       "schema": "v2/GetAccountRateLimitsResponse.json",
       "schema_sha256": "bc4af4ca49366a18d79f5785bcaafcf102b492690fa0e50423699405a1b5575f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rateLimitsByLimitId"
     },
     {
@@ -136471,46 +136685,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/NullableGetAccountRateLimitsParams.json#/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/anyOf/0",
       "schema": "v2/NullableGetAccountRateLimitsParams.json",
       "schema_sha256": "05a94779091ff411e5b03eb93539f9d17ffea94487653532a2c13ea89f85a28a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/rate-read-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/NullableGetAccountRateLimitsParams.json#/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Ten isolated read-only cases cover two HTTP route styles, quotas/windows/credits and all plan/reached projections, reset detail/status/timestamp variants, duplicate-ID projection, unavailable/invalid details and actual five-second fallback. Only 28 directly asserted read contracts are mapped; shared notification type/emission entries are not promoted. Real accounts, quota enforcement, credential changes in flight, other OS/transports, platform and A11 remain unqualified."
+      ],
       "pointer": "/anyOf/1",
       "schema": "v2/NullableGetAccountRateLimitsParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_read_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
