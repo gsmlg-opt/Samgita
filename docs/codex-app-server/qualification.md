@@ -1856,3 +1856,23 @@ requirements and **1,096 implemented / 5,525 missing** contracts, **zero verifie
 The explicit profile is selected in CI. Ambiguous post-commit transport loss,
 active-turn/concurrency/reload failures, external profiles and A11 remain
 unqualified; the loopback dependency does not prove network-namespace confinement.
+
+## Native Bedrock local discovery and selection
+
+Ten [Bedrock local-control cases](bedrock-qualification.md) pass at both seeds,
+**10/0** each. Actual native experimental gates, fixed local AWS metadata/env
+discovery, trimmed setup persistence/cold restart, validation/forced-auth errors
+and exact GovCloud hostname advisories are observed without any AWS listener,
+request, credential process, SSO, role assumption or model turn. The first
+nine-case draft failed before business dispatch because experimental negotiation
+was omitted; the repaired profile explicitly tests that gate in driver and
+native server. No deadline or business assertion was weakened.
+
+AST, private namespace, compile, format and scoped strict Credo pass. A final
+repeat also fails closed on all three host system configuration files. Six
+method/result entries and nineteen positive contracts gain scoped `implemented`
+evidence. Ledger: **432 implemented / 43 missing / 10 blocked** requirements,
+**1,115 implemented / 5,506 missing** contracts and **zero verified**.
+This is local setup behavior, not AWS credential/service validation or managed
+policy acceptance. CI explicitly selects it; final aggregate/hosted and A11
+remain separate gates.

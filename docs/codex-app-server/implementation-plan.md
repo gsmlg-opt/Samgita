@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 progress, deprecated file-change output, three prediction entries and
 `thread/compacted` are `blocked` by exact source-proven unavailable success
 paths: ten required entries, with no scope waiver. Selected native
-method/notification entries now total 426 `implemented`, with 1,096 exact
-field/variant schema contracts implemented; 49 requirements and 5,525 contracts
+method/notification entries now total 432 `implemented`, with 1,115 exact
+field/variant schema contracts implemented; 43 requirements and 5,506 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and

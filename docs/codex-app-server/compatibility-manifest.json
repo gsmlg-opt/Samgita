@@ -50,12 +50,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:account/bedrock/checkGovCloudRequirements",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/BedrockCheckGovCloudRequirementsParams"
       },
@@ -77,16 +81,20 @@
         "source_line": 1323,
         "variant": "BedrockCheckGovCloudRequirements"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/bedrock/checkGovCloudRequirements"
     },
     {
@@ -94,12 +102,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:account/bedrock/discover",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/BedrockDiscoverParams"
       },
@@ -121,16 +133,20 @@
         "source_line": 1309,
         "variant": "BedrockDiscover"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/bedrock/discover"
     },
     {
@@ -138,12 +154,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:account/bedrock/setup",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/BedrockSetupParams"
       },
@@ -165,16 +185,20 @@
         "source_line": 1316,
         "variant": "BedrockSetup"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/bedrock/setup"
     },
     {
@@ -14534,12 +14558,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:account/bedrock/checkGovCloudRequirements",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14547,16 +14575,20 @@
       "schema": "v2/BedrockCheckGovCloudRequirementsResponse.json",
       "schema_sha256": "8810057b24c1dc0af40f9ca6e062af7988f8ded2748edcfc41943b777a6cdaab",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/bedrock/checkGovCloudRequirements"
     },
     {
@@ -14565,12 +14597,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:account/bedrock/discover",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14578,16 +14614,20 @@
       "schema": "v2/BedrockDiscoverResponse.json",
       "schema_sha256": "621a651585d1d1f89e18f9ba337f4c84e34f811a7189cfb7597fd191d1d29bcc",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/bedrock/discover"
     },
     {
@@ -14596,12 +14636,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:account/bedrock/setup",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14609,16 +14653,20 @@
       "schema": "v2/BedrockSetupResponse.json",
       "schema_sha256": "245ac1cc67ba7d7b89477c46bb19e7c95411113b50604f365c2ec3705a16d03b",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/bedrock/setup"
     },
     {
@@ -105664,471 +105712,623 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockCheckGovCloudRequirementsResponse.json#/properties/isGovCloud",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/isGovCloud",
       "required": true,
       "schema": "v2/BedrockCheckGovCloudRequirementsResponse.json",
       "schema_sha256": "78472709f09474663ff0f77df5c97b1cc34403999718960b36a8a9bdc7bbffed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "isGovCloud"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockCheckGovCloudRequirementsResponse.json#/properties/shouldWarn",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/shouldWarn",
       "required": true,
       "schema": "v2/BedrockCheckGovCloudRequirementsResponse.json",
       "schema_sha256": "2b854d5cdf0334aec420a22f46213877b9ca75fa6adaa3a0be4a6d7d659a6d24",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "shouldWarn"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/BedrockDiscoverResponse.json#/definitions/AwsCredentialType/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/AwsCredentialType/enum/0",
       "schema": "v2/BedrockDiscoverResponse.json",
       "schema_sha256": "61336b41c1beec12454b6bcac4c89bca2c26dfa3e6753062e90026193cbf0533",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/BedrockDiscoverResponse.json#/definitions/AwsCredentialType/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/AwsCredentialType/enum/1",
       "schema": "v2/BedrockDiscoverResponse.json",
       "schema_sha256": "fd3812ea4e5468bd6969a9637787a0fcd73e4a2b89d57bf39256df73df614b5c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockDiscoverResponse.json#/definitions/BedrockAwsProfile/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/BedrockAwsProfile/properties/name",
       "required": true,
       "schema": "v2/BedrockDiscoverResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockDiscoverResponse.json#/definitions/BedrockAwsProfile/properties/region",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/BedrockAwsProfile/properties/region",
       "required": false,
       "schema": "v2/BedrockDiscoverResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "region"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockDiscoverResponse.json#/definitions/BedrockEnvironmentCredential/properties/region",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/BedrockEnvironmentCredential/properties/region",
       "required": false,
       "schema": "v2/BedrockDiscoverResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "region"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockDiscoverResponse.json#/definitions/BedrockEnvironmentCredential/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/BedrockEnvironmentCredential/properties/type",
       "required": true,
       "schema": "v2/BedrockDiscoverResponse.json",
       "schema_sha256": "1fa4cf5a4f80ec9aca715abbd55d3f94d14c33f1175295bba4895641e17caae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockDiscoverResponse.json#/properties/environmentCredentials",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/environmentCredentials",
       "required": true,
       "schema": "v2/BedrockDiscoverResponse.json",
       "schema_sha256": "e55c11c67431e40ad4943e930e63e89b28e87b71081e2a08774f54065cc771dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentCredentials"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockDiscoverResponse.json#/properties/profiles",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/profiles",
       "required": true,
       "schema": "v2/BedrockDiscoverResponse.json",
       "schema_sha256": "1f91cfe48e2d174bc14aa02a472d738a39bee3ed001dc2d7d885baaa1057cd64",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "profiles"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/BedrockSetupParams.json#/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "pointer": "/oneOf/0",
       "schema": "v2/BedrockSetupParams.json",
       "schema_sha256": "83be8e0b34fe9ff2180ecd2d932f57c1b53d8024540a552658139197e77d052c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockSetupParams.json#/oneOf/0/properties/profile",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/profile",
       "required": true,
       "schema": "v2/BedrockSetupParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "profile"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockSetupParams.json#/oneOf/0/properties/region",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/region",
       "required": true,
       "schema": "v2/BedrockSetupParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "region"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockSetupParams.json#/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/BedrockSetupParams.json",
       "schema_sha256": "83d1443d20e43ecfb797bec0ca7fc3dff11af4597b4ca393d5310a6414211991",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/BedrockSetupParams.json#/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "pointer": "/oneOf/0/properties/type/enum/0",
       "schema": "v2/BedrockSetupParams.json",
       "schema_sha256": "97d9137e1cd231522ccd2a178792ae2214fa6dca257d6fdcd1e8a57412cf58ac",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/BedrockSetupParams.json#/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "pointer": "/oneOf/1",
       "schema": "v2/BedrockSetupParams.json",
       "schema_sha256": "f4b4289f371b35a1fb75331ef4d689c37e7962c1bc6a9b8b0439f2fd383f6cc8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockSetupParams.json#/oneOf/1/properties/region",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/region",
       "required": true,
       "schema": "v2/BedrockSetupParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "region"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/BedrockSetupParams.json#/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/BedrockSetupParams.json",
       "schema_sha256": "48f9e98d640bd07c5f98710e484ff5c66c04fe148a3a974ed1f40b71308f3363",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/BedrockSetupParams.json#/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_inputs: Ten isolated native cases cover experimental gates, local static AWS metadata and environment discovery, trimmed profile/environment setup persistence/restart, validation/forced-auth errors and exact-host GovCloud advisories. Setup does not validate AWS ListModels or service credentials. Managed-positive policy, SSO/roles/refresh, actual AWS and full OS profiles remain unqualified."
+      ],
       "pointer": "/oneOf/1/properties/type/enum/0",
       "schema": "v2/BedrockSetupParams.json",
       "schema_sha256": "53aefa4c0496abfbe1b2195fcfe6b014f50b8c60dc9107d9d4cf52ae2dfb6fe3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

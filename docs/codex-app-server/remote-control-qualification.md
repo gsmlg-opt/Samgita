@@ -152,6 +152,13 @@ output-null-only facts and disable's other status variants remain missing.
 Null-disable is a tested state-changing default, distinct from a null-only
 unavailable output. No entry is fully verified or profile exclusion agreed.
 
+Commit-time validation on 2026-10-24 repeated the profile alongside the ten
+Bedrock cases in Devenv, with the pinned `CODEX_BINARY` and `MIX_ENV=test`:
+`mix test test/native_bedrock_profile.exs test/native_remote_control_profile.exs
+--seed 501432` passed **26 tests, zero failures**. Python AST, namespace
+prerequisites, formatting checks and warnings-as-errors compilation also passed.
+This does not add hosted or aggregate qualification.
+
 ## Explicit limits
 
 Managed `allow_remote_control=false` is not covered here. The immutable `codex app-server` CLI passes `LoaderOverrides::default()` (`cli/src/main.rs:1281–1285`); its system path is `/etc/codex/requirements.toml` (`config/src/loader/mod.rs:730–744`). Test-only scratch-home requirements/debug launcher hooks cannot serve as release CLI policy proof. No private mount profile or host system write is authorized by this unit.
