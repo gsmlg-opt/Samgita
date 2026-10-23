@@ -1471,5 +1471,28 @@ definitions do not establish execution of `thread/items/read` in this unit.
 
 Regenerated totals: **485 entries: 0 verified / 355 implemented / 124 missing /
 6 blocked**; **6,621 contracts: 0 verified / 826 implemented / 5,795 missing**.
+
+## Existing authentication, envelope and lifecycle assertions indexed
+
+The [bounded evidence audit](auth-envelope-lifecycle-qualification.md) rechecks
+thirteen unchanged test-source hashes and maps exact existing native refresh/
+attestation, codec and scripted fault assertions. It adds no runtime feature,
+synthetic app-server producer or test. Four authentication interaction entries,
+four envelope entries and eight lifecycle entries receive selected `implemented`
+status; none is fully verified. Thirty-four positive field/variant contracts
+gain evidence. Three refresh response fields and two unasserted native request
+IDs remain missing, with explicit limitations. A nonempty notification map is
+asserted in `session_test.exs:271`; the codec's null-only notification alone is
+not used as positive params evidence.
+
+The in-progress checkpoint at `085c4cc8` has completed both full independent
+driver runs: **381 tests, zero failures** at seeds `513498` and `987654`, in
+268.6s and 268.5s. This includes all five unchanged native auth cases. Explicit
+profiles and independent package/consumer checks have separate terminal results;
+this intermediate observation does not claim their completion. Manifest offline
+consistency passed after the indexing update. Regenerated totals: **485 entries:
+0 verified / 371 implemented / 108 missing / 6 blocked**; **6,621 contracts:
+0 verified / 860 implemented / 5,761 missing**. A11, unsupported native legacy
+producers, external/backend/OS profiles and full compatibility remain incomplete.
 The deprecated non-emitting output notice, real providers, other variants,
 external/platform profiles, A11, full compatibility and publication remain open.

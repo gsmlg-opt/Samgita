@@ -8812,12 +8812,19 @@
       "capabilities": [],
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_response:account/chatgptAuthTokens/refresh",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_consumption_local_synthetic_backend: Explicit credentials response accepted; old401/new200 at201-204 and account email changed at215-216; stale second reply rejected208-213.",
+        "Actual immutable native app-server with synthetic local backend only; no real account/signed-JWT/provider authentication.",
+        "Null/absent previousAccountId, null/different plan, replacement account mismatch, malformed refresh responses,10s timeout and repeated401 not directly asserted.",
+        "Changed-token backend journal records decoded email only, not exact bearer bytes; account/plan constants supplied without per-field consumption assertions."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -8825,16 +8832,20 @@
       "schema": "ChatgptAuthTokensRefreshResponse.json",
       "schema_sha256": "06d6b30436fc962d80b5d7920f8f323de12a052214d9148c5f0dfbaedd5eec6c",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:191"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/chatgptAuthTokens/refresh"
     },
     {
@@ -8878,14 +8889,18 @@
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/repair-qualification.md#attestation-prewarm-event-ownership"
+        "docs/codex-app-server/repair-qualification.md#attestation-prewarm-event-ownership",
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:attestation/generate",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Actual binary and synthetic local Responses WebSocket acceptance cover token forwarding, explicit refusal and native timeout; real attestation-service/account acceptance remains unverified."
+        "Actual binary and synthetic local Responses WebSocket acceptance cover token forwarding, explicit refusal and native timeout; real attestation-service/account acceptance remains unverified.",
+        "actual_native_consumption_local_synthetic_backend: Exact explicit synthetic token response; actual Responses WS handshake header equals v1/s0/token at262-266.",
+        "Native emission/explicit response/header forwarding/refusal/timeout only; no cryptographic attestation generation or service/account verification.",
+        "requestAttestation=false disabled/no-request behavior, cancellation, malformed response and multiple eligible connection selection are not asserted here."
       ],
       "prerequisites": [
         "initialized"
@@ -8894,7 +8909,7 @@
       "schema": "AttestationGenerateResponse.json",
       "schema_sha256": "2eb86b2a37bca01a8cb5d0822f28cf13d46dd106c8b1d38e7ba097e436b5ab30",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -8902,7 +8917,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/auth_interactions_test.exs"
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:248"
         ]
       },
       "transport_coverage": [
@@ -9222,84 +9238,158 @@
     },
     {
       "direction": "response_error_envelope",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "envelope:JSONRPCError",
       "implementation_module": "SamgitaProtocolCodex.Wire",
-      "limitations": [],
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "local_codec_exact_value: Shape classification positive32-36 and malformed/ambiguous rejection38-50.",
+        "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "actual_native_negative: Native malformed thread/read returns upstream_error retaining wire error code/message and id at205-210; inspect redacted.",
+        "actual_native_negative_local_synthetic_backend: Native error notice and failed completed-turn retain matching compaction failure text76-91 and willRetry=false79.",
+        "Only explicitly constructed envelope forms and concrete values are qualified; generic codec support never promotes all method bodies/field variants.",
+        "Native arbitrary error.data/trace round-trip is not established; codec and scripted-peer assertions are labeled as such.",
+        "Rust serde Option/untagged normalization and ambiguous-object precedence are not differentially qualified."
+      ],
       "schema": "JSONRPCError.json",
       "schema_sha256": "d7ea353d4875ae204625da5a00a1ecb5afc69101d5778b9acc253a49f8932992",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_protocol_codex/test/wire_test.exs:32",
+          "apps/samgita_protocol_codex/test/wire_test.exs:54",
+          "apps/samgita_codex_driver/test/session_test.exs:127",
+          "apps/samgita_codex_driver/test/real_session_test.exs:194",
+          "apps/samgita_codex_driver/test/compaction_retention_test.exs:76"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "JSONRPCError"
     },
     {
       "direction": "response_error_envelope",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "envelope:JSONRPCErrorError",
       "implementation_module": "SamgitaProtocolCodex.Wire",
-      "limitations": [],
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "local_codec_exact_value: Shape classification positive32-36 and malformed/ambiguous rejection38-50.",
+        "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "actual_native_negative: Native malformed thread/read returns upstream_error retaining wire error code/message and id at205-210; inspect redacted.",
+        "actual_native_negative_local_synthetic_backend: Native error notice and failed completed-turn retain matching compaction failure text76-91 and willRetry=false79.",
+        "Only explicitly constructed envelope forms and concrete values are qualified; generic codec support never promotes all method bodies/field variants.",
+        "Native arbitrary error.data/trace round-trip is not established; codec and scripted-peer assertions are labeled as such.",
+        "Rust serde Option/untagged normalization and ambiguous-object precedence are not differentially qualified."
+      ],
       "schema": "JSONRPCErrorError.json",
       "schema_sha256": "12cc5cd5d9df9246defa609c472375020fe5250f3aeabd7d529076cecd9f541e",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_protocol_codex/test/wire_test.exs:32",
+          "apps/samgita_protocol_codex/test/wire_test.exs:54",
+          "apps/samgita_codex_driver/test/session_test.exs:127",
+          "apps/samgita_codex_driver/test/real_session_test.exs:194",
+          "apps/samgita_codex_driver/test/compaction_retention_test.exs:76"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "JSONRPCErrorError"
     },
     {
       "direction": "response_error_envelope",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "envelope:JSONRPCMessage",
       "implementation_module": "SamgitaProtocolCodex.Wire",
-      "limitations": [],
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "local_codec_exact_value: Shape classification positive32-36 and malformed/ambiguous rejection38-50.",
+        "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "actual_native_negative: Native malformed thread/read returns upstream_error retaining wire error code/message and id at205-210; inspect redacted.",
+        "actual_native_negative_local_synthetic_backend: Native error notice and failed completed-turn retain matching compaction failure text76-91 and willRetry=false79.",
+        "Only explicitly constructed envelope forms and concrete values are qualified; generic codec support never promotes all method bodies/field variants.",
+        "Native arbitrary error.data/trace round-trip is not established; codec and scripted-peer assertions are labeled as such.",
+        "Rust serde Option/untagged normalization and ambiguous-object precedence are not differentially qualified."
+      ],
       "schema": "JSONRPCMessage.json",
       "schema_sha256": "6da4cc373a7ccd01f5608ad4496eeb4d44b6a9b0d3158e85ed66b59f3c0b5114",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_protocol_codex/test/wire_test.exs:32",
+          "apps/samgita_protocol_codex/test/wire_test.exs:54",
+          "apps/samgita_codex_driver/test/session_test.exs:127",
+          "apps/samgita_codex_driver/test/real_session_test.exs:194",
+          "apps/samgita_codex_driver/test/compaction_retention_test.exs:76"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "JSONRPCMessage"
     },
     {
       "direction": "response_error_envelope",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "envelope:JSONRPCResponse",
       "implementation_module": "SamgitaProtocolCodex.Wire",
-      "limitations": [],
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "local_codec_exact_value: Shape classification positive32-36 and malformed/ambiguous rejection38-50.",
+        "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "scripted_peer_exact_value: Out-of-order int1/string1 complete envelopes settle exact values115-120.",
+        "Only explicitly constructed envelope forms and concrete values are qualified; generic codec support never promotes all method bodies/field variants.",
+        "Native arbitrary error.data/trace round-trip is not established; codec and scripted-peer assertions are labeled as such.",
+        "Rust serde Option/untagged normalization and ambiguous-object precedence are not differentially qualified."
+      ],
       "schema": "JSONRPCResponse.json",
       "schema_sha256": "4796738c04c74288213a08fb8d820c7b4df19e0977cdcd35b65ffcb43cfc93ab",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_protocol_codex/test/wire_test.exs:32",
+          "apps/samgita_protocol_codex/test/wire_test.exs:54",
+          "apps/samgita_codex_driver/test/session_test.exs:127",
+          "apps/samgita_codex_driver/test/session_test.exs:107"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "JSONRPCResponse"
@@ -9336,31 +9426,49 @@
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:bidirectional-correlation",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "scripted_peer_exact_value: Integer1/string1 out-of-order responses exact115-120; reused ID rejects123-124.",
+        "scripted_peer_exact_value: Same ID7 in both directions; no auto response151, explicit decline153; stale interaction155-156.",
+        "scripted_peer_fault: Old generation responses cannot settle fresh handshake152-180; late values observable.",
+        "Collision/out-of-order/generation faults are scripted, not a native concurrency-pressure profile."
+      ],
       "required_behavior": "request IDs are scoped by direction and connection; out-of-order responses settle once",
       "schema_sha256": "197fc4cba71f7e80bd585d637a374446e12d60dc9a0f8c5ab0e026d1d6b9cdd3",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/session_test.exs:107",
+          "apps/samgita_codex_driver/test/session_test.exs:143",
+          "apps/samgita_codex_driver/test/initialization_test.exs:138"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "bidirectional-correlation"
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:bounded-buffering",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "scripted_peer_fault: Event count bound preserves2 values and exposes lost-history gap.",
+        "local_driver_negative: Notification wire byte/depth and invalid JSON rejection without sending104-109.",
+        "scripted_websocket_peer: Oversized advertised-frame and fragmented aggregate bounds188-218.",
+        "No direct max_pending/max_uncertain/max_request_ids saturation test found; implementation request_capacity455-465 is not behavior evidence."
+      ],
       "required_behavior": "bound pending calls, frames, and notifications; explicit overflow and recovery gap; no silent critical drops",
       "schema_sha256": "b250461608f7bbd7566f6aa18e9a690e4f75d859747061d3bd58d2e9eb5b76d6",
       "schema_version": "0.163.0",
@@ -9371,7 +9479,11 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/session_test.exs:271",
+          "apps/samgita_codex_driver/test/native_notification_test.exs:93",
+          "apps/samgita_codex_driver/test/transport_web_socket_test.exs:188"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "bounded-buffering"
@@ -9399,10 +9511,16 @@
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:credential-isolation",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "owned_os_subprocess_fixture: Ambient synthetic secret removed, exact isolated HOME/CODEX_HOME asserted74.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "Driver subprocess/Error checks do not close A11 raw LiveView/Bandit telemetry/log confidentiality. Full logging/exporter matrix incomplete."
+      ],
       "required_behavior": "isolate CODEX_HOME and environment; do not emit credentials or complete sensitive params into logs",
       "schema_sha256": "fe50dc328cf7a81daa960beed68b2260c73e510596812e125fb402b87af8631a",
       "schema_version": "0.163.0",
@@ -9413,17 +9531,28 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/transport_stdio_test.exs:63",
+          "apps/samgita_codex_driver/test/session_test.exs:127"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "credential-isolation"
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:deadline-uncertainty",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "scripted_peer_fault: Mutation disconnect is uncertain and no replay.",
+        "scripted_peer_fault: Read response deadline uncertain=false; late response observable.",
+        "scripted_peer_fault: Mutation send failure uncertain=true.",
+        "scripted_peer_fault: Failed notification write also settles held mutation uncertain; reconnect no replay.",
+        "No direct post-send mutating response-timeout assertion found. Read timeout and presend dispatch-expiry cannot substitute."
+      ],
       "required_behavior": "timeout/disconnect of mutation is uncertain; never resend as an automatic recovery action",
       "schema_sha256": "9c0bff829152023d131084db5addf70fd24efd28b210760653fc49fa28f6b91d",
       "schema_version": "0.163.0",
@@ -9434,59 +9563,90 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/session_test.exs:203",
+          "apps/samgita_codex_driver/test/session_test.exs:233",
+          "apps/samgita_codex_driver/test/session_test.exs:249",
+          "apps/samgita_codex_driver/test/native_notification_test.exs:177"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "deadline-uncertainty"
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:disconnect-reconnect",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "actual_native_reconnect_local_synthetic_backend: Borrowed native WebSocket reconnect requires fresh initialize; explicit resume retains one turn and exactly one provider request434-442.",
+        "scripted_peer_fault: Dropped mutation returns uncertainty; pending cleared; reconnect never replays; old ID rejected and explicit reconciliation only.",
+        "Actual native case reconnects after completed execution; in-flight disconnect ambiguity uses scripted peer. No upstream deduplication or replay cursor guarantee."
+      ],
       "required_behavior": "new connection initializes separately; no fabricated replay or upstream deduplication guarantees",
       "schema_sha256": "10c97a79f947489227cef9b60bf9e6dab1c44aece1679f59d42f88c73a6744ce",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/real_session_test.exs:424",
+          "apps/samgita_codex_driver/test/session_test.exs:203"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "disconnect-reconnect"
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:error-preservation",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "actual_native_negative: Native malformed thread/read returns upstream_error retaining wire error code/message and id at205-210; inspect redacted.",
+        "actual_native_negative_local_synthetic_backend: Native error notice and failed completed-turn retain matching compaction failure text76-91 and willRetry=false79.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "Nonempty error.data is scripted only; native error variants and all turn error fields remain incomplete."
+      ],
       "required_behavior": "retain JSONRPC error code/message/data and turn errors without rewriting semantics",
       "schema_sha256": "c2e1549a6e4b3725b98a7774e405ff59fb1a8da1a12a8036c49f3f31610703de",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/real_session_test.exs:194",
+          "apps/samgita_codex_driver/test/compaction_retention_test.exs:76",
+          "apps/samgita_codex_driver/test/session_test.exs:127"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "error-preservation"
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:experimental-negotiation",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "local_schema_validation: False/null/empty collection/double-option source rules tested through213.",
+        "actual_native_negative_local_synthetic_backend: Two experimental turn fields reject exact native gate error75 before provider execution78-80.",
+        "Selected source-sensitive semantics do not qualify every pinned gated method/enum/custom deserializer."
+      ],
       "required_behavior": "experimental methods and source-active gated fields/enum variants require capabilities.experimentalApi; false bools, null standard options and empty nonoptional collections are inactive; double options and custom deserializers follow pinned Rust semantics",
       "schema_sha256": "3b5a6f6300cf19cef93f3bae8e2a0dfbf6c837ad7b5ed599562bdb7eaa962182",
       "schema_version": "0.163.0",
@@ -9497,7 +9657,10 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/schema_test.exs:155",
+          "apps/samgita_codex_driver/test/turn_parameters_test.exs:54"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "experimental-negotiation"
@@ -9568,10 +9731,18 @@
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:missing-null-default",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "local_codec_exact_value: Shape classification positive32-36 and malformed/ambiguous rejection38-50.",
+        "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
+        "scripted_peer_exact_value: Absent/null/scalar/nested notification envelopes emitted exactly25.",
+        "Selected codec/notification maps do not qualify source-specific defaults across all methods."
+      ],
       "required_behavior": "retain absent versus null versus explicit values; apply no undocumented driver defaults",
       "schema_sha256": "050381955e3a76bb19f7cb266f6f931c72dcbf0aa02b73afdd7781f5f6e77568",
       "schema_version": "0.163.0",
@@ -9582,49 +9753,78 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_protocol_codex/test/wire_test.exs:32",
+          "apps/samgita_protocol_codex/test/wire_test.exs:54",
+          "apps/samgita_codex_driver/test/native_notification_test.exs:7"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "missing-null-default"
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:notification-opt-out",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact delta opt-out suppresses only that notice313; completion/turn remain315-320; prefix opt-out on fresh initialization streams normally324-329.",
+        "scripted_peer_exact_value: Unknown future/event exact wire retained twice281, explicit overflow gap278.",
+        "One exact/prefix opt-out example; all methods, legacy/experimental policy and multiple simultaneous connections not qualified."
+      ],
       "required_behavior": "respect initialize optOutNotificationMethods, preserve unknown notifications when received",
       "schema_sha256": "833b4a19f2dd654f068dd8d795d1216a29b886ee2781b59847fb1867d28b1052",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:307",
+          "apps/samgita_codex_driver/test/session_test.exs:271"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "notification-opt-out"
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:owned-process-exit",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "owned_os_subprocess_fixture: Owner death reaps recorded child and descendant PIDs130.",
+        "owned_os_subprocess_fixture: Explicit/owner-down close confirms child shutdown marker164 and repeated close165.",
+        "owned_os_subprocess_fixture: TERM-ignoring descendant reaped before return185-187.",
+        "scripted_peer_fault: Unconfirmed shutdown settles pending mutation uncertain and blocks reconnect262-268.",
+        "actual_native_transport: Closing borrowed UDS client leaves actual owner and socket128-129.",
+        "Owned-process failure fixtures are Python/ScriptedTransport; Linux only. No authority to terminate borrowed service resources."
+      ],
       "required_behavior": "reap only owned child resources; settle pending requests on exit; borrowed endpoints remain untouched",
       "schema_sha256": "a8a95dc2d1b791a6387e66ff93f38e7505c4cb0e4da04498dd58758841ab72bf",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/transport_stdio_test.exs:104",
+          "apps/samgita_codex_driver/test/transport_stdio_test.exs:133",
+          "apps/samgita_codex_driver/test/transport_stdio_test.exs:170",
+          "apps/samgita_codex_driver/test/session_test.exs:257",
+          "apps/samgita_codex_driver/test/transport_real_codex_test.exs:116"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "owned-process-exit"
@@ -9682,21 +9882,32 @@
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:stdio-framing",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "owned_os_subprocess_fixture: Split/coalesced JSONL and CRLF exact messages56-60 while large stderr is excluded46.",
+        "owned_os_subprocess_fixture: Outgoing newline/oversize reject83-89; partial EOF reported100-101.",
+        "actual_native_transport: Native stdio initialize/thread-list values asserted by helper63-74.",
+        "Partial/coalesced/stderr faults are owned Python process fixtures, not altered native executable. Other OS/large native workloads incomplete."
+      ],
       "required_behavior": "one JSON object per line; handle partial and coalesced reads; stderr is not protocol",
       "schema_sha256": "c3925314006b5521cca286c53cfb22d86eca15bcd64526ef883dd9b5fa4d9c23",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/transport_stdio_test.exs:43",
+          "apps/samgita_codex_driver/test/transport_stdio_test.exs:80",
+          "apps/samgita_codex_driver/test/transport_real_codex_test.exs:77"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "stdio-framing"
@@ -9754,42 +9965,60 @@
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:unknown-server-request",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "scripted_peer_exact_value: Unknown request emits -32601 with same id166, preserves full unsupported request167 and opens no interaction168.",
+        "An intentionally unknown future method cannot be emitted by matching immutable native schema; this is explicit scripted client-boundary evidence only."
+      ],
       "required_behavior": "explicit unsupported-method error; never approve or silently discard",
       "schema_sha256": "05546e7992505f70213f6b64f1670c4d88ac87fe511a4bbf64f4046ec3f004cd",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/session_test.exs:162"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "unknown-server-request"
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "id": "lifecycle:websocket-framing",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "scripted_websocket_peer: Exact early text, sent masked JSON and reply51-54; close leaves borrowed peer alive56.",
+        "scripted_websocket_peer: Fragmented text interleaved ping; exact pong65 and close67; ordered text/close72.",
+        "actual_native_transport: Pinned token-authenticated WS initialize/list; borrowed owner remains113; UDS counterpart116-129.",
+        "Wire-control faults are scripted peers; native controls/stress and deployment matrix not all exercised."
+      ],
       "required_behavior": "one JSON object per text message; ping/pong/close handled independently",
       "schema_sha256": "3309d0d1ff4b6a1c8eb208837f7b81155844b6b2307116368af2b4c29b18b4e5",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/transport_web_socket_test.exs:31",
+          "apps/samgita_codex_driver/test/transport_web_socket_test.exs:59",
+          "apps/samgita_codex_driver/test/transport_real_codex_test.exs:84"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "websocket-framing"
@@ -13348,12 +13577,20 @@
     {
       "capabilities": [],
       "direction": "server_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_request:account/chatgptAuthTokens/refresh",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "actual_native_negative_local_synthetic_backend: Explicit refresh refusal yields failed turn and exactly one401; no second model request at234-235.",
+        "Actual immutable native app-server with synthetic local backend only; no real account/signed-JWT/provider authentication.",
+        "Null/absent previousAccountId, null/different plan, replacement account mismatch, malformed refresh responses,10s timeout and repeated401 not directly asserted.",
+        "Changed-token backend journal records decoded email only, not exact bearer bytes; account/plan constants supplied without per-field consumption assertions."
+      ],
       "params": {
         "$ref": "#/definitions/ChatgptAuthTokensRefreshParams"
       },
@@ -13375,16 +13612,21 @@
         "source_line": 1833,
         "variant": "ChatgptAuthTokensRefresh"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:224"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account/chatgptAuthTokens/refresh"
     },
     {
@@ -13440,14 +13682,20 @@
       "capabilities": [],
       "direction": "server_request",
       "evidence": [
-        "docs/codex-app-server/repair-qualification.md#attestation-prewarm-event-ownership"
+        "docs/codex-app-server/repair-qualification.md#attestation-prewarm-event-ownership",
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
       ],
       "experimental": false,
       "id": "server_request:attestation/generate",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Actual binary and synthetic local Responses WebSocket acceptance cover token forwarding, explicit refusal and native timeout; real attestation-service/account acceptance remains unverified."
+        "Actual binary and synthetic local Responses WebSocket acceptance cover token forwarding, explicit refusal and native timeout; real attestation-service/account acceptance remains unverified.",
+        "actual_native_emission_local_synthetic_backend: Exact method and empty params asserted; successful turn plus downstream header at256-268.",
+        "actual_native_negative_local_synthetic_backend: Explicit refusal produces exact downstream header v1/s2 at294.",
+        "actual_native_timeout_local_synthetic_backend: Unanswered request produces exact native100ms timeout header v1/s1 at316; session remains ready318.",
+        "Native emission/explicit response/header forwarding/refusal/timeout only; no cryptographic attestation generation or service/account verification.",
+        "requestAttestation=false disabled/no-request behavior, cancellation, malformed response and multiple eligible connection selection are not asserted here."
       ],
       "params": {
         "$ref": "#/definitions/AttestationGenerateParams"
@@ -13470,7 +13718,7 @@
         "source_line": 1839,
         "variant": "AttestationGenerate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -13478,7 +13726,10 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/auth_interactions_test.exs"
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:245",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:277",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:304"
         ]
       },
       "transport_coverage": [
@@ -21377,69 +21628,90 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:AttestationGenerateResponse.json#/properties/token",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_consumption_local_synthetic_backend: Exact explicit synthetic token response; actual Responses WS handshake header equals v1/s0/token at262-266.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/token",
       "required": true,
       "schema": "AttestationGenerateResponse.json",
       "schema_sha256": "1012451acbb77341f3d63cc0b09b116a699bc42ed066fcd0302fa9e29035e8fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:248"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "token"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ChatgptAuthTokensRefreshParams.json#/definitions/ChatgptAuthTokensRefreshReason/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/definitions/ChatgptAuthTokensRefreshReason/oneOf/0",
       "schema": "ChatgptAuthTokensRefreshParams.json",
       "schema_sha256": "7d966c98073ea8563bea8a97f53ce7a1dbd9e8e9562d3dad2a66fb40cd0b4043",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ChatgptAuthTokensRefreshParams.json#/definitions/ChatgptAuthTokensRefreshReason/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/definitions/ChatgptAuthTokensRefreshReason/oneOf/0/enum/0",
       "schema": "ChatgptAuthTokensRefreshParams.json",
       "schema_sha256": "de2a398b6ea0440accc0af4a91f82db3140883d9ce257cfcb0dcaf3c23a7effe",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -21447,25 +21719,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ChatgptAuthTokensRefreshParams.json#/properties/previousAccountId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": true,
       "pointer": "/properties/previousAccountId",
       "required": false,
       "schema": "ChatgptAuthTokensRefreshParams.json",
       "schema_sha256": "a93f734116f4842a5ec918a68165ba15cd61ef8fb54407fc6e28bc363ea968f5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "previousAccountId"
@@ -21473,25 +21752,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ChatgptAuthTokensRefreshParams.json#/properties/reason",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/reason",
       "required": true,
       "schema": "ChatgptAuthTokensRefreshParams.json",
       "schema_sha256": "f87eddf57d9bb57de5573b2a56e2c5e4fdb8f19a68a4c9b31c7a38d2131f2106",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "reason"
@@ -21499,12 +21785,17 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ChatgptAuthTokensRefreshResponse.json#/properties/accessToken",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_consumption_local_synthetic_backend: Explicit credentials response accepted; old401/new200 at201-204 and account email changed at215-216; stale second reply rejected208-213.",
+        "accessToken only derived email observed; account/plan supplied constants are not directly consumption-asserted. No exact response-wire capture."
+      ],
       "nullable": false,
       "pointer": "/properties/accessToken",
       "required": true,
@@ -21517,7 +21808,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:191"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "accessToken"
@@ -21525,12 +21818,17 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ChatgptAuthTokensRefreshResponse.json#/properties/chatgptAccountId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_consumption_local_synthetic_backend: Explicit credentials response accepted; old401/new200 at201-204 and account email changed at215-216; stale second reply rejected208-213.",
+        "accessToken only derived email observed; account/plan supplied constants are not directly consumption-asserted. No exact response-wire capture."
+      ],
       "nullable": false,
       "pointer": "/properties/chatgptAccountId",
       "required": true,
@@ -21543,7 +21841,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:191"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "chatgptAccountId"
@@ -21551,12 +21851,17 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ChatgptAuthTokensRefreshResponse.json#/properties/chatgptPlanType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_consumption_local_synthetic_backend: Explicit credentials response accepted; old401/new200 at201-204 and account email changed at215-216; stale second reply rejected208-213.",
+        "accessToken only derived email observed; account/plan supplied constants are not directly consumption-asserted. No exact response-wire capture."
+      ],
       "nullable": true,
       "pointer": "/properties/chatgptPlanType",
       "required": false,
@@ -21569,7 +21874,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:191"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "chatgptPlanType"
@@ -65274,25 +65581,34 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCError.json#/properties/error",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/error",
       "required": true,
       "schema": "JSONRPCError.json",
       "schema_sha256": "07983096460e21b8e94343dd15d44bc5b1c10b2b57217890f155b470a1b384e5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_codex_driver/test/session_test.exs:127"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "error"
@@ -65300,25 +65616,34 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCError.json#/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/id",
       "required": true,
       "schema": "JSONRPCError.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_codex_driver/test/session_test.exs:127"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -65326,25 +65651,34 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCErrorError.json#/properties/code",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/code",
       "required": true,
       "schema": "JSONRPCErrorError.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_codex_driver/test/session_test.exs:127"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "code"
@@ -65352,25 +65686,34 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCErrorError.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": false,
       "schema": "JSONRPCErrorError.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_codex_driver/test/session_test.exs:127"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "data"
@@ -65378,113 +65721,158 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCErrorError.json#/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "scripted_peer_exact_value: Injected nonempty code/message/data error returns exact wire138 and redacts inspect/exception139-140.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/message",
       "required": true,
       "schema": "JSONRPCErrorError.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_codex_driver/test/session_test.exs:127"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "message"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:JSONRPCMessage.json#/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "local_codec_exact_value: Shape classification positive32-36 and malformed/ambiguous rejection38-50.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/anyOf/0",
       "schema": "JSONRPCMessage.json",
       "schema_sha256": "c2b4a90106c9eae2c48a267230e738f73ca4ce8ccd3693a3b4e4c0ee9ea2337f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_protocol_codex/test/wire_test.exs:32"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:JSONRPCMessage.json#/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "local_codec_exact_value: Shape classification positive32-36 and malformed/ambiguous rejection38-50.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/anyOf/1",
       "schema": "JSONRPCMessage.json",
       "schema_sha256": "b630acd7ce43c1b2ebf04b84751885e029e6e77c9d8e50b1aaf6c2aadbe50e42",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_protocol_codex/test/wire_test.exs:32"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:JSONRPCMessage.json#/anyOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "local_codec_exact_value: Shape classification positive32-36 and malformed/ambiguous rejection38-50.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/anyOf/2",
       "schema": "JSONRPCMessage.json",
       "schema_sha256": "1756001881169e6b9b2b5d4738d2ef49b783913a311fdd7e1f678620eb5b410a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_protocol_codex/test/wire_test.exs:32"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:JSONRPCMessage.json#/anyOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "local_codec_exact_value: Shape classification positive32-36 and malformed/ambiguous rejection38-50.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/anyOf/3",
       "schema": "JSONRPCMessage.json",
       "schema_sha256": "8ab0db4dafd2ad38880ae496f250da13061ede8b192152d87286144b0e56e32d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_protocol_codex/test/wire_test.exs:32"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -65492,25 +65880,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCMessage.json#/definitions/W3cTraceContext/properties/traceparent",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": true,
       "pointer": "/definitions/W3cTraceContext/properties/traceparent",
       "required": false,
       "schema": "JSONRPCMessage.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:54"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "traceparent"
@@ -65518,25 +65913,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCMessage.json#/definitions/W3cTraceContext/properties/tracestate",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": true,
       "pointer": "/definitions/W3cTraceContext/properties/tracestate",
       "required": false,
       "schema": "JSONRPCMessage.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:54"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "tracestate"
@@ -65544,25 +65946,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCNotification.json#/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/method",
       "required": true,
       "schema": "JSONRPCNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
@@ -65570,25 +65979,34 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCNotification.json#/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "scripted_peer_exact_value: A nonempty future/event params map is preserved twice exactly across the explicit buffer gap.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/params",
       "required": false,
       "schema": "JSONRPCNotification.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5",
+          "apps/samgita_codex_driver/test/session_test.exs:271"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -65596,25 +66014,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCRequest.json#/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/id",
       "required": true,
       "schema": "JSONRPCRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -65622,25 +66047,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCRequest.json#/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/method",
       "required": true,
       "schema": "JSONRPCRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
@@ -65648,25 +66080,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCRequest.json#/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/params",
       "required": false,
       "schema": "JSONRPCRequest.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -65674,69 +66113,90 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCRequest.json#/properties/trace",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Trace null/empty/object values and known string fields preserved exactly62-63; invalid types reject66-68.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": true,
       "pointer": "/properties/trace",
       "required": false,
       "schema": "JSONRPCRequest.json",
       "schema_sha256": "e3ebe67342db007e352d7bbfe25e76c3fc1d17acd9e333adff90b514e517380a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:54"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "trace"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:JSONRPCRequest.json#/properties/trace/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/properties/trace/anyOf/0",
       "schema": "JSONRPCRequest.json",
       "schema_sha256": "cc4ca645c1bbf00350d99048194d7fee746e5ae2b98f6e0cea734342e33e95d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:54"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:JSONRPCRequest.json#/properties/trace/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/properties/trace/anyOf/1",
       "schema": "JSONRPCRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:54"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -65744,25 +66204,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCResponse.json#/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/id",
       "required": true,
       "schema": "JSONRPCResponse.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -65770,25 +66237,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:JSONRPCResponse.json#/properties/result",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaProtocolCodex.Wire",
+      "limitations": [
+        "local_codec_exact_value: Four explicit request/notification/response/error maps at6-22 survive exact encode/decode equality24-25; absent params28-29.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/properties/result",
       "required": true,
       "schema": "JSONRPCResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/wire_test.exs:5"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "result"
@@ -99672,22 +100146,31 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/6",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "actual_native_negative_local_synthetic_backend: Explicit refresh refusal yields failed turn and exactly one401; no second model request at234-235.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/oneOf/6",
       "schema": "ServerRequest.json",
       "schema_sha256": "7dfdc54fe58d182271dfce360184b1ceb8f2c6c1f0de784df2ce1feb184977b7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:224"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -99695,12 +100178,18 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/6/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "actual_native_negative_local_synthetic_backend: Explicit refresh refusal yields failed turn and exactly one401; no second model request at234-235.",
+        "Opaque event.handle consumed; native numeric/string request ID is not directly asserted by these auth tests."
+      ],
       "nullable": false,
       "pointer": "/oneOf/6/properties/id",
       "required": true,
@@ -99713,7 +100202,10 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:224"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -99721,47 +100213,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/6/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "actual_native_negative_local_synthetic_backend: Explicit refresh refusal yields failed turn and exactly one401; no second model request at234-235.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/oneOf/6/properties/method",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "ebf2118d3d0452a294a53f3e22051d7936dedae6d595b8e7eb0eec77c9d3254d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:224"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/6/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "actual_native_negative_local_synthetic_backend: Explicit refresh refusal yields failed turn and exactly one401; no second model request at234-235.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/oneOf/6/properties/method/enum/0",
       "schema": "ServerRequest.json",
       "schema_sha256": "7362395c44259c4a2daf4829c7c3d3c069b0b26329bb673dd63bee9e1213dd7d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:224"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -99769,47 +100279,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/6/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact refresh method and params reason=unauthorized/previousAccountId=synthetic-account asserted at181-186 after exactly one401 at188-189.",
+        "actual_native_negative_local_synthetic_backend: Explicit refresh refusal yields failed turn and exactly one401; no second model request at234-235.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/oneOf/6/properties/params",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "84b01a5bbc393fe96245f1736a3c1652d496e9380b73363de7d0d4004c5979d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:181",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:224"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/7",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact method and empty params asserted; successful turn plus downstream header at256-268.",
+        "actual_native_negative_local_synthetic_backend: Explicit refusal produces exact downstream header v1/s2 at294.",
+        "actual_native_timeout_local_synthetic_backend: Unanswered request produces exact native100ms timeout header v1/s1 at316; session remains ready318.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/oneOf/7",
       "schema": "ServerRequest.json",
       "schema_sha256": "d4b0d508182eed0cf2e14ca8f48e476b61999c4c1631d17b9767d0f88991a550",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:245",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:277",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:304"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -99817,12 +100347,19 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/7/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact method and empty params asserted; successful turn plus downstream header at256-268.",
+        "actual_native_negative_local_synthetic_backend: Explicit refusal produces exact downstream header v1/s2 at294.",
+        "actual_native_timeout_local_synthetic_backend: Unanswered request produces exact native100ms timeout header v1/s1 at316; session remains ready318.",
+        "Opaque event.handle consumed; native numeric/string request ID is not directly asserted by these auth tests."
+      ],
       "nullable": false,
       "pointer": "/oneOf/7/properties/id",
       "required": true,
@@ -99835,7 +100372,11 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:245",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:277",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:304"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -99843,47 +100384,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/7/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact method and empty params asserted; successful turn plus downstream header at256-268.",
+        "actual_native_negative_local_synthetic_backend: Explicit refusal produces exact downstream header v1/s2 at294.",
+        "actual_native_timeout_local_synthetic_backend: Unanswered request produces exact native100ms timeout header v1/s1 at316; session remains ready318.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/oneOf/7/properties/method",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "e7d53cf0e552b0acf82d394a1182003f7a2c81102301b3f9319be411b82384c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:245",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:277",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:304"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerRequest.json#/oneOf/7/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact method and empty params asserted; successful turn plus downstream header at256-268.",
+        "actual_native_negative_local_synthetic_backend: Explicit refusal produces exact downstream header v1/s2 at294.",
+        "actual_native_timeout_local_synthetic_backend: Unanswered request produces exact native100ms timeout header v1/s1 at316; session remains ready318.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "pointer": "/oneOf/7/properties/method/enum/0",
       "schema": "ServerRequest.json",
       "schema_sha256": "e30e1b319f3dcd0da41bc1fe536f6a25886f253a32c51cbdd1185f031be2dff6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:245",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:277",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:304"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -99891,25 +100454,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/7/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_emission_local_synthetic_backend: Exact method and empty params asserted; successful turn plus downstream header at256-268.",
+        "actual_native_negative_local_synthetic_backend: Explicit refusal produces exact downstream header v1/s2 at294.",
+        "actual_native_timeout_local_synthetic_backend: Unanswered request produces exact native100ms timeout header v1/s1 at316; session remains ready318.",
+        "Only values explicitly asserted by the named test; not every schema-valid value."
+      ],
       "nullable": false,
       "pointer": "/oneOf/7/properties/params",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "b786cb58a8b5717fb15cee58f1e4c718297cb8e2fd033c03cee0495c374f0d98",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:245",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:277",
+          "apps/samgita_codex_driver/test/auth_interactions_test.exs:304"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"

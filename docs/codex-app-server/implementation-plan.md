@@ -329,8 +329,14 @@ Next concrete work (repair follow-up, 2026-10-24):
    fetching `mdex_native` with `header_too_long`; the completeness job remains
    failed. Preserve those distinct outcomes. Thread-control, plugin-sharing
    and local-history controls plus seven active output notices now have focused
-   evidence; the auth/envelope/lifecycle audit and native MCP/OAuth controls are
-   the next bounded units.
+   evidence. The [auth/envelope/lifecycle audit](auth-envelope-lifecycle-qualification.md)
+   now indexes sixteen selected entries and 34 positive contracts without any
+   `verified` promotion. Deadline/quota saturation, active-turn settings and
+   native MCP/OAuth controls are the next bounded units. At `085c4cc8`, foundation
+   passed; conformance's thirteen isolated profiles passed, but all four default
+   output-notice tests failed during namespace startup on Ubuntu 24.04. The
+   required namespace preflight at `fe5222d` diagnoses the actual prerequisite
+   before repair; no hosted success or timeout change is inferred.
    Final aggregate/hosted checks must include
    all subsequent executable changes, with serialized validation and direct
    positive schema evidence only.
