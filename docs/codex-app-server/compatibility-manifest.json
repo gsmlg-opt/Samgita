@@ -956,12 +956,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:command/exec",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "params": {
         "$ref": "#/definitions/CommandExecParams"
       },
@@ -983,27 +987,35 @@
         "source_line": 1378,
         "variant": "OneOffCommandExec"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command/exec"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:command/exec/resize",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "params": {
         "$ref": "#/definitions/CommandExecResizeParams"
       },
@@ -1025,27 +1037,35 @@
         "source_line": 1397,
         "variant": "CommandExecResize"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command/exec/resize"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:command/exec/terminate",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "params": {
         "$ref": "#/definitions/CommandExecTerminateParams"
       },
@@ -1067,27 +1087,35 @@
         "source_line": 1391,
         "variant": "CommandExecTerminate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command/exec/terminate"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:command/exec/write",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "params": {
         "$ref": "#/definitions/CommandExecWriteParams"
       },
@@ -1109,16 +1137,20 @@
         "source_line": 1385,
         "variant": "CommandExecWrite"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command/exec/write"
     },
     {
@@ -9316,12 +9348,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:command/exec/outputDelta",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "params": {
         "$ref": "#/definitions/CommandExecOutputDeltaNotification"
       },
@@ -9334,16 +9370,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command/exec/outputDelta"
     },
     {
@@ -13397,12 +13437,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:command/exec",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13410,28 +13454,36 @@
       "schema": "v2/CommandExecResponse.json",
       "schema_sha256": "dec52d187121e8dd48124b47a4a8d8428ef3717b98b9200345bb404f73b62c9d",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command/exec"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:command/exec/resize",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13439,28 +13491,36 @@
       "schema": "v2/CommandExecResizeResponse.json",
       "schema_sha256": "01da20d70957fa5b43cf41365c5fee4fb3a69927947a45f92866f9bcf0895d0f",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command/exec/resize"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:command/exec/terminate",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13468,28 +13528,36 @@
       "schema": "v2/CommandExecTerminateResponse.json",
       "schema_sha256": "d46aa76d952bb3ac95d0bd64de609fb8a82efd98d9ee38264fe3673fd184ce5d",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command/exec/terminate"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:command/exec/write",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13497,16 +13565,20 @@
       "schema": "v2/CommandExecWriteResponse.json",
       "schema_sha256": "22887250f84443b2a6f5fc6f9c46cf9e2af072ff631574340018c48771411571",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command/exec/write"
     },
     {
@@ -100650,127 +100722,167 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecOutputDeltaNotification.json#/properties/capReached",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "nullable": false,
       "pointer": "/properties/capReached",
       "required": true,
       "schema": "v2/CommandExecOutputDeltaNotification.json",
       "schema_sha256": "fda43b0187a403a159b0eaa258aa1e9f50f6eb7a05e0fbd92728205c14d68791",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "capReached"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecOutputDeltaNotification.json#/properties/deltaBase64",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "nullable": false,
       "pointer": "/properties/deltaBase64",
       "required": true,
       "schema": "v2/CommandExecOutputDeltaNotification.json",
       "schema_sha256": "672417367a6852adf6b2d1b952cd0d3865caa7695562d3945e4ad598753637f4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "deltaBase64"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecOutputDeltaNotification.json#/properties/processId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "nullable": false,
       "pointer": "/properties/processId",
       "required": true,
       "schema": "v2/CommandExecOutputDeltaNotification.json",
       "schema_sha256": "bceaf22e4dafb8d39a5380f5ae2cec2242b3ff72fa0bd16f1b8d3d796530f756",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "processId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecOutputDeltaNotification.json#/properties/stream",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "nullable": false,
       "pointer": "/properties/stream",
       "required": true,
       "schema": "v2/CommandExecOutputDeltaNotification.json",
       "schema_sha256": "54ef5ddcf4075f288174ea06efee6f00f399e82199882b2bf2e99dc3104f6b9b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "stream"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/command-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/CommandExecOutputDeltaNotification.json#/properties/stream/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native private-network cases cover synthetic buffered/pipe/PTY execution, stream caps, controls, native timeout, local uncertainty and connection ownership/reconnect. This qualifies Linux UDS with dangerFullAccess inside isolation, not sandbox enforcement, remote environments, every transport or operating system; no execution retry or upstream idempotency is inferred."
+      ],
       "pointer": "/properties/stream/allOf/0",
       "schema": "v2/CommandExecOutputDeltaNotification.json",
       "schema_sha256": "2c9530486f4c646eb4c3d621e1531ba301454714861c37ff1f0386ea4441e5c7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "allOf"
     },
     {

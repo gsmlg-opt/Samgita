@@ -793,3 +793,23 @@ attachments, external writers and other deployment profiles remain unqualified.
 The default driver suite discovers the eight new queue tests. A complete
 integrated repeat and final pushed-source hosted results remain required for
 this and subsequent units; the earlier 306-case result does not include them.
+
+## Native command lifecycle
+
+The explicit Linux namespace profile qualifies the four `command/exec` methods
+and `command/exec/outputDelta` against the actual hash-pinned binary. Eight
+cases passed both `501432` and `987654` (3.8s / 3.7s), with warnings-as-errors
+compile and whole-driver formatting. Buffered/pipe/PTY output, binary input/EOF,
+per-stream caps, controls, timeout exit 124, local abandonment uncertainty and
+borrowed UDS ownership/reconnect each assert real process or wire effects.
+The coordinator reviewed the profile and its ownership/cleanup barriers; exact
+commands and the warning-only initial cleanup are in
+[command lifecycle](command-lifecycle-qualification.md).
+
+The Ubuntu 22.04 isolated job now runs this profile explicitly as a required
+step. There is no namespace skip or host-network fallback. Mapping adds nine
+scoped entries and five exact streamed-notification contracts as `implemented`:
+**485 entries: 0 verified / 165 implemented / 315 missing / 5 blocked**;
+**6,621 contracts: 0 verified / 19 implemented / 6,602 missing**. This synthetic
+command scope does not qualify Codex sandbox enforcement, external environments
+or all deployment profiles. Final integrated/hosted results remain separate.
