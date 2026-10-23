@@ -136,17 +136,28 @@ an error, never delivery acceptance.
 Core defaults bound pending requests (64), notification buffers (128), completed
 responses (128), streams (64), JSON messages (1 MiB) and request timers (30 s).
 Client connection establishment is bounded by `connect_timeout_ms` (5 s).
+Server-originated requests use the same core deadlines, with connection-owned
+timers cancelled on response, expiry and disconnect. The host's existing
+`handle_response/4` callback receives timeout/disconnect failures with the original
+request and connection context. Mutations return `ambiguous_disconnect` and retain
+their bounded uncertainty slots; expiry neither approves an action nor retries it.
+The host remains responsible for durable approval validity and authenticated
+outcome reconciliation. Overdue or already-expired responses cannot settle the
+request again. An untrappable socket process kill cannot run callbacks; hosts
+must also monitor their connections and reconcile durable outstanding work.
 The adapter drains core notifications into the explicit owner mailbox and
 disconnects when that mailbox reaches `max_buffer`; the owner should be a
 dedicated consumer. It never silently drops a notification while staying
 connected. When forwarding fails, the unforwarded notification does not advance
 the core cursor; reconnect and replay from the processed checkpoint can recover
 it. An entire replay batch must fit the core and owner buffers or the connection
-closes with its prior cursors intact. Mint's unfinished receive buffer is capped
-conservatively at the
-frame limit plus RFC frame overhead; a larger aggregate socket read is closed
-even if it contains multiple individually valid messages. Use replay/status
-reconciliation after any disconnect.
+closes with its prior cursors intact. Mint's incomplete frame buffer plus the next
+socket read is capped conservatively at the frame limit plus RFC frame overhead;
+a larger aggregate socket read is closed even if it contains multiple individually
+valid messages. Fragmented message payloads have a separate bound at the message
+limit. Consumed ping/pong frames spend neither retained budget, and receiving a
+complete text frame preserves any following incomplete frame's accounting.
+Use replay/status reconciliation after any disconnect.
 
 Server frame and fragmented-message limits default to 1 MiB. The fake caps each
 record collection at `max_records` (128), keeps only `replay_limit` (4) messages

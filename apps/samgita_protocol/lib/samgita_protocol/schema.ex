@@ -205,8 +205,7 @@ defmodule SamgitaProtocol.Schema do
 
   def validate_reply(request, %{"result" => result}) do
     with :ok <- validate_result(request["method"], result),
-         :ok <- result_identity(request, result),
-         do: :ok
+         do: result_identity(request, result)
   end
 
   def validate_reply(_request, %{"error" => error}), do: error_shape(error)

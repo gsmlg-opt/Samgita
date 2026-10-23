@@ -1,6 +1,7 @@
 defmodule SamgitaProtocol.FixturesTest do
   use ExUnit.Case, async: true
   alias SamgitaProtocol.{Codec, Schema}
+  alias SamgitaProtocol.Schema.Document
 
   test "versioned valid fixtures round trip and correlated results satisfy their request" do
     for path <- Path.wildcard(Path.join(__DIR__, "fixtures/v1/*.json")) do
@@ -29,6 +30,6 @@ defmodule SamgitaProtocol.FixturesTest do
 
   test "published JSON schema is generated from the executable versioned definitions" do
     path = Path.join(__DIR__, "../priv/schemas/1.0/protocol.schema.json")
-    assert JSON.decode!(File.read!(path)) == SamgitaProtocol.Schema.Document.build()
+    assert JSON.decode!(File.read!(path)) == Document.build()
   end
 end

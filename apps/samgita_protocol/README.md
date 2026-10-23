@@ -100,6 +100,14 @@ Once a request is handed out for sending, disconnect or timeout makes a mutation
 
 `request/cancel` means requested/already_finished. It does not resolve the target request, roll back effects or prove tools stopped. `turn/interrupt` likewise reports requested/interrupted/already_finished; separate lifecycle evidence establishes completion. Cancelling a local wait never authorizes repeating work.
 
+Expired request IDs share the bounded `max_completed` terminal-identity window
+with completed responses. Reusing a retained ID returns `conflict`; late replies
+to an expired ID return `conflicting_response` without a response effect. This
+window is not a durable identity registry: explicitly supplied IDs and their
+correlation context must remain unique within a connection even after eviction.
+Reconnect clears this window and requires fresh initialization; generated IDs
+already incorporate the connection generation.
+
 Replayable notifications carry both `stream_id` and contiguous `cursor`; unsequenced notifications are ephemeral and cannot be resumed. `Replay` is a bounded **in-memory** host log; it assigns sequence numbers only to unsequenced input and returns `replay_gap` outside retention. `Replay.since/2` returns at most 128 events per page; continue from the last returned cursor. A stream resume result returns ordered events from requested cursor + 1 through result `cursor` (or the requested cursor if empty). Foreign streams and skipped/reordered events fail.
 
 After receiving a correlated `stream/resume` result, explicitly call `Client.receive_replay(client, result)` to ingest those events through the same bounded buffer and duplicate/gap checks. Socket receipt does not advance a checkpoint. `Client.drain/2` delivers buffered notifications; after processing them, `ack_cursor/3` advances the processed position. Persist `Client.checkpoints/1` and restore using `Client.new(checkpoints: map)` after process restart. Resume from that processed checkpoint. Checkpoints are scoped to the authenticated host and stream; never restore another host's map. The server performs cursor checks before its notification callback and marks processed only after callback success; durable checkpoint storage remains host-owned.

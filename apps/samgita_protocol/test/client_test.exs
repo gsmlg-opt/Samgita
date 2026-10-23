@@ -32,6 +32,42 @@ defmodule SamgitaProtocol.ClientTest do
              Client.receive(client, Map.put(reply, "result", %{"thread_id" => "other"}))
   end
 
+  test "timed-out request identities cannot be reused to miscorrelate a late response" do
+    params = %{"thread_id" => "thread"}
+
+    {:ok, request, client} =
+      Client.request(ready(), "thread/read", params, id: "expired", now_ms: 0, timeout_ms: 1)
+
+    {:ok, [{:error, "expired", %{code: "timeout"}}], client} = Client.expire(client, 1)
+
+    assert {:error, %{code: "conflict"}, ^client} =
+             Client.request(client, "thread/read", params, id: "expired")
+
+    assert {:error, %{code: "conflicting_response"}, ^client} =
+             Client.receive(client, response(request, params))
+
+    assert {:ok, [], ^client} = Client.expire(client, 2)
+  end
+
+  test "expired request identity retention shares the bounded completed window" do
+    client =
+      Enum.reduce(1..5, ready(max_completed: 2), fn n, client ->
+        {:ok, _, client} =
+          Client.request(client, "thread/read", %{"thread_id" => "thread"},
+            id: "read-#{n}",
+            now_ms: 0,
+            timeout_ms: 1
+          )
+
+        {:ok, [_], client} = Client.expire(client, 1)
+        client
+      end)
+
+    assert client.pending == %{}
+    assert Enum.sort(Map.keys(client.completed)) == ["read-4", "read-5"]
+    assert length(client.completed_order) == 2
+  end
+
   test "ambiguous disconnects retain mutation identity without automatic replay" do
     {:ok, request, client} =
       Client.request(ready(), "thread/start", %{}, id: "write", command_id: "command-1")

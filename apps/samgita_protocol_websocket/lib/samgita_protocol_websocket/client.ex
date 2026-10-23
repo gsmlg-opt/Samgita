@@ -179,8 +179,7 @@ defmodule SamgitaProtocolWebSocket.Client do
     uri = URI.parse(url)
 
     cond do
-      uri.scheme not in ["ws", "wss"] or is_nil(uri.host) or not is_nil(uri.userinfo) or
-        not is_nil(uri.query) or not is_nil(uri.fragment) ->
+      invalid_uri?(uri) ->
         {:error, Error.new("invalid_params")}
 
       not valid_connect_address?(Keyword.get(opts, :connect_address)) ->
@@ -197,24 +196,26 @@ defmodule SamgitaProtocolWebSocket.Client do
 
   defp validate_url(_url, _opts), do: {:error, Error.new("invalid_params")}
 
+  defp invalid_uri?(uri),
+    do:
+      uri.scheme not in ["ws", "wss"] or is_nil(uri.host) or not is_nil(uri.userinfo) or
+        not is_nil(uri.query) or not is_nil(uri.fragment)
+
   defp valid_connect_address?(nil), do: true
 
   defp valid_connect_address?(address) when is_tuple(address) and tuple_size(address) == 4,
     do: address |> Tuple.to_list() |> Enum.all?(&(is_integer(&1) and &1 in 0..255))
 
   defp valid_connect_address?(address) when is_tuple(address) and tuple_size(address) == 8,
-    do: address |> Tuple.to_list() |> Enum.all?(&(is_integer(&1) and &1 in 0..65535))
+    do: address |> Tuple.to_list() |> Enum.all?(&(is_integer(&1) and &1 in 0..65_535))
 
   defp valid_connect_address?(_), do: false
 
   defp open(state) do
     uri = state.uri
     scheme = if uri.scheme == "wss", do: :https, else: :http
-    ws_scheme = if uri.scheme == "wss", do: :wss, else: :ws
     port = uri.port || if(scheme == :https, do: 443, else: 80)
     timeout = Keyword.get(state.opts, :connect_timeout_ms, 5_000)
-    token = Keyword.get(state.opts, :token)
-    headers = if is_binary(token), do: [{"authorization", "Bearer " <> token}], else: []
     address = Keyword.get(state.opts, :connect_address, uri.host)
 
     transport_opts =
@@ -222,30 +223,36 @@ defmodule SamgitaProtocolWebSocket.Client do
         do: [timeout: timeout, inet6: true, inet4: false],
         else: [timeout: timeout]
 
-    with {:ok, conn} <-
-           Mint.HTTP.connect(scheme, address, port,
-             hostname: uri.host,
-             mode: :passive,
-             protocols: [:http1],
-             transport_opts: transport_opts
-           ) do
-      case Mint.WebSocket.upgrade(ws_scheme, conn, uri.path || "/app-server", headers) do
-        {:ok, conn, ref} ->
-          handshake(
-            conn,
-            ref,
-            %{state | conn: conn},
-            System.monotonic_time(:millisecond) + timeout,
-            nil,
-            []
-          )
-
-        {:error, conn, _reason} ->
-          Mint.HTTP.close(conn)
-          {:error, Error.new("upstream_error")}
-      end
-    else
+    case Mint.HTTP.connect(scheme, address, port,
+           hostname: uri.host,
+           mode: :passive,
+           protocols: [:http1],
+           transport_opts: transport_opts
+         ) do
+      {:ok, conn} -> upgrade(conn, state, timeout)
       {:error, _reason} -> {:error, Error.new("upstream_error")}
+    end
+  end
+
+  defp upgrade(conn, state, timeout) do
+    scheme = if state.uri.scheme == "wss", do: :wss, else: :ws
+    token = Keyword.get(state.opts, :token)
+    headers = if is_binary(token), do: [{"authorization", "Bearer " <> token}], else: []
+
+    case Mint.WebSocket.upgrade(scheme, conn, state.uri.path || "/app-server", headers) do
+      {:ok, conn, ref} ->
+        handshake(
+          conn,
+          ref,
+          %{state | conn: conn},
+          System.monotonic_time(:millisecond) + timeout,
+          nil,
+          []
+        )
+
+      {:error, conn, _reason} ->
+        Mint.HTTP.close(conn)
+        {:error, Error.new("upstream_error")}
     end
   end
 
@@ -286,32 +293,33 @@ defmodule SamgitaProtocolWebSocket.Client do
       _ ->
         Mint.HTTP.close(conn)
 
-        details =
-          if is_integer(status) do
-            retry_after =
-              Enum.find_value(headers, fn
-                {"retry-after", value} when is_binary(value) and byte_size(value) <= 64 ->
-                  if Regex.match?(
-                       ~r/\A(?:[0-9]+|[A-Z][a-z]{2}, [0-9]{2} [A-Z][a-z]{2} [0-9]{4} [0-9:]{8} GMT)\z/,
-                       value
-                     ),
-                     do: value
-
-                _ ->
-                  nil
-              end)
-
-            Map.reject(%{"http_status" => status, "retry_after" => retry_after}, fn {_, value} ->
-              is_nil(value)
-            end)
-          else
-            %{}
-          end
-
         {:error,
-         Error.new(if(status in [401, 403], do: "unauthorized", else: "upstream_error"), details)}
+         Error.new(
+           if(status in [401, 403], do: "unauthorized", else: "upstream_error"),
+           upgrade_details(status, headers)
+         )}
     end
   end
+
+  defp upgrade_details(status, headers) when is_integer(status) do
+    retry_after = Enum.find_value(headers, &retry_after/1)
+
+    Map.reject(%{"http_status" => status, "retry_after" => retry_after}, fn {_, value} ->
+      is_nil(value)
+    end)
+  end
+
+  defp upgrade_details(_status, _headers), do: %{}
+
+  defp retry_after({"retry-after", value}) when is_binary(value) and byte_size(value) <= 64 do
+    if Regex.match?(
+         ~r/\A(?:[0-9]+|[A-Z][a-z]{2}, [0-9]{2} [A-Z][a-z]{2} [0-9]{4} [0-9:]{8} GMT)\z/,
+         value
+       ),
+       do: value
+  end
+
+  defp retry_after(_), do: nil
 
   defp send_message(%{conn: nil} = state, _message), do: {:error, state}
 
@@ -336,19 +344,37 @@ defmodule SamgitaProtocolWebSocket.Client do
   end
 
   defp decode(data, state) do
-    bytes = state.unread_bytes + byte_size(data)
+    # Mint retains only an incomplete frame plus any fragmented message payload.
+    # Consumed controls and completed messages must not spend the next read's budget.
+    bytes = byte_size(state.websocket.buffer) + byte_size(data)
+    limit = Keyword.get(state.opts, :max_frame_bytes, 1_048_576)
 
-    if bytes > Keyword.get(state.opts, :max_frame_bytes, 1_048_576) + 14 do
+    if bytes > limit + 14 do
       disconnected(state)
     else
       case Mint.WebSocket.decode(state.websocket, data) do
         {:ok, websocket, frames} ->
-          state = %{state | websocket: websocket, unread_bytes: bytes}
-          Enum.reduce(frames, state, &receive_frame/2)
+          receive_frames(websocket, frames, limit, state)
 
         {:error, _websocket, _reason} ->
           disconnected(state)
       end
+    end
+  end
+
+  defp receive_frames(websocket, frames, limit, state) do
+    fragment_bytes = if websocket.fragment, do: byte_size(elem(websocket.fragment, 3)), else: 0
+
+    if fragment_bytes > limit do
+      disconnected(state)
+    else
+      state = %{
+        state
+        | websocket: websocket,
+          unread_bytes: byte_size(websocket.buffer) + fragment_bytes
+      }
+
+      Enum.reduce(frames, state, &receive_frame/2)
     end
   end
 
@@ -359,7 +385,7 @@ defmodule SamgitaProtocolWebSocket.Client do
       {:ok, effects, core} ->
         with {:ok, effects, core} <- expand_replay(effects, core, state),
              true <- effects_fit?(effects, state) do
-          state = apply_effects(effects, %{state | core: core, unread_bytes: 0})
+          state = apply_effects(effects, %{state | core: core})
           {_messages, core} = Client.drain(state.core, Keyword.get(state.opts, :max_buffer, 128))
           %{state | core: core}
         else

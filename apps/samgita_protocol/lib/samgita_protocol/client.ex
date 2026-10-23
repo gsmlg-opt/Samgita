@@ -115,9 +115,8 @@ defmodule SamgitaProtocol.Client do
   end
 
   def receive(client, data) do
-    with {:ok, message} <- decode(data, client.max_frame_bytes) do
-      receive_message(client, message)
-    else
+    case decode(data, client.max_frame_bytes) do
+      {:ok, message} -> receive_message(client, message)
       {:error, error} -> {:error, error, client}
     end
   end
@@ -128,16 +127,20 @@ defmodule SamgitaProtocol.Client do
          true <- Enum.all?(result["events"], &(&1["stream_id"] == result["stream_id"])),
          true <-
            result["events"] == [] or List.last(result["events"])["cursor"] == result["cursor"] do
-      Enum.reduce_while(result["events"], {:ok, [], client}, fn event, {:ok, effects, next} ->
-        case receive(next, event) do
-          {:ok, more, next} -> {:cont, {:ok, effects ++ more, next}}
-          {:error, error, _} -> {:halt, {:error, error, client}}
-        end
-      end)
+      ingest_replay(client, result["events"])
     else
       false -> {:error, Error.new("invalid_response"), client}
       {:error, error} -> {:error, error, client}
     end
+  end
+
+  defp ingest_replay(client, events) do
+    Enum.reduce_while(events, {:ok, [], client}, fn event, {:ok, effects, next} ->
+      case receive(next, event) do
+        {:ok, more, next} -> {:cont, {:ok, effects ++ more, next}}
+        {:error, error, _} -> {:halt, {:error, error, client}}
+      end
+    end)
   end
 
   defp receive_message(client, %{"type" => "response", "id" => id} = message) do
@@ -407,7 +410,8 @@ defmodule SamgitaProtocol.Client do
         if entry.request["method"] == "connection/initialize", do: :disconnected, else: acc.phase
 
       {effects ++ [{:error, id, error}],
-       %{acc | pending: Map.delete(acc.pending, id), uncertain: uncertain, phase: phase}}
+       %{acc | pending: Map.delete(acc.pending, id), uncertain: uncertain, phase: phase}
+       |> remember(%{"id" => id})}
     end)
   end
 
@@ -425,14 +429,8 @@ defmodule SamgitaProtocol.Client do
       cursor > stream.seen + 1 ->
         {:error, Error.new("replay_gap")}
 
-      cursor <= stream.seen and stream.hashes[cursor] == digest ->
-        {:ok, :duplicate, client.streams}
-
-      cursor <= stream.seen and Map.has_key?(stream.hashes, cursor) ->
-        {:error, Error.new("conflict")}
-
       cursor <= stream.seen ->
-        {:error, Error.new("stale_cursor")}
+        known_cursor(client.streams, stream.hashes, cursor, digest)
 
       true ->
         hashes =
@@ -446,6 +444,14 @@ defmodule SamgitaProtocol.Client do
   end
 
   defp stream_position(client, _), do: {:ok, :new, client.streams}
+
+  defp known_cursor(streams, hashes, cursor, digest) do
+    cond do
+      hashes[cursor] == digest -> {:ok, :duplicate, streams}
+      Map.has_key?(hashes, cursor) -> {:error, Error.new("conflict")}
+      true -> {:error, Error.new("stale_cursor")}
+    end
+  end
 
   defp decode(binary, max) when is_binary(binary), do: Codec.decode(binary, max_frame_bytes: max)
 

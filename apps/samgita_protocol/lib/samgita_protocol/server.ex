@@ -105,25 +105,7 @@ defmodule SamgitaProtocol.Server do
         {:ok, [], %{server | client: client}}
 
       {:ok, [effect], client} ->
-        result =
-          case effect do
-            {:response, _, value} -> {:ok, value}
-            {:error, _, error} -> {:error, error}
-          end
-
-        server = %{server | client: client}
-
-        case safe_callback(fn ->
-               server.handler.handle_response(
-                 pending.request["method"],
-                 result,
-                 context(server, pending.request),
-                 server.handler_state
-               )
-             end) do
-          {:ok, state} -> {:ok, [], %{server | handler_state: state}}
-          _ -> {:error, Error.new("handler_error"), server}
-        end
+        handle_response(%{server | client: client}, pending.request, effect)
 
       {:error, error, _} ->
         {:error, error, server}
@@ -142,46 +124,67 @@ defmodule SamgitaProtocol.Server do
         {:error, Error.new("unsupported_method"), server}
 
       true ->
-        case Client.receive(server.client, notification) do
-          {:ok, [], _} ->
-            {:ok, [], server}
-
-          {:error, error, _} ->
-            {:error, error, server}
-
-          {:ok, [{:notification, _}], client} ->
-            case safe_callback(fn ->
-                   server.handler.handle_notification(
-                     notification["method"],
-                     notification["params"],
-                     context(server, notification),
-                     server.handler_state
-                   )
-                 end) do
-              {:ok, state} ->
-                {[_], client} = Client.drain(client, 1)
-
-                client =
-                  case notification do
-                    %{"stream_id" => stream, "cursor" => cursor} ->
-                      {:ok, client} = Client.ack_cursor(client, stream, cursor)
-                      client
-
-                    _ ->
-                      client
-                  end
-
-                {:ok, [], %{server | client: client, handler_state: state}}
-
-              {:error, %Error{} = error, state} ->
-                {:error, error, %{server | handler_state: state}}
-
-              _ ->
-                {:error, Error.new("handler_error"), server}
-            end
-        end
+        receive_notification(server, notification)
     end
   end
+
+  defp handle_response(server, request, effect) do
+    result =
+      case effect do
+        {:response, _, value} -> {:ok, value}
+        {:error, _, error} -> {:error, error}
+      end
+
+    case safe_callback(fn ->
+           server.handler.handle_response(
+             request["method"],
+             result,
+             context(server, request),
+             server.handler_state
+           )
+         end) do
+      {:ok, state} -> {:ok, [], %{server | handler_state: state}}
+      _ -> {:error, Error.new("handler_error"), server}
+    end
+  end
+
+  defp receive_notification(server, notification) do
+    case Client.receive(server.client, notification) do
+      {:ok, [], _} -> {:ok, [], server}
+      {:error, error, _} -> {:error, error, server}
+      {:ok, [{:notification, _}], client} -> handle_notification(server, notification, client)
+    end
+  end
+
+  defp handle_notification(server, notification, client) do
+    case safe_callback(fn ->
+           server.handler.handle_notification(
+             notification["method"],
+             notification["params"],
+             context(server, notification),
+             server.handler_state
+           )
+         end) do
+      {:ok, state} ->
+        {[_], client} = Client.drain(client, 1)
+
+        {:ok, [],
+         %{server | client: acknowledge_notification(client, notification), handler_state: state}}
+
+      {:error, %Error{} = error, state} ->
+        {:error, error, %{server | handler_state: state}}
+
+      _ ->
+        {:error, Error.new("handler_error"), server}
+    end
+  end
+
+  defp acknowledge_notification(client, %{"stream_id" => stream, "cursor" => cursor}) do
+    {:ok, client} = Client.ack_cursor(client, stream, cursor)
+    client
+  end
+
+  defp acknowledge_notification(client, _), do: client
 
   defp call_handler(server, request) do
     case safe_callback(fn ->

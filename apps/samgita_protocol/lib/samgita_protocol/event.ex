@@ -6,8 +6,7 @@ defmodule SamgitaProtocol.Event do
     {required, optional} = Schema.event_fields()
 
     with :ok <- Schema.shape(event, required, optional, "invalid_params"),
-         :ok <- Schema.references(event),
-         do: :ok
+         do: Schema.references(event)
   end
 
   def retry(event, delivery_attempt_id) do

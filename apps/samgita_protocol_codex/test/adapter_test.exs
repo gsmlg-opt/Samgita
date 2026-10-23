@@ -208,7 +208,7 @@ defmodule SamgitaProtocolCodexTest do
     wire = %{
       "id" => "req-1",
       "error" => %{
-        "code" => -32001,
+        "code" => -32_001,
         "message" => "secret-key",
         "data" => %{"token" => "secret-key"}
       }

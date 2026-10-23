@@ -1,4 +1,5 @@
 defmodule SamgitaProtocol.TestFixtures do
+  @moduledoc false
   alias SamgitaProtocol.Client
 
   def ready(opts \\ []) do

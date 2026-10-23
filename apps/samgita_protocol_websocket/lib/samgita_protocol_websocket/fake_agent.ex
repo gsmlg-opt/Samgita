@@ -187,27 +187,7 @@ defmodule SamgitaProtocolWebSocket.FakeAgent do
         {{:error, Error.new("not_found")}, state}
 
       entry ->
-        if entry[:report] && entry.report != report do
-          {{:error, Error.new("conflict")}, state}
-        else
-          entry = Map.merge(entry, %{report: report, status: report["status"]})
-          state = put_in(state.events[id], entry)
-
-          state =
-            emit(state, socket, "project-events", "project/event.updated", %{
-              "event_id" => id,
-              "acceptance" => "received",
-              "processing_status" => entry.status
-            })
-
-          {{:ok,
-            %{
-              "event_id" => id,
-              "decision_id" => report["decision_id"],
-              "report_status" => "recorded",
-              "management_acceptance" => "not_requested"
-            }}, state}
-        end
+        record_report(entry, report, socket, state)
     end
   end
 
@@ -227,10 +207,7 @@ defmodule SamgitaProtocolWebSocket.FakeAgent do
       thread ->
         turns =
           if method == "thread/resume",
-            do:
-              Map.new(state.turns, fn {key, turn} ->
-                {key, if(turn.thread == id, do: %{turn | socket: socket}, else: turn)}
-              end),
+            do: resume_turns(state.turns, id, socket),
             else: state.turns
 
         {{:ok, %{"thread_id" => id, "thread" => thread}}, %{state | turns: turns}}
@@ -364,6 +341,37 @@ defmodule SamgitaProtocolWebSocket.FakeAgent do
 
       _ ->
         {{:error, Error.new("conflict")}, state}
+    end
+  end
+
+  defp resume_turns(turns, thread, socket) do
+    Map.new(turns, fn {key, turn} ->
+      {key, if(turn.thread == thread, do: %{turn | socket: socket}, else: turn)}
+    end)
+  end
+
+  defp record_report(entry, report, socket, state) do
+    if entry[:report] && entry.report != report do
+      {{:error, Error.new("conflict")}, state}
+    else
+      id = report["event_id"]
+      entry = Map.merge(entry, %{report: report, status: report["status"]})
+      state = put_in(state.events[id], entry)
+
+      state =
+        emit(state, socket, "project-events", "project/event.updated", %{
+          "event_id" => id,
+          "acceptance" => "received",
+          "processing_status" => entry.status
+        })
+
+      {{:ok,
+        %{
+          "event_id" => id,
+          "decision_id" => report["decision_id"],
+          "report_status" => "recorded",
+          "management_acceptance" => "not_requested"
+        }}, state}
     end
   end
 

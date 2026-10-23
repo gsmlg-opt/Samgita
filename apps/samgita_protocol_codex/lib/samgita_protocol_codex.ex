@@ -34,8 +34,7 @@ defmodule SamgitaProtocolCodex do
     if nonempty?(id) and nonempty?(client_info["name"]) and
          nonempty?(client_info["version"]) and
          Enum.all?(Map.keys(client_info), &(&1 in ~w(name title version))) and
-         (not Map.has_key?(client_info, "title") or
-            (is_binary(client_info["title"]) and String.valid?(client_info["title"]))) do
+         valid_title?(client_info) do
       {:ok, %{"id" => id, "method" => "initialize", "params" => %{"clientInfo" => client_info}}}
     else
       error("invalid_params")
@@ -43,6 +42,9 @@ defmodule SamgitaProtocolCodex do
   end
 
   def initialize_request(_, _), do: error("invalid_params")
+
+  defp valid_title?(%{"title" => title}), do: is_binary(title) and String.valid?(title)
+  defp valid_title?(_), do: true
 
   @doc "Send only after accepting the matching successful initialize response."
   def initialized, do: %{"method" => "initialized"}
@@ -52,23 +54,21 @@ defmodule SamgitaProtocolCodex do
       when is_map(wire) and not is_struct(wire) and is_binary(id) do
     with :ok <- matches(wire["id"], id),
          :ok <- response_shape(wire) do
-      case wire do
-        %{"result" => result} when is_map(result) ->
-          fields = ~w(codexHome platformFamily platformOs userAgent)
-
-          if Enum.all?(fields, &(is_binary(result[&1]) and String.valid?(result[&1]))) do
-            {:ok, Map.take(result, fields)}
-          else
-            error("invalid_response")
-          end
-
-        %{"error" => upstream} ->
-          upstream_error(upstream)
-      end
+      initialize_payload(wire)
     end
   end
 
   def decode_initialize_response(_, _), do: error("invalid_response")
+
+  defp initialize_payload(%{"result" => result}) when is_map(result) do
+    fields = ~w(codexHome platformFamily platformOs userAgent)
+
+    if Enum.all?(fields, &(is_binary(result[&1]) and String.valid?(result[&1]))),
+      do: {:ok, Map.take(result, fields)},
+      else: error("invalid_response")
+  end
+
+  defp initialize_payload(%{"error" => upstream}), do: upstream_error(upstream)
 
   @doc "Translate a validated native request; native command IDs never go upstream."
   def encode_request(%{"type" => "request", "method" => method} = request)
@@ -257,7 +257,7 @@ defmodule SamgitaProtocolCodex do
   defp upstream_error(%{"code" => code, "message" => message})
        when is_integer(code) and is_binary(message) do
     failure = Error.new("upstream_error", %{"upstream_code" => code})
-    {:error, %{failure | retryable: code == -32001}}
+    {:error, %{failure | retryable: code == -32_001}}
   end
 
   defp upstream_error(_), do: error("invalid_response")
