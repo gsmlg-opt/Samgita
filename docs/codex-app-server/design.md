@@ -123,6 +123,14 @@ preserve those outcomes without adding its own normalization. See
 [turn inputs and parameters](turn-input-qualification.md) for the exact stdio
 profile, supported/unsupported branches and remaining evidence limits.
 
+Native standalone `toolOutput` is a first-class function-output item: it can start
+an idle turn without an earlier tool call and is distinct from ordinary user
+input. Its optional retention flag annotates internal history; provider payloads
+must not acquire that internal flag or an invented call ID. Exact `mcp://` mentions
+make a named server a startup dependency before model tool binding. They do not
+grant permissions. Selected real-binary history, settings and controlled MCP
+startup evidence is recorded in the same qualification document.
+
 The official JSON exporter omits `getAuthStatus`, `getConversationSummary` and
 `gitDiffToRemote`, plus `rawResponse/completed` and `rawResponseItem/completed`.
 Their separate supplement uses the same executable's experimental TypeScript

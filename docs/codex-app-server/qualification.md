@@ -247,9 +247,36 @@ The prior neutral WebSocket aggregate failure, local reused-restart failure,
 Plug.Crypto advisory and A11 confidentiality blocker remain separately recorded.
 The outside-umbrella consumer also passed fresh dependency resolution,
 compilation, formatting and **one actual-binary test**, seed `208583`; it verified
-that Repo, Phoenix and the umbrella application were absent. Hosted outcomes for
-this new test checkpoint remain pending until pushed and observed. No release or
-platform-readiness claim follows from this test-only checkpoint.
+that Repo, Phoenix and the umbrella application were absent. Its hosted results
+are recorded below. No release or platform-readiness claim follows from this
+test-only checkpoint.
+
+## Standalone output, settings and MCP-startup follow-up
+
+Test commit `50abfe3` adds ten real-binary `toolOutput` scenarios across stable and
+experimental negotiation and four override/validation scenarios. Commit `9791d54`
+adds one paired controlled MCP-startup scenario. These change tests and a synthetic fixture, with
+no native schema, driver or platform-runtime change. Exact contracts and residual
+limits are in [turn qualification](turn-input-qualification.md).
+
+An initial 14-case run caught an incorrect assertion that old developer text
+would disappear after a settings update. Pinned history correctly preserves old
+messages. Fresh threads isolate the three collaboration-instruction profiles;
+all four override scenarios then passed. Review added exact name/input semantic
+rejections in both negotiation profiles and stronger explicit-preset and MCP
+output assertions. No production behavior or gate was changed to pass these tests.
+
+The final independent driver compile, formatting and full suite passed **140
+tests, zero failures**, seed `12198`, under Devenv Elixir 1.18.5 / OTP 27.3.4.17
+with the pinned executable. Root strict Credo passed on all 260 source files.
+After the semantic validation assertions, the 14 affected output/settings tests
+passed, seed `61059`, plus strict Credo. A fresh outside consumer passed independent
+dependency resolution, warnings-as-errors compilation, formatting and one
+actual-binary test, seed `740994`, with no Repo/Phoenix/umbrella present. Inventory
+consistency and all 12 Python regressions passed. Strict full compatibility failed
+as required with all 485 requirements and 6,621 contracts still missing. No
+compaction retention, enabled external MCP authorization, live model/service
+acceptance or full transport matrix is claimed.
 
 ## Hosted evidence and remaining gates
 
@@ -316,13 +343,35 @@ contract scope and remains reported without a repair. The successful fresh
 hosted restart does not clear the failed local reused-database rehearsal above.
 Subsequent documentation-only changes do not alter this tested executable tree.
 
+The native turn checkpoint at `f777b514f9db5a60ac38fede98b2aa73749bd756`
+had two observed hosted results:
+
+- Aggregate [39963526529](https://github.com/gsmlg-opt/Samgita/actions/runs/39963526529)
+  failed strict Credo on two unseparated `-32600` literals in the new turn test.
+  Later aggregate steps were skipped. No runtime failure was established there.
+- Pinned conformance [39963631668](https://github.com/gsmlg-opt/Samgita/actions/runs/39963631668)
+  passed its selected job: 32 protocol tests, 125 driver tests, one outside
+  consumer test, 21 platform/API/concurrency tests and four platform journeys.
+  Its strict full-evidence gate failed as required.
+
+The literal repair `8970df817fa928cae9b582e3842520b641542a90` passed local strict
+Credo and all ten affected turn-input cases, seed `16364`. Its aggregate
+[39964413395](https://github.com/gsmlg-opt/Samgita/actions/runs/39964413395) passed
+compilation, formatting, strict Credo, repeated root tests, fresh restart/rollback,
+independent protocol packages/consumers, assets, legacy scan and Dialyzer. It failed
+`mix hex.audit` on retained `plug_crypto 2.2.0`, CVE-2026-105963, and skipped
+production assembly. That rerun passes the neutral WebSocket scenario but does
+not explain its preceding failure or clear the retained local restart repeat.
+The output/settings/MCP follow-up requires hosted evidence from its delivered
+source; the earlier hosted runs do not establish that new coverage.
+
 | Layer | Remaining requirement |
 | --- | --- |
 | Manifest | Per-entry and field/behavior evidence; all 485 / 6,621 entries remain missing, not mass-marked verified from forwarding or fixtures |
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory; A11 raw LiveView credential telemetry; target-specific egress/key/legacy-cutover and real backup/memory rehearsals |
-| Hosted | Latest aggregate fails the retained neutral WebSocket overflow/replay test; selected pinned Codex scenarios pass; full evidence gate remains red until actual acceptance is complete |
+| Hosted | Subsequent aggregate passes the neutral WebSocket suite but fails the retained Plug.Crypto audit; selected pinned Codex scenarios pass; full evidence gate remains red until actual acceptance is complete |
 | Publication/deployment | No normal package/tag publication workflow currently exists; CD remains disabled; no package publication or deployment is claimed |
 
 New migrations are additive and refuse destructive down migration. Rollback

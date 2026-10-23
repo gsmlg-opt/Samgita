@@ -7164,7 +7164,10 @@
       "direction": "client_request",
       "evidence": [
         "Selected real-binary Linux/stdio UserInput and parameter branches at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs, turn_attachment_test.exs and turn_parameters_test.exs; 23 scenarios",
-        "Scope, exact upstream normalization and residual requirements: docs/codex-app-server/turn-input-qualification.md; payload capture does not qualify media understanding, file resolution or full behavior"
+        "Scope, exact upstream normalization and residual requirements: docs/codex-app-server/turn-input-qualification.md; payload capture does not qualify media understanding, file resolution or full behavior",
+        "Selected Linux/stdio standalone toolOutput success, restart history, namespace/retention and invalid-input branches under both negotiation profiles: apps/samgita_codex_driver/test/tool_output_test.exs; retention annotation does not prove compaction survival",
+        "Selected sticky/null model/effort/summary, collaboration precedence/preset and experimental/error branches: apps/samgita_codex_driver/test/turn_overrides_test.exs",
+        "Paired controlled optional-MCP-startup selection and Direct tool exposure via mcp://fixture, actual synthetic call and explicit elicitation: apps/samgita_codex_driver/test/mcp_mention_test.exs; no permission or external-service qualification"
       ],
       "experimental": false,
       "id": "client_request:turn/start",
@@ -9174,6 +9177,7 @@
       "direction": "server_notification",
       "evidence": [
         "Selected real-binary Linux/stdio UserMessage content and thread/turn association for all seven UserInput forms at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs and turn_attachment_test.exs",
+        "Selected functionCallOutput lifecycle and restart history: apps/samgita_codex_driver/test/tool_output_test.exs; original mention and actual synthetic mcpToolCall lifecycle: apps/samgita_codex_driver/test/mcp_mention_test.exs",
         "Remaining item types and full transport matrix are unqualified; docs/codex-app-server/turn-input-qualification.md"
       ],
       "experimental": false,
@@ -9441,6 +9445,7 @@
       "direction": "server_notification",
       "evidence": [
         "Selected real-binary Linux/stdio UserMessage content and thread/turn association for all seven UserInput forms at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs and turn_attachment_test.exs",
+        "Selected functionCallOutput lifecycle and restart history: apps/samgita_codex_driver/test/tool_output_test.exs; original mention and actual synthetic mcpToolCall lifecycle: apps/samgita_codex_driver/test/mcp_mention_test.exs",
         "Remaining item types and full transport matrix are unqualified; docs/codex-app-server/turn-input-qualification.md"
       ],
       "experimental": false,
@@ -9547,7 +9552,9 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "Real pinned Linux/stdio starting/ready association with a controlled optional-MCP startup gate: apps/samgita_codex_driver/test/mcp_mention_test.exs; failed/auth/other transport profiles remain unqualified"
+      ],
       "experimental": false,
       "id": "server_notification:mcpServer/startupStatus/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10989,7 +10996,9 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "Real pinned Linux/stdio collaboration model/effort precedence and null/explicit/empty developer-instruction settings: apps/samgita_codex_driver/test/turn_overrides_test.exs; full field/transport matrix remains unqualified"
+      ],
       "experimental": true,
       "id": "server_notification:thread/settings/updated",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -11858,7 +11867,9 @@
     {
       "capabilities": [],
       "direction": "server_request",
-      "evidence": [],
+      "evidence": [
+        "Controlled local stdio MCP form acceptance, exact thread/server identity and peer reply/output journal: apps/samgita_codex_driver/test/mcp_mention_test.exs; other decisions, authentication and transport profiles remain unqualified"
+      ],
       "experimental": false,
       "id": "server_request:mcpServer/elicitation/request",
       "implementation_module": "SamgitaProtocolCodex.Schema",

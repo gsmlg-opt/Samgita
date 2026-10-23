@@ -122,12 +122,22 @@ Next concrete work:
    IDs. The final local driver suite passed 125 tests after source-grounded
    correction of model metadata and media-processing assumptions, plus stronger
    skill/cleanup/isolation assertions. See [turn qualification](turn-input-qualification.md).
-   Next cover successful `toolOutput` continuation, enabled structured MCP
-   mention routing, image resizing/size limits and remaining turn overrides,
-   then complete differential profiles and manifest-specific evidence. Preserve
+   The follow-up adds ten stable/experimental standalone `toolOutput` scenarios,
+   four settings/validation scenarios and a paired controlled MCP-startup scenario.
+   See the same qualification document for exact annotation, history, precedence
+   and startup-selection contracts. Next cover active-turn output steering,
+   structured output media/encrypted content, compaction retention, image
+   resizing/size limits, enabled app/plugin and deferred MCP routing, and
+   remaining environment/permission/turn overrides. Complete differential
+   profiles and manifest-specific evidence. Preserve
    all 485 requirements and 6,621 contracts as missing until their full acceptance
    conditions are established. Selected payload capture does not establish media
    understanding, file resolution, external permissions or every transport.
+   The turn-input Credo literal repair is `8970df8`; its hosted aggregate
+   `39964413395` passes compilation, formatting, strict Credo, repeated platform
+   tests, fresh restart, protocol consumers, assets, legacy scan and Dialyzer,
+   then fails the retained Plug.Crypto audit. The prior pinned run `39963631668`
+   passes its selected actual-binary/platform job, while completeness fails.
 3. Run final independent-package/consumer, root, restart/recovery, static,
    security, assets, release-assembly and hosted checks on the delivered source.
    Keep unavailable external profiles and A11 visibly incomplete. Publish only

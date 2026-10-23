@@ -1,9 +1,12 @@
 # Native turn inputs and parameters
 
-This checkpoint adds 23 actual-binary scenarios at Samgita `73258c5`, bringing
-the independent driver's suite to 125 tests. It changes tests and documentation;
-the native schema, driver and platform runtime are unchanged. Full compatibility
-remains incomplete. The method and field contracts stay `missing` until all their
+The initial checkpoint adds 23 actual-binary scenarios at Samgita `73258c5`, bringing
+the independent driver's suite to 125 tests. The follow-up below adds standalone
+tool-output/settings (`50abfe3`) and controlled MCP-startup (`9791d54`) evidence.
+These changes affect
+tests and documentation; the native schema, driver and platform runtime are
+unchanged. Full compatibility remains incomplete. The method and field contracts
+stay `missing` until all their
 required behavior and deployment profiles have evidence.
 
 The immutable reference remains Codex `rust-v0.163.0`, source
@@ -25,7 +28,7 @@ recognize media or emulate the app-server.
 | `audio` | Inline `audio/x-wav` canonicalizes to `audio/wav`; an HTTP URI produces the pinned preprocessing placeholder; original input remains in both item events | Synthetic audio-capable model metadata; arbitrary bytes establish construction rather than valid decoded audio |
 | `localAudio` | `wav`, case-insensitive `MP3`, `m4a`, `webm`, `ogg` MIME/data-URI construction and path framing; missing and unsupported files produce defined text | No speech recognition or live provider acceptance |
 | `skill` | Explicit discovered path injects a unique body once despite duplicate selection; disabled/unmatched explicit paths block fallback by name | The positive prompt contains no skill name, so its text cannot satisfy the assertion through plain-name selection; no dependencies/tools are installed |
-| `mention` | Unknown synthetic `app://` and `plugin://` identities remain intact in both item events and add no model content | Enabled app/plugin/MCP routing and permissions remain unqualified |
+| `mention` | Unknown synthetic `app://` and `plugin://` identities remain intact in both item events and add no model content; the follow-up qualifies exact `mcp://` startup selection | Enabled app/plugin routing and additional MCP exposure/permission profiles remain unqualified |
 
 The wire spelling is `text_elements` with nested `byteRange`. Byte offsets refer
 to UTF-8 bytes. Omitted text elements normalize to an empty array in upstream
@@ -71,12 +74,68 @@ Six scenarios inspect real events and captured provider requests:
   is absent on the next plain turn. The backend's fixed text answer is not schema
   adherence evidence.
 - `toolOutput` with nonempty `input`, and an empty tool name, fail explicitly
-  before model dispatch. A following valid turn succeeds. Successful tool-output
-  continuation and its remaining variants still need evidence.
+  before model dispatch. A following valid turn succeeds. Standalone output
+  success and selected remaining variants are qualified below.
+
+## Standalone tool output and settings follow-up
+
+`tool_output_test.exs` adds ten scenarios, five under each experimental negotiation
+profile. A fresh idle thread accepts `toolOutput` without a preceding tool call,
+registered tool or pending approval. String and structured UTF-8 text, empty
+string/array, omitted/null/value/empty namespace and omitted/false/true retention
+all reach the actual server. Both native item events retain the generated item
+ID, thread/turn association, name, namespace and output. They are
+`functionCallOutput` items, rather than user messages. Provider requests preserve
+these outputs and omit `call_id` and internal retention flags.
+
+Read history preserves the native item before and after a confirmed owned-process
+close, new process and explicit resume. Both ordinary and retained outputs are
+stored. The synthetic rollout records `metadata.client_authored` for retained
+outputs; that annotation does **not** prove survival through compaction. No actual
+tool runs in these assistant-only cases. Omitted/null `toolOutput` with empty
+`input` still requests ordinary inference. Malformed shapes fail actual native
+deserialization; aggregate text over 1,048,576 Unicode characters returns native
+`-32602` with `input_too_large`, maximum and actual character counts. Structured
+HTTP(S) image references return `-32600` before model execution. Structured image,
+audio and encrypted-content success, active-turn steering and compaction retention
+remain to be qualified.
+
+`turn_overrides_test.exs` adds four scenarios. Successive requests demonstrate
+sticky model, effort and summary settings; public null preserves those settings,
+and `summary: "none"` omits the provider summary parameter. A collaboration mode's
+model/effort override conflicting ordinary fields. Its null developer instructions
+select the upstream preset; explicit and empty instructions preserve their exact
+values in settings and model context. Each instruction profile uses a fresh thread:
+old developer messages remain conversation history and cannot be treated as a
+new settings leak. Disabled experimental negotiation rejects `environments`,
+`runtimeWorkspaceRoots` and `permissions` before turn/model execution. An unknown
+environment and conflicting permissions/sandbox fail explicitly; a later valid
+turn succeeds. These are request/settings outcomes, not evidence of model reasoning
+quality, remote environments or sandbox enforcement during command execution.
+
+## Controlled MCP mention follow-up
+
+`mcp_mention_test.exs` uses the same gated local stdio MCP service and synthetic
+Direct-tool model profile in two fresh homes. Both wait for an initialize marker.
+With ordinary text and no mention, a turn completes while initialization remains
+held; the first provider tool catalog lacks `mcp__fixture`. Adding only a structured
+mention with an unrelated display label and exact `mcp://fixture` path keeps model
+requests empty beyond the configured 50 ms optional-startup grace. Releasing the
+gate lets the first model request include its `confirm` tool. The real server
+delivers startup status, original user mention and MCP item lifecycle, routes one
+form elicitation for explicit synthetic acceptance, and returns its correlated
+tool output. Local peer journals establish the actual call and elicitation reply.
+
+The gate has an eight-second monotonic deadline; driver collection is bounded and
+owned shutdown is asserted. The synthetic tool is read-only. A mention selects a
+startup dependency: it does not grant permission, make other ready tools disappear,
+or prove external MCP authentication. Deferred-tool discovery, app/plugin mentions,
+permission rejection, reconnect and other transport profiles remain separate gaps.
 
 ## Harness, verification and source
 
-`test/support/turn_fixture.ex` shares setup for the three new suites. It creates
+`test/support/turn_fixture.ex` shares setup for the original three suites and the
+tool-output/settings follow-up. It creates
 an exclusive directory with a random 128-bit suffix, uses disposable home/config
 and workspace paths, initializes an explicitly started Session, and fails on an
 unexpected server interaction. Collection has a monotonic 20-second deadline.
@@ -94,12 +153,19 @@ mix format --check-formatted
 mix test
 ```
 
-Final local outcome: **125 tests, zero failures**. The 23 new scenarios comprise
+The initial local outcome was **125 tests, zero failures**. Its 23 scenarios comprise
 10 in `turn_input_test.exs`, seven in `turn_attachment_test.exs` and six in
 `turn_parameters_test.exs`. Spec and quality review corrected weak plain-name
 skill evidence, scratch-directory collisions and unchecked cleanup results
 before the final suite. See [qualification](qualification.md) for final local and
 hosted status; this checkpoint does not clear existing aggregate/security gates.
+
+The follow-up's final independent compile, formatting and full suite passed
+**140 tests, zero failures**, seed `12198`, with all 15 additional scenarios.
+Root strict Credo and a fresh outside-umbrella actual-binary consumer passed.
+Inventory consistency and 12 regressions passed; strict completeness still fails
+on the missing requirements. Final hosted evidence belongs in the qualification
+record, with security and external acceptance gates retained.
 
 Pinned source references below are relative to `codex-rs/`:
 
@@ -114,6 +180,9 @@ Pinned source references below are relative to `codex-rs/`:
 | Structured skill selection | `skills/src/selection.rs:44-112`; `skills/src/selection_tests.rs:168-225` |
 | Additional context, metadata and tiers | `app-server/tests/suite/v2/turn_start.rs:735-862,1100-1185`; `core/src/responses_metadata.rs:68-110` |
 | Output schema and tool-input rejection | `app-server/tests/suite/v2/output_schema.rs:21-234`; `app-server/src/request_processors/turn_processor.rs:544-552,660-675` |
+| Standalone tool output, history and retention | `app-server/src/request_processors/turn_processor.rs:544-620`; `core/src/hook_runtime.rs:744-765`; `app-server-protocol/src/protocol/thread_history.rs:635-647`; `core/tests/suite/turn_input_submission.rs:1587-1700` |
+| Settings precedence and preset normalization | `app-server/tests/suite/v2/turn_start.rs:2408-2585`; `app-server/src/request_processors/turn_processor.rs:406-420,814-935`; `core/src/client.rs:935-946` |
+| Exact MCP mention startup selection | `core/src/session/turn.rs:997-1044`; `core/src/session/mcp.rs:404-415`; `codex-mcp/src/runtime.rs:415-460`; `codex-mcp/src/connection_manager/tool_catalog.rs:294-350` |
 
 These are selected Linux/stdio results. The full transport/backend/OS matrix,
 enabled external services, remaining field variants, item types and differential

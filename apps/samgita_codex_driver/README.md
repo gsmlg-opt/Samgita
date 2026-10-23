@@ -137,6 +137,13 @@ available. See the [turn qualification record](../../docs/codex-app-server/turn-
 for exact scenarios and limits; file-ID capture and synthetic media do not
 establish file resolution, recognition or live provider acceptance.
 
+Additional turn suites qualify standalone `toolOutput` and restart history under
+both negotiation modes, sticky/null settings and collaboration precedence. A
+controlled `mcp://` mention test demonstrates optional-server startup waiting and
+explicit synthetic elicitation. Retention annotations are not compaction proof;
+mentions do not grant tool permission. These are selected stdio outcomes, with the
+remaining matrix recorded in the same qualification document.
+
 `transport_real_codex_test.exs` verifies actual stdio, authenticated WS and UDS
 handshake/thread reads. Scripted tests separately inject framing, TLS, deadline,
 disconnect, control and bounded-buffer failures. A missing CODEX_BINARY fails the
