@@ -1876,3 +1876,23 @@ evidence. Ledger: **432 implemented / 43 missing / 10 blocked** requirements,
 This is local setup behavior, not AWS credential/service validation or managed
 policy acceptance. CI explicitly selects it; final aggregate/hosted and A11
 remain separate gates.
+
+## Native synchronous hook lifecycle
+
+Six [hook cases](hook-lifecycle-qualification.md) pass **6/0** at both seeds,
+9.6/9.8s on final fixture source. Native listing plus thread creation does not
+execute hooks. Exact current-hash trust then permits two fixed owned command
+hooks during a real turn; untrusted/disabled hooks stay inert. Native start/end
+pairs preserve identity, correlation, times and exact success/feedback/error/stop
+entries. Blocked/stopped input performs zero model inference.
+
+The draft's TOML `timeoutSec` spelling incorrectly selected native default 600;
+changing it to source-defined `timeout = 5` preserves and satisfies the original
+five-second response assertion. Extracted test helpers satisfy strict Credo with
+all assertions/deadlines intact. AST, namespace, compile, format, strict Credo
+and owned-PID cleanup pass. Two notices and 35 positive contracts gain scoped
+`implemented` evidence. Ledger: **434 implemented / 41 missing / 10 blocked**
+requirements, **1,150 implemented / 5,471 missing** contracts, **zero verified**.
+Async/builtin pairs are source-suppressed; other handlers/events, managed/plugin
+profiles, final aggregate/hosted and A11 remain unqualified. CI selects this
+profile explicitly.
