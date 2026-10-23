@@ -2,7 +2,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
   use ExUnit.Case, async: false
   alias SamgitaCodexDriver.Transport.{UnixSocket, WebSocket}
   alias SamgitaCodexDriver.TransportWire, as: Wire
-  alias SamgitaProtocolCodex.Failure
+  alias SamgitaProtocolCodex.Error
 
   defp server(fun) do
     server = Wire.listen(fun)
@@ -102,7 +102,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
 
     {:ok, state} = WebSocket.open(url: url, max_message_bytes: 16)
     assert_receive {:upgrade_request, _}
-    assert {:error, %Failure{code: :frame_too_large}, %{conn: nil}} = pump(state, 1)
+    assert {:error, %Error{code: :frame_too_large}, %{conn: nil}} = pump(state, 1)
   end
 
   test "fragmented message sum is bounded even when every frame fits" do
@@ -118,7 +118,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
 
     {:ok, state} = WebSocket.open(url: url, max_message_bytes: 8)
     assert_receive {:upgrade_request, _}
-    assert {:error, %Failure{code: :message_too_large}, %{conn: nil}} = pump(state, 1)
+    assert {:error, %Error{code: :message_too_large}, %{conn: nil}} = pump(state, 1)
   end
 
   test "binary and invalid control frames fail explicitly" do
@@ -135,7 +135,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
 
       {:ok, state} = WebSocket.open(url: url)
       assert_receive {:upgrade_request, _}
-      assert {:error, %Failure{code: code}, %{conn: nil}} = pump(state, 1)
+      assert {:error, %Error{code: code}, %{conn: nil}} = pump(state, 1)
       assert code in [:unsupported_binary_frame, :invalid_websocket_frame]
     end
   end
@@ -144,7 +144,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
     for status <- [401, 403, 429] do
       {_server, url} = server(fn socket, owner -> Wire.upgrade(socket, owner, status: status) end)
 
-      assert {:error, %Failure{details: %{"http_status" => ^status, "retry_after" => "3"}}} =
+      assert {:error, %Error{details: %{"http_status" => ^status, "retry_after" => "3"}}} =
                WebSocket.open(url: url)
 
       assert_receive {:upgrade_request, _}
@@ -162,7 +162,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
           [url: "ws://localhost/app-server", headers: [{"Sec-WebSocket-Key", "x"}]],
           [url: "ws://localhost/app-server", token: "secret\r\nheader: value"]
         ] do
-      assert {:error, %Failure{code: :invalid_transport_options}} = WebSocket.open(opts)
+      assert {:error, %Error{code: :invalid_transport_options}} = WebSocket.open(opts)
     end
   end
 
@@ -196,7 +196,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
     assert {:ok, state} = UnixSocket.open(socket_path: path)
     assert_receive {:upgrade_request, _}
 
-    assert {:error, %Failure{code: :message_too_large}, ^state} =
+    assert {:error, %Error{code: :message_too_large}, ^state} =
              UnixSocket.send(state, "123456789")
 
     assert {:ok, state} = UnixSocket.send(state, "{}")
@@ -204,7 +204,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
     assert :ok = UnixSocket.close(state)
     assert File.exists?(path)
     assert Process.alive?(server.pid)
-    assert {:error, %Failure{}} = UnixSocket.open(socket_path: path, path: "/daemon/shutdown")
+    assert {:error, %Error{}} = UnixSocket.open(socket_path: path, path: "/daemon/shutdown")
   end
 
   test "WSS validates trust and hostname while dialing the pinned IP" do
@@ -319,7 +319,7 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
         assert {[{:message, "{}"}], state} = pump(state, 1)
         WebSocket.close(state)
       else
-        assert {:error, %Failure{code: :transport_connect_failed}} = result
+        assert {:error, %Error{code: :transport_connect_failed}} = result
       end
     end
   end

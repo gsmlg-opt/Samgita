@@ -7,7 +7,7 @@ defmodule SamgitaProtocolCodex.Wire do
   No JSON value becomes an atom. Bounds default to 16 MiB and 64 nesting levels.
   """
 
-  alias SamgitaProtocolCodex.Failure
+  alias SamgitaProtocolCodex.Error
 
   @default_bytes 16 * 1024 * 1024
   @default_depth 64
@@ -47,29 +47,34 @@ defmodule SamgitaProtocolCodex.Wire do
     result? = Map.has_key?(message, "result")
     error? = Map.has_key?(message, "error")
 
-    cond do
-      method? and not result? and not error? and is_binary(message["method"]) and
-        String.valid?(message["method"]) and id? and valid_id?(message["id"]) and
-          valid_trace?(Map.get(message, "trace")) ->
-        :request
-
-      method? and not result? and not error? and not id? and is_binary(message["method"]) and
-          String.valid?(message["method"]) ->
-        :notification
-
-      not method? and id? and valid_id?(message["id"]) and result? and not error? ->
-        :response
-
-      not method? and id? and valid_id?(message["id"]) and not result? and error? and
-          valid_error?(message["error"]) ->
-        :error
-
-      true ->
-        :invalid
-    end
+    classify_shape({method?, id?, result?, error?}, message)
   end
 
   def classify(_), do: :invalid
+
+  defp classify_shape({true, true, false, false}, message) do
+    valid =
+      valid_method?(message["method"]) and valid_id?(message["id"]) and
+        valid_trace?(Map.get(message, "trace"))
+
+    if valid, do: :request, else: :invalid
+  end
+
+  defp classify_shape({true, false, false, false}, message),
+    do: if(valid_method?(message["method"]), do: :notification, else: :invalid)
+
+  defp classify_shape({false, true, true, false}, message),
+    do: if(valid_id?(message["id"]), do: :response, else: :invalid)
+
+  defp classify_shape({false, true, false, true}, message),
+    do:
+      if(valid_id?(message["id"]) and valid_error?(message["error"]),
+        do: :error,
+        else: :invalid
+      )
+
+  defp classify_shape(_, _), do: :invalid
+  defp valid_method?(method), do: is_binary(method) and String.valid?(method)
 
   @doc false
   def validate_value(value, opts \\ []) do
@@ -189,5 +194,5 @@ defmodule SamgitaProtocolCodex.Wire do
 
   defp json_whitespace?(_), do: false
 
-  defp error(code), do: {:error, Failure.new(code)}
+  defp error(code), do: {:error, Error.new(code)}
 end

@@ -1,6 +1,6 @@
 defmodule SamgitaProtocolCodex.WireTest do
   use ExUnit.Case, async: true
-  alias SamgitaProtocolCodex.{Failure, Wire}
+  alias SamgitaProtocolCodex.{Error, Wire}
 
   test "native envelopes retain complete extensions, structures, null and missing fields" do
     for envelope <- [
@@ -15,7 +15,7 @@ defmodule SamgitaProtocolCodex.WireTest do
           %{
             "id" => -1,
             "error" => %{
-              "code" => -32602,
+              "code" => -32_602,
               "message" => "private detail",
               "data" => %{"opaque" => "secret"}
             }
@@ -47,7 +47,7 @@ defmodule SamgitaProtocolCodex.WireTest do
           %{"id" => 1, "error" => %{"code" => "1", "message" => "x"}}
         ] do
       assert Wire.classify(message) == :invalid
-      assert {:error, %Failure{}} = Wire.encode(message)
+      assert {:error, %Error{}} = Wire.encode(message)
     end
   end
 
@@ -64,13 +64,13 @@ defmodule SamgitaProtocolCodex.WireTest do
     end
 
     for trace <- [1, [], %{"traceparent" => 1}, %{"tracestate" => false}] do
-      assert {:error, %Failure{code: :invalid_envelope}} =
+      assert {:error, %Error{code: :invalid_envelope}} =
                Wire.encode(%{"id" => 1, "method" => "thread/list", "trace" => trace})
     end
   end
 
   test "reject unsafe JSON values without revealing them" do
-    assert {:error, %Failure{code: :invalid_json}} = Wire.validate_value([1 | 2])
+    assert {:error, %Error{code: :invalid_json}} = Wire.validate_value([1 | 2])
 
     for value <- [
           %{atom: "secret"},
@@ -94,19 +94,19 @@ defmodule SamgitaProtocolCodex.WireTest do
           <<255>>,
           ~s({"id":1,)
         ] do
-      assert {:error, %Failure{}} = Wire.decode(binary)
+      assert {:error, %Error{}} = Wire.decode(binary)
     end
 
-    assert {:error, %Failure{code: :invalid_json}} = Wire.decode(~s({"method":"x"}) <> <<11>>)
-    assert {:error, %Failure{code: :invalid_json}} = Wire.decode(~s({"method":"x"}) <> "\u00a0")
+    assert {:error, %Error{code: :invalid_json}} = Wire.decode(~s({"method":"x"}) <> <<11>>)
+    assert {:error, %Error{code: :invalid_json}} = Wire.decode(~s({"method":"x"}) <> "\u00a0")
 
-    assert {:error, %Failure{code: :message_too_large}} =
+    assert {:error, %Error{code: :message_too_large}} =
              Wire.decode(~s({"method":"x"}), max_bytes: 2)
 
-    assert {:error, %Failure{code: :message_too_deep}} =
+    assert {:error, %Error{code: :message_too_deep}} =
              Wire.decode(~s({"method":"x","params":[[[1]]]}), max_depth: 1)
 
-    assert {:error, %Failure{code: :message_too_deep}} =
+    assert {:error, %Error{code: :message_too_deep}} =
              Wire.encode(%{"method" => "x", "params" => [[1]]}, max_depth: 1)
 
     assert {:ok, _} = Wire.decode(~s( {"method":"x","params":"[\\\"{"}  ))

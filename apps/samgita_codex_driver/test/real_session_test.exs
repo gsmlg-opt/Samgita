@@ -2,7 +2,7 @@ defmodule SamgitaCodexDriver.RealSessionTest do
   use ExUnit.Case, async: false
   alias SamgitaCodexDriver.{ModelFixture, Session}
   alias SamgitaCodexDriver.Transport.{Stdio, WebSocket}
-  alias SamgitaProtocolCodex.Failure
+  alias SamgitaProtocolCodex.Error
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @pixel "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC"
@@ -198,7 +198,7 @@ defmodule SamgitaCodexDriver.RealSessionTest do
     fixture = fixture(root, "assistant")
     pid = session(binary, fixture)
 
-    assert {:error, %Failure{code: :upstream_error, wire: wire} = failure} =
+    assert {:error, %Error{code: :upstream_error, wire: wire} = failure} =
              Session.request(pid, "thread/read", %{"threadId" => 42},
                validation: :wire,
                effect: :read
@@ -264,7 +264,7 @@ defmodule SamgitaCodexDriver.RealSessionTest do
       approval = Enum.find(events, &(&1.kind == :server_request))
       assert approval
 
-      assert {:error, %Failure{code: :stale_interaction}} =
+      assert {:error, %Error{code: :stale_interaction}} =
                Session.respond(pid, approval.handle, {:ok, %{"decision" => "accept"}})
 
       assert completed(events)["status"] ==
@@ -425,7 +425,7 @@ defmodule SamgitaCodexDriver.RealSessionTest do
     assert Session.status(pid).phase == :new
     assert Session.status(pid).generation == 2
     assert Session.status(pid).gap.reason == :explicit_reconnect
-    assert {:error, %Failure{code: :not_initialized}} = Session.request(pid, "thread/list")
+    assert {:error, %Error{code: :not_initialized}} = Session.request(pid, "thread/list")
     initialize(pid, false)
 
     assert {:ok, %{"result" => %{"thread" => %{"id" => ^thread}}}} =

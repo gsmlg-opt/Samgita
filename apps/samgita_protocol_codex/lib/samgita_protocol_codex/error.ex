@@ -1,4 +1,4 @@
-defmodule SamgitaProtocolCodex.Failure do
+defmodule SamgitaProtocolCodex.Error do
   @moduledoc """
   Native driver failure. `wire` preserves an upstream error without logging it.
 
@@ -28,12 +28,12 @@ defmodule SamgitaProtocolCodex.Failure do
   def message(failure), do: "Codex request failed: #{failure.code}"
 end
 
-defimpl Inspect, for: SamgitaProtocolCodex.Failure do
+defimpl Inspect, for: SamgitaProtocolCodex.Error do
   import Inspect.Algebra
 
   def inspect(failure, opts) do
     concat([
-      "#SamgitaProtocolCodex.Failure<",
+      "#SamgitaProtocolCodex.Error<",
       to_doc(failure.code, opts),
       ", uncertain: ",
       to_doc(failure.uncertain, opts),

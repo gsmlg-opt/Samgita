@@ -1,7 +1,7 @@
 defmodule SamgitaCodexDriver.TransportStdioTest do
   use ExUnit.Case, async: false
   alias SamgitaCodexDriver.Transport.Stdio
-  alias SamgitaProtocolCodex.Failure
+  alias SamgitaProtocolCodex.Error
 
   setup do
     dir =
@@ -73,19 +73,19 @@ defmodule SamgitaCodexDriver.TransportStdioTest do
     {[{:message, json}], _} = receive_events(state, 1)
     assert %{"secret" => nil, "home" => ^dir, "codex" => ^dir} = JSON.decode!(json)
 
-    assert {:error, %Failure{code: :invalid_transport_options}} =
+    assert {:error, %Error{code: :invalid_transport_options}} =
              Stdio.open(executable: "python3")
   end
 
   test "oversized partial input and outgoing newlines are explicit failures", %{dir: dir} do
     {:ok, state} = Stdio.open(opts(dir, "import time;time.sleep(3)", max_message_bytes: 8))
 
-    assert {:error, %Failure{code: :message_too_large}, ^state} =
+    assert {:error, %Error{code: :message_too_large}, ^state} =
              Stdio.send(state, String.duplicate("a", 9))
 
-    assert {:error, %Failure{code: :invalid_jsonl_message}, ^state} = Stdio.send(state, "{}\n")
+    assert {:error, %Error{code: :invalid_jsonl_message}, ^state} = Stdio.send(state, "{}\n")
 
-    assert {:error, %Failure{code: :message_too_large}, next} =
+    assert {:error, %Error{code: :message_too_large}, next} =
              Stdio.handle_info({state.port, {:data, String.duplicate("a", 9)}}, state)
 
     assert next.closed

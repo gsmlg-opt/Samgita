@@ -31,7 +31,7 @@ alias SamgitaCodexDriver.Transport.Stdio
 {:ok, events} = Session.drain(session)
 ```
 
-Keep native results and errors intact. A `Failure` preserves upstream error wire
+Keep native results and errors intact. An `Error` preserves upstream error wire
 for its authorized caller, while Inspect and Exception output redact it. Never
 log native payloads blindly: tool input, account/authentication, configuration and
 error data can contain secrets. Do not create atoms from wire values.

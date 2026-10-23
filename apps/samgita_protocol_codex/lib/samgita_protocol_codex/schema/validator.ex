@@ -1,10 +1,18 @@
 defmodule SamgitaProtocolCodex.Schema.Validator do
   @moduledoc false
-  alias SamgitaProtocolCodex.Failure
+  alias SamgitaProtocolCodex.Error
 
   @keywords ~w($schema $id $comment $ref title description default definitions $defs type enum anyOf oneOf allOf properties required additionalProperties items minimum maximum exclusiveMinimum exclusiveMaximum minLength maxLength minItems maxItems uniqueItems multipleOf format pattern const)
   @metadata ~w($schema $id $comment title description default definitions $defs)
   @formats ~w(int64 int32 uint64 uint32 uint16 uint double)
+  @integer_ranges %{
+    "int64" => -9_223_372_036_854_775_808..9_223_372_036_854_775_807,
+    "int32" => -2_147_483_648..2_147_483_647,
+    "uint64" => 0..18_446_744_073_709_551_615,
+    "uint" => 0..18_446_744_073_709_551_615,
+    "uint32" => 0..4_294_967_295,
+    "uint16" => 0..65_535
+  }
 
   def validate(schema, value, root \\ nil) do
     with :ok <- vocabulary(root || schema), do: check(schema, value, root || schema, [], 0)
@@ -13,30 +21,28 @@ defmodule SamgitaProtocolCodex.Schema.Validator do
   defp vocabulary(schema) when is_boolean(schema), do: :ok
 
   defp vocabulary(schema) when is_map(schema) do
-    Enum.reduce_while(schema, :ok, fn {key, value}, :ok ->
-      cond do
-        key not in @keywords ->
-          {:halt, failure(:unsupported_schema_keyword, [], key)}
-
-        key == "format" and value not in @formats ->
-          {:halt, failure(:unsupported_schema_format, [], value)}
-
-        key in ["properties", "definitions", "$defs"] ->
-          next(Enum.reduce_while(value, :ok, fn {_, child}, :ok -> next(vocabulary(child)) end))
-
-        key in ["anyOf", "oneOf", "allOf"] ->
-          next(every(value, &vocabulary/1))
-
-        key in ["items", "additionalProperties"] and (is_map(value) or is_boolean(value)) ->
-          next(vocabulary(value))
-
-        true ->
-          {:cont, :ok}
-      end
-    end)
+    every(schema, fn {key, value} -> vocabulary_entry(key, value) end)
   end
 
   defp vocabulary(_), do: failure(:invalid_schema, [], "schema")
+
+  defp vocabulary_entry(key, _) when key not in @keywords,
+    do: failure(:unsupported_schema_keyword, [], key)
+
+  defp vocabulary_entry("format", value) when value not in @formats,
+    do: failure(:unsupported_schema_format, [], value)
+
+  defp vocabulary_entry(key, value) when key in ["properties", "definitions", "$defs"],
+    do: every(value, fn {_, child} -> vocabulary(child) end)
+
+  defp vocabulary_entry(key, value) when key in ["anyOf", "oneOf", "allOf"],
+    do: every(value, &vocabulary/1)
+
+  defp vocabulary_entry(key, value)
+       when key in ["items", "additionalProperties"] and (is_map(value) or is_boolean(value)),
+       do: vocabulary(value)
+
+  defp vocabulary_entry(_, _), do: :ok
 
   defp check(_, _, _, path, depth) when depth > 256,
     do: failure(:schema_recursion_limit, path, "depth")
@@ -82,7 +88,7 @@ defmodule SamgitaProtocolCodex.Schema.Validator do
       end
 
     case Enum.find(results, fn
-           {:error, %Failure{code: code}} -> code != :schema_violation
+           {:error, %Error{code: code}} -> code != :schema_violation
            _ -> false
          end) do
       nil -> if valid, do: :ok, else: violation(path, key)
@@ -118,32 +124,7 @@ defmodule SamgitaProtocolCodex.Schema.Validator do
   end
 
   defp assertion("format", format, _, value, _, path, _) when is_number(value) do
-    valid =
-      case format do
-        "int64" ->
-          is_integer(value) and value >= -9_223_372_036_854_775_808 and
-            value <= 9_223_372_036_854_775_807
-
-        "int32" ->
-          is_integer(value) and value >= -2_147_483_648 and value <= 2_147_483_647
-
-        "uint64" ->
-          is_integer(value) and value >= 0 and value <= 18_446_744_073_709_551_615
-
-        "uint" ->
-          is_integer(value) and value >= 0 and value <= 18_446_744_073_709_551_615
-
-        "uint32" ->
-          is_integer(value) and value >= 0 and value <= 4_294_967_295
-
-        "uint16" ->
-          is_integer(value) and value >= 0 and value <= 65_535
-
-        "double" ->
-          true
-      end
-
-    if valid, do: :ok, else: violation(path, "format")
+    if valid_format?(format, value), do: :ok, else: violation(path, "format")
   end
 
   defp assertion(key, bound, _, value, _, path, _)
@@ -200,22 +181,7 @@ defmodule SamgitaProtocolCodex.Schema.Validator do
     |> Enum.reduce_while({:ok, root}, fn token, {:ok, node} ->
       key = token |> String.replace("~1", "/") |> String.replace("~0", "~")
 
-      lookup =
-        cond do
-          is_map(node) ->
-            Map.fetch(node, key)
-
-          is_list(node) ->
-            case Integer.parse(key) do
-              {index, ""} when index >= 0 -> Enum.fetch(node, index)
-              _ -> :error
-            end
-
-          true ->
-            :error
-        end
-
-      case lookup do
+      case lookup(node, key) do
         {:ok, child} -> {:cont, {:ok, child}}
         :error -> {:halt, failure(:invalid_schema_reference, [], "$ref")}
       end
@@ -223,6 +189,19 @@ defmodule SamgitaProtocolCodex.Schema.Validator do
   end
 
   def resolve(_, _), do: failure(:unsupported_schema_reference, [], "$ref")
+
+  defp lookup(node, key) when is_map(node), do: Map.fetch(node, key)
+
+  defp lookup(node, key) when is_list(node) do
+    case Integer.parse(key) do
+      {index, ""} when index >= 0 -> Enum.fetch(node, index)
+      _ -> :error
+    end
+  end
+
+  defp lookup(_, _), do: :error
+  defp valid_format?("double", _), do: true
+  defp valid_format?(format, value), do: is_integer(value) and value in @integer_ranges[format]
 
   defp type?("object", value), do: is_map(value) and not is_struct(value)
   defp type?("array", value), do: is_list(value)
@@ -244,5 +223,5 @@ defmodule SamgitaProtocolCodex.Schema.Validator do
   defp violation(path, keyword), do: failure(:schema_violation, path, keyword)
 
   defp failure(code, path, keyword),
-    do: {:error, Failure.new(code, %{"path" => path, "keyword" => keyword})}
+    do: {:error, Error.new(code, %{"path" => path, "keyword" => keyword})}
 end

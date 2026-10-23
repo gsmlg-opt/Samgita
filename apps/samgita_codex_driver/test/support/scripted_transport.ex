@@ -1,7 +1,8 @@
 defmodule SamgitaCodexDriver.ScriptedTransport do
+  @moduledoc false
   import Kernel, except: [send: 2]
   @behaviour SamgitaCodexDriver.Transport
-  alias SamgitaProtocolCodex.Failure
+  alias SamgitaProtocolCodex.Error
 
   @impl true
   def open(opts) do
@@ -16,7 +17,7 @@ defmodule SamgitaCodexDriver.ScriptedTransport do
 
     if (is_binary(state[:fail_method]) and state[:fail_method] == wire["method"]) or
          (state[:fail_response] == true and Map.has_key?(wire, "result")),
-       do: {:error, Failure.new(:send_failed), state},
+       do: {:error, Error.new(:send_failed), state},
        else: {:ok, state}
   end
 

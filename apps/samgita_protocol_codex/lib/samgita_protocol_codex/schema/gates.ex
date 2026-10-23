@@ -1,6 +1,6 @@
 defmodule SamgitaProtocolCodex.Schema.Gates do
   @moduledoc false
-  alias SamgitaProtocolCodex.Failure
+  alias SamgitaProtocolCodex.Error
   alias SamgitaProtocolCodex.Schema.Validator
 
   @semantics_path Path.expand(
@@ -18,7 +18,7 @@ defmodule SamgitaProtocolCodex.Schema.Gates do
   end
 
   defp walk(_, _, _, _, _, path, depth) when depth > 256,
-    do: {:error, Failure.new(:schema_recursion_limit, %{"path" => path})}
+    do: {:error, Error.new(:schema_recursion_limit, %{"path" => path})}
 
   defp walk(%{"$ref" => reference}, stable, value, full_root, stable_root, path, depth) do
     with {:ok, target} <- Validator.resolve(full_root, reference) do
@@ -37,28 +37,31 @@ defmodule SamgitaProtocolCodex.Schema.Gates do
     with :ok <- enum_variant(full, value, path),
          :ok <- properties(full, stable, value, full_root, stable_root, path, depth),
          :ok <- alternatives(full, stable, value, full_root, stable_root, path, depth) do
-      if is_list(value) and is_map(full["items"]) do
-        value
-        |> Enum.with_index()
-        |> every(fn {child, index} ->
-          walk(
-            full["items"],
-            Map.get(stable, "items", true),
-            child,
-            full_root,
-            stable_root,
-            path ++ [Integer.to_string(index)],
-            depth + 1
-          )
-        end)
-      else
-        :ok
-      end
+      items(full, stable, value, full_root, stable_root, path, depth)
     end
   end
 
   defp walk(_, nil, _, _, _, path, _), do: gated(path)
   defp walk(_, _, _, _, _, _, _), do: :ok
+
+  defp items(%{"items" => child_schema}, stable, value, full_root, stable_root, path, depth)
+       when is_list(value) and is_map(child_schema) do
+    value
+    |> Enum.with_index()
+    |> every(fn {child, index} ->
+      walk(
+        child_schema,
+        Map.get(stable, "items", true),
+        child,
+        full_root,
+        stable_root,
+        path ++ [Integer.to_string(index)],
+        depth + 1
+      )
+    end)
+  end
+
+  defp items(_, _, _, _, _, _, _), do: :ok
 
   defp properties(full, stable, value, full_root, stable_root, path, depth) when is_map(value) do
     full_properties = Map.get(full, "properties", %{})
@@ -70,14 +73,7 @@ defmodule SamgitaProtocolCodex.Schema.Gates do
           :ok
 
         not Map.has_key?(stable_properties, name) ->
-          case field_rule(full, full_root, name) do
-            nil ->
-              {:error,
-               Failure.new(:unverified_experimental_semantics, %{"path" => path ++ [name]})}
-
-            rule ->
-              if active?(rule["presence"], value[name]), do: gated(path ++ [name]), else: :ok
-          end
+          field_gate(field_rule(full, full_root, name), value[name], path ++ [name])
 
         true ->
           walk(
@@ -94,6 +90,12 @@ defmodule SamgitaProtocolCodex.Schema.Gates do
   end
 
   defp properties(_, _, _, _, _, _, _), do: :ok
+
+  defp field_gate(nil, _, path),
+    do: {:error, Error.new(:unverified_experimental_semantics, %{"path" => path})}
+
+  defp field_gate(rule, value, path),
+    do: if(active?(rule["presence"], value), do: gated(path), else: :ok)
 
   defp alternatives(full, stable, value, full_root, stable_root, path, depth) do
     every(["anyOf", "oneOf", "allOf"], fn keyword ->
@@ -160,5 +162,5 @@ defmodule SamgitaProtocolCodex.Schema.Gates do
         end
       end)
 
-  defp gated(path), do: {:error, Failure.new(:experimental_api_required, %{"path" => path})}
+  defp gated(path), do: {:error, Error.new(:experimental_api_required, %{"path" => path})}
 end

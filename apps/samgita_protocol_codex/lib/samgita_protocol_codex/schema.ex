@@ -17,7 +17,7 @@ defmodule SamgitaProtocolCodex.Schema do
   This validates wire contracts and cannot establish behavioral compatibility.
   """
 
-  alias SamgitaProtocolCodex.{Failure, Wire}
+  alias SamgitaProtocolCodex.{Error, Wire}
   alias SamgitaProtocolCodex.Schema.{Gates, Validator}
 
   @version "0.163.0"
@@ -139,9 +139,8 @@ defmodule SamgitaProtocolCodex.Schema do
           else: value
 
       with :ok <- Wire.validate_value(value, opts),
-           :ok <- Validator.validate(full_schema, value, full),
-           :ok <- gates(direction, full_schema, schema, value, full, document, opts) do
-        :ok
+           :ok <- Validator.validate(full_schema, value, full) do
+        gates(direction, full_schema, schema, value, full, document, opts)
       end
     end
   end
@@ -200,5 +199,5 @@ defmodule SamgitaProtocolCodex.Schema do
     |> JSON.decode!()
   end
 
-  defp failure(code), do: {:error, Failure.new(code)}
+  defp failure(code), do: {:error, Error.new(code)}
 end

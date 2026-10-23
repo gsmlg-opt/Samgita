@@ -50,10 +50,7 @@ defmodule SamgitaCodexDriver.TransportWire do
       Task.start_link(fn ->
         case :ssl.transport_accept(listener, 5_000) do
           {:ok, accepted} ->
-            case :ssl.handshake(accepted, 5_000) do
-              {:ok, socket} -> handler.({:ssl, socket}, owner)
-              {:error, _} -> :ssl.close(accepted)
-            end
+            accept_tls(accepted, handler, owner)
 
           {:error, :closed} ->
             :ok
@@ -61,6 +58,13 @@ defmodule SamgitaCodexDriver.TransportWire do
       end)
 
     %{listener: listener, pid: pid, address: address, ssl: true}
+  end
+
+  defp accept_tls(accepted, handler, owner) do
+    case :ssl.handshake(accepted, 5_000) do
+      {:ok, socket} -> handler.({:ssl, socket}, owner)
+      {:error, _} -> :ssl.close(accepted)
+    end
   end
 
   def write({:ssl, socket}, bytes), do: :ssl.send(socket, bytes)

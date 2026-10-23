@@ -9,15 +9,15 @@ defmodule SamgitaCodexDriver.Transport do
   closing a borrowed server connection never stops its server or removes a socket.
   """
 
-  alias SamgitaProtocolCodex.Failure
+  alias SamgitaProtocolCodex.Error
 
   @type state :: term()
   @type event :: {:message, binary()} | {:closed, map()}
 
-  @callback open(keyword()) :: {:ok, state()} | {:error, Failure.t()}
-  @callback send(state(), binary()) :: {:ok, state()} | {:error, Failure.t(), state()}
+  @callback open(keyword()) :: {:ok, state()} | {:error, Error.t()}
+  @callback send(state(), binary()) :: {:ok, state()} | {:error, Error.t(), state()}
   @callback handle_info(term(), state()) ::
-              :unknown | {:ok, [event()], state()} | {:error, Failure.t(), state()}
+              :unknown | {:ok, [event()], state()} | {:error, Error.t(), state()}
   @callback close(state()) :: :ok
   @callback metadata(state()) :: map()
 end

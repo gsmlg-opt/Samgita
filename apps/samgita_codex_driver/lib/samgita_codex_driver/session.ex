@@ -15,7 +15,7 @@ defmodule SamgitaCodexDriver.Session do
   """
   use GenServer, restart: :temporary
 
-  alias SamgitaProtocolCodex.{Failure, Schema, Wire}
+  alias SamgitaProtocolCodex.{Error, Schema, Wire}
 
   @defaults [
     max_pending: 128,
@@ -110,7 +110,7 @@ defmodule SamgitaCodexDriver.Session do
        }}
     else
       {:error, failure} -> {:stop, failure}
-      _ -> {:stop, Failure.new(:invalid_options)}
+      _ -> {:stop, Error.new(:invalid_options)}
     end
   end
 
@@ -124,11 +124,11 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   def handle_call({:initialize, _, _, _}, _from, state) do
-    {:reply, {:error, Failure.new(:invalid_initialization_state)}, state}
+    {:reply, {:error, Error.new(:invalid_initialization_state)}, state}
   end
 
   def handle_call({:request, "initialize", _, _}, _from, state) do
-    {:reply, {:error, Failure.new(:use_initialize)}, state}
+    {:reply, {:error, Error.new(:use_initialize)}, state}
   end
 
   def handle_call({:request, method, params, opts}, from, %{phase: :ready} = state) do
@@ -136,7 +136,7 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   def handle_call({:request, _, _, _}, _from, state) do
-    {:reply, {:error, Failure.new(:not_initialized)}, state}
+    {:reply, {:error, Error.new(:not_initialized)}, state}
   end
 
   def handle_call({:request_native, wire, opts}, from, state) when is_list(opts) do
@@ -153,12 +153,12 @@ defmodule SamgitaCodexDriver.Session do
         handle_call({:request, wire["method"], wire["params"], opts}, from, state)
       end
     else
-      {:reply, {:error, Failure.new(:invalid_envelope)}, state}
+      {:reply, {:error, Error.new(:invalid_envelope)}, state}
     end
   end
 
   def handle_call({:request_native, _, _}, _from, state) do
-    {:reply, {:error, Failure.new(:invalid_options)}, state}
+    {:reply, {:error, Error.new(:invalid_options)}, state}
   end
 
   def handle_call({:respond, handle, result}, _from, state) do
@@ -171,7 +171,7 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   def handle_call({:drain, _}, _from, state) do
-    {:reply, {:error, Failure.new(:invalid_limit)}, state}
+    {:reply, {:error, Error.new(:invalid_limit)}, state}
   end
 
   def handle_call(:status, _from, state) do
@@ -207,7 +207,7 @@ defmodule SamgitaCodexDriver.Session do
       {:reply, :ok,
        %{state | interaction_outcomes: Map.delete(state.interaction_outcomes, handle)}}
     else
-      {:reply, {:error, Failure.new(:unknown_interaction_outcome)}, state}
+      {:reply, {:error, Error.new(:unknown_interaction_outcome)}, state}
     end
   end
 
@@ -234,7 +234,7 @@ defmodule SamgitaCodexDriver.Session do
   def handle_call({:abandon, id}, _from, state) do
     case state.pending[id] do
       nil ->
-        {:reply, {:error, Failure.new(:unknown_operation)}, state}
+        {:reply, {:error, Error.new(:unknown_operation)}, state}
 
       %{method: "initialize"} ->
         state = fail_pending(state, id, :locally_abandoned)
@@ -252,12 +252,12 @@ defmodule SamgitaCodexDriver.Session do
       # This is caller-provided evidence, not an upstream deduplication guarantee.
       {:reply, :ok, %{state | uncertain: Map.delete(state.uncertain, id)}}
     else
-      {:reply, {:error, Failure.new(:invalid_reconciliation)}, state}
+      {:reply, {:error, Error.new(:invalid_reconciliation)}, state}
     end
   end
 
   def handle_call({:reconciled, _, _, _}, _from, state) do
-    {:reply, {:error, Failure.new(:invalid_reconciliation)}, state}
+    {:reply, {:error, Error.new(:invalid_reconciliation)}, state}
   end
 
   def handle_call(:close, _from, state) do
@@ -378,7 +378,7 @@ defmodule SamgitaCodexDriver.Session do
     end
   end
 
-  defp submit(_, _, _, _, state), do: {:reply, {:error, Failure.new(:invalid_options)}, state}
+  defp submit(_, _, _, _, state), do: {:reply, {:error, Error.new(:invalid_options)}, state}
 
   defp initialize_native(wire, opts, from, %{phase: :new} = state) do
     experimental =
@@ -392,20 +392,20 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   defp initialize_native(_, _, _, state) do
-    {:reply, {:error, Failure.new(:invalid_initialization_state)}, state}
+    {:reply, {:error, Error.new(:invalid_initialization_state)}, state}
   end
 
   defp request_capacity(state, method) do
     cond do
       map_size(state.pending) >= state.opts[:max_pending] ->
-        {:error, Failure.new(:too_many_requests)}
+        {:error, Error.new(:too_many_requests)}
 
       map_size(state.uncertain) + map_size(state.pending) >= state.opts[:max_uncertain] and
           method not in @read_only ->
-        {:error, Failure.new(:reconciliation_required)}
+        {:error, Error.new(:reconciliation_required)}
 
       MapSet.size(state.used_ids) >= state.opts[:max_request_ids] ->
-        {:error, Failure.new(:connection_id_limit)}
+        {:error, Error.new(:connection_id_limit)}
 
       true ->
         :ok
@@ -414,7 +414,7 @@ defmodule SamgitaCodexDriver.Session do
 
   defp validate_effect(method, opts) do
     if Keyword.get(opts, :effect) == :read and method not in @read_only,
-      do: {:error, Failure.new(:unsafe_read_classification)},
+      do: {:error, Error.new(:unsafe_read_classification)},
       else: :ok
   end
 
@@ -437,7 +437,7 @@ defmodule SamgitaCodexDriver.Session do
          not Map.has_key?(state.uncertain, id) do
       {:ok, id, %{state | next_id: next, used_ids: MapSet.put(state.used_ids, id)}}
     else
-      {:error, Failure.new(:invalid_or_reused_request_id)}
+      {:error, Error.new(:invalid_or_reused_request_id)}
     end
   end
 
@@ -446,17 +446,16 @@ defmodule SamgitaCodexDriver.Session do
 
     if is_integer(value) and value in 1..86_400_000,
       do: {:ok, value},
-      else: {:error, Failure.new(:invalid_deadline)}
+      else: {:error, Error.new(:invalid_deadline)}
   end
 
   defp send_wire(%{connection: nil} = state, _wire) do
-    {:error, Failure.new(:disconnected), state}
+    {:error, Error.new(:disconnected), state}
   end
 
   defp send_wire(state, wire) do
-    with {:ok, encoded} <- Wire.encode(wire, max_bytes: state.opts[:max_message_bytes]) do
-      send_encoded(state, encoded)
-    else
+    case Wire.encode(wire, max_bytes: state.opts[:max_message_bytes]) do
+      {:ok, encoded} -> send_encoded(state, encoded)
       {:error, failure} -> {:error, failure, state}
     end
   end
@@ -473,7 +472,7 @@ defmodule SamgitaCodexDriver.Session do
          Enum.all?(~w(id method params), &(not Map.has_key?(envelope, &1))) do
       Wire.encode(Map.merge(wire, envelope), max_bytes: state.opts[:max_message_bytes])
     else
-      {:error, Failure.new(:invalid_envelope)}
+      {:error, Error.new(:invalid_envelope)}
     end
   end
 
@@ -546,7 +545,7 @@ defmodule SamgitaCodexDriver.Session do
   defp receive_wire(_, _, _, state), do: disconnect(state, :invalid_message)
 
   defp complete_request(%{"error" => _} = wire, pending, state) do
-    state = settle(state, wire["id"], {:error, Failure.upstream(wire)})
+    state = settle(state, wire["id"], {:error, Error.upstream(wire)})
     if pending.method == "initialize", do: %{state | phase: :new}, else: state
   end
 
@@ -646,32 +645,33 @@ defmodule SamgitaCodexDriver.Session do
             | interaction_outcomes: Map.put(state.interaction_outcomes, handle, outcome)
           }
 
-          case send_encoded(state, encoded) do
-            {:ok, state} ->
-              outcome = %{outcome | status: :sent_unconfirmed}
-
-              {:reply, :ok,
-               %{
-                 state
-                 | interaction_outcomes: Map.put(state.interaction_outcomes, handle, outcome)
-               }}
-
-            {:error, failure, state} ->
-              failure = %{failure | uncertain: true}
-              {:reply, {:error, failure}, disconnect(state, :interaction_send_failed)}
-          end
+          send_interaction_response(state, encoded, handle, outcome)
         else
           {:error, failure} ->
             {:reply, {:error, failure}, state}
         end
 
       _ ->
-        {:reply, {:error, Failure.new(:stale_interaction)}, state}
+        {:reply, {:error, Error.new(:stale_interaction)}, state}
     end
   end
 
   defp respond_to_interaction(_, _, state) do
-    {:reply, {:error, Failure.new(:stale_interaction)}, state}
+    {:reply, {:error, Error.new(:stale_interaction)}, state}
+  end
+
+  defp send_interaction_response(state, encoded, handle, outcome) do
+    case send_encoded(state, encoded) do
+      {:ok, state} ->
+        outcome = %{outcome | status: :sent_unconfirmed}
+
+        {:reply, :ok,
+         %{state | interaction_outcomes: Map.put(state.interaction_outcomes, handle, outcome)}}
+
+      {:error, failure, state} ->
+        failure = %{failure | uncertain: true}
+        {:reply, {:error, failure}, disconnect(state, :interaction_send_failed)}
+    end
   end
 
   defp interaction_response(id, method, {:ok, result}, state) do
@@ -688,7 +688,7 @@ defmodule SamgitaCodexDriver.Session do
     with {:ok, _encoded} <- Wire.encode(wire), do: {:ok, wire}
   end
 
-  defp interaction_response(_, _, _, _), do: {:error, Failure.new(:invalid_response)}
+  defp interaction_response(_, _, _, _), do: {:error, Error.new(:invalid_response)}
 
   defp resolve_interaction(%{"method" => "serverRequest/resolved", "params" => params}, state) do
     expected_thread = params["threadId"]
@@ -741,7 +741,7 @@ defmodule SamgitaCodexDriver.Session do
 
   defp fail_pending(state, id, reason) do
     pending = Map.fetch!(state.pending, id)
-    failure = Failure.new(reason, %{"request_id" => id}, uncertain: pending.mutation)
+    failure = Error.new(reason, %{"request_id" => id}, uncertain: pending.mutation)
 
     state =
       if pending.mutation do
@@ -828,7 +828,7 @@ defmodule SamgitaCodexDriver.Session do
     if valid and is_pid(opts[:owner]) and
          match?({module, args} when is_atom(module) and is_list(args), opts[:transport]),
        do: :ok,
-       else: {:error, Failure.new(:invalid_options)}
+       else: {:error, Error.new(:invalid_options)}
   end
 
   defp transport_opts(opts, transport_opts) do

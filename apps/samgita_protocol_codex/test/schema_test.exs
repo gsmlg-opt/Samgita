@@ -1,6 +1,6 @@
 defmodule SamgitaProtocolCodex.SchemaTest do
   use ExUnit.Case, async: true
-  alias SamgitaProtocolCodex.{Failure, Schema}
+  alias SamgitaProtocolCodex.{Error, Schema}
 
   test "all message directions expose the exact full release surface" do
     assert length(Schema.methods(:client_request, experimental: true)) == 172
@@ -9,10 +9,10 @@ defmodule SamgitaProtocolCodex.SchemaTest do
     assert Schema.methods(:client_notification) == ["initialized"]
     assert "server/diagnostics" not in Schema.methods(:client_request)
 
-    assert {:error, %Failure{code: :unsupported_method}} =
+    assert {:error, %Error{code: :unsupported_method}} =
              Schema.validate_request("future/method", %{})
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_request("server/diagnostics", %{})
   end
 
@@ -38,23 +38,23 @@ defmodule SamgitaProtocolCodex.SchemaTest do
     assert :ok =
              Schema.validate_request("turn/start", %{"threadId" => "thread", "input" => input})
 
-    assert {:error, %Failure{code: :schema_violation}} =
+    assert {:error, %Error{code: :schema_violation}} =
              Schema.validate_request("turn/start", %{
                "threadId" => "thread",
                "input" => [%{"type" => "image"}]
              })
 
-    assert {:error, %Failure{}} =
+    assert {:error, %Error{}} =
              Schema.validate_request("turn/start", %{"thread_id" => "thread", "input" => []})
   end
 
   test "experimental field gates follow source presence semantics rather than key presence" do
     assert :ok = Schema.validate_request("thread/start", %{"experimentalRawEvents" => false})
 
-    assert {:error, %Failure{code: :schema_violation}} =
+    assert {:error, %Error{code: :schema_violation}} =
              Schema.validate_request("thread/start", %{"experimentalRawEvents" => nil})
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_request("thread/start", %{"experimentalRawEvents" => true})
 
     assert :ok =
@@ -63,10 +63,10 @@ defmodule SamgitaProtocolCodex.SchemaTest do
                "mockExperimentalField" => nil
              })
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_request("thread/start", %{"dynamicTools" => []})
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_request("thread/start", %{"mockExperimentalField" => ""})
 
     assert :ok =
@@ -74,12 +74,12 @@ defmodule SamgitaProtocolCodex.SchemaTest do
                experimental: true
              )
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_request("thread/start", %{"config" => %{}, "dynamicTools" => []})
 
     assert :ok = Schema.validate_request("thread/list", %{"parentThreadId" => nil})
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_request("thread/list", %{"projectId" => nil})
 
     assert :ok =
@@ -89,7 +89,7 @@ defmodule SamgitaProtocolCodex.SchemaTest do
       "granular" => %{"sandbox_approval" => false, "rules" => false, "mcp_elicitations" => false}
     }
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_request("thread/start", %{"approvalPolicy" => granular})
 
     assert :ok =
@@ -103,7 +103,7 @@ defmodule SamgitaProtocolCodex.SchemaTest do
       "chatgptAccountId" => "synthetic"
     }
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_request("account/login/start", tokens)
 
     assert :ok = Schema.validate_request("account/login/start", tokens, experimental: true)
@@ -141,14 +141,14 @@ defmodule SamgitaProtocolCodex.SchemaTest do
       assert :ok = Schema.validate_result(:server_response, method, response["result"])
     end
 
-    assert {:error, %Failure{code: :schema_violation}} =
+    assert {:error, %Error{code: :schema_violation}} =
              Schema.validate_result(
                :server_response,
                "thread/start",
                put_in(responses["thread/start"]["result"], ["runtimeWorkspaceRoots"], [42])
              )
 
-    assert {:error, %Failure{code: :schema_violation}} =
+    assert {:error, %Error{code: :schema_violation}} =
              Schema.validate_result(
                :server_response,
                "thread/list",
@@ -168,13 +168,13 @@ defmodule SamgitaProtocolCodex.SchemaTest do
                "thread" => thread
              })
 
-    assert {:error, %Failure{code: :schema_violation}} =
+    assert {:error, %Error{code: :schema_violation}} =
              Schema.validate_notification(:server_notification, "thread/started", %{
                "thread" =>
                  put_in(thread, ["environments", Access.at(0), "runtimeWorkspaceRoots"], [42])
              })
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_notification(:server_notification, "thread/settings/updated", %{})
 
     assert length(Schema.methods(:server_notification)) == 61
@@ -197,7 +197,7 @@ defmodule SamgitaProtocolCodex.SchemaTest do
       |> Enum.find(&(&1["id"] == "server_notification:thread/settings/updated"))
       |> get_in(["value", "params"])
 
-    assert {:error, %Failure{code: :experimental_api_required}} =
+    assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_notification(
                :server_notification,
                "thread/settings/updated",
@@ -212,7 +212,7 @@ defmodule SamgitaProtocolCodex.SchemaTest do
                experimental: true
              )
 
-    assert {:error, %Failure{code: :schema_violation}} =
+    assert {:error, %Error{code: :schema_violation}} =
              Schema.validate_notification(:server_notification, "thread/settings/updated", %{},
                experimental: true
              )
@@ -240,7 +240,7 @@ defmodule SamgitaProtocolCodex.SchemaTest do
                direction: :server_request
              )
 
-    assert {:error, %Failure{code: :schema_violation}} =
+    assert {:error, %Error{code: :schema_violation}} =
              Schema.validate_request(
                "item/commandExecution/requestApproval",
                Map.put(params, "availableDecisions", [42]),
@@ -251,9 +251,9 @@ defmodule SamgitaProtocolCodex.SchemaTest do
   test "omitted params and explicit null obey separate upstream schemas" do
     assert :ok = Schema.validate_request("account/logout", nil, params_present: false)
     assert :ok = Schema.validate_request("account/logout", nil)
-    assert {:error, %Failure{}} = Schema.validate_request("thread/start", nil)
+    assert {:error, %Error{}} = Schema.validate_request("thread/start", nil)
 
-    assert {:error, %Failure{}} =
+    assert {:error, %Error{}} =
              Schema.validate_request("thread/start", nil, params_present: false)
 
     assert :ok =
@@ -279,13 +279,13 @@ defmodule SamgitaProtocolCodex.SchemaTest do
                "success" => true
              })
 
-    assert {:error, %Failure{}} =
+    assert {:error, %Error{}} =
              Schema.validate_result(:client_response, "item/tool/call", %{
                "contentItems" => [],
                "success" => "yes"
              })
 
-    assert {:error, %Failure{}} = Schema.validate_result(:server_response, "thread/start", %{})
+    assert {:error, %Error{}} = Schema.validate_result(:server_response, "thread/start", %{})
   end
 
   test "draft-07 refs, unions, defaults, additional properties and numeric constraints" do
@@ -309,7 +309,7 @@ defmodule SamgitaProtocolCodex.SchemaTest do
           %{"value" => 2, "extra" => true},
           %{}
         ] do
-      assert {:error, %Failure{}} = Schema.validate(schema, value)
+      assert {:error, %Error{}} = Schema.validate(schema, value)
     end
 
     assert :ok = Schema.validate(%{"allOf" => [%{"type" => "integer"}, %{"minimum" => 3}]}, 3)
@@ -319,13 +319,13 @@ defmodule SamgitaProtocolCodex.SchemaTest do
 
     assert :ok = Schema.validate(%{"anyOf" => [%{"type" => "string"}, %{"type" => "null"}]}, nil)
 
-    assert {:error, %Failure{code: :unsupported_schema_keyword}} =
+    assert {:error, %Error{code: :unsupported_schema_keyword}} =
              Schema.validate(%{"not" => %{"type" => "string"}}, 1)
 
-    assert {:error, %Failure{code: :unsupported_schema_format}} =
+    assert {:error, %Error{code: :unsupported_schema_format}} =
              Schema.validate(%{"format" => "unimplemented"}, "x")
 
-    assert {:error, %Failure{code: :unsupported_schema_reference}} =
+    assert {:error, %Error{code: :unsupported_schema_reference}} =
              Schema.validate(%{"$ref" => "https://invalid.example/schema"}, nil)
   end
 end

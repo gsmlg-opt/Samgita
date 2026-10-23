@@ -49,7 +49,7 @@ Use `Schema.validate_request/3` with `direction: :server_request` for incoming
 interactions, `validate_notification/4` for either notification direction, and
 `validate_result/4` for correlated `:server_response` or `:client_response` values.
 `Wire` enforces JSON, envelope, nesting and byte bounds independently of transport.
-`Failure` retains complete upstream error wire for authorized programmatic callers;
+`Error` retains complete upstream error wire for authorized programmatic callers;
 Inspect and Exception output redact upstream payloads. Never log raw wire blindly.
 
 The independent sibling `samgita_codex_driver` owns optional processes, transports,

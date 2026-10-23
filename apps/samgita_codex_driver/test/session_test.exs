@@ -1,18 +1,18 @@
 defmodule SamgitaCodexDriver.SessionTest do
   use ExUnit.Case, async: true
   alias SamgitaCodexDriver.{ScriptedTransport, Session}
-  alias SamgitaProtocolCodex.Failure
+  alias SamgitaProtocolCodex.Error
 
   test "initialization gates calls and sends initialized only after success" do
     pid = connection()
-    assert {:error, %Failure{code: :not_initialized}} = Session.request(pid, "thread/list")
+    assert {:error, %Error{code: :not_initialized}} = Session.request(pid, "thread/list")
     initialize(pid)
     assert Session.status(pid).phase == :ready
 
-    assert {:error, %Failure{code: :invalid_initialization_state}} =
+    assert {:error, %Error{code: :invalid_initialization_state}} =
              Session.initialize(pid, info())
 
-    assert {:error, %Failure{code: :use_initialize}} = Session.request(pid, "initialize")
+    assert {:error, %Error{code: :use_initialize}} = Session.request(pid, "initialize")
     refute_receive {:sent, ^pid, %{"method" => "initialize"}}
   end
 
@@ -32,7 +32,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     assert {:ok, ^first} = Task.await(one)
     assert Session.status(pid).pending == 0
 
-    assert {:error, %Failure{code: :invalid_or_reused_request_id}} =
+    assert {:error, %Error{code: :invalid_or_reused_request_id}} =
              Session.request(pid, "thread/list", %{}, id: 1)
   end
 
@@ -47,7 +47,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     }
 
     send(pid, {:incoming, wire})
-    assert {:error, %Failure{wire: ^wire} = failure} = Task.await(task)
+    assert {:error, %Error{wire: ^wire} = failure} = Task.await(task)
     refute inspect(failure) =~ "synthetic-secret"
     refute Exception.message(failure) =~ "synthetic-secret"
   end
@@ -64,7 +64,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     assert :ok = Session.respond(pid, handle, {:ok, %{"decision" => "decline"}})
     assert_receive {:sent, ^pid, %{"id" => 7, "result" => %{"decision" => "decline"}}}
 
-    assert {:error, %Failure{code: :stale_interaction}} =
+    assert {:error, %Error{code: :stale_interaction}} =
              Session.respond(pid, handle, {:ok, %{"decision" => "accept"}})
 
     send(pid, {:incoming, %{"id" => 7, "result" => %{"data" => []}}})
@@ -98,7 +98,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     assert_receive {:codex_driver, ^pid, :events_available}, 2_000
     assert Session.status(pid).interactions == 0
 
-    assert {:error, %Failure{code: :stale_interaction}} =
+    assert {:error, %Error{code: :stale_interaction}} =
              Session.respond(pid, handle, {:ok, %{"decision" => "accept"}})
 
     Session.drain(pid)
@@ -108,7 +108,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     assert_receive {:sent, ^pid, %{"id" => "expired", "error" => _}}, 2_000
     assert Session.status(pid).interactions == 0
 
-    assert {:error, %Failure{code: :stale_interaction}} =
+    assert {:error, %Error{code: :stale_interaction}} =
              Session.respond(pid, expired, {:ok, %{"decision" => "accept"}})
   end
 
@@ -117,7 +117,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     task = Task.async(fn -> Session.request(pid, "thread/start", %{}, id: "operation") end)
     assert_receive {:sent, ^pid, %{"id" => "operation", "method" => "thread/start"}}, 2_000
     send(pid, :drop_connection)
-    assert {:error, %Failure{uncertain: true}} = Task.await(task)
+    assert {:error, %Error{uncertain: true}} = Task.await(task)
     assert [%{id: "operation", method: "thread/start"}] = Session.uncertain_operations(pid)
     assert %{pending: 0, interactions: 0, phase: :disconnected, gap: %{}} = Session.status(pid)
 
@@ -127,7 +127,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     initialize(pid)
     assert Session.status(pid).generation == 2
 
-    assert {:error, %Failure{code: :invalid_or_reused_request_id}} =
+    assert {:error, %Error{code: :invalid_or_reused_request_id}} =
              Session.request(pid, "thread/start", %{}, id: "operation")
 
     assert :ok =
@@ -151,7 +151,7 @@ defmodule SamgitaCodexDriver.SessionTest do
       end)
 
     assert_receive {:sent, ^pid, %{"id" => id, "method" => "thread/list"}}, 2_000
-    assert {:error, %Failure{code: :deadline_exceeded, uncertain: false}} = Task.await(task)
+    assert {:error, %Error{code: :deadline_exceeded, uncertain: false}} = Task.await(task)
     send(pid, {:incoming, %{"id" => id, "result" => %{"data" => []}}})
     assert_receive {:codex_driver, ^pid, :events_available}, 2_000
     assert {:ok, [%{kind: :late_response}]} = Session.drain(pid)
@@ -160,7 +160,7 @@ defmodule SamgitaCodexDriver.SessionTest do
 
   test "send failure is conservative and does not leak pending requests" do
     pid = ready([], fail_method: "thread/start")
-    assert {:error, %Failure{uncertain: true}} = Session.request(pid, "thread/start", %{})
+    assert {:error, %Error{uncertain: true}} = Session.request(pid, "thread/start", %{})
     assert Session.status(pid).phase == :disconnected
     assert Session.status(pid).pending == 0
     assert length(Session.uncertain_operations(pid)) == 1
@@ -191,10 +191,10 @@ defmodule SamgitaCodexDriver.SessionTest do
     assert_receive {:codex_driver, ^pid, :events_available}, 2_000
     assert {:ok, [%{handle: current}]} = Session.drain(pid)
 
-    assert {:error, %Failure{code: :stale_interaction}} =
+    assert {:error, %Error{code: :stale_interaction}} =
              Session.respond(pid, old, {:ok, %{"decision" => "accept"}})
 
-    assert {:error, %Failure{code: :stale_interaction}} =
+    assert {:error, %Error{code: :stale_interaction}} =
              Session.respond(
                pid,
                %{current | reference: make_ref()},
@@ -209,17 +209,17 @@ defmodule SamgitaCodexDriver.SessionTest do
     task = Task.async(fn -> Session.request(pid, "thread/start", %{}, id: "abandon") end)
     assert_receive {:sent, ^pid, %{"id" => "abandon"}}, 2_000
     assert :ok = Session.abandon(pid, "abandon")
-    assert {:error, %Failure{code: :locally_abandoned, uncertain: true}} = Task.await(task)
+    assert {:error, %Error{code: :locally_abandoned, uncertain: true}} = Task.await(task)
     refute_receive {:sent, ^pid, %{"method" => "$/cancelRequest"}}
     assert Session.status(pid).pending == 0
   end
 
   test "initialization timeout requires a new connection" do
     pid = connection(request_timeout_ms: 30)
-    assert {:error, %Failure{code: :deadline_exceeded}} = Session.initialize(pid, info())
+    assert {:error, %Error{code: :deadline_exceeded}} = Session.initialize(pid, info())
     assert Session.status(pid).phase == :disconnected
 
-    assert {:error, %Failure{code: :invalid_initialization_state}} =
+    assert {:error, %Error{code: :invalid_initialization_state}} =
              Session.initialize(pid, info())
   end
 
@@ -243,7 +243,7 @@ defmodule SamgitaCodexDriver.SessionTest do
   test "native initialization handles invalid capabilities without crashing" do
     pid = connection()
     invalid = %{"id" => "bad-init", "method" => "initialize", "params" => %{"capabilities" => []}}
-    assert {:error, %Failure{}} = Session.request_native(pid, invalid)
+    assert {:error, %Error{}} = Session.request_native(pid, invalid)
     assert Session.status(pid).phase == :new
 
     wire = %{
@@ -272,7 +272,7 @@ defmodule SamgitaCodexDriver.SessionTest do
   test "callers cannot classify a mutating request as a safe read" do
     pid = ready()
 
-    assert {:error, %Failure{code: :unsafe_read_classification, uncertain: false}} =
+    assert {:error, %Error{code: :unsafe_read_classification, uncertain: false}} =
              Session.request(pid, "thread/start", %{}, effect: :read)
 
     refute_receive {:sent, ^pid, %{"method" => "thread/start"}}
@@ -285,7 +285,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     assert_receive {:codex_driver, ^pid, :events_available}, 2_000
     assert {:ok, [%{handle: handle}]} = Session.drain(pid)
 
-    assert {:error, %Failure{uncertain: false}} =
+    assert {:error, %Error{uncertain: false}} =
              Session.respond(
                pid,
                handle,
@@ -314,7 +314,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     assert :ok = Session.acknowledge_interaction_outcome(pid, handle)
     assert [] = Session.interaction_outcomes(pid)
 
-    assert {:error, %Failure{code: :unknown_interaction_outcome}} =
+    assert {:error, %Error{code: :unknown_interaction_outcome}} =
              Session.acknowledge_interaction_outcome(pid, handle)
   end
 
@@ -324,7 +324,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     assert_receive {:codex_driver, ^pid, :events_available}, 2_000
     assert {:ok, [%{handle: handle}]} = Session.drain(pid)
 
-    assert {:error, %Failure{uncertain: true}} =
+    assert {:error, %Error{uncertain: true}} =
              Session.respond(pid, handle, {:ok, %{"decision" => "decline"}})
 
     assert %{phase: :disconnected, interactions: 0} = Session.status(pid)
@@ -373,7 +373,7 @@ defmodule SamgitaCodexDriver.SessionTest do
     call = Task.async(fn -> Session.initialize(pid, info(), %{}, id: "abandoned-init") end)
     assert_receive {:sent, ^pid, %{"id" => "abandoned-init"}}, 2_000
     assert :ok = Session.abandon(pid, "abandoned-init")
-    assert {:error, %Failure{code: :locally_abandoned, uncertain: false}} = Task.await(call)
+    assert {:error, %Error{code: :locally_abandoned, uncertain: false}} = Task.await(call)
     assert %{phase: :disconnected, pending: 0} = Session.status(pid)
   end
 
