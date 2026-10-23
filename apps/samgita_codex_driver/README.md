@@ -101,6 +101,25 @@ stdio transport directly raises the corresponding safe typed error on failure.
 An already confirmed close remains idempotent. Borrowed WebSocket/UDS server
 processes and sockets remain under their original owner's control.
 
+## Native operation semantics
+
+These operations share lossless request/event handling, but have different
+execution and recovery rules in the pinned server:
+
+| Native family | Observable boundary |
+| --- | --- |
+| `command/exec` and write/resize/terminate | The request completes with execution output/status; output may stream separately. Process IDs belong to a connection, whose disconnect terminates its standalone commands. A local abandonment is still uncertain until actual effects are reconciled. |
+| `thread/shellCommand` | Immediate submission ACK, followed by `userShell` item/turn events. It runs on the native host outside the thread sandbox. A client disconnect removes its subscription and does not stop the command. Timeout item exit `-1` differs from standalone command timeout `124`. |
+| `thread/queue/*` | Experimental durable per-thread queue; idle/resume may dispatch, interruption preserves its pause, and explicit selected/head start changes it. Client message IDs do not deduplicate submissions; no public queue CAS exists. |
+| `threadSection/*`, `thread/section/move` | Stable persisted native organization; these are not Samgita Projects or repository memberships. There is no public section CAS. |
+| `thread/readState/update` | Experimental durable read/unread action with an opaque expected revision and structured conflict. Reading/listing does not acknowledge attention. |
+| `thread/realtime/*` | Experimental realtime lifecycle. Empty RPC results acknowledge operation submission; startup can fail asynchronously. Started, error and closed notifications determine session outcome. The V2 backend prompt prefers nonblank configuration over a request prompt. |
+
+The command, queue, organization and model-discovery qualification records under
+`docs/codex-app-server/` declare the exact native tests and remaining profiles.
+Native capability metadata and successful synthetic commands do not establish
+inference, sandbox enforcement, live authentication or Samgita Task acceptance.
+
 ## Transports and limits
 
 | Transport | Options and ownership |
@@ -124,6 +143,19 @@ lease/fence ownership or post-upgrade credential revocation. Platform consumers
 must enforce those boundaries and destination approval independently.
 
 ## Verification
+
+Private user/network namespace profiles are explicit tests rather than default
+discovery. On the declared Linux profile with `unshare`/`ip` and the pinned binary:
+
+```sh
+mix test test/native_command_lifecycle_profile.exs \
+  test/native_model_discovery_profile.exs test/native_user_shell_profile.exs \
+  test/native_tool_interactions_profile.exs test/native_realtime_lifecycle_profile.exs
+```
+
+Authentication, executor and account/Apps namespace profiles are separate required
+CI steps as recorded in the qualification ledger. A denied prerequisite fails;
+there is no skip or host-network fallback.
 
 Run from this package directory in the repository's Elixir/OTP environment:
 

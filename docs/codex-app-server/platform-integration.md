@@ -211,6 +211,14 @@ sets a notification gap. No old request or decision is resent. Read current nati
 state through the selected driver and obtain independent cessation/effect evidence
 before administrative recovery; there is no fabricated notification replay.
 
+Validated terminal dynamic-item/turn evidence may retire a matching unanswered
+current-generation `item/tool/call` as `terminal_observed` only when no associated
+reply has left the prepared/cancelled states. Prepared replies are cancelled
+atomically. Reconnect preserves this known-unsent terminal state; it cannot
+resolve dispatched or ambiguous responses. Other interaction families and
+unresolved operations remain guarded. See
+[durable tool retirement](platform-tool-retirement-qualification.md).
+
 Operator reconciliation changes uncertain/unconfirmed or expired in-flight
 operations to `reconciled`, retaining an evidence reference. Cessation attestation
 records separate evidence, marks observed live links ceased and clears the
@@ -248,9 +256,9 @@ tables, delete records or replay uncertain operations to make a downgrade work.
 The immutable target remains official `rust-v0.163.0`, source
 `83086188ae0614bd882818ff1aa23f3194962012`. Its separate Rust/TypeScript-backed
 export supplement is locally derived and preserves official JSON bytes. The
-regenerated manifest contains **485 requirements (137 implemented, 343 missing,
-five blocked) and 6,621 contracts (three implemented, 6,618 missing)** for full
-behavioral acceptance, with zero fully verified in either category. Four blocked
+regenerated [manifest](compatibility-manifest.json) and
+[qualification ledger](qualification.md) contain the current requirement,
+field/variant and progress totals; none is fully verified. Four blocked
 entries retain the legacy approval emitter prerequisite documented in the source
 audit; the fifth retains the MCP item-progress emitter prerequisite in
 [direct MCP qualification](mcp-direct-qualification.md). Selected
