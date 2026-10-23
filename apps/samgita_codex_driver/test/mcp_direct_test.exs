@@ -75,15 +75,15 @@ defmodule SamgitaCodexDriver.McpDirectTest do
                pid,
                "mcpServer/tool/call",
                Map.put(base, "arguments", %{"protocolError" => true})
-             ) == operation_error(-32043, "synthetic tool failure", protocol)
+             ) == operation_error(-32_043, "synthetic tool failure", protocol)
 
       assert upstream_error(pid, "mcpServer/tool/call", %{base | "server" => "missing"}) == %{
-               "code" => -32603,
+               "code" => -32_603,
                "message" => "unknown MCP server 'missing'"
              }
 
       assert upstream_error(pid, "mcpServer/tool/call", %{base | "tool" => "absent"}) == %{
-               "code" => -32601,
+               "code" => -32_601,
                "message" => "synthetic tool absent",
                "data" => %{"tool" => "absent"}
              }
@@ -93,7 +93,7 @@ defmodule SamgitaCodexDriver.McpDirectTest do
 
       for extra <- [%{"arguments" => []}, %{"_meta" => "invalid"}] do
         error = upstream_error(pid, "mcpServer/tool/call", Map.merge(base, extra))
-        assert error["code"] == -32603
+        assert error["code"] == -32_603
         assert error["message"] =~ "must be a JSON object"
       end
 
@@ -168,24 +168,24 @@ defmodule SamgitaCodexDriver.McpDirectTest do
         params = Map.merge(base, extra)
 
         assert upstream_error(pid, "mcpServer/resource/read", params) ==
-                 operation_error(-32042, "synthetic resource failure", protocol)
+                 operation_error(-32_042, "synthetic resource failure", protocol)
 
         assert upstream_error(pid, "mcpServer/resource/read", %{params | "server" => "missing"}) ==
-                 %{"code" => -32603, "message" => "unknown MCP server 'missing'"}
+                 %{"code" => -32_603, "message" => "unknown MCP server 'missing'"}
       end
 
       assert upstream_error(
                pid,
                "mcpServer/resource/read",
                Map.put(base, "originCallId", "orphan")
-             ) == %{"code" => -32600, "message" => "originCallId requires threadId"}
+             ) == %{"code" => -32_600, "message" => "originCallId requires threadId"}
 
       assert upstream_error(
                pid,
                "mcpServer/resource/read",
                Map.put(base, "target", %{"connectorId" => "synthetic", "linkId" => nil})
              ) == %{
-               "code" => -32600,
+               "code" => -32_600,
                "message" => "target requires codex_apps, a connectorId, and a real linkId or null"
              }
 
