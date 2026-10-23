@@ -3731,14 +3731,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/reconcile",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/PluginReconcileParams"
@@ -3769,7 +3771,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -4043,14 +4046,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:plugin/skill/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+        "Earlier local-plugin-only checkpoint: Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/PluginSkillReadParams"
@@ -4073,7 +4078,7 @@
         "source_line": 950,
         "variant": "PluginSkillRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -4081,10 +4086,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/skill/read"
     },
     {
@@ -16099,14 +16107,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/reconcile",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -16123,7 +16133,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -16320,14 +16331,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:plugin/skill/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+        "Earlier local-plugin-only checkpoint: Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -16336,7 +16349,7 @@
       "schema": "v2/PluginSkillReadResponse.json",
       "schema_sha256": "dedaf95c4a8f70c022f5cac6fe3882603ed2b27d5efef710b52ae370869956cc",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -16344,10 +16357,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/skill/read"
     },
     {
@@ -136644,14 +136660,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileParams.json#/properties/reason",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/reason",
@@ -136666,7 +136684,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -136677,145 +136696,187 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/definitions/PluginReconcileChangedPlugin/properties/hasApps",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginReconcileChangedPlugin/properties/hasApps",
       "required": true,
       "schema": "v2/PluginReconcileResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hasApps"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/definitions/PluginReconcileChangedPlugin/properties/hasHooks",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginReconcileChangedPlugin/properties/hasHooks",
       "required": true,
       "schema": "v2/PluginReconcileResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hasHooks"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/definitions/PluginReconcileChangedPlugin/properties/hasMcps",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginReconcileChangedPlugin/properties/hasMcps",
       "required": true,
       "schema": "v2/PluginReconcileResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hasMcps"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/definitions/PluginReconcileChangedPlugin/properties/hasSkills",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginReconcileChangedPlugin/properties/hasSkills",
       "required": true,
       "schema": "v2/PluginReconcileResponse.json",
       "schema_sha256": "b50a6d02bdb9ad783fb1e31aa0a8dc4049383a873fcc6fe3ecec617e0a691fda",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hasSkills"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/definitions/PluginReconcileChangedPlugin/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginReconcileChangedPlugin/properties/id",
       "required": true,
       "schema": "v2/PluginReconcileResponse.json",
       "schema_sha256": "d46cf36d03a739325db1428b908380680c179c4140f98f913e308880ed3a1704",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/properties/changedPlugins",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/changedPlugins",
@@ -136830,7 +136891,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -136842,14 +136904,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/properties/failedMaterializationRemotePluginIds",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/failedMaterializationRemotePluginIds",
@@ -136864,7 +136928,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -136876,14 +136941,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/properties/failedRemotePluginIds",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+        "Earlier local-plugin-only checkpoint: Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/failedRemotePluginIds",
@@ -136898,7 +136965,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -140814,21 +140882,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginSkillReadParams.json#/properties/remoteMarketplaceName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+        "Earlier local-plugin-only checkpoint: Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/remoteMarketplaceName",
       "required": true,
       "schema": "v2/PluginSkillReadParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -140836,31 +140906,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remoteMarketplaceName"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginSkillReadParams.json#/properties/remotePluginId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+        "Earlier local-plugin-only checkpoint: Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/remotePluginId",
       "required": true,
       "schema": "v2/PluginSkillReadParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -140868,31 +140943,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "remotePluginId"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+        "docs/codex-app-server/plugin-lifecycle-qualification.md",
+        "docs/codex-app-server/remote-plugin-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginSkillReadParams.json#/properties/skillName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+        "Earlier local-plugin-only checkpoint: Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing.",
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/skillName",
       "required": true,
       "schema": "v2/PluginSkillReadParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -140900,36 +140980,47 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skillName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginSkillReadResponse.json#/properties/contents",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Explicit native Linux stdio reconciliation with private synthetic authenticated metadata and CA-verified HTTPS bundles; startup plugins disabled then normally reloaded per request. Exact skill contents/null, cache/cold restart, old/new declaration union, failure arrays and explicit recovery asserted. Normal enabled-at-startup readiness, remote sharing/pagination/policy, runtime MCP/apps/hooks, hostile archives, real account/service, other OS/transports and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/contents",
       "required": false,
       "schema": "v2/PluginSkillReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "contents"
     },
     {

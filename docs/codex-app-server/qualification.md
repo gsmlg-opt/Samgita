@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 289 implemented / 191 missing /
-5 blocked requirements** and **0 verified / 419 implemented / 6,202 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 291 implemented / 189 missing /
+5 blocked requirements** and **0 verified / 428 implemented / 6,193 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Four hundred and nineteen directly exercised
+MCP entries have scoped implementation evidence. Four hundred and twenty-eight directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1188,3 +1188,31 @@ download with `header_too_long` before platform tests ran; no platform pass is
 claimed for that attempt. The failed job was rerun unchanged. Its separate
 complete-evidence gate failed because contracts remain incomplete. These are
 distinct results; an unchanged rerun cannot erase the initial failure.
+
+## Authenticated native remote-plugin reconciliation
+
+Eight explicit actual-binary cases passed **8/0** at each of `501432` and
+`987654` (**26.8s / 27.3s**) after the recorded fixture repairs and one
+behavior-preserving lint correction. They exercise authenticated skill Unicode
+contents/null and typed failures, verified HTTPS bundle materialization, repeat
+and cold cache reuse, old/new declaration unions, enable/removal, partial and
+whole-snapshot failures, preserved prior versions and explicit recovery.
+
+The fixture proves a private loopback-only namespace and normal TLS trust
+through an owned CA; bundle requests receive no metadata backend credentials.
+No model turn, hook or MCP execution occurs. Native startup background sync
+consumed the first materialization in the original failed run; starting with
+plugins disabled and enabling them through ordinary per-request config reload
+isolates explicit reconciliation. This does not qualify enabled-at-startup sync
+readiness. [Remote-plugin qualification](remote-plugin-qualification.md) records
+the two failed fixture rounds, bounded Astra lint cleanup, exact commands,
+positive assertions and remaining profiles. Root compile/scoped format and
+scoped strict Credo passed; aggregate Credo found a separate newly installed
+thread-event helper and remains pending that owner's repair.
+
+Four entries and thirteen fields gain evidence, of which **two entries and nine
+fields** were previously missing. Regenerated totals: **485 entries: 0 verified /
+291 implemented / 189 missing / 5 blocked**; **6,621 contracts: 0 verified /
+428 implemented / 6,193 missing**. The profile is a required explicit hosted CI
+step. Real accounts/services, other platforms, A11, full compatibility and
+publication remain incomplete.

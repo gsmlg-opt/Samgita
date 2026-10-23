@@ -34,8 +34,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries and the
 advertised MCP item-progress notification are `blocked` by source-proven absent
 production emitters. Selected native method/notification entries now total
-289 `implemented`, with 419 exact field/variant schema contracts
-implemented; 191 requirements and 6,202 contracts remain `missing`. None is fully verified.
+291 `implemented`, with 428 exact field/variant schema contracts
+implemented; 189 requirements and 6,193 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -260,6 +260,12 @@ Next concrete work (repair follow-up, 2026-10-24):
    indexes already passing native assertions for twelve operations and selected
    lifecycle/history fields. It adds 25 implemented entries and 68 fields without
    changing executable behavior or inferring unobserved notification emission.
+   Eight [remote-plugin cases](remote-plugin-qualification.md) now qualify
+   authenticated skill contents and explicit CA-verified HTTPS reconciliation,
+   durable cache/restart, declaration changes, errors and recovery. Two more
+   entries and nine more fields gain scoped implementation evidence. Normal
+   enabled-at-startup sync, remote sharing/pagination and runtime effects remain
+   incomplete; capability declarations do not establish activation or authority.
    Continue remaining image-byte limits, account backend variants,
    environment/permission/turn variants and real-service authentication profiles.
    Preserve entry-specific evidence and
