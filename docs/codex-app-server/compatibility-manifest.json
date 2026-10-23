@@ -738,12 +738,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/isolated-app-catalog.md"
+      ],
       "experimental": false,
       "id": "client_request:app/installed",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/AppsInstalledParams"
       },
@@ -765,27 +769,35 @@
         "source_line": 990,
         "variant": "AppsInstalled"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "app/installed"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/isolated-app-catalog.md"
+      ],
       "experimental": false,
       "id": "client_request:app/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/AppsListParams"
       },
@@ -807,16 +819,20 @@
         "source_line": 985,
         "variant": "AppsList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "app/list"
     },
     {
@@ -9116,12 +9132,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/isolated-app-catalog.md"
+      ],
       "experimental": false,
       "id": "server_notification:app/list/updated",
-      "implementation_module": "SamgitaCodexDriver.Session",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/AppListUpdatedNotification"
       },
@@ -9134,16 +9154,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "app/list/updated"
     },
     {
@@ -13079,12 +13103,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/isolated-app-catalog.md"
+      ],
       "experimental": false,
       "id": "server_response:app/installed",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13092,28 +13120,36 @@
       "schema": "v2/AppsInstalledResponse.json",
       "schema_sha256": "d8ef8dd14dcba8aaaaaf2b0b80db90d66edf8f4ff422589b844ae2b0edcb46d4",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "app/installed"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/isolated-app-catalog.md"
+      ],
       "experimental": false,
       "id": "server_response:app/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected private-network native catalog merge/paging/cache/refresh/notification gating and persisted installed snapshots, policy, failure retention, disabled/auth gates and explicit 429 errors. Anonymous loopback MCP discovery asserts ChatGPT credentials are withheld. Full fields, loaded-thread configuration, account/backend-change, event-stream, other transport/OS and live hosted-MCP auth/OAuth profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13121,16 +13157,20 @@
       "schema": "v2/AppsListResponse.json",
       "schema_sha256": "5811fda68d6274decfc11744ad72bbe93e601d8514549e94f361ba3131d1adeb",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "app/list"
     },
     {
