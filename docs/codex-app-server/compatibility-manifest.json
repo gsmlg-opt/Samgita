@@ -6040,7 +6040,10 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "Selected real-binary Linux/stdio persistence at 73258c5: UTF-8 text_elements, clientId and one completed turn survive owned-process restart; apps/samgita_codex_driver/test/turn_input_test.exs",
+        "Scope and residual requirements: docs/codex-app-server/turn-input-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -6390,7 +6393,10 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "Selected real-binary Linux/stdio persistence at 73258c5: explicitly resume after confirmed owned-process restart without another model request; apps/samgita_codex_driver/test/turn_input_test.exs",
+        "Scope and residual requirements: docs/codex-app-server/turn-input-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/resume",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -7156,7 +7162,10 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "Selected real-binary Linux/stdio UserInput and parameter branches at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs, turn_attachment_test.exs and turn_parameters_test.exs; 23 scenarios",
+        "Scope, exact upstream normalization and residual requirements: docs/codex-app-server/turn-input-qualification.md; payload capture does not qualify media understanding, file resolution or full behavior"
+      ],
       "experimental": false,
       "id": "client_request:turn/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -9163,7 +9172,10 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "Selected real-binary Linux/stdio UserMessage content and thread/turn association for all seven UserInput forms at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs and turn_attachment_test.exs",
+        "Remaining item types and full transport matrix are unqualified; docs/codex-app-server/turn-input-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -9427,7 +9439,10 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "Selected real-binary Linux/stdio UserMessage content and thread/turn association for all seven UserInput forms at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs and turn_attachment_test.exs",
+        "Remaining item types and full transport matrix are unqualified; docs/codex-app-server/turn-input-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/started",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -16044,7 +16059,10 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "Selected real-binary Linux/stdio result at 73258c5 preserves UTF-8 text elements and clientId after process restart; apps/samgita_codex_driver/test/turn_input_test.exs",
+        "Other response variants remain unqualified; docs/codex-app-server/turn-input-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -16290,7 +16308,10 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "Selected real-binary Linux/stdio result at 73258c5 resumes a persisted text thread after confirmed owned-process restart; apps/samgita_codex_driver/test/turn_input_test.exs",
+        "Other response variants remain unqualified; docs/codex-app-server/turn-input-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/resume",
       "implementation_module": "SamgitaProtocolCodex.Schema",
@@ -16822,7 +16843,10 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "Selected real-binary Linux/stdio turn identity and explicit rejection outcomes at 73258c5: apps/samgita_codex_driver/test/turn_input_test.exs, turn_attachment_test.exs and turn_parameters_test.exs",
+        "Full method/result behavior remains unqualified; docs/codex-app-server/turn-input-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:turn/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",

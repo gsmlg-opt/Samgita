@@ -8,7 +8,7 @@ The complete goal remains active. No phase below is a substitute for completion.
 | 0 Inventory and harness | Pin/generation scripts; complete upstream schema/provenance; compatibility manifest; isolated real-binary harness; these documents | Reproducible inventory, exact hashes, real handshake and representative round trip | Implemented checkpoint; complete source/test audit remains |
 | 1 Native wire | Codex schema/codec/types and generated fixtures/tests; preserve convenience API | Complete accessible native surface; variant/malformed/lossless tests | Native layer implemented; per-entry behavior qualification remains |
 | 2 Driver lifecycle | Independent driver package; stdio/WebSocket/UDS; supervised sessions and bounded state | Real-binary and fault tests for correlation, deadlines, shutdown, overflow and uncertain outcomes | Scoped lifecycle implemented; full deployment matrix remains |
-| 3 Method families | Version-pinned operation APIs and scenarios for every manifest family | Full enabled/disabled/error behavior, field preservation and association | Two method-family suites implement 28 real-binary scenarios; remaining methods and variants pending |
+| 3 Method families | Version-pinned operation APIs and scenarios for every manifest family | Full enabled/disabled/error behavior, field preservation and association | Two method-family suites implement 28 real-binary scenarios; three native turn suites add 23; remaining methods and variants pending |
 | 4 Server interactions/events | Explicit response APIs for all server requests; full event delivery | Real approval/tool/input paths, decisions, denial, stale replies and cancellation | Selected behavior across 9/11 interaction families; legacy approvals and remaining variants pending |
 | 5 Platform/consumers | Ordinary Agent/task/native APIs, durable authorized interactions, examples | Fencing/review preserved; platform and outside-umbrella consumer proof | Context, REST API and explicit Driver bridge implemented; selected two-Agent actual-binary journey, outside consumers and populated-database repeats passed; full contract remains incomplete |
 | 6 Conformance | Schema variants, faults, real binary, differential/platform/external profiles | Every required entry/variant evidenced or visibly blocked | Pending |
@@ -117,16 +117,17 @@ Next concrete work:
    `unmapped_or_unresolved_tasks`; fresh hosted success cannot clear that result.
    Retained `plug_crypto 2.2.0` still fails local audit for CVE-2026-105963;
    dependency remediation remains a separate scoped change.
-2. Continue a dedicated real-binary turn-input/parameter suite with the existing
-   loopback model fixture: nonempty UTF-8 `text_elements`/`byteRange` and persisted
-   client message IDs; local/image-reference inputs; audio/localAudio fallbacks;
-   structured skill/mention selection. Use pinned source behavior for each case,
-   distinguish captured provider payloads from real multimodal understanding,
-   and then cover remaining turn overrides and method/interaction variants.
-   Complete differential profiles and manifest-specific evidence. Preserve all
-   485 requirements and 6,621 contracts as missing until their full acceptance
-   conditions are established. Selected two-Agent success does not establish
-   broader provider, field/variant or deployment acceptance.
+2. The native turn suites are implemented at `73258c5`: 23 actual-binary cases
+   cover every UserInput form, selected overrides and persisted UTF-8 spans/client
+   IDs. The final local driver suite passed 125 tests after source-grounded
+   correction of model metadata and media-processing assumptions, plus stronger
+   skill/cleanup/isolation assertions. See [turn qualification](turn-input-qualification.md).
+   Next cover successful `toolOutput` continuation, enabled structured MCP
+   mention routing, image resizing/size limits and remaining turn overrides,
+   then complete differential profiles and manifest-specific evidence. Preserve
+   all 485 requirements and 6,621 contracts as missing until their full acceptance
+   conditions are established. Selected payload capture does not establish media
+   understanding, file resolution, external permissions or every transport.
 3. Run final independent-package/consumer, root, restart/recovery, static,
    security, assets, release-assembly and hosted checks on the delivered source.
    Keep unavailable external profiles and A11 visibly incomplete. Publish only

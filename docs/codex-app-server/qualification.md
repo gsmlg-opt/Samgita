@@ -8,7 +8,7 @@ below also prevent a platform-readiness or release claim.
 
 ## Delivered source and immutable reference
 
-The current executable/test checkpoint is
+The runtime checkpoint remains
 `d63dcddae49c0c7c7b5565482134d4282275a86c`, on existing `main`. It adds
 `49d1c37e23404f6255fd742c70f7dd23bc27f4c9` (confirmed owned-process shutdown)
 and retained legacy contract tests to the previous native platform checkpoint
@@ -17,7 +17,8 @@ and retained legacy contract tests to the previous native platform checkpoint
 and `a88a456` (atomic Session dispatch fences). Its table below is historical;
 current checks are in the owned-process repair section. Baseline inspection
 started at `4fe354f2ce916aa32517c361a171b8878bf6ca84`. Following documentation
-changes do not change the executable/test source.
+changes do not change the executable source. Native turn test coverage is
+extended at `73258c516bcf5c7f40d4cedde5d3a149314d086f`, as recorded below.
 
 | Artifact | Immutable identity |
 | --- | --- |
@@ -217,6 +218,38 @@ Its initial verification used an incorrect extra `/prod/` path component. The
 assembly itself had succeeded; checking the actual release path and tar member
 confirmed both contain the current helper. This is local packaging evidence,
 not a passed security gate or a published release.
+
+## Native turn input and parameter checkpoint
+
+Test commit `73258c516bcf5c7f40d4cedde5d3a149314d086f` adds 23 scenarios across
+three new independent-driver suites and a shared isolated fixture helper. No
+native schema, driver or platform runtime changed. The new tests cover every
+UserInput form, selected enabled/disabled/invalid parameter behavior and persisted
+text spans/client IDs across a confirmed owned-process restart. Detailed source,
+profile and semantic limits are in [turn qualification](turn-input-qualification.md).
+
+The final local compile, formatting and full driver suite passed **125 tests,
+zero failures**, seed `959437`, under Devenv Elixir 1.18.5 / OTP 27.3.4.17 with
+the hash-verified pinned executable. Review strengthened structured-skill
+selection evidence, both item lifecycle assertions, asserted cleanup and
+cross-VM scratch-path isolation before this final run. Initial failures exposed
+incorrect test-profile/expectation assumptions, not a demonstrated driver bug:
+the catalog requires an instruction template, default metadata lacks audio input,
+and pinned preparation omits low-detail inline/local images, remote audio and
+corrupt media with explicit placeholders. No upstream/runtime behavior was
+patched to make those cases pass.
+
+These are selected Linux/stdio client and provider-payload results, not live
+media understanding, remote file resolution, enabled app/plugin/MCP routing or
+complete parameter/transport coverage. All 485 requirements and 6,621 contracts
+remain missing; selected evidence does not clear their full acceptance conditions.
+The prior neutral WebSocket aggregate failure, local reused-restart failure,
+Plug.Crypto advisory and A11 confidentiality blocker remain separately recorded.
+The outside-umbrella consumer also passed fresh dependency resolution,
+compilation, formatting and **one actual-binary test**, seed `208583`; it verified
+that Repo, Phoenix and the umbrella application were absent. Hosted outcomes for
+this new test checkpoint remain pending until pushed and observed. No release or
+platform-readiness claim follows from this test-only checkpoint.
 
 ## Hosted evidence and remaining gates
 

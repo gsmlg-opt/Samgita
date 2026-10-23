@@ -114,6 +114,15 @@ and a disposable cwd.
 The executable rejects `approvalPolicy: "untrusted"` in this configuration, so the
 fixture uses its observed `on-request` behavior rather than relying on older docs.
 
+Selected real-binary turn qualification now covers all seven native `UserInput`
+forms, text spans and persisted client IDs, plus context, causal metadata,
+service-tier and output-schema fields. Native user-item evidence and captured
+model requests are separate surfaces: the pinned runtime may normalize or omit
+media according to model capabilities and preparation rules. The driver must
+preserve those outcomes without adding its own normalization. See
+[turn inputs and parameters](turn-input-qualification.md) for the exact stdio
+profile, supported/unsupported branches and remaining evidence limits.
+
 The official JSON exporter omits `getAuthStatus`, `getConversationSummary` and
 `gitDiffToRemote`, plus `rawResponse/completed` and `rawResponseItem/completed`.
 Their separate supplement uses the same executable's experimental TypeScript

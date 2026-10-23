@@ -127,6 +127,16 @@ tool responses, plan-mode user input and explicit WebSocket reconnect/resume.
 Only the exact synthetic `printf samgita_fixture` command in the disposable
 workspace can be approved by that test. No account or paid model is used.
 
+The native turn suites add all seven `UserInput` forms, UTF-8 spans/client IDs
+persisted across an owned-process restart, model-capability-dependent media
+normalization, skill selection and selected turn overrides. The pinned server's
+schema acceptance does not guarantee provider forwarding: inline/local `low`
+image detail, remote audio references and unsupported audio model profiles
+produce upstream placeholders. Original native user-item payloads remain
+available. See the [turn qualification record](../../docs/codex-app-server/turn-input-qualification.md)
+for exact scenarios and limits; file-ID capture and synthetic media do not
+establish file resolution, recognition or live provider acceptance.
+
 `transport_real_codex_test.exs` verifies actual stdio, authenticated WS and UDS
 handshake/thread reads. Scripted tests separately inject framing, TLS, deadline,
 disconnect, control and bounded-buffer failures. A missing CODEX_BINARY fails the
