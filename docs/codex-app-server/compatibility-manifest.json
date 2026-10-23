@@ -3016,12 +3016,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/diagnostics-memory-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:memory/reset",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+      ],
       "params": {
         "type": "null"
       },
@@ -3043,16 +3047,20 @@
         "source_line": 717,
         "variant": "MemoryReset"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "memory/reset"
     },
     {
@@ -3060,12 +3068,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/diagnostics-memory-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:memory/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/MemoryStatusParams"
       },
@@ -3087,16 +3099,20 @@
         "source_line": 711,
         "variant": "MemoryStatus"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "memory/status"
     },
     {
@@ -4841,12 +4857,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/diagnostics-memory-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:server/diagnostics",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ServerDiagnosticsParams"
       },
@@ -4868,16 +4888,20 @@
         "source_line": 508,
         "variant": "ServerDiagnostics"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "server/diagnostics"
     },
     {
@@ -14600,12 +14624,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/diagnostics-memory-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:memory/reset",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14613,16 +14641,20 @@
       "schema": "v2/MemoryResetResponse.json",
       "schema_sha256": "e73baacf6ef4858e859079d060e405c3ee5a58881db6e4e9cb46a7ea439404b3",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "memory/reset"
     },
     {
@@ -14631,12 +14663,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/diagnostics-memory-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:memory/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14644,16 +14680,20 @@
       "schema": "v2/MemoryStatusResponse.json",
       "schema_sha256": "54244989afde196c023534087c9790fe3503a174fd48bb569ada356f97ed3473",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "memory/status"
     },
     {
@@ -15904,12 +15944,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/diagnostics-memory-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:server/diagnostics",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected real Linux stdio diagnostics, empty-memory thresholds/reset and native gates only; genuine consolidation readiness, unavailable-state-DB errors, nonempty/concurrent reset and other OS/transport profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15917,16 +15961,20 @@
       "schema": "v2/ServerDiagnosticsResponse.json",
       "schema_sha256": "0b3b35e623761a05bcd4a20085be8395986d2b98037c8ebda4dcda2204689d1d",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "server/diagnostics"
     },
     {
