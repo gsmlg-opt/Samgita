@@ -75,6 +75,32 @@ jobs:
           mix compile --warnings-as-errors
           mix test apps/samgita/test/samgita/runtime_registration_test.exs apps/samgita/test/samgita/codex_runtime_test.exs apps/samgita/test/samgita/codex_runtime_notification_test.exs apps/samgita/test/samgita/codex_runtime_race_test.exs apps/samgita_web/test/samgita_web/controllers/codex_runtime_controller_test.exs apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs --include e2e --include real_codex
 
+  isolated-auth:
+    name: Isolated native browser and device authentication
+    # This explicit Linux profile needs unprivileged user/network namespaces.
+    # It fails on a denied prerequisite; never fall back to host callback ports.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    env:
+      CODEX_BINARY: ${{ github.workspace }}/tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl
+    steps:
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
+        with:
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+          otp-version: ${{ env.OTP_VERSION }}
+      - name: Fetch and verify immutable source and executable
+        timeout-minutes: 6
+        run: python3 scripts/codex/fetch_pin.py
+      - name: Required private-network authentication profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: |
+          mix deps.get
+          mix compile --warnings-as-errors
+          mix format --check-formatted
+          mix test test/native_auth_flow_profile.exs --seed 501432
+
   completeness:
     name: Full compatibility evidence gate
     runs-on: ubuntu-latest
