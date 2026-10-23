@@ -32,6 +32,8 @@ config :samgita_web, SamgitaWeb.Endpoint,
 config :samgita, Oban, testing: :manual
 config :samgita, :lease_key_id, "test-v1"
 config :samgita, :lease_keys, %{"test-v1" => "p3-isolated-test-key-never-use-in-production"}
+config :samgita, :native_payload_key_id, "test-native-v1"
+config :samgita, :native_payload_keys, %{"test-native-v1" => :binary.copy(<<42>>, 32)}
 config :logger, level: :warning
 config :phoenix, :plug_init_mode, :runtime
 config :phoenix, sort_verified_routes_query_params: true

@@ -57,6 +57,11 @@ config :logger, :default_formatter,
 config :phoenix, :json_library, Jason
 
 config :phoenix, :filter_parameters, [
+  "native",
+  "dispatch_token",
+  "request_payload",
+  "response_payload",
+  "native_payload",
   "endpoint_url",
   "endpoint_metadata",
   "password",

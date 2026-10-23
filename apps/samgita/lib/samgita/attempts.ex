@@ -6,6 +6,10 @@ defmodule Samgita.Attempts do
   alias Samgita.Domain.{Agent, ExecutionSession, Task, TaskAttempt}
   @active ~w(leased running)
 
+  @doc false
+  def authorize_runtime!(ctx, attempt, proof, require_proof \\ true),
+    do: owner!(ctx, attempt, proof, require_proof)
+
   def claim(principal, project_id, task_id, attrs) do
     attrs = Params.strings(attrs)
 
@@ -185,6 +189,8 @@ defmodule Samgita.Attempts do
 
       resolved = attrs["effects_resolved"]
 
+      known_effects_resolved!(attempt.id, resolved)
+
       previous = attempt
 
       attempt =
@@ -264,6 +270,8 @@ defmodule Samgita.Attempts do
         do: Commands.fail!(:invalid)
 
       former_owner!(ctx, attempt, attrs["proof"])
+
+      known_effects_resolved!(attempt.id, true)
 
       if attempt.effects_resolved, do: Commands.fail!(:conflict)
       now = DateTime.utc_now()
@@ -534,4 +542,11 @@ defmodule Samgita.Attempts do
 
   defp evidence?(value),
     do: is_binary(value) && String.trim(value) != "" && byte_size(value) <= 4_000
+
+  defp known_effects_resolved!(_attempt_id, false), do: :ok
+
+  defp known_effects_resolved!(attempt_id, true) do
+    if Samgita.CodexRuntime.unresolved_effects?(attempt_id),
+      do: Commands.fail!(:uncertain_outcome)
+  end
 end

@@ -8,6 +8,9 @@ defmodule SamgitaWeb.FallbackController do
         :forbidden -> :forbidden
         :not_found -> :not_found
         :invalid -> :bad_request
+        :invalid_native_payload -> :bad_request
+        :native_payload_key_unavailable -> :service_unavailable
+        :native_payload_unreadable -> :service_unavailable
         _ -> :conflict
       end
 

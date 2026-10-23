@@ -27,6 +27,7 @@ defmodule Samgita.MixProject do
     [
       {:samgita_protocol, path: "../samgita_protocol"},
       {:samgita_protocol_websocket, path: "../samgita_protocol_websocket"},
+      {:samgita_codex_driver, path: "../samgita_codex_driver"},
       {:ecto_sql, "~> 3.14"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_pubsub, "~> 2.3"},

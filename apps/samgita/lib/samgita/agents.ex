@@ -5,7 +5,7 @@ defmodule Samgita.Agents do
   alias Samgita.{Commands, Error, Events, Params, Principal, Projection, Repo}
   alias Samgita.Domain.{Agent, AgentConnection, AgentCredential, ExecutionSession}
   @read_roles ~w(observer worker manager reviewer)
-  @fields ~w(name implementation enabled capacity advertised_capabilities approved_capabilities protocol protocol_version endpoint_metadata credential_ref)a
+  @fields ~w(name implementation enabled capacity advertised_capabilities approved_capabilities protocol protocol_version endpoint_metadata credential_ref runtime_driver runtime_version)a
 
   def register(principal, attrs) do
     attrs = Params.strings(attrs)
@@ -314,6 +314,7 @@ defmodule Samgita.Agents do
       |> validate_number(:capacity, greater_than: 0, less_than_or_equal_to: 1000)
       |> validate_inclusion(:protocol, ["samgita"])
       |> validate_inclusion(:protocol_version, [SamgitaProtocol.version()])
+      |> validate_runtime()
 
     advertised = get_field(changeset, :advertised_capabilities)
     approved = get_field(changeset, :approved_capabilities)
@@ -329,6 +330,14 @@ defmodule Samgita.Agents do
     if valid_endpoint?(endpoint),
       do: changeset,
       else: add_error(changeset, :endpoint_metadata, "invalid endpoint")
+  end
+
+  defp validate_runtime(changeset) do
+    case {get_field(changeset, :runtime_driver), get_field(changeset, :runtime_version)} do
+      {nil, nil} -> changeset
+      {"codex", "0.163.0"} -> changeset
+      _ -> add_error(changeset, :runtime_driver, "unsupported runtime/version")
+    end
   end
 
   defp valid_endpoint?(metadata) when is_map(metadata) do

@@ -13,6 +13,8 @@ defmodule Samgita.Domain.Agent do
     field :protocol_version, :string, default: "1.0"
     field :endpoint_metadata, :map, default: %{}
     field :credential_ref, :string
+    field :runtime_driver, :string
+    field :runtime_version, :string
     field :generation, :integer, default: 0
     field :version, :integer, default: 1
     timestamps()

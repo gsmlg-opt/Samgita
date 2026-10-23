@@ -12,7 +12,7 @@ defmodule Samgita.Projection do
     do:
       fields(
         r,
-        ~w(id name implementation enabled capacity advertised_capabilities approved_capabilities protocol protocol_version endpoint_metadata generation version inserted_at updated_at)a
+        ~w(id name implementation enabled capacity advertised_capabilities approved_capabilities protocol protocol_version endpoint_metadata runtime_driver runtime_version generation version inserted_at updated_at)a
       )
 
   def credential(r), do: fields(r, ~w(id agent_id reference expires_at revoked_at inserted_at)a)

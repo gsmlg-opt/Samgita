@@ -99,6 +99,35 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/tasks/:task_id/artifacts", TaskController, :add_artifact
     post "/projects/:project_id/attempts/:id/resolve", AttemptController, :resolve
 
+    get "/projects/:project_id/codex-runtimes", CodexRuntimeController, :index
+    get "/projects/:project_id/codex-runtimes/:id", CodexRuntimeController, :show
+    get "/projects/:project_id/codex-runtimes/:id/operations", CodexRuntimeController, :operations
+    get "/projects/:project_id/codex-runtimes/:id/events", CodexRuntimeController, :events
+
+    get "/projects/:project_id/codex-runtimes/:id/operations/:operation_id/native",
+        CodexRuntimeController,
+        :native_operation
+
+    get "/projects/:project_id/codex-runtimes/:id/events/:event_id/native",
+        CodexRuntimeController,
+        :native_event
+
+    post "/projects/:project_id/codex-runtimes/:id/events/:event_id/reply",
+         CodexRuntimeController,
+         :reply
+
+    post "/projects/:project_id/codex-runtimes/:id/operations/:operation_id/cancel",
+         CodexRuntimeController,
+         :cancel
+
+    post "/projects/:project_id/codex-runtimes/:id/operations/:operation_id/reconcile",
+         CodexRuntimeController,
+         :reconcile
+
+    post "/projects/:project_id/codex-runtimes/:id/attest-cessation",
+         CodexRuntimeController,
+         :attest_cessation
+
     get "/projects/:project_id/events", EventController, :index
     post "/projects/:project_id/events/trigger", EventController, :trigger
     post "/projects/:project_id/events/external", EventController, :external
@@ -158,6 +187,40 @@ defmodule SamgitaWeb.Router do
     post "/projects/:project_id/attempts/:id/rebind", AttemptController, :rebind
     post "/projects/:project_id/attempts/:id/resolve", AttemptController, :resolve
     get "/projects/:project_id/attempts/:id/proof", AttemptController, :proof
+
+    get "/projects/:project_id/codex-runtimes", CodexRuntimeController, :index
+    post "/projects/:project_id/codex-runtimes", CodexRuntimeController, :create
+    get "/projects/:project_id/codex-runtimes/:id", CodexRuntimeController, :show
+    get "/projects/:project_id/codex-runtimes/:id/operations", CodexRuntimeController, :operations
+    post "/projects/:project_id/codex-runtimes/:id/operations", CodexRuntimeController, :prepare
+    get "/projects/:project_id/codex-runtimes/:id/events", CodexRuntimeController, :events
+    post "/projects/:project_id/codex-runtimes/:id/events", CodexRuntimeController, :record_event
+
+    post "/projects/:project_id/codex-runtimes/:id/events/:event_id/reply",
+         CodexRuntimeController,
+         :reply
+
+    post "/projects/:project_id/codex-runtimes/:id/operations/:operation_id/dispatch",
+         CodexRuntimeController,
+         :dispatch
+
+    post "/projects/:project_id/codex-runtimes/:id/operations/:operation_id/settle",
+         CodexRuntimeController,
+         :settle
+
+    post "/projects/:project_id/codex-runtimes/:id/operations/:operation_id/cancel",
+         CodexRuntimeController,
+         :cancel
+
+    post "/projects/:project_id/codex-runtimes/:id/reconnect", CodexRuntimeController, :reconnect
+
+    get "/projects/:project_id/codex-runtimes/:id/operations/:operation_id/native",
+        CodexRuntimeController,
+        :native_operation
+
+    get "/projects/:project_id/codex-runtimes/:id/events/:event_id/native",
+        CodexRuntimeController,
+        :native_event
 
     get "/projects/:project_id/events", EventController, :index
     post "/projects/:project_id/events/trigger", EventController, :trigger

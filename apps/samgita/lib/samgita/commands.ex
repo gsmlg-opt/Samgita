@@ -25,6 +25,10 @@ defmodule Samgita.Commands do
         lock_context!(principal, project_id, opts) |> Map.put(:command_id, attrs["command_id"])
 
       if Keyword.get(opts, :execution, false), do: require_hub!(context)
+      # Native operations must validate the current lease/generation even when a
+      # receipt exists. This hook runs inside the same ordered authority locks,
+      # before replay, and may only authorize/read/lock; never perform network I/O.
+      context = authorize_context(context, Keyword.get(opts, :authorize))
       # Serialize duplicate commands even when they create a new aggregate.
       SQL.query!(Repo, "SELECT pg_advisory_xact_lock(hashtextextended($1, 0))", [
         actor_key(principal) <> attrs["command_id"]
@@ -33,6 +37,11 @@ defmodule Samgita.Commands do
       execute_or_replay!(context, project_id, attrs, opts, callback)
     end)
   end
+
+  defp authorize_context(context, nil), do: context
+
+  defp authorize_context(context, authorize) when is_function(authorize, 1),
+    do: authorize.(context)
 
   defp execute_or_replay!(context, project_id, attrs, opts, callback) do
     actor = actor_key(context.principal)
