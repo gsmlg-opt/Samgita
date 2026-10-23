@@ -122,6 +122,10 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_command_lifecycle_profile.exs --seed 501432
+      - name: Required offline native model discovery profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_model_discovery_profile.exs --seed 501432
 
   completeness:
     name: Full compatibility evidence gate

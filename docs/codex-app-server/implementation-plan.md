@@ -34,8 +34,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries and the
 advertised MCP item-progress notification are `blocked` by source-proven absent
 production emitters. Selected native method/notification entries now total
-165 `implemented`, with nineteen exact notification/workspace-message schema contracts
-implemented; 315 requirements and 6,602 contracts remain `missing`. None is fully verified.
+169 `implemented`, with forty-five exact field/variant schema contracts
+implemented; 311 requirements and 6,576 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -195,6 +195,12 @@ Next concrete work (repair follow-up, 2026-10-24):
    explicit CI profile retains Linux namespace prerequisites; UDS success does
    not qualify sandbox enforcement or every transport. See
    [command lifecycle](command-lifecycle-qualification.md).
+   Six offline native model-discovery cases now cover rich/null metadata,
+   filtered pagination, malformed parameters, startup snapshots and invalid
+   configuration fallback, plus fresh provider-capability reads. Four entries
+   and 26 directly asserted fields are `implemented`; this is metadata evidence,
+   not inference or live-provider acceptance. See
+   [model discovery](model-discovery-qualification.md).
    Continue remaining image-byte limits, account backend variants,
    environment/permission/turn variants and real-service authentication profiles.
    Preserve entry-specific evidence and

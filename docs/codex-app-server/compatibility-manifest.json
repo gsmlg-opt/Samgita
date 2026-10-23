@@ -3296,12 +3296,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:model/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ModelListParams"
       },
@@ -3323,27 +3327,35 @@
         "source_line": 1128,
         "variant": "ModelList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model/list"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:modelProvider/capabilities/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ModelProviderCapabilitiesReadParams"
       },
@@ -3365,16 +3377,20 @@
         "source_line": 1148,
         "variant": "ModelProviderCapabilitiesRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider/capabilities/read"
     },
     {
@@ -15140,12 +15156,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:model/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15153,28 +15173,36 @@
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "2fb387a2ed258fc74258828ea342d68f89ce4e8e22cd0329ca59d2b423f9108b",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model/list"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:modelProvider/capabilities/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15182,16 +15210,20 @@
       "schema": "v2/ModelProviderCapabilitiesReadResponse.json",
       "schema_sha256": "96979d0111a38cb35a313e111c2f7c449441aee7fd51e1757f2d11c2213d4e77",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider/capabilities/read"
     },
     {
@@ -126092,79 +126124,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListParams.json#/properties/cursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/ModelListParams.json",
       "schema_sha256": "8c4f3653fe1a44eb8a01affe5e4eb2cbe3b209bfa6c0e62c2e15dfbb450d0142",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListParams.json#/properties/includeHidden",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/includeHidden",
       "required": false,
       "schema": "v2/ModelListParams.json",
       "schema_sha256": "879c7843a23abf71133213ca2407b9524042acf32f21f7e3ff2910c953a6933d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "includeHidden"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListParams.json#/properties/limit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/ModelListParams.json",
       "schema_sha256": "2594574e766f25b15bbbb6fb159981988a898bcfa643978d4820c8404be48b3c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "limit"
     },
     {
@@ -126302,53 +126358,69 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/additionalSpeedTiers",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/additionalSpeedTiers",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "0eb99c1f027d8563e6323bcdc052dba186b0d18b5c6372898b1dced572c36087",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "additionalSpeedTiers"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/availabilityNux",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Model/properties/availabilityNux",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "d23627b05c2bdb09f78535e66ff360e0bd9da658e659443d028e24d54244bc11",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "availabilityNux"
     },
     {
@@ -126398,27 +126470,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/availableAccessPrograms",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Model/properties/availableAccessPrograms",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "214864731131a2cf1c79472faaff2cb103117aa44b497a5e94802ab6b7d827ac",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "availableAccessPrograms"
     },
     {
@@ -126468,157 +126548,205 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/defaultReasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/defaultReasoningEffort",
       "required": true,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "defaultReasoningEffort"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/defaultServiceTier",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Model/properties/defaultServiceTier",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "c7fd498f359c29ea1521e822842b224d95a0390493d8c4291ff14dd36a01a9e6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "defaultServiceTier"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/description",
       "required": true,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/displayName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/displayName",
       "required": true,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "displayName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/hidden",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/hidden",
       "required": true,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hidden"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/id",
       "required": true,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -126627,131 +126755,171 @@
         "image"
       ],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/inputModalities",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/inputModalities",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "b38c2a93abcdc9300ea88850fc936401e8fa47f04b20eb73a1cceaeb1b038bcb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "inputModalities"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/isDefault",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/isDefault",
       "required": true,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "isDefault"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/model",
       "required": true,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/modelSpecialty",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Model/properties/modelSpecialty",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "67f0689e1c8ccd3216aeecbb51d53b4c1317267308d341e1b8af082aae3310af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelSpecialty"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/multiAgentVersion",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Model/properties/multiAgentVersion",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "253c999fa5c2de97ad291e3733a4dbf7fef13cb9b0bf358dc01ced5d2f98377b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "multiAgentVersion"
     },
     {
@@ -126801,131 +126969,171 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/serviceTiers",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/serviceTiers",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "5748f153a4f761f280ea13f02b1e5e8eec2f94f0445a8aab34ebd5f45ffc8dfd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serviceTiers"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/supportedReasoningEfforts",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/supportedReasoningEfforts",
       "required": true,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "42adca05b93a777fd148e785b88b7c72ce08d8f07dd39fa510ee197a2af3a558",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "supportedReasoningEfforts"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/supportsPersonality",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/Model/properties/supportsPersonality",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "1252bf61de1a5b544459a4e2f7d03479351baaa021864d997ad305158d551203",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "supportsPersonality"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/upgrade",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Model/properties/upgrade",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "upgrade"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/definitions/Model/properties/upgradeInfo",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Model/properties/upgradeInfo",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "fc00159d32e8905ebeec77711999783c8941c1d3a5014df1e53a3226ef5b4d1e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "upgradeInfo"
     },
     {
@@ -127353,105 +127561,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "e1ec560b04569b182511a7bee5d12b3bd0ee7a8ab90c646fd08d3c10f9c76b50",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelListResponse.json#/properties/nextCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ModelListResponse.json",
       "schema_sha256": "327f5fc7ab4df2df6babe1388e1263eab8ad0618eeac767724e649225442afc2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelProviderCapabilitiesReadResponse.json#/properties/imageGeneration",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/imageGeneration",
       "required": true,
       "schema": "v2/ModelProviderCapabilitiesReadResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "imageGeneration"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/model-discovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ModelProviderCapabilitiesReadResponse.json#/properties/webSearch",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Six actual-native offline cases cover synthetic static-catalog rich/null/default projection, filters, pagination, malformed/null/unknown parameters, startup snapshot/fallback and fresh provider-capability config. Live discovery/auth refresh, Gateway OAuth, managed policy, enabled inference/search/image/Bedrock backends, remaining field branches and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/webSearch",
       "required": true,
       "schema": "v2/ModelProviderCapabilitiesReadResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_model_discovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "webSearch"
     },
     {

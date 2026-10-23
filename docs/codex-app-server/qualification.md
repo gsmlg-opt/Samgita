@@ -813,3 +813,29 @@ scoped entries and five exact streamed-notification contracts as `implemented`:
 **6,621 contracts: 0 verified / 19 implemented / 6,602 missing**. This synthetic
 command scope does not qualify Codex sandbox enforcement, external environments
 or all deployment profiles. Final integrated/hosted results remain separate.
+
+## Offline native model discovery
+
+The coordinator added and ran six actual-binary cases in an enforced private
+network namespace with a static synthetic catalog. Both final seeds `501432`
+and `987654` passed **6 / 0** (15.6s / 15.5s); warnings-as-errors compile and
+whole-driver formatting passed. Python AST validation also passed. The profile
+checks the executable hash and confirms native/namespace-owner reaping. Rich
+and nullable metadata, hidden/non-API filtering, cursor/default semantics,
+stable negotiation and malformed inputs, cold restart, and fresh provider
+capability configuration all have concrete native outcomes.
+
+Three earlier **6 / 1** runs exposed test-oracle mistakes about empty-file
+configuration: native startup falls back with a warning, while the fresh
+capability reader returns `-32603`. Matching source and actual wire evidence
+corrected each exact assertion. [Model discovery](model-discovery-qualification.md)
+records the failed commands/logs, cause and final assertions. No production
+runtime, native deadline or assertion coverage changed. This does not qualify
+live discovery, real provider authentication or enabled inference backends.
+
+The explicit profile is required in the isolated hosted job. Source regeneration
+passes with **485 entries: 0 verified / 169 implemented / 311 missing / 5 blocked**
+and **6,621 contracts: 0 verified / 45 implemented / 6,576 missing**. Four
+method/response entries and 26 directly compared parameter/model/result fields
+gain scoped `implemented` evidence; unexercised enum/nullable branches retain
+their statuses. A11 and required legacy/external profiles remain incomplete.
