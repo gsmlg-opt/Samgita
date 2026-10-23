@@ -331,7 +331,9 @@ Next concrete work (repair follow-up, 2026-10-24):
    and local-history controls plus seven active output notices now have focused
    evidence. The [auth/envelope/lifecycle audit](auth-envelope-lifecycle-qualification.md)
    now indexes sixteen selected entries and 34 positive contracts without any
-   `verified` promotion. Deadline/quota saturation, active-turn settings and
+   `verified` promotion. Seven [deadline/quota cases](capacity-deadline-qualification.md)
+   now pass both seeds with unchanged production bounds; the two lifecycle
+   entries gain selected `implemented` evidence only. Active-turn settings and
    native MCP/OAuth controls are the next bounded units. At `085c4cc8`, foundation
    passed; conformance's thirteen isolated profiles passed, but all four default
    output-notice tests failed during namespace startup on Ubuntu 24.04. The

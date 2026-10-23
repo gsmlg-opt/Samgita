@@ -9459,7 +9459,8 @@
     {
       "direction": "lifecycle_rule",
       "evidence": [
-        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
+        "docs/codex-app-server/capacity-deadline-qualification.md"
       ],
       "id": "lifecycle:bounded-buffering",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -9467,12 +9468,12 @@
         "scripted_peer_fault: Event count bound preserves2 values and exposes lost-history gap.",
         "local_driver_negative: Notification wire byte/depth and invalid JSON rejection without sending104-109.",
         "scripted_websocket_peer: Oversized advertised-frame and fragmented aggregate bounds188-218.",
-        "No direct max_pending/max_uncertain/max_request_ids saturation test found; implementation request_capacity455-465 is not behavior evidence."
+        "Seven deterministic client-boundary cases now directly assert pending, uncertainty, request-ID, interaction, outcome and byte quotas with visible rejection/gaps and no silent approval response. Native backend/OS and all concurrency variants remain unqualified."
       ],
       "required_behavior": "bound pending calls, frames, and notifications; explicit overflow and recovery gap; no silent critical drops",
       "schema_sha256": "b250461608f7bbd7566f6aa18e9a690e4f75d859747061d3bd58d2e9eb5b76d6",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -9482,7 +9483,13 @@
         "verified": [
           "apps/samgita_codex_driver/test/session_test.exs:271",
           "apps/samgita_codex_driver/test/native_notification_test.exs:93",
-          "apps/samgita_codex_driver/test/transport_web_socket_test.exs:188"
+          "apps/samgita_codex_driver/test/transport_web_socket_test.exs:188",
+          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:48",
+          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:65",
+          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:89",
+          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:110",
+          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:129",
+          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:156"
         ]
       },
       "transport_coverage": [],
@@ -9542,7 +9549,8 @@
     {
       "direction": "lifecycle_rule",
       "evidence": [
-        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
+        "docs/codex-app-server/capacity-deadline-qualification.md"
       ],
       "id": "lifecycle:deadline-uncertainty",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -9551,12 +9559,12 @@
         "scripted_peer_fault: Read response deadline uncertain=false; late response observable.",
         "scripted_peer_fault: Mutation send failure uncertain=true.",
         "scripted_peer_fault: Failed notification write also settles held mutation uncertain; reconnect no replay.",
-        "No direct post-send mutating response-timeout assertion found. Read timeout and presend dispatch-expiry cannot substitute."
+        "A direct sent-mutation response deadline retains uncertainty after an opaque late response and reconnect; only explicit valid reconciliation clears it. This scripted client fault does not prove native result validation or response/deadline races."
       ],
       "required_behavior": "timeout/disconnect of mutation is uncertain; never resend as an automatic recovery action",
       "schema_sha256": "9c0bff829152023d131084db5addf70fd24efd28b210760653fc49fa28f6b91d",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -9567,7 +9575,8 @@
           "apps/samgita_codex_driver/test/session_test.exs:203",
           "apps/samgita_codex_driver/test/session_test.exs:233",
           "apps/samgita_codex_driver/test/session_test.exs:249",
-          "apps/samgita_codex_driver/test/native_notification_test.exs:177"
+          "apps/samgita_codex_driver/test/native_notification_test.exs:177",
+          "apps/samgita_codex_driver/test/session_capacity_deadline_test.exs:7"
         ]
       },
       "transport_coverage": [],

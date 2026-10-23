@@ -1494,5 +1494,47 @@ consistency passed after the indexing update. Regenerated totals: **485 entries:
 0 verified / 371 implemented / 108 missing / 6 blocked**; **6,621 contracts:
 0 verified / 860 implemented / 5,761 missing**. A11, unsupported native legacy
 producers, external/backend/OS profiles and full compatibility remain incomplete.
+
+## Output checkpoint independent package matrix
+
+The serialized runner `/tmp/samgita-codex-output-checkpoint-packages.py` completed
+with exit zero against application/package source `085c4cc8`. Later commits
+through `38e47451` changed documentation and CI only. Captured output is
+`/tmp/samgita-codex-output-checkpoint-packages.log`:
+
+- Independent driver: compile and complete format passed; **381/0** at `513498`
+  (268.6s) and `987654` (268.5s).
+- All thirteen explicit native profiles: **98/0** at `501432` (196.5s) and
+  `987654` (196.2s), including the new plugin-sharing unit.
+- Driver audit and the actual-binary outside consumer passed. The neutral
+  outside consumer script passed its copied **32 cases** and two **one-case**
+  consumers without platform configuration or database dependencies.
+- Optional WebSocket compile/format, **42/0** at each of `455834`, `501432` and
+  `987654`, and its independent-lock audit passed. This retains the original
+  failure seed and repaired observable subscription barrier.
+- Native wire compile/format, **42/0** and independent audit passed.
+
+No advisory was ignored. Both retained Plug.Crypto locks remain 2.2.1 and the
+standalone transport requires `~> 2.2.1`. Existing owned-process shutdown,
+owner-death, generation and platform fences remain unchanged. This is a local
+package checkpoint; current-source populated root/recovery/static/assets/assembly
+and hosted checks remain required after subsequent executable/test changes.
+
+## Client deadline and capacity saturation
+
+The [seven-case fault unit](capacity-deadline-qualification.md) adds direct
+post-send mutation timeout, pending/uncertainty/request-ID quotas, interaction/
+outcome saturation and critical byte-overflow evidence. Both seeds `501432` and
+`987654` passed **7/0, 1.6s each** on the first run, with independent compile,
+format and positional strict Credo (one file/69 checks) passing. Production code,
+deadlines and capacity limits are unchanged. These are scripted client faults;
+the opaque late envelope is not typed native-result evidence. Response/deadline
+and timer-cancellation races remain unqualified.
+
+Two lifecycle entries gain selected implementation evidence, with no native
+message or schema-field promotion. Offline inventory and whitespace checks pass.
+Totals: **485 entries: 0 verified / 373 implemented / 106 missing / 6 blocked**;
+**6,621 contracts: 0 verified / 860 implemented / 5,761 missing**. Full acceptance,
+A11, legacy/external/platform prerequisites and publication remain incomplete.
 The deprecated non-emitting output notice, real providers, other variants,
 external/platform profiles, A11, full compatibility and publication remain open.
