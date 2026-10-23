@@ -1,173 +1,172 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. No full compatibility, publication, deployment or production
-readiness claim is made. The complete accepted contract is in [goal](goal.md).
+Status: **incomplete**. The manifest records **0 verified / 485 missing requirements**
+and **0 verified / 6,621 missing field/variant contracts**. Selected passing
+journeys and generated schemas do not establish complete compatibility. The
+accepted contract remains [the full goal](goal.md); A11 and the security advisory
+below also prevent a platform-readiness or release claim.
 
-Baseline inspection on 2026-10-23 confirmed clean tracked `main` at
-`4fe354f2ce916aa32517c361a171b8878bf6ca84` before this work; only the user-provided
-goal and plan were untracked. Existing source metadata pins official
-`rust-v0.163.0` / `83086188ae0614bd882818ff1aa23f3194962012`. It covers selected
-reference schemas, six convenience request mappings and three notifications.
-Those prior tests do not establish real-binary conformance.
+## Delivered source and immutable reference
 
-The tested executable source is committed in native checkpoint
-`e0e4d6b9f5c652d76fa849a533fd08efdf1086fe` and driver checkpoint
-`9566fda6f0462cd2a9fd508dfb8b345e93e57f2f`. The final passing checks below ran
-against those same source files before committing; the following documentation
-commit changes no executable code. Neither checkpoint completes the full goal.
-
-## Immutable reference
-
-The checkpoint verifies official `rust-v0.163.0`, Linux
-`x86_64-unknown-linux-musl`, using disposable HOME, CODEX_HOME and workspaces.
-Python model fixtures listen only on loopback; no account or paid provider is used.
+The current executable checkpoint is
+`39ff43fa32961282628d9616f0b015b8d072fd5d`, on existing `main`. It includes
+`f14afc2` (omitted source contracts), `f5d6530` (additional actual-binary scenarios)
+and `a88a456` (atomic Session dispatch fences). Following documentation/workflow
+changes do not change the executable source tested below. Baseline inspection
+started at `4fe354f2ce916aa32517c361a171b8878bf6ca84`; prior checkpoint evidence
+is historical and cannot qualify this source.
 
 | Artifact | Immutable identity |
 | --- | --- |
+| Official release | `rust-v0.163.0` |
 | Source commit | `83086188ae0614bd882818ff1aa23f3194962012` |
 | Tag object | `129b8ec7ee6f4511557a4856279f529025c25af4` |
-| Binary SHA-256 | `399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215` |
+| Linux musl binary SHA-256 | `399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215` |
 | Release archive SHA-256 | `beb339e8ecd9ba057a6bb2dc81ad8ca474812edfbf0fc5056ca818797648dde4` |
 | Source archive SHA-256 | `e57f1d4f914c71c3532a12d5c14f740909fca4e7e041fa1b3db71618c88e5567` |
 
-Complete stable/experimental schemas, source gate annotations and individual
-artifact hashes are in
-`apps/samgita_protocol_codex/priv/upstream/0.163.0/provenance.json`. The binary and
-source cache live in ignored `tmp/codex/0.163.0/`, outside package contents.
+`python3 scripts/codex/fetch_pin.py` reverified the pin on 2026-10-23. The
+executable/source cache is ignored `tmp/codex/0.163.0/`, outside package contents.
+Qualification currently covers Linux `x86_64-unknown-linux-musl`. Test children
+use disposable homes/configuration/workspaces and loopback synthetic model,
+authentication, MCP and attestation fixtures. No account or paid provider was used.
 
-## Local checkpoint evidence, 2026-10-23
+The 318 stable and 452 experimental official JSON artifacts retain their original
+bytes/hashes. A separately labeled, locally derived supplement accounts for
+`getConversationSummary`, `getAuthStatus`, `gitDiffToRemote`,
+`rawResponse/completed` and `rawResponseItem/completed`, using matching pinned
+TypeScript and Rust/serde declarations. Provenance and source hashes live in
+`apps/samgita_protocol_codex/priv/upstream/0.163.0/provenance.json`. Source discovery
+now includes 175 client methods and 87 server notifications. This is inventory
+coverage, not runtime acceptance.
 
-These checks were executed during this implementation, after the final executable
-changes. Package commands ran in `devenv shell --no-tui -- bash -c '…'`, serially,
-from the named package directory. This is scoped foundation evidence, not the
-final full-goal release matrix.
+## Final executable-source local checks, 2026-10-23
 
-| Check | Exact command or scope | Result |
+All checks in this table were actually run by the coordinator after the final
+executable edits, serializing Mix builds. Package commands run from their own
+directories inside `devenv shell --no-tui --`, with Elixir 1.18.5 / OTP
+27.3.4.17. Root test commands additionally use:
+
+```sh
+MIX_ENV=test PGHOST=/tmp/samgita-p3-pg/socket POSTGRES_PORT=55443 POSTGRES_USER=gao \
+  SAMGITA_TEST_DATABASE=samgita_redesign_codex_runtime_test \
+  CODEX_BINARY=/home/gao/Workspace/gsmlg-opt/Samgita/tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl
+```
+
+| Check | Exact command/scope | Observed result |
 | --- | --- | --- |
-| Pin | `python3 scripts/codex/fetch_pin.py` | Passed; exact source/archive/binary hashes and version |
-| Inventory | `python3 scripts/codex/inventory.py --check` | Passed; 318 stable + 452 experimental artifacts, 477 entries + 6,549 contracts |
-| Inventory regressions | `python3 -m unittest discover -s scripts/codex -p 'test_*.py' -v` | 9 passed |
-| Native package | In `apps/samgita_protocol_codex`: `mix test` | 29 passed; includes 452 generated message/result examples and 6,549 field/variant examples |
-| Native static checks | `mix compile --warnings-as-errors`; `mix format --check-formatted` | Passed |
-| Driver package | In `apps/samgita_codex_driver`: `CODEX_BINARY="$PWD/../../tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl" mix test` | 48 passed |
-| Driver static checks | `mix compile --warnings-as-errors`; `mix format --check-formatted` | Passed |
-| Outside consumer | `python3 scripts/codex/verify_consumer.py` inside Devenv | Passed fresh dependency resolution, warnings-as-errors compilation, 1 real-binary test and formatting; no Repo/Phoenix/platform/config inheritance |
-| Raw reference baseline | `python3 scripts/codex/real_binary_baseline.py --output tmp/codex/0.163.0/native-baseline.json` | Stable and experimental profiles passed initialize, pre-init/duplicate-init rejection, config/thread reads, configured thread/text turn and full item completion; one local model request each |
-| Source-semantic gates | `python3 scripts/codex/probe_gates.py` | 13/13 actual-binary probes passed, without valid turn execution |
-| Completeness gate | `python3 scripts/codex/inventory.py --check --require-verified` | **Failed as required**: unverified entries remain; this must prevent a full compatibility claim |
-| Whitespace | `git diff --check`, followed by staged checks at commit | Passed |
+| Root compilation/format | `mix compile --warnings-as-errors`; `mix format --check-formatted` | Passed |
+| Strict Credo | `mix credo --strict` | Passed; 251 files, 69 checks, no issues |
+| Retained/redesign suite | `mix test`, then `mix test` on the populated database | Each run: 188 core tests; 114 web cases, 2 dedicated e2e cases excluded; zero failures |
+| Native platform/API journey | `mix test apps/samgita_web/test/samgita_web/controllers/codex_runtime_controller_test.exs apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs --include e2e` | 4 passed, including two ordinary Agent names, explicit synthetic approval, progress/artifact, review and acceptance |
+| Restart/rollback | `SAMGITA_TEST_DATABASE=samgita_redesign_restart_test mix test apps/samgita_web/test/samgita_web/integration/restart_reconcile_test.exs --include e2e` | 1 passed on isolated database |
+| Neutral packages/outside consumers | `python3 scripts/verify_isolated_protocol.py` | 32 core tests plus 1 pure and 1 WebSocket outside-consumer test passed; independent compilation/format passed |
+| Optional transport | In `apps/samgita_protocol_websocket`: `mix test`; `mix compile --warnings-as-errors`; `mix format --check-formatted` | 40 passed; static checks passed |
+| Codex wire | In `apps/samgita_protocol_codex`: `mix test`; `mix compile --warnings-as-errors`; `mix format --check-formatted` | 32 passed; static checks passed |
+| Complete driver suite | In `apps/samgita_codex_driver`: `CODEX_BINARY="$PWD/../../tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl" mix test`; `mix compile --warnings-as-errors`; `mix format --check-formatted` | 89 passed; static checks passed |
+| Independent Codex consumer | `python3 scripts/codex/verify_consumer.py` | Fresh outside resolution, warnings-as-errors compilation, 1 actual-binary test and formatting passed; no Repo/Phoenix/platform/config inheritance |
+| Inventory | `python3 scripts/codex/inventory.py --check` | Passed; 485 requirements / 6,621 contracts, all still missing |
+| Inventory regressions | `python3 -m unittest discover -s scripts/codex -p 'test_*.py' -v` | 12 passed |
+| Legacy runtime gate | `python3 scripts/test_check_legacy_runtime.py`; `python3 scripts/check_legacy_runtime.py` | 4 passed; scan passed |
+| Frozen web installation | `python3 scripts/install_web_dependencies.py --isolated` | Passed; Bun 1.3.13, 1,212 packages, 126.98 seconds; lockfile unchanged |
+| Assets | `mix assets.build` | Passed |
+| Dialyzer | `mix dialyzer` | Passed; 0 errors, 0 skips |
+| Dependency security | `mix hex.audit` | **Failed**: retained `plug_crypto 2.2.0`, EEF-CVE-2026-105963 / CVE-2026-105963 / GHSA-ffw9-w85g-f2vh |
+| Local production assembly | `MIX_ENV=prod MIX_BUILD_PATH=/tmp/samgita-codex-production-build mix deps.get --only prod`; `mix compile --warnings-as-errors`; `mix assets.deploy`; `mix release --overwrite` under the same prod environment | Passed with synthetic runtime settings; unpublished local 0.1.0 assembly only, not started/deployed |
+| Full compatibility gate | `python3 scripts/codex/inventory.py --check --require-verified` | **Failed**: unverified requirements remain; must prevent a full compatibility claim |
+| Whitespace/YAML | `git diff --check`; staged whitespace checks; Bun YAML parse of the new workflow | Passed |
 
-The driver suite combines scripted faults with actual binary tests. Real
-transports cover stdio, capability-token-authenticated WebSocket and borrowed
-WebSocket-over-UDS. Scripted transport tests cover WSS trust/hostname rejection,
-fragmented/coalesced JSONL, control/fragmented frames, bounds, EOF, HTTP 429,
-environment isolation and owned process cleanup. TLS rejection tests deliberately
-produce certificate alerts.
+The four native concurrency cases use distinct PostgreSQL backend PIDs and retain
+their committed records through authorized cleanup. Full root tests include fresh/
+additive history preservation fixtures. Both new native migrations were applied
+to the existing populated scratch database; no reset or record deletion occurred.
+The local host refreshed during review; Devenv and the existing scratch cluster
+were restored without initializing it again. The separate restart database did
+not exist. Its first Mix create failed because this local cluster's template1 is
+SQL_ASCII; explicitly creating the named scratch database as UTF8 from template0
+resolved that environment prerequisite. No application migration was changed for it.
 
-Actual Session journeys cover stable/experimental configured text turns, a valid
-image URL reaching the local model, full item events, structured native errors,
-command decline/cancel/explicit acceptance, a dynamic tool's structured result,
-plan-mode user input and explicit WebSocket reconnect/read/resume without a second
-model execution. Only the exact synthetic `printf samgita_fixture` command in a
-disposable cwd, using a private test shell, may be approved. These journeys cover
-selected behaviors, not all 172 client methods or 11 server interactions.
+The security advisory concerns secret-key-base exposure in stacktrace arguments
+after wrong-typed Plug.Crypto calls. The root and optional WebSocket lockfiles
+still contain affected 2.2.0. This checkpoint does not upgrade the retained
+dependency or mark the audit passed. Fresh outside consumers resolved 2.2.1;
+that does not repair or qualify either retained lockfile. Keep this release gate
+blocked and handle the dependency remediation as its own scoped change.
 
-Scripted Session regressions separately verify typed bidirectional IDs,
-out-of-order responses, initialization, native trace/envelope preservation,
-redacted errors, deadlines, caller loss, stale/resolved/expired handles,
-bounded queues/outcomes, local cancellation and uncertain mutations. Local reply
-encoding failure leaves an interaction usable; an attempted transport send can
-remain uncertain. A sent or resolved reply never implies task acceptance.
+## Behavior and corrections demonstrated
 
-## Corrections established by these checks
+Actual executable scenarios cover stdio, authenticated WebSocket, borrowed UDS,
+selected method families, complete item delivery, explicit approvals, dynamic
+tools, plan input and reconnect/read/resume without a second execution. Two
+method-family suites contain 28 selected scenarios. Existing plus new journeys
+cover selected behavior across 9/11 server-interaction families. Legacy
+`applyPatchApproval` and `execCommandApproval`, remaining decisions/fields and
+external success profiles remain unqualified. Synthetic token refresh/header
+forwarding is not real account, signed-JWT or attestation-service acceptance.
 
-Initial real-driver runs failed on output validation and fixture assumptions.
-Those failures were reproduced and corrected before the passing runs above:
+Scripted faults separately exercise framing, TLS rejection, correlation,
+deadlines, caller loss, bounded buffers and uncertain sends. TLS rejection tests
+deliberately emit certificate alerts. No local command ID promises upstream
+deduplication. Only explicitly asserted synthetic commands/patches in disposable
+workspaces are approved; no general auto-approval policy was installed.
 
-- Rust input gates depend on value/Option semantics, not field presence alone.
-  Thirteen actual-binary probes distinguish false/null/empty/nested cases.
-- Stable upstream responses and notification payloads contain fields removed by
-  stable schema generation. Full pinned output schemas preserve/type-check them;
-  client-input field gates do not apply to those emitted payloads.
-- Both notification exports list 85 methods. Rust source annotations gate 24 at
-  runtime, so discovery exposes 61 stable/85 experimental notification methods.
-  Server-request export annotations impose no runtime gate: all 11 interactions,
-  including `currentTime/read`, remain discoverable in either profile. Inventory
-  metadata distinguishes annotation/export status from runtime capability needs.
-- The command fixture selects a shell type, while upstream discovers its actual
-  executable. A private shell first on the owned child's PATH makes the exact
-  approval assertion independent of host shell symlinks.
-- The initial one-pixel PNG had an invalid IDAT checksum. The valid replacement
-  passes the same actual-provider-input assertion; the assertion was not weakened.
-- A clean outside consumer exposed a missing formatter configuration. It now has
-  its own configuration and passes without inheriting the repository's settings.
+The platform journal validates current authority before replay and settlement,
+encrypts complete native payloads, issues one-use tickets and never dispatches
+from registration, schedules, event delivery or restart. Native completion does
+not report/accept a Task. See [the API and recovery contract](platform-integration.md).
+Review reproduced and corrected:
 
-## Unfinished acceptance
+- Unconfirmed interaction replies were omitted from mutation ambiguity guards.
+- Operator replies did not check the current execution authority epoch.
+- Local driver selection checked generation without checking process identity.
+- A status-check/send race could cross reconnect; atomic Session instance,
+  generation and deadline guards now reject before sending. Three new Session
+  regressions failed before the fix and passed afterward.
+- Native identity/correlation omitted generation; same-instance reconnect could
+  reject reused IDs or settle an old uncertain approval. Three new database
+  regressions failed before generation-qualified queries/indexes and passed after.
 
-### Hosted checkpoint failure and scoped repair
+Strict Credo initially rejected complexity in the two new fixes. Small helper
+extractions preserved the predicates/guards; final Credo passed without exclusions
+or warning suppression. A populated-database test assertion was also corrected
+to inspect its own runtime records rather than assume a globally empty journal.
 
-The actual hosted run for `923b2901f36dbdb2bc6ee3c6fd4dcac0c0ee8f9d`,
-[39928300713](https://github.com/gsmlg-opt/Samgita/actions/runs/39928300713),
-**failed** strict Credo with 23 findings in the new native/driver code and tests.
-Dependency installation, compilation and formatting passed. Database tests,
-restart/rollback, package consumers, assets, legacy scan, Dialyzer, dependency
-audit and production assembly were **skipped**. They cannot count as passing
-qualification for that source.
+Earlier native-layer corrections preserved Rust Option/union gates, runtime
+notification annotations and full output fields. Missing TypeScript legacy
+exports are now accounted for separately. Early shell-discovery, image-fixture,
+skill/config and provider-capability fixture assumptions were corrected against
+matching source/runtime behavior; those changes did not weaken assertions or gates.
 
-The repair extracts validation, framing and handshake helpers and renames the
-new unpublished native exception from `Failure` to `Error`. It adds no exclusions,
-disabled checks or configuration suppressions. The package interfaces retain
-complete native wire data and redacted error inspection.
+## Hosted evidence and remaining gates
 
-`apps/samgita_codex_driver/test/method_families_test.exs` adds 15 real-binary cases
-using private homes/workspaces and the immutable Linux executable. They exercise
-selected file CRUD/watch/error behavior; command execution; spawned process input,
-streaming, output bounds, kill and duplicate IDs; layered config, writes and version
-conflicts; skill toggle and extra roots; model pagination/capability discovery and
-unauthenticated account reads; persistent thread history/items/fork/revert,
-subscription, archive and deletion. These cover 40 request methods and five
-notification methods at selected variants, without qualifying their whole surface.
+Historical hosted [39928300713](https://github.com/gsmlg-opt/Samgita/actions/runs/39928300713)
+failed strict Credo on `923b290`; later database/consumer/assets/audit/assembly
+steps were skipped. Historical [39930133440](https://github.com/gsmlg-opt/Samgita/actions/runs/39930133440)
+passed on `1422309d82706eb8ed8faf69f378433c155e31f3`. Neither run qualifies the
+current native integration. Earlier local 29-wire/63-driver results and 477/
+6,549 inventory totals likewise describe earlier source, not this checkpoint.
 
-Two initial fixture assertions failed and were corrected against matching source:
-provider capability discovery advertises image/search upper bounds even when an
-individual turn disables search; enabling a skill removes its explicit disabled
-config entry rather than persisting `enabled=true`. The actual disabled state,
-restored configuration and enabled listing are asserted. No runtime behavior or
-release gate was weakened.
+The new manual `Pinned Codex conformance` workflow has two independent jobs:
+selected actual-binary/package/consumer/platform tests and a strict full-manifest
+evidence gate. Missing entries intentionally fail the latter; it is not
+continue-on-error and cannot be replaced by selected scenario success. Ordinary
+CI retains its aggregate security and assembly gates. At documentation authoring,
+final-source push/hosted runs are pending; report their actual run URLs, SHA and
+terminal results after delivery rather than infer success from dispatch.
 
-The coordinator reran these combined-source checks after both repairs:
-
-| Check | Command | Observed result |
-| --- | --- | --- |
-| Root formatting | `devenv shell --no-tui -- env MIX_ENV=test mix format --check-formatted` | Passed |
-| Strict Credo | `devenv shell --no-tui -- env MIX_ENV=test mix credo --strict` | Passed, 232 files / 69 checks, no issues |
-| Native package | In `apps/samgita_protocol_codex`, inside Devenv: `mix test && mix compile --warnings-as-errors && mix format --check-formatted` | 29 passed; compilation/format passed |
-| Complete driver package | In `apps/samgita_codex_driver`, inside Devenv: `CODEX_BINARY="$PWD/../../tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl" mix test && mix compile --warnings-as-errors && mix format --check-formatted` | 63 passed; compilation/format passed |
-| Inventory | `python3 scripts/codex/inventory.py --check` | Passed; all 477 entries / 6,549 contracts remain missing |
-| Inventory regressions | `python3 -m unittest discover -s scripts/codex -p 'test_*.py' -v` | 9 passed |
-| Whitespace | `git diff --check` | Passed |
-
-These are current local repair checks. A subsequent hosted run must qualify the
-pushed revision; the earlier hosted failure is retained above.
-
-| Layer | Remaining gate |
+| Layer | Remaining requirement |
 | --- | --- |
-| Manifest evidence | 0 verified, 477 missing message/lifecycle entries; 0 verified, 6,549 missing field contracts. Generic implementation and generated fixtures do not advance end-to-end evidence states. |
-| Method/interaction matrix | Per-entry enabled/disabled/error/differential journeys for remaining families and server interactions; current selected journeys are insufficient. |
-| Platform | Ordinary Agent native bindings, durable thread/turn/operation/interaction records, authorized programmatic APIs, current fences and Samgita end-to-end tests are not implemented in this checkpoint. |
-| External profiles | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles have not run. Controlled authorized environments and synthetic/test credentials are needed after independent implementation; no live credentials were provisioned. |
-| Aggregate/hosted | Root tests, assets, strict Credo, Dialyzer, audit, restart/assembly and hosted full-compatibility checks have not run for this checkpoint. Prior redesign CI evidence does not qualify these additions. |
+| Manifest | Per-entry and field/behavior evidence; all 485 / 6,621 entries remain missing, not mass-marked verified from forwarding or fixtures |
+| Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
+| External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
+| Security/readiness | Retained Plug.Crypto advisory; A11 raw LiveView credential telemetry; target-specific egress/key/legacy-cutover and real backup/memory rehearsals |
+| Hosted | Final pushed aggregate and pinned-binary jobs; full evidence gate remains red until actual acceptance is complete |
+| Publication/deployment | No normal package/tag publication workflow currently exists; CD remains disabled; no package publication or deployment is claimed |
 
-No manifest entry was mass-marked verified from schema coverage or JSON transport.
-Missing, mock-only and externally blocked requirements keep the full goal active
-and incomplete. Continue using the next steps in
-[the implementation ledger](implementation-plan.md).
-
-## Security and release limits
-
-The existing raw LiveView credential telemetry issue A11 remains explicit and
-prevents platform readiness. Synthetic credentials and isolated processes only
-are authorized. Upstream mutation timeouts/disconnects may be ambiguous; never
-retry automatically or pretend a local command ID confers upstream idempotency.
-No release tag, publication, deployment, production migration or live credential
-change has occurred in this work.
+New migrations are additive and refuse destructive down migration. Rollback
+retains journals/keys and requires compatible software, writer fencing and
+explicit assessment of uncertain effects; see [platform integration](platform-integration.md)
+and [legacy migration/rollback](../redesign/migration-rollback.md). No production
+migration, real credential change, sibling-service modification, release tag,
+publication or deployment occurred. The full goal remains active and incomplete;
+continue with [the implementation ledger](implementation-plan.md).

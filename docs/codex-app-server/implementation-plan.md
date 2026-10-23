@@ -8,9 +8,9 @@ The complete goal remains active. No phase below is a substitute for completion.
 | 0 Inventory and harness | Pin/generation scripts; complete upstream schema/provenance; compatibility manifest; isolated real-binary harness; these documents | Reproducible inventory, exact hashes, real handshake and representative round trip | Implemented checkpoint; complete source/test audit remains |
 | 1 Native wire | Codex schema/codec/types and generated fixtures/tests; preserve convenience API | Complete accessible native surface; variant/malformed/lossless tests | Native layer implemented; per-entry behavior qualification remains |
 | 2 Driver lifecycle | Independent driver package; stdio/WebSocket/UDS; supervised sessions and bounded state | Real-binary and fault tests for correlation, deadlines, shutdown, overflow and uncertain outcomes | Scoped lifecycle implemented; full deployment matrix remains |
-| 3 Method families | Version-pinned operation APIs and scenarios for every manifest family | Full enabled/disabled/error behavior, field preservation and association | Partial real text/image/thread journeys; remaining families pending |
-| 4 Server interactions/events | Explicit response APIs for all server requests; full event delivery | Real approval/tool/input paths, decisions, denial, stale replies and cancellation | Native interface and selected journeys implemented; full interaction matrix pending |
-| 5 Platform/consumers | Ordinary Agent/task/native APIs, durable authorized interactions, examples | Fencing/review preserved; platform and outside-umbrella consumer proof | Independent consumer implemented; platform integration pending |
+| 3 Method families | Version-pinned operation APIs and scenarios for every manifest family | Full enabled/disabled/error behavior, field preservation and association | Two method-family suites implement 28 real-binary scenarios; remaining methods and variants pending |
+| 4 Server interactions/events | Explicit response APIs for all server requests; full event delivery | Real approval/tool/input paths, decisions, denial, stale replies and cancellation | Selected behavior across 9/11 interaction families; legacy approvals and remaining variants pending |
+| 5 Platform/consumers | Ordinary Agent/task/native APIs, durable authorized interactions, examples | Fencing/review preserved; platform and outside-umbrella consumer proof | Context, REST API and explicit Driver bridge implemented; selected two-Agent actual-binary journey, outside consumers and populated-database repeats passed; full contract remains incomplete |
 | 6 Conformance | Schema variants, faults, real binary, differential/platform/external profiles | Every required entry/variant evidenced or visibly blocked | Pending |
 | 7 Final qualification | Aggregate/hosted checks, final evidence, docs, commits/push and gated publication | Final-source checks and remote convergence; all required entries verified | Pending |
 
@@ -30,8 +30,8 @@ Codex conformance.
 
 The official Linux musl executable and source archive are hash-pinned. Stable and
 experimental generation produced 318 and 452 JSON artifacts. The reproducible
-manifest inventories 477 message/result/envelope/lifecycle requirements plus
-6,549 field/variant contracts. These entries remain `missing` until required
+manifest now inventories 485 message/result/envelope/lifecycle requirements plus
+6,621 field/variant contracts. These entries remain `missing` until required
 entry-specific behavior evidence is attached; generic transport and synthetic
 schema examples cannot advance them to verified.
 
@@ -56,12 +56,67 @@ file, process, configuration, skill, discovery and persistent thread behaviors.
 The manifest remains incomplete; this evidence does not verify every method or
 parameter variant.
 
-Next concrete work: attach narrowly scoped behavior evidence to manifest entries,
-expand real-binary family and interaction scenarios (including enabled/disabled
-and differential profiles), then add durable ordinary-Agent native bindings and
-fenced programmatic interaction APIs. Do not transform project-event delivery into
-automatic turn execution. Complete independent implementation before requiring
-external/backend acceptance, and retain A11 as an independent platform blocker.
+The source-completeness repair preserves the original official JSON exports and
+adds a separately labeled supplement for three legacy requests and two raw
+notifications. The supplement derives structure from the pinned executable's
+experimental TypeScript export and omission/untagged semantics from matching Rust
+serde declarations. Hashes and origins remain in package provenance. Source
+completeness and generated fixtures still do not verify runtime behavior.
+
+Thirteen further actual-binary method-family scenarios cover local search,
+review, settings, injected history, sections, queues, attachments, read state,
+feature/profile discovery, config import history, local plugins and legacy calls.
+Six server-interaction scenarios and three synthetic auth/attestation scenarios
+exercise selected decisions and actual local effects. Together with prior driver
+tests, nine of eleven server-request families have selected behavior evidence.
+Legacy `applyPatchApproval` and `execCommandApproval`, remaining decision/field
+variants and external service success profiles remain unqualified. Synthetic JWT
+refresh and attestation header forwarding are not real authentication or
+attestation-service acceptance.
+
+The platform implementation now adds inert runtime registration metadata, four
+additive native journal tables, encrypted payload storage, context commands,
+project-authorized REST endpoints and an explicit bridge for an already started
+driver. See [platform integration](platform-integration.md) for the source-level
+contract and current limitations. Context/API tests cover selected validation,
+payload protection, replay, authorization, ambiguity, reconnect and Task-state
+boundaries. Four concurrency tests use independent PostgreSQL backends and finish
+their committed fixtures without deletion; populated-database repeats pass.
+Review reproduced and corrected dispatch after an unconfirmed approval reply and
+operator approval after authority-epoch change. The qualification record separates
+these component checks from subsequent combined-source aggregate results.
+
+Delivery review reproduced two more reconnect defects. Session now checks the
+ticket's instance, generation and absolute deadline atomically before native
+request/reply dispatch. An additive follow-up migration and journal predicates
+include driver generation in source/request identity and response/resolution
+correlation. Reused upstream IDs after reconnect cannot settle old uncertain
+approvals. Both repairs have red/green regressions; no gate was weakened. Current
+combined-source checks passed 89 driver tests, independent consumers, 188 core
+tests and 112 executed web tests twice, plus the selected actual-binary/API
+journey. Exact remaining aggregate and hosted outcomes belong in qualification.
+
+Next concrete work:
+
+1. Push the logical scoped units and complete final-source hosted checks. Local
+   compilation, tests, static checks, assets, consumers and assembly passed, but
+   retained `plug_crypto 2.2.0` now fails security audit for CVE-2026-105963; preserve
+   that blocker and address dependency remediation as its own scoped change.
+   Run the manual pinned-Codex hosted workflow: its selected actual-binary matrix
+   and strict completeness job have separate outcomes. The selected platform
+   journey already passed for two ordinary Agent names; it does not establish
+   broader provider, field/variant or deployment acceptance.
+2. Complete remaining method/interaction variants, differential profiles and
+   manifest-specific evidence. Preserve all 485 requirements and 6,621 contracts
+   as missing until their full acceptance conditions are established.
+3. Run final independent-package/consumer, root, restart/recovery, static,
+   security, assets, release-assembly and hosted checks on the delivered source.
+   Keep unavailable external profiles and A11 visibly incomplete. Publish only
+   after applicable gates and the normal workflow pass.
+
+Project-event delivery remains notification delivery; it cannot start a turn.
+No new background execution engine, production migration, sibling-service change,
+live credential setup or deployment is part of this checkpoint.
 
 ## Known boundaries
 

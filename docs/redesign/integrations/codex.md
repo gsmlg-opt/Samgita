@@ -1,4 +1,4 @@
-# Codex integration and pinned adapter boundary
+# Codex integration and pinned runtime boundary
 
 Codex is an ordinary Agent implementation label, with the same registration,
 membership, capacity and acceptance rules as Sigma, Synapsis or another service.
@@ -6,14 +6,21 @@ There is no embedded Codex executor, auto-launched CLI or privileged Codex route
 Use an existing explicitly chosen host; this guide starts no process and changes
 no external service or permission.
 
-## What the adapter establishes
+## Native wire, driver and retained convenience adapter
 
-`apps/samgita_protocol_codex` is an optional pure adapter pinned to official Codex
-**0.163.0**, commit `83086188ae0614bd882818ff1aa23f3194962012`. Vendored source
-hashes/license provenance and selected field mappings are checked by package
-tests. This is source conformance for a subset, not live or full compatibility.
-The [adapter README](../../../apps/samgita_protocol_codex/README.md) is the exact
-mapping contract.
+`apps/samgita_protocol_codex` contains a pure native schema/wire layer pinned to
+official Codex **0.163.0**, commit
+`83086188ae0614bd882818ff1aa23f3194962012`, plus the retained limited convenience
+adapter. `apps/samgita_codex_driver` supplies explicitly started Sessions and
+stdio, WebSocket and WebSocket-over-UDS transports, bidirectional correlation and
+explicit interaction replies. Neither package requires Samgita's Repo, schemas,
+Phoenix or configuration. Source/schema coverage and selected actual-binary
+journeys are recorded separately from full compatibility in
+[qualification](../../codex-app-server/qualification.md).
+
+The following restrictions apply only to the convenience adapter, whose exact
+mapping contract is in the
+[adapter README](../../../apps/samgita_protocol_codex/README.md):
 
 | Selected support | Unsupported boundary |
 | --- | --- |
@@ -30,11 +37,14 @@ to safe codes without copying upstream secret-bearing messages or payloads.
 
 ## Direct host usage
 
-Build and test the adapter from its own directory. The caller owns transport,
-authentication, one initialize sequence per connection, pending request context,
-notification routing, timeout/disconnect uncertainty and reconciliation. It can
-communicate directly with its chosen Codex host while Samgita is stopped.
-Loading the adapter starts no listener, provider, LLM or Samgita application.
+Build/test the native wire and driver from their own directories. Follow the
+[driver guide](../../../apps/samgita_codex_driver/README.md) and
+[standalone example](../../../apps/samgita_codex_driver/examples/consumer/README.md)
+for owned or borrowed transports, initialization, bounded events, explicit
+approvals and uncertain-outcome recovery. A consumer can communicate directly
+with its chosen Codex host while Samgita is stopped. Loading either package starts
+no listener, provider, LLM or Samgita application. Callers using only the pure
+convenience adapter still own its transport and request lifecycle.
 
 Verify the actual official client/server version and selected handshake/methods
 before claiming live compatibility. Source tests against pinned schemas do not
@@ -50,6 +60,15 @@ an independent inbound machine credential, stored only as a digest in Samgita.
 Use `POST /api/agent/connect`, then Bearer plus current `x-agent-connection` on
 versioned [management callbacks](../management-api.md). The callback service must
 own its persistent execution journal and stable command identity.
+
+The operator API accepts optional `runtime_driver: "codex"` and
+`runtime_version: "0.163.0"`; those fields are inert and grant no membership.
+After the normal Agent claim/start flow, bind the already started native Session
+to its running Attempt and use the explicit journal APIs. Follow
+[platform integration](../../codex-app-server/platform-integration.md) for
+one-use dispatch, encrypted native payloads, current authority checks, protected
+reads, additive migration and recovery. Do not confuse the native runtime binding
+with a project-event host or infer Task acceptance from a completed turn.
 
 Do not configure Samgita's native event connector directly against an official
 Codex endpoint: this adapter does not implement native `project_events.v1`.
@@ -80,6 +99,7 @@ evidence-based resolution.
 The [capability matrix](../capability-matrix.md), [P2](../protocol-phase-2.md),
 [P3](../domain-phase-3.md), [P4 coordination](../coordination-phase-4.md),
 [P4 GitHub](../github-phase-4.md) and [acceptance ledger](../acceptance.md) separate
-package, deterministic fake, real-service and deployment evidence. No live Codex
-generation, complete compatibility, published package or production integration
-is claimed by this guide.
+package, deterministic fake, actual local Codex executable, real-service and
+deployment evidence. Local deterministic model fixtures are not real account or
+backend acceptance. Complete compatibility, published packages and production
+integration remain unclaimed.

@@ -47,8 +47,9 @@ heartbeat or runtime readiness is inferred.
 | Sigma | Register existing service endpoint only after that exact service/version demonstrates its native advertised groups and authentication | No live Sigma conformance claim; do not start another Sigma process |
 | Synapsis | Same native host/callback requirements as any registered Agent | No live Synapsis conformance claim or sibling repository changes |
 | Codex adapter | Pinned official 0.163.0 selected thread/turn and notification field mapping | Source conformance only; no complete native capability group, project-event support or live Codex compatibility |
+| Codex native driver | Pinned native schema and explicit standalone Session; selected actual-binary method/interaction and fenced platform journeys | Full behavioral manifest, external account/backend success, other deployment profiles and package publication remain incomplete; no `project_events.v1` translation |
 
-The Codex subset supports empty-parameter `thread/start`, `thread/read`,
+The retained Codex convenience subset supports empty-parameter `thread/start`, `thread/read`,
 `thread/resume`, text `turn/start`, `turn/steer`, `turn/interrupt`, and selected
 turn/agent-message notifications. It does not translate native initialization,
 capability negotiation, project events, approvals, request cancellation or stream
@@ -56,6 +57,14 @@ replay. Its native `command_id` is not sent upstream and creates no upstream
 durable idempotency guarantee. Consult the
 [adapter README](../../apps/samgita_protocol_codex/README.md) and
 [Codex guide](integrations/codex.md) before claiming support.
+
+Those convenience restrictions do not limit the separate lossless native wire
+interface. Native runtime registration metadata grants no Project permissions;
+explicit fenced intent/dispatch/settlement and protected journal APIs are described
+in the [platform integration](../codex-app-server/platform-integration.md).
+Selected real-executable scenarios remain distinct from complete compatibility
+and real external-service acceptance in the
+[Codex qualification](../codex-app-server/qualification.md).
 
 The [P2](protocol-phase-2.md), [P3](domain-phase-3.md),
 [P4 coordination](coordination-phase-4.md), [P4 GitHub](github-phase-4.md) and

@@ -142,6 +142,18 @@ event identity and records evidence and duplicate-effect risk.
 
 ## Protocol, UI and verification boundary
 
+Ordinary Agents registered with optional `runtime_driver: "codex"` and pinned
+`runtime_version: "0.163.0"` may use the project-scoped
+`/api/agent/projects/:project_id/codex-runtimes` journal APIs for an existing
+running Attempt. Operator history, explicit replies and evidence-only recovery
+use `/api/projects/:project_id/codex-runtimes`. The
+[native runtime API table](../codex-app-server/platform-integration.md#apis-and-access-boundaries)
+defines the exact methods, current authority checks and protected native reads.
+Registration grants no role and launches nothing. Dispatch tickets are one-use;
+lost acknowledgements require reconciliation, not another execution. All runtime
+responses are non-cacheable, and plaintext native payloads never enter ordinary
+receipts or audit projections. Native completion cannot accept a Task.
+
 The native `/app-server` protocol carries events and optional runtime sessions
 between clients and a chosen external host. Samgita's implemented outbound
 connector uses `project_events.v1`; REST callbacks above carry authoritative

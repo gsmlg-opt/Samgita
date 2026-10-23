@@ -25,20 +25,29 @@ External Agent  -> authenticated REST callbacks -> Samgita management authority
 ```
 
 The explicit umbrella contains `samgita` and `samgita_web`. Core never depends on
-web. The three protocol projects under `apps/` own separate build/dependency/
+web. The protocol and driver projects under `apps/` own separate build/dependency/
 configuration paths and are independently consumable:
 
 | Project | Boundary |
 | --- | --- |
 | `samgita_protocol` | Pure native v1 schema, codec, capability negotiation, correlation, handler contract and bounded replay |
 | `samgita_protocol_websocket` | Optional authenticated `/app-server` transport and explicitly started in-memory fake |
-| `samgita_protocol_codex` | Pure selected translation to official Codex 0.163.0; no native project-event compatibility |
+| `samgita_protocol_codex` | Pinned Codex 0.163.0 native schema/wire layer and selected neutral convenience mappings; no native project-event compatibility |
+| `samgita_codex_driver` | Explicitly started Codex sessions, owned/borrowed transports, complete wire delivery and explicit interactions; behavioral qualification remains incomplete |
 
 No protocol library starts listeners or a platform runtime. Actual Agent services
 keep their existing endpoints. Samgita does not launch a second Sigma server,
 embedded providers, LLM workers or a central reasoning loop. A direct consumer
 can communicate with its chosen runtime host while Samgita is stopped; only an
 explicit authenticated callback changes Samgita's durable management state.
+
+An ordinary Agent may explicitly bind its already started Codex driver to a
+running fenced Attempt. `Samgita.CodexRuntime` persists encrypted native intents,
+one-use dispatch tickets, events and thread/turn links. Its bridge sends outside
+transactions and reauthorizes settlement; registration and event delivery start
+no native execution. Uncertain effects block resolved reporting. See the
+[native runtime contract](codex-app-server/platform-integration.md) for APIs,
+key configuration, recovery and additive migration/forward rollback boundaries.
 
 ## Durable domain
 
@@ -125,3 +134,6 @@ rehearsal. Production inventory, legacy-writer exclusion, preservation, restart,
 rollback and actual-service gates retain their separate evidence requirements.
 Current CI builds/tests and assembles a local release; CD is disabled and no
 package publication workflow establishes a released/deployed artifact.
+The separate manually dispatched pinned-Codex workflow runs selected actual-binary
+and platform scenarios plus a strict full-manifest evidence gate. Its selected
+scenario success cannot override missing evidence, A11 or release/cutover gates.

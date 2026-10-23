@@ -4,6 +4,14 @@ Date: 2026-10-23. Scope: persisted management UI, complete fake-Agent journey, l
 
 The reliability repair below supersedes the original P5 aggregate failures and reused-database limitation. The original P5 commands, browser observations and totals remain prior evidence from `91567e5116cb10f702a57012485ceed812b87d21`; they are not new browser runs. A11 remains blocked. No release or deployment is certified.
 
+The subsequent Codex source checkpoint `39ff43fa32961282628d9616f0b015b8d072fd5d`
+has separate [current qualification](../codex-app-server/qualification.md).
+Its local aggregate tests, static checks, consumers, assets and assembly passed,
+but the retained `plug_crypto 2.2.0` dependency now fails security audit for
+CVE-2026-105963. That advisory, A11 and incomplete Codex behavioral evidence remain
+open; the historical passing audit below does not qualify the current dependency
+advisory state. No dependency repair, release or deployment is claimed here.
+
 ## Reliability repair qualification
 
 Date: 2026-10-23. Review baseline: `91567e5116cb10f702a57012485ceed812b87d21`. The application/protocol tree tested locally was committed as `896fc4886f77e731c38077069fb2d4c7feb8a18a`; tests preceded the commits. A subsequent hosted-run portability repair to the scanner is `d32a532b22cda45675456196775a8bf93d226ec9`, with four passing local scanner tests. No application/protocol code changed after those full-suite runs. The documentation commits add this record. All work stayed on `main`, with no new worktree, production migration, historical-data deletion, live credential, sibling-service change or remote GitHub write.

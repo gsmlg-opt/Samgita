@@ -4,9 +4,12 @@ Status: implementation in progress. Baseline: Samgita
 `4fe354f2ce916aa32517c361a171b8878bf6ca84`. Target: official Codex
 `rust-v0.163.0`, source commit `83086188ae0614bd882818ff1aa23f3194962012`.
 The Linux musl executable, source archive and complete generated-schema bundles
-are pinned by SHA-256 in `priv/upstream/0.163.0/provenance.json`.
+are pinned by SHA-256 in the Codex protocol package's
+`priv/upstream/0.163.0/provenance.json`.
 See [the goal](goal.md), [implementation ledger](implementation-plan.md) and
-[qualification](qualification.md). This document does not claim compatibility.
+[qualification](qualification.md). The implemented platform boundary is described
+in [platform integration](platform-integration.md). This document does not claim
+full compatibility or acceptance of the current checkpoint.
 
 ## Boundaries
 
@@ -96,22 +99,82 @@ do not apply to correlated response fields: stable upstream thread results inclu
 fields that disappear from the stable generated bundle. Responses validate against
 the full pinned schema. Notification method gates remain a separate contract.
 
-The deterministic backend is an HTTP Responses model fixture; the app-server in
-those tests is the real immutable executable. Fixture command approval is limited
-to the exact `printf samgita_fixture` action, private shell and disposable cwd.
+The deterministic backend is a loopback Responses model fixture; the app-server in
+those tests is the real immutable executable. Command and patch approvals are
+limited to the explicitly asserted synthetic action of each test, a private shell
+and a disposable cwd.
 The executable rejects `approvalPolicy: "untrusted"` in this configuration, so the
 fixture uses its observed `on-request` behavior rather than relying on older docs.
 
-## Platform integration still required
+The official JSON exporter omits `getAuthStatus`, `getConversationSummary` and
+`gitDiffToRemote`, plus `rawResponse/completed` and `rawResponseItem/completed`.
+Their separate supplement uses the same executable's experimental TypeScript
+export, pinned `v1.rs` serde declarations and existing official shared definitions.
+`source/supplemental-origin.json` labels this conversion as locally derived;
+`source/export.rs` records the exporter boundary. Original official JSON bytes
+remain unchanged. Conversion fails on unsupported declaration syntax or serde
+semantics; it does not establish runtime behavior. The resulting inventory has
+485 requirements and 6,621 field/variant contracts, all still `missing` for full
+behavioral qualification. Exact declaration-branch matching also prevents a gate
+on one untagged variant from rejecting another variant with the same field name.
 
-No Codex runtime bindings or platform-native operation APIs are added in this
-checkpoint. The ordinary Agent registry, project authorization, connection
-generation, execution leases and task policy remain authoritative. Native
-capabilities cannot become project permissions. Future integration needs additive
-thread/turn/operation/interaction records, intent persistence before network sends,
-current fenced authorization for replies and protected programmatic native results.
-Network I/O must occur outside database locks. The existing project-event connector
-cannot turn official Codex notifications into implicit `turn/start` operations.
+## Implemented platform boundary
+
+`Samgita.CodexRuntime` adds an explicit journal around an ordinary Agent's running
+Attempt. Registration stores `runtime_driver=codex` and `runtime_version=0.163.0`;
+it starts no worker, executable, connection or listener. Stable Agent identity,
+authenticated Agent connection, execution session, Attempt fence, native runtime
+reference, native instance and driver generation remain separate identities.
+Project membership supplies roles; runtime metadata and capabilities grant none.
+
+Additive tables retain runtime bindings, native operation intents, source events
+and thread/turn links. A unique binding belongs to one Attempt and records its
+Project, Task, Agent, session, connection generation, fence and authority epoch.
+Current authorization runs before command-receipt replay and settlement. Safe
+metadata projections are distinct from explicit protected native-payload reads.
+
+An Agent persists a validated intent, obtains a one-use dispatch ticket, sends
+through its already started driver outside the transaction, then reports a
+correlated response or uncertain outcome. `Samgita.CodexRuntime.Driver` implements
+that explicit sequence without launching a process or retrying transmission.
+Ticket loss or caller failure after dispatch leaves durable uncertainty; a retry
+does not issue another ticket. Local command IDs do not confer upstream
+idempotency. The local bridge checks the Session's process-lifetime instance UUID
+and driver generation before obtaining a ticket; serialized Session dispatch then
+checks the expected instance, generation and absolute ticket deadline atomically
+with sending. This closes the race between an earlier status read and reconnect.
+Remote API callers still explicitly claim their native instance; Samgita does not
+force those transports through its server.
+
+Full request, response and event envelopes use AES-256-GCM with deployment-supplied
+versioned keys. Associated data binds ciphertext to its runtime, record and slot;
+keyed fingerprints support replay comparison without retaining plaintext native
+content in receipts or domain audit events. Key configuration is external to the
+database. This protects stored payloads; it does not close the separate A11 raw
+LiveView telemetry exposure or authorize logging decrypted native data.
+
+Consumers persist drained events using their original driver sequence and
+generation. Duplicate sequence/content pairs retain the existing event and
+interaction expiry; conflicting content fails. Gaps remain visible rather than
+being filled with invented history. Interaction decisions become explicit intents
+for the original server request; dispatch and settlement remain separate. A sent
+reply is unconfirmed until resolution evidence arrives. Mutation ambiguity blocks
+new mutations, while explicit interruption and current interaction replies remain
+available for control and resolution.
+
+Reconnect cancels unsent intents, fences prior interactions, marks prior dispatched
+work uncertain and records a notification gap. Operator reconciliation and cessation
+attestation record evidence; neither sends a request nor accepts a Task. Unresolved
+native effects and live turns block a report claiming resolved execution. A valid
+successful Attempt report submits the Task to `awaiting_review`; explicit review
+and acceptance decisions remain required. Scheduled checks and project-event
+delivery cannot create native execution implicitly.
+
+The context/API/race tests provide selected local evidence. The coordinating run
+passed the platform journey through the real pinned executable and explicit
+approval under two ordinary Agent names. Aggregate checks against the combined
+source, hosted checks, external profiles and full manifest acceptance remain
+separate gates, recorded in qualification rather than inferred here.
 
 ## Evidence and deployment profiles
 

@@ -21,6 +21,13 @@ per-file hashes now live in `priv/upstream/0.163.0/`. Generate/check them with
 into ignored scratch storage by `scripts/codex/fetch_pin.py`; it is never installed
 globally or included in this package.
 
+The official JSON exporter omits three legacy requests/results and two raw
+notifications. A separately labeled locally derived supplement uses the pinned
+TypeScript export and matching Rust/serde declarations. Its origins/hashes are
+recorded separately; the original 318 stable and 452 experimental JSON artifacts
+remain unchanged. The full source inventory contains 485 requirements and 6,621
+field/variant contracts; generated examples do not verify their runtime behavior.
+
 Tests distinguish generated schema examples, real executable journeys and the
 restricted convenience mapping. See `docs/codex-app-server/qualification.md` for
 current evidence and gaps. Complete behavioral compatibility, real account/backend
