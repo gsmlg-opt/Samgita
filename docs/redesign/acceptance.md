@@ -237,6 +237,8 @@ The executable repair tree at `896fc4886f77e731c38077069fb2d4c7feb8a18a` passes 
 
 The first hosted repair run passed through assets, then exposed a missing-ripgrep dependency in the scanner; later hosted gates were skipped. Portability repair `d32a532` uses Git's inventory and passes a new regression with no ripgrep on PATH. The application/protocol tree is unchanged; hosted qualification must follow the final pushed revision.
 
+[Hosted run 39900481097](https://github.com/gsmlg-opt/Samgita/actions/runs/39900481097) subsequently passed all steps at `dd2a82b483ffb6ce0807c5e01ff20fba32b96e15`, including Dialyzer, audit and production assembly. This clears the automated build gates for that tree. A11 and the target-specific integration/cutover boundaries below remain open; no release, publication or deployment occurred.
+
 | Scenario | Newly verified repair assertions | Remaining gate |
 | --- | --- | --- |
 | A05/A07 | Server-request deadlines and once-only cleanup; late replies, disconnect/send failure and consumed control-byte accounting; mutation uncertainty preserved | Documented conservative aggregate socket-read cap; real service/client conformance and durable host policy |
