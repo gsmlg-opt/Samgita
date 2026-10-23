@@ -1896,3 +1896,24 @@ requirements, **1,150 implemented / 5,471 missing** contracts, **zero verified**
 Async/builtin pairs are source-suppressed; other handlers/events, managed/plugin
 profiles, final aggregate/hosted and A11 remain unqualified. CI selects this
 profile explicitly.
+
+## Native Guardian review and explicit context approval
+
+Three [Guardian cases](guardian-qualification.md) pass **3/0** at both seeds,
+5.0s each. The actual binary emits denied/inProgress/aborted review lifecycle,
+warnings and bounded oversized-action strict fallback. Interrupting a held
+reviewer aborts without tool execution. Explicit approval of the actual denied
+event supplies developer context only when a separate text-only turn starts;
+it does not launch another turn or execute the MCP action. Native accepts a
+shaped denial without reconciling its prior history; the fixture's exact-event
+restriction must not be presented as native authorization enforcement.
+
+Initial failures came from a fixture method shadowing Python's HTTP status
+table, preventing every dependency response. Renaming that method resolves the
+observed native error; no native gate, deadline or assertion changed. AST,
+namespace, compile, format, strict Credo and owned-process cleanup pass. Six
+entries and 39 positive contracts gain scoped implemented evidence. Ledger:
+**440 implemented / 35 missing / 10 blocked** requirements, **1,189 implemented /
+5,432 missing** contracts and **zero verified**. CI explicitly selects this
+profile; classifier scoring, other actions/reasons/statuses, external profiles,
+final aggregate/hosted and A11 remain unqualified.

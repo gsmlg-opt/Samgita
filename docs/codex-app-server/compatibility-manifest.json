@@ -5600,12 +5600,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/approveGuardianDeniedAction",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadApproveGuardianDeniedActionParams"
       },
@@ -5627,16 +5631,20 @@
         "source_line": 744,
         "variant": "ThreadApproveGuardianDeniedAction"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/approveGuardianDeniedAction"
     },
     {
@@ -10472,12 +10480,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:autoApprovalReview/strictReviewRequired",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/StrictReviewRequiredNotification"
       },
@@ -10494,16 +10506,20 @@
         "source_line": 1989,
         "variant": "StrictReviewRequired"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "autoApprovalReview/strictReviewRequired"
     },
     {
@@ -10881,12 +10897,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:guardianWarning",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/GuardianWarningNotification"
       },
@@ -10899,16 +10919,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "guardianWarning"
     },
     {
@@ -11037,12 +11061,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/autoApprovalReview/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ItemGuardianApprovalReviewCompletedNotification"
       },
@@ -11055,27 +11083,35 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "item/autoApprovalReview/completed"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/autoApprovalReview/started",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ItemGuardianApprovalReviewStartedNotification"
       },
@@ -11088,16 +11124,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "item/autoApprovalReview/started"
     },
     {
@@ -18692,12 +18732,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/approveGuardianDeniedAction",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18705,16 +18749,20 @@
       "schema": "v2/ThreadApproveGuardianDeniedActionResponse.json",
       "schema_sha256": "628336c7cdabd508d5202695502bb0f9ce42fdde380f5efdd4b033cf215d93e5",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/approveGuardianDeniedAction"
     },
     {
@@ -74815,75 +74863,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReview/properties/rationale",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/GuardianApprovalReview/properties/rationale",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rationale"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReview/properties/riskLevel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/GuardianApprovalReview/properties/riskLevel",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "8fe7635ddf51d587a8c5109b6b2de8808473315aae544769e7828ae95d05a3b1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "riskLevel"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReview/properties/riskLevel/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/GuardianApprovalReview/properties/riskLevel/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "6273bdb0e275fe4b63d4a18f3c3765a3fb85f0348a9c1f4f5ade8e9b688f7b59",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -74911,75 +74983,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReview/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/GuardianApprovalReview/properties/status",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "42bf3b609d91271e18bb9af92e7d2e97a1d3047fc6b1df7adff737ce64ffad9d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReview/properties/userAuthorization",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/GuardianApprovalReview/properties/userAuthorization",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "fd37344d4a4134a530de7254cde80530594ad165c8f0abc2f3bb22824fa3b6e3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userAuthorization"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReview/properties/userAuthorization/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/GuardianApprovalReview/properties/userAuthorization/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "56e5b99c38d1d33d5cc11f7522f836979d9942f176c1a32cd0805cb06b7e8eb7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -75798,24 +75894,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReviewAction/oneOf/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/GuardianApprovalReviewAction/oneOf/5",
       "schema": "ServerNotification.json",
       "schema_sha256": "b5105981b1e093d224252df407916074189714c6bc8e402d799de107f04727b4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -75873,53 +75977,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReviewAction/oneOf/5/properties/server",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/GuardianApprovalReviewAction/oneOf/5/properties/server",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "server"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReviewAction/oneOf/5/properties/toolName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/GuardianApprovalReviewAction/oneOf/5/properties/toolName",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "toolName"
     },
     {
@@ -75951,49 +76071,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReviewAction/oneOf/5/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/GuardianApprovalReviewAction/oneOf/5/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "13bd566a2f91d370da2c68fb079184002c52986b2773352b1e96c0adc972fc77",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReviewAction/oneOf/5/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/GuardianApprovalReviewAction/oneOf/5/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "92b32769d9974c372f91f4758d466049f8d71538925408dc61074f3079318061",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -76120,24 +76256,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReviewStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/GuardianApprovalReviewStatus/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -76164,24 +76308,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReviewStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/GuardianApprovalReviewStatus/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "d117e5d5f0bce4739b47de3243dbf1c3b85638ac2ac0865b4fb2a5018df2e8fe",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -76208,24 +76360,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianApprovalReviewStatus/enum/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/GuardianApprovalReviewStatus/enum/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "726cbe2cf8f7b5c7032ce3db87bafdf824d472adf88c637d30640646a06c08b8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -76318,24 +76478,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianRiskLevel/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/GuardianRiskLevel/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "245588ecc2ea866aad46ec952380729500395a188fb3ba436dd4a775a6cc060b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -76362,24 +76530,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GuardianUserAuthorization/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "pointer": "/definitions/GuardianUserAuthorization/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -126020,53 +126196,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GuardianWarningNotification.json#/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/message",
       "required": true,
       "schema": "v2/GuardianWarningNotification.json",
       "schema_sha256": "7e1efcebb795bb3af7c82019318cdd9a5394360fe2d812c3694fed487db435a9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GuardianWarningNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/GuardianWarningNotification.json",
       "schema_sha256": "457a25bfb22f022ef35813e21dff4d5ccbf86a919e7641ebdebbdb46c241112f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -127679,417 +127871,545 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewCompletedNotification.json#/properties/action",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/action",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewCompletedNotification.json",
       "schema_sha256": "77d2dd79a5a6a8b7f305778060c4fb1e7f3cd1c458fca384435498502325f401",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "action"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewCompletedNotification.json#/properties/completedAtMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/completedAtMs",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewCompletedNotification.json",
       "schema_sha256": "44da7a95342957fc0374896ff1aed4bd8c21fd82deaf5c266afbc7742d043204",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "completedAtMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewCompletedNotification.json#/properties/decisionSource",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/decisionSource",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewCompletedNotification.json",
       "schema_sha256": "5445236185247e4f6ed276158dd6ff15f9dfce9739e7df4639a661013cfe8d3b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "decisionSource"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewCompletedNotification.json#/properties/review",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/review",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewCompletedNotification.json",
       "schema_sha256": "e350358ef808f7c2dcc78b23db9f2b27e3bdc9e21442f901db3f0c39cf359240",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "review"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewCompletedNotification.json#/properties/reviewId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/reviewId",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewCompletedNotification.json",
       "schema_sha256": "bfc5325fc34d373248be10ab081aac04c0dc11f9b93af913be0ce7b893930ef0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reviewId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewCompletedNotification.json#/properties/startedAtMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/startedAtMs",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewCompletedNotification.json",
       "schema_sha256": "e8659cdff571fb86218189877126b9bd9fbaf029ad7f45ec6531c4018b08ef2e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "startedAtMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewCompletedNotification.json#/properties/targetItemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/targetItemId",
       "required": false,
       "schema": "v2/ItemGuardianApprovalReviewCompletedNotification.json",
       "schema_sha256": "77a2caf34c5192662c8c1a4f5483768ec6c1eee812ed598a3c392295033472c5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "targetItemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewCompletedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewCompletedNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewStartedNotification.json#/properties/action",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/action",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewStartedNotification.json",
       "schema_sha256": "77d2dd79a5a6a8b7f305778060c4fb1e7f3cd1c458fca384435498502325f401",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "action"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewStartedNotification.json#/properties/review",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/review",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewStartedNotification.json",
       "schema_sha256": "e350358ef808f7c2dcc78b23db9f2b27e3bdc9e21442f901db3f0c39cf359240",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "review"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewStartedNotification.json#/properties/reviewId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/reviewId",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewStartedNotification.json",
       "schema_sha256": "bfc5325fc34d373248be10ab081aac04c0dc11f9b93af913be0ce7b893930ef0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reviewId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewStartedNotification.json#/properties/startedAtMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/startedAtMs",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewStartedNotification.json",
       "schema_sha256": "e8659cdff571fb86218189877126b9bd9fbaf029ad7f45ec6531c4018b08ef2e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "startedAtMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewStartedNotification.json#/properties/targetItemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/targetItemId",
       "required": false,
       "schema": "v2/ItemGuardianApprovalReviewStartedNotification.json",
       "schema_sha256": "77a2caf34c5192662c8c1a4f5483768ec6c1eee812ed598a3c392295033472c5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "targetItemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewStartedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewStartedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ItemGuardianApprovalReviewStartedNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/ItemGuardianApprovalReviewStartedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turnId"
     },
     {
@@ -154112,79 +154432,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/StrictReviewRequiredNotification.json#/properties/startedAtMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/startedAtMs",
       "required": true,
       "schema": "v2/StrictReviewRequiredNotification.json",
       "schema_sha256": "e8659cdff571fb86218189877126b9bd9fbaf029ad7f45ec6531c4018b08ef2e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "startedAtMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/StrictReviewRequiredNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/StrictReviewRequiredNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/StrictReviewRequiredNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/StrictReviewRequiredNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turnId"
     },
     {
@@ -154360,53 +154704,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadApproveGuardianDeniedActionParams.json#/properties/event",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/event",
       "required": true,
       "schema": "v2/ThreadApproveGuardianDeniedActionParams.json",
       "schema_sha256": "bdc4197e5f42b2cc3c1bdcf4fcfefc0da6a7684c12372502163a22c990205d6b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "event"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/guardian-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadApproveGuardianDeniedActionParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native cases observe denied and interrupted automatic review, warning, oversized-action strict fallback and explicit approval-context RPC without tool execution or implicit turn. Only MCP action and 39 directly positive contracts are mapped. Native approval does not reconcile supplied denial against history; fixture matching is its own safety restriction, not native authorization proof. Risk/classifier quality, other actions/statuses/reasons, score reuse, external and OS profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadApproveGuardianDeniedActionParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_guardian_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
