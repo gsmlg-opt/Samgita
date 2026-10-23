@@ -34,8 +34,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries and the
 advertised MCP item-progress notification are `blocked` by source-proven absent
 production emitters. Selected native method/notification entries now total
-300 `implemented`, with 489 exact field/variant schema contracts
-implemented; 180 requirements and 6,132 contracts remain `missing`. None is fully verified.
+324 `implemented`, with 637 exact field/variant schema contracts
+implemented; 156 requirements and 5,984 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -271,6 +271,11 @@ Next concrete work (repair follow-up, 2026-10-24):
    ordering, timing/usage, configured idle eviction, cold non-replay and sequential
    connection opt-out. Nine entries and 61 fields gain implementation evidence;
    empty/null-only fields and concurrent service fan-out remain incomplete.
+   The [interaction audit](interaction-evidence-qualification.md) indexes
+   existing compaction/review/settings/history and v2 approval/MCP/current-time
+   assertions, adding 24 implemented entries and 148 positive fields. Active
+   turn-setting updates, complete approval variants and unasserted notices stay
+   missing. This is an evidence index, not new native execution or full acceptance.
    Continue remaining image-byte limits, account backend variants,
    environment/permission/turn variants and real-service authentication profiles.
    Preserve entry-specific evidence and
@@ -299,5 +304,9 @@ live credential setup or deployment is part of this checkpoint.
 - No real-service/account credential acceptance has run. Do not manufacture access
   or count unavailable profiles as enabled success.
 - Publication workflow and platform release gates require current verification.
+- Hosted platform qualification at `dd6ec5b` failed twice before tests while
+  downloading `mdex_native` (HTTP header limit); independent driver/consumer
+  and explicit native profiles passed. Keep that infrastructure result separate
+  from completeness and local platform evidence; see qualification.
 - No branches/worktrees, sibling edits, production migrations, live credentials,
   live projects or deployments are authorized.

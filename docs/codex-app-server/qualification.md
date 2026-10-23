@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 300 implemented / 180 missing /
-5 blocked requirements** and **0 verified / 489 implemented / 6,132 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 324 implemented / 156 missing /
+5 blocked requirements** and **0 verified / 637 implemented / 5,984 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Four hundred and eighty-nine directly exercised
+MCP entries have scoped implementation evidence. Six hundred and thirty-seven directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1189,6 +1189,15 @@ claimed for that attempt. The failed job was rerun unchanged. Its separate
 complete-evidence gate failed because contracts remain incomplete. These are
 distinct results; an unchanged rerun cannot erase the initial failure.
 
+The unchanged rerun also failed before platform tests with the same
+`mdex_native` download/header limit, in
+[job 120653622065](https://github.com/gsmlg-opt/Samgita/actions/runs/40022793860/job/120653622065).
+The driver/consumer and isolated profiles again passed. This dependency-fetch
+failure is reported separately; no unrelated dependency fix or weaker gate was
+introduced to bypass it. Logs are
+`/tmp/samgita-dd6ec5b-hosted-platform-failure.log` and
+`/tmp/samgita-dd6ec5b-hosted-platform-retry-failure.log`.
+
 ## Authenticated native remote-plugin reconciliation
 
 Eight explicit actual-binary cases passed **8/0** at each of `501432` and
@@ -1244,3 +1253,20 @@ evidence without promotion. Regenerated totals: **485 entries: 0 verified /
 489 implemented / 6,132 missing**. Concurrent service connections, other
 transports/platforms, unasserted variants and external backend success remain
 incomplete. Full compatibility, A11 and publication are not established.
+
+## Existing native interaction assertions indexed
+
+The [interaction evidence audit](interaction-evidence-qualification.md) adds
+precise mappings for existing native compaction, inline review, thread settings,
+item injection/history, current-time, v2 approval/permission and MCP-form
+interactions, plus directly asserted settings/error/output/startup notices.
+Twelve test-source hashes match the previously passing default and explicit
+profile runs. This documentation unit changes no executable behavior.
+
+Twenty-eight entries gain evidence; **24** were previously missing. **148**
+positive fields gain scoped `implemented` status; eight boundary-only fields
+remain missing. Complete approval decisions, active turn-settings success and
+unasserted notifications are not promoted. Regenerated totals: **485 entries:
+0 verified / 324 implemented / 156 missing / 5 blocked**; **6,621 contracts:
+0 verified / 637 implemented / 5,984 missing**. Existing legacy source evidence,
+unavailable external/platform profiles and A11 remain incomplete.
