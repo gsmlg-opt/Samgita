@@ -822,12 +822,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/isolated-apps.md"
+      ],
       "experimental": false,
       "id": "client_request:app/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected isolated native metadata ordering/deduplication, cache projection/promotion, input limits, disabled/API-key behavior, synthetic authenticated headers and 500/429 failures. Live Apps authorization, loaded-thread effective configuration, cache expiry, list/installed/deferred-tool routing, every field and other backend/OS/transport profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/AppsReadParams"
       },
@@ -849,16 +853,20 @@
         "source_line": 980,
         "variant": "AppsRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_apps_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "app/read"
     },
     {
@@ -13084,12 +13092,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/isolated-apps.md"
+      ],
       "experimental": false,
       "id": "server_response:app/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected isolated native metadata ordering/deduplication, cache projection/promotion, input limits, disabled/API-key behavior, synthetic authenticated headers and 500/429 failures. Live Apps authorization, loaded-thread effective configuration, cache expiry, list/installed/deferred-tool routing, every field and other backend/OS/transport profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13097,16 +13109,20 @@
       "schema": "v2/AppsReadResponse.json",
       "schema_sha256": "f3b73c2c31f16a2cff013c9682dfea48f26571f94002195c93ce10722a288791",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_apps_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "app/read"
     },
     {
