@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 250 implemented / 230 missing /
-5 blocked requirements** and **0 verified / 281 implemented / 6,340 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 264 implemented / 216 missing /
+5 blocked requirements** and **0 verified / 351 implemented / 6,270 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Two hundred and eighty-one directly exercised
+MCP entries have scoped implementation evidence. Three hundred and fifty-one directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1121,3 +1121,30 @@ Regenerated totals are **485 entries: 0 verified / 250 implemented / 230 missing
 5 blocked**; **6,621 contracts: 0 verified / 281 implemented / 6,340 missing**.
 The explicit namespace CI job selects the new profile. Full compatibility,
 external service acceptance, A11 and publication remain incomplete.
+
+## Native configuration import, hooks metadata and collaboration catalog
+
+Eight new default-discovered real pinned-native cases passed **8/0** at both
+`501432` and `987654` (**4.6s / 4.5s**). They assert actual local configuration,
+instructions, skills and command-conversion file effects, protected-target/source
+preservation, destination revalidation, mixed failure taxonomy, cold durable
+history and independent attribution/source selection. Listed hook metadata
+preserves per-cwd ordering and errors without executing its synthetic command;
+builtin collaboration presets include stable/experimental and malformed-input
+boundaries. Root compile/format/strict Credo passes with **317 files, no issues**.
+
+An original **8 tests / 2 failures** reproduced an incorrect test assumption:
+progress is individual and ordered, while completion groups and sorts native
+results. One repair adds exact raw progress assertions and reconstructs only the
+upstream-defined grouping without dropping outcomes. No runtime, timeout or
+assertion was bypassed. [Import qualification](import-lifecycle-qualification.md)
+retains pinned source anchors, original failures, commands and remaining paths.
+
+Fourteen request/response/notification entries and 70 directly asserted positive
+fields gain scoped `implemented` evidence. Thirty-nine native failure,
+record-only, empty/null and rejection-only fields receive explicitly limited
+evidence while retaining `missing`; reported session metadata never qualifies an
+actual session import. Regenerated totals are **485 entries: 0 verified /
+264 implemented / 216 missing / 5 blocked**; **6,621 contracts: 0 verified /
+351 implemented / 6,270 missing**. The complete driver matrix must include the
+new default-discovered cases. External/platform profiles and A11 remain incomplete.

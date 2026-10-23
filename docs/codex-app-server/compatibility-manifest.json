@@ -914,12 +914,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:collaborationMode/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "params": {
         "$ref": "#/definitions/CollaborationModeListParams"
       },
@@ -941,16 +945,20 @@
         "source_line": 1212,
         "variant": "CollaborationModeList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "collaborationMode/list"
     },
     {
@@ -1660,12 +1668,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:externalAgentConfig/detect",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "params": {
         "$ref": "#/definitions/ExternalAgentConfigDetectParams"
       },
@@ -1687,27 +1699,35 @@
         "source_line": 1436,
         "variant": "ExternalAgentConfigDetect"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/detect"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:externalAgentConfig/import",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "params": {
         "$ref": "#/definitions/ExternalAgentConfigImportParams"
       },
@@ -1729,27 +1749,35 @@
         "source_line": 1441,
         "variant": "ExternalAgentConfigImport"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/import"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:externalAgentConfig/import/readHistories",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "params": {
         "type": "null"
       },
@@ -1771,27 +1799,35 @@
         "source_line": 1451,
         "variant": "ExternalAgentConfigImportHistoriesRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/import/readHistories"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:externalAgentConfig/import/recordHistory",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "params": {
         "$ref": "#/definitions/ExternalAgentConfigImportHistoryRecordParams"
       },
@@ -1813,16 +1849,20 @@
         "source_line": 1446,
         "variant": "ExternalAgentConfigImportHistoryRecord"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/import/recordHistory"
     },
     {
@@ -2660,12 +2700,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:hooks/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "params": {
         "$ref": "#/definitions/HooksListParams"
       },
@@ -2687,16 +2731,20 @@
         "source_line": 904,
         "variant": "HooksList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hooks/list"
     },
     {
@@ -9785,12 +9833,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:externalAgentConfig/import/completed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "params": {
         "$ref": "#/definitions/ExternalAgentConfigImportCompletedNotification"
       },
@@ -9803,27 +9855,35 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/import/completed"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:externalAgentConfig/import/progress",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "params": {
         "$ref": "#/definitions/ExternalAgentConfigImportProgressNotification"
       },
@@ -9836,16 +9896,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/import/progress"
     },
     {
@@ -13851,12 +13915,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:collaborationMode/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13864,16 +13932,20 @@
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "d51cd5bd1b7cdf93a1a665adc333867ee12fa85ee811a873cb0131bf5d49d3e6",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "collaborationMode/list"
     },
     {
@@ -14402,12 +14474,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:externalAgentConfig/detect",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14415,28 +14491,36 @@
       "schema": "v2/ExternalAgentConfigDetectResponse.json",
       "schema_sha256": "36c4173d5f30ebd04be3d40389c904bc4ecadfbb8e5d1dd46b9b589254f7e1d9",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/detect"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:externalAgentConfig/import",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14444,28 +14528,36 @@
       "schema": "v2/ExternalAgentConfigImportResponse.json",
       "schema_sha256": "0ad2fc7dff7b1bdc471cc365985f559490f253ea127263417f0a0a1edcb33cef",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/import"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:externalAgentConfig/import/readHistories",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14473,28 +14565,36 @@
       "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
       "schema_sha256": "1c09641e957333a2f602a350532acd99cf538a73ea45f39a2294289907a0bd96",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/import/readHistories"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:externalAgentConfig/import/recordHistory",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14502,16 +14602,20 @@
       "schema": "v2/ExternalAgentConfigImportHistoryRecordResponse.json",
       "schema_sha256": "a252a2c2a03b4460bf3635d517c0735fa487a2f8a97de1aa0637f930419ae656",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "externalAgentConfig/import/recordHistory"
     },
     {
@@ -15129,12 +15233,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:hooks/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux stdio local config/instruction/skill/command imports, durable metadata histories, listed command hooks and builtin collaboration presets. Session/memory/plugin/connector import success, actual hook execution, other handlers/platforms and external service success remain unqualified; recording metadata does not execute imports."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15142,16 +15250,20 @@
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "891dd10ef7f78e59631fce05fff2becddb8004b3c0338dbbbd6b4f17ef1fa64f",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hooks/list"
     },
     {
@@ -21765,27 +21877,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/CommandMigration/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Named command detected, selected and converted to skill. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandMigration/properties/name",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
@@ -23125,12 +23245,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/cwd",
       "required": false,
@@ -23143,7 +23267,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "cwd"
@@ -23151,12 +23277,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/itemType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/itemType",
       "required": true,
@@ -23169,7 +23299,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "itemType"
@@ -23177,12 +23309,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/source",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/source",
       "required": false,
@@ -23195,7 +23331,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "source"
@@ -23203,12 +23341,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/target",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/target",
       "required": false,
@@ -23221,7 +23363,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "target"
@@ -23229,12 +23373,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/title",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Externally supplied session/config metadata persisted; paths never materialize. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordSuccessParams/properties/title",
       "required": false,
@@ -23247,7 +23395,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "title"
@@ -23255,12 +23405,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/failures",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Externally supplied grouped outcomes flattened without executing imports. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/failures",
       "required": true,
@@ -23273,7 +23427,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "failures"
@@ -23281,12 +23437,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/itemType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Externally supplied grouped outcomes flattened without executing imports. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/itemType",
       "required": true,
@@ -23299,7 +23459,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "itemType"
@@ -23307,12 +23469,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/successes",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Externally supplied grouped outcomes flattened without executing imports. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistoryRecordTypeResultParams/properties/successes",
       "required": true,
@@ -23325,7 +23491,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "successes"
@@ -23333,12 +23501,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/cwd",
       "required": false,
@@ -23351,7 +23523,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "cwd"
@@ -23359,12 +23533,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/errorType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/errorType",
       "required": false,
@@ -23377,7 +23555,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "errorType"
@@ -23385,12 +23565,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/failureStage",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/failureStage",
       "required": true,
@@ -23403,7 +23587,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "failureStage"
@@ -23411,12 +23597,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/itemType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/itemType",
       "required": true,
@@ -23429,7 +23619,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "itemType"
@@ -23437,12 +23629,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/message",
       "required": true,
@@ -23455,7 +23651,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "message"
@@ -23463,12 +23661,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/source",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/source",
       "required": false,
@@ -23481,7 +23683,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "source"
@@ -23489,12 +23693,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigImportItemTypeFailure/properties/subErrorType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Exact invalid-existing-config and unapproved-session taxonomy; also external synthetic failure roundtrip. No import success for these branches. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeFailure/properties/subErrorType",
       "required": false,
@@ -23507,7 +23715,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "subErrorType"
@@ -23515,215 +23725,287 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItem/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Detected fields feed selected actual imports; details positive only skills/commands; description string only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigMigrationItem/properties/cwd",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "a7418b8b08871e73efae0d495a93a91f8185a6cc2bc265ef20b60aa666afe12e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItem/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Detected fields feed selected actual imports; details positive only skills/commands; description string only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigMigrationItem/properties/description",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItem/properties/details",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Detected fields feed selected actual imports; details positive only skills/commands; description string only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigMigrationItem/properties/details",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "b5ad2c18b15f5468df7e455b3b255bdaff48c971b5f8d90b0c56009de1047bed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "details"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItem/properties/details/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: MigrationDetails object for skill/command and null details for instruction/config. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItem/properties/details/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "0d77832dcaf9edce4399b15ad76abd6cffa83daac148e6b5fabda582f78dc7c9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItem/properties/details/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: MigrationDetails object for skill/command and null details for instruction/config. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItem/properties/details/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItem/properties/itemType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Detected fields feed selected actual imports; details positive only skills/commands; description string only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigMigrationItem/properties/itemType",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5faed15b28b715034e7f4f5d868b2b51ec2339ea0c1dbc47c883a23ba989ecd5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemType"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Actual AGENTS_MD, CONFIG, SKILLS and COMMANDS native import success with file effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "280e660aaf53f3624c02318bf26703c13133840f9e904fdc1122683243cd1b33",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Actual AGENTS_MD, CONFIG, SKILLS and COMMANDS native import success with file effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "0a8c67f37a149ab86791ba15e4e245f0bc38a07bc387e8340624ec2cf4868915",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Actual AGENTS_MD, CONFIG, SKILLS and COMMANDS native import success with file effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "0871646b41f6117e66aa211913bbef69eafeff2858d461987cf2fc63d7309b2d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -23816,33 +24098,45 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/7",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Actual AGENTS_MD, CONFIG, SKILLS and COMMANDS native import success with file effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/7",
       "schema": "ClientRequest.json",
       "schema_sha256": "d0466d1e92108b8bf3529fbf2dd52e767775860db60d8298d6609f088778351a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/8",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected negative_only native evidence: MEMORY disabled; SESSIONS out-of-scope rejection. Neither import succeeds. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/8",
       "schema": "ClientRequest.json",
       "schema_sha256": "020b967d50c394fd0842f5539baf820acf4a0c6998e7b1b448e37df6efca9afa",
@@ -23853,18 +24147,24 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ExternalAgentConfigMigrationItemType/enum/9",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected negative_only native evidence: MEMORY disabled; SESSIONS out-of-scope rejection. Neither import succeeds. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ExternalAgentConfigMigrationItemType/enum/9",
       "schema": "ClientRequest.json",
       "schema_sha256": "2f9a4cd002dccf2bab3edd4f1f2110edc6e7af7942c2d68ab053f5f26845a5b2",
@@ -23875,7 +24175,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -25499,27 +25801,35 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/commands",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Selected skill and command names produce exact text/binary target effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/commands",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "8dac50bc0fab1a35076fb2873f840680f30545388e3fd3faf393ada866d1d060",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "commands"
     },
     {
@@ -25577,12 +25887,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/memory",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected negative_only native evidence: Session path rejected; memory import disabled. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/memory",
       "required": false,
@@ -25595,7 +25909,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "memory"
@@ -25629,12 +25945,16 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/sessions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected negative_only native evidence: Session path rejected; memory import disabled. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/sessions",
       "required": false,
@@ -25647,7 +25967,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "sessions"
@@ -25655,27 +25977,35 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/MigrationDetails/properties/skills",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Selected skill and command names produce exact text/binary target effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/MigrationDetails/properties/skills",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "2a75014d1442051c47b926f37e19428bffeb153212b3be435cf451f1480ab95f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills"
     },
     {
@@ -33651,12 +33981,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/SessionMigration/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected negative_only native evidence: Owned path outside source projects root is rejected; title not imported. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/SessionMigration/properties/cwd",
       "required": true,
@@ -33669,7 +34003,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "cwd"
@@ -33677,12 +34013,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/SessionMigration/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected negative_only native evidence: Owned path outside source projects root is rejected; title not imported. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/SessionMigration/properties/path",
       "required": true,
@@ -33695,7 +34035,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -33703,12 +34045,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/SessionMigration/properties/title",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected negative_only native evidence: Owned path outside source projects root is rejected; title not imported. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/SessionMigration/properties/title",
       "required": false,
@@ -33721,7 +34067,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "title"
@@ -33851,27 +34199,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/SkillMigration/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Named skill detected, selected and imported. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillMigration/properties/name",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
@@ -70879,116 +71235,152 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Real config/instruction/skill/command outcomes with file effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/cwd",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/itemType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Real config/instruction/skill/command outcomes with file effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/itemType",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "5faed15b28b715034e7f4f5d868b2b51ec2339ea0c1dbc47c883a23ba989ecd5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Real config/instruction/skill/command outcomes with file effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/source",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "source"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/target",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Real config/instruction/skill/command outcomes with file effects. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/target",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "target"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/title",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_or_null_only native evidence: Actual imports return null; nonnull title is external record-only metadata. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportItemTypeSuccess/properties/title",
       "required": false,
@@ -71001,7 +71393,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "title"
@@ -71009,12 +71403,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportTypeResult/properties/failures",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Mixed request emits config/session failure arrays alongside real instructions success; no affected branch success. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportTypeResult/properties/failures",
       "required": true,
@@ -71027,7 +71425,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "failures"
@@ -71035,53 +71435,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportTypeResult/properties/itemType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Concrete native successes retained by item type; native-defined grouped progress equals completion. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportTypeResult/properties/itemType",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "5faed15b28b715034e7f4f5d868b2b51ec2339ea0c1dbc47c883a23ba989ecd5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ExternalAgentConfigImportTypeResult/properties/successes",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Concrete native successes retained by item type; native-defined grouped progress equals completion. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportTypeResult/properties/successes",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "76030b1c5bcd17dfb7ca42b5f96f82c7fce0c31934176161fa3c40adf8e7c725",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "successes"
     },
     {
@@ -101494,49 +101910,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/mode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact names/modes, Plan medium and Default null; no turn execution. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/CollaborationModeMask/properties/mode",
       "required": false,
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "fea8ed54ff9b0c584541fca10809cdc29350d1ed9e1c2c6316b1b176fbdbe6ba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/mode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: ModeKind string branch only. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/CollaborationModeMask/properties/mode/anyOf/0",
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "210174156a6f746be72894268b1060a800e012c0c6510647f3306df3744fafa7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -101564,12 +101996,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/model",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected null_only native evidence: Only null; no selected model behavior. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/CollaborationModeMask/properties/model",
       "required": false,
@@ -101582,7 +102018,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "model"
@@ -101590,97 +102028,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact names/modes, Plan medium and Default null; no turn execution. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/CollaborationModeMask/properties/name",
       "required": true,
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/reasoning_effort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact names/modes, Plan medium and Default null; no turn execution. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/CollaborationModeMask/properties/reasoning_effort",
       "required": false,
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "7febb9f8bdd595a83790e718555f1a6bfcd43d127b7311f73df9b24a4a1d8d2a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoning_effort"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/reasoning_effort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Nested string/null branch only; ambiguous outer null not claimed separately. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/CollaborationModeMask/properties/reasoning_effort/anyOf/0",
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "b35f6fda6c0f55b2823e86283ae32c907cc47538622b7ace6179046c6f9c93dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/CollaborationModeMask/properties/reasoning_effort/anyOf/0/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: medium string only. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/CollaborationModeMask/properties/reasoning_effort/anyOf/0/anyOf/0",
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -101729,72 +102199,96 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/ModeKind/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: plan and default returned. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ModeKind/enum/0",
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "4354994c96acaaf7aae4ce88763bf1f192449b2d6d8867674a03262490df9a53",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/CollaborationModeListResponse.json#/definitions/ModeKind/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: plan and default returned. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/ModeKind/enum/1",
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "1e2626614221d06e765d8b619bb1af9cc3544d385f0278785a89c7c3aff71f02",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/CollaborationModeListResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact Plan/Default presets; listing only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/CollaborationModeListResponse.json",
       "schema_sha256": "5e8b67d263e5cf608bf3798e451bda29063796e7ebe848b9e6f420aa1ac4ce57",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
@@ -115450,64 +115944,84 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectParams.json#/properties/cwds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Home and nested repository selection; case-insensitive secondary selector; deprecated source ignored. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/cwds",
       "required": false,
       "schema": "v2/ExternalAgentConfigDetectParams.json",
       "schema_sha256": "771c1d686cb514e20ee286e431092b5edae5788be50a61b7f8e90091ef5f816c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectParams.json#/properties/includeHome",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Home and nested repository selection; case-insensitive secondary selector; deprecated source ignored. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/includeHome",
       "required": false,
       "schema": "v2/ExternalAgentConfigDetectParams.json",
       "schema_sha256": "8908e64f6f46685ccf76a7735f45a7c6c37982384537705b3692bc47a897379e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "includeHome"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectParams.json#/properties/maxSessionAgeDays",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected negative_or_empty_only native evidence: Zero requested with no sessions present; malformed negative maxSessions rejected. No actual session-limit behavior. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/maxSessionAgeDays",
       "required": false,
@@ -115520,7 +116034,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "maxSessionAgeDays"
@@ -115528,12 +116044,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectParams.json#/properties/maxSessions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected negative_or_empty_only native evidence: Zero requested with no sessions present; malformed negative maxSessions rejected. No actual session-limit behavior. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/maxSessions",
       "required": false,
@@ -115546,7 +116066,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "maxSessions"
@@ -115554,53 +116076,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectParams.json#/properties/migrationSource",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Home and nested repository selection; case-insensitive secondary selector; deprecated source ignored. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/migrationSource",
       "required": false,
       "schema": "v2/ExternalAgentConfigDetectParams.json",
       "schema_sha256": "017cf0eec0ae5d1b960215dafe2b93198f742306b2782951cf4bf56ec79becac",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "migrationSource"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectParams.json#/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Home and nested repository selection; case-insensitive secondary selector; deprecated source ignored. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/source",
       "required": false,
       "schema": "v2/ExternalAgentConfigDetectParams.json",
       "schema_sha256": "ba20c4548bd56f625d8d7d3683aed582936cdd490355b32b24f55fdc7229c570",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "source"
     },
     {
@@ -115728,12 +116266,16 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/properties/connectors",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected empty_only native evidence: Only [] asserted; no connector contents or success. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/connectors",
       "required": false,
@@ -115746,7 +116288,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "connectors"
@@ -115754,90 +116298,118 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigDetectResponse.json#/properties/items",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Nonempty instruction/config/skill/command detections; source-preserving import and post-import absence. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/items",
       "required": true,
       "schema": "v2/ExternalAgentConfigDetectResponse.json",
       "schema_sha256": "a1283d248d95b631c8ba078d301fe1c135fd075479436fa02638614b60566a68",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "items"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportCompletedNotification.json#/properties/importId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: UUID ACK; matching completion; native-defined grouping/sort reconciles all progress with durable results. Completion not inferred from ACK. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/importId",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportCompletedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "importId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportCompletedNotification.json#/properties/itemTypeResults",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: UUID ACK; matching completion; native-defined grouping/sort reconciles all progress with durable results. Completion not inferred from ACK. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/itemTypeResults",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportCompletedNotification.json",
       "schema_sha256": "c1b771baf1c0d3a96df21341609751732f01c24b1a8cca5cb4a428664f8acde2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemTypeResults"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentConfigImportHistory/properties/completedAtMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Positive timestamp/order asserted directly only in externally recorded history case. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistory/properties/completedAtMs",
       "required": true,
@@ -115850,7 +116422,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "completedAtMs"
@@ -115858,12 +116432,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentConfigImportHistory/properties/failures",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Mixed native import failure persistence; record-only fixture is not import execution. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistory/properties/failures",
       "required": true,
@@ -115876,7 +116454,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "failures"
@@ -115884,79 +116464,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentConfigImportHistory/properties/importId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Correlate actual import history, opaque provider and native successes. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistory/properties/importId",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "importId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentConfigImportHistory/properties/providerId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Correlate actual import history, opaque provider and native successes. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ExternalAgentConfigImportHistory/properties/providerId",
       "required": false,
       "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "providerId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/definitions/ExternalAgentConfigImportHistory/properties/successes",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Correlate actual import history, opaque provider and native successes. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ExternalAgentConfigImportHistory/properties/successes",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
       "schema_sha256": "76030b1c5bcd17dfb7ca42b5f96f82c7fce0c31934176161fa3c40adf8e7c725",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "successes"
     },
     {
@@ -116062,12 +116666,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/properties/connectors",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected empty_only native evidence: Only [] asserted; imported connectors missing. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/connectors",
       "required": true,
@@ -116080,7 +116688,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "connectors"
@@ -116088,38 +116698,50 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoriesReadResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Completed native imports durable across owned native restart; record-only histories separately distinguished. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportHistoriesReadResponse.json",
       "schema_sha256": "f1f89467a6db008d071af8d8a0e8a90cefd6ca9e0a3fad31905d1f18be296c2a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoryRecordParams.json#/properties/itemTypeResults",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Native persistence of externally supplied outcomes only; no session/config import inferred. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/itemTypeResults",
       "required": true,
@@ -116132,7 +116754,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "itemTypeResults"
@@ -116140,12 +116764,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoryRecordParams.json#/properties/providerId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Native persistence of externally supplied outcomes only; no session/config import inferred. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/providerId",
       "required": true,
@@ -116158,7 +116786,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "providerId"
@@ -116166,12 +116796,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportHistoryRecordResponse.json#/properties/importId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected record_only native evidence: Record ACK UUID distinct across two metadata-only records. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/importId",
       "required": true,
@@ -116184,7 +116818,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "importId"
@@ -116192,183 +116828,239 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportParams.json#/properties/migrationItems",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Actual selected native imports; secondary source selection separate from attribution; durable provider. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/migrationItems",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportParams.json",
       "schema_sha256": "a1283d248d95b631c8ba078d301fe1c135fd075479436fa02638614b60566a68",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "migrationItems"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportParams.json#/properties/migrationSource",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Actual selected native imports; secondary source selection separate from attribution; durable provider. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/migrationSource",
       "required": false,
       "schema": "v2/ExternalAgentConfigImportParams.json",
       "schema_sha256": "61af398f945af842da61e6cec89a17c1c5ee7df4b953b0de3cccad543ebef985",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "migrationSource"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportParams.json#/properties/providerId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Actual selected native imports; secondary source selection separate from attribution; durable provider. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/providerId",
       "required": false,
       "schema": "v2/ExternalAgentConfigImportParams.json",
       "schema_sha256": "33b67ed441f429b82c7d4b122b76cb0ac2f8852f02e52d9b6b2faa64e1eefe16",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "providerId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportParams.json#/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Actual selected native imports; secondary source selection separate from attribution; durable provider. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/source",
       "required": false,
       "schema": "v2/ExternalAgentConfigImportParams.json",
       "schema_sha256": "d95394c432b345234d6f578f3adbbd1f8a1efa45906386af8d42215452cda16a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "source"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportProgressNotification.json#/properties/importId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Correlated individual progress preserves native arrival order; native-defined grouping/sort matches completion without dropping outcomes. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/importId",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportProgressNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "importId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportProgressNotification.json#/properties/itemTypeResults",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Correlated individual progress preserves native arrival order; native-defined grouping/sort matches completion without dropping outcomes. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/itemTypeResults",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportProgressNotification.json",
       "schema_sha256": "c1b771baf1c0d3a96df21341609751732f01c24b1a8cca5cb4a428664f8acde2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemTypeResults"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ExternalAgentConfigImportResponse.json#/properties/importId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: UUID ACK; matching progress/completion; durable result history. Completion not inferred from ACK. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/importId",
       "required": true,
       "schema": "v2/ExternalAgentConfigImportResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "importId"
     },
     {
@@ -120432,38 +121124,50 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListParams.json#/properties/cwds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Default/empty/specified cwd behavior, duplicates retained and per-project load errors. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/cwds",
       "required": false,
       "schema": "v2/HooksListParams.json",
       "schema_sha256": "18d47094737e35dcd6dfdcbb0b3583d4cf02fac206d54ded4910abd441fc0931",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookErrorInfo/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Broken config reports cwd and config.toml message. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookErrorInfo/properties/message",
       "required": true,
@@ -120476,7 +121180,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "message"
@@ -120484,12 +121190,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookErrorInfo/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Broken config reports cwd and config.toml message. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookErrorInfo/properties/path",
       "required": true,
@@ -120502,131 +121212,173 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Command handler only; listing does not execute. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/HookMetadata/oneOf/0",
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "2ccf0bdd29e9e73fcc6561dcfba08787ffed74716127ed4032450fd4c6a58323",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/0/properties/async",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact command metadata async=true; sentinel remains absent. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/oneOf/0/properties/async",
       "required": false,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "async"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/0/properties/command",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact command metadata async=true; sentinel remains absent. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/oneOf/0/properties/command",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "command"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/0/properties/handlerType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact command metadata async=true; sentinel remains absent. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/oneOf/0/properties/handlerType",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "755f090d61b9dff6d431635223fce1e75b7385988f13321a36913691ce823e81",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "handlerType"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/oneOf/0/properties/handlerType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: command only. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/HookMetadata/oneOf/0/properties/handlerType/enum/0",
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "7d4941e3da3dc8f43aace381595553de9ed751ec1e245e4bebca9bb5e738605e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -120894,220 +121646,288 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/additionalContextLimit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/HookMetadata/properties/additionalContextLimit",
       "required": false,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "2a6cc6ec52080aed06db4121bf401a03a3f9e543c7023a5cf9385fbdf09e9630",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "additionalContextLimit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/currentHash",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/currentHash",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "currentHash"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/displayOrder",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/displayOrder",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "displayOrder"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/enabled",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/eventName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/eventName",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "87a8a2c4443b9a38cd4a3d6363a2b21ce510e0df223f23a09a83d8a245ed91fe",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "eventName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/isManaged",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/isManaged",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "isManaged"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/key",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/key",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "key"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/matcher",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/HookMetadata/properties/matcher",
       "required": false,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "matcher"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/pluginId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected null_only native evidence: Only null; no plugin-bound hook qualification. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/HookMetadata/properties/pluginId",
       "required": false,
@@ -121120,7 +121940,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "pluginId"
@@ -121128,131 +121950,171 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/source",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "6f64976c99c1d8fce796ec77739dac3cad89e4ce0c557163d37f713dd3ae9687",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "source"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/sourcePath",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/sourcePath",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sourcePath"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/statusMessage",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/HookMetadata/properties/statusMessage",
       "required": false,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "statusMessage"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/timeoutSec",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/timeoutSec",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "99f0708952f29c21a861010182d5171b9a4f5d30e408f018254be26a8cc20ec4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "timeoutSec"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookMetadata/properties/trustStatus",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Exact metadata equality except currentHash asserted opaque nonempty; source=user/event=preToolUse/trust=untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HookMetadata/properties/trustStatus",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "85f757972d3007b989170b656fd7f1477eccc1443af2f19531bffae5f1e054c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "trustStatus"
     },
     {
@@ -121279,24 +122141,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HookTrustStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: untrusted only. Other variants and full implementation qualification remain incomplete."
+      ],
       "pointer": "/definitions/HookTrustStatus/enum/1",
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "880ae7aec6758d06a12695a026a1627eecdaa5508bff45f133e68db34e6ba951",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -121346,38 +122216,50 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HooksListEntry/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Stable cwd ordering, one nonempty hook row; disabled hooks empty. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HooksListEntry/properties/cwd",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HooksListEntry/properties/errors",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected native_failure_only native evidence: Broken owned project config yields isolated nonempty error. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HooksListEntry/properties/errors",
       "required": true,
@@ -121390,7 +122272,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "errors"
@@ -121398,38 +122282,50 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HooksListEntry/properties/hooks",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Stable cwd ordering, one nonempty hook row; disabled hooks empty. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HooksListEntry/properties/hooks",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "7b60399e5947bed6d637467e89ac554f041383479c312b6db83ae856bce44b93",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hooks"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/definitions/HooksListEntry/properties/warnings",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected empty_only native evidence: Only [] observed; no warning content. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/HooksListEntry/properties/warnings",
       "required": true,
@@ -121442,7 +122338,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "warnings"
@@ -121450,27 +122348,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/import-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/HooksListResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual_positive native evidence: Nonempty handler metadata listing only; sentinel proves no hook execution. Other variants and full implementation qualification remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/HooksListResponse.json",
       "schema_sha256": "06471c6e6baf4124e403cfbe0256b62f021a3108698d7130520f31e18f38a19b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
