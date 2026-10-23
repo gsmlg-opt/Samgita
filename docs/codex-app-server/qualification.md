@@ -772,3 +772,24 @@ check and **23 Python regressions** passed; `--require-verified` still exited 1
 on the incomplete entries. New queue/command/catalog source units are subsequent
 checks, not implicitly qualified by these results. A11 and external/legacy
 acceptance remain incomplete.
+
+## Durable native queues
+
+At the account checkpoint plus the new owned queue files, eight real pinned
+Codex cases passed both `501432` and `987654` (7.8s / 7.7s), with warnings-as-errors
+compile, changed-file format and Python AST checks. The initial **8 cases /
+1 failure** assumed the wrong missing-rollout error mapping; source and actual
+wire established storage `InvalidRequest` becomes `-32603`. The exact corrected
+assertion and every dispatch/persistence check remain in the test. No runtime
+change, timeout increase or skipped assertion was needed. See
+[queue lifecycle](queue-lifecycle-qualification.md) for commands, logs and scope.
+
+The coordinator reviewed native barriers, process cleanup, durable order and
+client/provider correlation, then mapped only the 13 exercised entries and the
+exact `threadId` notification contract to `implemented`. Source regeneration
+passes: **485 entries: 0 verified / 156 implemented / 324 missing / 5 blocked**;
+**6,621 contracts: 0 verified / 14 implemented / 6,607 missing**. Capacity,
+attachments, external writers and other deployment profiles remain unqualified.
+The default driver suite discovers the eight new queue tests. A complete
+integrated repeat and final pushed-source hosted results remain required for
+this and subsequent units; the earlier 306-case result does not include them.

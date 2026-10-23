@@ -6302,12 +6302,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/queue/add",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadQueueAddParams"
       },
@@ -6329,16 +6333,20 @@
         "source_line": 631,
         "variant": "ThreadQueueAdd"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/add"
     },
     {
@@ -6346,12 +6354,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/queue/delete",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadQueueDeleteParams"
       },
@@ -6373,16 +6385,20 @@
         "source_line": 649,
         "variant": "ThreadQueueDelete"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/delete"
     },
     {
@@ -6390,12 +6406,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/queue/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadQueueListParams"
       },
@@ -6417,16 +6437,20 @@
         "source_line": 637,
         "variant": "ThreadQueueList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/list"
     },
     {
@@ -6434,12 +6458,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/queue/reorder",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadQueueReorderParams"
       },
@@ -6461,16 +6489,20 @@
         "source_line": 655,
         "variant": "ThreadQueueReorder"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/reorder"
     },
     {
@@ -6478,12 +6510,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/queue/start",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadQueueStartParams"
       },
@@ -6505,16 +6541,20 @@
         "source_line": 661,
         "variant": "ThreadQueueStart"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/start"
     },
     {
@@ -6522,12 +6562,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/queue/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadQueueUpdateParams"
       },
@@ -6549,16 +6593,20 @@
         "source_line": 643,
         "variant": "ThreadQueueUpdate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/update"
     },
     {
@@ -11202,12 +11250,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:thread/queue/changed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadQueueChangedNotification"
       },
@@ -11224,16 +11276,20 @@
         "source_line": 1967,
         "variant": "ThreadQueueChanged"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/changed"
     },
     {
@@ -17178,12 +17234,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/queue/add",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17191,16 +17251,20 @@
       "schema": "v2/ThreadQueueAddResponse.json",
       "schema_sha256": "c11b9772788427b19c9f9decf0765e2b41cbdead1aa9c3d39f42fdd70b339314",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/add"
     },
     {
@@ -17209,12 +17273,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/queue/delete",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17222,16 +17290,20 @@
       "schema": "v2/ThreadQueueDeleteResponse.json",
       "schema_sha256": "5983c0a94e89f93340caecfe96e16d8f535edca39142920bc0ba60ec90a52919",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/delete"
     },
     {
@@ -17240,12 +17312,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/queue/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17253,16 +17329,20 @@
       "schema": "v2/ThreadQueueListResponse.json",
       "schema_sha256": "be4e0bfa6fc776101f96582543605d2eff6186309a08903203512b99c5005926",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/list"
     },
     {
@@ -17271,12 +17351,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/queue/reorder",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17284,16 +17368,20 @@
       "schema": "v2/ThreadQueueReorderResponse.json",
       "schema_sha256": "161491f6310bcdeac60cd7cb0594cebc51857e9caccb592b7f96cefaa5f4a061",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/reorder"
     },
     {
@@ -17302,12 +17390,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/queue/start",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17315,16 +17407,20 @@
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "2ba030d038079d8fb6178c552a47c458c9755f27b09e77af38a20eaf2447445b",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/start"
     },
     {
@@ -17333,12 +17429,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/queue/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17346,16 +17446,20 @@
       "schema": "v2/ThreadQueueUpdateResponse.json",
       "schema_sha256": "77161ef691c18e249115acf63a25967afe0ac9e946a856634d02c3f3cca09557",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/queue/update"
     },
     {
@@ -158509,27 +158613,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadQueueChangedNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native local synthetic cases cover durable unloaded CRUD, FIFO/selected dispatch, interruption, restart, client identity, capability and error behavior. Attachments, capacity/oversized snapshots, hooks, external writers, cross-process polling and other deployment profiles remain unqualified; no public queue CAS or upstream client-ID deduplication is claimed."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadQueueChangedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
