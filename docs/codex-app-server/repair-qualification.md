@@ -273,6 +273,36 @@ formatting and scoped whitespace checks passed. Log:
 are separate checks. Synthetic local credentials and provider acceptance do not
 qualify a real attestation service or account.
 
+## Hosted continuation and cached dependency analysis
+
+At `2565d96403573ca0ba0d20961ef8ca3eaaec20ff`, pinned conformance
+[39990785776](https://github.com/gsmlg-opt/Samgita/actions/runs/39990785776)
+passed its selected actual-binary/platform job: independent schema, the full
+208-case driver suite, outside consumer and fenced platform/API scenarios.
+The separate completeness job failed its unsatisfied evidence requirement;
+the overall workflow remains failed. This supersedes the earlier selected-job
+upgrade-ordering failure, while preserving that failure's record below.
+
+Foundation [39990749699](https://github.com/gsmlg-opt/Samgita/actions/runs/39990749699)
+passed compilation, repeated populated tests, restart, independent packages,
+assets and the legacy scan, then failed Dialyzer with
+`call_to_missing: SamgitaCodexDriver.Session.notify_native/3`. Audit and production
+assembly steps consequently did not run. Compilation logs explicitly show the
+driver recompiling, so this is not evidence that the function is absent in source.
+
+The restored dependency PLT predates the new path-dependency export. Retained
+Dialyxir `Mix.Tasks.Dialyzer.dependency_hash/0` hashes only lockfile contents and
+the application list; `check_plt/1` skips BEAM checking when that hash matches.
+Neither input changes for a new function in the reusable driver. The supported
+`--force-check` option exists specifically for local dependencies. CI now uses
+`mix dialyzer --force-check`, retaining the cache and every warning/error gate.
+No dependency source is patched and no warning is ignored. Local verification:
+`devenv shell --no-tui -- env MIX_ENV=test mix dialyzer --force-check` checked
+**2,165 modules**, reported **zero errors/skips**, and exited zero. Log:
+`/tmp/samgita-ci-plt-force-check.log`. Hosted verification of this workflow
+change must be recorded against its pushed source; local success alone does
+not establish that hosted repair.
+
 ## Continuing gates
 
 The pushed repair head `63588cdc442436e9f4cb2b085b9699a0f5c1d370` reached

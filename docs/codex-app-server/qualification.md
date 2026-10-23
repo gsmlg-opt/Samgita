@@ -578,7 +578,7 @@ assembly and selected tests do not establish full compatibility or readiness.
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory repaired; A11 raw server/LiveView credential telemetry still blocked; target-specific egress/key/legacy-cutover and real backup/memory rehearsals remain |
-| Hosted | Repair-head aggregate `39983577211` passes, including dependency audit and assembly. Pinned `39983703308` fails a newly identified driver upgrade-buffer ordering defect; full evidence gate remains red. See repair record for listener and consecutive reused-database repairs |
+| Hosted | At `2565d96`, pinned `39990785776` passes its selected actual-binary/platform job; completeness remains red. Foundation `39990749699` passes tests/restart/packages but fails stale dependency-PLT analysis; supported `--force-check` repair passes locally and awaits hosted verification. See the repair record for exact evidence |
 | Publication/deployment | No normal package/tag publication workflow currently exists; CD remains disabled; no package publication or deployment is claimed |
 
 New migrations are additive and refuse destructive down migration. Rollback

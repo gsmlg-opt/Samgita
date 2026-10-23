@@ -86,7 +86,9 @@ jobs:
         run: |
           python3 scripts/test_check_legacy_runtime.py
           python3 scripts/check_legacy_runtime.py
-      - run: mix dialyzer
+      # Reusable path dependencies change without changing mix.lock. A cached
+      # dependency PLT must be checked against their current BEAM exports too.
+      - run: mix dialyzer --force-check
       - run: mix hex.audit
       - name: Assemble local production release
         env:
