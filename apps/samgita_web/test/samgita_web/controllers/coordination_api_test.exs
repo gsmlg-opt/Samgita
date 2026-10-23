@@ -2,8 +2,8 @@ defmodule SamgitaWeb.CoordinationAPITest do
   use SamgitaWeb.ConnCase, async: false
   import Samgita.DomainFixtures
   import Samgita.CoordinationFixtures
-  alias Samgita.{EventDelivery, Repo}
   alias Samgita.Domain.EventDelivery, as: Delivery
+  alias Samgita.{EventDelivery, Repo}
 
   setup do
     previous = Application.get_env(:samgita, :api_keys)

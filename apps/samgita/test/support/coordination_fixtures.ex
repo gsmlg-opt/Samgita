@@ -1,8 +1,8 @@
 defmodule Samgita.CoordinationFixtures do
   @moduledoc false
   import Samgita.DomainFixtures
-  alias Samgita.{Events, Principal, Projects, Repo}
   alias Samgita.Domain.EventDelivery
+  alias Samgita.{Events, Principal, Projects, Repo}
 
   def routing_fixture(opts \\ []) do
     activate_fixture()
@@ -60,6 +60,7 @@ defmodule Samgita.CoordinationFixtures do
     }
 
   defmodule FakeConnector do
+    @moduledoc false
     @behaviour Samgita.Connector
     alias Samgita.Connector.Failure
 
@@ -107,12 +108,15 @@ defmodule Samgita.CoordinationFixtures do
   end
 
   defmodule CrashBeforeSendConnector do
+    @moduledoc false
     @behaviour Samgita.Connector
+    alias Samgita.Connector.Failure
+
     def receive_event(_target, event, operation) do
       send(Process.get(:crash_owner), {:before_wire_send, self(), event, operation})
 
       receive do
-        :continue -> {:error, Samgita.Connector.Failure.new(:ambiguous, :handler_lost)}
+        :continue -> {:error, Failure.new(:ambiguous, :handler_lost)}
       end
     end
 

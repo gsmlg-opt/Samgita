@@ -8,12 +8,15 @@ defmodule Samgita.Events do
     Agent,
     DomainEvent,
     EventDelivery,
+    EventRecoveryAction,
     EventSubscription,
     ExternalEvent,
     Project,
     ProjectAgent,
     Task
   }
+
+  alias Samgita.Workers.EventDeliveryWorker
 
   @read_roles ~w(observer worker manager reviewer)
   @payload_fields ~w(reason summary reference subject external_ref status labels repository_id task_id check)
@@ -62,29 +65,31 @@ defmodule Samgita.Events do
       |> Repo.insert!()
 
     if project_id && Map.get(ctx, :notify, true) do
-      Repo.all(from s in EventSubscription, where: s.project_id == ^project_id and s.enabled)
+      Repo.all(from(s in EventSubscription, where: s.project_id == ^project_id and s.enabled))
       |> Enum.filter(&(&1.types == [] || type in &1.types))
-      |> Enum.each(fn subscription ->
-        delivery =
-          %EventDelivery{}
-          |> change(
-            event_id: event.id,
-            subscription_id: subscription.id,
-            subscription_revision: subscription.revision,
-            project_id: project_id,
-            agent_id: subscription.agent_id,
-            operation_id: Ecto.UUID.generate(),
-            target_digest: subscription.target_digest,
-            next_attempt_at: DateTime.utc_now(),
-            state: if(subscription.target_digest, do: "pending", else: "legacy_unreviewed")
-          )
-          |> Repo.insert!()
-
-        if delivery.state == "pending", do: enqueue!(delivery)
-      end)
+      |> Enum.each(&subscribe_event!(event, &1))
     end
 
     event
+  end
+
+  defp subscribe_event!(event, subscription) do
+    delivery =
+      %EventDelivery{}
+      |> change(
+        event_id: event.id,
+        subscription_id: subscription.id,
+        subscription_revision: subscription.revision,
+        project_id: event.project_id,
+        agent_id: subscription.agent_id,
+        operation_id: Ecto.UUID.generate(),
+        target_digest: subscription.target_digest,
+        next_attempt_at: DateTime.utc_now(),
+        state: if(subscription.target_digest, do: "pending", else: "legacy_unreviewed")
+      )
+      |> Repo.insert!()
+
+    if delivery.state == "pending", do: enqueue!(delivery)
   end
 
   @doc "Explicitly bind one responsible Agent. Capabilities are checked after membership grants."
@@ -106,23 +111,15 @@ defmodule Samgita.Events do
         agent = Repo.get(Agent, attrs["agent_id"]) || Commands.fail!(:not_found)
         member = Repo.get_by(ProjectAgent, project_id: project_id, agent_id: agent.id)
 
-        if !agent.enabled || !member || !member.enabled || "manager" not in member.roles,
-          do: Commands.fail!(:forbidden)
+        require_responsible_agent!(agent, member)
 
-        if "project_events.v1" not in agent.approved_capabilities ||
-             "project_events.v1" not in agent.advertised_capabilities,
-           do: Commands.fail!(:invalid, %{reason: "project_events_required"})
-
-        types = attrs["types"] || []
-
-        if !is_list(types) || length(types) > 100 || !Enum.all?(types, &event_type?/1) ||
-             attrs["idempotency_guaranteed"] not in [nil, true, false],
-           do: Commands.fail!(:invalid)
+        types = subscription_types!(attrs)
 
         old =
           Repo.one(
-            from s in EventSubscription,
+            from(s in EventSubscription,
               where: s.project_id == ^project_id and s.purpose == "responsible" and s.enabled
+            )
           )
 
         if old,
@@ -156,6 +153,25 @@ defmodule Samgita.Events do
     )
   end
 
+  defp require_responsible_agent!(agent, member) do
+    if !agent.enabled || !member || !member.enabled || "manager" not in member.roles,
+      do: Commands.fail!(:forbidden)
+
+    if "project_events.v1" not in agent.approved_capabilities ||
+         "project_events.v1" not in agent.advertised_capabilities,
+       do: Commands.fail!(:invalid, %{reason: "project_events_required"})
+  end
+
+  defp subscription_types!(attrs) do
+    types = attrs["types"] || []
+
+    if !is_list(types) || length(types) > 100 || !Enum.all?(types, &event_type?/1) ||
+         attrs["idempotency_guaranteed"] not in [nil, true, false],
+       do: Commands.fail!(:invalid)
+
+    types
+  end
+
   def trigger(principal, project_id, attrs),
     do: source_event(principal, project_id, attrs, :manual)
 
@@ -166,11 +182,7 @@ defmodule Samgita.Events do
   def redeliver(principal, project_id, event_id, attrs) do
     attrs = Params.strings(attrs)
 
-    subscription =
-      if Params.uuid?(attrs["subscription_id"]),
-        do: Repo.get(EventSubscription, attrs["subscription_id"])
-
-    agent_ids = if subscription, do: [subscription.agent_id], else: []
+    agent_ids = subscription_agents(attrs["subscription_id"])
 
     Commands.run(
       principal,
@@ -190,16 +202,8 @@ defmodule Samgita.Events do
         agent = Repo.get!(Agent, target.agent_id)
         member = Repo.get_by(ProjectAgent, project_id: project_id, agent_id: agent.id)
 
-        if !target.enabled || target.purpose != "responsible" ||
-             attrs["expected_subscription_revision"] != target.revision ||
-             !agent.enabled || !member || !member.enabled || "manager" not in member.roles ||
-             "project_events.v1" not in agent.approved_capabilities ||
-             target.target_digest != target_digest(agent),
-           do: Commands.fail!(:ownership_lost)
-
-        if !is_binary(attrs["reason"]) || byte_size(attrs["reason"]) not in 1..2000 ||
-             !is_binary(attrs["evidence_ref"]) || byte_size(attrs["evidence_ref"]) not in 1..2000,
-           do: Commands.fail!(:invalid)
+        require_redelivery_target!(target, agent, member, attrs)
+        require_redelivery_evidence!(attrs)
 
         previous =
           if Params.uuid?(attrs["source_delivery_id"]),
@@ -210,17 +214,14 @@ defmodule Samgita.Events do
                 event_id: event.id
               )
 
-        existing = Repo.all(from d in EventDelivery, where: d.event_id == ^event.id)
+        existing = Repo.all(from(d in EventDelivery, where: d.event_id == ^event.id))
 
-        if existing != [] && !previous,
-          do: Commands.fail!(:invalid, %{field: "source_delivery_id"})
-
-        if Enum.any?(existing, &(&1.attempt_count > 0)) && attrs["risk_acknowledged"] != true,
-          do: Commands.fail!(:conflict, %{reason: "duplicate_effect_risk"})
+        require_previous_delivery!(existing, previous, attrs)
 
         if Repo.exists?(
-             from d in EventDelivery,
+             from(d in EventDelivery,
                where: d.event_id == ^event.id and d.subscription_id == ^target.id
+             )
            ),
            do: Commands.fail!(:conflict, %{reason: "use_existing_delivery_recovery"})
 
@@ -238,7 +239,7 @@ defmodule Samgita.Events do
           )
           |> Commands.insert!()
 
-        %Samgita.Domain.EventRecoveryAction{}
+        %EventRecoveryAction{}
         |> change(
           delivery_id: delivery.id,
           previous_delivery_id: previous && previous.id,
@@ -256,6 +257,40 @@ defmodule Samgita.Events do
         Samgita.EventDelivery.project(delivery)
       end
     )
+  end
+
+  defp subscription_agents(id) do
+    subscription = if Params.uuid?(id), do: Repo.get(EventSubscription, id)
+    if subscription, do: [subscription.agent_id], else: []
+  end
+
+  defp require_redelivery_target!(target, agent, member, attrs) do
+    current_target =
+      target.enabled && target.purpose == "responsible" &&
+        attrs["expected_subscription_revision"] == target.revision &&
+        target.target_digest == target_digest(agent)
+
+    if !current_target || !responsible_member?(agent, member) ||
+         "project_events.v1" not in agent.approved_capabilities,
+       do: Commands.fail!(:ownership_lost)
+  end
+
+  defp responsible_member?(agent, member),
+    do: agent.enabled && member && member.enabled && "manager" in member.roles
+
+  defp require_redelivery_evidence!(attrs) do
+    if !bounded_text?(attrs["reason"], 1..2000) || !bounded_text?(attrs["evidence_ref"], 1..2000),
+      do: Commands.fail!(:invalid)
+  end
+
+  defp bounded_text?(value, range), do: is_binary(value) && byte_size(value) in range
+
+  defp require_previous_delivery!(existing, previous, attrs) do
+    if existing != [] && !previous,
+      do: Commands.fail!(:invalid, %{field: "source_delivery_id"})
+
+    if Enum.any?(existing, &(&1.attempt_count > 0)) && attrs["risk_acknowledged"] != true,
+      do: Commands.fail!(:conflict, %{reason: "duplicate_effect_risk"})
   end
 
   defp source_event(principal, project_id, attrs, source) do
@@ -282,67 +317,75 @@ defmodule Samgita.Events do
           |> Map.put(:correlation_id, attrs["correlation_id"] || ctx.command_id)
           |> Map.put(:causation_id, attrs["causation_id"])
 
-        if source == :external do
-          external_source = attrs["source"]
-          external_id = attrs["external_id"]
-          if !safe_id?(external_source) || !safe_id?(external_id), do: Commands.fail!(:invalid)
-
-          digest =
-            Commands.digest(%{
-              "payload" => payload,
-              "correlation_id" => attrs["correlation_id"],
-              "causation_id" => attrs["causation_id"]
-            })
-
-          case Repo.get_by(ExternalEvent,
-                 project_id: project_id,
-                 source: external_source,
-                 external_id: external_id
-               ) do
-            nil ->
-              inbox_id = Ecto.UUID.generate()
-
-              event =
-                append!(
-                  project_id,
-                  "external.received",
-                  Map.merge(ctx, %{source: external_source, source_id: external_id}),
-                  "external_event",
-                  inbox_id,
-                  payload
-                )
-
-              %ExternalEvent{id: inbox_id}
-              |> change(
-                project_id: project_id,
-                source: external_source,
-                external_id: external_id,
-                payload_digest: digest,
-                event_id: event.id
-              )
-              |> Commands.insert!()
-
-              event_projection(event)
-
-            inbox ->
-              if inbox.payload_digest != digest,
-                do: Commands.fail!(:conflict, %{reason: "external_id_reused"})
-
-              event_projection(Repo.get!(DomainEvent, inbox.event_id))
-          end
-        else
-          append!(
-            project_id,
-            "manual.triggered",
-            Map.put(ctx, :source, "manual"),
-            "project",
-            project_id,
-            payload
-          )
-          |> event_projection()
-        end
+        source_projection(ctx, project_id, payload, attrs, source)
       end
     )
+  end
+
+  defp source_projection(ctx, project_id, payload, attrs, :external) do
+    source = attrs["source"]
+    external_id = attrs["external_id"]
+    if !safe_id?(source) || !safe_id?(external_id), do: Commands.fail!(:invalid)
+
+    digest =
+      Commands.digest(%{
+        "payload" => payload,
+        "correlation_id" => attrs["correlation_id"],
+        "causation_id" => attrs["causation_id"]
+      })
+
+    case Repo.get_by(ExternalEvent,
+           project_id: project_id,
+           source: source,
+           external_id: external_id
+         ) do
+      nil ->
+        create_external_event!(ctx, project_id, payload, source, external_id, digest)
+
+      inbox ->
+        if inbox.payload_digest != digest,
+          do: Commands.fail!(:conflict, %{reason: "external_id_reused"})
+
+        event_projection(Repo.get!(DomainEvent, inbox.event_id))
+    end
+  end
+
+  defp source_projection(ctx, project_id, payload, _attrs, :manual) do
+    append!(
+      project_id,
+      "manual.triggered",
+      Map.put(ctx, :source, "manual"),
+      "project",
+      project_id,
+      payload
+    )
+    |> event_projection()
+  end
+
+  defp create_external_event!(ctx, project_id, payload, source, external_id, digest) do
+    inbox_id = Ecto.UUID.generate()
+
+    event =
+      append!(
+        project_id,
+        "external.received",
+        Map.merge(ctx, %{source: source, source_id: external_id}),
+        "external_event",
+        inbox_id,
+        payload
+      )
+
+    %ExternalEvent{id: inbox_id}
+    |> change(
+      project_id: project_id,
+      source: source,
+      external_id: external_id,
+      payload_digest: digest,
+      event_id: event.id
+    )
+    |> Commands.insert!()
+
+    event_projection(event)
   end
 
   def read(principal, project_id, params \\ %{}) do
@@ -354,10 +397,11 @@ defmodule Samgita.Events do
 
       data =
         Repo.all(
-          from e in DomainEvent,
+          from(e in DomainEvent,
             where: e.project_id == ^project_id and e.sequence > ^after_sequence,
             order_by: e.sequence,
             limit: ^limit
+          )
         )
 
       %{
@@ -372,8 +416,9 @@ defmodule Samgita.Events do
   def routing(principal, project_id) do
     Commands.read(principal, project_id, @read_roles, fn _ ->
       case Repo.one(
-             from s in EventSubscription,
+             from(s in EventSubscription,
                where: s.project_id == ^project_id and s.purpose == "responsible" and s.enabled
+             )
            ) do
         nil -> %{"subscription" => nil}
         subscription -> subscription_projection(subscription)
@@ -401,19 +446,23 @@ defmodule Samgita.Events do
         if cursor < subscription.cursor || cursor > ctx.project.event_sequence,
           do: Commands.fail!(:invalid, %{reason: "cursor_out_of_range"})
 
-        gap =
-          Repo.exists?(
-            from d in EventDelivery,
-              join: e in DomainEvent,
-              on: e.id == d.event_id,
-              where:
-                d.subscription_id == ^id and e.sequence > ^subscription.cursor and
-                  e.sequence <= ^cursor and is_nil(d.accepted_at)
-          )
+        if unacknowledged_gap?(id, subscription.cursor, cursor),
+          do: Commands.fail!(:conflict, %{reason: "unacknowledged_gap"})
 
-        if gap, do: Commands.fail!(:conflict, %{reason: "unacknowledged_gap"})
         subscription |> change(cursor: cursor) |> Commands.update!() |> subscription_projection()
       end
+    )
+  end
+
+  defp unacknowledged_gap?(id, previous_cursor, cursor) do
+    Repo.exists?(
+      from(d in EventDelivery,
+        join: e in DomainEvent,
+        on: e.id == d.event_id,
+        where:
+          d.subscription_id == ^id and e.sequence > ^previous_cursor and
+            e.sequence <= ^cursor and is_nil(d.accepted_at)
+      )
     )
   end
 
@@ -421,9 +470,10 @@ defmodule Samgita.Events do
     if !Params.uuid?(id), do: Commands.fail!(:not_found)
 
     Repo.one(
-      from s in EventSubscription,
+      from(s in EventSubscription,
         where: s.id == ^id and s.project_id == ^project_id,
         lock: "FOR UPDATE"
+      )
     ) || Commands.fail!(:not_found)
   end
 
@@ -435,7 +485,7 @@ defmodule Samgita.Events do
       )
 
   def enqueue!(delivery, enqueue \\ &Oban.insert/1) do
-    case enqueue.(Samgita.Workers.EventDeliveryWorker.new(%{"delivery_id" => delivery.id})) do
+    case enqueue.(EventDeliveryWorker.new(%{"delivery_id" => delivery.id})) do
       {:ok, job} -> job
       {:error, _} -> Commands.fail!(:enqueue_failed, %{delivery_id: delivery.id})
     end
@@ -484,19 +534,7 @@ defmodule Samgita.Events do
 
   def validate_payload(payload) when is_map(payload) and not is_struct(payload) do
     valid =
-      Enum.all?(payload, fn
-        {"labels", labels} ->
-          is_list(labels) && length(labels) <= 50 &&
-            Enum.all?(
-              labels,
-              &(is_binary(&1) && String.valid?(&1) && byte_size(&1) <= 100 &&
-                  !String.contains?(&1, <<0>>))
-            )
-
-        {key, value} ->
-          key in @payload_fields && is_binary(value) && String.valid?(value) &&
-            byte_size(value) <= 2000 && !String.contains?(value, <<0>>)
-      end)
+      Enum.all?(payload, &valid_payload_field?/1)
 
     if valid && byte_size(Jason.encode!(payload)) <= 16_384,
       do: :ok,
@@ -505,11 +543,22 @@ defmodule Samgita.Events do
 
   def validate_payload(_), do: {:error, :invalid_payload}
 
+  defp valid_payload_field?({"labels", labels}),
+    do: is_list(labels) && length(labels) <= 50 && Enum.all?(labels, &payload_text?(&1, 100))
+
+  defp valid_payload_field?({key, value}),
+    do: key in @payload_fields && payload_text?(value, 2000)
+
+  defp payload_text?(value, max_bytes),
+    do:
+      is_binary(value) && String.valid?(value) && byte_size(value) <= max_bytes &&
+        !String.contains?(value, <<0>>)
+
   defp validate_task!(_, nil), do: :ok
 
   defp validate_task!(project_id, id) do
     if !Params.uuid?(id) ||
-         !Repo.exists?(from t in Task, where: t.id == ^id and t.project_id == ^project_id),
+         !Repo.exists?(from(t in Task, where: t.id == ^id and t.project_id == ^project_id)),
        do: Commands.fail!(:not_found)
   end
 
@@ -517,7 +566,7 @@ defmodule Samgita.Events do
 
   defp validate_causation!(project_id, id) do
     if !Params.uuid?(id) ||
-         !Repo.exists?(from e in DomainEvent, where: e.id == ^id and e.project_id == ^project_id),
+         !Repo.exists?(from(e in DomainEvent, where: e.id == ^id and e.project_id == ^project_id)),
        do: Commands.fail!(:not_found)
   end
 

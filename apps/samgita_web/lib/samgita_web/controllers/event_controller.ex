@@ -1,8 +1,8 @@
 defmodule SamgitaWeb.EventController do
   use SamgitaWeb, :controller
-  alias Samgita.{Events, EventDelivery}
+  alias Samgita.{EventDelivery, Events}
   alias SamgitaWeb.DomainAPI, as: API
-  action_fallback SamgitaWeb.FallbackController
+  action_fallback(SamgitaWeb.FallbackController)
 
   def index(conn, %{"project_id" => id}),
     do: API.result(conn, Events.read(API.principal(conn), id, conn.query_params))

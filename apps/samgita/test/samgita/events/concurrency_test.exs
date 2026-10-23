@@ -233,8 +233,8 @@ defmodule Samgita.Events.ConcurrencyTest do
     assert_receive {:agent_held, second_backend}, 5000
     refute first_backend == second_backend
     send(first, :append)
-    assert {:ok, %{"appended" => true}} = Task.await(writer, 10000)
-    assert {:ok, {:ok, _}} = Task.await(member, 10000)
+    assert {:ok, %{"appended" => true}} = Task.await(writer, 10_000)
+    assert {:ok, {:ok, _}} = Task.await(member, 10_000)
 
     Sandbox.unboxed_run(Repo, fn ->
       for d <- Repo.all(from d in Delivery, where: d.project_id == ^p["id"]) do
@@ -249,21 +249,7 @@ defmodule Samgita.Events.ConcurrencyTest do
   defp race(functions) do
     caller = self()
 
-    workers =
-      Enum.map(functions, fn function ->
-        Task.async(fn ->
-          Sandbox.unboxed_run(Repo, fn ->
-            %{rows: [[pid]]} = Repo.query!("SELECT pg_backend_pid()")
-            send(caller, {:ready, self(), pid})
-
-            receive do
-              :go -> function.()
-            after
-              5000 -> flunk("concurrency barrier timed out")
-            end
-          end)
-        end)
-      end)
+    workers = Enum.map(functions, &start_barrier_worker(caller, &1))
 
     backends =
       for _ <- workers do
@@ -273,6 +259,21 @@ defmodule Samgita.Events.ConcurrencyTest do
 
     assert length(Enum.uniq_by(backends, &elem(&1, 1))) == length(functions)
     Enum.each(backends, fn {worker, _} -> send(worker, :go) end)
-    Enum.map(workers, &Task.await(&1, 10000))
+    Enum.map(workers, &Task.await(&1, 10_000))
+  end
+
+  defp start_barrier_worker(caller, function) do
+    Task.async(fn -> Sandbox.unboxed_run(Repo, fn -> run_after_barrier(caller, function) end) end)
+  end
+
+  defp run_after_barrier(caller, function) do
+    %{rows: [[pid]]} = Repo.query!("SELECT pg_backend_pid()")
+    send(caller, {:ready, self(), pid})
+
+    receive do
+      :go -> function.()
+    after
+      5000 -> flunk("concurrency barrier timed out")
+    end
   end
 end

@@ -17,6 +17,7 @@ defmodule Samgita.EventDelivery do
     EventDelivery,
     EventDeliveryAttempt,
     EventRecoveryAction,
+    Project,
     ProjectAgent
   }
 
@@ -31,16 +32,9 @@ defmodule Samgita.EventDelivery do
 
     with {:ok, claim} <- claim(id, now: now) do
       case claim do
-        %{action: action} ->
+        %{action: _action} ->
           # Network I/O runs after the claim transaction releases all locks.
-          outcome =
-            case action do
-              "receive" ->
-                connector.receive_event(claim.target, claim.event, claim.operation_id)
-
-              "status" ->
-                connector.status(claim.target, claim.event["event_id"], claim.operation_id)
-            end
+          outcome = send_claim(claim, connector)
 
           settle(id, claim.token, outcome,
             now: Keyword.get(opts, :settled_at, DateTime.utc_now())
@@ -51,6 +45,12 @@ defmodule Samgita.EventDelivery do
       end
     end
   end
+
+  defp send_claim(%{action: "receive"} = claim, connector),
+    do: connector.receive_event(claim.target, claim.event, claim.operation_id)
+
+  defp send_claim(%{action: "status"} = claim, connector),
+    do: connector.status(claim.target, claim.event["event_id"], claim.operation_id)
 
   def claim(id, opts \\ []) do
     now = Keyword.get(opts, :now, DateTime.utc_now())
@@ -77,55 +77,59 @@ defmodule Samgita.EventDelivery do
           %{result: exhaust!(delivery, now)}
 
         true ->
-          action = if delivery.state == "reconciling", do: "status", else: "receive"
-          fence = delivery.fence + 1
-          lease_id = Ecto.UUID.generate()
-
-          attempt =
-            %EventDeliveryAttempt{}
-            |> change(
-              delivery_id: delivery.id,
-              number: delivery.attempt_count + 1,
-              action: action,
-              fence: fence,
-              lease_id: lease_id,
-              execution_epoch: ctx.authority.epoch,
-              started_at: now
-            )
-            |> Commands.insert!()
-
-          current =
-            delivery
-            |> change(
-              state: "delivering",
-              fence: fence,
-              lease_id: lease_id,
-              lease_expires_at: DateTime.add(now, @lease_seconds),
-              next_attempt_at: DateTime.add(now, @lease_seconds),
-              execution_epoch: ctx.authority.epoch,
-              last_attempt_id: attempt.id,
-              attempt_count: attempt.number,
-              cycle_attempt_count: delivery.cycle_attempt_count + 1,
-              version: delivery.version + 1
-            )
-            |> Commands.update!()
-
-          agent = Repo.get!(Agent, current.agent_id)
-          event = Repo.get!(DomainEvent, current.event_id)
-
-          %{
-            action: action,
-            token: token(current),
-            operation_id: current.operation_id,
-            event: Events.envelope(event, attempt.id),
-            target: %{
-              agent_id: agent.id,
-              endpoint_metadata: agent.endpoint_metadata,
-              credential_ref: agent.credential_ref
-            }
-          }
+          claim_locked!(ctx, delivery, now)
       end
     end)
+  end
+
+  defp claim_locked!(ctx, delivery, now) do
+    action = if delivery.state == "reconciling", do: "status", else: "receive"
+    fence = delivery.fence + 1
+    lease_id = Ecto.UUID.generate()
+
+    attempt =
+      %EventDeliveryAttempt{}
+      |> change(
+        delivery_id: delivery.id,
+        number: delivery.attempt_count + 1,
+        action: action,
+        fence: fence,
+        lease_id: lease_id,
+        execution_epoch: ctx.authority.epoch,
+        started_at: now
+      )
+      |> Commands.insert!()
+
+    current =
+      delivery
+      |> change(
+        state: "delivering",
+        fence: fence,
+        lease_id: lease_id,
+        lease_expires_at: DateTime.add(now, @lease_seconds),
+        next_attempt_at: DateTime.add(now, @lease_seconds),
+        execution_epoch: ctx.authority.epoch,
+        last_attempt_id: attempt.id,
+        attempt_count: attempt.number,
+        cycle_attempt_count: delivery.cycle_attempt_count + 1,
+        version: delivery.version + 1
+      )
+      |> Commands.update!()
+
+    agent = Repo.get!(Agent, current.agent_id)
+    event = Repo.get!(DomainEvent, current.event_id)
+
+    %{
+      action: action,
+      token: token(current),
+      operation_id: current.operation_id,
+      event: Events.envelope(event, attempt.id),
+      target: %{
+        agent_id: agent.id,
+        endpoint_metadata: agent.endpoint_metadata,
+        credential_ref: agent.credential_ref
+      }
+    }
   end
 
   def renew(id, proof, opts \\ []) do
@@ -170,11 +174,12 @@ defmodule Samgita.EventDelivery do
 
       data =
         Repo.all(
-          from d in EventDelivery,
+          from(d in EventDelivery,
             where: d.project_id == ^project_id,
             order_by: [desc: d.inserted_at, desc: d.id],
             limit: ^limit,
             offset: ^offset
+          )
         )
 
       %{"data" => Enum.map(data, &project/1), "limit" => limit, "offset" => offset}
@@ -187,26 +192,29 @@ defmodule Samgita.EventDelivery do
 
       attempts =
         Repo.all(
-          from a in EventDeliveryAttempt,
+          from(a in EventDeliveryAttempt,
             where: a.delivery_id == ^id,
             order_by: [desc: a.number],
             limit: 100
+          )
         )
 
       actions =
         Repo.all(
-          from a in EventRecoveryAction,
+          from(a in EventRecoveryAction,
             where: a.delivery_id == ^id,
             order_by: [desc: a.inserted_at],
             limit: 100
+          )
         )
 
       acknowledgements =
         Repo.all(
-          from a in EventAcknowledgement,
+          from(a in EventAcknowledgement,
             where: a.delivery_id == ^id,
             order_by: [desc: a.recorded_at],
             limit: 100
+          )
         )
 
       project(delivery)
@@ -254,17 +262,8 @@ defmodule Samgita.EventDelivery do
       Commands.require_hub!(ctx)
       Commands.expect!(delivery, attrs)
 
-      if !target_current?(delivery, subscription) || delivery.state in @terminal ||
-           delivery.state not in ~w(delivering accepted reconciling) ||
-           delivery.execution_epoch != ctx.authority.epoch ||
-           (delivery.state == "delivering" && Commands.expired?(delivery.lease_expires_at)) ||
-           attrs["operation_id"] != delivery.operation_id || attrs["fence"] != delivery.fence,
-         do: Commands.fail!(:ownership_lost)
-
-      if attrs["processing_status"] not in @final_processing ||
-           !Params.uuid?(attrs["decision_id"]) ||
-           Events.validate_payload(attrs["result"] || %{}) != :ok,
-         do: Commands.fail!(:invalid)
+      require_report_owner!(ctx, delivery, subscription, attrs)
+      validate_report!(attrs)
 
       result = %{
         "event_id" => delivery.event_id,
@@ -278,6 +277,23 @@ defmodule Samgita.EventDelivery do
     end)
   end
 
+  defp require_report_owner!(ctx, delivery, subscription, attrs) do
+    if !target_current?(delivery, subscription) || delivery.state in @terminal ||
+         delivery.state not in ~w(delivering accepted reconciling) ||
+         delivery.execution_epoch != ctx.authority.epoch || stale_report_lease?(delivery) ||
+         attrs["operation_id"] != delivery.operation_id || attrs["fence"] != delivery.fence,
+       do: Commands.fail!(:ownership_lost)
+  end
+
+  defp stale_report_lease?(delivery),
+    do: delivery.state == "delivering" && Commands.expired?(delivery.lease_expires_at)
+
+  defp validate_report!(attrs) do
+    if attrs["processing_status"] not in @final_processing || !Params.uuid?(attrs["decision_id"]) ||
+         Events.validate_payload(attrs["result"] || %{}) != :ok,
+       do: Commands.fail!(:invalid)
+  end
+
   @doc "Explicit operator recovery. Administrative redelivery keeps event/time/operation identity."
   def recover(principal, project_id, id, attrs) do
     attrs = Params.strings(attrs)
@@ -288,66 +304,11 @@ defmodule Samgita.EventDelivery do
       reason = attrs["reason"]
       evidence = attrs["evidence_ref"]
 
-      if !is_binary(reason) || byte_size(reason) not in 1..2000 ||
-           (evidence && (!is_binary(evidence) || byte_size(evidence) not in 1..2000)),
-         do: Commands.fail!(:invalid)
+      validate_recovery_evidence!(reason, evidence)
 
       now = DateTime.utc_now()
 
-      current =
-        case attrs["action"] do
-          "cancel" ->
-            if delivery.state == "cancelled", do: Commands.fail!(:invalid_transition)
-            finish_attempt!(delivery, now, "cancelled", nil, nil)
-
-            delivery
-            |> change(
-              state: "cancelled",
-              remote_outcome_uncertain:
-                delivery.remote_outcome_uncertain ||
-                  delivery.state in ~w(delivering accepted reconciling),
-              fence: delivery.fence + 1,
-              lease_id: nil,
-              lease_expires_at: nil,
-              next_attempt_at: nil,
-              version: delivery.version + 1
-            )
-            |> Commands.update!()
-
-          action when action in ~w(redeliver reconcile) ->
-            Commands.require_hub!(ctx)
-
-            if !target_current?(delivery, subscription),
-              do: Commands.fail!(:conflict, %{reason: "target_changed_requires_new_subscription"})
-
-            if delivery.state == "delivering",
-              do: Commands.fail!(:conflict, %{reason: "handler_still_leased"})
-
-            if !is_binary(evidence) || evidence == "",
-              do: Commands.fail!(:invalid, %{field: "evidence_ref"})
-
-            if action == "redeliver" && delivery.attempt_count > 0 &&
-                 !subscription.idempotency_guaranteed && attrs["risk_acknowledged"] != true,
-               do: Commands.fail!(:conflict, %{reason: "remote_outcome_uncertain"})
-
-            if !delivery.operation_id,
-              do: Commands.fail!(:conflict, %{reason: "legacy_translation_required"})
-
-            delivery
-            |> change(
-              state: if(action == "reconcile", do: "reconciling", else: "pending"),
-              next_attempt_at: now,
-              fence: delivery.fence + 1,
-              lease_id: nil,
-              lease_expires_at: nil,
-              cycle_attempt_count: 0,
-              version: delivery.version + 1
-            )
-            |> Commands.update!()
-
-          _ ->
-            Commands.fail!(:invalid)
-        end
+      current = recover_locked!(attrs["action"], ctx, delivery, subscription, attrs, now)
 
       %EventRecoveryAction{}
       |> change(
@@ -367,34 +328,114 @@ defmodule Samgita.EventDelivery do
     end)
   end
 
+  defp validate_recovery_evidence!(reason, evidence) do
+    if !is_binary(reason) || byte_size(reason) not in 1..2000 ||
+         (evidence && (!is_binary(evidence) || byte_size(evidence) not in 1..2000)),
+       do: Commands.fail!(:invalid)
+  end
+
+  defp recover_locked!("cancel", _ctx, delivery, _subscription, _attrs, now) do
+    if delivery.state == "cancelled", do: Commands.fail!(:invalid_transition)
+    finish_attempt!(delivery, now, "cancelled", nil, nil)
+
+    delivery
+    |> change(
+      state: "cancelled",
+      remote_outcome_uncertain:
+        delivery.remote_outcome_uncertain ||
+          delivery.state in ~w(delivering accepted reconciling),
+      fence: delivery.fence + 1,
+      lease_id: nil,
+      lease_expires_at: nil,
+      next_attempt_at: nil,
+      version: delivery.version + 1
+    )
+    |> Commands.update!()
+  end
+
+  defp recover_locked!(action, ctx, delivery, subscription, attrs, now)
+       when action in ~w(redeliver reconcile) do
+    Commands.require_hub!(ctx)
+
+    if !target_current?(delivery, subscription),
+      do: Commands.fail!(:conflict, %{reason: "target_changed_requires_new_subscription"})
+
+    if delivery.state == "delivering",
+      do: Commands.fail!(:conflict, %{reason: "handler_still_leased"})
+
+    if !is_binary(attrs["evidence_ref"]) || attrs["evidence_ref"] == "",
+      do: Commands.fail!(:invalid, %{field: "evidence_ref"})
+
+    require_redelivery_risk!(action, delivery, subscription, attrs)
+
+    if !delivery.operation_id,
+      do: Commands.fail!(:conflict, %{reason: "legacy_translation_required"})
+
+    delivery
+    |> change(
+      state: if(action == "reconcile", do: "reconciling", else: "pending"),
+      next_attempt_at: now,
+      fence: delivery.fence + 1,
+      lease_id: nil,
+      lease_expires_at: nil,
+      cycle_attempt_count: 0,
+      version: delivery.version + 1
+    )
+    |> Commands.update!()
+  end
+
+  defp recover_locked!(_, _, _, _, _, _), do: Commands.fail!(:invalid)
+
+  defp require_redelivery_risk!(action, delivery, subscription, attrs) do
+    if action == "redeliver" && delivery.attempt_count > 0 &&
+         !subscription.idempotency_guaranteed && attrs["risk_acknowledged"] != true,
+       do: Commands.fail!(:conflict, %{reason: "remote_outcome_uncertain"})
+  end
+
   @doc "Bounded repair of missed wakeups and expired handlers; no Task execution is retried."
   def maintain(opts \\ []) do
     now = Keyword.get(opts, :now, DateTime.utc_now())
     limit = Keyword.get(opts, :limit, 100) |> max(1) |> min(100)
 
-    candidates =
-      Repo.all(
-        from d in EventDelivery,
-          where:
-            (d.state in ^@ready and d.next_attempt_at <= ^now) or
-              (d.state == "delivering" and d.lease_expires_at <= ^now),
-          order_by: [asc: d.next_attempt_at, asc: d.id],
-          limit: ^limit,
-          select: d.id
-      )
+    candidates = maintenance_candidates(now, limit)
 
     Enum.reduce_while(candidates, {:ok, 0}, fn id, {:ok, count} ->
-      case system(id, fn ctx, delivery, _ ->
-             Commands.require_hub!(ctx)
-             delivery = expire_locked(delivery, now)
-             if delivery.state in @ready, do: Events.enqueue!(delivery)
-             :ok
-           end) do
+      case system(id, &maintain_locked!(&1, &2, &3, now)) do
         {:ok, _} -> {:cont, {:ok, count + 1}}
         {:error, %{code: :execution_closed}} -> {:halt, {:ok, count}}
         {:error, error} -> {:halt, {:error, error}}
       end
     end)
+  end
+
+  defp maintenance_candidates(now, limit) do
+    Repo.all(
+      from(d in EventDelivery,
+        join: p in Project,
+        on: p.id == d.project_id,
+        where:
+          (d.state in ^@ready and d.next_attempt_at <= ^now and
+             (p.state == "active" or d.state == "reconciling")) or
+            (d.state == "delivering" and d.lease_expires_at <= ^now),
+        # Successful wakeup checks rotate to the back of the bounded scan even
+        # when the job has not run. next_attempt_at remains the delivery deadline.
+        order_by: [asc: d.updated_at, asc: d.id],
+        limit: ^limit,
+        select: d.id
+      )
+    )
+  end
+
+  defp maintain_locked!(ctx, delivery, _subscription, now) do
+    Commands.require_hub!(ctx)
+    delivery = expire_locked(delivery, now)
+
+    if delivery.state in @ready &&
+         (ctx.project.state == "active" || delivery.state == "reconciling"),
+       do: Events.enqueue!(delivery)
+
+    delivery |> change(updated_at: DateTime.utc_now()) |> Commands.update!()
+    :ok
   end
 
   @doc false
@@ -404,10 +445,11 @@ defmodule Samgita.EventDelivery do
 
     for delivery <-
           Repo.all(
-            from d in EventDelivery,
+            from(d in EventDelivery,
               where: d.state == "delivering",
               order_by: d.id,
               lock: "FOR UPDATE"
+            )
           ) do
       expire_locked(delivery, now, true)
     end
@@ -466,9 +508,10 @@ defmodule Samgita.EventDelivery do
     if !Params.uuid?(id), do: Commands.fail!(:not_found)
 
     Repo.one(
-      from d in EventDelivery,
+      from(d in EventDelivery,
         where: d.id == ^id and d.project_id == ^project_id,
         lock: "FOR UPDATE"
+      )
     ) || Commands.fail!(:not_found)
   end
 
@@ -478,15 +521,22 @@ defmodule Samgita.EventDelivery do
     member =
       Repo.get_by(ProjectAgent, project_id: delivery.project_id, agent_id: delivery.agent_id)
 
-    subscription.enabled && subscription.purpose == "responsible" &&
-      subscription.revision == delivery.subscription_revision &&
-      subscription.agent_id == delivery.agent_id && agent && agent.enabled && member &&
-      member.enabled && "manager" in member.roles &&
-      "project_events.v1" in agent.approved_capabilities &&
-      "project_events.v1" in agent.advertised_capabilities &&
+    current_subscription?(delivery, subscription) && responsible_agent?(agent, member) &&
       delivery.target_digest == subscription.target_digest &&
       delivery.target_digest == Events.target_digest(agent)
   end
+
+  defp current_subscription?(delivery, subscription),
+    do:
+      subscription.enabled && subscription.purpose == "responsible" &&
+        subscription.revision == delivery.subscription_revision &&
+        subscription.agent_id == delivery.agent_id
+
+  defp responsible_agent?(agent, member),
+    do:
+      agent && agent.enabled && member && member.enabled && "manager" in member.roles &&
+        "project_events.v1" in agent.approved_capabilities &&
+        "project_events.v1" in agent.advertised_capabilities
 
   defp owner!(ctx, delivery, subscription, proof, now) do
     Commands.require_hub!(ctx)
@@ -524,9 +574,39 @@ defmodule Samgita.EventDelivery do
     durable = result["acceptance"] == "durable"
     final = durable && result["processing_status"] in @final_processing
     digest = Commands.digest(Map.drop(result, ["delivery_attempt_id"]))
-    safe_result = result["result"] || %{}
-    safe_result = if Events.validate_payload(safe_result) == :ok, do: safe_result, else: %{}
+    safe_result = safe_acknowledgement_result(result)
 
+    record_acknowledgement!(delivery, attempt, result, safe_result, digest, now, source)
+    finish_attempt!(delivery, now, "acknowledged", nil, nil)
+    state = acknowledged_state(delivery, durable, final)
+    safe_result = if map_size(safe_result) == 0, do: delivery.result, else: safe_result
+
+    delivery
+    |> change(
+      state: state,
+      transport_received_at: delivery.transport_received_at || now,
+      accepted_at: acknowledgement_time(delivery.accepted_at, durable, now),
+      completed_at: acknowledgement_time(delivery.completed_at, final, now),
+      processing_status: result["processing_status"],
+      result: safe_result,
+      remote_outcome_uncertain: !durable,
+      next_attempt_at:
+        if(state == "reconciling", do: DateTime.add(now, backoff(delivery.cycle_attempt_count))),
+      lease_id: nil,
+      lease_expires_at: nil,
+      version: delivery.version + 1,
+      last_error_class: if(state == "uncertain", do: "ambiguous"),
+      last_error_code: if(state == "uncertain", do: "durability_unconfirmed")
+    )
+    |> Commands.update!()
+  end
+
+  defp safe_acknowledgement_result(result) do
+    payload = result["result"] || %{}
+    if Events.validate_payload(payload) == :ok, do: payload, else: %{}
+  end
+
+  defp record_acknowledgement!(delivery, attempt, result, safe_result, digest, now, source) do
     if !Repo.get_by(EventAcknowledgement, delivery_id: delivery.id, result_digest: digest) do
       %EventAcknowledgement{}
       |> change(
@@ -543,38 +623,19 @@ defmodule Samgita.EventDelivery do
       )
       |> Commands.insert!()
     end
-
-    finish_attempt!(delivery, now, "acknowledged", nil, nil)
-
-    state =
-      cond do
-        final -> "completed"
-        durable -> "accepted"
-        delivery.cycle_attempt_count >= delivery.max_attempts -> "uncertain"
-        true -> "reconciling"
-      end
-
-    safe_result = if map_size(safe_result) == 0, do: delivery.result, else: safe_result
-
-    delivery
-    |> change(
-      state: state,
-      transport_received_at: delivery.transport_received_at || now,
-      accepted_at: if(durable, do: delivery.accepted_at || now, else: delivery.accepted_at),
-      completed_at: if(final, do: delivery.completed_at || now, else: delivery.completed_at),
-      processing_status: result["processing_status"],
-      result: safe_result,
-      remote_outcome_uncertain: !durable,
-      next_attempt_at:
-        if(state == "reconciling", do: DateTime.add(now, backoff(delivery.cycle_attempt_count))),
-      lease_id: nil,
-      lease_expires_at: nil,
-      version: delivery.version + 1,
-      last_error_class: if(state == "uncertain", do: "ambiguous"),
-      last_error_code: if(state == "uncertain", do: "durability_unconfirmed")
-    )
-    |> Commands.update!()
   end
+
+  defp acknowledged_state(delivery, durable, final) do
+    cond do
+      final -> "completed"
+      durable -> "accepted"
+      delivery.cycle_attempt_count >= delivery.max_attempts -> "uncertain"
+      true -> "reconciling"
+    end
+  end
+
+  defp acknowledgement_time(existing, true, now), do: existing || now
+  defp acknowledgement_time(existing, false, _now), do: existing
 
   defp failed!(delivery, subscription, attempt, error, now) do
     code = safe_code(error.code)
@@ -583,32 +644,15 @@ defmodule Samgita.EventDelivery do
     unknown = delivery.remote_outcome_uncertain || error.class == :ambiguous
 
     state =
-      cond do
-        error.class == :authentication ->
-          "authentication_failed"
+      failure_state(
+        error.class,
+        attempt.action,
+        code,
+        subscription.idempotency_guaranteed,
+        unknown
+      )
 
-        attempt.action == "status" && code == "not_found" && !subscription.idempotency_guaranteed ->
-          "uncertain"
-
-        attempt.action == "status" && code == "not_found" && subscription.idempotency_guaranteed ->
-          "retry_wait"
-
-        error.class == :permanent ->
-          if(unknown, do: "uncertain", else: "dead_letter")
-
-        attempt.action == "status" || unknown ->
-          "reconciling"
-
-        true ->
-          "retry_wait"
-      end
-
-    exhausted = delivery.cycle_attempt_count >= delivery.max_attempts
-
-    state =
-      if exhausted && state in @ready,
-        do: if(unknown, do: "uncertain", else: "dead_letter"),
-        else: state
+    state = exhaust_failure(state, delivery, unknown)
 
     delay = max(backoff(delivery.cycle_attempt_count), bounded_retry_after(error.retry_after))
 
@@ -624,6 +668,22 @@ defmodule Samgita.EventDelivery do
       version: delivery.version + 1
     )
     |> Commands.update!()
+  end
+
+  defp failure_state(class, action, code, idempotent, unknown) do
+    case {class, action, code, idempotent} do
+      {:authentication, _, _, _} -> "authentication_failed"
+      {_, "status", "not_found", _} -> if(idempotent, do: "retry_wait", else: "uncertain")
+      {:permanent, _, _, _} -> if(unknown, do: "uncertain", else: "dead_letter")
+      {_, "status", _, _} -> "reconciling"
+      _ -> if(unknown, do: "reconciling", else: "retry_wait")
+    end
+  end
+
+  defp exhaust_failure(state, delivery, unknown) do
+    if delivery.cycle_attempt_count >= delivery.max_attempts && state in @ready,
+      do: if(unknown, do: "uncertain", else: "dead_letter"),
+      else: state
   end
 
   defp expire_locked(delivery, now, force \\ false) do

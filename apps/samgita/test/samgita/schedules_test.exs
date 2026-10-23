@@ -1,8 +1,102 @@
 defmodule Samgita.SchedulesTest do
   use Samgita.DataCase, async: false
   import Samgita.DomainFixtures
-  alias Samgita.{Error, Principal, Schedules}
   alias Samgita.Domain.{DomainEvent, Schedule, ScheduleOccurrence}
+  alias Samgita.{Error, Principal, Schedules}
+
+  test "update receipts bind the canonical schedule target and preserve same-target retries" do
+    project = project_fixture()
+    first = create_schedule(project)
+    second = create_schedule(project)
+    attrs = command(%{"expected_version" => 1, "enabled" => false})
+    operator = Principal.operator()
+
+    assert {:ok, updated} = Schedules.update(operator, project["id"], first["id"], attrs)
+    assert {:ok, ^updated} = Schedules.update(operator, project["id"], first["id"], attrs)
+
+    assert {:ok, ^updated} =
+             Schedules.update(operator, project["id"], String.upcase(first["id"]), attrs)
+
+    assert {:error, %Error{code: :conflict}} =
+             Schedules.update(operator, project["id"], second["id"], attrs)
+
+    assert Repo.get!(Schedule, second["id"]).version == 1
+    assert Repo.get!(Schedule, second["id"]).enabled
+
+    for changed <- [Map.put(attrs, "enabled", true), Map.put(attrs, "expected_version", 2)] do
+      assert {:error, %Error{code: :conflict}} =
+               Schedules.update(operator, project["id"], first["id"], changed)
+    end
+
+    assert {:error, %Error{code: :stale_version}} =
+             Schedules.update(
+               operator,
+               project["id"],
+               first["id"],
+               command(%{"expected_version" => 1})
+             )
+
+    for target <- [Ecto.UUID.generate(), second["id"]] do
+      assert {:error, %Error{code: :not_found}} =
+               Schedules.update(
+                 operator,
+                 project_fixture()["id"],
+                 target,
+                 command(%{"expected_version" => 1})
+               )
+    end
+
+    outsider = agent_fixture()
+    {principal, _, _} = connection_fixture(outsider)
+
+    assert {:error, %Error{code: :forbidden}} =
+             Schedules.update(principal, project["id"], first["id"], attrs)
+  end
+
+  test "pre-target receipts replay only when stored evidence proves their original target" do
+    project = project_fixture()
+    first = create_schedule(project)
+    second = create_schedule(project)
+    attrs = command(%{"expected_version" => 1, "enabled" => false})
+
+    assert {:ok, updated} =
+             Schedules.update(Principal.operator(), project["id"], first["id"], attrs)
+
+    digest =
+      Samgita.Commands.digest({"schedule.update", project["id"], Map.delete(attrs, "command_id")})
+
+    receipt = Repo.get_by!(Samgita.Domain.CommandReceipt, command_id: attrs["command_id"])
+    receipt |> change(request_digest: digest) |> Repo.update!()
+
+    assert {:ok, ^updated} =
+             Schedules.update(Principal.operator(), project["id"], first["id"], attrs)
+
+    assert {:error, %Error{code: :conflict}} =
+             Schedules.update(Principal.operator(), project["id"], second["id"], attrs)
+
+    assert {:error, %Error{code: :conflict}} =
+             Schedules.update(Principal.operator(), project["id"], nil, attrs)
+
+    assert Repo.get!(Schedule, second["id"]).version == 1
+    assert Repo.get!(Schedule, first["id"]).version == 2
+
+    receipt
+    |> change(
+      request_digest: digest,
+      result: Map.put(updated, "project_id", Ecto.UUID.generate())
+    )
+    |> Repo.update!()
+
+    assert {:error, %Error{code: :conflict}} =
+             Schedules.update(Principal.operator(), project["id"], first["id"], attrs)
+
+    receipt |> change(request_digest: digest, result: %{}) |> Repo.update!()
+
+    assert {:error, %Error{code: :conflict}} =
+             Schedules.update(Principal.operator(), project["id"], first["id"], attrs)
+
+    assert Repo.get!(Schedule, first["id"]).version == 2
+  end
 
   test "a schedule emits stable occurrences and a restart does not create more logical events" do
     activate_fixture()
@@ -281,8 +375,8 @@ defmodule Samgita.ScheduleRaceTest do
   import Ecto.Query
   import Samgita.DomainFixtures
   alias Ecto.Adapters.SQL.Sandbox
-  alias Samgita.{Principal, Repo, Schedules}
   alias Samgita.Domain.{DomainEvent, ScheduleOccurrence}
+  alias Samgita.{Principal, Repo, Schedules}
 
   test "independent scanner transactions serialize the durable cursor and occurrence identity" do
     schedule =

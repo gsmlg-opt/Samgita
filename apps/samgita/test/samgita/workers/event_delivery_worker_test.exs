@@ -2,9 +2,9 @@ defmodule Samgita.Workers.EventDeliveryWorkerTest do
   use Samgita.DataCase, async: false
   import Samgita.DomainFixtures
   import Samgita.CoordinationFixtures
+  alias Samgita.Domain.EventDelivery, as: Delivery
   alias Samgita.{EventDelivery, Platform, Principal, Repo}
   alias Samgita.Workers.EventDeliveryWorker
-  alias Samgita.Domain.EventDelivery, as: Delivery
 
   test "only dedicated delivery queue executes; auth failure is cancelled rather than successful" do
     {_, _, _, _, d} = delivery_fixture()

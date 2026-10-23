@@ -40,40 +40,52 @@ defmodule Samgita.Schedules do
   def update(principal, project_id, id, attrs) do
     attrs = Params.strings(attrs)
 
-    Commands.run(principal, project_id, attrs, [operation: "schedule.update"], fn ctx ->
-      Commands.operator!(principal)
-      require_project!(ctx.project)
-      schedule = get_locked!(project_id, id)
-      Commands.expect!(schedule, attrs)
+    id =
+      case Ecto.UUID.cast(id) do
+        {:ok, canonical} -> canonical
+        :error -> id
+      end
 
-      current =
-        schedule
-        |> changeset(attrs)
-        |> validate_references!(project_id)
-        |> change(
-          revision: schedule.revision + 1,
-          version: schedule.version + 1,
-          scanned_through: cursor!(attrs)
+    Commands.run(
+      principal,
+      project_id,
+      attrs,
+      [operation: "schedule.update", target: id],
+      fn ctx ->
+        Commands.operator!(principal)
+        require_project!(ctx.project)
+        schedule = get_locked!(project_id, id)
+        Commands.expect!(schedule, attrs)
+
+        current =
+          schedule
+          |> changeset(attrs)
+          |> validate_references!(project_id)
+          |> change(
+            revision: schedule.revision + 1,
+            version: schedule.version + 1,
+            scanned_through: cursor!(attrs)
+          )
+          |> Commands.update!()
+
+        Events.append!(
+          project_id,
+          "schedule.updated",
+          Map.put(ctx, :notify, false),
+          "schedule",
+          id,
+          %{
+            "revision" => current.revision,
+            "previous_cursor" => DateTime.to_iso8601(schedule.scanned_through),
+            "cursor" => DateTime.to_iso8601(current.scanned_through)
+          },
+          previous: schedule,
+          current: current
         )
-        |> Commands.update!()
 
-      Events.append!(
-        project_id,
-        "schedule.updated",
-        Map.put(ctx, :notify, false),
-        "schedule",
-        id,
-        %{
-          "revision" => current.revision,
-          "previous_cursor" => DateTime.to_iso8601(schedule.scanned_through),
-          "cursor" => DateTime.to_iso8601(current.scanned_through)
-        },
-        previous: schedule,
-        current: current
-      )
-
-      project(current)
-    end)
+        project(current)
+      end
+    )
   end
 
   def list(principal, project_id, params \\ %{}) do
@@ -114,22 +126,26 @@ defmodule Samgita.Schedules do
           select: %{id: s.id, project_id: s.project_id}
       )
 
-    Enum.reduce_while(schedules, {:ok, empty_stats()}, fn candidate, {:ok, stats} ->
-      case scan(candidate, now, minute_limit, occurrence_limit) do
-        {:ok, result} ->
-          current = %{
-            "scanned" => stats["scanned"] + result["scanned"],
-            "emitted" => stats["emitted"] + result["emitted"],
-            "schedules" => stats["schedules"] + result["schedules"],
-            "closed" => stats["closed"] || result["closed"]
-          }
-
-          if current["closed"], do: {:halt, {:ok, current}}, else: {:cont, {:ok, current}}
-
-        {:error, _} = error ->
-          {:halt, error}
-      end
+    Enum.reduce_while(schedules, {:ok, empty_stats()}, fn candidate, stats ->
+      scan_candidate(candidate, stats, now, minute_limit, occurrence_limit)
     end)
+  end
+
+  defp scan_candidate(candidate, {:ok, stats}, now, minute_limit, occurrence_limit) do
+    case scan(candidate, now, minute_limit, occurrence_limit) do
+      {:ok, result} ->
+        current = %{
+          "scanned" => stats["scanned"] + result["scanned"],
+          "emitted" => stats["emitted"] + result["emitted"],
+          "schedules" => stats["schedules"] + result["schedules"],
+          "closed" => stats["closed"] || result["closed"]
+        }
+
+        if current["closed"], do: {:halt, {:ok, current}}, else: {:cont, {:ok, current}}
+
+      {:error, _} = error ->
+        {:halt, error}
+    end
   end
 
   defp scan(candidate, now, minute_limit, occurrence_limit) do
@@ -139,48 +155,54 @@ defmodule Samgita.Schedules do
       if authority.owner != "hub" || !authority.admission_open do
         Map.put(empty_stats(), "closed", true)
       else
-        project =
-          Repo.one!(from p in Project, where: p.id == ^candidate.project_id, lock: "FOR UPDATE")
-
-        schedule = get_locked!(candidate.project_id, candidate.id)
-
-        if project.state != "active" || !schedule.enabled ||
-             DateTime.compare(schedule.scanned_through, now) != :lt do
-          empty_stats()
-        else
-          {:ok, expression} = Expression.parse(schedule.expression)
-          scan_minutes(schedule, expression, now, minute_limit, occurrence_limit)
-        end
+        scan_open_project(candidate, now, minute_limit, occurrence_limit)
       end
     end)
   end
 
+  defp scan_open_project(candidate, now, minute_limit, occurrence_limit) do
+    project =
+      Repo.one!(from p in Project, where: p.id == ^candidate.project_id, lock: "FOR UPDATE")
+
+    schedule = get_locked!(candidate.project_id, candidate.id)
+
+    if project.state != "active" || !schedule.enabled ||
+         DateTime.compare(schedule.scanned_through, now) != :lt do
+      empty_stats()
+    else
+      {:ok, expression} = Expression.parse(schedule.expression)
+      scan_minutes(schedule, expression, now, minute_limit, occurrence_limit)
+    end
+  end
+
   defp scan_minutes(schedule, expression, now, minute_limit, occurrence_limit) do
     {cursor, scanned, emitted} =
-      Enum.reduce_while(1..minute_limit, {schedule.scanned_through, 0, 0}, fn _,
-                                                                              {cursor, scanned,
-                                                                               emitted} ->
-        due_at = DateTime.add(cursor, 60, :second)
-
-        if DateTime.compare(due_at, now) == :gt || emitted >= occurrence_limit do
-          {:halt, {cursor, scanned, emitted}}
-        else
-          {:ok, local_time} =
-            DateTime.shift_zone(due_at, schedule.timezone, Tzdata.TimeZoneDatabase)
-
-          count =
-            if Expression.now?(expression, local_time) do
-              emit_occurrence!(schedule, due_at)
-            else
-              0
-            end
-
-          {:cont, {due_at, scanned + 1, emitted + count}}
-        end
+      Enum.reduce_while(1..minute_limit, {schedule.scanned_through, 0, 0}, fn _, acc ->
+        scan_minute(schedule, expression, now, occurrence_limit, acc)
       end)
 
     schedule |> change(scanned_through: cursor) |> Commands.update!()
     %{"scanned" => scanned, "emitted" => emitted, "schedules" => 1, "closed" => false}
+  end
+
+  defp scan_minute(schedule, expression, now, occurrence_limit, {cursor, scanned, emitted}) do
+    due_at = DateTime.add(cursor, 60, :second)
+
+    if DateTime.compare(due_at, now) == :gt || emitted >= occurrence_limit do
+      {:halt, {cursor, scanned, emitted}}
+    else
+      {:ok, local_time} =
+        DateTime.shift_zone(due_at, schedule.timezone, Tzdata.TimeZoneDatabase)
+
+      count =
+        if Expression.now?(expression, local_time) do
+          emit_occurrence!(schedule, due_at)
+        else
+          0
+        end
+
+      {:cont, {due_at, scanned + 1, emitted + count}}
+    end
   end
 
   defp emit_occurrence!(schedule, due_at) do

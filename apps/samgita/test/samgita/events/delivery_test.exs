@@ -2,9 +2,9 @@ defmodule Samgita.Events.DeliveryTest do
   use Samgita.DataCase, async: false
   import Samgita.DomainFixtures
   import Samgita.CoordinationFixtures
-  alias Samgita.CoordinationFixtures.FakeConnector
-  alias Samgita.Connector.Failure
   alias Samgita.{Agents, Commands, Error, EventDelivery, Events, Platform, Principal, Repo, Tasks}
+  alias Samgita.Connector.Failure
+  alias Samgita.CoordinationFixtures.FakeConnector
 
   alias Samgita.Domain.{
     CommandReceipt,
@@ -16,6 +16,61 @@ defmodule Samgita.Events.DeliveryTest do
   }
 
   alias Samgita.Domain.EventDelivery, as: Delivery
+
+  test "inactive backlog cannot starve a lost active wakeup and resume preserves work" do
+    {paused, _, _, _, old} = delivery_fixture()
+
+    for _ <- 1..105 do
+      assert {:ok, _} = Events.trigger(Principal.operator(), paused["id"], command())
+    end
+
+    Repo.update_all(from(d in Delivery, where: d.project_id == ^paused["id"]),
+      set: [next_attempt_at: ~U[2020-01-01 00:00:00.000000Z]]
+    )
+
+    {:ok, current} = Samgita.Projects.get(Principal.operator(), paused["id"])
+
+    assert {:ok, held} =
+             Samgita.Projects.transition(
+               Principal.operator(),
+               paused["id"],
+               command(%{"expected_version" => current["version"], "state" => "paused"})
+             )
+
+    {_, _, _, _, active} = delivery_fixture()
+    Repo.delete_all(Oban.Job)
+
+    assert {:ok, _} = EventDelivery.maintain(limit: 100)
+
+    assert Repo.exists?(
+             from j in Oban.Job,
+               where: fragment("?->>'delivery_id'", j.args) == ^active.id
+           )
+
+    assert Repo.get!(Delivery, old.id).state == "pending"
+
+    refute Repo.exists?(
+             from j in Oban.Job,
+               where: fragment("?->>'delivery_id'", j.args) == ^old.id
+           )
+
+    assert {:ok, _} =
+             Samgita.Projects.transition(
+               Principal.operator(),
+               paused["id"],
+               command(%{"expected_version" => held["version"], "state" => "active"})
+             )
+
+    for _ <- 1..3, do: assert({:ok, _} = EventDelivery.maintain(limit: 50))
+    ids = Repo.all(from d in Delivery, where: d.project_id == ^paused["id"], select: d.id)
+
+    for id <- ids do
+      assert Repo.exists?(
+               from j in Oban.Job,
+                 where: fragment("?->>'delivery_id'", j.args) == ^id
+             )
+    end
+  end
 
   test "commit-before-send survives a lost wakeup, duplicate dispatch changes no work state" do
     {p, a, _s, event, delivery} = delivery_fixture()
