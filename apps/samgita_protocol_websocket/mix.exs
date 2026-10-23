@@ -14,6 +14,7 @@ defmodule SamgitaProtocolWebSocket.MixProject do
         {:samgita_protocol, path: "../samgita_protocol"},
         {:bandit, "~> 1.13"},
         {:plug, "~> 1.19"},
+        {:plug_crypto, "~> 2.2.1"},
         {:websock_adapter, "~> 0.6"},
         {:mint_web_socket, "~> 1.0"}
       ]
