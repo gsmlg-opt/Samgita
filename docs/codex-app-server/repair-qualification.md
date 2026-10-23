@@ -6,6 +6,11 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+The later [A11 ingress boundary assessment](a11-ingress-boundary.md) inventories
+browser, API, Agent, GitHub and proof/ticket paths. A browser envelope alone cannot
+close the accepted raw-metadata contract; supported pre-emission instrumentation
+or a reviewed migration of every secret-bearing ingress remains a prerequisite.
+
 ## Owned-process baseline
 
 Pinned run [39958930872](https://github.com/gsmlg-opt/Samgita/actions/runs/39958930872)
