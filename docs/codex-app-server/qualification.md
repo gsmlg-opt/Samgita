@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 330 implemented / 149 missing /
-6 blocked requirements** and **0 verified / 649 implemented / 5,972 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 340 implemented / 139 missing /
+6 blocked requirements** and **0 verified / 761 implemented / 5,860 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Six hundred and forty-nine directly exercised
+MCP entries have scoped implementation evidence. Seven hundred and sixty-one directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1379,3 +1379,32 @@ missing. Regenerated totals: **485 entries: 0 verified / 330 implemented /
 5,972 missing**. Neither synthetic messages nor another executable can satisfy
 that native-emission requirement. No target exclusion, full acceptance, A11
 closure, publication or deployment is claimed.
+
+## Native plugin sharing and editable checkout
+
+Eight new explicit-profile cases passed **8/0** at seeds `501432` and `987654`
+(**33.7s / 34.3s**), without a repair round. Actual native Codex performs the
+five `plugin/share/*` operations against isolated synthetic metadata and
+CA-verified HTTPS object services. Assertions inspect uploaded archive bytes,
+upload-URL versus blob ETags, exact targets/principals, normal checkout files
+and marketplace registration, local mapping/cold reuse, source-preserving
+deletion, HTTP errors, independent feature gates and missing/API-key auth.
+The fixture forwards native wire output unchanged; no turn or plugin runtime
+is started. The hosted workflow now explicitly selects this thirteenth native
+profile; its hosted result still requires a new run on the delivered source.
+
+Independent/root warnings-as-errors compilation, focused formatting, strict
+scoped Credo (**321 source files loaded, 69 checks, no issues**), Python AST,
+whitespace, immutable-binary digest and owned-process cleanup passed.
+[Plugin-sharing qualification](plugin-share-qualification.md) records exact
+commands, source semantics, field mapping and limits. Real backend auth,
+revocation/publication, startup-enabled behavior, pagination, hostile archives,
+identity mismatches, concurrent writers and failure atomicity remain open.
+
+Ten entries and 118 directly asserted positive contracts gain evidence;
+**ten entries and 112 fields** were missing. Null/empty-only observations are
+retained separately without positive promotion. Shared canonical schema
+definitions establish the exercised structure, not execution of another method.
+Regenerated totals: **485 entries: 0 verified / 340 implemented / 139 missing /
+6 blocked**; **6,621 contracts: 0 verified / 761 implemented / 5,860 missing**.
+The full goal, A11, real-service and publication gates remain incomplete.
