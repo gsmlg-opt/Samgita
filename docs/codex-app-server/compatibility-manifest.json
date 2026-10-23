@@ -3750,12 +3750,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:process/kill",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProcessKillParams"
       },
@@ -3777,16 +3781,20 @@
         "source_line": 1418,
         "variant": "ProcessKill"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/kill"
     },
     {
@@ -3794,12 +3802,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:process/resizePty",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProcessResizePtyParams"
       },
@@ -3821,16 +3833,20 @@
         "source_line": 1425,
         "variant": "ProcessResizePty"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/resizePty"
     },
     {
@@ -3838,12 +3854,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:process/spawn",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProcessSpawnParams"
       },
@@ -3865,16 +3885,20 @@
         "source_line": 1404,
         "variant": "ProcessSpawn"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/spawn"
     },
     {
@@ -3882,12 +3906,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:process/writeStdin",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProcessWriteStdinParams"
       },
@@ -3909,16 +3937,20 @@
         "source_line": 1411,
         "variant": "ProcessWriteStdin"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/writeStdin"
     },
     {
@@ -10022,12 +10054,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:process/exited",
-      "implementation_module": "SamgitaCodexDriver.Session",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProcessExitedNotification"
       },
@@ -10044,16 +10080,20 @@
         "source_line": 2005,
         "variant": "ProcessExited"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/exited"
     },
     {
@@ -10061,12 +10101,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:process/outputDelta",
-      "implementation_module": "SamgitaCodexDriver.Session",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProcessOutputDeltaNotification"
       },
@@ -10083,16 +10127,20 @@
         "source_line": 2002,
         "variant": "ProcessOutputDelta"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/outputDelta"
     },
     {
@@ -14818,12 +14866,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:process/kill",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14831,16 +14883,20 @@
       "schema": "v2/ProcessKillResponse.json",
       "schema_sha256": "e61f339de76aec9c17ce83113bff71fbc30e3de6d535efc05da4bb75cd48e2aa",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/kill"
     },
     {
@@ -14849,12 +14905,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:process/resizePty",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14862,16 +14922,20 @@
       "schema": "v2/ProcessResizePtyResponse.json",
       "schema_sha256": "4c8a640c34225bfd6f9a677f3498fda1d05a5fecd0a208c79e46a7b6b0e422b3",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/resizePty"
     },
     {
@@ -14880,12 +14944,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:process/spawn",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14893,16 +14961,20 @@
       "schema": "v2/ProcessSpawnResponse.json",
       "schema_sha256": "d74557d195c802651fdb55815a40851f7c146800c2773a32eaede3fe57f18c92",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/spawn"
     },
     {
@@ -14911,12 +14983,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/process-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:process/writeStdin",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary PTY, stream bounds, stdin/EOF, control isolation, correlation, spawn errors and timeout behavior. Remaining field variants, multi-client/remote/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14924,16 +15000,20 @@
       "schema": "v2/ProcessWriteStdinResponse.json",
       "schema_sha256": "80acb093e2877783ac59e1292f50a44c98d4c6a737bd616ffe196f2123aaa31e",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "process/writeStdin"
     },
     {
