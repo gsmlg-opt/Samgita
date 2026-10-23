@@ -383,3 +383,32 @@ See [native Project evidence](native-project-qualification.md). Legacy approvals
 scripted peer is counted as enabled real-binary legacy success. Required external
 account/backend/OS profiles remain incomplete. No release/tag, package
 publication, deployment, production migration or sibling-service change occurs.
+
+## Output-notice hosted prerequisite investigation
+
+At `085c4cc8d4af95f5016649c36689bd6a09e8ade5`, foundation
+[40028893237](https://github.com/gsmlg-opt/Samgita/actions/runs/40028893237)
+passed. Conformance
+[40028914024](https://github.com/gsmlg-opt/Samgita/actions/runs/40028914024)
+passed all thirteen explicit isolated profiles, but its default driver job failed
+**four of 381 cases**, seed `897445`. All four output-notice cases failed during
+the private namespace fixture's startup, before native protocol assertions.
+The outside consumer and platform stages were skipped; completeness also failed.
+The failure log is `/tmp/samgita-085c4cc-hosted-driver-failure.log`.
+
+That job used Ubuntu 24.04 image `20261012.334.1`; the successful explicit
+namespace profiles used Ubuntu 22.04 image `20261012.322.1`. The output-notice
+test unconditionally requires `unshare --user --map-root-user --net`, but was
+added to default test discovery. Its controller's stderr is intentionally
+discarded and its readiness wait does not report child exit. This establishes
+a prerequisite/profile mismatch, not the exact OS denial. No timeout increase,
+test skip or successful hosted repair is claimed at this diagnostic checkpoint.
+
+The selected job now runs a required fixed-command namespace preflight before
+the driver. It compares user/network namespace identity, requires mapped root,
+loopback only and no IPv4/IPv6 default route, and exposes `unshare`/`ip` stderr
+without printing environment or credentials. It changes no host permission and
+starts no listener or Codex process. Local `python3 -B
+scripts/codex/check_namespace_prerequisites.py` exited zero with all those
+properties true. The next hosted run must establish the actual prerequisite
+outcome before selecting a repair. Full compatibility and A11 remain incomplete.
