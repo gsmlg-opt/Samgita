@@ -43,6 +43,8 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v4
+      - name: Isolate the verified native artifact cache
+        run: echo "RUSTLER_PRECOMPILED_GLOBAL_CACHE_PATH=$RUNNER_TEMP/samgita-conformance-nifs" >> "$GITHUB_ENV"
       - uses: erlef/setup-beam@v1
         with:
           elixir-version: ${{ env.ELIXIR_VERSION }}
@@ -80,6 +82,9 @@ jobs:
       - name: Resolve platform dependencies
         timeout-minutes: 6
         run: mix deps.get
+      - name: Verify and prime locked platform native artifact
+        timeout-minutes: 2
+        run: python3 scripts/codex/prime_platform_nif.py
       - name: Fenced platform, API, concurrency and actual-binary journey
         timeout-minutes: 8
         run: |

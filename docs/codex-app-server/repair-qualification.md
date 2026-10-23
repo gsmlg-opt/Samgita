@@ -11,6 +11,11 @@ browser, API, Agent, GitHub and proof/ticket paths. A browser envelope alone can
 close the accepted raw-metadata contract; supported pre-emission instrumentation
 or a reviewed migration of every secret-bearing ingress remains a prerequisite.
 
+The [locked native artifact acquisition repair](native-artifact-acquisition.md)
+reproduces the hosted MDEx download failure, preserves both checksum checks, and
+loads the unchanged native module in a cold outside consumer. Hosted validation
+of that acquisition path remains pending on the pushed repair.
+
 ## Owned-process baseline
 
 Pinned run [39958930872](https://github.com/gsmlg-opt/Samgita/actions/runs/39958930872)
