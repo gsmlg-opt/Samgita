@@ -217,7 +217,52 @@ Bandit telemetry.ex: 029c40cb8f7af0846cf76f3d2db72aab5305af37a52166e6027de05f76e
 LiveView channel.ex: e2973e1d30cc3542610127f116421f6bc3401d066d66996b97bde0f397b3b58c
 ```
 
+## Codex WebSocket upgrade ordering
+
+Pinned run `39983703308`, seed `501432`, exposed a separate driver transport
+defect. `finish_handshake` switched Mint to active mode before queuing upgrade
+bytes back to its owner. A later TCP continuation could enter the mailbox first,
+so Mint decoded it without the first fragment and returned
+`invalid_websocket_frame`. Extending a receive timeout cannot repair wire order.
+
+The driver now retains the already bounded upgrade bytes in transport state.
+Every socket-response path consumes that prebuffer before later bytes; the
+self-message only wakes an idle consumer and cannot replay consumed data. The
+shared WebSocket/UDS handshake, original frame/message/read limits, control-frame
+handling and process ownership remain intact.
+
+Three regressions use an explicitly released real loopback server and selectively
+handle the later TCP message before the queued upgrade wakeup. They require the
+fragmented message/pong/close order, complete-message order without duplicate
+wakeup delivery, and enforcement of advertised-frame and fragmented-message
+limits. With production unchanged they reproduced **three failures in 13 cases**,
+including the hosted error. After the repair, all **13 cases passed** at seeds
+`501432`, `455834` and `987654`; compilation with warnings as errors, focused
+formatting and whitespace checks also passed. Existing WSS and UDS coverage is
+retained. Logs are `/tmp/samgita-driver-websocket-{red-501432,green-501432,green-additional-seeds}.log`.
+Full driver and hosted evidence against the delivered source is recorded
+separately; these scripted frame peers do not establish all Codex behavior.
+
 ## Continuing gates
+
+The pushed repair head `63588cdc442436e9f4cb2b085b9699a0f5c1d370` reached
+terminal hosted results:
+
+- Aggregate [39983577211](https://github.com/gsmlg-opt/Samgita/actions/runs/39983577211)
+  passed the complete foundation job, including repeated populated root tests,
+  isolated restart, independent packages/consumers, static/assets/legacy checks,
+  Dialyzer, dependency audit and local production assembly. Assembly is not
+  publication or deployment, and the fresh hosted restart does not replace the
+  consecutive local populated-database evidence above.
+- Pinned conformance [39983703308](https://github.com/gsmlg-opt/Samgita/actions/runs/39983703308)
+  passed the 34-test native schema package, then failed the independent driver:
+  **169 tests, one failure**, seed `501432`. The fragmentation/ping/close case
+  returned `invalid_websocket_frame` instead of the ordered message and close.
+  Outside-consumer and platform stages were skipped. This is a newly identified
+  Codex-driver upgrade-buffer ordering defect, distinct from the repaired neutral
+  protocol mailbox/replay scenario. Its deterministic repair and final-source
+  evidence are tracked in qualification. The strict completeness job also failed
+  because required evidence remains missing; the overall workflow is failed.
 
 The pinned inventory check and its 13 Python regressions passed after these
 repairs. Counts are generated from the pin, not inferred from selected passing

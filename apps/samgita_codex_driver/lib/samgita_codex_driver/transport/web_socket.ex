@@ -107,6 +107,7 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
         ),
       kind: kind,
       prebuffer_ref: make_ref(),
+      prebuffer: [],
       peer_max_frame_bytes: nil
     }
   end
@@ -173,13 +174,21 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
   defp finish_handshake(state, status, headers, data) do
     with {:ok, conn, websocket} <- Mint.WebSocket.new(state.conn, state.ref, status, headers),
          {:ok, conn} <- Mint.HTTP.set_mode(conn, :active) do
-      for bytes <- data,
-          bytes != <<>>,
-          do: Kernel.send(self(), {:codex_websocket_prebuffer, state.prebuffer_ref, bytes})
+      prebuffer = Enum.reject(data, &(&1 == <<>>))
+
+      if prebuffer != [],
+        do: Kernel.send(self(), {:codex_websocket_prebuffer, state.prebuffer_ref})
 
       peer_limit = peer_frame_limit(headers)
 
-      {:ok, %{state | conn: conn, websocket: websocket, peer_max_frame_bytes: peer_limit}}
+      {:ok,
+       %{
+         state
+         | conn: conn,
+           websocket: websocket,
+           prebuffer: prebuffer,
+           peer_max_frame_bytes: peer_limit
+       }}
     else
       _ -> upgrade_error(state, status, headers)
     end
@@ -252,8 +261,8 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
   end
 
   @impl true
-  def handle_info({:codex_websocket_prebuffer, ref, data}, %{prebuffer_ref: ref} = state),
-    do: decode(state, data)
+  def handle_info({:codex_websocket_prebuffer, ref}, %{prebuffer_ref: ref} = state),
+    do: responses(state, [], [])
 
   def handle_info(_, %{conn: nil}), do: :unknown
 
@@ -278,6 +287,13 @@ defmodule SamgitaCodexDriver.Transport.WebSocket do
             other
         end
     end
+  end
+
+  # Active socket messages can arrive before the upgrade wakeup. Keep the bytes
+  # in state so every response path consumes them first, exactly once.
+  defp responses(%{prebuffer: [_ | _] = data} = state, responses, acc) do
+    pending = Enum.map(data, &{:data, state.ref, &1})
+    responses(%{state | prebuffer: []}, pending ++ responses, acc)
   end
 
   defp responses(state, [], acc), do: {:ok, acc, state}

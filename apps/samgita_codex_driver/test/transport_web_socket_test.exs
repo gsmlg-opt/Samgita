@@ -72,6 +72,102 @@ defmodule SamgitaCodexDriver.TransportWebSocketTest do
     assert {[{:message, ~s({"value":1})}, {:closed, %{"close_code" => 1000}}], _} = pump(state, 2)
   end
 
+  test "active socket data cannot overtake a fragmented upgrade prebuffer" do
+    {server, url} =
+      server(fn socket, owner ->
+        Wire.upgrade(socket, owner, initial: Wire.frame(1, ~s({"value":), false))
+
+        receive do
+          :continue -> :ok
+        end
+
+        Wire.write(socket, Wire.frame(9, "ping") <> Wire.frame(0, "1}"))
+        {:ok, 10, "ping", _} = Wire.read_frame(socket)
+        send(owner, :received_pong)
+        Wire.write(socket, Wire.frame(8, <<1000::16, "private-reason">>))
+        {:ok, 8, <<1000::16>>, _} = Wire.read_frame(socket)
+        send(owner, :received_close)
+      end)
+
+    {:ok, state} = WebSocket.open(url: url)
+    assert_receive {:upgrade_request, _}
+    send(server.pid, :continue)
+    socket = Mint.HTTP.get_socket(state.conn)
+
+    # Select the later socket message while the upgrade wakeup is still queued.
+    assert_receive {:tcp, ^socket, _} = message, 5_000
+
+    assert {:ok, [{:message, ~s({"value":1})}], state} =
+             WebSocket.handle_info(message, state)
+
+    assert_receive :received_pong
+    assert {[{:closed, %{"close_code" => 1000}}], %{conn: nil}} = pump(state, 1)
+    assert_receive :received_close
+  end
+
+  test "active socket data preserves upgrade message order without replaying the wakeup" do
+    {server, url} =
+      server(fn socket, owner ->
+        Wire.upgrade(socket, owner, initial: Wire.frame(1, "first"))
+
+        receive do
+          :continue -> :ok
+        end
+
+        Wire.write(socket, Wire.frame(1, "second"))
+
+        receive do
+          :stop -> :ok
+        end
+      end)
+
+    {:ok, state} = WebSocket.open(url: url)
+    on_exit(fn -> WebSocket.close(state) end)
+    assert_receive {:upgrade_request, _}
+    send(server.pid, :continue)
+    socket = Mint.HTTP.get_socket(state.conn)
+    assert_receive {:tcp, ^socket, _} = message, 5_000
+
+    assert {:ok, [{:message, "first"}, {:message, "second"}], state} =
+             WebSocket.handle_info(message, state)
+
+    assert_receive wakeup
+                   when is_tuple(wakeup) and elem(wakeup, 0) == :codex_websocket_prebuffer
+
+    assert {:ok, [], ^state} = WebSocket.handle_info(wakeup, state)
+  end
+
+  test "upgrade bytes retain frame and fragmented message bounds when socket data arrives first" do
+    for {initial, later, code} <- [
+          {<<129, 126, 65_000::16>>, Wire.frame(1, "ok"), :frame_too_large},
+          {Wire.frame(1, "12345678", false), Wire.frame(0, "9"), :message_too_large}
+        ] do
+      {server, url} =
+        server(fn socket, owner ->
+          Wire.upgrade(socket, owner, initial: initial)
+
+          receive do
+            :continue -> :ok
+          end
+
+          Wire.write(socket, later)
+
+          receive do
+            :stop -> :ok
+          end
+        end)
+
+      {:ok, state} = WebSocket.open(url: url, max_message_bytes: 8)
+      assert_receive {:upgrade_request, _}
+      send(server.pid, :continue)
+      socket = Mint.HTTP.get_socket(state.conn)
+      assert_receive {:tcp, ^socket, _} = message, 5_000
+
+      assert {:error, %Error{code: ^code}, %{conn: nil}} =
+               WebSocket.handle_info(message, state)
+    end
+  end
+
   test "per-message counters reset across coalesced frames and bounded reads" do
     {_server, url} =
       server(fn socket, owner ->

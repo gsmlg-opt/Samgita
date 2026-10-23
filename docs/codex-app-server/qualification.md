@@ -507,8 +507,8 @@ Codex scenarios remain distinct evidence. The local command log is
 | Manifest | Per-entry and field/behavior evidence; all 485 / 6,621 entries remain missing, not mass-marked verified from forwarding or fixtures |
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
-| Security/readiness | Retained Plug.Crypto advisory; A11 raw LiveView credential telemetry; target-specific egress/key/legacy-cutover and real backup/memory rehearsals |
-| Hosted | Aggregate `39967256870` passes restart and fails dependency audit; the prior `:eaddrinuse` and local reused-database failures remain unresolved; selected pinned Codex scenarios pass; full evidence gate remains red |
+| Security/readiness | Retained Plug.Crypto advisory repaired; A11 raw server/LiveView credential telemetry still blocked; target-specific egress/key/legacy-cutover and real backup/memory rehearsals remain |
+| Hosted | Repair-head aggregate `39983577211` passes, including dependency audit and assembly. Pinned `39983703308` fails a newly identified driver upgrade-buffer ordering defect; full evidence gate remains red. See repair record for listener and consecutive reused-database repairs |
 | Publication/deployment | No normal package/tag publication workflow currently exists; CD remains disabled; no package publication or deployment is claimed |
 
 New migrations are additive and refuse destructive down migration. Rollback
