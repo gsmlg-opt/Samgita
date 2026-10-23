@@ -31,11 +31,12 @@ Codex conformance.
 The official Linux musl executable and source archive are hash-pinned. Stable and
 experimental generation produced 318 and 452 JSON artifacts. The reproducible
 manifest now inventories 485 message/result/envelope/lifecycle requirements plus
-6,621 field/variant contracts. Four legacy approval method entries are now
-`blocked` by source-proven absent production emitters. The native notification,
-16 selected Codex-native Project entries and three exact notification schema
-contracts are `implemented` with scoped local evidence;
-464 requirements and 6,618 contracts remain `missing`. Required entry-specific
+6,621 field/variant contracts. Four legacy approval method entries and the
+advertised MCP item-progress notification are `blocked` by source-proven absent
+production emitters. Selected native method/notification entries now total
+137 `implemented`, with three exact notification schema contracts implemented;
+343 requirements and 6,618 contracts remain `missing`. None is fully verified.
+Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
 
@@ -144,8 +145,40 @@ Next concrete work (repair follow-up, 2026-10-24):
    [native Projects](native-project-qualification.md). These native Projects are
    distinct from Samgita Projects. Controlled compaction adds two interruption/
    retry cases; safe image limits add four cases including the queued sparse-file
-   metadata guard. Continue remaining image-byte limits, enabled app/plugin/deferred MCP routing and
-   environment/permission/turn variants. Preserve entry-specific evidence and
+   metadata guard. Subsequent bounded units add explicit installed-plugin skill
+   selection, filesystem lifecycle, environment/permission discovery, native
+   process controls/streams, history/search/timeline, local configuration,
+   inactive goals/user provenance, local account state and two-version direct
+   MCP. See their qualification records. The timeline unit repairs a demonstrated
+   JSON-export/native-serializer naming discrepancy through a separately derived
+   contract; original exports and native values remain unchanged.
+   Further units qualify native diagnostics/memory status and persisted Git,
+   Project and Daybreak metadata. An isolated namespace profile exercises actual
+   native browser/device authentication against an owned synthetic issuer;
+   another runs both the official app-server and authenticated exec-server to
+   qualify environment registration, metadata and reconnect. See
+   [diagnostics/memory](diagnostics-memory-qualification.md),
+   [metadata](thread-metadata-qualification.md),
+   [authentication](isolated-auth.md), [executor environments](isolated-environment.md)
+   and [Apps metadata](isolated-apps.md). The Apps profile adds seven real native
+   cases for enabled batch/cache/ordering, gates, limits and backend 500/429 errors
+   without starting a turn or MCP connection.
+   The realtime output correction in `184842f` is pinned-source contract evidence;
+   no enabled realtime backend success is claimed. Ordinary native history
+   regressions pass again with that contract at both recorded seeds.
+   Deferred MCP routing now adds eight real native discovery, namespaced-call,
+   structured-result/error, tool-gating and interruption cases at both recorded
+   seeds; see [deferred MCP](deferred-mcp-qualification.md). These use owned
+   synthetic dependencies, not real hosted Apps or external MCP acceptance.
+   Eight native Apps catalog/installed cases and nine native fuzzy-search/session
+   cases pass at both seeds, including the coordinator's integrated repeat;
+   [Apps catalog](isolated-app-catalog.md) documents anonymous loopback discovery
+   and credential withholding, while [file search](fuzzy-search-qualification.md)
+   distinguishes removal/cessation from unproven in-flight cancellation. Their
+   15 native entries are scoped `implemented`, not fully verified.
+   Continue remaining image-byte limits, account read/backend variants,
+   environment/permission/turn variants and real-service authentication profiles.
+   Preserve entry-specific evidence and
    external/legacy blockers; generic forwarding and scripted peers cannot
    establish real acceptance.
 6. Verify hosted checks against the delivered checkpoint, and rerun affected and
@@ -153,6 +186,12 @@ Next concrete work (repair follow-up, 2026-10-24):
    completeness gate red while required evidence is missing. Publish only after
    applicable gates and an existing normal publication workflow succeed; no
    deployment is authorized.
+7. Track the unexplained immediate Fake Agent listener rebind failure separately
+   from the repaired synchronous shutdown and database safeguards. The original
+   aggregate `:eaddrinuse` remains unresolved despite passing recorded repeats;
+   failure-time socket ownership diagnostics preserve every shutdown/rebind
+   assertion. See [listener investigation](fake-listener-recovery.md). Neither
+   successful repetition nor an injected port collision establishes a repair.
 
 Project-event delivery remains notification delivery; it cannot start a turn.
 No new background execution engine, production migration, sibling-service change,

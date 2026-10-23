@@ -51,6 +51,11 @@ every content variant and other transport/platform profiles remain unqualified.
 
 The complete target retains `item/mcpToolCall/progress`. Exact pinned evidence:
 
+Upstream anchors include the
+[advertised notification](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/common.rs#L2013),
+[classification-only reference](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/notification_media.rs#L99)
+and [logging-only MCP progress handler](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/rmcp-client/src/logging_client_handler.rs#L63-L74).
+
 | Source, relative to `codex-rs/` | Finding |
 | --- | --- |
 | `app-server-protocol/src/protocol/common.rs:2013` | Advertises `McpToolCallProgress`. |

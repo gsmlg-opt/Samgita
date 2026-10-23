@@ -1,18 +1,33 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The manifest records **0 verified / 17 implemented / 464 missing /
-4 blocked requirements** and **0 verified / 3 implemented / 6,618 missing
-field/variant contracts**. The native client notification, selected Codex-native
-Project entries and three exact notification schema contracts are implemented
-with scoped local evidence; that status does
+Status: **incomplete**. The regenerated manifest records **0 verified / 137 implemented / 343 missing /
+5 blocked requirements** and **0 verified / 3 implemented / 6,618 missing
+field/variant contracts**. Selected notification, Project, filesystem, process,
+environment, plugin, history, configuration, goal, account, diagnostics, metadata,
+Apps catalog/installed snapshots, fuzzy search and direct MCP
+entries have scoped implementation evidence; three exact notification schema
+contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
 accepted contract remains [the full goal](goal.md). The
+unexplained [Fake Agent listener rebind failure](fake-listener-recovery.md)
+remains unresolved; passing later repeats do not establish its cause or repair. The
 [current repair record](repair-qualification.md) supersedes the dependency-audit,
 WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+Latest method records: [history](thread-history-qualification.md),
+[configuration](configuration-qualification.md), [goals](native-goal-qualification.md),
+[local account state](account-qualification.md), [direct MCP](mcp-direct-qualification.md),
+[diagnostics/memory](diagnostics-memory-qualification.md),
+[persisted metadata](thread-metadata-qualification.md),
+[isolated authentication](isolated-auth.md), [native executor environments](isolated-environment.md)
+[Apps metadata](isolated-apps.md) and [realtime output contracts](realtime-output-qualification.md).
+The five blocked requirements retain four legacy approval entries plus the
+advertised MCP progress notification with no discovered production emitter.
+Field contracts and external/platform success profiles remain incomplete.
 
 ## Delivered source and immutable reference
 
@@ -575,7 +590,7 @@ assembly and selected tests do not establish full compatibility or readiness.
 
 | Layer | Remaining requirement |
 | --- | --- |
-| Manifest | Per-entry and field/behavior evidence: 17 implemented, 464 missing and four source-proven blocked requirements; three implemented and 6,618 missing contracts. No mass verification from forwarding or fixtures |
+| Manifest | Per-entry and field/behavior evidence remains required; regenerated current totals are at the top of this record. No mass verification from forwarding or fixtures |
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory repaired; A11 raw server/LiveView credential telemetry still blocked; target-specific egress/key/legacy-cutover and real backup/memory rehearsals remain |
@@ -589,3 +604,116 @@ and [legacy migration/rollback](../redesign/migration-rollback.md). No productio
 migration, real credential change, sibling-service modification, release tag,
 publication or deployment occurred. The full goal remains active and incomplete;
 continue with [the implementation ledger](implementation-plan.md).
+
+## Repair continuation on the retained populated database
+
+The source continuation through `f85f662` retains the process guardian, neutral
+overflow/replay synchronization, Plug.Crypto 2.2.1 locks, explicit synthetic
+execution cessation and fail-closed activation checks. The additional source
+units qualify selected native filesystem, process, environment, plugin, history,
+configuration, goal, account, diagnostics, metadata, private-network authentication,
+executor and Apps behaviors. Their individual records contain commands, native
+versus synthetic boundaries and residual profiles. Deferred MCP adds eight native
+discovery/invocation/error/interruption cases; its coordinator repeat passed
+both `501432` and `987654`. These are scoped implementation evidence, not full
+manifest verification or real-service acceptance.
+
+The first final populated matrix passed seed `437312`, then failed one web case
+at `987654` with immediate listener `:eaddrinuse`. The underlying cause remains
+unresolved. The diagnostic-only follow-up `d74672f` records failure-time socket
+ownership without changing shutdown, ports, deadlines or assertions. Its later
+aggregate successes do not repair or erase the original failure; see the
+[complete investigation](fake-listener-recovery.md).
+
+The coordinator ran this exact sequence against the integrated tree based on
+`55630e1`, including the final lifecycle-test diagnostics, on the existing
+`samgita_redesign_recovery_repair_test`. Environment overrides followed Devenv:
+
+```sh
+MIX_ENV=test PGHOST=/tmp/samgita-p3-pg/socket POSTGRES_PORT=55443 POSTGRES_USER=gao
+SAMGITA_TEST_DATABASE=samgita_redesign_recovery_repair_test
+CODEX_BINARY=/absolute/path/to/the/hash-verified/pinned/binary
+mix format --check-formatted
+mix compile --warnings-as-errors
+mix test --seed 437312
+mix test --seed 987654
+mix test apps/samgita/test/samgita/runtime_registration_test.exs apps/samgita/test/samgita/codex_runtime_test.exs apps/samgita/test/samgita/codex_runtime_notification_test.exs apps/samgita/test/samgita/codex_runtime_race_test.exs apps/samgita_web/test/samgita_web/controllers/codex_runtime_controller_test.exs apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs --include e2e --include real_codex --seed 501432
+mix test apps/samgita/test/samgita/recovery_activation_test.exs apps/samgita_web/test/samgita_web/integration/fake_agent_lifecycle_test.exs apps/samgita_web/test/samgita_web/integration/restart_reconcile_test.exs --include e2e --seed 366499
+mix test apps/samgita/test/samgita/recovery_activation_test.exs apps/samgita_web/test/samgita_web/integration/fake_agent_lifecycle_test.exs apps/samgita_web/test/samgita_web/integration/restart_reconcile_test.exs --include e2e --seed 888788
+```
+
+This sequence exited zero. Each full run passed **203 core / 125 web cases**,
+with the normal **1 / 2 e2e exclusions**. Explicit native platform/API/race
+scenarios passed **32 core + 5 web**. The two recovery/lifecycle/restart repeats
+each passed **4 core + 3 web**. No database reset, task deletion, invented mapping,
+guard bypass, duplicate dispatch or automatic task acceptance was used. Log:
+`/tmp/samgita-codex-followup-final-platform-2.log`. The originally unresolved
+reproduction databases remain blocked and unchanged.
+
+Python inventory/fixture regressions passed **23 tests**; legacy scanner
+regressions passed **4** and the scanner passed. The inventory consistency check
+passed with the current counts at the top of this document. Log:
+`/tmp/samgita-codex-followup-python-2.log`. The strict completeness gate remains
+required and unsatisfied. Further independent-package, static, hosted and final
+assembly results must correspond to their recorded source; no previous green
+job substitutes for those checks.
+
+The independent driver subsequently passed **297 tests** at both `513498`
+(199.0s) and `987654` (197.1s). Explicit namespace profiles for native browser/
+device authentication, real authenticated executor environments and Apps metadata
+passed **18 tests** at each of `501432` and `987654` (42.4s / 41.9s). The
+outside-umbrella consumer then resolved fresh dependencies, compiled with warnings
+as errors, passed **one actual-binary test** and formatting. Log:
+`/tmp/samgita-codex-followup-final-driver-2.log`. The consumer copied the final
+private-helper extraction in `Schema.Output`; the preceding suites used its
+semantically identical pre-extraction form. Subsequent focused checks qualify
+the extraction separately.
+
+The earlier neutral/static matrix passed the external core's **32 cases**, both
+**one-case consumers**, optional WebSocket **42 cases at each of `455834`, `0`,
+`987654`**, native schema **42 cases at each of `501432`, `987654`**, independent
+compilation/formatting and all three standalone lock audits. It then stopped at
+root formatting because a newly prepared App catalog profile had not yet been
+formatted; no later static or assembly step in that command ran. This was
+preparation overlap, not an ignored format failure. Final static checks must run
+after every new source unit is formatted. Log:
+`/tmp/samgita-codex-followup-final-gates-2.log`.
+
+At pushed checkpoint `a8852e9feff8d8a2f3524b10f1f79b46d2347add`, pinned run
+[40008559258](https://github.com/gsmlg-opt/Samgita/actions/runs/40008559258)
+reached terminal results: **selected actual-binary/platform passed**, **isolated
+native authentication/executors/Apps passed**, and **full completeness failed**
+because unverified requirements remain. The workflow overall failed. Foundation
+[40008539588](https://github.com/gsmlg-opt/Samgita/actions/runs/40008539588)
+stopped at the single new output-contract nesting finding in strict Credo; later
+foundation test/audit/assembly steps did not run. The small private-helper repair
+and later App catalog/file-search units require fresh checks against their own
+delivered source. No release, publication or deployment follows from these jobs.
+
+## Integrated source after native catalog and file search
+
+The tested executable/test tree is committed as `4a060d4` (catalog/installed),
+`57442a7` (fuzzy search) and `376f6b6` (output-contract helper extraction).
+The coordinator's serialized command in
+`/tmp/samgita-codex-followup-final-integration-3.log` exited zero:
+
+| Check | Final observed scope/result |
+| --- | --- |
+| Root static gates | `mix format --check-formatted`, warnings-as-errors compile and `mix credo --strict`: **303 files, no issues**. The hosted output-contract nesting finding is repaired without suppressions. |
+| Native schema | Independent warnings-as-errors compile/format, **42 tests at both `501432`, `987654`**; output-contract selectors and timeline/realtime rules remain intact. |
+| New methods plus native history | `mix test test/native_app_catalog_profile.exs test/native_fuzzy_search_test.exs test/thread_search_timeline_test.exs`: **23 passed at both seeds** (20.7s / 20.3s). No synthetic app-server replaces the executable. |
+| Populated aggregate | **203 core / 125 web** cases at both `437312`, `987654`, normal **1 / 2** designated e2e exclusions, zero failures on the same retained scratch database. |
+| Explicit platform/API/races | Previously listed six files, `--include e2e --include real_codex --seed 501432`: **32 core + 5 web**, zero failures. |
+| Explicit recovery | Activation/lifecycle/restart, `--include e2e`, seeds `366499`, `888788`: **4 core + 3 web** at each, zero failures; no reset, record deletion, guard bypass or replacement dispatch. |
+| Analysis/security/assets | `mix dialyzer --force-check`: **2,165 modules, 0 errors/skips**. Root `mix hex.audit` and `mix assets.build` passed. The preceding three standalone lock audits passed with the same retained locks. |
+
+Local production assembly ran separately with synthetic assembly-only settings
+and `MIX_BUILD_PATH=/tmp/samgita-codex-followup-production-build`:
+`mix deps.get --only prod`, `mix compile --warnings-as-errors`,
+`mix assets.deploy`, `mix release --overwrite`. It exited zero and created an
+unpublished local `samgita-0.1.0` release; nothing was started. Log:
+`/tmp/samgita-codex-followup-final-assembly-3.log`. It is not a package, release tag,
+publication, deployment or confidentiality acceptance. The original unexplained
+listener failure, full manifest evidence, A11 and external/platform prerequisites
+remain open. Subsequent source units require their affected checks and hosted
+checks against their own delivered revision.

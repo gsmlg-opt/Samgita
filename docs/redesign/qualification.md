@@ -12,6 +12,13 @@ blocker. Original unresolved database records remain blocked. Read that record
 for current commands/results; the following failures describe their earlier
 checkpoint and are not current dependency or fixture repair claims.
 
+The continuing full Codex plan also records an unexplained same-port Fake Agent
+restart `:eaddrinuse` in a populated aggregate repeat. Later repetitions passed
+without changing the database or weakening shutdown assertions, but the original
+failure remains unresolved. See the [listener investigation](../codex-app-server/fake-listener-recovery.md).
+Selected native protocol scenarios, synthetic backend success, hosted foundation,
+full compatibility and production confidentiality remain separate gates.
+
 The subsequent Codex source/test checkpoint `d63dcddae49c0c7c7b5565482134d4282275a86c`
 has separate [current qualification](../codex-app-server/qualification.md).
 Its local root tests, driver/consumer, static checks, assets and assembly passed,

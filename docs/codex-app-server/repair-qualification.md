@@ -322,6 +322,30 @@ are recorded separately.
 
 ## Continuing gates
 
+At pushed checkpoint `a8852e9feff8d8a2f3524b10f1f79b46d2347add`, foundation
+[40008539588](https://github.com/gsmlg-opt/Samgita/actions/runs/40008539588)
+stopped at strict Credo: the combined output-contract correction had one nested
+function in `Schema.Output.contract/2` at depth three. A private helper extraction
+preserves both correction selectors and the exact branch-renaming operation;
+no check or exclusion changes. Its focused final checks and subsequent hosted
+result are recorded separately. The independent-lock audit workflow additions
+retain failure behavior for every advisory; root-only audit cannot certify the
+optional package's retained lockfile.
+
+Local follow-up `376f6b6` passed strict Credo on **303 files**, both **42-case**
+native-schema repeats and both **23-case** catalog/fuzzy/history repeats, followed
+by populated aggregate/platform/recovery tests, forced Dialyzer, audit, assets
+and local production assembly. Exact scope and limits are in
+[integrated qualification](qualification.md#integrated-source-after-native-catalog-and-file-search).
+This confirms the local static repair, not a final hosted or full-compatibility
+success claim.
+
+The unexplained populated-suite listener `:eaddrinuse` is a distinct unresolved
+qualification concern, not the original repaired neutral replay race or database
+guard. Later root/recovery repeats pass with the original assertions and no
+runtime listener change. [Failure-time socket diagnostics](fake-listener-recovery.md)
+retain the original failure and bounded non-reproduction/control experiments.
+
 The pushed repair head `63588cdc442436e9f4cb2b085b9699a0f5c1d370` reached
 terminal hosted results:
 
@@ -344,9 +368,11 @@ terminal hosted results:
 The pinned inventory check and its 17 Python regressions passed after these
 repairs and the controlled compaction follow-up. Counts are generated from the pin,
 not inferred from selected passing journeys. Following selected native Project
-implementation evidence: **0 verified / 17 implemented / 464 missing / 4 blocked requirements;
+implementation evidence at that historical checkpoint was **0 verified /
+17 implemented / 464 missing / 4 blocked requirements**. The regenerated current
+inventory now records **0 verified / 137 implemented / 343 missing / 5 blocked requirements;
 0 verified / 3 implemented / 6,618 missing contracts**. The scoped native
-notification and Project implementation status is distinct from full qualification.
+method/notification implementation status is distinct from full qualification.
 See [native Project evidence](native-project-qualification.md). Legacy approvals retain their schemas and
 [exact upstream reachability evidence](legacy-approval-qualification.md); no
 scripted peer is counted as enabled real-binary legacy success. Required external

@@ -168,11 +168,25 @@ export, pinned `v1.rs` serde declarations and existing official shared definitio
 `source/supplemental-origin.json` labels this conversion as locally derived;
 `source/export.rs` records the exporter boundary. Original official JSON bytes
 remain unchanged. Conversion fails on unsupported declaration syntax or serde
-semantics; it does not establish runtime behavior. The resulting inventory has
-485 requirements (one `implemented`, 480 `missing`, four `blocked`) and 6,621
+semantics; it does not establish runtime behavior. At that source-completeness
+checkpoint the inventory had 485 requirements (one `implemented`, 480 `missing`,
+four `blocked`) and 6,621
 field/variant contracts (three `implemented`, 6,618 `missing`) for full behavioral
-qualification. Exact declaration-branch matching also prevents a gate
+qualification. Current regenerated counts and subsequent evidence are recorded
+in [qualification](qualification.md). Exact declaration-branch matching also prevents a gate
 on one untagged variant from rejecting another variant with the same field name.
+
+The immutable release also has two output exporter/serializer disagreements:
+timeline turn boundaries and promoted realtime items use native camelCase names
+that the JSON exporter describes in snake_case. `Schema.Output` derives narrow
+validation-contract corrections from full hash-pinned Rust source and the same
+executable's TypeScript export. It preserves official JSON files, received values,
+types, required fields, unions and numeric constraints. Effective output-contract
+hashes are separate manifest metadata; a changed contract cannot silently retain
+prior verification. Supplemental raw-response contracts remain separate. See
+[native history](thread-history-qualification.md) and
+[realtime output](realtime-output-qualification.md); contract correction alone
+does not qualify enabled realtime backend behavior.
 
 ## Implemented platform boundary
 
@@ -246,3 +260,13 @@ account or paid provider. Additional platform/backend profiles must be explicitl
 declared and evidenced. An upstream unavailable response qualifies only that
 unavailable path. Success paths requiring another environment remain blocked.
 All profile claims remain provisional until qualification records exact evidence.
+
+Explicit Linux namespace profiles exercise native browser/device authentication,
+authenticated executor registration and Apps metadata against owned synthetic
+dependencies. Only loopback is available; native protocol output is forwarded
+unchanged, and method/HTTP allowlists prevent inference and unrelated execution.
+The executor profile runs the pinned release for both app-server and exec-server.
+These profiles fail when isolation is unavailable and never fall back to shared
+callback ports. They run separately from default package discovery and require
+explicit hosted jobs. Their scoped success cannot establish real-provider
+authorization, all backend/OS variants or A11 confidentiality acceptance.

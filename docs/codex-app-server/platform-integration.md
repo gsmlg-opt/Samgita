@@ -248,12 +248,24 @@ tables, delete records or replay uncertain operations to make a downgrade work.
 The immutable target remains official `rust-v0.163.0`, source
 `83086188ae0614bd882818ff1aa23f3194962012`. Its separate Rust/TypeScript-backed
 export supplement is locally derived and preserves official JSON bytes. The
-manifest contains **485 requirements (one implemented, 480 missing, four blocked)
-and 6,621 contracts (three implemented, 6,618 missing)** for full behavioral
-acceptance. The four blocked entries retain the
-legacy approval emitter prerequisite documented in the source audit. Selected
+regenerated manifest contains **485 requirements (137 implemented, 343 missing,
+five blocked) and 6,621 contracts (three implemented, 6,618 missing)** for full
+behavioral acceptance, with zero fully verified in either category. Four blocked
+entries retain the legacy approval emitter prerequisite documented in the source
+audit; the fifth retains the MCP item-progress emitter prerequisite in
+[direct MCP qualification](mcp-direct-qualification.md). Selected
 local tests cover nine of eleven interaction
 families; neither their presence nor generated schemas verifies all variants.
+The isolated native [authentication](isolated-auth.md) and
+[executor environment](isolated-environment.md) and [Apps metadata](isolated-apps.md)
+profiles use the actual pinned
+app-server with owned synthetic dependencies in private network namespaces.
+The [catalog/installed profile](isolated-app-catalog.md) adds persisted discovery
+snapshots and checks that untrusted loopback MCP receives no ChatGPT credentials;
+the [fuzzy-search profile](fuzzy-search-qualification.md) uses only synthetic local
+files and actual native session notifications.
+They neither authenticate a real provider account nor establish remote Agent
+service integration, execution sandbox enforcement or full field coverage.
 
 Context, API and independent-PostgreSQL-backend race tests cover selected domain
 and transmission boundaries. The new real-binary platform journey covers an

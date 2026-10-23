@@ -22,6 +22,14 @@ The Linux x86_64 musl binary used by this repository has SHA256
 References below are relative to that commit's `codex-rs/` directory, available
 locally under `tmp/codex/0.163.0/codex-<commit>/codex-rs/`.
 
+Reviewable upstream anchors are the immutable
+[legacy declarations](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/common.rs#L1850-L1863),
+[initialization capabilities](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v1.rs#L46-L73),
+[production v2 approval dispatch](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/bespoke_event_handling.rs#L642-L808)
+and [test-only legacy construction](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/outgoing_message.rs#L1486).
+The table and whole-source search below distinguish retained schemas from actual
+production emitters; successful synthetic handler tests do not bridge that gap.
+
 | Source | Finding |
 | --- | --- |
 | `app-server-protocol/src/protocol/common.rs:1850-1863` | Both legacy server requests remain declared. Comments attribute them to `SendUserTurn` and `SendUserMessage`. |
