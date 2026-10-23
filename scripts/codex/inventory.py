@@ -83,7 +83,59 @@ def source_requests(source, macro):
                         "inspect_params_for_experimental_fields": bool(inspect),
                         "legacy": "v1::" in params and wire != "initialize",
                         "source_line": text[:start + match.start()].count("\n") + 1}
+    declared = re.findall(r'^\s*(\w+)\s*(?:=>\s*"[^"]+")?\s*\{', block, re.M)
+    if set(declared) != {row["variant"] for row in result.values()} or len(declared) != len(result):
+        raise ValueError(f"Unparsed pinned request declaration: {macro}")
     return result
+
+
+def source_notifications(source, macro):
+    text = (source / PROTOCOL / "common.rs").read_text()
+    start = text.index(macro + "! {") + len(macro + "! {")
+    block = text[start:text.index("\n}", start)]
+    # This macro accepts ordinary Rust enum variants as well as arrow syntax.
+    # Consume the whole declaration block so a new form cannot silently vanish.
+    block = re.sub(r'^\s*//[^\n]*', '', block, flags=re.M)
+    block = re.sub(r'#\[experimental\("[^"\n]+"\)\]', '', block)
+    arrow = r'(\w+)\s*=>\s*"([^"\n]+)"\s*\(([\w:]+)\),'
+    renamed = (r'#\[serde\(rename = "([^"\n]+)"\)\]\s*'
+               r'#\[ts\(rename = "\1"\)\]\s*'
+               r'#\[strum\(serialize = "\1"\)\]\s*(\w+)\(([\w:]+)\),')
+    bare = r'(\w+),'
+    result = {}
+    while block.strip():
+        block = block.lstrip()
+        match = re.match(arrow, block)
+        custom = re.match(renamed, block)
+        unit = re.match(bare, block)
+        if match:
+            variant, wire, params = match.groups()
+        elif custom:
+            match = custom
+            wire, variant, params = custom.groups()
+        elif unit:
+            match = unit
+            variant = unit[1]
+            wire, params = variant[0].lower() + variant[1:], None
+        else:
+            raise ValueError(f"Unparsed pinned notification declaration: {macro}")
+        if wire in result or variant in {row["variant"] for row in result.values()}:
+            raise ValueError(f"Duplicate pinned notification declaration: {macro}")
+        result[wire] = {"variant": variant, "params_rust": params}
+        block = block[match.end():]
+    return result
+
+
+def schema_documents(profile):
+    documents = {str(p.relative_to(VENDOR / profile)): json.loads(p.read_text())
+                 for p in sorted((VENDOR / profile).rglob("*.json"))}
+    documents.update({"supplemental/" + str(p.relative_to(VENDOR / "supplemental")): json.loads(p.read_text())
+                      for p in sorted((VENDOR / "supplemental").rglob("*.json"))})
+    return documents
+
+
+def schema_file(profile, filename):
+    return VENDOR / filename if filename.startswith("supplemental/") else VENDOR / profile / filename
 
 
 def source_notification_gates(source):
@@ -185,17 +237,28 @@ def schema_contracts(full, stable, filename):
 
 
 def inventory(source):
-    experimental = {str(p.relative_to(VENDOR / "experimental")): json.loads(p.read_text())
-                    for p in sorted((VENDOR / "experimental").rglob("*.json"))}
-    stable = {str(p.relative_to(VENDOR / "stable")): json.loads(p.read_text())
-              for p in sorted((VENDOR / "stable").rglob("*.json"))}
+    experimental = schema_documents("experimental")
+    stable = schema_documents("stable")
     entries = []
     notification_gates = source_notification_gates(source)
     for filename, direction in DIRECTIONS.items():
-        document = experimental[filename + ".json"]
-        old_methods = {method_name(v) for v in stable[filename + ".json"]["oneOf"]}
+        paths = [filename + ".json"]
+        if "supplemental/" + filename + ".json" in experimental:
+            paths.append("supplemental/" + filename + ".json")
         annotations = source_requests(source, "client_request_definitions" if direction == "client_request" else "server_request_definitions") if direction.endswith("request") else {}
-        for variant in document["oneOf"]:
+        declared = annotations if direction.endswith("request") else source_notifications(source, "client_notification_definitions" if direction == "client_notification" else "server_notification_definitions")
+        actual = [method_name(v) for path in paths for v in experimental[path]["oneOf"]]
+        if len(actual) != len(set(actual)) or set(actual) != set(declared):
+            raise ValueError(f"Source/export+supplement disagreement in {direction}: missing={sorted(set(declared)-set(actual))}, extra={sorted(set(actual)-set(declared))}")
+        if filename in {"ClientRequest", "ServerNotification"}:
+            ts = (VENDOR / "source/supplemental-typescript" / (filename + ".ts")).read_text()
+            ts_methods = re.findall(r'"method": "([^\"]+)"', ts)
+            if len(ts_methods) != len(set(ts_methods)) or set(ts_methods) != set(declared):
+                raise ValueError("Source/official TypeScript disagreement: " + filename)
+        for path in paths:
+          document = experimental[path]
+          old_methods = {method_name(v) for v in stable[path]["oneOf"]}
+          for variant in document["oneOf"]:
             wire = method_name(variant)
             experimental_gate = (wire in notification_gates if direction == "server_notification"
                                  else wire not in old_methods)
@@ -205,8 +268,8 @@ def inventory(source):
             capabilities = ["experimentalApi"] if experimental_gate and direction != "server_request" else []
             item = fresh(direction + ":" + wire, direction, wire,
                          "SamgitaProtocolCodex.Schema" if direction.endswith("request") else "SamgitaCodexDriver.Session")
-            item.update(schema=filename + ".json", schema_pointer="/oneOf/" + str(document["oneOf"].index(variant)),
-                        schema_sha256=digest(VENDOR / "experimental" / (filename + ".json")),
+            item.update(schema=path, schema_pointer="/oneOf/" + str(document["oneOf"].index(variant)),
+                        schema_sha256=digest(schema_file("experimental", path)),
                         experimental=experimental_gate, legacy=False,
                         capabilities=capabilities,
                         prerequisites=["initialized"] if wire != "initialize" else [],
@@ -223,7 +286,7 @@ def inventory(source):
                 response_direction = "server_response" if direction == "client_request" else "client_response"
                 result = fresh(response_direction + ":" + wire, response_direction, wire, "SamgitaProtocolCodex.Schema")
                 result.update(schema=result_schema, request=item["id"], experimental=item["experimental"],
-                              schema_sha256=digest(VENDOR / "experimental" / result_schema),
+                              schema_sha256=digest(schema_file("experimental", result_schema)),
                               legacy=item["legacy"], schema_version=VERSION,
                               error_schema="JSONRPCError.json", capabilities=item["capabilities"],
                               prerequisites=item["prerequisites"])
@@ -302,8 +365,30 @@ def generate(source):
                 target = destination / path.relative_to(output)
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(path, target)
+        from generate_supplement import TYPES, ALIASES
+        ts_output = Path(directory) / "typescript"
+        subprocess.run([str(binary), "app-server", "generate-ts", "--experimental", "--out", str(ts_output)],
+                       env=environment, check=True, timeout=60)
+        ts_destination = VENDOR / "source/supplemental-typescript"
+        ts_destination.mkdir(parents=True, exist_ok=True)
+        for name in (*TYPES, *ALIASES, "ClientRequest", "ServerNotification"):
+            shutil.copyfile(ts_output / (name + ".ts"), ts_destination / (name + ".ts"))
     (VENDOR / "source").mkdir(parents=True, exist_ok=True)
     shutil.copyfile(source / PROTOCOL / "common.rs", VENDOR / "source/common.rs")
+    for name in ("v1.rs", "export.rs"):
+        origin = source / PROTOCOL / name if name == "v1.rs" else source / "codex-rs/app-server-protocol/src/export.rs"
+        shutil.copyfile(origin, VENDOR / "source" / name)
+    (VENDOR / "source/supplemental-origin.json").write_text(encode({
+        "kind": "locally-derived-not-official-json-export",
+        "generator": "scripts/codex/generate_supplement.py",
+        "typescript_command": "codex app-server generate-ts --experimental --out typescript",
+        "omitted_client_methods": sorted(__import__("generate_supplement").REQUESTS),
+        "omitted_server_notifications": sorted(__import__("generate_supplement").NOTIFICATIONS),
+        "semantics": "TypeScript supplies structure; pinned v1.rs serde declarations supply optional-field omission and untagged union semantics; existing official JSON supplies shared definitions and notification payloads.",
+        "limits": "Converter supports only the pinned omitted declarations, fails on unknown syntax/serde attributes/defaults, and establishes no runtime behavior. Original generated JSON files remain unchanged."
+    }))
+    from generate_supplement import write
+    write(VENDOR)
     for name in ("LICENSE", "NOTICE"):
         shutil.copyfile(source / name, VENDOR / name)
     (VENDOR / "source/gate-annotations.json").write_text(encode(annotations(source)))
@@ -321,7 +406,7 @@ def generate(source):
                   "build_platform": "x86_64-unknown-linux-musl",
                   "release_asset_sha256": ARCHIVE_SHA256, "binary_sha256": BINARY_SHA256,
                   "binary_version_output": "codex-cli " + VERSION,
-                  "schema_generation_commands": ["codex app-server generate-json-schema --out stable", "codex app-server generate-json-schema --experimental --out experimental"],
+                  "schema_generation_commands": ["codex app-server generate-json-schema --out stable", "codex app-server generate-json-schema --experimental --out experimental", "codex app-server generate-ts --experimental --out typescript", "python3 scripts/codex/generate_supplement.py"],
                   "reproduce": ["python3 scripts/codex/fetch_pin.py", "python3 scripts/codex/inventory.py --generate", "python3 scripts/codex/inventory.py --check"],
                   "files_sha256": hashes}
     (VENDOR / "provenance.json").write_text(encode(provenance))
@@ -357,6 +442,10 @@ def main():
     actual = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {}
     expected = merge_progress(expected, actual)
     if args.check or args.require_verified:
+        from generate_supplement import generate as supplemental_contracts
+        for relative, schema in supplemental_contracts(VENDOR).items():
+            if (VENDOR / "supplemental" / relative).read_text() != encode(schema):
+                raise SystemExit("Source-derived supplemental contract changed: " + relative)
         provenance = json.loads((VENDOR / "provenance.json").read_text())
         actual_paths = {str(path.relative_to(VENDOR)) for path in VENDOR.rglob("*")
                         if path.is_file() and path.name != "provenance.json"}

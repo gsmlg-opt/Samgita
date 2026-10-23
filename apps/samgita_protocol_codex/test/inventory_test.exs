@@ -4,12 +4,12 @@ defmodule SamgitaProtocolCodex.InventoryTest do
   alias SamgitaProtocolCodex.Schema.Validator
 
   @fixture Path.expand("fixtures/native/contracts.json", __DIR__)
-  @root Path.expand("../priv/upstream/0.163.0/experimental", __DIR__)
+  @root Path.expand("../priv/upstream/0.163.0", __DIR__)
 
   test "every advertised request, response and notification has a valid synthetic example" do
     corpus = @fixture |> File.read!() |> JSON.decode!()
     assert corpus["evidence_kind"] == "synthetic-schema-only"
-    assert length(corpus["messages"]) == 452
+    assert length(corpus["messages"]) == 460
 
     directions = %{
       "client_request" => :client_request,
@@ -48,14 +48,14 @@ defmodule SamgitaProtocolCodex.InventoryTest do
   @tag timeout: 120_000
   test "every inventoried field and union/enum alternative is interpreted against pinned schemas" do
     corpus = @fixture |> File.read!() |> JSON.decode!()
-    assert length(corpus["contracts"]) == 6549
+    assert length(corpus["contracts"]) == 6621
 
     documents =
-      @root
-      |> Path.join("**/*.json")
-      |> Path.wildcard()
+      [Path.join(@root, "experimental/**/*.json"), Path.join(@root, "supplemental/**/*.json")]
+      |> Enum.flat_map(&Path.wildcard/1)
       |> Map.new(fn path ->
-        {Path.relative_to(path, @root), path |> File.read!() |> JSON.decode!()}
+        name = path |> Path.relative_to(@root) |> String.replace_prefix("experimental/", "")
+        {name, path |> File.read!() |> JSON.decode!()}
       end)
 
     for row <- corpus["contracts"] do

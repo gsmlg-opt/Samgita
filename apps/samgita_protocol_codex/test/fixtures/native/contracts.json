@@ -25939,6 +25939,572 @@
       "value": {}
     },
     {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0",
+      "pointer": "/oneOf/0",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": {
+        "id": "fixture",
+        "method": "getConversationSummary",
+        "params": {
+          "rolloutPath": "fixture"
+        }
+      }
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/id",
+      "pointer": "/oneOf/0/properties/id",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/method",
+      "pointer": "/oneOf/0/properties/method",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": "getConversationSummary"
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/method/enum/0",
+      "pointer": "/oneOf/0/properties/method",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": "getConversationSummary"
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/params",
+      "pointer": "/oneOf/0/properties/params",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": {
+        "rolloutPath": "fixture"
+      }
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1",
+      "pointer": "/oneOf/1",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": {
+        "id": "fixture",
+        "method": "gitDiffToRemote",
+        "params": {
+          "cwd": "fixture"
+        }
+      }
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/id",
+      "pointer": "/oneOf/1/properties/id",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/method",
+      "pointer": "/oneOf/1/properties/method",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": "gitDiffToRemote"
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/method/enum/0",
+      "pointer": "/oneOf/1/properties/method",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": "gitDiffToRemote"
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/params",
+      "pointer": "/oneOf/1/properties/params",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": {
+        "cwd": "fixture"
+      }
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2",
+      "pointer": "/oneOf/2",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": {
+        "id": "fixture",
+        "method": "getAuthStatus",
+        "params": {}
+      }
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2/properties/id",
+      "pointer": "/oneOf/2/properties/id",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2/properties/method",
+      "pointer": "/oneOf/2/properties/method",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": "getAuthStatus"
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2/properties/method/enum/0",
+      "pointer": "/oneOf/2/properties/method",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": "getAuthStatus"
+    },
+    {
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2/properties/params",
+      "pointer": "/oneOf/2/properties/params",
+      "schema": "supplemental/ClientRequest.json",
+      "valid": true,
+      "value": {}
+    },
+    {
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/0",
+      "pointer": "/oneOf/0",
+      "schema": "supplemental/ServerNotification.json",
+      "valid": true,
+      "value": {
+        "method": "rawResponseItem/completed",
+        "params": {
+          "item": {
+            "role": "fixture",
+            "tools": [],
+            "type": "additional_tools"
+          },
+          "threadId": "fixture",
+          "turnId": "fixture"
+        }
+      }
+    },
+    {
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/0/properties/method",
+      "pointer": "/oneOf/0/properties/method",
+      "schema": "supplemental/ServerNotification.json",
+      "valid": true,
+      "value": "rawResponseItem/completed"
+    },
+    {
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/0/properties/method/enum/0",
+      "pointer": "/oneOf/0/properties/method",
+      "schema": "supplemental/ServerNotification.json",
+      "valid": true,
+      "value": "rawResponseItem/completed"
+    },
+    {
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/0/properties/params",
+      "pointer": "/oneOf/0/properties/params",
+      "schema": "supplemental/ServerNotification.json",
+      "valid": true,
+      "value": {
+        "item": {
+          "role": "fixture",
+          "tools": [],
+          "type": "additional_tools"
+        },
+        "threadId": "fixture",
+        "turnId": "fixture"
+      }
+    },
+    {
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/1",
+      "pointer": "/oneOf/1",
+      "schema": "supplemental/ServerNotification.json",
+      "valid": true,
+      "value": {
+        "method": "rawResponse/completed",
+        "params": {
+          "responseId": "fixture",
+          "threadId": "fixture",
+          "turnId": "fixture"
+        }
+      }
+    },
+    {
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/1/properties/method",
+      "pointer": "/oneOf/1/properties/method",
+      "schema": "supplemental/ServerNotification.json",
+      "valid": true,
+      "value": "rawResponse/completed"
+    },
+    {
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/1/properties/method/enum/0",
+      "pointer": "/oneOf/1/properties/method",
+      "schema": "supplemental/ServerNotification.json",
+      "valid": true,
+      "value": "rawResponse/completed"
+    },
+    {
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/1/properties/params",
+      "pointer": "/oneOf/1/properties/params",
+      "schema": "supplemental/ServerNotification.json",
+      "valid": true,
+      "value": {
+        "responseId": "fixture",
+        "threadId": "fixture",
+        "turnId": "fixture"
+      }
+    },
+    {
+      "id": "schema:supplemental/ServerNotification.json#/properties/emittedAtMs",
+      "pointer": "/properties/emittedAtMs",
+      "schema": "supplemental/ServerNotification.json",
+      "valid": true,
+      "value": 0
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/branch",
+      "pointer": "/properties/branch",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/branch/anyOf/0",
+      "pointer": "/properties/branch/anyOf/0",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/branch/anyOf/1",
+      "pointer": "/properties/branch/anyOf/1",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/origin_url",
+      "pointer": "/properties/origin_url",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/origin_url/anyOf/0",
+      "pointer": "/properties/origin_url/anyOf/0",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/origin_url/anyOf/1",
+      "pointer": "/properties/origin_url/anyOf/1",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/sha",
+      "pointer": "/properties/sha",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/sha/anyOf/0",
+      "pointer": "/properties/sha/anyOf/0",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/sha/anyOf/1",
+      "pointer": "/properties/sha/anyOf/1",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/cliVersion",
+      "pointer": "/properties/cliVersion",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/conversationId",
+      "pointer": "/properties/conversationId",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/cwd",
+      "pointer": "/properties/cwd",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/gitInfo",
+      "pointer": "/properties/gitInfo",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": {}
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/gitInfo/anyOf/0",
+      "pointer": "/properties/gitInfo/anyOf/0",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": {}
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/gitInfo/anyOf/1",
+      "pointer": "/properties/gitInfo/anyOf/1",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/modelProvider",
+      "pointer": "/properties/modelProvider",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/path",
+      "pointer": "/properties/path",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/preview",
+      "pointer": "/properties/preview",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/source",
+      "pointer": "/properties/source",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "cli"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/timestamp",
+      "pointer": "/properties/timestamp",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/timestamp/anyOf/0",
+      "pointer": "/properties/timestamp/anyOf/0",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/timestamp/anyOf/1",
+      "pointer": "/properties/timestamp/anyOf/1",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/updatedAt",
+      "pointer": "/properties/updatedAt",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/updatedAt/anyOf/0",
+      "pointer": "/properties/updatedAt/anyOf/0",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/updatedAt/anyOf/1",
+      "pointer": "/properties/updatedAt/anyOf/1",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/includeToken",
+      "pointer": "/properties/includeToken",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "valid": true,
+      "value": false
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/includeToken/anyOf/0",
+      "pointer": "/properties/includeToken/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "valid": true,
+      "value": false
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/includeToken/anyOf/1",
+      "pointer": "/properties/includeToken/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/refreshToken",
+      "pointer": "/properties/refreshToken",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "valid": true,
+      "value": false
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/refreshToken/anyOf/0",
+      "pointer": "/properties/refreshToken/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "valid": true,
+      "value": false
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/refreshToken/anyOf/1",
+      "pointer": "/properties/refreshToken/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authMethod",
+      "pointer": "/properties/authMethod",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "valid": true,
+      "value": "apikey"
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authMethod/anyOf/0",
+      "pointer": "/properties/authMethod/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "valid": true,
+      "value": "apikey"
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authMethod/anyOf/1",
+      "pointer": "/properties/authMethod/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authToken",
+      "pointer": "/properties/authToken",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authToken/anyOf/0",
+      "pointer": "/properties/authToken/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authToken/anyOf/1",
+      "pointer": "/properties/authToken/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/requiresOpenaiAuth",
+      "pointer": "/properties/requiresOpenaiAuth",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "valid": true,
+      "value": false
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/requiresOpenaiAuth/anyOf/0",
+      "pointer": "/properties/requiresOpenaiAuth/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "valid": true,
+      "value": false
+    },
+    {
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/requiresOpenaiAuth/anyOf/1",
+      "pointer": "/properties/requiresOpenaiAuth/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "valid": true,
+      "value": null
+    },
+    {
+      "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/0",
+      "pointer": "/anyOf/0",
+      "schema": "supplemental/v1/GetConversationSummaryParams.json",
+      "valid": true,
+      "value": {
+        "rolloutPath": "fixture"
+      }
+    },
+    {
+      "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/0/properties/rolloutPath",
+      "pointer": "/anyOf/0/properties/rolloutPath",
+      "schema": "supplemental/v1/GetConversationSummaryParams.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/1",
+      "pointer": "/anyOf/1",
+      "schema": "supplemental/v1/GetConversationSummaryParams.json",
+      "valid": true,
+      "value": {
+        "conversationId": "fixture"
+      }
+    },
+    {
+      "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/1/properties/conversationId",
+      "pointer": "/anyOf/1/properties/conversationId",
+      "schema": "supplemental/v1/GetConversationSummaryParams.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/GetConversationSummaryResponse.json#/properties/summary",
+      "pointer": "/properties/summary",
+      "schema": "supplemental/v1/GetConversationSummaryResponse.json",
+      "valid": true,
+      "value": {
+        "cliVersion": "fixture",
+        "conversationId": "fixture",
+        "cwd": "fixture",
+        "modelProvider": "fixture",
+        "path": "fixture",
+        "preview": "fixture",
+        "source": "cli"
+      }
+    },
+    {
+      "id": "schema:supplemental/v1/GitDiffToRemoteParams.json#/properties/cwd",
+      "pointer": "/properties/cwd",
+      "schema": "supplemental/v1/GitDiffToRemoteParams.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/GitDiffToRemoteResponse.json#/properties/diff",
+      "pointer": "/properties/diff",
+      "schema": "supplemental/v1/GitDiffToRemoteResponse.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
+      "id": "schema:supplemental/v1/GitDiffToRemoteResponse.json#/properties/sha",
+      "pointer": "/properties/sha",
+      "schema": "supplemental/v1/GitDiffToRemoteResponse.json",
+      "valid": true,
+      "value": "fixture"
+    },
+    {
       "id": "schema:v1/InitializeParams.json#/properties/capabilities",
       "pointer": "/properties/capabilities",
       "schema": "v1/InitializeParams.json",
@@ -51124,6 +51690,40 @@
     },
     {
       "direction": "client_request",
+      "id": "client_request:getAuthStatus",
+      "method": "getAuthStatus",
+      "value": {
+        "id": "fixture",
+        "method": "getAuthStatus",
+        "params": {}
+      }
+    },
+    {
+      "direction": "client_request",
+      "id": "client_request:getConversationSummary",
+      "method": "getConversationSummary",
+      "value": {
+        "id": "fixture",
+        "method": "getConversationSummary",
+        "params": {
+          "rolloutPath": "fixture"
+        }
+      }
+    },
+    {
+      "direction": "client_request",
+      "id": "client_request:gitDiffToRemote",
+      "method": "gitDiffToRemote",
+      "value": {
+        "id": "fixture",
+        "method": "gitDiffToRemote",
+        "params": {
+          "cwd": "fixture"
+        }
+      }
+    },
+    {
+      "direction": "client_request",
       "id": "client_request:hooks/list",
       "method": "hooks/list",
       "value": {
@@ -53287,6 +53887,36 @@
     },
     {
       "direction": "server_notification",
+      "id": "server_notification:rawResponse/completed",
+      "method": "rawResponse/completed",
+      "value": {
+        "method": "rawResponse/completed",
+        "params": {
+          "responseId": "fixture",
+          "threadId": "fixture",
+          "turnId": "fixture"
+        }
+      }
+    },
+    {
+      "direction": "server_notification",
+      "id": "server_notification:rawResponseItem/completed",
+      "method": "rawResponseItem/completed",
+      "value": {
+        "method": "rawResponseItem/completed",
+        "params": {
+          "item": {
+            "role": "fixture",
+            "tools": [],
+            "type": "additional_tools"
+          },
+          "threadId": "fixture",
+          "turnId": "fixture"
+        }
+      }
+    },
+    {
+      "direction": "server_notification",
       "id": "server_notification:remoteControl/status/changed",
       "method": "remoteControl/status/changed",
       "value": {
@@ -54420,6 +55050,37 @@
       "id": "server_response:fuzzyFileSearch/sessionUpdate",
       "method": "fuzzyFileSearch/sessionUpdate",
       "value": {}
+    },
+    {
+      "direction": "server_response",
+      "id": "server_response:getAuthStatus",
+      "method": "getAuthStatus",
+      "value": {}
+    },
+    {
+      "direction": "server_response",
+      "id": "server_response:getConversationSummary",
+      "method": "getConversationSummary",
+      "value": {
+        "summary": {
+          "cliVersion": "fixture",
+          "conversationId": "fixture",
+          "cwd": "fixture",
+          "modelProvider": "fixture",
+          "path": "fixture",
+          "preview": "fixture",
+          "source": "cli"
+        }
+      }
+    },
+    {
+      "direction": "server_response",
+      "id": "server_response:gitDiffToRemote",
+      "method": "gitDiffToRemote",
+      "value": {
+        "diff": "fixture",
+        "sha": "fixture"
+      }
     },
     {
       "direction": "server_response",

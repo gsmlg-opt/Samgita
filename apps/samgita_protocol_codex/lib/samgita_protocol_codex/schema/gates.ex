@@ -105,7 +105,9 @@ defmodule SamgitaProtocolCodex.Schema.Gates do
       choices
       |> Enum.filter(&(keyword == "allOf" or candidate?(&1, value, full_root)))
       |> every(fn choice ->
-        previous = Enum.find(older, &same_variant?(choice, &1))
+        previous =
+          Enum.find(older, &(&1 == choice)) || Enum.find(older, &same_variant?(choice, &1))
+
         walk(choice, previous, value, full_root, stable_root, path, depth + 1)
       end)
     end)

@@ -1,0 +1,16 @@
+{
+  "generator": "scripts/codex/generate_supplement.py",
+  "kind": "locally-derived-not-official-json-export",
+  "limits": "Converter supports only the pinned omitted declarations, fails on unknown syntax/serde attributes/defaults, and establishes no runtime behavior. Original generated JSON files remain unchanged.",
+  "omitted_client_methods": [
+    "getAuthStatus",
+    "getConversationSummary",
+    "gitDiffToRemote"
+  ],
+  "omitted_server_notifications": [
+    "rawResponse/completed",
+    "rawResponseItem/completed"
+  ],
+  "semantics": "TypeScript supplies structure; pinned v1.rs serde declarations supply optional-field omission and untagged union semantics; existing official JSON supplies shared definitions and notification payloads.",
+  "typescript_command": "codex app-server generate-ts --experimental --out typescript"
+}

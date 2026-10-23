@@ -2,10 +2,114 @@ defmodule SamgitaProtocolCodex.SchemaTest do
   use ExUnit.Case, async: true
   alias SamgitaProtocolCodex.{Error, Schema}
 
+  test "experimental gates match exact untagged branches before same-type alternatives" do
+    path = %{
+      "type" => "object",
+      "properties" => %{"path" => %{"type" => "string"}},
+      "required" => ["path"]
+    }
+
+    id = %{
+      "type" => "object",
+      "properties" => %{"id" => %{"type" => "string"}},
+      "required" => ["id"]
+    }
+
+    full = %{"anyOf" => [path, id]}
+
+    for stable <- [full, %{"anyOf" => [id, path]}],
+        value <- [%{"path" => "file"}, %{"id" => "thread"}, %{"path" => "file", "id" => "thread"}] do
+      assert :ok = Schema.Gates.check(full, stable, value, full, stable)
+    end
+  end
+
+  test "source-derived legacy contracts retain required, optional and nullable fields" do
+    for params <- [
+          %{},
+          %{"includeToken" => nil},
+          %{"includeToken" => false, "refreshToken" => true}
+        ] do
+      assert :ok = Schema.validate_request("getAuthStatus", params)
+    end
+
+    for {method, params, opts} <- [
+          {"getAuthStatus", %{"includeToken" => "false"}, []},
+          {"getAuthStatus", nil, []},
+          {"getAuthStatus", nil, [params_present: false]},
+          {"gitDiffToRemote", %{}, []},
+          {"gitDiffToRemote", %{"cwd" => nil}, []},
+          {"getConversationSummary", %{}, []},
+          {"getConversationSummary", %{"rolloutPath" => nil}, []}
+        ] do
+      assert {:error, %Error{code: :schema_violation}} =
+               Schema.validate_request(method, params, opts)
+    end
+
+    assert :ok = Schema.validate_request("gitDiffToRemote", %{"cwd" => "/tmp"})
+
+    for params <- [
+          %{"rolloutPath" => "/tmp/rollout.jsonl"},
+          %{"conversationId" => "00000000-0000-0000-0000-000000000001"},
+          %{
+            "rolloutPath" => "/tmp/rollout.jsonl",
+            "conversationId" => "00000000-0000-0000-0000-000000000001"
+          }
+        ] do
+      assert :ok = Schema.validate_request("getConversationSummary", params)
+    end
+
+    assert :ok = Schema.validate_result(:server_response, "getAuthStatus", %{})
+
+    assert :ok =
+             Schema.validate_result(:server_response, "getAuthStatus", %{
+               "authMethod" => nil,
+               "authToken" => nil,
+               "requiresOpenaiAuth" => false
+             })
+
+    assert {:error, %Error{code: :schema_violation}} =
+             Schema.validate_result(:server_response, "getAuthStatus", %{
+               "authMethod" => "invented"
+             })
+
+    assert :ok =
+             Schema.validate_result(:server_response, "gitDiffToRemote", %{
+               "sha" => "fixture",
+               "diff" => ""
+             })
+
+    assert {:error, %Error{code: :schema_violation}} =
+             Schema.validate_result(:server_response, "gitDiffToRemote", %{"sha" => "fixture"})
+  end
+
+  test "source-derived internal notifications use full official payload contracts" do
+    assert :ok =
+             Schema.validate_notification(:server_notification, "rawResponse/completed", %{
+               "responseId" => "response",
+               "threadId" => "thread",
+               "turnId" => "turn",
+               "usage" => nil
+             })
+
+    assert :ok =
+             Schema.validate_notification(:server_notification, "rawResponseItem/completed", %{
+               "threadId" => "thread",
+               "turnId" => "turn",
+               "item" => %{"type" => "message", "role" => "assistant", "content" => []}
+             })
+
+    for method <- ["rawResponse/completed", "rawResponseItem/completed"] do
+      assert method in Schema.methods(:server_notification)
+
+      assert {:error, %Error{code: :schema_violation}} =
+               Schema.validate_notification(:server_notification, method, %{})
+    end
+  end
+
   test "all message directions expose the exact full release surface" do
-    assert length(Schema.methods(:client_request, experimental: true)) == 172
+    assert length(Schema.methods(:client_request, experimental: true)) == 175
     assert length(Schema.methods(:server_request, experimental: true)) == 11
-    assert length(Schema.methods(:server_notification, experimental: true)) == 85
+    assert length(Schema.methods(:server_notification, experimental: true)) == 87
     assert Schema.methods(:client_notification) == ["initialized"]
     assert "server/diagnostics" not in Schema.methods(:client_request)
 
@@ -177,7 +281,7 @@ defmodule SamgitaProtocolCodex.SchemaTest do
     assert {:error, %Error{code: :experimental_api_required}} =
              Schema.validate_notification(:server_notification, "thread/settings/updated", %{})
 
-    assert length(Schema.methods(:server_notification)) == 61
+    assert length(Schema.methods(:server_notification)) == 63
 
     for method <- ["thread/settings/updated", "process/outputDelta", "thread/realtime/started"] do
       refute method in Schema.methods(:server_notification)

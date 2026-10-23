@@ -2212,6 +2212,132 @@
       "direction": "client_request",
       "evidence": [],
       "experimental": false,
+      "id": "client_request:getAuthStatus",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "legacy": true,
+      "limitations": [],
+      "params": {
+        "$ref": "#/definitions/GetAuthStatusParams"
+      },
+      "params_required": true,
+      "prerequisites": [
+        "initialized"
+      ],
+      "result_schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema": "supplemental/ClientRequest.json",
+      "schema_pointer": "/oneOf/2",
+      "schema_sha256": "072f0e33f3458e5493df30d93dea6cc437cd2eef758db5a07b47813b5d9c5708",
+      "schema_version": "0.163.0",
+      "source": {
+        "inspect_params_for_experimental_fields": false,
+        "legacy": true,
+        "params_rust": "v1::GetAuthStatusParams",
+        "response_rust": "v1::GetAuthStatusResponse",
+        "serialization_scope": "global(\"account-auth\")",
+        "source_line": 1493,
+        "variant": "GetAuthStatus"
+      },
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "getAuthStatus"
+    },
+    {
+      "capabilities": [],
+      "direction": "client_request",
+      "evidence": [],
+      "experimental": false,
+      "id": "client_request:getConversationSummary",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "legacy": true,
+      "limitations": [],
+      "params": {
+        "$ref": "#/definitions/GetConversationSummaryParams"
+      },
+      "params_required": true,
+      "prerequisites": [
+        "initialized"
+      ],
+      "result_schema": "supplemental/v1/GetConversationSummaryResponse.json",
+      "schema": "supplemental/ClientRequest.json",
+      "schema_pointer": "/oneOf/0",
+      "schema_sha256": "072f0e33f3458e5493df30d93dea6cc437cd2eef758db5a07b47813b5d9c5708",
+      "schema_version": "0.163.0",
+      "source": {
+        "inspect_params_for_experimental_fields": false,
+        "legacy": true,
+        "params_rust": "v1::GetConversationSummaryParams",
+        "response_rust": "v1::GetConversationSummaryResponse",
+        "serialization_scope": "None",
+        "source_line": 1482,
+        "variant": "GetConversationSummary"
+      },
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "getConversationSummary"
+    },
+    {
+      "capabilities": [],
+      "direction": "client_request",
+      "evidence": [],
+      "experimental": false,
+      "id": "client_request:gitDiffToRemote",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "legacy": true,
+      "limitations": [],
+      "params": {
+        "$ref": "#/definitions/GitDiffToRemoteParams"
+      },
+      "params_required": true,
+      "prerequisites": [
+        "initialized"
+      ],
+      "result_schema": "supplemental/v1/GitDiffToRemoteResponse.json",
+      "schema": "supplemental/ClientRequest.json",
+      "schema_pointer": "/oneOf/1",
+      "schema_sha256": "072f0e33f3458e5493df30d93dea6cc437cd2eef758db5a07b47813b5d9c5708",
+      "schema_version": "0.163.0",
+      "source": {
+        "inspect_params_for_experimental_fields": false,
+        "legacy": true,
+        "params_rust": "v1::GitDiffToRemoteParams",
+        "response_rust": "v1::GitDiffToRemoteResponse",
+        "serialization_scope": "None",
+        "source_line": 1487,
+        "variant": "GitDiffToRemote"
+      },
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "gitDiffToRemote"
+    },
+    {
+      "capabilities": [],
+      "direction": "client_request",
+      "evidence": [],
+      "experimental": false,
       "id": "client_request:hooks/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
@@ -9713,6 +9839,72 @@
       "direction": "server_notification",
       "evidence": [],
       "experimental": false,
+      "id": "server_notification:rawResponse/completed",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "legacy": false,
+      "limitations": [],
+      "params": {
+        "$ref": "#/definitions/RawResponseCompletedNotification"
+      },
+      "params_required": true,
+      "prerequisites": [
+        "initialized"
+      ],
+      "schema": "supplemental/ServerNotification.json",
+      "schema_pointer": "/oneOf/1",
+      "schema_sha256": "ecee759716e9ec50e342e033cfeab5a650f51e480cfa2180d29b127b23792757",
+      "schema_version": "0.163.0",
+      "source": null,
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "rawResponse/completed"
+    },
+    {
+      "capabilities": [],
+      "direction": "server_notification",
+      "evidence": [],
+      "experimental": false,
+      "id": "server_notification:rawResponseItem/completed",
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "legacy": false,
+      "limitations": [],
+      "params": {
+        "$ref": "#/definitions/RawResponseItemCompletedNotification"
+      },
+      "params_required": true,
+      "prerequisites": [
+        "initialized"
+      ],
+      "schema": "supplemental/ServerNotification.json",
+      "schema_pointer": "/oneOf/0",
+      "schema_sha256": "ecee759716e9ec50e342e033cfeab5a650f51e480cfa2180d29b127b23792757",
+      "schema_version": "0.163.0",
+      "source": null,
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "rawResponseItem/completed"
+    },
+    {
+      "capabilities": [],
+      "direction": "server_notification",
+      "evidence": [],
+      "experimental": false,
       "id": "server_notification:remoteControl/status/changed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
@@ -13168,6 +13360,93 @@
       },
       "transport_coverage": [],
       "wire_name": "fuzzyFileSearch/sessionUpdate"
+    },
+    {
+      "capabilities": [],
+      "direction": "server_response",
+      "error_schema": "JSONRPCError.json",
+      "evidence": [],
+      "experimental": false,
+      "id": "server_response:getAuthStatus",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "legacy": true,
+      "limitations": [],
+      "prerequisites": [
+        "initialized"
+      ],
+      "request": "client_request:getAuthStatus",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "740479306ecacda5f9d9e0db06048bca4995b487fa121f710e955a98ca7fb341",
+      "schema_version": "0.163.0",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "getAuthStatus"
+    },
+    {
+      "capabilities": [],
+      "direction": "server_response",
+      "error_schema": "JSONRPCError.json",
+      "evidence": [],
+      "experimental": false,
+      "id": "server_response:getConversationSummary",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "legacy": true,
+      "limitations": [],
+      "prerequisites": [
+        "initialized"
+      ],
+      "request": "client_request:getConversationSummary",
+      "schema": "supplemental/v1/GetConversationSummaryResponse.json",
+      "schema_sha256": "ad8fd50b7f7567acc5916b3efcb491e8f3104d3e8496149e653ef8c943946b8b",
+      "schema_version": "0.163.0",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "getConversationSummary"
+    },
+    {
+      "capabilities": [],
+      "direction": "server_response",
+      "error_schema": "JSONRPCError.json",
+      "evidence": [],
+      "experimental": false,
+      "id": "server_response:gitDiffToRemote",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "legacy": true,
+      "limitations": [],
+      "prerequisites": [
+        "initialized"
+      ],
+      "request": "client_request:gitDiffToRemote",
+      "schema": "supplemental/v1/GitDiffToRemoteResponse.json",
+      "schema_sha256": "c2b517c77c027f07865c070603f777cfb52ffc0137d1396d4d96fc03c0242bbf",
+      "schema_version": "0.163.0",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "gitDiffToRemote"
     },
     {
       "capabilities": [],
@@ -94566,6 +94845,1742 @@
       },
       "transport_coverage": [],
       "wire_name": "answers"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/0",
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "79e2083ede3a9407b4e697504d83817d23f207a48e91603f47133eb23fad7e97",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "oneOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/id",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/0/properties/id",
+      "required": true,
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "id"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/method",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/0/properties/method",
+      "required": true,
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "c08ab28960d64928aca1226e3f946b06a41f70e7d940443c7ac31682ecba9910",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "method"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/method/enum/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/0/properties/method/enum/0",
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "fcf3437ca4a2985db84f72e8d14385723873fcd5bc33787442e9cad9e64d5285",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "enum"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/0/properties/params",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/0/properties/params",
+      "required": true,
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "fbe0b2b1191b449f8b7a7ea14527856895f6eae86832550f2335c59a057baa60",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "params"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/1",
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "dc2c12d770e311753be0a92cd63fb07c88e8daca505a3416bc5848fe5f93b39c",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "oneOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/id",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/1/properties/id",
+      "required": true,
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "id"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/method",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/1/properties/method",
+      "required": true,
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "0632017eb5e972b72e0185f47eee18d3060a990f827137a2c4e2ae257628a349",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "method"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/method/enum/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/1/properties/method/enum/0",
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "1bd314a1a63a969a496546ec5722e1f41ead9fa8a8c3dec74d9e105c0f0e135c",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "enum"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/1/properties/params",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/1/properties/params",
+      "required": true,
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "ba3d51d2065e4f831a87feee5be761a72735b4711bd739e34fea8c766fcbd9c1",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "params"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/2",
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "3096eb202223af7ae1a11e84278f5c1c194e28573a2e2fefabf8f820ab07490c",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "oneOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2/properties/id",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/2/properties/id",
+      "required": true,
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "id"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2/properties/method",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/2/properties/method",
+      "required": true,
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "3dc194ecc0b9080b35d7f024a9f08a931d69c4c1939fe2bc5417d8484de1fdcf",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "method"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2/properties/method/enum/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/2/properties/method/enum/0",
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "bc1f8d5ba0e2b821cee9e7cc2ec8e97aa23aebea23ce136720c532eccdcfc219",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "enum"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ClientRequest.json#/oneOf/2/properties/params",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/2/properties/params",
+      "required": true,
+      "schema": "supplemental/ClientRequest.json",
+      "schema_sha256": "07e3abd871f4a4a54db49639054907335f859ab1bc20f8faf71f01dc5e4d1d0a",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "params"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/0",
+      "schema": "supplemental/ServerNotification.json",
+      "schema_sha256": "4cf2e98d8e68b7f6b9d43c5606043412776364896afb6ea49527e47ab64c9c70",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "oneOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/0/properties/method",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/0/properties/method",
+      "required": true,
+      "schema": "supplemental/ServerNotification.json",
+      "schema_sha256": "85d2b5f928705608b1ccf36ecf0066f42d807029a4cba21acfd6ea303444c327",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "method"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/0/properties/method/enum/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/0/properties/method/enum/0",
+      "schema": "supplemental/ServerNotification.json",
+      "schema_sha256": "80b22e70682da414f06b140b15f2789d0c3e41df0e84baae0828c5d324e66f10",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "enum"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/0/properties/params",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/0/properties/params",
+      "required": true,
+      "schema": "supplemental/ServerNotification.json",
+      "schema_sha256": "1363057c6971b6e567f73ef4c5cbf6d4dfa4c2ce54d35050f0c3de5e90d302e8",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "params"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/1",
+      "schema": "supplemental/ServerNotification.json",
+      "schema_sha256": "cce7e29258ec11edc7aff86fb88d4d9ec91c940f1f3f34ab78a9faa6a4c6882e",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "oneOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/1/properties/method",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/1/properties/method",
+      "required": true,
+      "schema": "supplemental/ServerNotification.json",
+      "schema_sha256": "10b145d3d428e9934ea366c44a0842bdcec0d22ed2a7fb78f9c8a16e8aff618d",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "method"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/1/properties/method/enum/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/oneOf/1/properties/method/enum/0",
+      "schema": "supplemental/ServerNotification.json",
+      "schema_sha256": "90cebfcf1da8475922c715c2c811e85f49eab515c495850d3dd5fd2cf2969eb7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "enum"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ServerNotification.json#/oneOf/1/properties/params",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/oneOf/1/properties/params",
+      "required": true,
+      "schema": "supplemental/ServerNotification.json",
+      "schema_sha256": "f80f01b8192771f952d4e42fc64d3709345cad9d983b52cf27c6993783341aee",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "params"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/ServerNotification.json#/properties/emittedAtMs",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/emittedAtMs",
+      "required": false,
+      "schema": "supplemental/ServerNotification.json",
+      "schema_sha256": "180584a60ba9408fcbc37a3edcf90a1cca0687ab1ef8f32b660a588a10671ab2",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "emittedAtMs"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/branch",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/branch",
+      "required": false,
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "branch"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/branch/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/branch/anyOf/0",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/branch/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/branch/anyOf/1",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/origin_url",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/origin_url",
+      "required": false,
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "origin_url"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/origin_url/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/origin_url/anyOf/0",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/origin_url/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/origin_url/anyOf/1",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/sha",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/sha",
+      "required": false,
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "sha"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/sha/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/sha/anyOf/0",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationGitInfo.json#/properties/sha/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/sha/anyOf/1",
+      "schema": "supplemental/v1/ConversationGitInfo.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/cliVersion",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/cliVersion",
+      "required": true,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "cliVersion"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/conversationId",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/conversationId",
+      "required": true,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "058aa6b620d3d27a8fdad20420f0333d0467e32d6c189d86534c1993b5ce1dba",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "conversationId"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/cwd",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/cwd",
+      "required": true,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "cwd"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/gitInfo",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/gitInfo",
+      "required": false,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "e01e71d4e8d4bc7609e1f0684b088b7b4db7fda3fb9d2c7b46f7c1cc5a54ae65",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "gitInfo"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/gitInfo/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/gitInfo/anyOf/0",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "2ddf1cf4368581dafdf7419d8415ee56dc600b4037141ec6bd6e29da14d969c3",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/gitInfo/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/gitInfo/anyOf/1",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/modelProvider",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/modelProvider",
+      "required": true,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "modelProvider"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/path",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/path",
+      "required": true,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "path"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/preview",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/preview",
+      "required": true,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "preview"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/source",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/source",
+      "required": true,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "bb7f6162e3c3f64c5c64ed0c8e3a694f124a83acaa7d62713226a3738b3c3bea",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "source"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/timestamp",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/timestamp",
+      "required": false,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "timestamp"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/timestamp/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/timestamp/anyOf/0",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/timestamp/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/timestamp/anyOf/1",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/updatedAt",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/updatedAt",
+      "required": false,
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "updatedAt"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/updatedAt/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/updatedAt/anyOf/0",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/ConversationSummary.json#/properties/updatedAt/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/updatedAt/anyOf/1",
+      "schema": "supplemental/v1/ConversationSummary.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/includeToken",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/includeToken",
+      "required": false,
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "schema_sha256": "78c0e367e5120eb3056146eaa4aa6fe22120178911f80094d055cd81d99d789b",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "includeToken"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/includeToken/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/includeToken/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/includeToken/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/includeToken/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/refreshToken",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/refreshToken",
+      "required": false,
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "schema_sha256": "78c0e367e5120eb3056146eaa4aa6fe22120178911f80094d055cd81d99d789b",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "refreshToken"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/refreshToken/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/refreshToken/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusParams.json#/properties/refreshToken/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/refreshToken/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusParams.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authMethod",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/authMethod",
+      "required": false,
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "f56bba9ba9b755984293d72d1487e457bdc2f75686e4bc549ce3b73be8b2d142",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "authMethod"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authMethod/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/authMethod/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "e0e8e6898eb65cda63cd0659890e315702f62410f6caf6c7ba27609e3cdba588",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authMethod/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/authMethod/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authToken",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/authToken",
+      "required": false,
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "2d0b6ec9f2b2decf1e1e919f3b0c593315f5164871c5ab7d0565e6bf3d3acb08",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "authToken"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authToken/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/authToken/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/authToken/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/authToken/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/requiresOpenaiAuth",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": true,
+      "pointer": "/properties/requiresOpenaiAuth",
+      "required": false,
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "78c0e367e5120eb3056146eaa4aa6fe22120178911f80094d055cd81d99d789b",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "requiresOpenaiAuth"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/requiresOpenaiAuth/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/requiresOpenaiAuth/anyOf/0",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetAuthStatusResponse.json#/properties/requiresOpenaiAuth/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/properties/requiresOpenaiAuth/anyOf/1",
+      "schema": "supplemental/v1/GetAuthStatusResponse.json",
+      "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/anyOf/0",
+      "schema": "supplemental/v1/GetConversationSummaryParams.json",
+      "schema_sha256": "953013f88223f4b36a071f0b63ad504b05c0d212866385895fc1bd263c9be223",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/0/properties/rolloutPath",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/anyOf/0/properties/rolloutPath",
+      "required": true,
+      "schema": "supplemental/v1/GetConversationSummaryParams.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "rolloutPath"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [],
+      "experimental": false,
+      "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/1",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "pointer": "/anyOf/1",
+      "schema": "supplemental/v1/GetConversationSummaryParams.json",
+      "schema_sha256": "b521f0973c0dec64875426ef695cd42e9d3bfeb9554cd14a1321655aaa7845bf",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "anyOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GetConversationSummaryParams.json#/anyOf/1/properties/conversationId",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/anyOf/1/properties/conversationId",
+      "required": true,
+      "schema": "supplemental/v1/GetConversationSummaryParams.json",
+      "schema_sha256": "058aa6b620d3d27a8fdad20420f0333d0467e32d6c189d86534c1993b5ce1dba",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "conversationId"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GetConversationSummaryResponse.json#/properties/summary",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/summary",
+      "required": true,
+      "schema": "supplemental/v1/GetConversationSummaryResponse.json",
+      "schema_sha256": "f4282c6a75ac13eb45649db54eeafb5ca126e2f717ea9c29b1dee78f9df52625",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "summary"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GitDiffToRemoteParams.json#/properties/cwd",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/cwd",
+      "required": true,
+      "schema": "supplemental/v1/GitDiffToRemoteParams.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "cwd"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GitDiffToRemoteResponse.json#/properties/diff",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/diff",
+      "required": true,
+      "schema": "supplemental/v1/GitDiffToRemoteResponse.json",
+      "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "diff"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [],
+      "experimental": false,
+      "has_default": false,
+      "id": "schema:supplemental/v1/GitDiffToRemoteResponse.json#/properties/sha",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [],
+      "nullable": false,
+      "pointer": "/properties/sha",
+      "required": true,
+      "schema": "supplemental/v1/GitDiffToRemoteResponse.json",
+      "schema_sha256": "4ef9e5e157e1c9902741df5192a9f4bb483c9000196c6352c4b3ca36f53118c9",
+      "state": "missing",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": []
+      },
+      "transport_coverage": [],
+      "wire_name": "sha"
     },
     {
       "default": null,

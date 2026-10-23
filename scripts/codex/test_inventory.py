@@ -4,8 +4,10 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 import unittest
 
+import generate_supplement
 import inventory
 
 
@@ -52,15 +54,59 @@ class InventoryTest(unittest.TestCase):
         manifest = json.loads(inventory.MANIFEST.read_text())
         entries = manifest["entries"]
         for filename, direction in inventory.DIRECTIONS.items():
-            schema = json.loads((inventory.VENDOR / "experimental" / (filename + ".json")).read_text())
-            expected = {inventory.method_name(variant) for variant in schema["oneOf"]}
+            documents = inventory.schema_documents("experimental")
+            paths = [filename + ".json", "supplemental/" + filename + ".json"]
+            expected = {inventory.method_name(variant) for path in paths if path in documents
+                        for variant in documents[path]["oneOf"]}
             actual = {entry["wire_name"] for entry in entries if entry["direction"] == direction}
             self.assertEqual(actual, expected)
         by_id = {entry["id"]: entry for entry in entries}
         for row in entries:
             if row["direction"] in {"client_response", "server_response"}:
                 self.assertIn(row["request"], by_id)
-                self.assertTrue((inventory.VENDOR / "experimental" / row["schema"]).exists())
+                self.assertTrue(inventory.schema_file("experimental", row["schema"]).exists())
+
+    def test_notification_source_parser_consumes_custom_and_bare_variants(self):
+        source = (inventory.VENDOR / "source/common.rs").read_text()
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            path = root / inventory.PROTOCOL / "common.rs"
+            path.parent.mkdir(parents=True)
+            path.write_text(source)
+            notifications = inventory.source_notifications(root, "server_notification_definitions")
+            self.assertEqual(len(notifications), 87)
+            self.assertEqual(notifications["account/login/completed"]["variant"], "AccountLoginCompleted")
+            self.assertEqual(inventory.source_notifications(root, "client_notification_definitions"),
+                             {"initialized": {"variant": "Initialized", "params_rust": None}})
+            for invalid in ("Future(v2::Future),", 'Future => "rawResponse/completed" (v2::Future),'):
+                path.write_text(source.replace("server_notification_definitions! {",
+                                               "server_notification_definitions! {\n" + invalid))
+                with self.assertRaisesRegex(ValueError, "pinned notification declaration"):
+                    inventory.source_notifications(root, "server_notification_definitions")
+
+    def test_supplement_preserves_rust_optional_and_untagged_semantics(self):
+        documents = generate_supplement.generate(inventory.VENDOR)
+        auth = documents["v1/GetAuthStatusParams.json"]
+        self.assertEqual(auth["required"], [])
+        self.assertEqual(auth["properties"]["includeToken"],
+                         {"anyOf": [{"type": "boolean"}, {"type": "null"}]})
+        summary = documents["v1/GetConversationSummaryParams.json"]
+        self.assertIn("anyOf", summary)
+        self.assertNotIn("oneOf", summary)
+        self.assertEqual(documents["v1/GitDiffToRemoteParams.json"]["required"], ["cwd"])
+        self.assertEqual(documents["v1/ConversationGitInfo.json"]["required"], [])
+
+    def test_supplement_refuses_unknown_constructs_and_rust_type_disagreement(self):
+        for unsupported in ("Array<string>", "{ field?: string, }", "{ field: string, field: string, }"):
+            with self.assertRaises(ValueError):
+                generate_supplement.parse_type(unsupported)
+        schema = generate_supplement.declaration(
+            inventory.VENDOR / "source/supplemental-typescript/GetAuthStatusParams.ts", "GetAuthStatusParams")
+        rust = (inventory.VENDOR / "source/v1.rs").read_text()
+        for mutated in (rust.replace("pub include_token: Option<bool>", "pub include_token: bool"),
+                        rust.replace("pub include_token:", '#[serde(default)]\n    pub include_token:')):
+            with self.assertRaises(ValueError):
+                generate_supplement.serde_presence(schema, mutated, "GetAuthStatusParams")
 
     def test_unfinished_requirements_fail_full_compatibility_gate(self):
         manifest = json.loads(inventory.MANIFEST.read_text())

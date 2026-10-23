@@ -6,7 +6,7 @@ import math
 from pathlib import Path
 import re
 
-from inventory import MANIFEST, ROOT, VENDOR, encode
+from inventory import MANIFEST, ROOT, encode, schema_documents
 
 OUT = ROOT / "apps/samgita_protocol_codex/test/fixtures/native/contracts.json"
 
@@ -62,8 +62,7 @@ def sample(schema, root, depth=0):
 
 def main():
     manifest = json.loads(MANIFEST.read_text())
-    documents = {str(path.relative_to(VENDOR / "experimental")): json.loads(path.read_text())
-                 for path in (VENDOR / "experimental").rglob("*.json")}
+    documents = schema_documents("experimental")
     fixtures = []
     for row in manifest["entries"]:
         if row["direction"] not in {"client_request", "server_request", "server_notification", "client_notification", "server_response", "client_response"}:
