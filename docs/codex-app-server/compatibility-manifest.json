@@ -7574,12 +7574,17 @@
       "capabilities": [],
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "Source reachability audit: docs/codex-app-server/legacy-approval-qualification.md at upstream 83086188ae0614bd882818ff1aa23f3194962012",
+        "Selected synthetic contract/lifecycle and actual removed-API rejection tests: apps/samgita_codex_driver/test/legacy_approval_contract_test.exs; these do not prove enabled legacy success"
+      ],
       "experimental": false,
       "id": "client_response:applyPatchApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and missing."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -7661,12 +7666,17 @@
       "capabilities": [],
       "direction": "client_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "Source reachability audit: docs/codex-app-server/legacy-approval-qualification.md at upstream 83086188ae0614bd882818ff1aa23f3194962012",
+        "Selected synthetic contract/lifecycle and actual removed-API rejection tests: apps/samgita_codex_driver/test/legacy_approval_contract_test.exs; these do not prove enabled legacy success"
+      ],
       "experimental": false,
       "id": "client_response:execCommandApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and missing."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -11445,12 +11455,17 @@
     {
       "capabilities": [],
       "direction": "server_request",
-      "evidence": [],
+      "evidence": [
+        "Source reachability audit: docs/codex-app-server/legacy-approval-qualification.md at upstream 83086188ae0614bd882818ff1aa23f3194962012",
+        "Selected synthetic contract/lifecycle and actual removed-API rejection tests: apps/samgita_codex_driver/test/legacy_approval_contract_test.exs; these do not prove enabled legacy success"
+      ],
       "experimental": false,
       "id": "server_request:applyPatchApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and missing."
+      ],
       "params": {
         "$ref": "#/definitions/ApplyPatchApprovalParams"
       },
@@ -11571,12 +11586,17 @@
     {
       "capabilities": [],
       "direction": "server_request",
-      "evidence": [],
+      "evidence": [
+        "Source reachability audit: docs/codex-app-server/legacy-approval-qualification.md at upstream 83086188ae0614bd882818ff1aa23f3194962012",
+        "Selected synthetic contract/lifecycle and actual removed-API rejection tests: apps/samgita_codex_driver/test/legacy_approval_contract_test.exs; these do not prove enabled legacy success"
+      ],
       "experimental": false,
       "id": "server_request:execCommandApproval",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": true,
-      "limitations": [],
+      "limitations": [
+        "Enabled real-binary legacy approval remains unqualified: the pinned production source emits v2 approval requests and provides no legacy API or negotiation path. This entry remains in scope and missing."
+      ],
       "params": {
         "$ref": "#/definitions/ExecCommandApprovalParams"
       },
