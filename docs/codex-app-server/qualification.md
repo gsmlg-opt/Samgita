@@ -47,9 +47,11 @@ peer. Other realtime versions and backend/transport profiles remain incomplete.
 ## Delivered source and immutable reference
 
 The current pushed runtime/test checkpoint is
-`bc437ca91d52b19bc98e8f74f179d9e3edee296f`. Its fresh aggregate checks are
-recorded in the following checkpoint section. Subsequent scoped native profiles
-remain separate until validated and integrated; this checkpoint is not full
+`5c4ea77018f11b4f06bbe6c70301402b8fe29924`. The thread/remote-plugin package and
+hosted checkpoint below records its complete independent driver and twelve
+explicit native profiles. Earlier populated-database, restart and assembly
+checks retain their named source checkpoints. Subsequent executable changes
+require affected and final aggregate checks; this checkpoint is not full
 compatibility or a release.
 
 The historical runtime checkpoint is
@@ -1270,3 +1272,60 @@ unasserted notifications are not promoted. Regenerated totals: **485 entries:
 0 verified / 324 implemented / 156 missing / 5 blocked**; **6,621 contracts:
 0 verified / 637 implemented / 5,984 missing**. Existing legacy source evidence,
 unavailable external/platform profiles and A11 remain incomplete.
+
+## Thread and remote-plugin package/hosted checkpoint
+
+The coordinator completed the serialized independent package matrix against
+`5c4ea77018f11b4f06bbe6c70301402b8fe29924`, before installing the later
+thread-control and plugin-share test units. In the independent driver directory,
+under `devenv shell --no-tui --`, `MIX_ENV=test` and the absolute pinned
+`CODEX_BINARY`, warnings-as-errors compilation and formatting passed. Complete
+default driver runs passed **359 tests / 0 failures** at seeds `513498` and
+`987654` (**247.3s / 247.8s**). The twelve explicit native profiles passed
+**90 tests / 0 failures** at `501432` and `987654` (**164.2s / 164.4s**).
+
+The explicit command was `mix test --include real_codex --seed SEED` with these
+files, in order, from `apps/samgita_codex_driver/test/`:
+
+```text
+native_auth_flow_profile.exs
+native_environment_profile.exs
+native_apps_profile.exs
+native_app_catalog_profile.exs
+native_account_metadata_profile.exs
+native_command_lifecycle_profile.exs
+native_model_discovery_profile.exs
+native_user_shell_profile.exs
+native_tool_interactions_profile.exs
+native_realtime_lifecycle_profile.exs
+native_plugin_lifecycle_profile.exs
+native_remote_plugin_profile.exs
+```
+
+Driver `mix hex.audit` passed. From the repository root,
+`python3 scripts/codex/verify_consumer.py` freshly resolved only standalone
+dependencies outside the umbrella, compiled with warnings as errors, passed its
+**one actual-binary test** (seed `318817`) and checked formatting. No platform,
+database or application configuration inheritance was required. The combined
+command exited zero; log:
+`/tmp/samgita-codex-thread-remote-integrated-packages.log`.
+
+Hosted [foundation 40025226024](https://github.com/gsmlg-opt/Samgita/actions/runs/40025226024)
+is terminal **success** at that exact commit, including populated-database
+repeats, restart, standalone consumers, static/security checks, assets, Dialyzer
+and production assembly. In terminal
+[conformance 40025258588](https://github.com/gsmlg-opt/Samgita/actions/runs/40025258588),
+all twelve required isolated native profiles and the independent wire, driver
+and outside-consumer steps passed. The platform job
+[120659730989](https://github.com/gsmlg-opt/Samgita/actions/runs/40025258588/job/120659730989)
+again failed during `mdex_native 0.2.8` precompiled NIF download, with
+`{:header_too_long, {:max, 10240}}`, before any platform test ran. Its four
+automatic fetch attempts are retained in
+`/tmp/samgita-5c4ea77-hosted-platform-failure.log`. This repeats the separately
+recorded dependency-fetch failure, not a platform test failure or pass. No
+unrelated dependency repair or weaker gate was introduced.
+
+The independent full-evidence job correctly remains failed while required
+entries/contracts are incomplete. Foundation success, local package checks and
+synthetic dependencies do not qualify real accounts, external backends, A11,
+all platforms, full compatibility, publication or deployment.

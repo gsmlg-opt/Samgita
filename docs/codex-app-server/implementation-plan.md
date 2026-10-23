@@ -286,6 +286,15 @@ Next concrete work (repair follow-up, 2026-10-24):
    completeness gate red while required evidence is missing. Publish only after
    applicable gates and an existing normal publication workflow succeed; no
    deployment is authorized.
+   At `5c4ea77`, the independent driver passed **359 tests twice**, all twelve
+   explicit native profiles passed **90 cases twice**, audit and the fresh
+   outside consumer passed. Foundation **40025226024** is terminal success.
+   Conformance **40025258588** passed all twelve profiles and independent
+   driver/consumer steps, but the platform job again failed before tests while
+   fetching `mdex_native` with `header_too_long`; the completeness job remains
+   failed. Preserve those distinct outcomes. Next bounded units are native
+   thread-control queries/counters and plugin-sharing lifecycle, with serialized
+   validation and direct positive schema evidence only.
 7. Track the unexplained immediate Fake Agent listener rebind failure separately
    from the repaired synchronous shutdown and database safeguards. The original
    aggregate `:eaddrinuse` remains unresolved despite passing recorded repeats;
@@ -308,5 +317,7 @@ live credential setup or deployment is part of this checkpoint.
   downloading `mdex_native` (HTTP header limit); independent driver/consumer
   and explicit native profiles passed. Keep that infrastructure result separate
   from completeness and local platform evidence; see qualification.
+- The same dependency-fetch failure recurred at `5c4ea77`; its foundation and
+  twelve native profiles passed, but hosted platform tests did not run.
 - No branches/worktrees, sibling edits, production migrations, live credentials,
   live projects or deployments are authorized.
