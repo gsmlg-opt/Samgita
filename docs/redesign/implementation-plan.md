@@ -2,6 +2,8 @@
 
 Date: 2026-10-23. Status: P0 accepted; P2–P4 implemented; P5 management UI and bounded local P6 qualification are recorded in [qualification](qualification.md). P1 target preservation/drain and applicable release/integration gates remain open. Commit/push this scope; do not deploy.
 
+The subsequent [reliability repair](qualification.md#reliability-repair-qualification) fixes the demonstrated deletion, wakeup, protocol, schedule-identity and rate-limiter defects and clears the prior local static/security/build failures. Repeated populated-database and standalone checks now pass. Raw LiveView telemetry still blocks A11; real integration and target cutover gates remain open. This does not authorize a new product phase or deployment.
+
 **Goal:** preserve existing Projects, Tasks and history while moving execution decisions to registered Agents and establishing repository associations, a reusable app-server implementation, GitHub connections and durable events.
 
 **Architecture:** keep the existing Ecto/Phoenix umbrella, independently consumable `samgita_protocol` packages and neutral platform contexts. P3 adds durable execution authority starting closed; a deployed legacy system still needs a guarded drain before cutover. Adopt legacy work explicitly; do not implement a second Sigma server or a Backplane protocol dependency.

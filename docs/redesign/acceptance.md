@@ -1,6 +1,6 @@
 # Samgita redesign acceptance contract
 
-Date: 2026-10-23. This separates P0/P2/P3 evidence, bounded P4 coordination/GitHub implementation, persisted P5 UI/local qualification and target-specific cutover acceptance. A scenario passes only for evidenced assertions. [P4 coordination](coordination-phase-4.md) covers manual/external facts, schedules and delivery/recovery; [P4 GitHub](github-phase-4.md) covers signed ingestion, read-only facts and bounded reconciliation. [Qualification](qualification.md) records final UI/integration/browser/consumer checks and failing aggregate gates. Real App/service conformance, full historical backup/readers and production cutover remain open.
+Date: 2026-10-23. This separates P0/P2/P3 evidence, bounded P4 coordination/GitHub implementation, persisted P5 UI/local qualification and target-specific cutover acceptance. A scenario passes only for evidenced assertions. [P4 coordination](coordination-phase-4.md) covers manual/external facts, schedules and delivery/recovery; [P4 GitHub](github-phase-4.md) covers signed ingestion, read-only facts and bounded reconciliation. [Qualification](qualification.md) records UI/integration/browser/consumer checks and the subsequent reliability repair. Aggregate build gates now pass locally; raw-telemetry A11, real App/service conformance, full historical backup/readers and production cutover remain open.
 
 Authority: [design](design.md), [implementation plan](implementation-plan.md), and `AGENTS.md`. The older clean-start documents are historical proposals and cannot waive preservation or cutover tests.
 
@@ -207,6 +207,8 @@ P4's final scoped run passed **92 tests (75 core, 17 web), 0 failures**, seed `3
 
 ## 5. P5 local qualification ledger
 
+This is the original P5 ledger at `91567e5`. Section 6 supersedes its aggregate-failure and reused-database limits; its browser evidence remains historical.
+
 This ledger supersedes the earlier phase-boundary descriptions only for the assertions below. Final retained/redesign tests: **158 core, 104 web cases, 0 failures, 1 excluded dedicated restart case**, seed `437312`, fresh `samgita_redesign_management_qualified_test`. The separate restart test passed (1 test, seed `157470`); independent package suites passed (30 core, 24 WebSocket, 13 pinned Codex), and both copied outside-umbrella consumers passed. Full commands, browser/build evidence and limitations are in [qualification](qualification.md).
 
 | Scenario | Current local qualification | Remaining acceptance boundary |
@@ -228,3 +230,18 @@ This ledger supersedes the earlier phase-boundary descriptions only for the asse
 | A15 | Scoped work and unchanged gates recorded; commit/push authorized; no production/live-service changes | Aggregate Credo/Dialyzer/legacy-reference/audit failures block release; normal publication workflow absent |
 
 The entire redesign is **not certified deployable or releasable**. The persisted management phase is locally qualified within the stated boundaries; open assertions remain open. Repeated aggregate execution on the reused scratch database also exposed two inherited GitHub reconciliation fixture-isolation failures; the same seed passed on fresh databases. No failing tests were removed, unrelated code repaired or gate weakened.
+
+## 6. Reliability repair qualification
+
+The executable repair tree at `896fc4886f77e731c38077069fb2d4c7feb8a18a` passes the full retained suite twice on the same populated scratch database: **167 core tests and 110 web cases per run, zero failures, one separately run restart case excluded**, seed `437312`. The dedicated restart case passes; independent protocol suites pass **32/40/13** cases, and both outside-umbrella consumers pass. Compile, format, strict Credo, Dialyzer, precise legacy scan, Hex audits, clean frozen Bun install, assets and local production assembly pass. [Exact commands, regressions and limits](qualification.md#reliability-repair-qualification) distinguish these runs from the prior browser evidence and initial failures.
+
+| Scenario | Newly verified repair assertions | Remaining gate |
+| --- | --- | --- |
+| A05/A07 | Server-request deadlines and once-only cleanup; late replies, disconnect/send failure and consumed control-byte accounting; mutation uncertainty preserved | Documented conservative aggregate socket-read cap; real service/client conformance and durable host policy |
+| A06 | Inactive backlog cannot starve active wakeup; resume, lease expiry, ambiguity and retry/fencing cases retained | Actual Agent durability and operational recovery |
+| A10 | Real Client/fake-HTTP object deletion tombstones only after exact access revalidation; duplicate/reappearance, sibling mapping, revocation, 429 and transient behavior | Live installation/permissions validation; GitHub writes remain disabled |
+| A11 | Atomic supervised node-local quotas survive request death; concurrent boundary, expiry and bounded cleanup; actual canary verifies logs/DOM/metric projections | **Blocked:** raw LiveView start/stop metadata contains plaintext credential parameters. No raw exporter is configured; passing canary documentation does not clear non-disclosure. Target TLS/egress/credentials also remain open. |
+| A12 | Canonical target-bound schedule receipts, unchanged same-target replay, safe legacy proof, missing/inaccessible targets and stale versions | Target scheduling operations/timezone-data maintenance |
+| A15 | Prior static/security/install issues repaired without exclusions, sleeps, production-limit changes or fresh-only evidence; scoped commits and push authorized | A11 prevents release; no normal publication workflow, real integration or production cutover acceptance |
+
+No tag, publication or deployment is justified by these local checks. The original six-hour Bun cancellation remains **not reproduced/cause unknown**; a separate reproduced Bun 1.4.4 asset-wrapper incompatibility is avoided by the verified 1.3.13 pin and matching frozen lock. No historical migration/data was deleted or applied to production.

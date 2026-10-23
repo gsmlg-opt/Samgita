@@ -2,6 +2,90 @@
 
 Date: 2026-10-23. Scope: persisted management UI, complete fake-Agent journey, local restart/rollback and final aggregate checks. This record extends [acceptance](acceptance.md); it does not certify a production cutover, published package or real provider integration.
 
+The reliability repair below supersedes the original P5 aggregate failures and reused-database limitation. The original P5 commands, browser observations and totals remain prior evidence from `91567e5116cb10f702a57012485ceed812b87d21`; they are not new browser runs. A11 remains blocked. No release or deployment is certified.
+
+## Reliability repair qualification
+
+Date: 2026-10-23. Review baseline: `91567e5116cb10f702a57012485ceed812b87d21`. The executable tree tested locally was committed as `896fc4886f77e731c38077069fb2d4c7feb8a18a`; tests preceded the commits, with no executable edits afterward. The documentation commit adds this record. All work stayed on `main`, with no new worktree, production migration, historical-data deletion, live credential, sibling-service change or remote GitHub write.
+
+| Finding | Reproduction and resulting behavior | Regression coverage |
+| --- | --- | --- |
+| GitHub object deletion | Reproduced through the real Client and fake HTTP. An individual-resource 404 permits a minimal tombstone only after fresh installation/token/exact-repository validation. Installation/repository/list 404 and genuine 403 still fence access; 429/transient validation failures remain retryable. Current absence and immutable observations are separate. | `github/deletion_reconciliation_test.exs`: duplicate deletion, another mapped repository under the same installation, revoked access, rate/transient failure and verified reappearance. Initial four cases had three failures before repair. |
+| Event-maintenance starvation | Reproduced with 106 older paused deliveries hiding a later active delivery. Bounded selection excludes inactive receive work, retains expired/reconciling cleanup on inactive Projects, and rotates successfully checked wakeups by `updated_at, id`. Domain versions, event identity, retry deadlines and fences remain intact. | `events/delivery_test.exs`: active lost wakeup, retained paused work and resume; retained expiry/ambiguity/stale-lease tests. GitHub maintenance had the same oldest-batch problem and now rotates successfully enqueued syncs; a greater-than-100-row regression proves progress. |
+| WebSocket deadlines/accounting | Reproduced: the initial lifecycle suite had nine failures in eleven cases. Server-originated requests now expire, cancel timers, release pending capacity and notify the host once on timeout/disconnect/send failure. Sent mutations retain ambiguous outcomes. Expired request IDs remain bounded completion markers against late-response reuse. Consumed ping/pong bytes no longer accumulate as unread data. | `socket_lifecycle_test.exs`, `client_control_frames_test.exs` and core `client_test.exs`: real loopback timeout/disconnect, callback send-failure cleanup, response/expiry races, late replies, long control traffic, fragments, interleaving and oversize rejection. |
+| Schedule command identity | Reproduced false receipt replay across two schedule IDs. Digests now bind the canonical target. Old receipts replay only with stored evidence of the same target and Project; missing/changed evidence conflicts and never reexecutes. Review found and reproduced a nil-target legacy-receipt edge, now rejected. Adjacent commands already bind their target in operation/scope/semantic fields. | `schedules_test.exs`: cross-target, uppercase-equivalent UUID, same-target retry, payload/version change, stale version, inaccessible/missing/nil target and immutable legacy receipt compatibility. |
+| Request-rate ownership/race | Reproduced quota loss after the first request exits and over-admission by concurrent callers. A supervised owner serializes admission in private ETS. Enforcement is node-local, counts admitted requests, expires against a monotonic clock, visits at most 500 cleanup keys per tick, and starts with an empty quota after owner/node restart. | `plugs/rate_limit_test.exs`: independent requests, request termination, synchronized 64-caller boundary, expiry, supervised restart and 1,100-key cleanup cursor. ConnCase assigns an independent address per test; requests within one case retain their quota. No production limit was raised or disabled. |
+| CI/static/security qualification | Credo, Dialyzer, legacy scan and the four reported Hex advisories reproduced and were repaired. The six-hour Bun stall did not reproduce; its original cause remains unknown. Bun 1.4.4 separately reproduced an asset-wrapper `ERR_INVALID_STATE`; CI is pinned to compatible Bun 1.3.13 with its generated lock format. | Strict checks and package audits pass. Clean frozen installs retain local Phoenix/LiveView/DuskMoon dependencies, package/lock hashes and bounded diagnostics. The installer times out at 240s; the CI step/job also have bounds. |
+
+Maintenance rotation records actual UTC check time rather than the injected eligibility clock, so fixed-clock recovery scans also progress. Both delivery systems retain their bounded batch and ordered transaction rechecks. Notification acceptance does not claim execution ownership or Task acceptance. No reconnect, expiry or maintenance wakeup launches a second execution; status reconciliation and unresolved-effect holds remain required.
+
+The WebSocket client retains its pre-existing conservative aggregate socket-read cap. A coalesced read larger than `max_frame_bytes + 14` can close even if its individual frames are legal. The repair fixes consumed-byte accounting without removing that cap or the per-frame/fragmented-message bounds. README documents this throughput limitation. The send-failure unit fixture simulates the WebSock termination callback; separate real-WebSocket cases cover transport disconnect/timeout.
+
+### Exact local checks
+
+Use `devenv shell --no-tui --` for these commands with Elixir 1.18.5 / OTP 27.3.4.17. PostgreSQL 16.15 used only the existing isolated socket cluster on port 55443, with UTF8 scratch databases. The populated reliability database was preserved across failed, focused and both full runs; no reset, row cleanup or test exclusion was used to obtain the result.
+
+```sh
+export MIX_ENV=test PGHOST=/tmp/samgita-p3-pg/socket POSTGRES_PORT=55443 POSTGRES_USER=gao
+export SAMGITA_TEST_DATABASE=samgita_redesign_reliability_test
+export MIX_BUN_PATH=/run/current-system/sw/bin/bun # verified 1.3.13
+mix compile --warnings-as-errors
+mix format --check-formatted
+mix credo --strict
+mix test --seed 437312
+mix test --seed 437312
+SAMGITA_TEST_DATABASE=samgita_redesign_reliability_restart_test mix test \
+  apps/samgita_web/test/samgita_web/integration/restart_reconcile_test.exs --include e2e
+python3 scripts/verify_isolated_protocol.py
+python3 scripts/install_web_dependencies.py --bun "$MIX_BUN_PATH" --isolated
+python3 scripts/install_web_dependencies.py --bun "$MIX_BUN_PATH"
+mix assets.build
+mix dialyzer
+mix hex.audit
+python3 -B scripts/test_check_legacy_runtime.py
+python3 -B scripts/check_legacy_runtime.py
+# Also, from each of the three protocol package directories:
+mix deps.get
+mix compile --warnings-as-errors
+mix test
+mix format --check-formatted
+mix hex.audit
+```
+
+| Final local check | Result actually observed |
+| --- | --- |
+| Retained/redesign suite, twice on populated `samgita_redesign_reliability_test` | Each run: **167 core tests, 110 web cases, zero failures, one excluded dedicated restart case**, seed `437312`. Includes signed GitHub fixture to routed fake Agent, decisions, progress/artifacts and review/acceptance with both `Synapsis` and `Orion`; retained authorization, cancellation, concurrent-update and UI recovery cases run. |
+| Dedicated application/fake-host restart and rollback | **1 test passed**, seed `56346`, dedicated `samgita_redesign_reliability_restart_test`. Lost ACK reconciles by original operation/status; no second start; epoch closure rejects stale results and retains unresolved effects. |
+| Independent package checks | Core **32**, WebSocket **40**, pinned Codex **13** tests passed; their warnings-as-errors compilation, format and Hex audits passed. |
+| Outside-umbrella proof | Script passed: copied core suite, standalone core consumer and direct WebSocket consumer. No Samgita Repo, database or umbrella configuration supplied to consumers. |
+| Static and dependency gates | Root warnings-as-errors compilation, full format, strict Credo, Dialyzer, precise legacy scan plus its three tests, and Hex audit all passed. No warning suppression or rule exclusion was added. |
+| Final Bun install/build | Bun **1.3.13**, new public-registry lock with current local-package metadata; isolated frozen install **85.57s**, workspace frozen install **4.34s**, asset build passed. Final lock SHA-256: `ec8912e098a5e4f0aa675e51fcfb5a38e5d913905760293ec170c0cd2798e74c`. |
+| Local production assembly | `MIX_ENV=prod mix deps.get --only prod`, `mix assets.deploy`, `mix release --overwrite` all passed using `/tmp/samgita-reliability-prod-build`. Archive: `/tmp/samgita-reliability-prod-build/samgita-0.1.0.tar.gz`, SHA-256 `28c55a52add3d2e50797fd7e3006682d6afaebdd21431595b9c3216583ba254a`. No release process was started or deployed. |
+
+For production assembly only, `MIX_BUILD_PATH` pointed to that separate directory; `DATABASE_URL` named the isolated reliability database and `SECRET_KEY_BASE`/`SAMGITA_API_KEYS` were synthetic local-assembly constants. Assets deploy reports the core app has no `priv/static`; the web app's assets and digest succeed. This is an unpublished local 0.1.0 assembly, not a release-readiness override or a service smoke test.
+
+The first full repair run had a genuine 429 failure because unrelated tests shared one IP after rate ownership was fixed. ConnCase now isolates client identity while preserving within-test enforcement. Both populated-database repeats above pass with this correction. Prior GitHub fixture failures were repaired by fair durable selection and bounded assertions of the exact expected wakeup, not sleeps or fresh-database-only qualification.
+
+CI baseline [39838339835](https://github.com/gsmlg-opt/Samgita/actions/runs/39838339835) was cancelled during Bun installation; downstream gates were skipped. Clean baseline installs with Bun 1.3.13 and 1.4.4 both succeeded (about 10s and 13s) with stale local-package metadata warnings. Those observations do not establish the cancellation's cause. Regenerating the lock removes those stale descriptors and private mirror URLs. The final workflow pins Bun 1.3.13, keeps frozen installation, prints provenance and verbose diagnostics, bounds installation/overall runtime, repeats the retained suite on its populated DB, and explicitly overwrites cached local release assembly. It does not publish.
+
+Decimal is now **3.2.0**, Bandit **1.13.1**, and test-only lazy_html **0.1.13**, with compatible hpax/thousand_island updates. These clear the audited CVE-2026-97853, CVE-2026-105659/CVE-2026-105660 and CVE-2026-92106 findings. Dialyzer uses one consistent `Mint.HTTP1` lifecycle and includes ExUnit in its test PLT. Credo repairs extract existing validation/transition helpers without changing authority or review policy. The legacy scan allows full-line historical comments and literal negative `refute app in [...]` assertions in test files; runtime integrations still fail, including migrations and manifests.
+
+Local evidence logs are `/tmp/samgita-reliability-final/{results.json,*.log}`, `/tmp/samgita-reliability-{red,focused2,static-final2}.log`, `/tmp/samgita-github-{deletion,maintain}-red.log`, `/tmp/samgita_ws_red.log`, `/tmp/samgita-schedule-legacy-nil-red.log`, `/tmp/samgita-frozen-compatible-{final,workspace}.log` and `/tmp/samgita-bun-1313-regenerated.log`. These are local logs, not published artifacts. Browser screenshots/hashes in the original P5 section below were not rerun in this repair; current automated LiveView cases and the rebuilt assets are the new evidence.
+
+### A11 confidentiality gate remains blocked
+
+`telemetry_confidentiality_test.exs` attaches real raw LiveView `handle_event` start/stop and Repo query handlers, submits a synthetic credential canary, captures debug logs and DOM, and evaluates configured metric projections. Logs, rendered markup and metric projections exclude the canary. The raw LiveView start **and** stop metadata contain the exact plaintext at `metadata.params["credential"]["credential"]` before application handling. The regression intentionally records this exposure; its passing result is not a passing A11 confidentiality gate.
+
+The audit found Phoenix parameter filtering and bounded metric/tag definitions, with no application raw-telemetry exporter or reporter enabled. Repo persists/logs digests rather than the submitted credential; protocol/audit projections remain allowlisted. These application paths do not sanitize the framework's raw event metadata, sockets or arbitrary third-party handlers. In-process raw instrumentation must remain trusted and must not be exported. Aggregate metric allowlists do not prove raw telemetry safe.
+
+Full closure requires verified upstream/source-level redaction or a separately accepted secret-entry flow that avoids those raw parameters, with a canary regression against the resulting metadata and configured exporters. No supported application configuration found in this round provides that source redaction. No external repository/framework was patched, and the acceptance criterion was not weakened. **A11 remains blocked**, even when automated build gates pass.
+
+### Compatibility and rollback boundary
+
+This repair adds no migration and rewrites no command receipt or historical record. Existing schedule receipts require target/scope proof; an ambiguous receipt conflicts rather than reexecutes. Fairness touches operational check timestamps only, preserving event creation time, delivery attempts and version/fence contracts. The rate limiter's ephemeral node-local quota intentionally resets on restart; it provides no cluster-wide guarantee.
+
+Use the existing [closed-admission/epoch/hold rollback procedure](migration-rollback.md). Restoring an earlier binary reintroduces the repaired bugs and must not reopen legacy execution or replay unknown external effects. No production rollback or migration was performed. Real Sigma/Synapsis/Codex service conformance, real GitHub installations, full legacy storage/backup/readers and old-writer exclusion remain owner-controlled gates. No package publication, tag, live integration or deployment occurred. Publication is blocked by A11 and the absence of a normal publication workflow; CI/local archive success alone cannot authorize it.
+
 ## Delivered behavior
 
 The dashboard reads PostgreSQL counts and authority. `/agents` and `/agents/:id` manage stable identities, capability approvals, endpoint descriptors, versioned credential references and digest-only inbound credential registration. Connections, generations, sessions and membership remain distinct. Availability uses persisted activity/delivery evidence and connection expiry; every status explicitly leaves health unverified.
@@ -14,7 +98,7 @@ Writes use the existing context commands, optimistic versions and durable comman
 
 Neutral Agent protocol traffic uses authenticated WebSockets at the Agent's `/app-server`; Samgita's management callbacks use the protected operator/machine REST API. No undocumented Task/lease methods were inserted into the neutral schema. A Samgita-hosted management WebSocket profile is not advertised or implemented; REST is the qualified authoritative callback interface. Direct sessions on an independent runtime host do not implicitly update Tasks.
 
-## Evidence and commands
+## Original P5 evidence and commands
 
 Use Elixir 1.18.5 / OTP 27 from `devenv shell --no-tui --`, PostgreSQL 16 on socket `/tmp/samgita-p3-pg/socket`, port `55443`, user `gao`. All databases in this phase are explicit local scratch databases. Precreate them from UTF8 `template0` if the cluster's default template uses SQL_ASCII. Never reset an unresolved target.
 
@@ -45,7 +129,7 @@ mix test --seed 437312
 
 The test fake's disk journal simulates durable Agent acceptance and an execution-start journal. It fsyncs the file before acknowledgement; it does not fsync the containing directory and proves process/application restart, not power-loss durability. It invokes no shell, model or GitHub write. It is not a deployable Agent implementation or proof of a real service's persistence/idempotency guarantees. The package's original in-memory FakeAgent accurately advertises receipt, not durable storage.
 
-## Browser reproduction
+## Original P5 browser reproduction
 
 Create/migrate a fresh isolated `samgita_redesign_*_test` database. Build assets, then explicitly start the test-only driver:
 
@@ -72,7 +156,7 @@ Served final asset SHA-256 (fetched and hashed in the browser after `mix assets.
 
 Local screenshots: `/tmp/samgita-task-accepted-desktop-final.png`, `/tmp/samgita-task-mobile-final.png`, `/tmp/samgita-agent-mobile-final.png`. They are local evidence, not published artifacts. The dependency's existing disconnected toast remains in the accessibility tree while connected (tracked upstream in `phoenix_duskmoon#162`); it was not represented as Agent health or silently patched.
 
-## Required aggregate gate results
+## Original P5 aggregate gate results
 
 The serialized final run passed compilation with warnings as errors and full format checking. The final full retained/redesign suite passed on fresh `samgita_redesign_management_qualified_test` (158 core tests; 104 web cases with the dedicated restart case excluded; 0 failures; seed `437312`). Frozen Bun installation and final `mix assets.build` passed. Fresh/additive preservation and independent-transaction concurrency tests are included in the core suite. Package and dedicated restart results above remain separate.
 
