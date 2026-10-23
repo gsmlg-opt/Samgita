@@ -111,23 +111,38 @@ defmodule SamgitaCodexDriver.AuthInteractionsTest do
     {response, events} = service_until(context.pid, respond, fn _ -> Task.yield(task, 0) end)
     assert {:ok, %{"result" => %{"thread" => %{"id" => thread}}}} = response
 
-    assert {:ok, %{"result" => %{"turn" => %{"id" => turn}}}} =
-             Session.request(
-               context.pid,
-               "turn/start",
-               %{
-                 "threadId" => thread,
-                 "input" => [%{"type" => "text", "text" => "Synthetic auth interaction only"}]
-               }
-             )
+    # The pinned server can prewarm a Responses connection before either RPC
+    # returns. Its attestation deadline is 100ms: never wait for turn/start while
+    # preventing the owner from servicing its incoming attestation request.
+    task =
+      Task.async(fn ->
+        Session.request(
+          context.pid,
+          "turn/start",
+          %{
+            "threadId" => thread,
+            "input" => [%{"type" => "text", "text" => "Synthetic auth interaction only"}]
+          }
+        )
+      end)
+
+    {response, turn_events} =
+      service_until(context.pid, respond, fn _ -> Task.yield(task, 0) end)
+
+    assert {:ok, %{"result" => %{"turn" => %{"id" => turn}}}} = response
 
     {completed, later} =
-      service_until(context.pid, respond, fn accumulated ->
-        case Enum.find(accumulated, &(get_in(&1, [:wire, "method"]) == "turn/completed")) do
-          nil -> nil
-          event -> {:ok, event}
-        end
-      end)
+      service_until(
+        context.pid,
+        respond,
+        fn accumulated ->
+          case Enum.find(accumulated, &(get_in(&1, [:wire, "method"]) == "turn/completed")) do
+            nil -> nil
+            event -> {:ok, event}
+          end
+        end,
+        turn_events
+      )
 
     assert completed.wire["params"]["threadId"] == thread
     assert completed.wire["params"]["turn"]["id"] == turn
@@ -251,5 +266,55 @@ defmodule SamgitaCodexDriver.AuthInteractionsTest do
            }
 
     assert Enum.any?(ModelFixture.requests(context.fixture), &(&1["transport"] == "websocket"))
+  end
+
+  @tag scenario: "attestation"
+  test "explicit attestation refusal reaches the handshake as failure without a token", context do
+    login(context.pid, "new@synthetic.invalid")
+
+    {completed, events} =
+      journey(context, fn event ->
+        assert event.wire["method"] == "attestation/generate"
+        assert event.wire["params"] == %{}
+
+        assert :ok =
+                 Session.respond(
+                   context.pid,
+                   event.handle,
+                   {:error, %{"code" => -32_001, "message" => "Synthetic attestation refused"}}
+                 )
+      end)
+
+    assert completed.wire["params"]["turn"]["status"] == "completed"
+    assert Enum.any?(events, &(&1.kind == :server_request))
+
+    [handshake] =
+      Enum.filter(ModelFixture.requests(context.fixture), &(&1["transport"] == "handshake"))
+
+    assert JSON.decode!(handshake["attestation"]) == %{"v" => 1, "s" => 2}
+    assert Enum.any?(ModelFixture.requests(context.fixture), &(&1["transport"] == "websocket"))
+  end
+
+  @tag scenario: "attestation"
+  test "withheld attestation expires at the native boundary without inventing success", context do
+    login(context.pid, "new@synthetic.invalid")
+
+    {completed, events} =
+      journey(context, fn event ->
+        assert event.wire["method"] == "attestation/generate"
+        assert event.wire["params"] == %{}
+        # Deliberately leave the request unanswered. Observe the native timeout
+        # through the actual handshake, rather than sleeping or changing it.
+      end)
+
+    assert completed.wire["params"]["turn"]["status"] == "completed"
+    assert Enum.any?(events, &(&1.kind == :server_request))
+
+    [handshake] =
+      Enum.filter(ModelFixture.requests(context.fixture), &(&1["transport"] == "handshake"))
+
+    assert JSON.decode!(handshake["attestation"]) == %{"v" => 1, "s" => 1}
+    assert Enum.any?(ModelFixture.requests(context.fixture), &(&1["transport"] == "websocket"))
+    assert Session.status(context.pid).phase == :ready
   end
 end

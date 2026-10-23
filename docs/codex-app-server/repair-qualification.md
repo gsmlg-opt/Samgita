@@ -243,6 +243,36 @@ retained. Logs are `/tmp/samgita-driver-websocket-{red-501432,green-501432,green
 Full driver and hosted evidence against the delivered source is recorded
 separately; these scripted frame peers do not establish all Codex behavior.
 
+## Attestation prewarm event ownership
+
+The first full continuation run after the upgrade-ordering repair passed all
+34 protocol cases, then failed **one of 203 driver cases**, seed `501432`.
+The actual Responses WebSocket handshake carried `{"v":1,"s":1}` instead of
+the explicitly returned synthetic attestation token. The second requested seed
+did not run after that failure. Log:
+`/tmp/samgita-codex-continuation-independent-final.log`.
+
+Pinned `app-server/src/attestation.rs:19,82–109,139–146` defines a **100ms native
+deadline** and distinguishes timeout (`s=1`) from refusal/failure (`s=2`). The
+matching upstream test, `app-server/tests/suite/v2/attestation.rs:108–163`,
+explicitly services incoming requests while waiting for both `thread/start`
+and `turn/start`: prewarming can request attestation before either RPC returns.
+Our fixture serviced only the first RPC concurrently. Its synchronous
+`turn/start` prevented its event owner from answering the second RPC's incoming
+request before the native deadline. No production driver defect is established
+by this failure.
+
+The test now pumps interactions while awaiting `turn/start` and carries forward
+already-drained completion events. The successful-token assertion remains exact.
+Two additional actual-binary tests deliberately withhold a response or explicitly
+refuse it and require the corresponding exact handshake envelopes, without
+sleeping, extending the native deadline or inventing a successful response.
+The five auth cases passed at seeds `501432`, `513498` and `987654`; package
+formatting and scoped whitespace checks passed. Log:
+`/tmp/samgita-codex-attestation-repair-final.log`. Full-suite and hosted results
+are separate checks. Synthetic local credentials and provider acceptance do not
+qualify a real attestation service or account.
+
 ## Continuing gates
 
 The pushed repair head `63588cdc442436e9f4cb2b085b9699a0f5c1d370` reached
@@ -264,10 +294,11 @@ terminal hosted results:
   evidence are tracked in qualification. The strict completeness job also failed
   because required evidence remains missing; the overall workflow is failed.
 
-The pinned inventory check and its 13 Python regressions passed after these
+The pinned inventory check and its 15 Python regressions passed after these
 repairs. Counts are generated from the pin, not inferred from selected passing
-journeys: **0 verified / 485 missing requirements; 0 verified / 6,621 missing
-contracts**. Legacy approvals retain their schemas and
+journeys: **0 verified / 1 implemented / 480 missing / 4 blocked requirements;
+0 verified / 3 implemented / 6,618 missing contracts**. The notification's scoped
+implementation status is distinct from full qualification. Legacy approvals retain their schemas and
 [exact upstream reachability evidence](legacy-approval-qualification.md); no
 scripted peer is counted as enabled real-binary legacy success. Required external
 account/backend/OS profiles remain incomplete. No release/tag, package
