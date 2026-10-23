@@ -245,11 +245,48 @@ turn-start event or model request; the Session stays ready with no pending or
 uncertain operation.
 
 These tests establish request preparation, not model vision or tool execution.
-The upstream 1 GiB encoded-image sanity guard, image-count/memory limits,
+The upstream 1 GiB direct/inline/tool-image sanity guard, image-count/memory limits,
 `unified_image_budget`, resize notices, Responses Lite, other image formats,
 orientation/color metadata and real visual inference remain unqualified. The
 driver's 8 MiB message limit and model fixture's 4 MiB HTTP limit do not prove the
-upstream image-byte boundary. No huge boundary allocation is attempted.
+upstream image-byte boundary. The queued local-file metadata guard is separately
+qualified below without reading a huge file.
+
+## Image boundaries and queued local snapshots
+
+Four cases in `image_limits_test.exs` extend actual Linux/stdio coverage:
+
+- An unloaded persisted thread retains an ordinary queued submission. Queue add
+  and update each reject a local image of **1 GiB + 1 byte** with the exact native
+  `-32600` error, leaving that submission unchanged, starting no turn and issuing
+  no additional provider request. The owned file is sparse; GNU `stat` checks
+  its allocated blocks remain below 1 MiB before and after the RPCs.
+- Across inline, local and structured tool output, `high` preserves exact
+  `1600 x 1600` patch and `2048 x 32` dimension boundaries; `original` preserves
+  `3200 x 3200` and `6000 x 32`. One pixel over each boundary resizes to the
+  expected dimensions. Unchanged images retain exact bytes. Compressed fixture
+  files remain below 100,000 bytes; provider/frame limits are unchanged.
+- Empty/truncated PNGs and complete valid-CRC zero-dimension headers become
+  processing placeholders on all three paths, preserving surrounding text and
+  the valid image. Both native item lifecycle events retain original payloads
+  and a common item ID, separately from provider-side normalization.
+
+The sparse profile is deliberately confined to queue RPCs. Pinned
+`protocol/src/local_media.rs:59-79` checks metadata before a bounded read;
+`ext/queue/src/service.rs:519-526` invokes it. Direct local-image conversion at
+`protocol/src/models.rs:2136-2158` calls `std::fs::read` before preparation.
+Submitting the sparse file through direct `turn/start` would therefore be unsafe
+and was never attempted. Inline/tool inputs above the image guard, direct-local
+overflow, and exact-limit accepted reads remain **unqualified**; their source
+and schema declarations are not enabled-success evidence.
+
+Initial setup used asynchronous `thread/unsubscribe`, whose acknowledgment did
+not establish completed unload. Replacing that assumption with confirmed owned
+process shutdown and a cold app-server, followed by `thread/loaded/list`,
+establishes the unloaded queue precondition before creating the sparse file.
+The four cases passed at seeds `501432` and `987654`, with independent compile
+and scoped format. Log: `/tmp/samgita-image-limits-validation.log`. No timeout,
+resource limit or assertion was relaxed to obtain these results.
 
 ## Controlled compaction interruption and retries
 
