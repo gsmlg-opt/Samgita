@@ -22,7 +22,7 @@ recognize media or emulate the app-server.
 | Native input | Actual behavior checked | Limits |
 | --- | --- | --- |
 | `text` | UTF-8 text `é🙂x`, byte ranges, omitted/null/explicit placeholders, client message ID and both user-item lifecycle events; close the owned process, start another, then resume/read the persisted thread without another model request | Stable and experimental negotiation; no invented range/overlap rejection rule |
-| `image` with `url` | Omitted/null detail defaults, `auto`/`high`, original-detail normalization, explicit low-detail omission, mixed-case HTTP(S) rejection before model dispatch | One tiny inline PNG; no resize, size-limit or visual-understanding claim |
+| `image` with `url` | Omitted/null detail defaults, `auto`/`high`, original-detail normalization, explicit low-detail omission, mixed-case HTTP(S) rejection before model dispatch; follow-up below adds real resizing and data-URI preparation | Synthetic PNG inputs; no GiB limit or visual-understanding claim |
 | `image` with `fileId` | Opaque reference and its detail reach the captured provider request; original reference remains in both item events | No upload, provider-side file lookup or access authorization was exercised |
 | `localImage` | Local file and original path, detail defaults and capability-dependent `original`, low-detail omission, missing/corrupt-file fallback | Synthetic disposable PNG files; no remote filesystem or other-OS qualification |
 | `audio` | Inline `audio/x-wav` canonicalizes to `audio/wav`; an HTTP URI produces the pinned preprocessing placeholder; original input remains in both item events | Synthetic audio-capable model metadata; arbitrary bytes establish construction rather than valid decoded audio |
@@ -96,9 +96,9 @@ tool runs in these assistant-only cases. Omitted/null `toolOutput` with empty
 `input` still requests ordinary inference. Malformed shapes fail actual native
 deserialization; aggregate text over 1,048,576 Unicode characters returns native
 `-32602` with `input_too_large`, maximum and actual character counts. Structured
-HTTP(S) image references return `-32600` before model execution. Structured image,
-audio and encrypted-content success, active-turn steering and compaction retention
-remain to be qualified.
+HTTP(S) image references return `-32600` before model execution. Structured image
+preparation is qualified below; audio and encrypted-content success, active-turn
+steering and compaction retention remain to be qualified.
 
 `turn_overrides_test.exs` adds four scenarios. Successive requests demonstrate
 sticky model, effort and summary settings; public null preserves those settings,
@@ -131,6 +131,50 @@ owned shutdown is asserted. The synthetic tool is read-only. A mention selects a
 startup dependency: it does not grant permission, make other ready tools disappear,
 or prove external MCP authentication. Deferred-tool discovery, app/plugin mentions,
 permission rejection, reconnect and other transport profiles remain separate gaps.
+
+## Image preparation and Unicode boundary follow-up
+
+Eight additional actual-binary tests in `image_preparation_test.exs` exercise
+inline image URLs, local PNG paths and structured `toolOutput.input_image`.
+`ImageFixture` creates valid synthetic PNGs using zlib and CRC32 without an image
+library dependency. Its checker validates complete fixture PNG chunk lengths,
+CRCs, IDAT inflation, row lengths and every expected constant RGB/RGBA pixel
+across filters 0–4, not only header dimensions. A ninth bounded checker test
+rejects malformed CRCs, truncated/trailing data, duplicate IEND and valid-CRC
+incorrect pixels. Both item lifecycle events retain the original native input;
+each submission must append exactly one provider request, whose prepared content
+is inspected separately from earlier captures.
+
+| Input/profile | Captured provider outcome on all three input paths |
+| --- | --- |
+| Small `64×32` PNG, high | Original PNG bytes and dimensions preserved |
+| `2048×2048`, high | Resized to `1600×1600` to meet the 2,500-patch budget, despite satisfying the dimension limit |
+| `2048×2048`, supported original | Original bytes preserved at `2048×2048` |
+| `3201×3201`, supported original | Resized to `3200×3200` for the 10,000-patch budget |
+| `6401×100`, supported original | Resized to `6000×94` for the original-detail dimension limit |
+| `2048×2048`, unsupported original | Original-budget pixels remain `2048×2048`, then model normalization changes the wire detail to high |
+
+Structured omitted/null detail uses high preparation limits but retains an absent
+provider detail field. This differs from user-image detail defaulting. Uppercase
+data-URI components and an incorrect declared MIME normalize from actual PNG
+bytes. Missing base64 framing, invalid base64, corrupt image bytes and low detail
+produce the exact ordered upstream text placeholders while a following valid
+image and surrounding text survive. Those URI cases cover inline and structured
+output; the earlier tests cover corrupt/missing local files.
+
+The text boundary test submits exactly 1,048,576 Unicode scalars, constructed
+from combining characters so scalar, grapheme and byte counts differ. Both user
+text and standalone tool output reach the provider unchanged at the limit. One
+additional scalar returns the exact native `-32602` error and counts, before a
+turn-start event or model request; the Session stays ready with no pending or
+uncertain operation.
+
+These tests establish request preparation, not model vision or tool execution.
+The upstream 1 GiB encoded-image sanity guard, image-count/memory limits,
+`unified_image_budget`, resize notices, Responses Lite, other image formats,
+orientation/color metadata and real visual inference remain unqualified. The
+driver's 8 MiB message limit and model fixture's 4 MiB HTTP limit do not prove the
+upstream image-byte boundary. No huge boundary allocation is attempted.
 
 ## Harness, verification and source
 
@@ -175,6 +219,8 @@ Pinned source references below are relative to `codex-rs/`:
 | Upstream text/client-ID example | `app-server/tests/suite/v2/turn_start.rs:932-1005` |
 | HTTP image rejection | `app-server/src/request_processors/turn_processor.rs:25-40`; `app-server/src/image_url.rs:1-8` |
 | Image preparation and model normalization | `core/src/image_preparation.rs:32-37,390-414`; `core/src/client_common.rs:108-116`; `core/src/session/mod.rs:3574` |
+| Image dimension/patch budgets and byte sanity guard | `utils/image/src/lib.rs:26-31,70-83,284-351` |
+| User/tool-output scalar limits | `app-server/src/request_processors/turn_processor.rs:505-520,554-575` |
 | Local media and audio MIME | `protocol/src/models.rs:1932-1952,2124-2180`; `protocol/src/local_media.rs:82-98`; `utils/audio/src/lib.rs:208-211` |
 | Unsupported model media | `core/src/context_manager/normalize.rs:335-432` |
 | Structured skill selection | `skills/src/selection.rs:44-112`; `skills/src/selection_tests.rs:168-225` |
