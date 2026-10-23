@@ -1,5 +1,6 @@
 defmodule Samgita.Migration.PreservationTest do
   use ExUnit.Case, async: false
+  alias Ecto.Adapters.{Postgres, SQL}
   alias Samgita.MigrationRepo
   @root Path.expand("../../../../..", __DIR__)
   @migrations Path.join(@root, "apps/samgita/priv/repo/migrations")
@@ -44,7 +45,7 @@ defmodule Samgita.Migration.PreservationTest do
         log: false
       )
 
-    assert :ok = Ecto.Adapters.Postgres.storage_up(opts)
+    assert :ok = Postgres.storage_up(opts)
     start_supervised!({MigrationRepo, opts})
     migrations = migration_modules()
     # No platform is started against this database. The migration Repo is the
@@ -55,12 +56,12 @@ defmodule Samgita.Migration.PreservationTest do
     a = Ecto.UUID.generate()
 
     query(
-      "INSERT INTO projects (id,name,git_url,status,phase,config,inserted_at,updated_at) VALUES ($1,'history','git@github.com:old/repo.git','running','planning','{\"opaque\":\"keep\"}', '2026-01-02 03:04:05','2026-02-03 04:05:06')",
+      ~s|INSERT INTO projects (id,name,git_url,status,phase,config,inserted_at,updated_at) VALUES ($1,'history','git@github.com:old/repo.git','running','planning','{"opaque":"keep"}', '2026-01-02 03:04:05','2026-02-03 04:05:06')|,
       [uuid(p)]
     )
 
     query(
-      "INSERT INTO tasks (id,project_id,type,status,agent_id,attempts,payload,result,inserted_at,updated_at) VALUES ($1,$2,'legacy','completed','worker-17',9,'{\"nested\":[1,2]}','{\"outcome\":\"old\"}','2026-01-03','2026-02-04')",
+      ~s|INSERT INTO tasks (id,project_id,type,status,agent_id,attempts,payload,result,inserted_at,updated_at) VALUES ($1,$2,'legacy','completed','worker-17',9,'{"nested":[1,2]}','{"outcome":"old"}','2026-01-03','2026-02-04')|,
       [uuid(t), uuid(p)]
     )
 
@@ -80,7 +81,7 @@ defmodule Samgita.Migration.PreservationTest do
       "CREATE TABLE sm_memories (id uuid PRIMARY KEY, scope_id text, source_id text, payload jsonb)"
     )
 
-    query("INSERT INTO sm_memories VALUES ($1,$2,$3,'{\"opaque\":\"memory\"}')", [
+    query(~s|INSERT INTO sm_memories VALUES ($1,$2,$3,'{"opaque":"memory"}')|, [
       uuid(Ecto.UUID.generate()),
       p,
       t
@@ -140,7 +141,7 @@ defmodule Samgita.Migration.PreservationTest do
   end
 
   defp query(sql, params \\ []),
-    do: Ecto.Adapters.SQL.query!(MigrationRepo, sql, params, log: false)
+    do: SQL.query!(MigrationRepo, sql, params, log: false)
 
   defp uuid(id), do: Ecto.UUID.dump!(id)
 end

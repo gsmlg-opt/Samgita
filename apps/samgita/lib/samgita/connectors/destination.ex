@@ -31,8 +31,7 @@ defmodule Samgita.Connectors.Destination do
   defp uri(url) when is_binary(url) do
     uri = URI.parse(url)
 
-    if uri.scheme in ~w(ws wss) && is_binary(uri.host) && uri.host != "" &&
-         is_integer(uri.port) && uri.port in 1..65535 && uri.path == "/app-server" &&
+    if valid_location?(uri) &&
          is_nil(uri.userinfo) && is_nil(uri.query) && is_nil(uri.fragment),
        do: {:ok, uri},
        else: {:error, Failure.new(:permanent, :destination_not_approved)}
@@ -41,6 +40,11 @@ defmodule Samgita.Connectors.Destination do
   end
 
   defp uri(_), do: {:error, Failure.new(:permanent, :destination_not_approved)}
+
+  defp valid_location?(uri) do
+    uri.scheme in ~w(ws wss) && is_binary(uri.host) && uri.host != "" &&
+      is_integer(uri.port) && uri.port in 1..65_535 && uri.path == "/app-server"
+  end
 
   defp addresses(host) do
     case :inet.parse_address(String.to_charlist(host)) do
@@ -83,7 +87,7 @@ defmodule Samgita.Connectors.Destination do
     do: address |> Tuple.to_list() |> Enum.all?(&(is_integer(&1) && &1 in 0..255))
 
   defp valid_ip?(address) when is_tuple(address) and tuple_size(address) == 8,
-    do: address |> Tuple.to_list() |> Enum.all?(&(is_integer(&1) && &1 in 0..65535))
+    do: address |> Tuple.to_list() |> Enum.all?(&(is_integer(&1) && &1 in 0..65_535))
 
   defp valid_ip?(_), do: false
 end

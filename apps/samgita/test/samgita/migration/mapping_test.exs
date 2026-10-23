@@ -1,8 +1,9 @@
 defmodule Samgita.Migration.MappingTest do
   use Samgita.DataCase, async: false
   import Samgita.DomainFixtures
+  alias Ecto.Adapters.SQL
+  alias Samgita.Domain.{MigrationMapping, Project, Task, TaskAttempt}
   alias Samgita.{LegacyMapping, Platform, Principal, Projects, Repo, Tasks}
-  alias Samgita.Domain.{MigrationMapping, Project, Task}
 
   setup do
     {:ok, a} = Platform.status(Principal.operator())
@@ -64,7 +65,7 @@ defmodule Samgita.Migration.MappingTest do
     {:ok, repeated} = LegacyMapping.apply(Principal.operator(), command())
     assert repeated == result
     assert Repo.aggregate(MigrationMapping, :count) == mappings
-    refute Repo.exists?(from a in Samgita.Domain.TaskAttempt, where: a.project_id == ^p.id)
+    refute Repo.exists?(from a in TaskAttempt, where: a.project_id == ^p.id)
   end
 
   test "source changes and contradictory relationships require review rather than overwrite" do
@@ -113,7 +114,7 @@ defmodule Samgita.Migration.MappingTest do
     b = Repo.insert!(%Task{project_id: p.id, type: "legacy"})
     divergent = Repo.insert!(%Task{project_id: p.id, type: "legacy", depends_on_ids: [a.id]})
 
-    Ecto.Adapters.SQL.query!(
+    SQL.query!(
       Repo,
       "INSERT INTO task_dependencies (id,task_id,depends_on_id,inserted_at) VALUES ($1,$2,$3,now())",
       [
@@ -216,7 +217,7 @@ defmodule Samgita.Migration.MappingTest do
 
   defp legacy_task(task) do
     %{rows: [[row]]} =
-      Ecto.Adapters.SQL.query!(
+      SQL.query!(
         Repo,
         "SELECT to_jsonb(t) - ARRAY['title','description','state','version','adopted','execution_hold','required_capabilities','migration_metadata','accepted_at','fence_counter']::text[] FROM tasks t WHERE id = $1::uuid",
         [Ecto.UUID.dump!(task.id)]

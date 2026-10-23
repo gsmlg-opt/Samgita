@@ -12,7 +12,7 @@ defmodule SamgitaProtocolWebSocket.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: [
         {:samgita_protocol, path: "../samgita_protocol"},
-        {:bandit, "~> 1.12"},
+        {:bandit, "~> 1.13"},
         {:plug, "~> 1.19"},
         {:websock_adapter, "~> 0.6"},
         {:mint_web_socket, "~> 1.0"}

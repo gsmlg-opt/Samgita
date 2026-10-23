@@ -2,7 +2,8 @@ defmodule Samgita.LegacyMapping do
   @moduledoc "Resumable, secret-free previews of preserved rows. No execution or automatic adoption."
   import Ecto.Query
   import Ecto.Changeset
-  alias Samgita.{Commands, Params, Repositories, Repo}
+  alias Ecto.Adapters.SQL
+  alias Samgita.{Commands, Params, Repo, Repositories}
   alias Samgita.Domain.{MigrationMapping, ProjectRepository, Repository}
   @project_neutral ~w(description state version event_sequence migration_metadata)
   @task_neutral ~w(title description state version adopted execution_hold required_capabilities migration_metadata accepted_at fence_counter)
@@ -51,56 +52,61 @@ defmodule Samgita.LegacyMapping do
         if ctx.authority.owner != "none" || ctx.authority.admission_open,
           do: Commands.fail!(:execution_closed)
 
-        data =
-          Enum.map(rows(), fn row ->
-            mapping =
-              Repo.get_by(MigrationMapping,
-                source_table: row["source_table"],
-                source_id: row["source_id"]
-              )
-
-            cond do
-              mapping && mapping.source_digest != row["source_digest"] ->
-                hold_source_change!(row)
-                details = Map.put(mapping.details, "observed_source_digest", row["source_digest"])
-
-                mapping =
-                  if mapping.status == "source_changed" && mapping.details == details do
-                    mapping
-                  else
-                    mapping
-                    |> change(status: "source_changed", details: details)
-                    |> Repo.update!()
-                  end
-
-                public(mapping)
-
-              mapping ->
-                public(mapping)
-
-              true ->
-                target = if row["status"] == "ready", do: map_row!(row), else: nil
-                if !target, do: mark_conflict!(row)
-
-                mapping =
-                  %MigrationMapping{}
-                  |> change(
-                    source_table: row["source_table"],
-                    source_id: row["source_id"],
-                    source_digest: row["source_digest"],
-                    target_id: target,
-                    status: if(target, do: "mapped", else: "conflict"),
-                    details: row["details"]
-                  )
-                  |> Repo.insert!()
-
-                public(mapping)
-            end
-          end)
+        data = Enum.map(rows(), &map_source!/1)
 
         %{"data" => data}
       end
     )
+  end
+
+  defp map_source!(row) do
+    mapping =
+      Repo.get_by(MigrationMapping,
+        source_table: row["source_table"],
+        source_id: row["source_id"]
+      )
+
+    cond do
+      mapping && mapping.source_digest != row["source_digest"] ->
+        changed_source!(row, mapping)
+
+      mapping ->
+        public(mapping)
+
+      true ->
+        target = if row["status"] == "ready", do: map_row!(row), else: nil
+        if !target, do: mark_conflict!(row)
+
+        mapping =
+          %MigrationMapping{}
+          |> change(
+            source_table: row["source_table"],
+            source_id: row["source_id"],
+            source_digest: row["source_digest"],
+            target_id: target,
+            status: if(target, do: "mapped", else: "conflict"),
+            details: row["details"]
+          )
+          |> Repo.insert!()
+
+        public(mapping)
+    end
+  end
+
+  defp changed_source!(row, mapping) do
+    hold_source_change!(row)
+    details = Map.put(mapping.details, "observed_source_digest", row["source_digest"])
+
+    mapping =
+      if mapping.status == "source_changed" && mapping.details == details do
+        mapping
+      else
+        mapping
+        |> change(status: "source_changed", details: details)
+        |> Repo.update!()
+      end
+
+    public(mapping)
   end
 
   @doc false
@@ -111,7 +117,7 @@ defmodule Samgita.LegacyMapping do
       do: Commands.fail!(:conflict, %{reason: "mapping_review_required"})
 
     %{rows: [[source]]} =
-      Ecto.Adapters.SQL.query!(
+      SQL.query!(
         Repo,
         "SELECT to_jsonb(t) - $1::text[] FROM tasks t WHERE id = $2::uuid",
         [@task_neutral, Ecto.UUID.dump!(task.id)]
@@ -168,11 +174,7 @@ defmodule Samgita.LegacyMapping do
         refs = graph[task["id"]]
         edge_ids = for {id, dep} <- edges, id == task["id"], do: dep
 
-        conflict =
-          Enum.sort(edge_ids) != Enum.sort(task["depends_on_ids"] || []) ||
-            Enum.any?(refs, fn ref ->
-              !tasks_by_id[ref] || tasks_by_id[ref]["project_id"] != task["project_id"]
-            end) || cycle?(task["id"], graph, MapSet.new(), MapSet.new())
+        conflict = relationship_conflict?(task, refs, edge_ids, tasks_by_id, graph)
 
         details = %{
           "state" => @tasks[task["status"]],
@@ -187,9 +189,19 @@ defmodule Samgita.LegacyMapping do
     project_rows ++ task_rows
   end
 
+  defp relationship_conflict?(task, refs, edge_ids, tasks_by_id, graph) do
+    Enum.sort(edge_ids) != Enum.sort(task["depends_on_ids"] || []) ||
+      Enum.any?(refs, fn ref ->
+        foreign_reference?(tasks_by_id[ref], task)
+      end) || cycle?(task["id"], graph, MapSet.new(), MapSet.new())
+  end
+
+  defp foreign_reference?(nil, _), do: true
+  defp foreign_reference?(referenced, task), do: referenced["project_id"] != task["project_id"]
+
   defp raw(table, excluded) do
     %{rows: rows} =
-      Ecto.Adapters.SQL.query!(
+      SQL.query!(
         Repo,
         "SELECT to_jsonb(t) - $1::text[] FROM " <> table <> " t ORDER BY id",
         [excluded]
@@ -245,7 +257,7 @@ defmodule Samgita.LegacyMapping do
     )
 
     %{rows: [[url]]} =
-      Ecto.Adapters.SQL.query!(Repo, "SELECT git_url FROM projects WHERE id = $1::uuid", [
+      SQL.query!(Repo, "SELECT git_url FROM projects WHERE id = $1::uuid", [
         Ecto.UUID.dump!(id)
       ])
 

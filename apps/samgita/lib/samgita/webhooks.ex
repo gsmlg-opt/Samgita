@@ -20,21 +20,23 @@ defmodule Samgita.Webhooks do
         )
 
       jobs =
-        Enum.map(ids, fn id ->
-          changeset =
-            Oban.Job.new(%{"webhook_id" => id, "event" => event, "payload" => payload},
-              worker: "Samgita.Workers.WebhookWorker",
-              queue: "legacy_webhooks",
-              max_attempts: 5
-            )
-
-          case enqueue.(changeset) do
-            {:ok, job} -> job.id
-            {:error, _} -> Commands.fail!(:enqueue_failed, %{webhook_id: id})
-          end
-        end)
+        Enum.map(ids, &quarantine_job!(&1, event, payload, enqueue))
 
       %{"state" => "quarantined", "job_ids" => jobs}
     end)
+  end
+
+  defp quarantine_job!(id, event, payload, enqueue) do
+    changeset =
+      Oban.Job.new(%{"webhook_id" => id, "event" => event, "payload" => payload},
+        worker: "Samgita.Workers.WebhookWorker",
+        queue: "legacy_webhooks",
+        max_attempts: 5
+      )
+
+    case enqueue.(changeset) do
+      {:ok, job} -> job.id
+      {:error, _} -> Commands.fail!(:enqueue_failed, %{webhook_id: id})
+    end
   end
 end

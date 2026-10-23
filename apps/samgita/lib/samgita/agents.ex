@@ -3,7 +3,7 @@ defmodule Samgita.Agents do
   import Ecto.Query
   import Ecto.Changeset
   alias Samgita.{Commands, Error, Events, Params, Principal, Projection, Repo}
-  alias Samgita.Domain.{Agent, AgentCredential, AgentConnection, ExecutionSession}
+  alias Samgita.Domain.{Agent, AgentConnection, AgentCredential, ExecutionSession}
   @read_roles ~w(observer worker manager reviewer)
   @fields ~w(name implementation enabled capacity advertised_capabilities approved_capabilities protocol protocol_version endpoint_metadata credential_ref)a
 
@@ -260,9 +260,8 @@ defmodule Samgita.Agents do
         c = Repo.get(AgentConnection, connection_id) || Commands.fail!(:not_found)
         a = Repo.get!(Agent, agent_id)
 
-        if c.agent_id != agent_id || c.state != "connected" || c.generation != a.generation ||
-             Commands.expired?(c.expires_at),
-           do: Commands.fail!(:unauthorized)
+        if !current_connection?(c, a),
+          do: Commands.fail!(:unauthorized)
 
         session =
           %ExecutionSession{}
@@ -280,6 +279,11 @@ defmodule Samgita.Agents do
         Projection.session(session)
       end
     )
+  end
+
+  defp current_connection?(connection, agent) do
+    connection.agent_id == agent.id && connection.state == "connected" &&
+      connection.generation == agent.generation && !Commands.expired?(connection.expires_at)
   end
 
   def list_sessions(principal, project_id, params \\ %{}) do
@@ -330,20 +334,18 @@ defmodule Samgita.Agents do
   defp valid_endpoint?(metadata) when is_map(metadata) do
     Enum.all?(Map.keys(metadata), &(&1 in ~w(url transport))) &&
       metadata["transport"] in [nil, "websocket", "stdio"] &&
-      case metadata["url"] do
-        nil ->
-          true
-
-        value when is_binary(value) ->
-          uri = URI.parse(value)
-
-          uri.scheme in ~w(https wss http ws) && is_binary(uri.host) && uri.userinfo == nil &&
-            uri.query == nil && uri.fragment == nil
-
-        _ ->
-          false
-      end
+      valid_endpoint_url?(metadata["url"])
   end
 
   defp valid_endpoint?(_), do: false
+  defp valid_endpoint_url?(nil), do: true
+
+  defp valid_endpoint_url?(value) when is_binary(value) do
+    uri = URI.parse(value)
+
+    uri.scheme in ~w(https wss http ws) && is_binary(uri.host) && uri.userinfo == nil &&
+      uri.query == nil && uri.fragment == nil
+  end
+
+  defp valid_endpoint_url?(_), do: false
 end

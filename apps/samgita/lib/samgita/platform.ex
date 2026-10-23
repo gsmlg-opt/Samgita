@@ -24,26 +24,13 @@ defmodule Samgita.Platform do
         Commands.expect!(ctx.authority, attrs)
         evidence = attrs["evidence"]
 
-        if !is_map(evidence) || evidence["legacy_fenced"] != true ||
-             evidence["effects_resolved"] != true ||
-             !is_binary(evidence["reference"]) || evidence["reference"] == "",
-           do: Commands.fail!(:invalid)
+        if !activation_evidence?(evidence),
+          do: Commands.fail!(:invalid)
 
         if ctx.authority.owner != "none" || legacy_jobs() != [],
           do: Commands.fail!(:execution_closed)
 
-        unresolved = Repo.exists?(from t in "tasks", where: is_nil(t.state) or t.execution_hold)
-
-        attempts =
-          Repo.exists?(
-            from a in "task_attempts",
-              where: a.state in ["leased", "running"] or not a.effects_resolved
-          )
-
-        mapping_conflicts =
-          Repo.exists?(from m in Samgita.Domain.MigrationMapping, where: m.status != "mapped")
-
-        if unresolved || attempts || mapping_conflicts,
+        if unresolved_state?(),
           do: Commands.fail!(:conflict, %{reason: "unmapped_or_unresolved_tasks"})
 
         keys = Application.get_env(:samgita, :lease_keys, %{})
@@ -79,6 +66,22 @@ defmodule Samgita.Platform do
         Projection.authority(authority)
       end
     )
+  end
+
+  defp activation_evidence?(evidence) when is_map(evidence) do
+    evidence["legacy_fenced"] == true && evidence["effects_resolved"] == true &&
+      is_binary(evidence["reference"]) && evidence["reference"] != ""
+  end
+
+  defp activation_evidence?(_), do: false
+
+  defp unresolved_state? do
+    Repo.exists?(from t in "tasks", where: is_nil(t.state) or t.execution_hold) ||
+      Repo.exists?(
+        from a in "task_attempts",
+          where: a.state in ["leased", "running"] or not a.effects_resolved
+      ) ||
+      Repo.exists?(from m in Samgita.Domain.MigrationMapping, where: m.status != "mapped")
   end
 
   def close(principal, attrs) do

@@ -17,18 +17,7 @@ defmodule Samgita.Repositories do
         Commands.expect!(ctx.project, attrs)
         if ctx.project.state not in ~w(active paused), do: Commands.fail!(:invalid_transition)
 
-        repository =
-          if id = attrs["repository_id"] do
-            if !Params.uuid?(id), do: Commands.fail!(:not_found)
-            Repo.get(Repository, id) || Commands.fail!(:not_found)
-          else
-            # Provider identity is not verified merely because a caller supplies it.
-            %Repository{}
-            |> cast(attrs, [:kind, :provider, :host, :display_name])
-            |> validate_inclusion(:kind, ["git", "local"])
-            |> validate_length(:display_name, max: 500)
-            |> Commands.insert!()
-          end
+        repository = repository!(attrs)
 
         if attrs["url"], do: add_alias!(repository.id, attrs["url"], "operator")
 
@@ -69,6 +58,20 @@ defmodule Samgita.Repositories do
     )
   end
 
+  defp repository!(%{"repository_id" => id}) when not is_nil(id) do
+    if !Params.uuid?(id), do: Commands.fail!(:not_found)
+    Repo.get(Repository, id) || Commands.fail!(:not_found)
+  end
+
+  defp repository!(attrs) do
+    # Provider identity is not verified merely because a caller supplies it.
+    %Repository{}
+    |> cast(attrs, [:kind, :provider, :host, :display_name])
+    |> validate_inclusion(:kind, ["git", "local"])
+    |> validate_length(:display_name, max: 500)
+    |> Commands.insert!()
+  end
+
   def list(principal, id, params \\ %{}) do
     Commands.read(principal, id, ~w(observer worker manager reviewer), fn _ ->
       {limit, offset} = Params.page(params)
@@ -105,31 +108,34 @@ defmodule Samgita.Repositories do
   end
 
   def normalize(url) when is_binary(url) and byte_size(url) <= 4096 do
-    cond do
-      Regex.match?(~r/^[\w.-]+@[\w.-]+:[^\s]+$/, url) ->
-        [_, host, path] = Regex.run(~r/^[\w.-]+@([\w.-]+):(.+)$/, url)
-        normalize_git(host, path)
-
-      true ->
-        uri = URI.parse(url)
-
-        cond do
-          uri.scheme in ~w(https http ssh git) && is_binary(uri.host) && uri.query == nil &&
-            uri.fragment == nil &&
-              (uri.userinfo == nil ||
-                 (uri.scheme == "ssh" && !String.contains?(uri.userinfo, ":"))) ->
-            normalize_git(uri.host, uri.path || "")
-
-          uri.scheme == nil && !String.contains?(url, "\n") && url != "" ->
-            "local:" <> url
-
-          true ->
-            :invalid
-        end
+    if Regex.match?(~r/^[\w.-]+@[\w.-]+:[^\s]+$/, url) do
+      [_, host, path] = Regex.run(~r/^[\w.-]+@([\w.-]+):(.+)$/, url)
+      normalize_git(host, path)
+    else
+      normalize_uri(url)
     end
   end
 
   def normalize(_), do: :invalid
+
+  defp normalize_uri(url) do
+    uri = URI.parse(url)
+
+    cond do
+      git_uri?(uri) -> normalize_git(uri.host, uri.path || "")
+      uri.scheme == nil && !String.contains?(url, "\n") && url != "" -> "local:" <> url
+      true -> :invalid
+    end
+  end
+
+  defp git_uri?(uri) do
+    uri.scheme in ~w(https http ssh git) && is_binary(uri.host) &&
+      uri.query == nil && uri.fragment == nil && safe_userinfo?(uri)
+  end
+
+  defp safe_userinfo?(%{userinfo: nil}), do: true
+  defp safe_userinfo?(%{scheme: "ssh", userinfo: value}), do: !String.contains?(value, ":")
+  defp safe_userinfo?(_), do: false
 
   defp normalize_git(host, path),
     do:

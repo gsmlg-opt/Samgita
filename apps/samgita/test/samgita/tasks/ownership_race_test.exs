@@ -128,21 +128,7 @@ defmodule Samgita.OwnershipRaceTest do
   defp race(commands) do
     caller = self()
 
-    workers =
-      Enum.map(commands, fn command ->
-        Task.async(fn ->
-          Sandbox.unboxed_run(Repo, fn ->
-            %{rows: [[backend]]} = Repo.query!("SELECT pg_backend_pid()")
-            send(caller, {:database_ready, self(), backend})
-
-            receive do
-              :go -> command.()
-            after
-              5_000 -> flunk("race barrier timed out")
-            end
-          end)
-        end)
-      end)
+    workers = Enum.map(commands, &start_barrier_worker(caller, &1))
 
     ready =
       for _ <- workers do
@@ -154,6 +140,21 @@ defmodule Samgita.OwnershipRaceTest do
     assert length(Enum.uniq(backends)) == length(workers)
     Enum.each(ready, fn {pid, _} -> send(pid, :go) end)
     Enum.map(workers, &Task.await(&1, 10_000))
+  end
+
+  defp start_barrier_worker(caller, command) do
+    Task.async(fn -> Sandbox.unboxed_run(Repo, fn -> run_after_barrier(caller, command) end) end)
+  end
+
+  defp run_after_barrier(caller, command) do
+    %{rows: [[backend]]} = Repo.query!("SELECT pg_backend_pid()")
+    send(caller, {:database_ready, self(), backend})
+
+    receive do
+      :go -> command.()
+    after
+      5_000 -> flunk("race barrier timed out")
+    end
   end
 
   defp resolve_winners(project, results) do

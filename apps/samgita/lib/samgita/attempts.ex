@@ -14,84 +14,96 @@ defmodule Samgita.Attempts do
       project_id,
       attrs,
       [operation: "attempt.claim:" <> to_string(task_id), roles: ["worker"], execution: true],
-      fn ctx ->
-        Commands.connection!(ctx)
-        Commands.require_hub!(ctx)
-        task = lock_task!(project_id, task_id)
-        Commands.expect!(task, attrs)
-
-        if Map.has_key?(task.migration_metadata || %{}, "source_updated_at"),
-          do: LegacyMapping.validate_task!(task)
-
-        if ctx.project.state != "active" || task.state != "open" || !task.adopted ||
-             task.execution_hold,
-           do: Commands.fail!(:invalid_transition)
-
-        agent = Repo.get!(Agent, ctx.principal.agent_id)
-        required = task.required_capabilities || []
-
-        if !Enum.all?(
-             required,
-             &(&1 in agent.approved_capabilities && &1 in agent.advertised_capabilities)
-           ),
-           do: Commands.fail!(:forbidden)
-
-        used =
-          Repo.aggregate(
-            from(a in TaskAttempt,
-              where: a.agent_id == ^agent.id and (a.state in ^@active or not a.effects_resolved)
-            ),
-            :count
-          )
-
-        if used >= agent.capacity, do: Commands.fail!(:capacity_exceeded)
-
-        if Repo.exists?(
-             from a in TaskAttempt, where: a.task_id == ^task.id and a.state in ^@active
-           ),
-           do: Commands.fail!(:conflict)
-
-        session = session!(ctx, attrs["session_id"])
-        key_id = signing_key!()
-        now = DateTime.utc_now()
-
-        number =
-          (Repo.one(from a in TaskAttempt, where: a.task_id == ^task.id, select: max(a.number)) ||
-             0) + 1
-
-        fence = task.fence_counter + 1
-
-        attempt = %TaskAttempt{
-          task_id: task.id,
-          project_id: project_id,
-          agent_id: agent.id,
-          session_id: session.id,
-          connection_id: ctx.principal.connection_id,
-          connection_generation: ctx.principal.generation,
-          number: number,
-          state: "leased",
-          fence: fence,
-          execution_epoch: ctx.authority.epoch,
-          proof_key_id: key_id,
-          lease_expires_at: DateTime.add(now, 120, :second),
-          start_deadline: DateTime.add(now, 30, :second),
-          execution_deadline: DateTime.add(now, 900, :second)
-        }
-
-        attempt =
-          attempt
-          |> change()
-          |> unique_constraint(:task_id, name: :one_active_attempt_per_task)
-          |> unique_constraint([:task_id, :number])
-          |> Commands.insert!()
-
-        current_task =
-          task |> change(fence_counter: fence, version: task.version + 1) |> Commands.update!()
-
-        event!(ctx, attempt, "attempt.claimed", nil, task, current_task)
-        Projection.attempt(attempt)
-      end
+      fn ctx -> claim_task!(ctx, project_id, task_id, attrs) end
     )
+  end
+
+  defp claim_task!(ctx, project_id, task_id, attrs) do
+    Commands.connection!(ctx)
+    Commands.require_hub!(ctx)
+    task = lock_task!(project_id, task_id)
+    Commands.expect!(task, attrs)
+
+    validate_claim_task!(ctx, task)
+
+    agent = Repo.get!(Agent, ctx.principal.agent_id)
+    validate_capabilities!(agent, task)
+
+    ensure_capacity!(agent)
+
+    if Repo.exists?(from a in TaskAttempt, where: a.task_id == ^task.id and a.state in ^@active),
+      do: Commands.fail!(:conflict)
+
+    session = session!(ctx, attrs["session_id"])
+    key_id = signing_key!()
+    now = DateTime.utc_now()
+
+    number =
+      (Repo.one(from a in TaskAttempt, where: a.task_id == ^task.id, select: max(a.number)) ||
+         0) + 1
+
+    fence = task.fence_counter + 1
+
+    attempt = %TaskAttempt{
+      task_id: task.id,
+      project_id: project_id,
+      agent_id: agent.id,
+      session_id: session.id,
+      connection_id: ctx.principal.connection_id,
+      connection_generation: ctx.principal.generation,
+      number: number,
+      state: "leased",
+      fence: fence,
+      execution_epoch: ctx.authority.epoch,
+      proof_key_id: key_id,
+      lease_expires_at: DateTime.add(now, 120, :second),
+      start_deadline: DateTime.add(now, 30, :second),
+      execution_deadline: DateTime.add(now, 900, :second)
+    }
+
+    attempt =
+      attempt
+      |> change()
+      |> unique_constraint(:task_id, name: :one_active_attempt_per_task)
+      |> unique_constraint([:task_id, :number])
+      |> Commands.insert!()
+
+    current_task =
+      task |> change(fence_counter: fence, version: task.version + 1) |> Commands.update!()
+
+    event!(ctx, attempt, "attempt.claimed", nil, task, current_task)
+    Projection.attempt(attempt)
+  end
+
+  defp validate_claim_task!(ctx, task) do
+    if Map.has_key?(task.migration_metadata || %{}, "source_updated_at"),
+      do: LegacyMapping.validate_task!(task)
+
+    if ctx.project.state != "active" || task.state != "open" || !task.adopted ||
+         task.execution_hold,
+       do: Commands.fail!(:invalid_transition)
+  end
+
+  defp validate_capabilities!(agent, task) do
+    required = task.required_capabilities || []
+
+    if !Enum.all?(
+         required,
+         &(&1 in agent.approved_capabilities && &1 in agent.advertised_capabilities)
+       ),
+       do: Commands.fail!(:forbidden)
+  end
+
+  defp ensure_capacity!(agent) do
+    used =
+      Repo.aggregate(
+        from(a in TaskAttempt,
+          where: a.agent_id == ^agent.id and (a.state in ^@active or not a.effects_resolved)
+        ),
+        :count
+      )
+
+    if used >= agent.capacity, do: Commands.fail!(:capacity_exceeded)
   end
 
   def start(principal, project_id, id, attrs) do
@@ -208,11 +220,7 @@ defmodule Samgita.Attempts do
       Commands.connection!(ctx)
       Commands.require_hub!(ctx)
 
-      if ctx.principal.agent_id != attempt.agent_id ||
-           ctx.authority.epoch != attempt.execution_epoch ||
-           attempt.state not in @active || expired?(attempt.lease_expires_at) ||
-           expired?(attempt.execution_deadline),
-         do: Commands.fail!(:ownership_lost)
+      if !rebindable?(ctx, attempt), do: Commands.fail!(:ownership_lost)
 
       if attempt.state == "leased" && expired?(attempt.start_deadline),
         do: Commands.fail!(:ownership_lost)
@@ -255,11 +263,7 @@ defmodule Samgita.Attempts do
       if attrs["effects_resolved"] != true || !evidence?(attrs["evidence_ref"]),
         do: Commands.fail!(:invalid)
 
-      if ctx.principal.kind != :operator do
-        if ctx.principal.agent_id != attempt.agent_id ||
-             !valid_proof?(attempt, attrs["proof"], :former),
-           do: Commands.fail!(:ownership_lost)
-      end
+      former_owner!(ctx, attempt, attrs["proof"])
 
       if attempt.effects_resolved, do: Commands.fail!(:conflict)
       now = DateTime.utc_now()
@@ -411,16 +415,37 @@ defmodule Samgita.Attempts do
     Commands.require_hub!(ctx)
 
     if ctx.project.state == "archived" || attempt.agent_id != ctx.principal.agent_id ||
-         attempt.connection_id != ctx.principal.connection_id ||
-         attempt.connection_generation != ctx.principal.generation ||
-         attempt.execution_epoch != ctx.authority.epoch || attempt.state not in @active ||
-         expired?(attempt.lease_expires_at) || expired?(attempt.execution_deadline),
+         !current_connection?(ctx, attempt) || !current_execution?(ctx, attempt),
        do: Commands.fail!(:ownership_lost)
 
     session!(ctx, attempt.session_id)
 
     if require_proof && !valid_proof?(attempt, proof, :current),
       do: Commands.fail!(:ownership_lost)
+  end
+
+  defp rebindable?(ctx, attempt) do
+    ctx.principal.agent_id == attempt.agent_id &&
+      ctx.authority.epoch == attempt.execution_epoch &&
+      attempt.state in @active && !expired?(attempt.lease_expires_at) &&
+      !expired?(attempt.execution_deadline)
+  end
+
+  defp former_owner!(%{principal: %{kind: :operator}}, _, _), do: :ok
+
+  defp former_owner!(ctx, attempt, proof) do
+    if ctx.principal.agent_id != attempt.agent_id || !valid_proof?(attempt, proof, :former),
+      do: Commands.fail!(:ownership_lost)
+  end
+
+  defp current_connection?(ctx, attempt) do
+    attempt.connection_id == ctx.principal.connection_id &&
+      attempt.connection_generation == ctx.principal.generation
+  end
+
+  defp current_execution?(ctx, attempt) do
+    attempt.execution_epoch == ctx.authority.epoch && attempt.state in @active &&
+      !expired?(attempt.lease_expires_at) && !expired?(attempt.execution_deadline)
   end
 
   defp proof_claims(attempt) do

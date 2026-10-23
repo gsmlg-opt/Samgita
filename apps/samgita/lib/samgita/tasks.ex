@@ -127,83 +127,7 @@ defmodule Samgita.Tasks do
       project_id,
       attrs,
       [operation: "task.transition:" <> to_string(id), roles: ["manager"], agent_ids: agent_ids],
-      fn ctx ->
-        writable_project!(ctx)
-        ensure_discovered!(ctx, id, agent_ids)
-        task = lock!(project_id, id)
-        Commands.expect!(task, attrs)
-
-        previous = task
-
-        case TaskTransitions.validate(task.state, attrs["state"]) do
-          :ok -> :ok
-          {:error, code} -> Commands.fail!(String.to_existing_atom(code))
-        end
-
-        active =
-          Repo.all(
-            from a in TaskAttempt,
-              where: a.task_id == ^task.id and a.state in ["leased", "running"],
-              order_by: a.id,
-              lock: "FOR UPDATE"
-          )
-
-        invalidating = attrs["state"] in ~w(open cancelled) && active != []
-
-        if invalidating do
-          for attempt <- active do
-            closed =
-              attempt
-              |> change(
-                state: "cancelled",
-                terminal_at: DateTime.utc_now(),
-                version: attempt.version + 1
-              )
-              |> Commands.update!()
-
-            Events.append!(
-              project_id,
-              "attempt.closed",
-              ctx,
-              "attempt",
-              attempt.id,
-              %{
-                "task_id" => task.id,
-                "reason" => "management_transition"
-              },
-              previous: attempt,
-              current: closed
-            )
-          end
-        end
-
-        # Reopening is a management action; it cannot resolve a remote effect.
-        task =
-          task
-          |> change(
-            state: attrs["state"],
-            version: task.version + 1,
-            accepted_at: nil,
-            execution_hold: task.execution_hold || invalidating,
-            fence_counter: task.fence_counter + if(invalidating, do: 1, else: 0)
-          )
-          |> Commands.update!()
-
-        Events.append!(
-          project_id,
-          "task.transitioned",
-          ctx,
-          "task",
-          task.id,
-          %{
-            "state" => task.state
-          },
-          previous: previous,
-          current: task
-        )
-
-        Projection.task(task)
-      end
+      fn ctx -> transition_task!(ctx, project_id, id, attrs, agent_ids) end
     )
   end
 
@@ -216,61 +140,7 @@ defmodule Samgita.Tasks do
       project_id,
       attrs,
       [operation: "task.adopt:" <> to_string(id), roles: ["manager"], agent_ids: agent_ids],
-      fn ctx ->
-        writable_project!(ctx)
-        ensure_discovered!(ctx, id, agent_ids)
-        task = lock!(project_id, id)
-        Commands.expect!(task, attrs)
-        if task.adopted, do: Commands.fail!(:conflict)
-        previous = task
-        LegacyMapping.validate_task!(task)
-        preserve_parent!(task, attrs)
-
-        if attrs["effects_resolved"] != true || attrs["content_reviewed"] != true ||
-             attrs["relationships_reviewed"] != true || !nonempty?(attrs["evidence_ref"]),
-           do: Commands.fail!(:invalid)
-
-        if task.state not in ~w(open blocked awaiting_review failed cancelled),
-          do: Commands.fail!(:invalid_transition)
-
-        if task.execution_hold, do: Commands.operator!(ctx.principal)
-
-        if Repo.exists?(
-             from a in TaskAttempt,
-               where:
-                 a.task_id == ^task.id and
-                   (a.state in ["leased", "running"] or not a.effects_resolved)
-           ),
-           do: Commands.fail!(:conflict)
-
-        if task.migration_metadata["relationship_conflict"], do: Commands.fail!(:invalid)
-        changeset = task |> editable(attrs) |> validate_required([:title])
-        reviewed = apply_changes(changeset)
-        parent!(project_id, reviewed.parent_task_id, task.id)
-        relationship_checks!(reviewed)
-
-        metadata =
-          (task.migration_metadata || %{})
-          |> Map.put("adoption_evidence_ref", attrs["evidence_ref"])
-          |> Map.put("requires_reconciliation", false)
-
-        task =
-          changeset
-          |> change(
-            adopted: true,
-            execution_hold: false,
-            version: task.version + 1,
-            migration_metadata: metadata
-          )
-          |> Commands.update!()
-
-        Events.append!(project_id, "task.adopted", ctx, "task", task.id, %{},
-          previous: previous,
-          current: task
-        )
-
-        Projection.task(task)
-      end
+      fn ctx -> adopt_task!(ctx, project_id, id, attrs, agent_ids) end
     )
   end
 
@@ -282,83 +152,7 @@ defmodule Samgita.Tasks do
       project_id,
       attrs,
       [operation: "task.decide:" <> to_string(id), roles: ["reviewer"]],
-      fn ctx ->
-        writable_project!(ctx)
-        task = lock!(project_id, id)
-        Commands.expect!(task, attrs)
-
-        previous = task
-
-        if task.state != "awaiting_review" || task.execution_hold || !task.adopted,
-          do: Commands.fail!(:invalid_transition)
-
-        kind = attrs["kind"]
-        verdict = attrs["verdict"]
-
-        if kind not in ~w(review acceptance) || verdict not in ~w(approve reject),
-          do: Commands.fail!(:invalid)
-
-        if kind == "acceptance" && verdict == "approve" do
-          review =
-            Repo.one(
-              from d in DecisionRecord,
-                where: d.task_id == ^id and d.kind == "review",
-                order_by: [desc: d.inserted_at, desc: d.id],
-                limit: 1
-            )
-
-          if !review || review.verdict != "approve" ||
-               review.metadata["task_version"] != task.version - 1,
-             do: Commands.fail!(:invalid_transition)
-        end
-
-        attempt = latest_attempt(task.id)
-
-        decision = %DecisionRecord{
-          project_id: project_id,
-          task_id: task.id,
-          attempt_id: attempt && attempt.id,
-          author_agent_id: ctx.principal.agent_id,
-          kind: kind,
-          verdict: verdict,
-          summary: attrs["summary"],
-          metadata: %{"task_version" => task.version}
-        }
-
-        decision =
-          decision |> change() |> validate_length(:summary, max: 4_000) |> Commands.insert!()
-
-        state =
-          cond do
-            verdict == "reject" -> "open"
-            kind == "acceptance" -> "accepted"
-            true -> "awaiting_review"
-          end
-
-        accepted_at = if state == "accepted", do: DateTime.utc_now(), else: nil
-
-        task =
-          task
-          |> change(state: state, accepted_at: accepted_at, version: task.version + 1)
-          |> Commands.update!()
-
-        Events.append!(
-          project_id,
-          "task.decision_recorded",
-          ctx,
-          "task",
-          task.id,
-          %{
-            "decision_id" => decision.id,
-            "kind" => kind,
-            "verdict" => verdict
-          },
-          previous: previous,
-          current: task
-        )
-
-        Projection.task(task) |> Map.put("decision", Projection.decision(decision))
-      end
+      fn ctx -> decide_task!(ctx, project_id, id, attrs) end
     )
   end
 
@@ -370,71 +164,306 @@ defmodule Samgita.Tasks do
       project_id,
       attrs,
       [operation: "task.artifact:" <> to_string(id), roles: ~w(worker manager)],
-      fn ctx ->
-        writable_project!(ctx)
-        task = lock!(project_id, id)
-        Commands.expect!(task, attrs)
+      fn ctx -> add_artifact!(ctx, project_id, id, attrs) end
+    )
+  end
 
-        attempt =
-          if attrs["attempt_id"] do
-            if !Params.uuid?(attrs["attempt_id"]), do: Commands.fail!(:invalid)
+  defp transition_task!(ctx, project_id, id, attrs, agent_ids) do
+    writable_project!(ctx)
+    ensure_discovered!(ctx, id, agent_ids)
+    task = lock!(project_id, id)
+    Commands.expect!(task, attrs)
 
-            Repo.get_by(TaskAttempt,
-              id: attrs["attempt_id"],
-              project_id: project_id,
-              task_id: task.id
-            ) || Commands.fail!(:not_found)
-          end
+    previous = task
 
-        if ctx.principal.kind == :agent do
-          member =
-            Repo.get_by!(Samgita.Domain.ProjectAgent,
-              project_id: project_id,
-              agent_id: ctx.principal.agent_id
-            )
+    case TaskTransitions.validate(task.state, attrs["state"]) do
+      :ok -> :ok
+      {:error, code} -> Commands.fail!(String.to_existing_atom(code))
+    end
 
-          if "manager" not in member.roles &&
-               (!attempt || attempt.agent_id != ctx.principal.agent_id),
-             do: Commands.fail!(:forbidden)
-        end
+    active =
+      Repo.all(
+        from a in TaskAttempt,
+          where: a.task_id == ^task.id and a.state in ["leased", "running"],
+          order_by: a.id,
+          lock: "FOR UPDATE"
+      )
 
-        artifact = %ArtifactReference{
-          project_id: project_id,
-          task_id: task.id,
-          attempt_id: attempt && attempt.id,
-          created_by_agent_id: ctx.principal.agent_id
-        }
+    invalidating = attrs["state"] in ~w(open cancelled) && active != []
 
-        if !safe_locator?(attrs["locator"]) || !safe_metadata?(Map.get(attrs, "metadata", %{})),
-          do: Commands.fail!(:invalid)
-
-        artifact =
-          artifact
-          |> cast(attrs, [:kind, :locator, :digest, :metadata])
-          |> validate_required([:kind, :locator])
-          |> validate_length(:kind, max: 100)
-          |> validate_length(:locator, max: 4_000)
-          |> validate_length(:digest, max: 256)
-          |> Commands.insert!()
-
-        current = task |> change(version: task.version + 1) |> Commands.update!()
+    if invalidating do
+      for attempt <- active do
+        closed =
+          attempt
+          |> change(
+            state: "cancelled",
+            terminal_at: DateTime.utc_now(),
+            version: attempt.version + 1
+          )
+          |> Commands.update!()
 
         Events.append!(
           project_id,
-          "task.artifact_added",
+          "attempt.closed",
           ctx,
-          "task",
-          task.id,
+          "attempt",
+          attempt.id,
           %{
-            "artifact_reference_id" => artifact.id
+            "task_id" => task.id,
+            "reason" => "management_transition"
           },
-          previous: task,
-          current: current
+          previous: attempt,
+          current: closed
+        )
+      end
+    end
+
+    # Reopening is a management action; it cannot resolve a remote effect.
+    task =
+      task
+      |> change(
+        state: attrs["state"],
+        version: task.version + 1,
+        accepted_at: nil,
+        execution_hold: task.execution_hold || invalidating,
+        fence_counter: task.fence_counter + if(invalidating, do: 1, else: 0)
+      )
+      |> Commands.update!()
+
+    Events.append!(
+      project_id,
+      "task.transitioned",
+      ctx,
+      "task",
+      task.id,
+      %{
+        "state" => task.state
+      },
+      previous: previous,
+      current: task
+    )
+
+    Projection.task(task)
+  end
+
+  defp adopt_task!(ctx, project_id, id, attrs, agent_ids) do
+    writable_project!(ctx)
+    ensure_discovered!(ctx, id, agent_ids)
+    task = lock!(project_id, id)
+    Commands.expect!(task, attrs)
+    if task.adopted, do: Commands.fail!(:conflict)
+    previous = task
+    LegacyMapping.validate_task!(task)
+    preserve_parent!(task, attrs)
+
+    validate_adoption!(attrs)
+
+    if task.state not in ~w(open blocked awaiting_review failed cancelled),
+      do: Commands.fail!(:invalid_transition)
+
+    if task.execution_hold, do: Commands.operator!(ctx.principal)
+
+    if Repo.exists?(
+         from a in TaskAttempt,
+           where:
+             a.task_id == ^task.id and
+               (a.state in ["leased", "running"] or not a.effects_resolved)
+       ),
+       do: Commands.fail!(:conflict)
+
+    if task.migration_metadata["relationship_conflict"], do: Commands.fail!(:invalid)
+    changeset = task |> editable(attrs) |> validate_required([:title])
+    reviewed = apply_changes(changeset)
+    parent!(project_id, reviewed.parent_task_id, task.id)
+    relationship_checks!(reviewed)
+
+    metadata =
+      (task.migration_metadata || %{})
+      |> Map.put("adoption_evidence_ref", attrs["evidence_ref"])
+      |> Map.put("requires_reconciliation", false)
+
+    task =
+      changeset
+      |> change(
+        adopted: true,
+        execution_hold: false,
+        version: task.version + 1,
+        migration_metadata: metadata
+      )
+      |> Commands.update!()
+
+    Events.append!(project_id, "task.adopted", ctx, "task", task.id, %{},
+      previous: previous,
+      current: task
+    )
+
+    Projection.task(task)
+  end
+
+  defp decide_task!(ctx, project_id, id, attrs) do
+    writable_project!(ctx)
+    task = lock!(project_id, id)
+    Commands.expect!(task, attrs)
+
+    previous = task
+
+    reviewable!(task)
+
+    kind = attrs["kind"]
+    verdict = attrs["verdict"]
+
+    validate_verdict!(kind, verdict)
+
+    if kind == "acceptance" && verdict == "approve", do: require_review!(task, id)
+
+    attempt = latest_attempt(task.id)
+
+    decision = %DecisionRecord{
+      project_id: project_id,
+      task_id: task.id,
+      attempt_id: attempt && attempt.id,
+      author_agent_id: ctx.principal.agent_id,
+      kind: kind,
+      verdict: verdict,
+      summary: attrs["summary"],
+      metadata: %{"task_version" => task.version}
+    }
+
+    decision =
+      decision |> change() |> validate_length(:summary, max: 4_000) |> Commands.insert!()
+
+    state =
+      cond do
+        verdict == "reject" -> "open"
+        kind == "acceptance" -> "accepted"
+        true -> "awaiting_review"
+      end
+
+    accepted_at = if state == "accepted", do: DateTime.utc_now(), else: nil
+
+    task =
+      task
+      |> change(state: state, accepted_at: accepted_at, version: task.version + 1)
+      |> Commands.update!()
+
+    Events.append!(
+      project_id,
+      "task.decision_recorded",
+      ctx,
+      "task",
+      task.id,
+      %{
+        "decision_id" => decision.id,
+        "kind" => kind,
+        "verdict" => verdict
+      },
+      previous: previous,
+      current: task
+    )
+
+    Projection.task(task) |> Map.put("decision", Projection.decision(decision))
+  end
+
+  defp add_artifact!(ctx, project_id, id, attrs) do
+    writable_project!(ctx)
+    task = lock!(project_id, id)
+    Commands.expect!(task, attrs)
+
+    attempt = artifact_attempt!(attrs["attempt_id"], project_id, task)
+
+    artifact_owner!(ctx, project_id, attempt)
+
+    artifact = %ArtifactReference{
+      project_id: project_id,
+      task_id: task.id,
+      attempt_id: attempt && attempt.id,
+      created_by_agent_id: ctx.principal.agent_id
+    }
+
+    if !safe_locator?(attrs["locator"]) || !safe_metadata?(Map.get(attrs, "metadata", %{})),
+      do: Commands.fail!(:invalid)
+
+    artifact =
+      artifact
+      |> cast(attrs, [:kind, :locator, :digest, :metadata])
+      |> validate_required([:kind, :locator])
+      |> validate_length(:kind, max: 100)
+      |> validate_length(:locator, max: 4_000)
+      |> validate_length(:digest, max: 256)
+      |> Commands.insert!()
+
+    current = task |> change(version: task.version + 1) |> Commands.update!()
+
+    Events.append!(
+      project_id,
+      "task.artifact_added",
+      ctx,
+      "task",
+      task.id,
+      %{
+        "artifact_reference_id" => artifact.id
+      },
+      previous: task,
+      current: current
+    )
+
+    Projection.artifact(artifact)
+  end
+
+  defp reviewable!(task) do
+    if task.state != "awaiting_review" || task.execution_hold || !task.adopted,
+      do: Commands.fail!(:invalid_transition)
+  end
+
+  defp validate_verdict!(kind, verdict) do
+    if kind not in ~w(review acceptance) || verdict not in ~w(approve reject),
+      do: Commands.fail!(:invalid)
+  end
+
+  defp validate_adoption!(attrs) do
+    if attrs["effects_resolved"] != true || attrs["content_reviewed"] != true ||
+         attrs["relationships_reviewed"] != true || !nonempty?(attrs["evidence_ref"]),
+       do: Commands.fail!(:invalid)
+  end
+
+  defp require_review!(task, id) do
+    review =
+      Repo.one(
+        from d in DecisionRecord,
+          where: d.task_id == ^id and d.kind == "review",
+          order_by: [desc: d.inserted_at, desc: d.id],
+          limit: 1
+      )
+
+    if !review || review.verdict != "approve" ||
+         review.metadata["task_version"] != task.version - 1,
+       do: Commands.fail!(:invalid_transition)
+  end
+
+  defp artifact_attempt!(attempt_id, project_id, task) do
+    if attempt_id do
+      if !Params.uuid?(attempt_id), do: Commands.fail!(:invalid)
+
+      Repo.get_by(TaskAttempt,
+        id: attempt_id,
+        project_id: project_id,
+        task_id: task.id
+      ) || Commands.fail!(:not_found)
+    end
+  end
+
+  defp artifact_owner!(ctx, project_id, attempt) do
+    if ctx.principal.kind == :agent do
+      member =
+        Repo.get_by!(Samgita.Domain.ProjectAgent,
+          project_id: project_id,
+          agent_id: ctx.principal.agent_id
         )
 
-        Projection.artifact(artifact)
-      end
-    )
+      if "manager" not in member.roles &&
+           (!attempt || attempt.agent_id != ctx.principal.agent_id),
+         do: Commands.fail!(:forbidden)
+    end
   end
 
   defp preserve_parent!(task, attrs) do

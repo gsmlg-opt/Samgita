@@ -3,6 +3,7 @@ defmodule Samgita.SecurityRaceTest do
   import Samgita.DomainFixtures
   alias Ecto.Adapters.SQL.Sandbox
   alias Samgita.{Agents, Attempts, Error, Platform, Principal, Repo, Tasks}
+  alias Samgita.Domain.TaskAttempt
 
   test "credential revocation serializes with a claim and later writes are denied" do
     {project, agent, principal, session, task, current} =
@@ -109,7 +110,7 @@ defmodule Samgita.SecurityRaceTest do
              match?({:error, %Error{code: :execution_closed}}, hd(results))
 
     Sandbox.unboxed_run(Repo, fn ->
-      a = Repo.get!(Samgita.Domain.TaskAttempt, attempt["id"])
+      a = Repo.get!(TaskAttempt, attempt["id"])
       assert a.state == "expired"
       refute a.effects_resolved
       {:ok, held} = Tasks.get(Principal.operator(), project["id"], task["id"])
@@ -147,21 +148,7 @@ defmodule Samgita.SecurityRaceTest do
   defp race(commands) do
     parent = self()
 
-    jobs =
-      Enum.map(commands, fn command ->
-        Task.async(fn ->
-          Sandbox.unboxed_run(Repo, fn ->
-            %{rows: [[backend]]} = Ecto.Adapters.SQL.query!(Repo, "SELECT pg_backend_pid()", [])
-            send(parent, {:ready, self(), backend})
-
-            receive do
-              :go -> command.()
-            after
-              5_000 -> flunk("concurrency barrier timed out")
-            end
-          end)
-        end)
-      end)
+    jobs = Enum.map(commands, &start_barrier_worker(parent, &1))
 
     backends =
       Enum.map(jobs, fn job ->
@@ -175,5 +162,20 @@ defmodule Samgita.SecurityRaceTest do
     assert length(Enum.uniq(backends)) == length(commands)
     Enum.each(jobs, &send(&1.pid, :go))
     Enum.map(jobs, &Task.await(&1, 10_000))
+  end
+
+  defp start_barrier_worker(parent, command) do
+    Task.async(fn -> Sandbox.unboxed_run(Repo, fn -> run_after_barrier(parent, command) end) end)
+  end
+
+  defp run_after_barrier(parent, command) do
+    %{rows: [[backend]]} = Repo.query!("SELECT pg_backend_pid()", [])
+    send(parent, {:ready, self(), backend})
+
+    receive do
+      :go -> command.()
+    after
+      5_000 -> flunk("concurrency barrier timed out")
+    end
   end
 end

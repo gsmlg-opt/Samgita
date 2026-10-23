@@ -74,27 +74,9 @@ defmodule Samgita.Projects do
           ]
 
         restore = ctx.project.state == "archived" && state == "paused"
-
-        if restore do
-          Commands.operator!(principal)
-
-          if !is_binary(attrs["reason"]) || String.trim(attrs["reason"]) == "",
-            do: Commands.fail!(:invalid)
-        end
-
+        if restore, do: validate_restore!(principal, attrs)
         if !valid && !restore, do: Commands.fail!(:invalid_transition)
-
-        if state == "archived" do
-          unresolved =
-            Repo.exists?(
-              from a in "task_attempts",
-                where:
-                  a.project_id == type(^id, :binary_id) and
-                    (a.state in ["leased", "running"] or not a.effects_resolved)
-            )
-
-          if unresolved, do: Commands.fail!(:conflict, %{reason: "unresolved_execution"})
-        end
+        if state == "archived", do: require_resolved_execution!(id)
 
         project =
           ctx.project
@@ -109,6 +91,25 @@ defmodule Samgita.Projects do
         Projection.project(project)
       end
     )
+  end
+
+  defp validate_restore!(principal, attrs) do
+    Commands.operator!(principal)
+
+    if !is_binary(attrs["reason"]) || String.trim(attrs["reason"]) == "",
+      do: Commands.fail!(:invalid)
+  end
+
+  defp require_resolved_execution!(id) do
+    unresolved =
+      Repo.exists?(
+        from a in "task_attempts",
+          where:
+            a.project_id == type(^id, :binary_id) and
+              (a.state in ["leased", "running"] or not a.effects_resolved)
+      )
+
+    if unresolved, do: Commands.fail!(:conflict, %{reason: "unresolved_execution"})
   end
 
   def get(principal, id) do

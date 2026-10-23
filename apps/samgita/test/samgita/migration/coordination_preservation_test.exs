@@ -1,5 +1,6 @@
 defmodule Samgita.Migration.CoordinationPreservationTest do
   use ExUnit.Case, async: false
+  alias Ecto.Adapters.{Postgres, SQL}
   alias Samgita.MigrationRepo
   @migrations Path.expand("../../../priv/repo/migrations", __DIR__)
 
@@ -19,7 +20,7 @@ defmodule Samgita.Migration.CoordinationPreservationTest do
         log: false
       )
 
-    assert :ok = Ecto.Adapters.Postgres.storage_up(opts)
+    assert :ok = Postgres.storage_up(opts)
     start_supervised!({MigrationRepo, opts})
 
     modules =
@@ -87,9 +88,9 @@ defmodule Samgita.Migration.CoordinationPreservationTest do
         if version == 20_261_022_000_002, do: module
       end)
 
-    assert_raise RuntimeError, ~r/forward-only/, fn -> apply(migration_module, :down, []) end
+    assert_raise RuntimeError, ~r/forward-only/, fn -> migration_module.down() end
   end
 
-  defp query(sql, args \\ []), do: Ecto.Adapters.SQL.query!(MigrationRepo, sql, args, log: false)
+  defp query(sql, args \\ []), do: SQL.query!(MigrationRepo, sql, args, log: false)
   defp uuid(id), do: Ecto.UUID.dump!(id)
 end
