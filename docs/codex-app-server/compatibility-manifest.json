@@ -1897,12 +1897,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/feedback-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:feedback/upload",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing."
+      ],
       "params": {
         "$ref": "#/definitions/FeedbackUploadParams"
       },
@@ -1924,16 +1928,24 @@
         "source_line": 1371,
         "variant": "FeedbackUpload"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:56",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:72",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:94",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:109",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "feedback/upload"
     },
     {
@@ -15767,12 +15779,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/feedback-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:feedback/upload",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15780,16 +15796,24 @@
       "schema": "v2/FeedbackUploadResponse.json",
       "schema_sha256": "d23cb7bfa94f59fbb423b1e042239ac1b6dc344be15c5efc69ef04badff01a91",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:56",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:72",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:94",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:109",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "feedback/upload"
     },
     {
@@ -121292,105 +121316,153 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FeedbackUploadParams.json#/properties/classification",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing."
+      ],
       "nullable": false,
       "pointer": "/properties/classification",
       "required": true,
       "schema": "v2/FeedbackUploadParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:56",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:72",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:94",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:109",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "classification"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FeedbackUploadParams.json#/properties/extraLogFiles",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing."
+      ],
       "nullable": true,
       "pointer": "/properties/extraLogFiles",
       "required": false,
       "schema": "v2/FeedbackUploadParams.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:56",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:72",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:94",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:109",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "extraLogFiles"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FeedbackUploadParams.json#/properties/includeLogs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing."
+      ],
       "nullable": false,
       "pointer": "/properties/includeLogs",
       "required": false,
       "schema": "v2/FeedbackUploadParams.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:56",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:72",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:94",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:109",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "includeLogs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FeedbackUploadParams.json#/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing."
+      ],
       "nullable": true,
       "pointer": "/properties/reason",
       "required": false,
       "schema": "v2/FeedbackUploadParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:56",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:72",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:94",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:109",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reason"
     },
     {
@@ -121474,27 +121546,39 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/feedback-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FeedbackUploadResponse.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Six private CONNECT/TLS feedback cases qualify event HTTP acceptance, explicit owned attachment, core 429/503 no replay, partial acceptance after attachment exhaustion, overload and explicit capacity recovery. No real Sentry storage/account/rollout prompt hash, includeLogs=true, arbitrary tags/paths, active cancellation/restart or complete OS/transport profiles are qualified. Null-only/omitted fields remain missing."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/FeedbackUploadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:56",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:72",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:94",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:109",
+          "apps/samgita_codex_driver/test/native_feedback_profile.exs:139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {

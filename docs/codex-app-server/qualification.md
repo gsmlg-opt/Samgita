@@ -1800,3 +1800,22 @@ OS/race/replay profiles remain unqualified. The generated ledger has **408
 implemented / 67 missing / 10 blocked** requirements, **1,031 implemented /
 5,590 missing** contracts and **zero verified**. No complete compatibility,
 hosted success, real account, A11 closure or publication is inferred.
+
+## Native feedback HTTP acceptance and partial effects
+
+Six [feedback cases](feedback-qualification.md) pass **6/0** at each required
+seed, 12.6/12.3s. The actual immutable executable performs its production
+CONNECT/TLS and Sentry envelope serialization against a private, non-forwarding
+HTTPS dependency. No real telemetry is uploaded. Exact event/attachment count,
+identity/content, core 429/503 rejection without replay, three attachment
+attempts after core acceptance and three-permit overload/capacity recovery all
+pass. HTTP acceptance is distinct from durable external storage or task acceptance.
+
+Python AST, namespace preflight, compile, format and strict Credo pass without
+repair or changed deadlines. All owned PIDs and sockets are closed before
+scratch removal. CI explicitly selects this six-case profile. Two native entries
+and five positive fields gain scoped `implemented` evidence; null/omitted and
+unexercised fields remain missing. The ledger has **410 implemented / 65 missing /
+10 blocked** requirements and **1,036 implemented / 5,585 missing** contracts,
+with **zero verified**. Full-source aggregate/hosted, external and A11 gates
+remain separate and incomplete.
