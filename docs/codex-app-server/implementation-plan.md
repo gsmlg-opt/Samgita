@@ -35,7 +35,7 @@ manifest inventories 477 message/result/envelope/lifecycle requirements plus
 entry-specific behavior evidence is attached; generic transport and synthetic
 schema examples cannot advance them to verified.
 
-Implemented native `Wire`, `Schema`, source-semantic gates and redacted `Failure`,
+Implemented native `Wire`, `Schema`, source-semantic gates and redacted `Error`,
 with an independent `Session` and stdio/WebSocket/WebSocket-over-UDS transports.
 Requests retain complete native envelopes, typed IDs and uncertainty; interactions
 require explicit generation-bound replies. Deterministic model fixtures exercise
@@ -47,6 +47,14 @@ Reviewable code checkpoints: `e0e4d6b` (immutable schemas, native validation and
 inventory) and `9566fda6` (independent driver, actual-binary journeys and outside
 consumer). Their passing checks are recorded in qualification; neither is a
 full-compatibility or release milestone.
+
+The following repair extracts bounded helpers to satisfy strict Credo without
+changing checks. The newly introduced, unpublished native exception is named
+`SamgitaProtocolCodex.Error`; callers of the earlier checkpoint's `Failure` name
+must update that reference. Fifteen additional actual-binary tests cover selected
+file, process, configuration, skill, discovery and persistent thread behaviors.
+The manifest remains incomplete; this evidence does not verify every method or
+parameter variant.
 
 Next concrete work: attach narrowly scoped behavior evidence to manifest entries,
 expand real-binary family and interaction scenarios (including enabled/disabled

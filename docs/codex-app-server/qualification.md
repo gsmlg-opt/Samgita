@@ -104,6 +104,52 @@ Those failures were reproduced and corrected before the passing runs above:
 
 ## Unfinished acceptance
 
+### Hosted checkpoint failure and scoped repair
+
+The actual hosted run for `923b2901f36dbdb2bc6ee3c6fd4dcac0c0ee8f9d`,
+[39928300713](https://github.com/gsmlg-opt/Samgita/actions/runs/39928300713),
+**failed** strict Credo with 23 findings in the new native/driver code and tests.
+Dependency installation, compilation and formatting passed. Database tests,
+restart/rollback, package consumers, assets, legacy scan, Dialyzer, dependency
+audit and production assembly were **skipped**. They cannot count as passing
+qualification for that source.
+
+The repair extracts validation, framing and handshake helpers and renames the
+new unpublished native exception from `Failure` to `Error`. It adds no exclusions,
+disabled checks or configuration suppressions. The package interfaces retain
+complete native wire data and redacted error inspection.
+
+`apps/samgita_codex_driver/test/method_families_test.exs` adds 15 real-binary cases
+using private homes/workspaces and the immutable Linux executable. They exercise
+selected file CRUD/watch/error behavior; command execution; spawned process input,
+streaming, output bounds, kill and duplicate IDs; layered config, writes and version
+conflicts; skill toggle and extra roots; model pagination/capability discovery and
+unauthenticated account reads; persistent thread history/items/fork/revert,
+subscription, archive and deletion. These cover 40 request methods and five
+notification methods at selected variants, without qualifying their whole surface.
+
+Two initial fixture assertions failed and were corrected against matching source:
+provider capability discovery advertises image/search upper bounds even when an
+individual turn disables search; enabling a skill removes its explicit disabled
+config entry rather than persisting `enabled=true`. The actual disabled state,
+restored configuration and enabled listing are asserted. No runtime behavior or
+release gate was weakened.
+
+The coordinator reran these combined-source checks after both repairs:
+
+| Check | Command | Observed result |
+| --- | --- | --- |
+| Root formatting | `devenv shell --no-tui -- env MIX_ENV=test mix format --check-formatted` | Passed |
+| Strict Credo | `devenv shell --no-tui -- env MIX_ENV=test mix credo --strict` | Passed, 232 files / 69 checks, no issues |
+| Native package | In `apps/samgita_protocol_codex`, inside Devenv: `mix test && mix compile --warnings-as-errors && mix format --check-formatted` | 29 passed; compilation/format passed |
+| Complete driver package | In `apps/samgita_codex_driver`, inside Devenv: `CODEX_BINARY="$PWD/../../tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl" mix test && mix compile --warnings-as-errors && mix format --check-formatted` | 63 passed; compilation/format passed |
+| Inventory | `python3 scripts/codex/inventory.py --check` | Passed; all 477 entries / 6,549 contracts remain missing |
+| Inventory regressions | `python3 -m unittest discover -s scripts/codex -p 'test_*.py' -v` | 9 passed |
+| Whitespace | `git diff --check` | Passed |
+
+These are current local repair checks. A subsequent hosted run must qualify the
+pushed revision; the earlier hosted failure is retained above.
+
 | Layer | Remaining gate |
 | --- | --- |
 | Manifest evidence | 0 verified, 477 missing message/lifecycle entries; 0 verified, 6,549 missing field contracts. Generic implementation and generated fixtures do not advance end-to-end evidence states. |
