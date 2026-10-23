@@ -1,0 +1,170 @@
+SAMGITA: COMPLETE CODEX APP-SERVER COMPATIBILITY
+Implementation plan and acceptance contract — 2026-10-23
+
+1. GOAL AND INTERPRETATION
+
+Implement complete, version-pinned Codex app-server CLIENT compatibility in Samgita's reusable packages and integrate it into Samgita. Synapsis and other consumers must be able to control a real Codex app-server without losing protocol operations, parameters, responses, notifications, or server-initiated interactions.
+
+“Complete” means the entire advertised protocol surface and observable lifecycle semantics of the selected upstream release, including capability-gated and experimental behavior when explicitly enabled. It does not mean recreating Codex's inference engine, guaranteeing identical generated text, or implementing every future Codex release. It also does not mean implementing a drop-in Codex server on top of Sigma in this task. The portable implementation must nevertheless be reusable by Sigma/Synapsis without depending on Samgita's database or Web application.
+
+Support a native, lossless Codex surface alongside optional Samgita-normalized conveniences. Do not force the whole upstream protocol through a small common denominator. A method being transported as arbitrary JSON is necessary for extensibility but is not evidence that its behavior has been implemented and tested.
+
+2. VERIFIED STARTING POINT
+
+Repository: https://github.com/gsmlg-opt/Samgita
+Reviewed revision: 4fe354f2ce916aa32517c361a171b8878bf6ca84. Inspect actual HEAD before editing.
+
+The existing samgita_protocol_codex package pins rust-v0.163.0 and is mainly a pure mapping layer. It covers thread/start, thread/read, thread/resume, turn/start, turn/steer, turn/interrupt; notifications turn/started, turn/completed, item/agentMessage/delta; and handshake helpers. Even these have field restrictions: thread/start accepts empty parameters and turn input is a text subset. Approvals and complete tool/item lifecycles are absent. The caller owns transport and pending-request lifecycle. Thirteen package tests do not demonstrate real Codex conformance.
+
+The broader Samgita reliability repairs and hosted CI are green at this revision. This does not establish Codex compatibility. A11 raw LiveView credential telemetry remains a separate production confidentiality blocker. Do not feed real credentials through the affected UI or label the product production-ready merely because this compatibility work passes.
+
+Sources:
+https://github.com/gsmlg-opt/Samgita/blob/4fe354f2ce916aa32517c361a171b8878bf6ca84/apps/samgita_protocol_codex/README.md
+https://github.com/gsmlg-opt/Samgita/blob/4fe354f2ce916aa32517c361a171b8878bf6ca84/apps/samgita_protocol_codex/lib/samgita_protocol_codex.ex
+https://github.com/gsmlg-opt/Samgita/blob/4fe354f2ce916aa32517c361a171b8878bf6ca84/docs/redesign/qualification.md
+Official protocol reference: https://learn.chatgpt.com/docs/app-server
+Upstream source: https://github.com/openai/codex/tree/rust-v0.163.0/codex-rs/app-server
+
+3. COMPLETION CONTRACT
+
+Use rust-v0.163.0 as the initial explicit target, because that is the existing recorded baseline. Resolve its exact commit and executable artifact provenance. If this release cannot be obtained or the user chooses another version, record the reason and update the entire target contract before proceeding. Never silently use a newer executable with an older schema.
+
+Generate the authoritative method/type inventory from that release's supported schema-generation commands and inspect matching source/tests. Documentation alone may omit legacy, experimental, or dynamically gated operations. Inventory the whole advertised release surface, not just v2 methods that are easy to implement.
+
+Maintain a machine-readable compatibility manifest. Each entry records:
+- Direction: client request, server request, notification, response/error, or lifecycle rule.
+- Wire name and parameter/result variants, including optional, nullable, union and default semantics.
+- Version, legacy/experimental status, capabilities and prerequisites.
+- Implementation module, transport coverage, fixture/contract/scenario tests.
+- State: missing, implemented, verified, or blocked; evidence and residual limitations.
+
+All advertised entries need a defined tested outcome. For a disabled upstream capability, matching its disabled behavior is required; its enabled behavior also needs acceptance in an appropriate configured test profile. “Not needed by today's UI,” “raw passthrough exists,” “experimental,” and “needs credentials” are not grounds for marking a supported feature complete or out of scope.
+
+No blanket full-compatibility claim while required entries are missing or blocked. Any genuine target exclusions require explicit scope agreement, not unilateral redefinition by the implementer.
+
+4. ARCHITECTURE
+
+Keep three explicit boundaries, choosing package names after inspecting existing code:
+A. Protocol/schema layer: versioned wire contracts and lossless envelopes; no Repo, Endpoint, or process-launch dependencies.
+B. Codex driver/session layer: supervised connections, process ownership where applicable, request correlation, server requests, event delivery, timeouts and lifecycle reconciliation.
+C. Samgita integration: authorization, agent registration, durable task links, approvals, audit and user-facing presentation.
+
+Do not convert all Codex events into just agent-message deltas. Retain upstream payloads and identifiers for authorized consumers. Preserve missing versus null, IDs, error data, structured content, opaque fields and forward-compatible additions without atom exhaustion or secret logging. Offer typed/validated APIs without preventing faithful native access.
+
+Implement the pinned release's supported transports. At minimum, verify its actual stdio and WebSocket implementations and their guarantees. Stdio requires supervised process/port lifecycle and JSONL framing; WebSocket requires appropriate framing, control handling and authentication options. Do not invent a REST transport and call it upstream-compatible. Keep transport-specific startup/auth differences explicit.
+
+A remotely reachable Sigma /app-server is a separate native endpoint; do not replace its existing Web service architecture with a compulsory separate daemon. Independent consumers must be able to use the Codex driver without routing through Samgita.
+
+5. PHASES AND EXIT CRITERIA
+
+Phase 0 — Inventory, baseline and reproducible harness
+- Read AGENTS.md and current design documents; preserve current reliability fixes.
+- Pin executable/source/schema hashes and record supported build platforms.
+- Produce the complete manifest and a gap report against actual implementation.
+- Establish an isolated real Codex binary harness with temporary working directories and configuration, local fake services and a deterministic model-provider fixture where supported.
+- Keep protocol fixtures, scripted fake-server tests, and real-binary tests distinct.
+Exit: generated inventory is reproducible; every entry has an owner/module and planned evidence; a real process completes handshake and a representative round trip.
+
+Phase 1 — Complete wire representation and schema coverage
+- Replace restrictive field mappings with complete versioned contracts.
+- Support all request, response, error, notification and server-request variants.
+- Preserve current convenience APIs where possible; make breaking changes explicit.
+- Generate validators/types/fixtures from source rather than hand-maintaining an incomplete list.
+- Validate malformed input, union alternatives, optional fields, unknown fields, nested data, large payload limits and round trips.
+Exit: schema manifest and implementation match with no silent dropped fields; all advertised operations have accessible native entry points. This phase alone is not full behavioral completion.
+
+Phase 2 — Real driver and connection lifecycle
+- Implement initialization/capability negotiation in the correct order.
+- Support concurrent request correlation, out-of-order responses, streamed notifications, server-request replies and request-ID collisions across directions/connections.
+- Enforce deadlines and single settlement; clean state on send failure/disconnect/owned-process exit.
+- Bound buffering and slow-consumer behavior. Never silently discard approval requests or essential lifecycle events; expose overflow/recovery requirements.
+- Own and terminate only processes/resources created by this driver. Leave borrowed connections/resources intact.
+- Use pinned upstream guarantees for reconnection, resume and event recovery. If upstream cannot replay a notification, expose a gap rather than fabricate history.
+- A timed-out mutation may have executed. Do not resend it blindly. Local command IDs are not upstream idempotency guarantees.
+Exit: fault-injection and real-binary lifecycle scenarios pass; no pending-request leaks, orphan processes, accidental duplicate mutations, or false recovered state.
+
+Phase 3 — Full method families and full parameter surfaces
+Implement every family found in the manifest, not just the following illustrative categories:
+- Thread creation, reading, listing, history, resumption and all advertised thread lifecycle mutations.
+- Turns, steering, interruption, every input modality/content variant, configuration overrides and supported lifecycle transitions.
+- Models, configuration, account/authentication surfaces and any runtime capability discovery.
+- Tools, MCP, skills, applications/plugins, files/processes/search/review and other families actually advertised by the pinned release.
+- Experimental and legacy operations when enabled/advertised by that release.
+
+These category labels are not an asserted endpoint list. Derive exact names and semantics from pinned source. Do not fabricate methods from newer documentation.
+
+For every family, cover happy paths, invalid input/state, structured errors, server-side capability rejection, and response/event association. Text-only inputs and empty-parameter thread/start are not acceptable final restrictions.
+Exit: all request entries have behavior tests and preserved full payloads, not generic “send JSON” smoke tests only.
+
+Phase 4 — Server-initiated requests and complete event semantics
+- Implement all advertised approvals, user-input requests, elicitation, dynamic-tool interactions and other server-originated requests, including every response decision variant.
+- Dispatch unknown/new server requests explicitly; never silently approve or hang forever.
+- Preserve upstream identifiers and exact requested actions. Approval edits/new inputs need current authorization; stale/late responses must not authorize another request.
+- Support multiple pending interactions, cancellation, interrupted turns, reconnect reconciliation, denial and error outcomes.
+- Deliver the full item/tool lifecycle and all event variants in the manifest, with per-session ordering and truthful status.
+Exit: tools requiring approval can complete or be denied through the actual binary; no notification type is silently reduced to text or mistaken for task acceptance.
+
+Phase 5 — Samgita integration and portable consumers
+- Register Codex as a supported Agent runtime/driver using the ordinary registry and project assignment model.
+- Link Samgita tasks to Codex threads/turns without treating completion as project acceptance.
+- Expose complete native operations to authorized programmatic consumers, including Synapsis. Do not make a limited visual UI the only access path.
+- Integrate human/server interaction routing with existing authorization and durable audit. Do not widen permissions merely to make tests pass.
+- Provide independent Elixir consumer examples and tests without Samgita database/Web dependencies.
+- Use synthetic credentials. Avoid the known raw LiveView secret-entry path; do not assume parameter filtering sanitizes telemetry upstream.
+Exit: a standalone client and Samgita can each drive the same full contract; fake-Agent task workflows retain fencing, review and acceptance separation.
+
+Phase 6 — Conformance, adversarial tests and documentation
+Create layered evidence:
+1. Generated schema and fixture coverage for every manifest entry and variant.
+2. Scripted transport/fault tests for partial JSONL reads, coalesced messages, invalid frames, control frames, slow consumers, disconnects, late responses and process failures.
+3. Actual pinned Codex binary tests with deterministic local dependencies where possible.
+4. End-to-end Samgita integration tests proving approval/tool/input/task interactions.
+5. Explicit credential/environment-gated real-service tests for behavior that cannot be proven by local fixtures.
+
+For differential tests, compare native upstream calls and driver calls under equivalent isolated state. Normalize only nondeterministic identifiers/times; compare errors, side effects, ordering constraints and lifecycle outcomes. Do not require identical model prose. A fake Codex server proves adapter expectations, not Codex conformance.
+
+Tests needing unavailable credentials/services remain visibly blocked, not skipped-to-green compatibility proof. Complete all independent work, provide exact prerequisites, and resume outstanding acceptance when supplied. Do not create credentials, initiate paid production calls, or alter live projects without authorization.
+
+Phase 7 — Aggregate qualification and release
+- Run repository-required compilation, formatting, strict static checks, security audit, all scoped/regression suites, independent-package consumers, restart tests, assets and production assembly.
+- Run the compatibility manifest completeness gate and real-binary matrix in hosted CI, with bounded dependency-install/test timeouts and useful diagnostics.
+- Verify checks correspond to the final pushed source. If final executable changes invalidate prior evidence, rerun it.
+- Update design, implementation plan, compatibility matrix, operational guide and qualification record.
+- Commit and push on the existing branch. Do not create worktrees/branches, force-push or overwrite unrelated changes.
+- Publish only through the established workflow when the applicable release gates permit it. Existing A11/production or cutover blockers must remain visible; package qualification must not be misrepresented as whole-platform readiness.
+Exit: all required compatibility entries are verified, final hosted checks are green, package-consumer documentation is accurate, and release status is proven rather than inferred from a version bump.
+
+6. DEFINITION OF DONE
+
+The task is complete only when:
+- One exact upstream release/source/schema/executable combination is pinned.
+- All advertised protocol messages, field variants and relevant behavior rules are inventoried and covered.
+- Full native request/response, notification and server-request paths are usable, with no silent losses.
+- Real process/connection lifecycle is implemented and qualified, not left as an undocumented caller exercise.
+- Real Codex binary conformance evidence exists for the required behavior matrix; fake-only evidence is not substituted.
+- Experimental/legacy/conditional behavior is explicitly tested under the matching capability profiles, or remains blocked and prevents a full claim.
+- Independent consumers and Samgita integration pass; authorization/approval/task invariants remain intact.
+- All required final checks pass and required evidence is attached to the exact revision.
+- No outstanding blocker is labelled “done,” including unavailable external acceptance prerequisites.
+
+“Six methods work,” “all existing tests pass,” “schema generation works,” “generic forwarding supports everything,” and “local assembly succeeded” are not completion criteria.
+
+7. EXECUTION DISCIPLINE
+
+This is an implementation goal, not a request to stop after writing documents. Work through the phases until the completion contract is satisfied. Reassess the manifest after every phase; continue into remaining gaps without asking whether to proceed at each phase boundary.
+
+Maintain a resumable progress ledger with exact completed evidence, current work and blockers. If context or execution must stop, record the next concrete step and do not claim completion. If additional user authorization or unavailable credentials are genuinely required, continue independent work, report the precise prerequisite, and leave dependent gates blocked. Never weaken safety, compatibility requirements or tests to satisfy “until complete.”
+
+Use parallel work only across separable modules; serialize contract changes and final integration. Run regression tests for each changed behavior. Avoid unrelated refactors and outside-repository edits. Report upstream dependency defects accurately without silently replacing them with unsafe workarounds; any outside-repository write needs the applicable authorization.
+
+Final report: supported upstream version and hashes; manifest counts by verified/missing/blocked; code and test changes; exact test/CI links; actual real-binary and live-service evidence; residual platform blockers; commit/push/publication status. No fabricated duration estimate, no unsupported “100% compatible” claim.
+
+8. PLATFORM AND CAPABILITY QUALIFICATION
+
+Declare a supported deployment matrix covering the target transports, operating systems and feature/backend profiles. Do not claim every optional backend or platform-specific capability works everywhere. Correctly preserving an upstream unavailable/error response is valid behavior on an unsupported environment; however, testing only the unavailable branch does not qualify a supported feature's success path. Obtain evidence in an applicable environment before claiming that path verified.
+
+Include client notifications as well as server notifications in the inventory. Account for field-level experimental gating, not only method-level flags. Use the release source and behavior tests to settle disagreements with rolling documentation.
+
+Additional pinned upstream sources:
+https://raw.githubusercontent.com/openai/codex/rust-v0.163.0/codex-rs/app-server-protocol/src/protocol/common.rs
+https://raw.githubusercontent.com/openai/codex/rust-v0.163.0/codex-rs/app-server/README.md

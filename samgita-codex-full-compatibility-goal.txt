@@ -1,0 +1,31 @@
+CODEX EXECUTION GOAL — SAMGITA FULL APP-SERVER COMPATIBILITY
+
+Work in gsmlg-opt/Samgita. Read the accompanying samgita-codex-full-compatibility-plan.txt in full, together with AGENTS.md and existing docs/redesign/ documents. Implement that plan end to end. This request supersedes the previous limited Codex adapter subset as the final goal; retain the existing good architecture and reliability fixes.
+
+The target is complete CLIENT/DRIVER compatibility with a real, immutable, version-pinned Codex app-server, initially rust-v0.163.0. It is not a request to recreate Codex's model runtime or implement a counterfeit server. Do not silently expand into modifying Sigma, Synapsis or Backplane repositories. Make the driver independently reusable by those consumers.
+
+The current reviewed baseline is Samgita 4fe354f2. Inspect actual HEAD and working-tree changes first; do not revert newer work. The existing adapter is only a restricted six-method/three-notification mapping layer. Merely expanding that table, adding generic JSON forwarding or passing its existing tests does not satisfy this goal.
+
+Create and maintain repository documentation under docs/codex-app-server/ (reuse equivalent existing paths if appropriate): design.md, implementation-plan.md, goal.md, qualification.md, and a machine-readable compatibility manifest. These documents track execution; writing them is Phase 0, not task completion.
+
+Mandatory execution sequence:
+1. Pin exact upstream source, binary, schema and configuration. Generate and audit the complete manifest from pinned source/schema/tests, including all four message directions, every parameter/result variant, errors, legacy and experimental gates.
+2. Implement a lossless native protocol layer and retain convenience mappings above it. Preserve complete data and errors; remove text-only and empty-parameter restrictions where upstream supports more.
+3. Implement actual supported transports and supervised sessions/processes, handshake, bidirectional request correlation, full event delivery, deadlines, backpressure, cancellation, shutdown and truthful uncertain-outcome recovery.
+4. Implement every capability family and every server-initiated interaction in the manifest. Approvals, user input, tools and full item lifecycles must work end to end, not become discarded notifications.
+5. Integrate with Samgita's ordinary Agent/project/task model while preserving authorization, fencing and execution/review/acceptance separation. Provide independent consumer examples without database or Web dependencies.
+6. Build schema tests, deterministic fault-injection tests, real pinned Codex binary tests, Samgita end-to-end tests and explicit external/platform acceptance profiles. A mocked Codex server does not prove compatibility. Disabled/unavailable behavior and enabled success behavior must be distinguished.
+7. Complete the manifest and all applicable acceptance gates, run the required repository/hosted checks, update evidence and deliver commits/publication according to the established release policy.
+
+Execution rules:
+- Continue after each phase without asking whether to proceed. Do not stop at an MVP, plan, core happy path or green old test suite.
+- Fix recoverable in-scope problems and continue. Parallelize independent modules only after agreeing on shared contracts.
+- Keep a resumable progress ledger with verified results and the next concrete action. A context or execution interruption is not completion.
+- Genuine missing credentials, environment, authorization or product decisions may block dependent work. Complete independent work, report the exact minimal prerequisite, and retain the blocked status. Never invent evidence or weaken checks to finish.
+- No automatic approval of sensitive operations; no blind retry of possibly executed mutations; no fabricated event replay; no assumption that local command IDs create upstream deduplication.
+- Use isolated disposable workspaces and synthetic secrets. Do not run live production tasks, create credentials, incur unapproved charges, deploy, or change other repositories.
+- Do not create branches or worktrees unless asked. Preserve unrelated changes. Commit and push scoped work on the existing branch; never force-push. Publish only when appropriate and all required gates pass. Keep the existing A11 raw LiveView credential telemetry/platform-readiness blocker explicit and do not route real secrets through that path.
+
+Final completion requires all manifest entries and relevant field/behavior variants to have complete implementation and evidence against the declared upstream build and deployment matrix. Missing, skipped, mock-only or externally blocked requirements cannot be counted as verified. All required final local and hosted checks must correspond to the final source. The full goal stays incomplete if required acceptance remains blocked.
+
+At completion, report: pinned version/hashes; verified/missing/blocked manifest totals; implementation and regression summary; exact commands and real-binary/CI evidence; external acceptance and remaining platform risks; commit, push and release status with verified links. Claim full compatibility only for the precisely qualified version and deployment matrix, never for all future versions or unsupported upstream environments.
