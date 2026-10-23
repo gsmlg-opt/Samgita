@@ -382,9 +382,58 @@ Both follow-up workflows reached terminal states at
   full-evidence gate **failed as required**; the overall workflow is failed.
 
 The aggregate restart failure is outside this native-turn qualification unit.
-Implementation stops at this reported failure without silently repairing retained
-platform behavior. Later evidence-only documentation does not alter the tested
-runtime or test tree. The full compatibility goal remains incomplete.
+No retained platform behavior was changed to obtain a passing rerun. Aggregate
+[39967256870](https://github.com/gsmlg-opt/Samgita/actions/runs/39967256870), on
+`9684fdd4eaa0c830878aeee6663bdffc03025873`, subsequently passed compile, format,
+strict Credo, repeated root tests, fresh restart/rollback, protocol consumers,
+assets, legacy scan and Dialyzer. Its actual failed log reports
+`plug_crypto 2.2.0`, `EEF-CVE-2026-105963` / `GHSA-ffw9-w85g-f2vh`; production
+assembly was skipped. That success does not diagnose the preceding listener
+failure or qualify the retained local reused-database restart.
+
+## Initialization, image preparation and Unicode checkpoint
+
+Commit `c48dd08` adds two native schema tests, nine actual-binary raw
+transport cases, eight scripted initialization lifecycle cases and scoped
+manifest evidence mappings. Commit `9193def` adds eight actual-binary
+image/Unicode cases, plus one PNG-checker regression. See
+[initialization qualification](initialization-qualification.md) and
+[turn qualification](turn-input-qualification.md) for exact semantics and limits.
+The generator's notification self-prerequisite regression failed before the
+metadata repair and passed afterward. Pin/schema files, driver runtime,
+platform/database behavior and release gates are unchanged.
+
+The coordinator executed these checks on the final test tree based on `9684fdd`,
+using Devenv Elixir 1.18.5 / OTP 27.3.4.17 and the pinned executable. Mix/Devenv
+builds were serialized. Package commands run in their own directory;
+`CODEX_BINARY` is the absolute pinned executable and `MIX_ENV=test` is set for
+repository checks.
+
+| Check | Exact scope/command | Observed outcome |
+| --- | --- | --- |
+| Native schema package | `mix compile --warnings-as-errors`; `mix format --check-formatted`; `mix test` | 34 tests passed, seed `327254` |
+| Driver final test tree | `mix compile --warnings-as-errors`; `mix format --check-formatted`; `mix test` | 166 tests passed, seed `714912`; includes all 26 added driver cases |
+| Root formatting/static | `mix format --check-formatted`; `mix credo --strict` | Passed; 266 files, no Credo issues |
+| Outside consumer | `python3 scripts/codex/verify_consumer.py` | Fresh independent dependency resolution/compile/format and one real-binary test passed, seed `792498`; Repo, Phoenix and umbrella absent |
+| Generator/source consistency | `python3 scripts/codex/inventory.py --check` | Passed; 485 requirements and 6,621 contracts |
+| Python regressions | `python3 -m unittest discover -s scripts/codex -p 'test_*.py' -v` | 13 passed, including red/green prerequisite regression |
+| Full completeness | `python3 scripts/codex/inventory.py --check --require-verified` | Failed as required: all 485 requirements and 6,621 contracts remain missing for full acceptance |
+
+An initial full run passed 165 tests but exposed incorrectly addressed test-owner
+notifications in the new scripted helper. The helper now explicitly assigns the
+test process as Session owner. The focused eight cases, fresh outside consumer,
+root checks and final full suite above passed after that correction; no runtime
+workaround or suppressed log assertion was introduced. Review also replaced
+latest-global image capture with exactly one appended request per submission,
+added complete fixture PNG/pixel validation and corruption checks, and proved
+borrowed WS/UDS server survival with a fresh connection and protocol round trip.
+The 26 affected driver cases passed after these repairs, seed `999926`, plus
+strict Credo. Scoped initialization
+evidence is attached to its two manifest entries, with incomplete profiles and
+native Session notification access still recorded. No entry is promoted to full
+verification from selected examples. Hosted checks for this new test tree are
+recorded when they reach a terminal state; the preceding runs qualify their own
+source revisions only.
 
 | Layer | Remaining requirement |
 | --- | --- |
@@ -392,7 +441,7 @@ runtime or test tree. The full compatibility goal remains incomplete.
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory; A11 raw LiveView credential telemetry; target-specific egress/key/legacy-cutover and real backup/memory rehearsals |
-| Hosted | Latest aggregate fails the retained restart test with `:eaddrinuse`; its later gates are skipped; selected pinned Codex scenarios pass; full evidence gate remains red until actual acceptance is complete |
+| Hosted | Aggregate `39967256870` passes restart and fails dependency audit; the prior `:eaddrinuse` and local reused-database failures remain unresolved; selected pinned Codex scenarios pass; full evidence gate remains red |
 | Publication/deployment | No normal package/tag publication workflow currently exists; CD remains disabled; no package publication or deployment is claimed |
 
 New migrations are additive and refuse destructive down migration. Rollback

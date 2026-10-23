@@ -39,7 +39,12 @@ error data can contain secrets. Do not create atoms from wire values.
 ## Lifecycle and interactions
 
 Successful initialization sends the upstream `initialized` notification before
-making the Session ready. Requests correlate typed IDs in their connection
+making the Session ready. On the pinned server, the successful initialize request
+itself establishes readiness; client notifications are logging-only. The Session
+keeps its canonical send-before-ready policy and fails initialization if that
+send fails. Early, omitted or duplicate notifications do not change server state.
+See [initialization qualification](../../docs/codex-app-server/initialization-qualification.md).
+Requests correlate typed IDs in their connection
 generation; native server requests have a separate direction and opaque handles.
 Notifications/items retain their complete payloads in a bounded ordered pull
 queue. The owner receives one `:events_available` wakeup and drains the queue.
@@ -143,6 +148,12 @@ controlled `mcp://` mention test demonstrates optional-server startup waiting an
 explicit synthetic elicitation. Retention annotations are not compaction proof;
 mentions do not grant tool permission. These are selected stdio outcomes, with the
 remaining matrix recorded in the same qualification document.
+
+Image preparation tests add valid synthetic PNG resize/dimension/patch-budget
+evidence across inline, local and structured output, plus exact Unicode scalar
+text boundaries. Native item payloads remain distinct from prepared provider
+content. Image-byte limits, optional image features and actual model vision remain
+unqualified.
 
 `transport_real_codex_test.exs` verifies actual stdio, authenticated WS and UDS
 handshake/thread reads. Scripted tests separately inject framing, TLS, deadline,

@@ -7,8 +7,8 @@ The complete goal remains active. No phase below is a substitute for completion.
 | --- | --- | --- | --- |
 | 0 Inventory and harness | Pin/generation scripts; complete upstream schema/provenance; compatibility manifest; isolated real-binary harness; these documents | Reproducible inventory, exact hashes, real handshake and representative round trip | Implemented checkpoint; complete source/test audit remains |
 | 1 Native wire | Codex schema/codec/types and generated fixtures/tests; preserve convenience API | Complete accessible native surface; variant/malformed/lossless tests | Native layer implemented; per-entry behavior qualification remains |
-| 2 Driver lifecycle | Independent driver package; stdio/WebSocket/UDS; supervised sessions and bounded state | Real-binary and fault tests for correlation, deadlines, shutdown, overflow and uncertain outcomes | Scoped lifecycle implemented; full deployment matrix remains |
-| 3 Method families | Version-pinned operation APIs and scenarios for every manifest family | Full enabled/disabled/error behavior, field preservation and association | Two method-family suites implement 28 real-binary scenarios; three native turn suites add 23, followed by 15 output/settings/MCP scenarios; remaining methods and variants pending |
+| 2 Driver lifecycle | Independent driver package; stdio/WebSocket/UDS; supervised sessions and bounded state | Real-binary and fault tests for correlation, deadlines, shutdown, overflow and uncertain outcomes | Scoped lifecycle plus nine raw-transport initialization and eight scripted handshake cases implemented; full deployment matrix remains |
+| 3 Method families | Version-pinned operation APIs and scenarios for every manifest family | Full enabled/disabled/error behavior, field preservation and association | Two method-family suites implement 28 real-binary scenarios; three native turn suites add 23, followed by 15 output/settings/MCP and eight image/Unicode scenarios; remaining methods and variants pending |
 | 4 Server interactions/events | Explicit response APIs for all server requests; full event delivery | Real approval/tool/input paths, decisions, denial, stale replies and cancellation | Selected behavior across 9/11 interaction families; legacy approvals and remaining variants pending |
 | 5 Platform/consumers | Ordinary Agent/task/native APIs, durable authorized interactions, examples | Fencing/review preserved; platform and outside-umbrella consumer proof | Context, REST API and explicit Driver bridge implemented; selected two-Agent actual-binary journey, outside consumers and populated-database repeats passed; full contract remains incomplete |
 | 6 Conformance | Schema variants, faults, real binary, differential/platform/external profiles | Every required entry/variant evidenced or visibly blocked | Pending |
@@ -125,9 +125,11 @@ Next concrete work:
    The follow-up adds ten stable/experimental standalone `toolOutput` scenarios,
    four settings/validation scenarios and a paired controlled MCP-startup scenario.
    See the same qualification document for exact annotation, history, precedence
-   and startup-selection contracts. Next cover active-turn output steering,
-   structured output media/encrypted content, compaction retention, image
-   resizing/size limits, enabled app/plugin and deferred MCP routing, and
+   and startup-selection contracts. The image follow-up `9193def` adds eight real-binary
+   resize/preparation/Unicode-boundary cases across user and structured output.
+   Next cover active-turn output steering, remaining structured output
+   media/encrypted content, compaction retention, upstream image-byte limits,
+   enabled app/plugin and deferred MCP routing, and
    remaining environment/permission/turn overrides. Complete differential
    profiles and manifest-specific evidence. Preserve
    all 485 requirements and 6,621 contracts as missing until their full acceptance
@@ -143,14 +145,19 @@ Next concrete work:
    retained restart test with `:eaddrinuse` at `restart_reconcile_test.exs:138`.
    No platform repair is included; later aggregate gates were skipped. See the
    qualification record before resuming. All implementation remains incomplete.
-   A bounded source audit also found `initialized` is logging-only at the pinned
-   server; successful `initialize` establishes readiness. Before qualifying that
-   entry, test early/duplicate/omitted/parameter variants across stdio, WS and UDS,
-   plus Session notification-send failures and generation ordering. Clarify its
-   currently self-referential prerequisite; the source audit alone verifies no
-   manifest entry. Image resize, preparation-order and Unicode-boundary profiles
-   remain untested follow-up work; do not substitute client/fixture byte caps for
-   upstream limits.
+   Aggregate `39967256870` on `9684fdd` subsequently passed repeated platform
+   tests, restart, independent consumers, assets, legacy scan and Dialyzer, then
+   failed the retained Plug.Crypto audit; assembly was skipped. It does not erase
+   the prior restart failure or certify a repeated local scratch database.
+   Initialization commit `c48dd08` adds nine raw-transport actual-binary cases
+   covering early/duplicate/omitted/params
+   variants across stdio, capability-token WS and UDS under absent/false/true
+   negotiation. Eight scripted cases establish Session send-failure and
+   generation ordering. The generator regression corrects initialized's
+   self-prerequisite. See [initialization qualification](initialization-qualification.md).
+   Complete native client-notification access and remaining initialization and
+   deployment profiles still need assessment before advancing the entry to
+   verified. Do not substitute client/fixture byte caps for upstream image limits.
 3. Run final independent-package/consumer, root, restart/recovery, static,
    security, assets, release-assembly and hosted checks on the delivered source.
    Keep unavailable external profiles and A11 visibly incomplete. Publish only

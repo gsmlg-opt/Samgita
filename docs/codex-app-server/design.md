@@ -35,7 +35,13 @@ enter the A11-affected LiveView parameter path.
 ## Session contract
 
 Initialization, including experimental opt-in, follows the pinned upstream
-sequence. Separate incoming and outgoing request tables prevent bidirectional ID
+sequence. The upstream initialize request establishes readiness; its client
+`initialized` notification is logging-only. The Session validates the correlated
+success and sends the canonical notification before declaring local readiness.
+Early/duplicate notifications cannot initialize the server. See
+[initialization qualification](initialization-qualification.md) for the source,
+three-transport evidence, client failure policy and remaining profiles.
+Separate incoming and outgoing request tables prevent bidirectional ID
 collisions. A connection generation binds pending server interactions; late
 responses from another generation cannot approve a request. Every request settles
 at most once. Deadlines, send failures, disconnect and process exit clean pending
@@ -130,6 +136,12 @@ must not acquire that internal flag or an invented call ID. Exact `mcp://` menti
 make a named server a startup dependency before model tool binding. They do not
 grant permissions. Selected real-binary history, settings and controlled MCP
 startup evidence is recorded in the same qualification document.
+
+The image follow-up captures actual PNG preparation across inline, local and
+structured-output paths, including dimension/patch budgets and preparation before
+model-detail normalization. Exact Unicode scalar boundaries are distinct from
+client/fixture byte caps. These are request-construction outcomes; no provider
+vision, GiB-boundary or optional image-feature acceptance is implied.
 
 The official JSON exporter omits `getAuthStatus`, `getConversationSummary` and
 `gitDiffToRemote`, plus `rawResponse/completed` and `rawResponseItem/completed`.
