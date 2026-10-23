@@ -2784,12 +2784,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:mcpServer/resource/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/McpResourceReadParams"
       },
@@ -2811,27 +2815,35 @@
         "source_line": 1264,
         "variant": "McpResourceRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpServer/resource/read"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:mcpServer/tool/call",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/McpServerToolCallParams"
       },
@@ -2853,16 +2865,20 @@
         "source_line": 1284,
         "variant": "McpServerToolCall"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpServer/tool/call"
     },
     {
@@ -9635,12 +9651,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/mcpToolCall/progress",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Pinned source advertises this notification but has no discovered production emitter; incoming MCP progress is only logged by rmcp-client. Real native-emission success remains required and incomplete; scripted/codec peers do not establish it."
+      ],
       "params": {
         "$ref": "#/definitions/McpToolCallProgressNotification"
       },
@@ -9653,7 +9673,7 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -14243,12 +14263,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:mcpServer/resource/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14256,28 +14280,36 @@
       "schema": "v2/McpResourceReadResponse.json",
       "schema_sha256": "a48af749203ed3307414750d5070facb5ae6ef8b00253f1cfd9a8124bdfcfe41",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpServer/resource/read"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-direct-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:mcpServer/tool/call",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected direct local MCP tool/resource success and error behavior under negotiated2025-06-18 and2026-07-28. Hosted apps, streams, OAuth, continuation, all content/field variants and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14285,16 +14317,20 @@
       "schema": "v2/McpServerToolCallResponse.json",
       "schema_sha256": "04a59b2064922c37b0c49bdb2470b8fff08d943e56dba4f7280a6b34bfa52c68",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpServer/tool/call"
     },
     {
