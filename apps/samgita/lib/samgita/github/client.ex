@@ -43,7 +43,7 @@ defmodule Samgita.GitHub.Client do
            context.repository.full_name == repository.full_name &&
              context.repository.default_branch == repository.default_branch,
          {:ok, path, page, since} <- resource_path(repository, request),
-         {:ok, body, headers} <- request(context, :get, path, nil, context.token, opts),
+         {:ok, body, headers} <- fetch_resource(connection, context, request, path, opts),
          {:ok, items} <- items(body, request.kind),
          true <- Enum.all?(items, &valid_object?(&1, repository, context, request)),
          {:ok, next_page} <- next_page(headers, context.destination.api_url <> path, page) do
@@ -54,11 +54,36 @@ defmodule Samgita.GitHub.Client do
 
       {:ok, %{items: filter_since(items, since), next_page: next_page}}
     else
-      {:error, %Failure{}} = error -> error
-      _ -> error(:permanent, :repository_changed)
+      {:error, %Failure{class: :not_found, code: :object_absent}} ->
+        {:ok, %{items: [], next_page: nil, missing: true}}
+
+      {:error, %Failure{}} = error ->
+        error
+
+      _ ->
+        error(:permanent, :repository_changed)
     end
   rescue
     _ -> error(:permanent, :invalid_request)
+  end
+
+  # A targeted 404 is ambiguous until the installation and this exact repository
+  # are revalidated. List, installation and repository 404s retain access fencing.
+  defp fetch_resource(connection, context, resource, path, opts) do
+    case request(context, :get, path, nil, context.token, opts) do
+      {:error, %Failure{class: :permission, code: :resource_unavailable}}
+      when resource.kind not in @list_kinds ->
+        with {:ok, current} <- authorize(connection, context.repository.external_id, opts),
+             true <- current.repository == context.repository do
+          error(:not_found, :object_absent)
+        else
+          {:error, %Failure{}} = error -> error
+          _ -> error(:permanent, :repository_changed)
+        end
+
+      result ->
+        result
+    end
   end
 
   defp authorize(connection, external_id, opts) do
@@ -195,11 +220,7 @@ defmodule Samgita.GitHub.Client do
     case http.request(method, url, headers, body, transport_opts) do
       {:ok, %{status: status, headers: headers, body: body}}
       when is_integer(status) and is_binary(body) and is_list(headers) ->
-        cond do
-          byte_size(body) > @max_bytes -> error(:permanent, :response_too_large)
-          status in 200..299 -> successful_response(body, headers, now(opts))
-          true -> response_failure(status, headers, body, now(opts))
-        end
+        classify_response(status, headers, body, now(opts))
 
       {:error, :response_too_large} ->
         error(:permanent, :response_too_large)
@@ -216,6 +237,14 @@ defmodule Samgita.GitHub.Client do
     _, _ -> error(:retryable, :transport_unavailable)
   end
 
+  defp classify_response(status, headers, body, now) do
+    cond do
+      byte_size(body) > @max_bytes -> error(:permanent, :response_too_large)
+      status in 200..299 -> successful_response(body, headers, now)
+      true -> response_failure(status, headers, body, now)
+    end
+  end
+
   defp decode(body, headers) do
     case Jason.decode(body) do
       {:ok, decoded} when is_map(decoded) or is_list(decoded) -> {:ok, decoded, headers}
@@ -230,37 +259,18 @@ defmodule Samgita.GitHub.Client do
   end
 
   defp response_failure(status, headers, body, now) do
-    message =
-      case Jason.decode(body) do
-        {:ok, %{"message" => value}} when is_binary(value) -> String.downcase(value)
-        _ -> ""
-      end
-
+    message = response_message(body)
     retry = retry_after(headers, now)
 
-    rate_limited =
-      status == 429 ||
-        (status == 403 &&
-           (header(headers, "x-ratelimit-remaining") == "0" ||
-              header(headers, "retry-after") != nil ||
-              String.contains?(message, [
-                "secondary rate limit",
-                "rate limit exceeded",
-                "abuse detection"
-              ])))
-
     cond do
-      rate_limited ->
+      rate_limited?(status, headers, message) ->
         rate_limit_failure(retry, now)
 
       status == 401 ->
         error(:authentication, :authentication_failed)
 
-      status == 403 && String.contains?(message, "suspend") ->
-        error(:permission, :installation_suspended)
-
       status == 403 ->
-        error(:permission, :permission_denied)
+        permission_failure(message)
 
       status == 404 ->
         error(:permission, :resource_unavailable)
@@ -268,15 +278,46 @@ defmodule Samgita.GitHub.Client do
       status in 300..399 ->
         error(:permanent, :redirect_rejected)
 
-      status in [408, 425] || status >= 500 ->
-        with {:ok, retry} <- safe_retry_delay(retry, now) do
-          {:error, Failure.new(:retryable, :github_unavailable, retry)}
-        end
+      transient_status?(status) ->
+        transient_failure(retry, now)
 
       true ->
         error(:permanent, :request_rejected)
     end
   end
+
+  defp response_message(body) do
+    case Jason.decode(body) do
+      {:ok, %{"message" => value}} when is_binary(value) -> String.downcase(value)
+      _ -> ""
+    end
+  end
+
+  defp transient_failure(retry, now) do
+    with {:ok, retry} <- safe_retry_delay(retry, now) do
+      {:error, Failure.new(:retryable, :github_unavailable, retry)}
+    end
+  end
+
+  defp permission_failure(message) do
+    code =
+      if String.contains?(message, "suspend"),
+        do: :installation_suspended,
+        else: :permission_denied
+
+    error(:permission, code)
+  end
+
+  defp transient_status?(status), do: status in [408, 425] || status >= 500
+
+  defp rate_limited?(429, _, _), do: true
+
+  defp rate_limited?(403, headers, message) do
+    header(headers, "x-ratelimit-remaining") == "0" || header(headers, "retry-after") != nil ||
+      String.contains?(message, ["secondary rate limit", "rate limit exceeded", "abuse detection"])
+  end
+
+  defp rate_limited?(_, _, _), do: false
 
   defp rate_limit_failure(retry, now) do
     with {:ok, retry} <- safe_retry_delay(retry, now) do
@@ -302,17 +343,7 @@ defmodule Samgita.GitHub.Client do
   defp safe_retry_delay(_, _now), do: error(:permanent, :rate_limit_recovery_required)
 
   defp retry_after(headers, now) do
-    explicit =
-      case header(headers, "retry-after") do
-        nil ->
-          nil
-
-        value ->
-          case Integer.parse(value) do
-            {seconds, ""} when seconds >= 0 -> seconds
-            _ -> http_date_delay(value, now) || :invalid
-          end
-      end
+    explicit = explicit_retry_after(header(headers, "retry-after"), now)
 
     reset =
       if header(headers, "x-ratelimit-remaining") == "0",
@@ -322,6 +353,15 @@ defmodule Samgita.GitHub.Client do
     case Enum.reject([explicit, reset], &is_nil/1) do
       [] -> nil
       values -> if :invalid in values, do: :invalid, else: Enum.max(values)
+    end
+  end
+
+  defp explicit_retry_after(nil, _), do: nil
+
+  defp explicit_retry_after(value, now) do
+    case Integer.parse(value) do
+      {seconds, ""} when seconds >= 0 -> seconds
+      _ -> http_date_delay(value, now) || :invalid
     end
   end
 

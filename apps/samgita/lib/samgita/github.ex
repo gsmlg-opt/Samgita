@@ -4,8 +4,10 @@ defmodule Samgita.GitHub do
   import Ecto.Changeset
   alias Samgita.{Commands, Error, Events, Params, Principal, Projection, Repo}
   alias Samgita.GitHub.{Client, Failure, Payload, Secrets, Signature}
+  alias Samgita.Workers.GitHubReconcileWorker
 
   alias Samgita.Domain.{
+    DomainEvent,
     GitHubConnection,
     GitHubDelivery,
     GitHubObject,
@@ -21,51 +23,185 @@ defmodule Samgita.GitHub do
   @read_roles ~w(observer worker manager reviewer)
   @feeds ~w(issues pulls workflow_runs check_runs)
 
+  defp configure_command!(principal, attrs) do
+    Commands.operator!(principal)
+    previous = if attrs["id"], do: connection!(attrs["id"])
+    if previous, do: Commands.expect!(previous, attrs)
+    connection = previous || %GitHubConnection{}
+
+    if previous && identity_changed?(previous, attrs),
+      do: Commands.fail!(:invalid, %{reason: "identity_is_immutable"})
+
+    changeset =
+      connection
+      |> cast(attrs, [
+        :host,
+        :app_id,
+        :installation_id,
+        :private_key_ref,
+        :webhook_secret_ref,
+        :enabled
+      ])
+      |> validate_required([
+        :host,
+        :app_id,
+        :installation_id,
+        :private_key_ref,
+        :webhook_secret_ref
+      ])
+      |> validate_format(:host, ~r/\A[a-z0-9.-]+\z/)
+      |> validate_format(:app_id, ~r/\A[1-9][0-9]{0,19}\z/)
+      |> validate_format(:installation_id, ~r/\A[1-9][0-9]{0,19}\z/)
+      |> validate_format(:private_key_ref, ~r/\A[A-Za-z0-9_.:\/-]{1,200}\z/)
+      |> validate_format(:webhook_secret_ref, ~r/\A[A-Za-z0-9_.:\/-]{1,200}\z/)
+      |> put_change(:state, "configured")
+      |> put_change(:version, if(previous, do: previous.version + 1, else: 1))
+      |> put_change(:rate_limited_until, nil)
+
+    record = if previous, do: Commands.update!(changeset), else: Commands.insert!(changeset)
+    connection_projection(record)
+  end
+
+  defp identity_changed?(previous, attrs) do
+    Enum.any?(~w(host app_id installation_id), fn field ->
+      Map.has_key?(attrs, field) &&
+        attrs[field] != Map.get(previous, String.to_existing_atom(field))
+    end)
+  end
+
+  defp associate_command!(ctx, current, project_id, attrs, opts, verified) do
+    Commands.expect!(ctx.project, attrs)
+    if ctx.project.state not in ~w(active paused), do: Commands.fail!(:invalid_transition)
+    if verified.external_id != attrs["external_id"], do: Commands.fail!(:invalid)
+    repository = repository!(current, verified, attrs)
+
+    github = verified_binding!(current, repository, verified)
+
+    association =
+      Repo.get_by(ProjectRepository, project_id: project_id, repository_id: repository.id)
+
+    association =
+      association ||
+        Commands.insert!(
+          change(%ProjectRepository{}, project_id: project_id, repository_id: repository.id)
+        )
+
+    mapping =
+      Repo.get_by(GitHubProjectMapping,
+        github_repository_id: github.id,
+        project_id: project_id
+      )
+
+    ensure_mapping_limit!(mapping, github)
+
+    mapping =
+      save!(mapping, %GitHubProjectMapping{},
+        github_repository_id: github.id,
+        project_id: project_id,
+        project_repository_id: association.id,
+        enabled: true,
+        version: if(mapping, do: mapping.version + 1, else: 1)
+      )
+
+    project = ctx.project |> change(version: ctx.project.version + 1) |> Commands.update!()
+
+    Events.append!(
+      project_id,
+      "github.repository_verified",
+      ctx,
+      "repository",
+      repository.id,
+      %{
+        "connection_id" => current.id,
+        "github_repository_id" => github.id,
+        "external_id" => github.external_id
+      },
+      previous: ctx.project,
+      current: project
+    )
+
+    for kind <- @feeds, do: request_sync!(github, kind, "", opts)
+    mapping_projection(mapping, github) |> Map.put("project_version", project.version)
+  end
+
+  defp verified_binding!(current, repository, verified) do
+    github =
+      Repo.get_by(GitHubRepository,
+        connection_id: current.id,
+        external_id: verified.external_id
+      )
+
+    if github && github.repository_id != repository.id, do: Commands.fail!(:conflict)
+
+    values = [
+      connection_id: current.id,
+      repository_id: repository.id,
+      external_id: verified.external_id,
+      full_name: verified.full_name,
+      default_branch: verified.default_branch,
+      permissions: verified.permissions,
+      state: "verified",
+      verified_at: DateTime.utc_now(),
+      connection_version: current.version,
+      version: if(github, do: github.version + 1, else: 1)
+    ]
+
+    save!(github, %GitHubRepository{}, values)
+  end
+
+  defp ensure_mapping_limit!(mapping, github) do
+    if !mapping &&
+         Repo.aggregate(
+           from(m in GitHubProjectMapping, where: m.github_repository_id == ^github.id),
+           :count
+         ) >= 100,
+       do: Commands.fail!(:conflict, %{reason: "mapping_limit"})
+  end
+
+  defp disable_mapping!(principal, project_id, id, attrs, ctx) do
+    Commands.operator!(principal)
+    mapping = mapping!(project_id, id)
+    Commands.expect!(mapping, attrs)
+
+    if attrs["enabled"] != false,
+      do: Commands.fail!(:invalid, %{reason: "use_verified_association_to_enable"})
+
+    mapping =
+      mapping |> change(enabled: false, version: mapping.version + 1) |> Commands.update!()
+
+    Events.append!(
+      project_id,
+      "github.mapping_disabled",
+      Map.put(ctx, :notify, false),
+      "github_mapping",
+      id
+    )
+
+    mapping_projection(mapping, Repo.get!(GitHubRepository, mapping.github_repository_id))
+  end
+
+  defp reconcile_mapping!(principal, project_id, mapping_id, attrs) do
+    Commands.operator!(principal)
+
+    mapping = mapping!(project_id, mapping_id)
+    Commands.expect!(mapping, attrs)
+    github = Repo.get!(GitHubRepository, mapping.github_repository_id)
+    connection = connection!(github.connection_id)
+
+    if !mapping.enabled || usable(connection) != :ok || github.state != "verified" ||
+         github.connection_version != connection.version,
+       do: Commands.fail!(:forbidden)
+
+    syncs = for kind <- @feeds, do: request_sync!(github, kind, "")
+    %{"syncs" => Enum.map(syncs, &sync_projection/1)}
+  end
+
   def configure(principal, attrs) do
     attrs = Params.strings(attrs)
 
     transaction(fn ->
       Commands.run(principal, nil, attrs, [operation: "github.configure"], fn _ ->
-        Commands.operator!(principal)
-        previous = if attrs["id"], do: connection!(attrs["id"])
-        if previous, do: Commands.expect!(previous, attrs)
-        connection = previous || %GitHubConnection{}
-
-        if previous &&
-             Enum.any?(~w(host app_id installation_id), fn field ->
-               Map.has_key?(attrs, field) &&
-                 attrs[field] != Map.get(previous, String.to_existing_atom(field))
-             end),
-           do: Commands.fail!(:invalid, %{reason: "identity_is_immutable"})
-
-        changeset =
-          connection
-          |> cast(attrs, [
-            :host,
-            :app_id,
-            :installation_id,
-            :private_key_ref,
-            :webhook_secret_ref,
-            :enabled
-          ])
-          |> validate_required([
-            :host,
-            :app_id,
-            :installation_id,
-            :private_key_ref,
-            :webhook_secret_ref
-          ])
-          |> validate_format(:host, ~r/\A[a-z0-9.-]+\z/)
-          |> validate_format(:app_id, ~r/\A[1-9][0-9]{0,19}\z/)
-          |> validate_format(:installation_id, ~r/\A[1-9][0-9]{0,19}\z/)
-          |> validate_format(:private_key_ref, ~r/\A[A-Za-z0-9_.:\/-]{1,200}\z/)
-          |> validate_format(:webhook_secret_ref, ~r/\A[A-Za-z0-9_.:\/-]{1,200}\z/)
-          |> put_change(:state, "configured")
-          |> put_change(:version, if(previous, do: previous.version + 1, else: 1))
-          |> put_change(:rate_limited_until, nil)
-
-        record = if previous, do: Commands.update!(changeset), else: Commands.insert!(changeset)
-        connection_projection(record)
+        configure_command!(principal, attrs)
       end)
       |> unwrap!()
     end)
@@ -100,92 +236,7 @@ defmodule Samgita.GitHub do
          {:ok, verified} <-
            verify_association(connection, attrs["external_id"], opts) do
       transaction(fn ->
-        current = connection!(connection.id)
-
-        if current.version != connection.version || usable(current) != :ok,
-          do: Commands.fail!(:stale_version)
-
-        Commands.run(principal, project_id, attrs, [operation: "github.associate"], fn ctx ->
-          Commands.expect!(ctx.project, attrs)
-          if ctx.project.state not in ~w(active paused), do: Commands.fail!(:invalid_transition)
-          if verified.external_id != attrs["external_id"], do: Commands.fail!(:invalid)
-          repository = repository!(current, verified, attrs)
-
-          github =
-            Repo.get_by(GitHubRepository,
-              connection_id: current.id,
-              external_id: verified.external_id
-            )
-
-          if github && github.repository_id != repository.id, do: Commands.fail!(:conflict)
-
-          values = [
-            connection_id: current.id,
-            repository_id: repository.id,
-            external_id: verified.external_id,
-            full_name: verified.full_name,
-            default_branch: verified.default_branch,
-            permissions: verified.permissions,
-            state: "verified",
-            verified_at: DateTime.utc_now(),
-            connection_version: current.version,
-            version: if(github, do: github.version + 1, else: 1)
-          ]
-
-          github = save!(github, %GitHubRepository{}, values)
-
-          association =
-            Repo.get_by(ProjectRepository, project_id: project_id, repository_id: repository.id)
-
-          association =
-            association ||
-              Commands.insert!(
-                change(%ProjectRepository{}, project_id: project_id, repository_id: repository.id)
-              )
-
-          mapping =
-            Repo.get_by(GitHubProjectMapping,
-              github_repository_id: github.id,
-              project_id: project_id
-            )
-
-          if !mapping &&
-               Repo.aggregate(
-                 from(m in GitHubProjectMapping, where: m.github_repository_id == ^github.id),
-                 :count
-               ) >= 100,
-             do: Commands.fail!(:conflict, %{reason: "mapping_limit"})
-
-          mapping =
-            save!(mapping, %GitHubProjectMapping{},
-              github_repository_id: github.id,
-              project_id: project_id,
-              project_repository_id: association.id,
-              enabled: true,
-              version: if(mapping, do: mapping.version + 1, else: 1)
-            )
-
-          project = ctx.project |> change(version: ctx.project.version + 1) |> Commands.update!()
-
-          Events.append!(
-            project_id,
-            "github.repository_verified",
-            ctx,
-            "repository",
-            repository.id,
-            %{
-              "connection_id" => current.id,
-              "github_repository_id" => github.id,
-              "external_id" => github.external_id
-            },
-            previous: ctx.project,
-            current: project
-          )
-
-          for kind <- @feeds, do: request_sync!(github, kind, "", opts)
-          mapping_projection(mapping, github) |> Map.put("project_version", project.version)
-        end)
-        |> unwrap!()
+        associate_verified!(principal, project_id, attrs, opts, connection, verified)
       end)
     else
       {:ok, result} when is_map(result) -> {:ok, result}
@@ -194,30 +245,24 @@ defmodule Samgita.GitHub do
     end
   end
 
+  defp associate_verified!(principal, project_id, attrs, opts, connection, verified) do
+    current = connection!(connection.id)
+
+    if current.version != connection.version || usable(current) != :ok,
+      do: Commands.fail!(:stale_version)
+
+    Commands.run(principal, project_id, attrs, [operation: "github.associate"], fn ctx ->
+      associate_command!(ctx, current, project_id, attrs, opts, verified)
+    end)
+    |> unwrap!()
+  end
+
   def set_mapping(principal, project_id, id, attrs) do
     attrs = Params.strings(attrs)
 
     transaction(fn ->
       Commands.run(principal, project_id, attrs, [operation: "github.mapping:#{id}"], fn ctx ->
-        Commands.operator!(principal)
-        mapping = mapping!(project_id, id)
-        Commands.expect!(mapping, attrs)
-
-        if attrs["enabled"] != false,
-          do: Commands.fail!(:invalid, %{reason: "use_verified_association_to_enable"})
-
-        mapping =
-          mapping |> change(enabled: false, version: mapping.version + 1) |> Commands.update!()
-
-        Events.append!(
-          project_id,
-          "github.mapping_disabled",
-          Map.put(ctx, :notify, false),
-          "github_mapping",
-          id
-        )
-
-        mapping_projection(mapping, Repo.get!(GitHubRepository, mapping.github_repository_id))
+        disable_mapping!(principal, project_id, id, attrs, ctx)
       end)
       |> unwrap!()
     end)
@@ -294,7 +339,7 @@ defmodule Samgita.GitHub do
         ) || Commands.fail!(:not_found)
 
       if !Repo.exists?(
-           from e in Samgita.Domain.DomainEvent,
+           from e in DomainEvent,
              where:
                e.project_id == ^project_id and e.type == "github.reconciled" and
                  fragment("?->>'observation_id' = ?", e.data, ^id)
@@ -323,7 +368,7 @@ defmodule Samgita.GitHub do
         ) || Commands.fail!(:not_found)
 
       if !Repo.exists?(
-           from e in Samgita.Domain.DomainEvent,
+           from e in DomainEvent,
              where: e.id in ^row.event_ids and e.project_id == ^project_id
          ),
          do: Commands.fail!(:not_found)
@@ -346,18 +391,7 @@ defmodule Samgita.GitHub do
         attrs,
         [operation: "github.reconcile:#{mapping_id}"],
         fn _ ->
-          Commands.operator!(principal)
-          mapping = mapping!(project_id, mapping_id)
-          Commands.expect!(mapping, attrs)
-          github = Repo.get!(GitHubRepository, mapping.github_repository_id)
-          connection = connection!(github.connection_id)
-
-          if !mapping.enabled || usable(connection) != :ok || github.state != "verified" ||
-               github.connection_version != connection.version,
-             do: Commands.fail!(:forbidden)
-
-          syncs = for kind <- @feeds, do: request_sync!(github, kind, "")
-          %{"syncs" => Enum.map(syncs, &sync_projection/1)}
+          reconcile_mapping!(principal, project_id, mapping_id, attrs)
         end
       )
       |> unwrap!()
@@ -376,36 +410,7 @@ defmodule Samgita.GitHub do
          :ok <- Signature.verify(raw, signature, secret),
          {:ok, body} when is_map(body) <- Jason.decode(raw) do
       transaction(fn ->
-        current = connection!(connection_id)
-
-        if current.version != initial.version || usable(current) != :ok,
-          do: Commands.fail!(:forbidden)
-
-        digest = :crypto.hash(:sha256, raw) |> Base.encode16(case: :lower)
-
-        existing =
-          Repo.get_by(GitHubDelivery, connection_id: connection_id, delivery_id: delivery_id)
-
-        if existing do
-          if existing.body_digest != digest || existing.event_name != event_name,
-            do: Commands.fail!(:conflict, %{reason: "delivery_id_reused"})
-
-          Map.put(delivery_projection(existing), "duplicate", true)
-        else
-          if nested_id(body["installation"]) != current.installation_id,
-            do: Commands.fail!(:forbidden)
-
-          case event_name do
-            "installation" ->
-              lifecycle!(current, delivery_id, digest, body, opts)
-
-            "installation_repositories" ->
-              removed_repositories!(current, delivery_id, digest, body, opts)
-
-            _ ->
-              ingest_fact!(current, event_name, delivery_id, digest, body, opts)
-          end
-        end
+        ingest_verified!(connection_id, initial, event_name, delivery_id, raw, body, opts)
       end)
     else
       false ->
@@ -425,6 +430,47 @@ defmodule Samgita.GitHub do
     end
   end
 
+  defp ingest_verified!(connection_id, initial, event_name, delivery_id, raw, body, opts) do
+    current = connection!(connection_id)
+
+    if current.version != initial.version || usable(current) != :ok,
+      do: Commands.fail!(:forbidden)
+
+    digest = :crypto.hash(:sha256, raw) |> Base.encode16(case: :lower)
+
+    existing =
+      Repo.get_by(GitHubDelivery, connection_id: connection_id, delivery_id: delivery_id)
+
+    if existing do
+      replay_delivery!(existing, digest, event_name)
+    else
+      ingest_new!(current, event_name, delivery_id, digest, body, opts)
+    end
+  end
+
+  defp replay_delivery!(existing, digest, event_name) do
+    if existing.body_digest != digest || existing.event_name != event_name,
+      do: Commands.fail!(:conflict, %{reason: "delivery_id_reused"})
+
+    Map.put(delivery_projection(existing), "duplicate", true)
+  end
+
+  defp ingest_new!(current, event_name, delivery_id, digest, body, opts) do
+    if nested_id(body["installation"]) != current.installation_id,
+      do: Commands.fail!(:forbidden)
+
+    case event_name do
+      "installation" ->
+        lifecycle!(current, delivery_id, digest, body, opts)
+
+      "installation_repositories" ->
+        removed_repositories!(current, delivery_id, digest, body, opts)
+
+      _ ->
+        ingest_fact!(current, event_name, delivery_id, digest, body, opts)
+    end
+  end
+
   defp ingest_fact!(connection, event_name, delivery_id, digest, body, opts) do
     repository_id = nested_id(body["repository"])
     if !repository_id, do: Commands.fail!(:forbidden)
@@ -432,7 +478,7 @@ defmodule Samgita.GitHub do
     github =
       Repo.get_by(GitHubRepository, connection_id: connection.id, external_id: repository_id)
 
-    if !github || github.state != "verified" || github.connection_version != connection.version,
+    if !verified_repository?(github, connection),
       do: Commands.fail!(:forbidden)
 
     mappings = mappings_locked(github.id)
@@ -448,9 +494,9 @@ defmodule Samgita.GitHub do
             event_name,
             payload.action,
             repository_id,
-            "accepted",
-            nil,
-            %{"facts" => payload.facts, "untrusted_input" => payload.untrusted_input}
+            state: "accepted",
+            reason: nil,
+            payload: %{"facts" => payload.facts, "untrusted_input" => payload.untrusted_input}
           )
 
         events =
@@ -491,9 +537,9 @@ defmodule Samgita.GitHub do
           event_name,
           safe_action(body["action"]),
           repository_id,
-          "unsupported",
-          to_string(reason),
-          %{}
+          state: "unsupported",
+          reason: to_string(reason),
+          payload: %{}
         )
         |> delivery_projection()
 
@@ -519,9 +565,9 @@ defmodule Samgita.GitHub do
       "installation",
       action,
       nil,
-      "accepted",
-      "verification_required",
-      %{}
+      state: "accepted",
+      reason: "verification_required",
+      payload: %{}
     )
     |> delivery_projection()
   end
@@ -548,9 +594,9 @@ defmodule Samgita.GitHub do
       "installation_repositories",
       body["action"],
       nil,
-      "accepted",
-      "new_repositories_require_operator_mapping",
-      %{}
+      state: "accepted",
+      reason: "new_repositories_require_operator_mapping",
+      payload: %{}
     )
     |> delivery_projection()
   end
@@ -562,9 +608,7 @@ defmodule Samgita.GitHub do
          event,
          action,
          repository_id,
-         state,
-         reason,
-         payload
+         opts
        ) do
     change(%GitHubDelivery{},
       connection_id: connection.id,
@@ -574,9 +618,9 @@ defmodule Samgita.GitHub do
       action: action,
       installation_id: connection.installation_id,
       repository_external_id: repository_id,
-      state: state,
-      reason: reason,
-      payload: payload,
+      state: Keyword.fetch!(opts, :state),
+      reason: Keyword.fetch!(opts, :reason),
+      payload: Keyword.fetch!(opts, :payload),
       received_at: DateTime.utc_now()
     )
     |> Commands.insert!()
@@ -669,7 +713,7 @@ defmodule Samgita.GitHub do
   def enqueue_sync!(sync, opts \\ []) do
     enqueue = Keyword.get(opts, :enqueue, &Oban.insert/1)
 
-    case enqueue.(Samgita.Workers.GitHubReconcileWorker.new(%{"sync_id" => sync.id})) do
+    case enqueue.(GitHubReconcileWorker.new(%{"sync_id" => sync.id})) do
       {:ok, job} -> job
       {:error, _} -> Commands.fail!(:enqueue_failed)
     end
@@ -721,33 +765,56 @@ defmodule Samgita.GitHub do
   defp verify_association(connection, external_id, opts) do
     case Keyword.get(opts, :client, Client).verify(connection, external_id, opts) do
       {:error, %Failure{} = failure} = error ->
-        with {:ok, _} <-
-               transaction(fn ->
-                 current = connection!(connection.id)
-
-                 if current.version == connection.version,
-                   do:
-                     connection_failure!(
-                       current,
-                       failure,
-                       Keyword.get(opts, :now, DateTime.utc_now())
-                     )
-
-                 %{}
-               end),
-             do: error
+        persist_association_failure(connection, failure, error, opts)
 
       result ->
         result
     end
   end
 
+  defp persist_association_failure(connection, failure, error, opts) do
+    with {:ok, _} <-
+           transaction(fn -> record_association_failure!(connection, failure, opts) end),
+         do: error
+  end
+
+  defp record_association_failure!(connection, failure, opts) do
+    current = connection!(connection.id)
+
+    if current.version == connection.version,
+      do:
+        connection_failure!(
+          current,
+          failure,
+          Keyword.get(opts, :now, DateTime.utc_now())
+        )
+
+    %{}
+  end
+
+  defp verified_repository?(nil, _), do: false
+
+  defp verified_repository?(github, connection),
+    do: github.state == "verified" && github.connection_version == connection.version
+
+  defp invalid_retry_delay?(nil), do: false
+  defp invalid_retry_delay?(delay), do: !is_integer(delay) || delay < 0 || delay > 604_800
+
+  defp conflicting_repository?(nil, _), do: false
+  defp conflicting_repository?(_, nil), do: false
+  defp conflicting_repository?(requested, canonical), do: requested.id != canonical.id
+
+  defp incompatible_repository?(nil, _, _), do: false
+
+  defp incompatible_repository?(requested, connection, verified) do
+    requested.verification == "verified" &&
+      {requested.provider, requested.host, requested.external_id} !=
+        {"github", connection.host, verified.external_id}
+  end
+
   @doc false
   def connection_failure!(connection, failure, now) do
-    invalid_delay =
-      failure.retry_after != nil &&
-        (!is_integer(failure.retry_after) || failure.retry_after < 0 ||
-           failure.retry_after > 604_800)
+    invalid_delay = invalid_retry_delay?(failure.retry_after)
 
     cond do
       failure.class in [:authentication, :permission] ||
@@ -790,13 +857,11 @@ defmodule Samgita.GitHub do
         Repo.get(Repository, attrs["repository_id"]) || Commands.fail!(:not_found)
       end
 
-    if requested && canonical && requested.id != canonical.id,
+    if conflicting_repository?(requested, canonical),
       do: Commands.fail!(:conflict, %{reason: "identity_collision"})
 
-    if requested && requested.verification == "verified" &&
-         {requested.provider, requested.host, requested.external_id} !=
-           {"github", connection.host, verified.external_id},
-       do: Commands.fail!(:conflict)
+    if incompatible_repository?(requested, connection, verified),
+      do: Commands.fail!(:conflict)
 
     record = requested || canonical
 

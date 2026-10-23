@@ -6,19 +6,18 @@ defmodule SamgitaWeb.GitHubWebhookController do
          [delivery] <- get_req_header(conn, "x-github-delivery"),
          [signature] <- get_req_header(conn, "x-hub-signature-256"),
          raw when is_binary(raw) <- conn.private[:github_raw_body] do
-      case Samgita.GitHub.ingest(id, event, delivery, raw, signature) do
-        {:ok, receipt} ->
-          conn |> put_status(if(receipt["duplicate"], do: 200, else: 202)) |> json(receipt)
-
-        {:error, %{code: code}} ->
-          failure(conn, code)
-      end
+      respond(conn, Samgita.GitHub.ingest(id, event, delivery, raw, signature))
     else
       _ -> failure(conn, :invalid)
     end
   rescue
     _ in [Postgrex.Error, DBConnection.ConnectionError] -> failure(conn, :persistence_unavailable)
   end
+
+  defp respond(conn, {:ok, receipt}),
+    do: conn |> put_status(if(receipt["duplicate"], do: 200, else: 202)) |> json(receipt)
+
+  defp respond(conn, {:error, %{code: code}}), do: failure(conn, code)
 
   defp failure(conn, code) do
     status =

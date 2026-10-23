@@ -57,7 +57,7 @@ defmodule Samgita.GitHub.ReconciliationTest do
     assert Repo.aggregate(objects(c), :count) == 2
     assert Repo.aggregate(observations(c), :count) == 2
     later = DateTime.add(c.now, 901)
-    assert {:ok, _} = Reconciliation.maintain(now: later)
+    maintain_until_enqueued(c.sync.id, later)
     refreshed = Repo.get!(GitHubSync, c.sync.id)
     assert refreshed.state == "pending"
     assert DateTime.compare(refreshed.since, DateTime.add(c.now, -300)) == :eq
@@ -313,7 +313,7 @@ defmodule Samgita.GitHub.ReconciliationTest do
     sync = Repo.get!(GitHubSync, c.sync.id)
     assert sync.last_scan_started_at == c.now
     assert sync.last_completed_at == finished
-    assert {:ok, _} = Reconciliation.maintain(now: DateTime.add(finished, 901))
+    maintain_until_enqueued(c.sync.id, DateTime.add(finished, 901))
     assert Repo.get!(GitHubSync, c.sync.id).since == DateTime.add(c.now, -300)
   end
 
@@ -370,7 +370,12 @@ defmodule Samgita.GitHub.ReconciliationTest do
                command(%{"expected_version" => mapping["version"], "enabled" => false})
              )
 
-    past = DateTime.add(c.now, -3600)
+    now = ~U[2020-01-01 00:00:00.000000Z]
+    past = DateTime.add(now, -3600)
+
+    Repo.get!(GitHubSync, c.sync.id)
+    |> Ecto.Changeset.change(next_attempt_at: now, updated_at: now)
+    |> Repo.update!()
 
     Repo.insert_all(
       GitHubSync,
@@ -392,11 +397,73 @@ defmodule Samgita.GitHub.ReconciliationTest do
       {:ok, %{}}
     end
 
-    assert {:ok, %{"checked" => 100}} = Reconciliation.maintain(now: c.now, enqueue: enqueue)
+    assert {:ok, %{"checked" => 100}} = Reconciliation.maintain(now: now, enqueue: enqueue)
     refute_receive {:maintenance_enqueue, _}
-    assert {:ok, _} = Reconciliation.maintain(now: c.now, enqueue: enqueue)
+    assert {:ok, _} = Reconciliation.maintain(now: now, enqueue: enqueue)
     id = c.sync.id
     assert_receive {:maintenance_enqueue, %{"sync_id" => ^id}}
+  end
+
+  test "bounded maintenance rotates enqueued rows to reach later work without running workers",
+       c do
+    now = ~U[2020-01-01 00:00:00.000000Z]
+    past = DateTime.add(now, -3600)
+
+    Repo.get!(GitHubSync, c.sync.id)
+    |> Ecto.Changeset.change(next_attempt_at: now, updated_at: now)
+    |> Repo.update!()
+
+    Repo.insert_all(
+      GitHubSync,
+      for n <- 1001..1120 do
+        %{
+          id: Ecto.UUID.generate(),
+          github_repository_id: c.mapping["repository"]["id"],
+          kind: "issue",
+          resource_id: Integer.to_string(n),
+          next_attempt_at: past,
+          inserted_at: past,
+          updated_at: past
+        }
+      end
+    )
+
+    enqueue = fn changeset ->
+      send(self(), {:rotating_enqueue, Ecto.Changeset.get_field(changeset, :args)})
+      {:ok, %{}}
+    end
+
+    id = c.sync.id
+    assert {:ok, %{"checked" => 100}} = Reconciliation.maintain(now: now, enqueue: enqueue)
+    refute_receive {:rotating_enqueue, %{"sync_id" => ^id}}
+    assert {:ok, %{"checked" => 100}} = Reconciliation.maintain(now: now, enqueue: enqueue)
+    assert_receive {:rotating_enqueue, %{"sync_id" => ^id}}
+    assert Repo.get!(GitHubSync, id).state == "pending"
+    assert Repo.get!(GitHubSync, id).next_attempt_at == now
+  end
+
+  defp maintain_until_enqueued(id, now) do
+    # Independent-transaction fixtures are intentionally retained. The global
+    # scanner promises bounded progress, not selection in the very first batch.
+    attempts = div(Repo.aggregate(GitHubSync, :count), 100) + 2
+
+    enqueue = fn changeset ->
+      send(self(), {:bounded_enqueue, Ecto.Changeset.get_field(changeset, :args)})
+      {:ok, %{}}
+    end
+
+    found =
+      Enum.any?(1..attempts, fn _ ->
+        assert {:ok, _} = Reconciliation.maintain(now: now, enqueue: enqueue)
+
+        receive do
+          {:bounded_enqueue, %{"sync_id" => ^id}} -> true
+        after
+          0 -> false
+        end
+      end)
+
+    assert found, "maintenance did not reach the checkpoint within its bounded fair scan"
   end
 
   defp run(c, items, opts \\ []) do

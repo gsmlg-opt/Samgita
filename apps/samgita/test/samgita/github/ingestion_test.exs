@@ -4,6 +4,7 @@ defmodule Samgita.GitHub.IngestionTest do
   import Samgita.GitHubFixtures
   import Ecto.Query
   alias Samgita.{Error, GitHub, Principal, Projects, Repo, Repositories, Tasks}
+  alias Samgita.GitHub.Failure
 
   alias Samgita.Domain.{
     DomainEvent,
@@ -266,7 +267,7 @@ defmodule Samgita.GitHub.IngestionTest do
       })
 
     now = DateTime.utc_now()
-    failure = Samgita.GitHub.Failure.new(:rate_limited, :rate_limited, 7200)
+    failure = Failure.new(:rate_limited, :rate_limited, 7200)
 
     assert {:error, ^failure} =
              GitHub.associate(Principal.operator(), project["id"], attrs,
@@ -277,7 +278,7 @@ defmodule Samgita.GitHub.IngestionTest do
 
     assert_receive {:github_verify, _, "30"}
 
-    assert {:error, %Samgita.GitHub.Failure{class: :rate_limited}} =
+    assert {:error, %Failure{class: :rate_limited}} =
              GitHub.associate(Principal.operator(), project["id"], attrs,
                client: Samgita.GitHubFixtures.FakeClient,
                now: DateTime.add(now, 3601)

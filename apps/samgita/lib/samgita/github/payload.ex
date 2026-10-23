@@ -85,6 +85,17 @@ defmodule Samgita.GitHub.Payload do
 
   def object(_, _), do: {:error, :invalid_payload}
 
+  @doc "A verified current absence; retained observations keep earlier provider evidence."
+  def tombstone(kind, resource_id) when kind in @kinds do
+    %{
+      kind: kind,
+      resource_id: resource_id,
+      external_updated_at: nil,
+      facts: %{"kind" => kind, "resource_id" => resource_id, "deleted" => true},
+      untrusted_input: %{"trust" => "untrusted", "truncated" => %{}}
+    }
+  end
+
   defp resource_id(kind, item, _) when kind in ["issue", "pull_request"],
     do: id(item["number"])
 
@@ -118,22 +129,24 @@ defmodule Samgita.GitHub.Payload do
       {"base", &git_ref/1}
     ]
 
-    Enum.reduce_while(validators, {:ok, %{}}, fn {key, validate}, {:ok, facts} ->
-      case item[key] do
-        nil when key == "merged_at" ->
-          safe = if Map.has_key?(item, key), do: Map.put(facts, key, nil), else: facts
-          {:cont, {:ok, safe}}
+    Enum.reduce_while(validators, {:ok, %{}}, &metadata_field(&1, &2, item))
+  end
 
-        nil ->
-          {:cont, {:ok, facts}}
+  defp metadata_field({key, validate}, {:ok, facts}, item) do
+    case item[key] do
+      nil when key == "merged_at" ->
+        safe = if Map.has_key?(item, key), do: Map.put(facts, key, nil), else: facts
+        {:cont, {:ok, safe}}
 
-        value ->
-          case validate.(value) do
-            {:ok, safe} -> {:cont, {:ok, Map.put(facts, key, safe)}}
-            _ -> {:halt, {:error, :invalid_payload}}
-          end
-      end
-    end)
+      nil ->
+        {:cont, {:ok, facts}}
+
+      value ->
+        case validate.(value) do
+          {:ok, safe} -> {:cont, {:ok, Map.put(facts, key, safe)}}
+          _ -> {:halt, {:error, :invalid_payload}}
+        end
+    end
   end
 
   defp content(kind, item) do
@@ -142,25 +155,29 @@ defmodule Samgita.GitHub.Payload do
         do: [{"comment", "body", 16_000}],
         else: [{"title", "title", 1_000}, {"body", "body", 16_000}]
 
-    Enum.reduce_while(fields, {:ok, %{"trust" => "untrusted", "truncated" => %{}}}, fn
-      {target, source, limit}, {:ok, result} ->
-        case item[source] do
-          nil ->
-            {:cont, {:ok, result}}
+    Enum.reduce_while(
+      fields,
+      {:ok, %{"trust" => "untrusted", "truncated" => %{}}},
+      &content_field(&1, &2, item)
+    )
+  end
 
-          value ->
-            case bounded_content(value, limit) do
-              {:ok, safe, truncated?} ->
-                result =
-                  result |> Map.put(target, safe) |> put_in(["truncated", target], truncated?)
+  defp content_field({target, source, limit}, {:ok, result}, item) do
+    case item[source] do
+      nil -> {:cont, {:ok, result}}
+      value -> normalized_content(value, limit, target, result)
+    end
+  end
 
-                {:cont, {:ok, result}}
+  defp normalized_content(value, limit, target, result) do
+    case bounded_content(value, limit) do
+      {:ok, safe, truncated?} ->
+        result = result |> Map.put(target, safe) |> put_in(["truncated", target], truncated?)
+        {:cont, {:ok, result}}
 
-              _ ->
-                {:halt, {:error, :invalid_payload}}
-            end
-        end
-    end)
+      _ ->
+        {:halt, {:error, :invalid_payload}}
+    end
   end
 
   defp bounded_content(value, limit) when is_binary(value) do

@@ -93,6 +93,7 @@ defmodule Samgita.GitHubFixtures do
   end
 
   defmodule FakeClient do
+    @moduledoc false
     def verify(connection, external_id, opts) do
       send(self(), {:github_verify, connection.id, external_id})
 

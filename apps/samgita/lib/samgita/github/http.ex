@@ -55,7 +55,7 @@ defmodule Samgita.GitHub.HTTP do
       try do
         path = (uri.path || "/") <> if(uri.query, do: "?" <> uri.query, else: "")
 
-        case Mint.HTTP.request(
+        case Mint.HTTP1.request(
                conn,
                method |> Atom.to_string() |> String.upcase(),
                path,
@@ -66,11 +66,11 @@ defmodule Samgita.GitHub.HTTP do
             receive_response(conn, ref, %{status: nil, headers: [], body: []}, 0)
 
           {:error, conn, _reason} ->
-            Mint.HTTP.close(conn)
+            Mint.HTTP1.close(conn)
             {:error, :transport_unavailable}
         end
       after
-        Mint.HTTP.close(conn)
+        Mint.HTTP1.close(conn)
       end
     else
       _ -> {:error, :transport_unavailable}
@@ -90,9 +90,8 @@ defmodule Samgita.GitHub.HTTP do
         do: Keyword.put(transport, :cacerts, :public_key.cacerts_get()),
         else: transport
 
-    Mint.HTTP.connect(scheme, address, uri.port,
+    Mint.HTTP1.connect(scheme, address, uri.port,
       hostname: uri.host,
-      protocols: [:http1],
       mode: :passive,
       log: false,
       max_header_list_size: 32_768,
@@ -101,7 +100,7 @@ defmodule Samgita.GitHub.HTTP do
   end
 
   defp receive_response(conn, ref, result, size) do
-    case Mint.HTTP.recv(conn, 0, @timeout) do
+    case Mint.HTTP1.recv(conn, 0, @timeout) do
       {:ok, conn, responses} ->
         case consume(responses, ref, result, size) do
           {:more, result, size} ->
@@ -158,14 +157,18 @@ defmodule Samgita.GitHub.HTTP do
     uri = URI.parse(base)
 
     if uri.scheme in ["http", "https"] && is_binary(uri.host) && uri.host != "" &&
-         is_integer(uri.port) && uri.port in 1..65_535 && is_nil(uri.userinfo) &&
-         is_nil(uri.query) && is_nil(uri.fragment) &&
-         uri.path in [nil, "", "/", "/api/v3", "/api/v3/"],
+         safe_base_location?(uri),
        do: {:ok, uri},
        else: {:error, Failure.new(:permanent, :unapproved_destination)}
   end
 
   defp base_uri(_), do: {:error, Failure.new(:permanent, :unapproved_destination)}
+
+  defp safe_base_location?(uri) do
+    is_integer(uri.port) && uri.port in 1..65_535 && is_nil(uri.userinfo) &&
+      is_nil(uri.query) && is_nil(uri.fragment) &&
+      uri.path in [nil, "", "/", "/api/v3", "/api/v3/"]
+  end
 
   defp addresses(host) do
     case :inet.parse_address(String.to_charlist(host)) do
@@ -180,19 +183,21 @@ defmodule Samgita.GitHub.HTTP do
 
     # A failed family must not hide an unapproved address behind a resolver failure.
     if Enum.all?(results, &(match?({:ok, _}, &1) or &1 == {:error, :nxdomain})) do
-      case Enum.flat_map(results, fn
-             {:ok, values} -> values
-             _ -> []
-           end)
-           |> Enum.uniq()
-           |> Enum.sort() do
-        [] -> {:error, Failure.new(:retryable, :dns_unavailable)}
-        values -> {:ok, values}
-      end
+      resolved_addresses(results)
     else
       {:error, Failure.new(:retryable, :dns_unavailable)}
     end
   end
+
+  defp resolved_addresses(results) do
+    case results |> Enum.flat_map(&address_values/1) |> Enum.uniq() |> Enum.sort() do
+      [] -> {:error, Failure.new(:retryable, :dns_unavailable)}
+      values -> {:ok, values}
+    end
+  end
+
+  defp address_values({:ok, values}), do: values
+  defp address_values(_), do: []
 
   defp loopback?({127, _, _, _}), do: true
   defp loopback?({0, 0, 0, 0, 0, 0, 0, 1}), do: true

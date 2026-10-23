@@ -1,8 +1,8 @@
 defmodule SamgitaWeb.GitHubWebhookControllerTest do
   use SamgitaWeb.ConnCase, async: false
   import Ecto.Query
-  alias Samgita.{GitHubFixtures, Repo}
   alias Samgita.Domain.{DomainEvent, GitHubDelivery}
+  alias Samgita.{GitHubFixtures, Repo}
 
   setup %{conn: conn} do
     previous = Map.new([:api_keys, :github_secrets], &{&1, Application.fetch_env(:samgita, &1)})
@@ -31,7 +31,7 @@ defmodule SamgitaWeb.GitHubWebhookControllerTest do
          project: project
        } do
     raw =
-      " {\n  \"repository\": {\"id\":30}, \"installation\": {\"id\":20}," <>
+      ~s( {\n  "repository": {"id":30}, "installation": {"id":20},) <>
         "\n  \"issue\": " <>
         Jason.encode!(GitHubFixtures.issue_fixture()) <> ", \"action\": \"opened\"\n}\n"
 
@@ -44,7 +44,7 @@ defmodule SamgitaWeb.GitHubWebhookControllerTest do
     assert get_req_header(response, "x-api-key") == []
     stored = Repo.get!(GitHubDelivery, receipt["id"])
     assert stored.body_digest == Base.encode16(:crypto.hash(:sha256, raw), case: :lower)
-    event = Repo.one!(from e in DomainEvent, where: e.source_id == ^delivery)
+    event = Repo.one!(from(e in DomainEvent, where: e.source_id == ^delivery))
     assert event.project_id == project["id"]
     assert event.source == "github"
     refute response.resp_body =~ GitHubFixtures.secret()

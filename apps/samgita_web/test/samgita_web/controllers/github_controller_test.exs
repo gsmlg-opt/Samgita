@@ -2,8 +2,8 @@ defmodule SamgitaWeb.GitHubControllerTest do
   use SamgitaWeb.ConnCase, async: false
   import Ecto.Query
   import Samgita.DomainFixtures
-  alias Samgita.{GitHub, GitHubFixtures, Principal, Repo}
   alias Samgita.Domain.{DomainEvent, GitHubSync}
+  alias Samgita.{GitHub, GitHubFixtures, Principal, Repo}
 
   @key "github-api-operator"
   @private "private-material-never-in-response"
@@ -192,7 +192,7 @@ defmodule SamgitaWeb.GitHubControllerTest do
 
     sync =
       Repo.one!(
-        from s in GitHubSync, where: s.github_repository_id == ^github_id and s.kind == "issues"
+        from(s in GitHubSync, where: s.github_repository_id == ^github_id and s.kind == "issues")
       )
 
     result = {:ok, %{items: [GitHubFixtures.issue_fixture()], next_page: nil}}
@@ -205,8 +205,9 @@ defmodule SamgitaWeb.GitHubControllerTest do
 
     event =
       Repo.one!(
-        from e in DomainEvent,
+        from(e in DomainEvent,
           where: e.project_id == ^project["id"] and e.type == "github.reconciled"
+        )
       )
 
     observation_id = event.data["untrusted_input_ref"]

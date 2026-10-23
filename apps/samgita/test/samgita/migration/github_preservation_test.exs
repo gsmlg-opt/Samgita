@@ -1,5 +1,6 @@
 defmodule Samgita.Migration.GitHubPreservationTest do
   use ExUnit.Case, async: false
+  alias Ecto.Adapters.{Postgres, SQL}
   alias Samgita.MigrationRepo
   @migrations Path.expand("../../../priv/repo/migrations", __DIR__)
   @p4 20_261_022_000_002
@@ -23,19 +24,19 @@ defmodule Samgita.Migration.GitHubPreservationTest do
         log: false
       )
 
-    assert :ok = Ecto.Adapters.Postgres.storage_up(opts)
+    assert :ok = Postgres.storage_up(opts)
     start_supervised!({MigrationRepo, opts})
     modules = migration_modules()
     Ecto.Migrator.run(MigrationRepo, modules, :up, to: @p4, log: false)
     [project, task, artifact, event, command] = for _ <- 1..5, do: Ecto.UUID.generate()
 
     query(
-      "INSERT INTO projects (id,name,git_url,status,phase,config,state,event_sequence,inserted_at,updated_at) VALUES ($1,'preserved project','git@github.com:old/provenance.git','running','planning','{\"opaque\":\"keep\"}','active',1,'2026-01-02 03:04:05','2026-02-03 04:05:06')",
+      ~s|INSERT INTO projects (id,name,git_url,status,phase,config,state,event_sequence,inserted_at,updated_at) VALUES ($1,'preserved project','git@github.com:old/provenance.git','running','planning','{"opaque":"keep"}','active',1,'2026-01-02 03:04:05','2026-02-03 04:05:06')|,
       [uuid(project)]
     )
 
     query(
-      "INSERT INTO tasks (id,project_id,type,status,agent_id,attempts,payload,result,inserted_at,updated_at) VALUES ($1,$2,'legacy','completed','historical-worker',9,'{\"nested\":[1,2]}','{\"result\":\"retained\"}','2026-01-03 01:02:03','2026-02-04 04:05:06')",
+      ~s|INSERT INTO tasks (id,project_id,type,status,agent_id,attempts,payload,result,inserted_at,updated_at) VALUES ($1,$2,'legacy','completed','historical-worker',9,'{"nested":[1,2]}','{"result":"retained"}','2026-01-03 01:02:03','2026-02-04 04:05:06')|,
       [uuid(task), uuid(project)]
     )
 
@@ -114,6 +115,6 @@ defmodule Samgita.Migration.GitHubPreservationTest do
     assert query("SELECT owner,admission_open FROM platform_authority").rows == [["none", false]]
   end
 
-  defp query(sql, args \\ []), do: Ecto.Adapters.SQL.query!(MigrationRepo, sql, args, log: false)
+  defp query(sql, args \\ []), do: SQL.query!(MigrationRepo, sql, args, log: false)
   defp uuid(id), do: Ecto.UUID.dump!(id)
 end
