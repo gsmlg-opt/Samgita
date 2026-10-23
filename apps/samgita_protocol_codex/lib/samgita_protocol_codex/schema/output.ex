@@ -39,15 +39,19 @@ defmodule SamgitaProtocolCodex.Schema.Output do
 
   def contract(filename, document) do
     Enum.reduce(@corrections, document, fn correction, document ->
-      if filename == correction["schema"] or
-           Map.has_key?(correction["schemas_sha256"] || %{}, filename) do
-        update_in(document, ["definitions", correction["definition"], "oneOf"], fn branches ->
-          Enum.map(branches, &rename_boundary(&1, correction))
-        end)
-      else
-        document
-      end
+      apply_correction(filename, document, correction)
     end)
+  end
+
+  defp apply_correction(filename, document, correction) do
+    if filename == correction["schema"] or
+         Map.has_key?(correction["schemas_sha256"] || %{}, filename) do
+      update_in(document, ["definitions", correction["definition"], "oneOf"], fn branches ->
+        Enum.map(branches, &rename_boundary(&1, correction))
+      end)
+    else
+      document
+    end
   end
 
   defp rename_boundary(branch, correction) do
