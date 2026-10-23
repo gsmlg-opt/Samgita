@@ -1036,12 +1036,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:config/batchWrite",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ConfigBatchWriteParams"
       },
@@ -1063,16 +1067,20 @@
         "source_line": 1462,
         "variant": "ConfigBatchWrite"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "config/batchWrite"
     },
     {
@@ -1120,12 +1128,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:config/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ConfigReadParams"
       },
@@ -1147,27 +1159,35 @@
         "source_line": 1431,
         "variant": "ConfigRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "config/read"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:config/value/write",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ConfigValueWriteParams"
       },
@@ -1189,27 +1209,35 @@
         "source_line": 1456,
         "variant": "ConfigValueWrite"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "config/value/write"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:configRequirements/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "params": {
         "type": "null"
       },
@@ -1231,16 +1259,20 @@
         "source_line": 1469,
         "variant": "ConfigRequirementsRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "configRequirements/read"
     },
     {
@@ -1402,12 +1434,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:experimentalFeature/enablement/set",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ExperimentalFeatureEnablementSetParams"
       },
@@ -1429,27 +1465,35 @@
         "source_line": 1163,
         "variant": "ExperimentalFeatureEnablementSet"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "experimentalFeature/enablement/set"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:experimentalFeature/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ExperimentalFeatureListParams"
       },
@@ -1471,16 +1515,20 @@
         "source_line": 1153,
         "variant": "ExperimentalFeatureList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "experimentalFeature/list"
     },
     {
@@ -13062,12 +13110,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:config/batchWrite",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13075,16 +13127,20 @@
       "schema": "v2/ConfigWriteResponse.json",
       "schema_sha256": "1d690287d9e8a0c552f664038d3810dfc3903ec8042eb2c0f772856414f59954",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "config/batchWrite"
     },
     {
@@ -13120,12 +13176,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:config/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13133,28 +13193,36 @@
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "4ec77e1a3eed746037149799c3b6bb8fe7b4b593e5930fc9f410e6282de9df50",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "config/read"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:config/value/write",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13162,28 +13230,36 @@
       "schema": "v2/ConfigWriteResponse.json",
       "schema_sha256": "1d690287d9e8a0c552f664038d3810dfc3903ec8042eb2c0f772856414f59954",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "config/value/write"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:configRequirements/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13191,16 +13267,20 @@
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "914004568a7eda03e3141ab470ac0d8d1405793bbc9d4fa95d3a6db3d1cb9193",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "configRequirements/read"
     },
     {
@@ -13324,12 +13404,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:experimentalFeature/enablement/set",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13337,28 +13421,36 @@
       "schema": "v2/ExperimentalFeatureEnablementSetResponse.json",
       "schema_sha256": "5ecd92ee95380d7cadc4c109091530aa71245e41b9f1b530a5e9d5c5c9eda95b",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "experimentalFeature/enablement/set"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:experimentalFeature/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected local configuration, persistence, optimistic version conflicts, batch atomicity, feature discovery/runtime overrides and forced-login requirements. Managed requirements, concurrent writers, every key/field, execution-time enforcement and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13366,16 +13458,20 @@
       "schema": "v2/ExperimentalFeatureListResponse.json",
       "schema_sha256": "4084a25f32333b3f58eb5e9803a5983739b57f945c4e7e4002e85851622ce597",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "experimentalFeature/list"
     },
     {
