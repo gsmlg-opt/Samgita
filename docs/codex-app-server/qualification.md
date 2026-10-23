@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 324 implemented / 156 missing /
-5 blocked requirements** and **0 verified / 637 implemented / 5,984 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 330 implemented / 150 missing /
+5 blocked requirements** and **0 verified / 649 implemented / 5,972 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Six hundred and thirty-seven directly exercised
+MCP entries have scoped implementation evidence. Six hundred and forty-nine directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1329,3 +1329,27 @@ The independent full-evidence job correctly remains failed while required
 entries/contracts are incomplete. Foundation success, local package checks and
 synthetic dependencies do not qualify real accounts, external backends, A11,
 all platforms, full compatibility, publication or deployment.
+
+## Native loaded-thread queries and runtime counters
+
+Eight new default-discovered native cases passed **8/0** at seeds `501432` and
+`987654` (**4.7s / 4.5s**), without a repair round. They directly assert loaded
+thread ordering and cursor/default semantics, exact unsubscribe statuses,
+independent runtime elicitation counters, balanced underflow, cold reset after
+explicit resume, and the upstream experimental self-test's exact echo/type/gate
+behavior. Naming an empty paginated thread materializes its history before cold
+restart; the tests do not assume unmaterialized threads are durable. Every case
+asserts zero model requests. No turn, command or approval is started.
+
+Independent/root warnings-as-errors compilation, focused formatting, scoped
+strict Credo (**320 source files loaded, 69 checks, no issues**), whitespace and
+owned-process cleanup passed. [Thread-control qualification](thread-control-qualification.md)
+retains exact commands, pinned source anchors, positive field pointers and limits.
+The remaining pause-duration, overflow/concurrent-counter, idle-eviction timing
+and other platform/transport profiles are not inferred from counter responses.
+
+Ten method/response entries and 17 fields gain evidence; **six entries and
+twelve fields** were previously missing. Regenerated totals: **485 entries:
+0 verified / 330 implemented / 150 missing / 5 blocked**; **6,621 contracts:
+0 verified / 649 implemented / 5,972 missing**. These scoped cases do not close
+the full compatibility, external acceptance, A11 or publication gates.
