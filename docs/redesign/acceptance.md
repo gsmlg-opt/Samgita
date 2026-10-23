@@ -235,6 +235,8 @@ The entire redesign is **not certified deployable or releasable**. The persisted
 
 The executable repair tree at `896fc4886f77e731c38077069fb2d4c7feb8a18a` passes the full retained suite twice on the same populated scratch database: **167 core tests and 110 web cases per run, zero failures, one separately run restart case excluded**, seed `437312`. The dedicated restart case passes; independent protocol suites pass **32/40/13** cases, and both outside-umbrella consumers pass. Compile, format, strict Credo, Dialyzer, precise legacy scan, Hex audits, clean frozen Bun install, assets and local production assembly pass. [Exact commands, regressions and limits](qualification.md#reliability-repair-qualification) distinguish these runs from the prior browser evidence and initial failures.
 
+The first hosted repair run passed through assets, then exposed a missing-ripgrep dependency in the scanner; later hosted gates were skipped. Portability repair `d32a532` uses Git's inventory and passes a new regression with no ripgrep on PATH. The application/protocol tree is unchanged; hosted qualification must follow the final pushed revision.
+
 | Scenario | Newly verified repair assertions | Remaining gate |
 | --- | --- | --- |
 | A05/A07 | Server-request deadlines and once-only cleanup; late replies, disconnect/send failure and consumed control-byte accounting; mutation uncertainty preserved | Documented conservative aggregate socket-read cap; real service/client conformance and durable host policy |
