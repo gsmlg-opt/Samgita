@@ -3798,12 +3798,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:project/create",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProjectCreateParams"
       },
@@ -3825,16 +3829,21 @@
         "source_line": 791,
         "variant": "ProjectCreate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/create"
     },
     {
@@ -3842,12 +3851,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:project/delete",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProjectDeleteParams"
       },
@@ -3869,16 +3882,21 @@
         "source_line": 815,
         "variant": "ProjectDelete"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/delete"
     },
     {
@@ -3886,12 +3904,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:project/import",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProjectImportParams"
       },
@@ -3913,16 +3935,21 @@
         "source_line": 797,
         "variant": "ProjectImport"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/import"
     },
     {
@@ -3930,12 +3957,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:project/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProjectListParams"
       },
@@ -3957,16 +3988,21 @@
         "source_line": 779,
         "variant": "ProjectList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/list"
     },
     {
@@ -3974,12 +4010,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:project/move",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProjectMoveParams"
       },
@@ -4001,16 +4041,21 @@
         "source_line": 809,
         "variant": "ProjectMove"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/move"
     },
     {
@@ -4018,12 +4063,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:project/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProjectReadParams"
       },
@@ -4045,16 +4094,21 @@
         "source_line": 785,
         "variant": "ProjectRead"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/read"
     },
     {
@@ -4062,12 +4116,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:project/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProjectUpdateParams"
       },
@@ -4089,16 +4147,21 @@
         "source_line": 803,
         "variant": "ProjectUpdate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/update"
     },
     {
@@ -9893,12 +9956,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:project/changed",
-      "implementation_module": "SamgitaCodexDriver.Session",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ProjectChangedNotification"
       },
@@ -9915,16 +9982,21 @@
         "source_line": 1969,
         "variant": "ProjectChanged"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/changed"
     },
     {
@@ -10478,12 +10550,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:thread/project/updated",
-      "implementation_module": "SamgitaCodexDriver.Session",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadProjectUpdatedNotification"
       },
@@ -10500,16 +10576,21 @@
         "source_line": 1971,
         "variant": "ThreadProjectUpdated"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/project/updated"
     },
     {
@@ -14589,12 +14670,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:project/create",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14602,16 +14687,21 @@
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "c78d0b2412d3a3778955a037ba2521460a54fb5f49752c958056b9a2934455d5",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/create"
     },
     {
@@ -14620,12 +14710,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:project/delete",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14633,16 +14727,21 @@
       "schema": "v2/ProjectDeleteResponse.json",
       "schema_sha256": "aade653dd65fdacd246b1a312e20e0de9a3dc76e11f15f9c4362b13931ceac78",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/delete"
     },
     {
@@ -14651,12 +14750,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:project/import",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14664,16 +14767,21 @@
       "schema": "v2/ProjectImportResponse.json",
       "schema_sha256": "338fe248907b392f296324b9a7a54ffc0350a7c0c58231e85ab32656c33e4b99",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/import"
     },
     {
@@ -14682,12 +14790,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:project/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14695,16 +14807,21 @@
       "schema": "v2/ProjectListResponse.json",
       "schema_sha256": "ce2b78869a985bb7bdbc910fae2509a1799bd0d30956a886b7d10858cda6e64e",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/list"
     },
     {
@@ -14713,12 +14830,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:project/move",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14726,16 +14847,21 @@
       "schema": "v2/ProjectMoveResponse.json",
       "schema_sha256": "767cb254e71f4be818896fb4331091fafcf793b913afdb16219c53d8a1835ad8",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/move"
     },
     {
@@ -14744,12 +14870,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:project/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14757,16 +14887,21 @@
       "schema": "v2/ProjectReadResponse.json",
       "schema_sha256": "69e7ffd4075ea8f01649aab9d2370c31fe68eda7febdf6ee9ec92faa769b9ac0",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/read"
     },
     {
@@ -14775,12 +14910,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-project-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:project/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary persistence, negotiation, unsupported storage, key/presence, error and notification scenarios; remaining field/concurrency/transport/OS profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14788,16 +14927,21 @@
       "schema": "v2/ProjectUpdateResponse.json",
       "schema_sha256": "9551485fecc461d28801665965b4ff9b357dc9a05852fa41d5f2179dea6771f0",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs",
+          "apps/samgita_codex_driver/test/native_project_profiles_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project/update"
     },
     {

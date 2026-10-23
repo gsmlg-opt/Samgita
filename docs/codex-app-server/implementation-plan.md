@@ -32,9 +32,10 @@ The official Linux musl executable and source archive are hash-pinned. Stable an
 experimental generation produced 318 and 452 JSON artifacts. The reproducible
 manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries are now
-`blocked` by source-proven absent production emitters. The native notification
-and three exact schema contracts are `implemented` with scoped local evidence;
-480 requirements and 6,618 contracts remain `missing`. Required entry-specific
+`blocked` by source-proven absent production emitters. The native notification,
+16 selected Codex-native Project entries and three exact notification schema
+contracts are `implemented` with scoped local evidence;
+464 requirements and 6,618 contracts remain `missing`. Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
 
@@ -135,11 +136,15 @@ Next concrete work (repair follow-up, 2026-10-24):
    root/recovery/static/security/assets/assembly matrix passed. The full run also
    exposed and repaired attestation prewarm test ownership in `e8a6f4a` without
    extending the native deadline. Exact outcomes are in qualification.
-5. Continue all seven Codex-native `project/*` methods with actual persisted
-   create/read/import/update/list/move/delete behavior, presence semantics,
-   membership, idempotency and cold restart. These native Projects are distinct
-   from Samgita Projects. Then continue compaction interruption/retry, remaining
-   image-byte limits, enabled app/plugin/deferred MCP routing and
+5. All seven Codex-native `project/*` methods now have selected persisted
+   create/read/import/update/list/move/delete, presence, membership, idempotency,
+   negotiation, backend and cold-restart evidence in **12 actual-binary cases**.
+   Their 16 request/response/notification entries are `implemented`, with all
+   field contracts still pending full qualification. See
+   [native Projects](native-project-qualification.md). These native Projects are
+   distinct from Samgita Projects. Controlled compaction adds two interruption/
+   retry cases; safe image limits add four cases including the queued sparse-file
+   metadata guard. Continue remaining image-byte limits, enabled app/plugin/deferred MCP routing and
    environment/permission/turn variants. Preserve entry-specific evidence and
    external/legacy blockers; generic forwarding and scripted peers cannot
    establish real acceptance.

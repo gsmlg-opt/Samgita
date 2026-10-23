@@ -324,11 +324,13 @@ terminal hosted results:
   evidence are tracked in qualification. The strict completeness job also failed
   because required evidence remains missing; the overall workflow is failed.
 
-The pinned inventory check and its 15 Python regressions passed after these
-repairs. Counts are generated from the pin, not inferred from selected passing
-journeys: **0 verified / 1 implemented / 480 missing / 4 blocked requirements;
+The pinned inventory check and its 17 Python regressions passed after these
+repairs and the controlled compaction follow-up. Counts are generated from the pin,
+not inferred from selected passing journeys. Following selected native Project
+implementation evidence: **0 verified / 17 implemented / 464 missing / 4 blocked requirements;
 0 verified / 3 implemented / 6,618 missing contracts**. The notification's scoped
-implementation status is distinct from full qualification. Legacy approvals retain their schemas and
+and native Project implementation status is distinct from full qualification.
+See [native Project evidence](native-project-qualification.md). Legacy approvals retain their schemas and
 [exact upstream reachability evidence](legacy-approval-qualification.md); no
 scripted peer is counted as enabled real-binary legacy success. Required external
 account/backend/OS profiles remain incomplete. No release/tag, package

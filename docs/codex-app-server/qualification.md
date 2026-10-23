@@ -1,9 +1,10 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The manifest records **0 verified / 1 implemented / 480 missing /
+Status: **incomplete**. The manifest records **0 verified / 17 implemented / 464 missing /
 4 blocked requirements** and **0 verified / 3 implemented / 6,618 missing
-field/variant contracts**. The native client notification and its three exact
-schema contracts are implemented with scoped local evidence; that status does
+field/variant contracts**. The native client notification, selected Codex-native
+Project entries and three exact notification schema contracts are implemented
+with scoped local evidence; that status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
 accepted contract remains [the full goal](goal.md). The
@@ -574,7 +575,7 @@ assembly and selected tests do not establish full compatibility or readiness.
 
 | Layer | Remaining requirement |
 | --- | --- |
-| Manifest | Per-entry and field/behavior evidence: one implemented, 480 missing and four source-proven blocked requirements; three implemented and 6,618 missing contracts. No mass verification from forwarding or fixtures |
+| Manifest | Per-entry and field/behavior evidence: 17 implemented, 464 missing and four source-proven blocked requirements; three implemented and 6,618 missing contracts. No mass verification from forwarding or fixtures |
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory repaired; A11 raw server/LiveView credential telemetry still blocked; target-specific egress/key/legacy-cutover and real backup/memory rehearsals remain |
