@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 advertised MCP item-progress notification and the explicitly deprecated
 file-change output notification are `blocked` by source-proven absent production
 emitters. Selected native method/notification entries now total
-387 `implemented`, with 937 exact field/variant schema contracts
-implemented; 92 requirements and 5,684 contracts remain `missing`. None is fully verified.
+394 `implemented`, with 961 exact field/variant schema contracts
+implemented; 85 requirements and 5,660 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -344,7 +344,15 @@ Next concrete work (repair follow-up, 2026-10-24):
    scoped evidence; null/empty/omitted observations, other shared-schema methods,
    real accounts/Apps authorization and remaining variants stay incomplete.
    Coordinating-owner MCP/background integration passed 13 cases at both seeds.
-   Background-terminal manifest integration remains the next bounded unit.
+   Five [background-terminal cases](background-terminal-qualification.md) now
+   exercise actual core unified-exec sessions, numeric pagination, targeted/clean
+   termination, cross-turn stdin interaction and exact approval cancellation.
+   Both unit seeds and the coordinating-owner combined repeat pass. Seven new
+   entries and 24 new positive contracts gain selected implementation evidence;
+   nine existing approval fields gain stronger evidence, while three resource
+   fields retain null-only limitations without promotion. CI explicitly selects
+   this fourteenth isolated profile. Completed-empty-poll suppression, terminal
+   restart/reconnect and all remaining approval/OS profiles stay incomplete.
    At `085c4cc8`, foundation
    passed; conformance's thirteen isolated profiles passed, but all four default
    output-notice tests failed during namespace startup on Ubuntu 24.04. The

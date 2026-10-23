@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 387 implemented / 92 missing /
-6 blocked requirements** and **0 verified / 937 implemented / 5,684 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 394 implemented / 85 missing /
+6 blocked requirements** and **0 verified / 961 implemented / 5,660 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 937 directly exercised
+MCP entries have scoped implementation evidence. These 961 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1587,3 +1587,32 @@ Regenerated totals: **485 entries: 0 verified / 387 implemented / 92 missing /
 6 blocked**; **6,621 contracts: 0 verified / 937 implemented / 5,684 missing**.
 The active-settings checkpoint arithmetic above is corrected to its actual
 regenerated totals; no evidence state is changed by that correction.
+
+## Native background terminals and cross-turn stdin
+
+The [five-case profile](background-terminal-qualification.md) proves core
+unified-exec listing, numeric pagination after anchor removal, per-thread
+termination, asynchronous clean followed by observed process exit, and stdin
+interaction carrying the original item/process with the current turn. Logical
+session IDs come from actual native tool output, never OS PIDs or assumed fixture
+IDs. Exact one-shot launch/write approvals preserve the production authorization
+boundary; cancelling the write interrupts its turn without consuming input or
+terminating the original reader.
+
+Both focused seeds passed **5/0** (21.4s / 21.5s). The coordinating-owner combined
+MCP/background repeat passed **13/0 twice**, 39.0s each, with compile/format and
+the required namespace preflight. Root test-environment compile and one-file
+strict Credo passed. The original launch-policy suggestion assertion was repaired
+against pinned source without applying any policy amendment. A tuple refactor
+resolved the new helper's strict-Credo arity issue without behavior/deadline changes.
+All owned native/controller/reader cleanup assertions pass. CI explicitly selects
+the fourteenth isolated profile; hosted results remain separately required.
+
+Seven new entries and 24 previously missing positive contracts gain selected
+implementation evidence; nine existing approval fields are strengthened. Three
+resource fields remain `missing` with explicit null-only evidence. Completed-empty-
+poll suppression, live-terminal restart/reconnect, resource measurements,
+remaining approvals and OS/backend profiles are unqualified.
+Totals: **485 entries: 0 verified / 394 implemented / 85 missing / 6 blocked**;
+**6,621 contracts: 0 verified / 961 implemented / 5,660 missing**. No complete
+compatibility, external integration, publication, deployment or A11 claim follows.

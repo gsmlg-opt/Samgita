@@ -5756,12 +5756,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/backgroundTerminals/clean",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadBackgroundTerminalsCleanParams"
       },
@@ -5783,16 +5787,20 @@
         "source_line": 750,
         "variant": "ThreadBackgroundTerminalsClean"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "thread/backgroundTerminals/clean"
     },
     {
@@ -5800,12 +5808,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/backgroundTerminals/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadBackgroundTerminalsListParams"
       },
@@ -5827,16 +5839,20 @@
         "source_line": 756,
         "variant": "ThreadBackgroundTerminalsList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "thread/backgroundTerminals/list"
     },
     {
@@ -5844,12 +5860,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/backgroundTerminals/terminate",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadBackgroundTerminalsTerminateParams"
       },
@@ -5871,16 +5891,20 @@
         "source_line": 762,
         "variant": "ThreadBackgroundTerminalsTerminate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "thread/backgroundTerminals/terminate"
     },
     {
@@ -9052,7 +9076,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/approval-qualification.md",
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:item/commandExecution/requestApproval",
@@ -9060,7 +9085,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Native exact command approval supports accept/decline/cancel/session cache and exact execpolicy amendment. Rule survives process restart; stale handle cannot decide next matching request; explicit reply error fails without execution/rule. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "No applyNetworkPolicyAmendment, network-host prompts, arbitrary edits, alternate environments, managed policy or all platform profiles."
+        "No applyNetworkPolicyAmendment, network-host prompts, arbitrary edits, alternate environments, managed policy or all platform profiles.",
+        "command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "prerequisites": [
         "initialized"
@@ -9079,11 +9105,15 @@
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
           "apps/samgita_codex_driver/test/real_session_test.exs",
-          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+          "apps/samgita_codex_driver/test/server_interactions_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:240",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:312",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "item/commandExecution/requestApproval"
     },
@@ -10915,12 +10945,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/commandExecution/terminalInteraction",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/TerminalInteractionNotification"
       },
@@ -10933,16 +10967,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "item/commandExecution/terminalInteraction"
     },
     {
@@ -13913,7 +13951,8 @@
       "direction": "server_request",
       "evidence": [
         "docs/codex-app-server/approval-qualification.md",
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "id": "server_request:item/commandExecution/requestApproval",
@@ -13921,7 +13960,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Native exact command approval supports accept/decline/cancel/session cache and exact execpolicy amendment. Rule survives process restart; stale handle cannot decide next matching request; explicit reply error fails without execution/rule. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "No applyNetworkPolicyAmendment, network-host prompts, arbitrary edits, alternate environments, managed policy or all platform profiles."
+        "No applyNetworkPolicyAmendment, network-host prompts, arbitrary edits, alternate environments, managed policy or all platform profiles.",
+        "command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "params": {
         "$ref": "#/definitions/CommandExecutionRequestApprovalParams"
@@ -13954,11 +13994,15 @@
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
           "apps/samgita_codex_driver/test/real_session_test.exs",
-          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+          "apps/samgita_codex_driver/test/server_interactions_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:240",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:312",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "item/commandExecution/requestApproval"
     },
@@ -18425,12 +18469,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/backgroundTerminals/clean",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18438,16 +18486,20 @@
       "schema": "v2/ThreadBackgroundTerminalsCleanResponse.json",
       "schema_sha256": "a594a65b4eb1ddf4613e868e382d7cda24daaa09b86de919fbece99e75b55478",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "thread/backgroundTerminals/clean"
     },
     {
@@ -18456,12 +18508,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/backgroundTerminals/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18469,16 +18525,20 @@
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "b56b1cbcb1d60079ee9f9caaeef29cad869a25b4a6d356566f7c9f672faa7bf4",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "thread/backgroundTerminals/list"
     },
     {
@@ -18487,12 +18547,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/backgroundTerminals/terminate",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18500,16 +18564,20 @@
       "schema": "v2/ThreadBackgroundTerminalsTerminateResponse.json",
       "schema_sha256": "1f5dfb3fdd3c1fef2ef9b9b2c26eb2f2c7346cdf695d4ca291ede076050d1bc7",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "thread/backgroundTerminals/terminate"
     },
     {
@@ -61366,46 +61434,64 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandExecutionApprovalKind/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
+      ],
       "pointer": "/definitions/CommandExecutionApprovalKind/enum/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "7d4941e3da3dc8f43aace381595553de9ed751ec1e245e4bebca9bb5e738605e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandExecutionApprovalKind/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
+      ],
       "pointer": "/definitions/CommandExecutionApprovalKind/enum/1",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "811c0fc736b5707028d1ec4d5b8ee811a9e263e169b3f16436e52f0e9cdb43c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -62613,67 +62699,87 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/approvalId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalId",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "9e381e105fae562f8eefe1288965db03231d423123733320e3231cd7a7116a8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "approvalId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/availableDecisions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
+      ],
       "nullable": true,
       "pointer": "/properties/availableDecisions",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "630bc3a7b53eff65e67529f221de0ad9c0125e7a546a5b7bf1cda480c578add3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "availableDecisions"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/command",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "nullable": true,
       "pointer": "/properties/command",
@@ -62690,11 +62796,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "command"
     },
@@ -62728,14 +62837,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "nullable": true,
       "pointer": "/properties/cwd",
@@ -62752,11 +62863,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "cwd"
     },
@@ -62817,41 +62931,52 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/environmentId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
+      ],
       "nullable": true,
       "pointer": "/properties/environmentId",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "51da74349329b832e0c3d2cc410b6c78d0f2e8086273b06e4265a538be123374",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/itemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "nullable": false,
       "pointer": "/properties/itemId",
@@ -62868,11 +62993,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "itemId"
     },
@@ -62880,14 +63008,16 @@
       "default": "command",
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "has_default": true,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/kind",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "nullable": false,
       "pointer": "/properties/kind",
@@ -62904,11 +63034,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "kind"
     },
@@ -63008,14 +63141,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/proposedExecpolicyAmendment",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "nullable": true,
       "pointer": "/properties/proposedExecpolicyAmendment",
@@ -63032,11 +63167,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "proposedExecpolicyAmendment"
     },
@@ -63069,41 +63207,52 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
+      ],
       "nullable": true,
       "pointer": "/properties/reason",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "158e86cac4a20db07b1d1c440914713b0b6f303093134de017240f68f2c90bd6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "reason"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/startedAtMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "nullable": false,
       "pointer": "/properties/startedAtMs",
@@ -63120,11 +63269,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "startedAtMs"
     },
@@ -63132,14 +63284,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
@@ -63156,11 +63310,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "threadId"
     },
@@ -63168,14 +63325,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, command kind/cwd/text and proposed printf rule asserted. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "nullable": false,
       "pointer": "/properties/turnId",
@@ -63192,11 +63351,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "turnId"
     },
@@ -63204,14 +63366,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/background-terminal-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalResponse.json#/properties/decision",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Selected decision variants produce native execution/refusal/session and persisted-rule effects. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Selected decision variants produce native execution/refusal/session and persisted-rule effects. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_local_synthetic_backend: command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
       ],
       "nullable": false,
       "pointer": "/properties/decision",
@@ -63228,11 +63392,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:387",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "decision"
     },
@@ -151754,131 +151921,171 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TerminalInteractionNotification.json#/properties/itemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/itemId",
       "required": true,
       "schema": "v2/TerminalInteractionNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:270"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TerminalInteractionNotification.json#/properties/processId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/processId",
       "required": true,
       "schema": "v2/TerminalInteractionNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:270"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "processId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TerminalInteractionNotification.json#/properties/stdin",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/stdin",
       "required": true,
       "schema": "v2/TerminalInteractionNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:270"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "stdin"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TerminalInteractionNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/TerminalInteractionNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:270"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/TerminalInteractionNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/TerminalInteractionNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:270"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
@@ -153178,142 +153385,187 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsCleanParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsCleanParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListParams.json#/properties/cursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/ThreadBackgroundTerminalsListParams.json",
       "schema_sha256": "8c4f3653fe1a44eb8a01affe5e4eb2cbe3b209bfa6c0e62c2e15dfbb450d0142",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListParams.json#/properties/limit",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/ThreadBackgroundTerminalsListParams.json",
       "schema_sha256": "8c855c3fa9e7f063a3d0ad865272a4331d90867e89babbf82f5bac561a05fd0b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "limit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsListParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/command",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/command",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:487",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "command"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/cpuPercent",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "null_only: Native always returns explicit null for this resource field in the selected profile. No nonnull resource measurement is qualified; state remains missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/cpuPercent",
       "required": false,
@@ -153326,72 +153578,98 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:487"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "cpuPercent"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/cwd",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:487",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/itemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/itemId",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:487",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/osPid",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "null_only: Native always returns explicit null for this resource field in the selected profile. No nonnull resource measurement is qualified; state remains missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/osPid",
       "required": false,
@@ -153404,46 +153682,63 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:487"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "osPid"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/processId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/processId",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:487",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "processId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/definitions/ThreadBackgroundTerminal/properties/rssKb",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "null_only: Native always returns explicit null for this resource field in the selected profile. No nonnull resource measurement is qualified; state remains missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadBackgroundTerminal/properties/rssKb",
       "required": false,
@@ -153456,139 +153751,185 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:487"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "rssKb"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/properties/data",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "05722fa627cfe0c5f947162c7b74b35c1f9bdc4cd7c5f29ce614c3444b957265",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:487",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsListResponse.json#/properties/nextCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ThreadBackgroundTerminalsListResponse.json",
       "schema_sha256": "327f5fc7ab4df2df6babe1388e1263eab8ad0618eeac767724e649225442afc2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:487",
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "nextCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsTerminateParams.json#/properties/processId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/processId",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsTerminateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "processId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsTerminateParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsTerminateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/background-terminal-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadBackgroundTerminalsTerminateResponse.json#/properties/terminated",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Selected actual pinned Linux UDS core unified-exec behavior with owned synthetic readers; clean ACK is separate from observed process exit. Live terminal restart/reconnect, resource measurement, completed-empty-poll suppression, remaining approval variants and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/terminated",
       "required": true,
       "schema": "v2/ThreadBackgroundTerminalsTerminateResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:156"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "terminated"
     },
     {
