@@ -6062,12 +6062,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/metadata/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual Linux stdio Git patch/null/sanitization, project membership, experimental gates, Daybreak metadata, archive/cold and atomic-error behavior only; remote stores, concurrency, remaining URL forms and other OS/transports remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadMetadataUpdateParams"
       },
@@ -6089,16 +6093,20 @@
         "source_line": 666,
         "variant": "ThreadMetadataUpdate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/metadata/update"
     },
     {
@@ -16798,12 +16806,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/metadata/update",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual Linux stdio Git patch/null/sanitization, project membership, experimental gates, Daybreak metadata, archive/cold and atomic-error behavior only; remote stores, concurrency, remaining URL forms and other OS/transports remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16811,16 +16823,20 @@
       "schema": "v2/ThreadMetadataUpdateResponse.json",
       "schema_sha256": "809e8d4beefc197e80dd52f606a11d001d4cf2a697cf96d60d8f7d306534843f",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/metadata/update"
     },
     {
