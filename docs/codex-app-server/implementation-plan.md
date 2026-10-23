@@ -353,6 +353,17 @@ Next concrete work (repair follow-up, 2026-10-24):
    fields retain null-only limitations without promotion. CI explicitly selects
    this fourteenth isolated profile. Completed-empty-poll suppression, terminal
    restart/reconnect and all remaining approval/OS profiles stay incomplete.
+   Five [configuration-notice cases](configuration-notice-qualification.md) now
+   pass both seeds for native ignored-key/rule warnings, actual persisted-history
+   deprecation and the unsupported tier warning's thread association. Three
+   entries and eight positive field/variant contracts gain scoped evidence;
+   explicit null deprecation details and unexercised warning causes stay missing.
+   At `e82f32f`, foundation 40034189629 passes. Conformance 40034198690 passes
+   fourteen isolated profiles, the driver (403/0), native wire (42/0), outside
+   consumer (1/0) and the bundled native sandbox write/deny probe. Its platform
+   step again fails before tests fetching `mdex_native` (`header_too_long`),
+   while the completeness gate correctly fails missing evidence. Keep these
+   terminal outcomes separate; do not infer a release or full acceptance.
    At `085c4cc8`, foundation
    passed; conformance's thirteen isolated profiles passed, but all four default
    output-notice tests failed during namespace startup on Ubuntu 24.04. The

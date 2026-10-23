@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 394 implemented / 85 missing /
-6 blocked requirements** and **0 verified / 961 implemented / 5,660 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 397 implemented / 82 missing /
+6 blocked requirements** and **0 verified / 969 implemented / 5,652 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 961 directly exercised
+MCP entries have scoped implementation evidence. These 969 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1629,3 +1629,68 @@ deadline or assertion weakening. Eight resource-integrity tests and existing
 Python regressions passed **31/0**. The earlier runner's exact bwrap availability
 remains unproven because it discarded stderr. Hosted validation of the resource
 change remains required; no manifest state is promoted by this environment check.
+
+## Populated platform, recovery and local assembly checkpoint
+
+The current root/application source was checked serially with Devenv Elixir
+1.18.5 / OTP 27, `MIX_ENV=test`, the pinned Codex binary and retained local database
+`samgita_redesign_recovery_repair_test` on
+`/tmp/samgita-p3-pg/socket:55443`, user `gao`. No database was reset. Runner:
+`/tmp/samgita-repair-final-platform-20261024.py`; per-command logs, source hashes
+and exit codes: `/tmp/samgita-repair-final-platform-20261024/`. Its recorded HEAD
+is `edeaecf`; subsequent commits through `e82f32f` change independent tests,
+resource/CI setup and documentation, not the root/application executable source.
+
+| Check | Actual result |
+| --- | --- |
+| Root warnings-as-errors compile, complete format, strict Credo | All exit 0 |
+| Full root suite, same populated database, seed `501432` | Core 213 cases / 0 failures / 1 excluded; web 125 / 0 / 2 excluded |
+| Consecutive same-database repeat, seed `987654` | Same case/failure/exclusion counts |
+| Explicit runtime registration, journal, notifications, tool retirement, races, API and actual-native journey, `--include e2e --include real_codex`, seed `501432` | Core 42 / 0; web 5 / 0 |
+| Explicit recovery activation and restart reconciliation, `--include e2e`, seed `501432` | Core 4 / 0; web 1 / 0 |
+| Consecutive recovery/restart repeat, seed `987654` | Core 4 / 0; web 1 / 0 |
+| Legacy-check regression tests and retained runtime scan | 4 / 0 and exit 0 |
+| `mix dialyzer --force-check` | Passed, 5.81s |
+| Root `mix hex.audit` | No retired/advisory packages; exit 0 |
+| Frozen frontend dependencies and `mix assets.build` | Both exit 0 |
+| Isolated `MIX_ENV=prod` dependency resolution, `mix assets.deploy`, `mix release --overwrite` | All exit 0; local assembly at `/tmp/samgita-repair-final-prod-20261024/rel/samgita` |
+
+The recovery paths are
+`apps/samgita/test/samgita/recovery_activation_test.exs` and
+`apps/samgita_web/test/samgita_web/integration/restart_reconcile_test.exs`.
+Earlier similarly named nonexistent paths are not evidence. Explicit include
+flags above exercise the otherwise excluded native/restart scenarios. Original
+unmapped-work safeguards, journals, holds, shutdown ownership and Task review
+separation remain tested. No production migration, historical-data deletion,
+service startup, package publication, tag or deployment was performed. This
+checkpoint does not replace the final independent-package/consumer and hosted
+checks after later test/resource additions, nor does it close A11 or completeness.
+
+## Native configuration notices and hosted sandbox checkpoint
+
+Five [configuration/lifecycle notice cases](configuration-notice-qualification.md)
+pass at seeds `501432` and `987654`: ignored-key value redaction, a real located
+rule-parser warning, empty paginated-history rejection, deprecation after one
+persisted native text-only turn, and the unsupported service-tier warning's
+actual thread identity. Three notifications and eight directly asserted
+positive field/variant contracts gain scoped `implemented` evidence. Null-only
+deprecation details remain missing; managed system requirements, outgoing tier
+omission and other warning causes are not qualified. All owned processes are
+reaped. No model or tool command beyond the fixed local synthetic history
+response is authorized or used.
+
+At `e82f32f`, [foundation 40034189629](https://github.com/gsmlg-opt/Samgita/actions/runs/40034189629)
+passed all retained aggregate checks. In
+[conformance 40034198690](https://github.com/gsmlg-opt/Samgita/actions/runs/40034198690),
+all fourteen explicit isolated profiles passed. The selected job passed native
+wire **42/0**, driver **403/0**, and outside consumer **1/0**. Its sandbox probe
+recorded `system_bwrap_path:null`, verified bundled SHA256, allowed own-file
+write, EROFS sibling-write denial and unchanged sibling bytes. This establishes
+the forced fallback on this runner; it does not retrospectively establish the
+previous runner's missing stderr or exact cause.
+
+The selected platform step failed before tests while downloading retained
+`mdex_native` 0.2.8: `header_too_long`, maximum 10,240 bytes, on all three library
+attempts. Platform conformance therefore did not run in that job. The separate
+completeness gate failed as required; its inventory regressions passed. These
+outcomes do not establish full hosted acceptance, release or A11 closure.

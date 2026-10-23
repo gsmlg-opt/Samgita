@@ -10384,12 +10384,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:configWarning",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual native Linux UDS warning behavior with isolated synthetic configuration and one fixed text-only turn for persisted-history deprecation. Other warning causes, nonnull deprecation details, null warning thread identity, service-tier request omission and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ConfigWarningNotification"
       },
@@ -10402,27 +10406,36 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:101",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:123"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "configWarning"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:deprecationNotice",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual native Linux UDS warning behavior with isolated synthetic configuration and one fixed text-only turn for persisted-history deprecation. Other warning causes, nonnull deprecation details, null warning thread identity, service-tier request omission and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/DeprecationNoticeNotification"
       },
@@ -10435,16 +10448,21 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:183",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:229"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "deprecationNotice"
     },
     {
@@ -13587,12 +13605,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:warning",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual native Linux UDS warning behavior with isolated synthetic configuration and one fixed text-only turn for persisted-history deprecation. Other warning causes, nonnull deprecation details, null warning thread identity, service-tier request omission and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/WarningNotification"
       },
@@ -13605,16 +13627,21 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:244",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:255"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "warning"
     },
     {
@@ -117329,101 +117356,136 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigWarningNotification.json#/properties/details",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: ignored startup key/value redaction and actual post-initialize parser warning; nonnull parser details and exact owned path/range. Startup details is explicit null; startup path/range are omitted, not null."
+      ],
       "nullable": true,
       "pointer": "/properties/details",
       "required": false,
       "schema": "v2/ConfigWarningNotification.json",
       "schema_sha256": "c76a1c9388923849903c333d261e246759cfb2d6562331c5ad7de8d7c846b56d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:110",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:148"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "details"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigWarningNotification.json#/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: ignored startup key/value redaction and actual post-initialize parser warning; nonnull parser details and exact owned path/range. Startup details is explicit null; startup path/range are omitted, not null."
+      ],
       "nullable": true,
       "pointer": "/properties/path",
       "required": false,
       "schema": "v2/ConfigWarningNotification.json",
       "schema_sha256": "a7b995227bf02d4b85c2cae6fdba7976aa2f802b2bdda915857f5f8f391949b1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:110",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:148"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigWarningNotification.json#/properties/range",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: ignored startup key/value redaction and actual post-initialize parser warning; nonnull parser details and exact owned path/range. Startup details is explicit null; startup path/range are omitted, not null."
+      ],
       "nullable": true,
       "pointer": "/properties/range",
       "required": false,
       "schema": "v2/ConfigWarningNotification.json",
       "schema_sha256": "c44e0357b29ca217d720ebed8642a701ae386d5648338673e6afd4cc72f41a5f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:110",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:148"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "range"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigWarningNotification.json#/properties/range/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Located rule parser warning has exact start/end line1,column13; null range branch unqualified."
+      ],
       "pointer": "/properties/range/anyOf/0",
       "schema": "v2/ConfigWarningNotification.json",
       "schema_sha256": "103f9de94b8842e828d82890f495b5dd703137d51b4a1fcb6b9d04c70578e917",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:148"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -117451,27 +117513,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigWarningNotification.json#/properties/summary",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: ignored startup key/value redaction and actual post-initialize parser warning; nonnull parser details and exact owned path/range. Startup details is explicit null; startup path/range are omitted, not null."
+      ],
       "nullable": false,
       "pointer": "/properties/summary",
       "required": true,
       "schema": "v2/ConfigWarningNotification.json",
       "schema_sha256": "0dd781261768987274bc4a2d2230a29a49cac5ef265494fd728d628f2bd2af52",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:110",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:148"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "summary"
     },
     {
@@ -118075,12 +118146,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/DeprecationNoticeNotification.json#/properties/details",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "null_only: Exact native notice contains explicit details:null. No nonnull details string is qualified; state remains missing."
+      ],
       "nullable": true,
       "pointer": "/properties/details",
       "required": false,
@@ -118093,35 +118168,48 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:229"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "details"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/DeprecationNoticeNotification.json#/properties/summary",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact pinned summary emitted only for full hydration after a completed native persisted text-only turn; empty registration error does not emit this notice."
+      ],
       "nullable": false,
       "pointer": "/properties/summary",
       "required": true,
       "schema": "v2/DeprecationNoticeNotification.json",
       "schema_sha256": "90b5669eb09155b38b1247cd5b6c13bee7c0e6f9ce3c79a2d4b0a6d62fcbe228",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:183",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:229"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "summary"
     },
     {
@@ -190673,53 +190761,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/WarningNotification.json#/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact unsupported priority-tier message with the actual new thread ID; null thread ID and outgoing request omission unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/message",
       "required": true,
       "schema": "v2/WarningNotification.json",
       "schema_sha256": "e5fbf8849e17e3f7de369d1ed4ffd817bc58124679b450a8fac31a08dedf7998",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:244",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:255"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/configuration-notice-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/WarningNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Exact unsupported priority-tier message with the actual new thread ID; null thread ID and outgoing request omission unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/threadId",
       "required": false,
       "schema": "v2/WarningNotification.json",
       "schema_sha256": "f90956ed33560fe5f19438b1b661139c94252ac3a865f0bd379437f8926dbced",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:244",
+          "apps/samgita_codex_driver/test/native_configuration_notice_test.exs:255"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
