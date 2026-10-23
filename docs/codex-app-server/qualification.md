@@ -579,7 +579,7 @@ assembly and selected tests do not establish full compatibility or readiness.
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory repaired; A11 raw server/LiveView credential telemetry still blocked; target-specific egress/key/legacy-cutover and real backup/memory rehearsals remain |
-| Hosted | At `2565d96`, pinned `39990785776` passes its selected actual-binary/platform job; completeness remains red. Foundation `39990749699` passes tests/restart/packages but fails stale dependency-PLT analysis; supported `--force-check` repair passes locally and awaits hosted verification. See the repair record for exact evidence |
+| Hosted | At `2565d96`, pinned `39990785776` passes its selected actual-binary/platform job; completeness remains red. Foundation `39990749699` fails stale dependency-PLT analysis; supported `--force-check` repair passes the complete hosted foundation at `81409ca`, run `39992212088`. Later `5fdc659` stops at strict Credo on a new test literal before tests. The literal is repaired without changing its behavior or the gate; final-source checks remain required. See the repair record for exact evidence |
 | Publication/deployment | No normal package/tag publication workflow currently exists; CD remains disabled; no package publication or deployment is claimed |
 
 New migrations are additive and refuse destructive down migration. Rollback

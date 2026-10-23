@@ -299,9 +299,26 @@ Neither input changes for a new function in the reusable driver. The supported
 No dependency source is patched and no warning is ignored. Local verification:
 `devenv shell --no-tui -- env MIX_ENV=test mix dialyzer --force-check` checked
 **2,165 modules**, reported **zero errors/skips**, and exited zero. Log:
-`/tmp/samgita-ci-plt-force-check.log`. Hosted verification of this workflow
-change must be recorded against its pushed source; local success alone does
-not establish that hosted repair.
+`/tmp/samgita-ci-plt-force-check.log`. At workflow repair commit
+`81409cae03c95a80a6966376533f349a70c3dc2e`, hosted foundation
+[39992212088](https://github.com/gsmlg-opt/Samgita/actions/runs/39992212088)
+passed the complete job, including forced dependency analysis, audits and
+production assembly. This establishes the scoped hosted PLT repair; later
+source still requires its own final checks.
+
+## Native profile test static gate
+
+Foundation [39993653513](https://github.com/gsmlg-opt/Samgita/actions/runs/39993653513)
+at `5fdc6592725dff138f491493cb7a8b475e6d7186` stopped at strict Credo before
+database/test steps. Its only finding was an escaped TOML string in
+`native_project_profiles_test.exs:23`. The test now uses an interpolated sigil
+with the same bytes and assertions. No Credo rule or test gate changed.
+Local strict Credo then found a nested assertion helper in the pending plugin
+test; extraction preserves every content/count assertion. The integrated check
+passed **286 files with no issues**, followed by **22 actual-binary profile,
+plugin, filesystem and environment tests**, seed `501432`. Log:
+`/tmp/samgita-operation-profiles-static-check.log`. Final-source hosted results
+are recorded separately.
 
 ## Continuing gates
 
@@ -328,8 +345,8 @@ The pinned inventory check and its 17 Python regressions passed after these
 repairs and the controlled compaction follow-up. Counts are generated from the pin,
 not inferred from selected passing journeys. Following selected native Project
 implementation evidence: **0 verified / 17 implemented / 464 missing / 4 blocked requirements;
-0 verified / 3 implemented / 6,618 missing contracts**. The notification's scoped
-and native Project implementation status is distinct from full qualification.
+0 verified / 3 implemented / 6,618 missing contracts**. The scoped native
+notification and Project implementation status is distinct from full qualification.
 See [native Project evidence](native-project-qualification.md). Legacy approvals retain their schemas and
 [exact upstream reachability evidence](legacy-approval-qualification.md); no
 scripted peer is counted as enabled real-binary legacy success. Required external

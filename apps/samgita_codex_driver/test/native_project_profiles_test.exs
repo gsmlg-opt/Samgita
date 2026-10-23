@@ -20,7 +20,7 @@ defmodule SamgitaCodexDriver.NativeProjectProfilesTest do
 
         File.write!(
           config,
-          "experimental_thread_store = { type = \"in_memory\", id = \"#{id}\" }\n" <>
+          ~s(experimental_thread_store = { type = "in_memory", id = "#{id}" }\n) <>
             File.read!(config)
         )
 
