@@ -362,8 +362,29 @@ independent protocol packages/consumers, assets, legacy scan and Dialyzer. It fa
 `mix hex.audit` on retained `plug_crypto 2.2.0`, CVE-2026-105963, and skipped
 production assembly. That rerun passes the neutral WebSocket scenario but does
 not explain its preceding failure or clear the retained local restart repeat.
-The output/settings/MCP follow-up requires hosted evidence from its delivered
-source; the earlier hosted runs do not establish that new coverage.
+Both follow-up workflows reached terminal states at
+`4690295375d7297b305508ba0099a644793ca35b` (test source `50abfe3` / `9791d54`):
+
+- Aggregate [39966363211](https://github.com/gsmlg-opt/Samgita/actions/runs/39966363211)
+  **failed** the retained application restart/rollback test, seed `888788`, after
+  passing compile, format, strict Credo and repeated root tests. Restarting the
+  fake Agent at `restart_reconcile_test.exs:138` failed to bind port `34755` with
+  `:eaddrinuse` (one test, one failure). This is distinct from the retained local
+  activation conflict. The cause remains unqualified; no listener/test change,
+  timeout increase, database reset or gate bypass was made. Independent neutral
+  packages, assets, legacy scan, Dialyzer, audit and assembly were skipped in this
+  run. Earlier outcomes remain separate evidence.
+- Pinned conformance [39966435643](https://github.com/gsmlg-opt/Samgita/actions/runs/39966435643)
+  **passed its selected actual-binary and platform job**, including the new
+  output/settings/MCP scenarios: 32 protocol tests, 140 driver tests, one outside
+  consumer test, 21 platform/API/concurrency tests and four platform journeys,
+  all with zero failures. Its independent strict
+  full-evidence gate **failed as required**; the overall workflow is failed.
+
+The aggregate restart failure is outside this native-turn qualification unit.
+Implementation stops at this reported failure without silently repairing retained
+platform behavior. Later evidence-only documentation does not alter the tested
+runtime or test tree. The full compatibility goal remains incomplete.
 
 | Layer | Remaining requirement |
 | --- | --- |
@@ -371,7 +392,7 @@ source; the earlier hosted runs do not establish that new coverage.
 | Methods/interactions | Remaining enabled/disabled/error/differential and legacy approval variants, including full parameter surfaces |
 | External/platform matrix | Real account/backend authentication, signed-JWT success, external tools/services and other OS/backend success profiles require appropriate controlled authorized environments; none was provisioned |
 | Security/readiness | Retained Plug.Crypto advisory; A11 raw LiveView credential telemetry; target-specific egress/key/legacy-cutover and real backup/memory rehearsals |
-| Hosted | Subsequent aggregate passes the neutral WebSocket suite but fails the retained Plug.Crypto audit; selected pinned Codex scenarios pass; full evidence gate remains red until actual acceptance is complete |
+| Hosted | Latest aggregate fails the retained restart test with `:eaddrinuse`; its later gates are skipped; selected pinned Codex scenarios pass; full evidence gate remains red until actual acceptance is complete |
 | Publication/deployment | No normal package/tag publication workflow currently exists; CD remains disabled; no package publication or deployment is claimed |
 
 New migrations are additive and refuse destructive down migration. Rollback
