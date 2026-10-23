@@ -1,9 +1,23 @@
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
 import unittest
 
 from check_legacy_runtime import violations
 
 
 class LegacyRuntimeScanTest(unittest.TestCase):
+    def test_scanner_runs_without_ripgrep(self):
+        with tempfile.TemporaryDirectory(prefix="samgita-scan-path-") as directory:
+            Path(directory, "git").symlink_to(shutil.which("git"))
+            result = subprocess.run(
+                [sys.executable, "-B", str(Path(__file__).with_name("check_legacy_runtime.py"))],
+                env={**os.environ, "PATH": directory}, capture_output=True, text=True)
+            self.assertEqual(0, result.returncode, result.stderr)
+
     def test_intentional_history_and_negative_assertions(self):
         self.assertEqual([], violations("preservation_test.exs", "# pgvector history is retained\n"))
         self.assertEqual([], violations("consumer_test.exs",

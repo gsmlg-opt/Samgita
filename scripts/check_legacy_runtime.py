@@ -30,9 +30,12 @@ def violations(path, source):
 
 
 def main():
-    paths = subprocess.check_output(["rg", "--files", "--hidden", *SCOPE], cwd=ROOT, text=True)
+    # Git is already required by checkout; hosted runners need no extra search tool.
+    paths = subprocess.check_output(
+        ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard", "--", *SCOPE],
+        cwd=ROOT, text=True)
     found = []
-    for path in paths.splitlines():
+    for path in filter(None, paths.split("\0")):
         source = (ROOT / path).read_text(errors="replace")
         found.extend(violations(path, source))
     if found:
