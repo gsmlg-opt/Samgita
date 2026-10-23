@@ -6707,12 +6707,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/readState/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadReadStateUpdateParams"
       },
@@ -6734,16 +6738,20 @@
         "source_line": 864,
         "variant": "ThreadReadStateUpdate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/readState/update"
     },
     {
@@ -7212,12 +7220,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/section/move",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadSectionMoveParams"
       },
@@ -7239,16 +7251,20 @@
         "source_line": 692,
         "variant": "ThreadSectionMove"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/section/move"
     },
     {
@@ -7577,12 +7593,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:threadSection/create",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadSectionCreateParams"
       },
@@ -7604,27 +7624,35 @@
         "source_line": 825,
         "variant": "ThreadSectionCreate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSection/create"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:threadSection/delete",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadSectionDeleteParams"
       },
@@ -7646,27 +7674,35 @@
         "source_line": 835,
         "variant": "ThreadSectionDelete"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSection/delete"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:threadSection/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadSectionListParams"
       },
@@ -7688,27 +7724,35 @@
         "source_line": 820,
         "variant": "ThreadSectionList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSection/list"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:threadSection/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadSectionUpdateParams"
       },
@@ -7730,16 +7774,20 @@
         "source_line": 830,
         "variant": "ThreadSectionUpdate"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSection/update"
     },
     {
@@ -11353,12 +11401,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:thread/readState/changed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadReadStateChangedNotification"
       },
@@ -11375,16 +11427,20 @@
         "source_line": 1953,
         "variant": "ThreadReadStateChanged"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/readState/changed"
     },
     {
@@ -17604,12 +17660,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/readState/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17617,16 +17677,20 @@
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "1ba713b18c3c53c737d503bac5614f2bd35c2ab4d54a8090287555f77634bd0d",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/readState/update"
     },
     {
@@ -17966,12 +18030,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/section/move",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17979,16 +18047,20 @@
       "schema": "v2/ThreadSectionMoveResponse.json",
       "schema_sha256": "243299d7eebd4fb264d4e75efeb5058982681202371c2b83ff1a63b3369ddbb6",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/section/move"
     },
     {
@@ -18234,12 +18306,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:threadSection/create",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18247,28 +18323,36 @@
       "schema": "v2/ThreadSectionCreateResponse.json",
       "schema_sha256": "2b0b0e7a2651354aac35aa5d1a423b9f207ee8d46b2de077df747f4ed4f4c8de",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSection/create"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:threadSection/delete",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18276,28 +18360,36 @@
       "schema": "v2/ThreadSectionDeleteResponse.json",
       "schema_sha256": "9bbee5cca1fca02e4a65c2481dc3b24f090bca7afb786923ee481017b133b091",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSection/delete"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:threadSection/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18305,28 +18397,36 @@
       "schema": "v2/ThreadSectionListResponse.json",
       "schema_sha256": "dc3b5e5501a56ea2a1a83cb97c5221b355629f8c9468793d94e22673424140bc",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSection/list"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:threadSection/update",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -18334,16 +18434,20 @@
       "schema": "v2/ThreadSectionUpdateResponse.json",
       "schema_sha256": "4588cbf0374204c17f02f15eecb5390cd5346bc551675e07e541bbfd28d020bf",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSection/update"
     },
     {
@@ -161263,53 +161367,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateChangedNotification.json#/properties/readState",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "nullable": false,
       "pointer": "/properties/readState",
       "required": true,
       "schema": "v2/ThreadReadStateChangedNotification.json",
       "schema_sha256": "6389b1560ecaa37cbe2e7c9a18e4af879e277277983679616f95031c76cf6f3a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "readState"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/organization-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateChangedNotification.json#/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Eight actual-native cases cover section identity/pagination/appearance/order/restart/archive and durable read-state attention, same-server revision conflict, subscription and capability/error boundaries. SQLite-disabled, cross-process races, non-user source eligibility, all attention suppression/error variants and other deployment profiles remain unqualified; sections expose no public CAS."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadReadStateChangedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {

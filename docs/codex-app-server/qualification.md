@@ -839,3 +839,23 @@ and **6,621 contracts: 0 verified / 45 implemented / 6,576 missing**. Four
 method/response entries and 26 directly compared parameter/model/result fields
 gain scoped `implemented` evidence; unexercised enum/nullable branches retain
 their statuses. A11 and required legacy/external profiles remain incomplete.
+
+## Native organization and read-state lifecycle
+
+Eight additional actual-binary stdio cases passed both `501432` and `987654`
+(7.6s / 7.9s), plus warnings-as-errors compile, scoped format and whitespace
+checks. The initial **8 / 1** was a draft enum typo; the pinned schema and serde
+test require `section_position`. A one-line input correction retained every
+ordering/persistence assertion. See
+[organization lifecycle](organization-lifecycle-qualification.md) for exact
+commands, logs and source. The coordinator reviewed the tests, including the
+two competing requests, exact conflict payload, response-bounded unsubscribe
+observation and cleanup. Native SQLite is private; no Samgita database is used.
+
+Only the 13 exercised method/response/notification entries and two directly
+asserted notification fields gain scoped `implemented` evidence. Inventory:
+**485 entries: 0 verified / 182 implemented / 298 missing / 5 blocked**;
+**6,621 contracts: 0 verified / 47 implemented / 6,574 missing**. These tests
+enter default driver discovery. Other source-eligibility, SQLite-disabled,
+cross-process and deployment profiles remain unqualified. The complete driver
+and required aggregate/hosted checks still need the integrated final revision.
