@@ -53,6 +53,13 @@ Command: `mix test --seed 728846`, from the standalone driver directory in
 verified Devenv with `MIX_ENV=test`. The log is
 `/tmp/samgita-driver-notification-repair-full-728846.log`. This run includes the
 new deterministic regression; subsequent family additions require their own
-final-source aggregate repeat. Hosted validation remains pending on pushed
-source. Neither ordering repair nor selected conformance closes full manifest,
-external-profile or A11 requirements.
+final-source aggregate repeat. Hosted
+[40039092156](https://github.com/gsmlg-opt/Samgita/actions/runs/40039092156)
+at `403607ca405702475c86e01840fe090bd23f4f53` passed the full **418/0** driver,
+native wire, outside consumer and selected platform journey; all 15 explicitly
+selected native profiles also passed. The overall workflow failed its separate
+required completeness/evidence gate. Full log:
+`/tmp/samgita-403607c-hosted-conformance-20261024.log`.
+This closes that ordering/acquisition checkpoint, not final-source qualification
+after later additions. Neither repair nor selected conformance closes full
+manifest, external-profile or A11 requirements.

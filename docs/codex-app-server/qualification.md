@@ -1769,7 +1769,8 @@ reproduces the retained HTTP client's 10,240-byte header rejection against the
 official MDEx redirect. Six integrity/error cases and all 37 Python regressions
 pass; an empty outside consumer compiles and loads the unchanged checksum-pinned
 NIF through Rustler's documented cache. The selected workflow initializes that
-cache in a valid step context. New hosted execution remains required.
+cache in a valid step context. Hosted execution at `403607c` subsequently passed
+acquisition and selected platform validation, as recorded below.
 
 The [notification test synchronization repair](notification-test-synchronization.md)
 reproduces the unsynchronized helper's 100 ms empty-mailbox failure under a
@@ -1781,6 +1782,19 @@ the original hosted seed `728846`, 305.0s. Scoped format and strict Credo pass.
 No production protocol implementation or task/recovery state is changed.
 These are scoped repairs; completeness, A11 and unavailable external/platform
 success profiles remain unmet.
+
+Hosted [40039092156](https://github.com/gsmlg-opt/Samgita/actions/runs/40039092156)
+at exact commit `403607ca405702475c86e01840fe090bd23f4f53` passed both selected
+execution jobs: native wire **42/0**, driver **418/0**, outside consumer,
+verified NIF acquisition, platform **42/0 + 5/0**, and all 15 explicit native
+profiles. The separate required completeness/evidence job failed, so overall
+conformance remains **failure**. Foundation
+[40039070868](https://github.com/gsmlg-opt/Samgita/actions/runs/40039070868)
+passed that commit; foundation
+[40040350899](https://github.com/gsmlg-opt/Samgita/actions/runs/40040350899)
+also passed `f0385f249ab25d1879cf376f93fab73d655fe3e1`.
+These close the acquisition/ordering checkpoint. They predate later profiles
+and do not substitute for final-source matrix/hosted results or clear A11.
 
 ## Native rate-limit header updates
 

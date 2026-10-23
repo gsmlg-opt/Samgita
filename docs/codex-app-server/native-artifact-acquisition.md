@@ -68,7 +68,14 @@ All three cold-consumer commands passed. Local logs are
 `/tmp/samgita-cold-deps-20261024.log`,
 `/tmp/samgita-cold-compile-20261024.log` and
 `/tmp/samgita-cold-load-20261024.log`.
-Hosted success still requires a new selected-conformance run on the pushed
-repair. Earlier native/profile/aggregate results do not substitute for it.
-Completeness, A11, external integration, publication and deployment remain
-separate unmet gates.
+Hosted [40039092156](https://github.com/gsmlg-opt/Samgita/actions/runs/40039092156)
+at `403607ca405702475c86e01840fe090bd23f4f53` passed acquisition and the complete
+selected actual-binary/platform job. Native wire passed **42/0**, driver **418/0**,
+the outside consumer passed, and platform core/web passed **42/0** and **5/0**.
+Its separate 15-profile native job passed every step. The overall workflow still
+failed its required completeness/evidence job because entries remain unverified;
+it is not green full conformance. The full log is
+`/tmp/samgita-403607c-hosted-conformance-20261024.log`.
+These observations close this repair checkpoint only. Subsequent family additions
+require final-source hosted qualification. Completeness, A11, external integration,
+publication and deployment remain separate unmet gates.

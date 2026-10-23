@@ -13,8 +13,15 @@ or a reviewed migration of every secret-bearing ingress remains a prerequisite.
 
 The [locked native artifact acquisition repair](native-artifact-acquisition.md)
 reproduces the hosted MDEx download failure, preserves both checksum checks, and
-loads the unchanged native module in a cold outside consumer. Hosted validation
-of that acquisition path remains pending on the pushed repair.
+loads the unchanged native module in a cold outside consumer. Hosted
+[40039092156](https://github.com/gsmlg-opt/Samgita/actions/runs/40039092156)
+at `403607ca405702475c86e01840fe090bd23f4f53` then passed the selected native/
+consumer/platform job and all 15 explicit native profiles. Wire **42/0**, driver
+**418/0**, platform **42/0 + 5/0**, native acquisition and the outside consumer
+all passed. The overall workflow failed its independent required completeness
+gate. This closes that repair checkpoint only; later source additions require
+their own final matrix. Foundation at the same commit and at `f0385f2` also
+passed. A11, complete evidence and external profiles remain incomplete.
 
 ## Owned-process baseline
 
