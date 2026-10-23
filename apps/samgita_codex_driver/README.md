@@ -119,6 +119,7 @@ execution and recovery rules in the pinned server:
 | `threadSection/*`, `thread/section/move` | Stable persisted native organization; these are not Samgita Projects or repository memberships. There is no public section CAS. |
 | `thread/readState/update` | Experimental durable read/unread action with an opaque expected revision and structured conflict. Reading/listing does not acknowledge attention. |
 | `thread/realtime/*` | Experimental realtime lifecycle. Empty RPC results acknowledge operation submission; startup can fail asynchronously. Started, error and closed notifications determine session outcome. The V2 backend prompt prefers nonblank configuration over a request prompt. |
+| `plugin/installed`, `plugin/search`, `plugin/reconcile` and `marketplace/*` | Installed enablement and search discovery differ: local search reports `enabled: false`. An unauthenticated empty reconcile result does not establish remote synchronization or readiness. Local marketplace removal preserves referenced source files; explicit Git upgrade materializes an owned snapshot. |
 
 The command, queue, organization and model-discovery qualification records under
 `docs/codex-app-server/` declare the exact native tests and remaining profiles.

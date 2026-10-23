@@ -2754,12 +2754,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:marketplace/add",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/MarketplaceAddParams"
       },
@@ -2781,27 +2785,35 @@
         "source_line": 909,
         "variant": "MarketplaceAdd"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplace/add"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:marketplace/remove",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/MarketplaceRemoveParams"
       },
@@ -2823,27 +2835,35 @@
         "source_line": 914,
         "variant": "MarketplaceRemove"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplace/remove"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:marketplace/upgrade",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/MarketplaceUpgradeParams"
       },
@@ -2865,16 +2885,20 @@
         "source_line": 919,
         "variant": "MarketplaceUpgrade"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplace/upgrade"
     },
     {
@@ -3508,12 +3532,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:plugin/installed",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/PluginInstalledParams"
       },
@@ -3535,16 +3563,20 @@
         "source_line": 935,
         "variant": "PluginInstalled"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/installed"
     },
     {
@@ -3650,12 +3682,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:plugin/reconcile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/PluginReconcileParams"
       },
@@ -3677,16 +3713,20 @@
         "source_line": 940,
         "variant": "PluginReconcile"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/reconcile"
     },
     {
@@ -3694,12 +3734,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:plugin/search",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/PluginSearchParams"
       },
@@ -3721,16 +3765,20 @@
         "source_line": 930,
         "variant": "PluginSearch"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/search"
     },
     {
@@ -3946,12 +3994,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:plugin/skill/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+      ],
       "params": {
         "$ref": "#/definitions/PluginSkillReadParams"
       },
@@ -3980,7 +4032,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "plugin/skill/read"
@@ -3988,12 +4042,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:plugin/uninstall",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/PluginUninstallParams"
       },
@@ -4015,16 +4073,20 @@
         "source_line": 1052,
         "variant": "PluginUninstall"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/uninstall"
     },
     {
@@ -15135,12 +15197,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:marketplace/add",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15148,28 +15214,36 @@
       "schema": "v2/MarketplaceAddResponse.json",
       "schema_sha256": "a37633e9ecc2fdd87ea582861bcdcbf7963a8fab6db9fbc1bc8eac7d2f7f9a8b",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplace/add"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:marketplace/remove",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15177,28 +15251,36 @@
       "schema": "v2/MarketplaceRemoveResponse.json",
       "schema_sha256": "98deb2f721d57ed727f7cc7b4f478db5f604b6b6d40e6261928dfd5f586405e3",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplace/remove"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:marketplace/upgrade",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15206,16 +15288,20 @@
       "schema": "v2/MarketplaceUpgradeResponse.json",
       "schema_sha256": "2402379cb0ed1168a7dc327c412fd61bafdea2ad13ea7a3b3ebaee3b43c45963",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplace/upgrade"
     },
     {
@@ -15681,12 +15767,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:plugin/installed",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15694,16 +15784,20 @@
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "8afc8a16fa5c21d67f66d1855bf29890bad10a6229bafc960b3503281fc878e2",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/installed"
     },
     {
@@ -15784,12 +15878,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:plugin/reconcile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15797,16 +15895,20 @@
       "schema": "v2/PluginReconcileResponse.json",
       "schema_sha256": "ba2a8e317c9098beed39d4decc433d9dc29ba0c8164e8d4c229481b9243c5ec8",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/reconcile"
     },
     {
@@ -15815,12 +15917,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:plugin/search",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15828,16 +15934,20 @@
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "d98f7926f5bf62c228f8c39e83214e2140e80ea7a1db3c221eb1babe26ff8fed",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/search"
     },
     {
@@ -15989,12 +16099,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:plugin/skill/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16009,7 +16123,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "plugin/skill/read"
@@ -16018,12 +16134,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:plugin/uninstall",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16031,16 +16151,20 @@
       "schema": "v2/PluginUninstallResponse.json",
       "schema_sha256": "f6a0c9c8dfd9e3fc4a535ecfa606f12922c09e469a37d6b1c6e189f45cacb89e",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "plugin/uninstall"
     },
     {
@@ -124876,12 +125000,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddParams.json#/properties/refName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+      ],
       "nullable": true,
       "pointer": "/properties/refName",
       "required": false,
@@ -124894,7 +125022,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "refName"
@@ -124902,38 +125032,50 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddParams.json#/properties/source",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/source",
       "required": true,
       "schema": "v2/MarketplaceAddParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "source"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddParams.json#/properties/sparsePaths",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+      ],
       "nullable": true,
       "pointer": "/properties/sparsePaths",
       "required": false,
@@ -124946,7 +125088,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "sparsePaths"
@@ -124954,227 +125098,299 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddResponse.json#/properties/alreadyAdded",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/alreadyAdded",
       "required": true,
       "schema": "v2/MarketplaceAddResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "alreadyAdded"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddResponse.json#/properties/installedRoot",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/installedRoot",
       "required": true,
       "schema": "v2/MarketplaceAddResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installedRoot"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceAddResponse.json#/properties/marketplaceName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/marketplaceName",
       "required": true,
       "schema": "v2/MarketplaceAddResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplaceName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceRemoveParams.json#/properties/marketplaceName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/marketplaceName",
       "required": true,
       "schema": "v2/MarketplaceRemoveParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplaceName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceRemoveResponse.json#/properties/installedRoot",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/installedRoot",
       "required": false,
       "schema": "v2/MarketplaceRemoveResponse.json",
       "schema_sha256": "81fc07724af4da0dbdd7c594319ff306bf34d99f9e6ad1ede0a058d1e159e1a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installedRoot"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/MarketplaceRemoveResponse.json#/properties/installedRoot/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "pointer": "/properties/installedRoot/anyOf/0",
       "schema": "v2/MarketplaceRemoveResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/MarketplaceRemoveResponse.json#/properties/installedRoot/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "pointer": "/properties/installedRoot/anyOf/1",
       "schema": "v2/MarketplaceRemoveResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceRemoveResponse.json#/properties/marketplaceName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/marketplaceName",
       "required": true,
       "schema": "v2/MarketplaceRemoveResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplaceName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceUpgradeParams.json#/properties/marketplaceName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/marketplaceName",
       "required": false,
       "schema": "v2/MarketplaceUpgradeParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplaceName"
     },
     {
@@ -125232,79 +125448,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceUpgradeResponse.json#/properties/errors",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/errors",
       "required": true,
       "schema": "v2/MarketplaceUpgradeResponse.json",
       "schema_sha256": "2dfeb60870aeee83284f1a76e786f0ac352292ddfb928a3f59bbbff6949757b7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "errors"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceUpgradeResponse.json#/properties/selectedMarketplaces",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/selectedMarketplaces",
       "required": true,
       "schema": "v2/MarketplaceUpgradeResponse.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "selectedMarketplaces"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/MarketplaceUpgradeResponse.json#/properties/upgradedRoots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/upgradedRoots",
       "required": true,
       "schema": "v2/MarketplaceUpgradeResponse.json",
       "schema_sha256": "cfe942436b07057238b8c268c0340f8ccb417b0963c949808b539594f69377cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "upgradedRoots"
     },
     {
@@ -129923,53 +130163,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledParams.json#/properties/cwds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cwds",
       "required": false,
       "schema": "v2/PluginInstalledParams.json",
       "schema_sha256": "5343662c3803229e02ffb9829e6432647c432de6fbbbdae5636aab449a130a6b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledParams.json#/properties/installSuggestionPluginNames",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/installSuggestionPluginNames",
       "required": false,
       "schema": "v2/PluginInstalledParams.json",
       "schema_sha256": "ae505259d40d9006c255654f11dd11cb68761e1ea52238ce8f1551aa8767f9d7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installSuggestionPluginNames"
     },
     {
@@ -132237,53 +132493,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSummary/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSummary/properties/enabled",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSummary/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSummary/properties/id",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -132385,27 +132657,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSummary/properties/installed",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSummary/properties/installed",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installed"
     },
     {
@@ -132759,53 +133039,69 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/PluginInstalledResponse.json#/properties/marketplaceLoadErrors",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/marketplaceLoadErrors",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "9c5b2b3484abac4816d05a67d90d477cb93d02007e6df9243cf2c786cbcc8a44",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplaceLoadErrors"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/properties/marketplaces",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/marketplaces",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "1462067353a609580f0227f30bc949ce5ac5ae89959db1b52433535c8c34bf07",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplaces"
     },
     {
@@ -135123,27 +135419,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileParams.json#/properties/reason",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/reason",
       "required": false,
       "schema": "v2/PluginReconcileParams.json",
       "schema_sha256": "bc799902f3553dbced13954090bf82e7a576e9481585b065f176426c37495ab8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reason"
     },
     {
@@ -135279,79 +135583,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/properties/changedPlugins",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/changedPlugins",
       "required": true,
       "schema": "v2/PluginReconcileResponse.json",
       "schema_sha256": "6d1ca5f9ed8ca093d02ece86bd0d6e3577f0c9ebe8b833747d3dac2a664dbd46",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "changedPlugins"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/properties/failedMaterializationRemotePluginIds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/failedMaterializationRemotePluginIds",
       "required": true,
       "schema": "v2/PluginReconcileResponse.json",
       "schema_sha256": "3f266ba45ed17f6d59f3180895dfaf58d89b6897031a15e77fa2c0cdd16e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "failedMaterializationRemotePluginIds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReconcileResponse.json#/properties/failedRemotePluginIds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/failedRemotePluginIds",
       "required": true,
       "schema": "v2/PluginReconcileResponse.json",
       "schema_sha256": "bb2c85d51830eef2089ac81a35528e55f5630d673826df26468a32c6e291cbaf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "failedRemotePluginIds"
     },
     {
@@ -135423,53 +135751,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchParams.json#/properties/cursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchParams.json#/properties/cwds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cwds",
       "required": false,
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "4dc306571edf11c885441c0e9bfdf53942691c54c62186b96e81260e9e003358",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwds"
     },
     {
@@ -135501,27 +135845,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchParams.json#/properties/scope",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/scope",
       "required": false,
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "0fd7433bbe89a66f1a862c7f99f3425a9ad45144186ce9dfb9d6fb699996ae40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "scope"
     },
     {
@@ -135571,27 +135923,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchParams.json#/properties/searchTerm",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/searchTerm",
       "required": true,
       "schema": "v2/PluginSearchParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "searchTerm"
     },
     {
@@ -136553,53 +136913,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSearchResult/properties/marketplaceName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSearchResult/properties/marketplaceName",
       "required": true,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplaceName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSearchResult/properties/marketplacePath",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSearchResult/properties/marketplacePath",
       "required": false,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "81fc07724af4da0dbdd7c594319ff306bf34d99f9e6ad1ede0a058d1e159e1a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "marketplacePath"
     },
     {
@@ -137887,53 +138263,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSummary/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSummary/properties/enabled",
       "required": true,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSummary/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSummary/properties/id",
       "required": true,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -138035,27 +138427,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/definitions/PluginSummary/properties/installed",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSummary/properties/installed",
       "required": true,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installed"
     },
     {
@@ -138409,53 +138809,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "4e0b6166393ec678b3772718316c1ed284b374e2b839750d1a89a12d7202c365",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/PluginSearchResponse.json#/properties/nextCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/PluginSearchResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
@@ -139173,12 +139589,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginSkillReadParams.json#/properties/remoteMarketplaceName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+      ],
       "nullable": false,
       "pointer": "/properties/remoteMarketplaceName",
       "required": true,
@@ -139191,7 +139611,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "remoteMarketplaceName"
@@ -139199,12 +139621,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginSkillReadParams.json#/properties/remotePluginId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+      ],
       "nullable": false,
       "pointer": "/properties/remotePluginId",
       "required": true,
@@ -139217,7 +139643,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "remotePluginId"
@@ -139225,12 +139653,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginSkillReadParams.json#/properties/skillName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native selector/unsupported-local-source/authentication rejection only; enabled remote skill contents and Git ref/sparse success remain missing."
+      ],
       "nullable": false,
       "pointer": "/properties/skillName",
       "required": true,
@@ -139243,7 +139675,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "skillName"
@@ -139277,27 +139711,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginUninstallParams.json#/properties/pluginId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native Linux local plugin/marketplace and owned local-Git lifecycle; reconcile is only an unauthenticated empty pass, search only local first-page behavior. Remote contents/materialization/pagination/sharing, managed policy, other transports and external account success remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/pluginId",
       "required": true,
       "schema": "v2/PluginUninstallParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pluginId"
     },
     {

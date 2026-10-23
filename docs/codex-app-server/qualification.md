@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 236 implemented / 244 missing /
-5 blocked requirements** and **0 verified / 245 implemented / 6,376 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 250 implemented / 230 missing /
+5 blocked requirements** and **0 verified / 281 implemented / 6,340 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. Two hundred and forty-five directly exercised
+MCP entries have scoped implementation evidence. Two hundred and eighty-one directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -1096,3 +1096,28 @@ subsequent native profiles still require their own recorded results. A11,
 source-proven un-emitted legacy approvals, unavailable external/platform success
 profiles and the unexplained immediate listener rebind remain incomplete.
 No tag, publication or deployment follows this checkpoint.
+
+## Native local plugin and marketplace lifecycle
+
+Eight real pinned-native cases cover installed/suggested identity, installation
+and uninstall across cold restart, runtime skill removal, local discovery/scope,
+durable marketplace registration and source-preserving removal, and explicit
+owned local-Git materialization/change/no-op. The fixture proves a private
+loopback-only network with no default route, supplies valid static model metadata
+and unavailable private backend addresses, and starts no listener or turn.
+
+Fixture namespace observation and empty-catalog assumptions were corrected from
+native failures. Both seeds then passed, followed by a strictly behavior-preserving
+cleanup helper extraction for Credo. Final source passed **8/0** at each of
+`501432` and `987654` (**18.0s / 17.3s**), plus compile/format/Python syntax,
+strict Credo (**317 files, no issues**) and owned-process cleanup. Exact original
+failures, repairs, commands and limits are in
+[plugin lifecycle qualification](plugin-lifecycle-qualification.md).
+
+Fourteen entries and 36 fields gain scoped `implemented` evidence. Reconcile
+currently proves only an unauthenticated empty pass; remote skill-read selectors
+have native rejection evidence, with enabled remote success still missing.
+Regenerated totals are **485 entries: 0 verified / 250 implemented / 230 missing /
+5 blocked**; **6,621 contracts: 0 verified / 281 implemented / 6,340 missing**.
+The explicit namespace CI job selects the new profile. Full compatibility,
+external service acceptance, A11 and publication remain incomplete.
