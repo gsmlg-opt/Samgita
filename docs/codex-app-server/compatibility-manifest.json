@@ -1672,12 +1672,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:fs/copy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsCopyParams"
       },
@@ -1699,27 +1703,35 @@
         "source_line": 1027,
         "variant": "FsCopy"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/copy"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:fs/createDirectory",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsCreateDirectoryParams"
       },
@@ -1741,27 +1753,35 @@
         "source_line": 1007,
         "variant": "FsCreateDirectory"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/createDirectory"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:fs/getMetadata",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsGetMetadataParams"
       },
@@ -1783,27 +1803,35 @@
         "source_line": 1012,
         "variant": "FsGetMetadata"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/getMetadata"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:fs/readDirectory",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsReadDirectoryParams"
       },
@@ -1825,27 +1853,35 @@
         "source_line": 1017,
         "variant": "FsReadDirectory"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/readDirectory"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:fs/readFile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsReadFileParams"
       },
@@ -1867,27 +1903,35 @@
         "source_line": 997,
         "variant": "FsReadFile"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/readFile"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:fs/remove",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsRemoveParams"
       },
@@ -1909,27 +1953,35 @@
         "source_line": 1022,
         "variant": "FsRemove"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/remove"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:fs/unwatch",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsUnwatchParams"
       },
@@ -1951,27 +2003,35 @@
         "source_line": 1037,
         "variant": "FsUnwatch"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/unwatch"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:fs/watch",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsWatchParams"
       },
@@ -1993,27 +2053,35 @@
         "source_line": 1032,
         "variant": "FsWatch"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/watch"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:fs/writeFile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsWriteFileParams"
       },
@@ -2035,16 +2103,20 @@
         "source_line": 1002,
         "variant": "FsWriteFile"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/writeFile"
     },
     {
@@ -8968,12 +9040,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:fs/changed",
-      "implementation_module": "SamgitaCodexDriver.Session",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "params": {
         "$ref": "#/definitions/FsChangedNotification"
       },
@@ -8986,16 +9062,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/changed"
     },
     {
@@ -13226,12 +13306,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:fs/copy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13239,28 +13323,36 @@
       "schema": "v2/FsCopyResponse.json",
       "schema_sha256": "c88392d6c3ff394441231cdf5614794ba0c2b4ba683811f6033a01fe65528a59",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/copy"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:fs/createDirectory",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13268,28 +13360,36 @@
       "schema": "v2/FsCreateDirectoryResponse.json",
       "schema_sha256": "a658fbd34d5e3d6300bcb7015f10fc1764aa8aca3088abc79af9caa2e848e527",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/createDirectory"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:fs/getMetadata",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13297,28 +13397,36 @@
       "schema": "v2/FsGetMetadataResponse.json",
       "schema_sha256": "b8355f112eda37d7ff25ad0eda7dae912dba695961855c5cb8444a7f867d66c2",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/getMetadata"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:fs/readDirectory",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13326,28 +13434,36 @@
       "schema": "v2/FsReadDirectoryResponse.json",
       "schema_sha256": "2cfb28c3c1ab1487f6b778f4d76871e3a9f590597bdf0da502cc41b202269dbc",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/readDirectory"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:fs/readFile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13355,28 +13471,36 @@
       "schema": "v2/FsReadFileResponse.json",
       "schema_sha256": "fd67dd725b5bf5c7f27e78cc3d66fe24314f08913fc00ace9dbb663bf2f487e1",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/readFile"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:fs/remove",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13384,28 +13508,36 @@
       "schema": "v2/FsRemoveResponse.json",
       "schema_sha256": "6371aba2cae2f92be487be05c1ce531ca4139da5004b740a0010ccfdba548100",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/remove"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:fs/unwatch",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13413,28 +13545,36 @@
       "schema": "v2/FsUnwatchResponse.json",
       "schema_sha256": "9c59c3473df1f1873ee0d87ed33cecec0766b24c8357ee7dc8b29a57ca21e104",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/unwatch"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:fs/watch",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13442,28 +13582,36 @@
       "schema": "v2/FsWatchResponse.json",
       "schema_sha256": "d32e77e7d6f619c5f4183c335ecddd3c4ffb95a51761198985c47838ae891a6c",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/watch"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:fs/writeFile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected actual pinned-binary filesystem byte/default/protection/error/watch lifecycle behavior. Remaining field variants, simultaneous multi-client ownership, transport/OS/backend profiles and full qualification are incomplete."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -13471,16 +13619,20 @@
       "schema": "v2/FsWriteFileResponse.json",
       "schema_sha256": "0e4153ee7baa5c1203c2c573504baaa40e1dd8738d78e4c1e3a179fb49df6b16",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fs/writeFile"
     },
     {
