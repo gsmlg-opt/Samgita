@@ -1,0 +1,25 @@
+{
+  "definition": "ThreadTimelineEntry",
+  "generator": "scripts/codex/generate_output_semantics.py",
+  "kind": "locally-derived-output-contract-not-official-export",
+  "official_schema_sha256": "278589ca8a0b432599b74d3c26bb7b4979d82f9181e1991835f72409d4fc8b12",
+  "renames": {
+    "turnCompleted": {
+      "completed_at": "completedAt",
+      "duration_ms": "durationMs",
+      "started_at": "startedAt",
+      "turn_id": "turnId"
+    },
+    "turnStarted": {
+      "started_at": "startedAt",
+      "turn_id": "turnId"
+    }
+  },
+  "schema": "v2/ThreadTimelineListResponse.json",
+  "semantics": "Only output contract property/required names change; values, types, bounds, nullability, unions and original exports remain unchanged.",
+  "source_sha256": {
+    "source/output-typescript/ThreadTimelineEntry.ts": "4d917b865b81ea61f9b3cee7400fd15fc3af0908ddb60d60c858b1c7abf9c148",
+    "source/thread.rs": "8c10510bb88990aa0f0105e7a85c0bb7859db7232be29f84a6c66693600ef502"
+  },
+  "upstream_commit": "83086188ae0614bd882818ff1aa23f3194962012"
+}

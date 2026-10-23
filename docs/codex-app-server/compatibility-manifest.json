@@ -4947,12 +4947,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/archive",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadArchiveParams"
       },
@@ -4974,16 +4978,20 @@
         "source_line": 570,
         "variant": "ThreadArchive"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/archive"
     },
     {
@@ -5426,12 +5434,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/fork",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadForkParams"
       },
@@ -5453,16 +5465,20 @@
         "source_line": 564,
         "variant": "ThreadFork"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/fork"
     },
     {
@@ -6684,12 +6700,16 @@
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/revert",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadRevertParams"
       },
@@ -6711,16 +6731,20 @@
         "source_line": 767,
         "variant": "ThreadRevert"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/revert"
     },
     {
@@ -6728,12 +6752,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/search",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadSearchParams"
       },
@@ -6755,16 +6783,20 @@
         "source_line": 841,
         "variant": "ThreadSearch"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/search"
     },
     {
@@ -6772,12 +6804,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/searchOccurrences",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadSearchOccurrencesParams"
       },
@@ -6799,16 +6835,20 @@
         "source_line": 847,
         "variant": "ThreadSearchOccurrences"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/searchOccurrences"
     },
     {
@@ -6994,12 +7034,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:thread/timeline/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadTimelineListParams"
       },
@@ -7021,27 +7065,36 @@
         "source_line": 1111,
         "variant": "ThreadTimelineList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_protocol_codex/test/timeline_schema_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/timeline/list"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:thread/turns/list",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadTurnsListParams"
       },
@@ -7063,16 +7116,20 @@
         "source_line": 869,
         "variant": "ThreadTurnsList"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/turns/list"
     },
     {
@@ -15724,12 +15781,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/archive",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -15737,16 +15798,20 @@
       "schema": "v2/ThreadArchiveResponse.json",
       "schema_sha256": "2e021dabd0930ae3e2beb68cd0ddbafc40fc20cfbf8dbcb5e2f9c0493d06a08c",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/archive"
     },
     {
@@ -16060,12 +16125,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/fork",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16073,16 +16142,20 @@
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "e63cfbeb846304309c9c64fa1235abb1723f8a0abd413aef2d342598bbaf902c",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/fork"
     },
     {
@@ -16941,12 +17014,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/revert",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16954,16 +17031,20 @@
       "schema": "v2/ThreadRevertResponse.json",
       "schema_sha256": "00106ee73f6f8e094693dc45f8e13efea407489eb35ac04352c1eb6c4166788f",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/revert"
     },
     {
@@ -16972,12 +17053,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/search",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -16985,16 +17070,20 @@
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "52db70b7c6a95f5c0bb9150104df17ab68ea6abe793951a1b3cf5efa68903313",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/search"
     },
     {
@@ -17003,12 +17092,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/searchOccurrences",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17016,16 +17109,20 @@
       "schema": "v2/ThreadSearchOccurrencesResponse.json",
       "schema_sha256": "193e1f78e427a93f5a6471b7b69ea3f6d980c924ca26e20845992bc5b33d9dd9",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/searchOccurrences"
     },
     {
@@ -17160,12 +17257,18 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:thread/timeline/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
+      "native_output_sha256": "79431856c25a3bb105617d58ff6d95a170bb6939fdcd5a0dd9069866d5c58b1c",
+      "output_semantics": "source/output-semantics.json",
       "prerequisites": [
         "initialized"
       ],
@@ -17173,28 +17276,37 @@
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "278589ca8a0b432599b74d3c26bb7b4979d82f9181e1991835f72409d4fc8b12",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_protocol_codex/test/timeline_schema_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/timeline/list"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-history-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:thread/turns/list",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -17202,16 +17314,20 @@
       "schema": "v2/ThreadTurnsListResponse.json",
       "schema_sha256": "eba82395d4479bb28091bbe6f39c929c7c66a30d7b0eeabedac39057ce72aceb",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/turns/list"
     },
     {
@@ -174454,7 +174570,9 @@
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/2/properties/started_at",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "startedAt",
       "nullable": true,
+      "output_semantics": "source/output-semantics.json",
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/2/properties/started_at",
       "required": false,
       "schema": "v2/ThreadTimelineListResponse.json",
@@ -174480,7 +174598,9 @@
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/2/properties/turn_id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "turnId",
       "nullable": false,
+      "output_semantics": "source/output-semantics.json",
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/2/properties/turn_id",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
@@ -174576,7 +174696,9 @@
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/3/properties/completed_at",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "completedAt",
       "nullable": true,
+      "output_semantics": "source/output-semantics.json",
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/3/properties/completed_at",
       "required": false,
       "schema": "v2/ThreadTimelineListResponse.json",
@@ -174602,7 +174724,9 @@
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/3/properties/duration_ms",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "durationMs",
       "nullable": true,
+      "output_semantics": "source/output-semantics.json",
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/3/properties/duration_ms",
       "required": false,
       "schema": "v2/ThreadTimelineListResponse.json",
@@ -174724,7 +174848,9 @@
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/3/properties/started_at",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "startedAt",
       "nullable": true,
+      "output_semantics": "source/output-semantics.json",
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/3/properties/started_at",
       "required": false,
       "schema": "v2/ThreadTimelineListResponse.json",
@@ -174776,7 +174902,9 @@
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/3/properties/turn_id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [],
+      "native_wire_name": "turnId",
       "nullable": false,
+      "output_semantics": "source/output-semantics.json",
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/3/properties/turn_id",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",

@@ -8,6 +8,7 @@ import tempfile
 import unittest
 
 import generate_supplement
+import generate_output_semantics
 import inventory
 
 
@@ -44,6 +45,9 @@ class InventoryTest(unittest.TestCase):
     def test_changed_contract_cannot_retain_verified_evidence(self):
         actual = {"entries": [{"id": "x", "schema_sha256": "before", "state": "verified", "evidence": ["old"]}], "schema_contracts": []}
         expected = {"entries": [{"id": "x", "schema_sha256": "after", "state": "missing"}], "schema_contracts": []}
+        self.assertEqual(inventory.merge_progress(expected, actual)["entries"][0]["state"], "missing")
+        actual["entries"][0].update(schema_sha256="same", native_output_sha256="before")
+        expected["entries"][0].update(schema_sha256="same", native_output_sha256="after")
         self.assertEqual(inventory.merge_progress(expected, actual)["entries"][0]["state"], "missing")
 
     def test_offline_inventory_and_pin_check(self):
@@ -107,6 +111,61 @@ class InventoryTest(unittest.TestCase):
                         rust.replace("pub include_token:", '#[serde(default)]\n    pub include_token:')):
             with self.assertRaises(ValueError):
                 generate_supplement.serde_presence(schema, mutated, "GetAuthStatusParams")
+
+    def test_output_semantics_preserve_original_schema_and_rename_only_pinned_boundaries(self):
+        semantics = generate_output_semantics.derive(inventory.VENDOR)
+        path = inventory.VENDOR / "experimental" / generate_output_semantics.SCHEMA
+        original_bytes = path.read_bytes()
+        original = json.loads(original_bytes)
+        corrected = generate_output_semantics.corrected(original, semantics)
+        original_branches = original["definitions"]["ThreadTimelineEntry"]["oneOf"]
+        branches = corrected["definitions"]["ThreadTimelineEntry"]["oneOf"]
+        self.assertEqual(branches[:2], original_branches[:2])
+        self.assertEqual(semantics["renames"]["turnStarted"],
+                         {"turn_id": "turnId", "started_at": "startedAt"})
+        self.assertEqual(semantics["renames"]["turnCompleted"],
+                         {"turn_id": "turnId", "started_at": "startedAt",
+                          "completed_at": "completedAt", "duration_ms": "durationMs"})
+        for before, after in zip(original_branches[2:], branches[2:]):
+            renames = semantics["renames"][before["properties"]["type"]["enum"][0]]
+            self.assertEqual(after["properties"],
+                             {renames.get(key, key): value for key, value in before["properties"].items()})
+            self.assertEqual(after["required"], [renames.get(key, key) for key in before["required"]])
+            self.assertEqual({k: v for k, v in before.items() if k not in {"properties", "required"}},
+                             {k: v for k, v in after.items() if k not in {"properties", "required"}})
+        self.assertEqual(path.read_bytes(), original_bytes)
+
+    def test_output_semantics_refuse_unknown_serde_export_and_typescript_changes(self):
+        files = (generate_output_semantics.RUST, generate_output_semantics.TYPESCRIPT,
+                 "experimental/" + generate_output_semantics.SCHEMA)
+        for relative, old, new in (
+                (generate_output_semantics.RUST, 'rename_all_fields = "camelCase"', 'rename_all_fields = "snake_case"'),
+                (generate_output_semantics.TYPESCRIPT, "turnId: string, startedAt:", "turn_id: string, startedAt:"),
+                ("experimental/" + generate_output_semantics.SCHEMA, '"turn_id":', '"renamed_turn_id":')):
+            with tempfile.TemporaryDirectory(prefix="codex-output-semantics-") as temporary:
+                root = Path(temporary)
+                for name in files:
+                    target = root / name
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    text = (inventory.VENDOR / name).read_text()
+                    if name == relative:
+                        self.assertIn(old, text)
+                        text = text.replace(old, new)
+                    target.write_text(text)
+                with self.assertRaises(ValueError):
+                    generate_output_semantics.derive(root)
+
+    def test_native_timeline_contract_metadata_retains_exported_field_identity(self):
+        manifest = json.loads(inventory.MANIFEST.read_text())
+        result = next(row for row in manifest["entries"] if row["id"] == "server_response:thread/timeline/list")
+        self.assertEqual(result["output_semantics"], generate_output_semantics.SEMANTICS)
+        self.assertEqual(len(result["native_output_sha256"]), 64)
+        corrected = [row for row in manifest["schema_contracts"] if "native_wire_name" in row]
+        self.assertEqual(len(corrected), 6)
+        for row in corrected:
+            self.assertEqual(row["output_semantics"], generate_output_semantics.SEMANTICS)
+            self.assertTrue(row["pointer"].endswith("/" + row["wire_name"]))
+            self.assertNotEqual(row["wire_name"], row["native_wire_name"])
 
     def test_unfinished_requirements_fail_full_compatibility_gate(self):
         manifest = json.loads(inventory.MANIFEST.read_text())

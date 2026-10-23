@@ -20,6 +20,13 @@ Native calls preserve all upstream fields, missing versus null, string/integer
 IDs, structured errors and unknown additions without converting input to atoms.
 Validation cannot silently normalize or drop input.
 
+Pinned source semantics can correct a demonstrated exporter discrepancy only
+through a separately labeled, reproducible contract with preserved official
+artifacts. The timeline output correction in
+[history qualification](thread-history-qualification.md) changes six contract
+field names across two native turn-boundary variants, never received data or
+validation constraints. Hash checks fail closed on source/export drift.
+
 `apps/samgita_codex_driver` owns explicitly started supervised sessions and
 stdio, WebSocket and WebSocket-over-Unix-socket transports. It depends on the Codex wire package,
 not Repo, web, orchestration or platform configuration. The pure schema layer

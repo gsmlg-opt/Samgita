@@ -5,6 +5,8 @@ defmodule SamgitaProtocolCodex.Schema do
   Official JSON exports remain unchanged. A separately labelled, source-derived
   supplement covers the three omitted legacy requests/results and two internal
   raw-response notifications. Its provenance is shipped with the pinned source.
+  A separately source-checked timeline output correction follows the native
+  serializer's camelCase fields where that release's JSON exporter disagrees.
 
   All four message directions and correlated result schemas are available.
   `experimental: true` selects the complete upstream input profile. The default
@@ -22,7 +24,7 @@ defmodule SamgitaProtocolCodex.Schema do
   """
 
   alias SamgitaProtocolCodex.{Error, Wire}
-  alias SamgitaProtocolCodex.Schema.{Gates, Validator}
+  alias SamgitaProtocolCodex.Schema.{Gates, Output, Validator}
 
   @version "0.163.0"
   @source Path.expand("../../priv/upstream/0.163.0/source/common.rs", __DIR__)
@@ -118,7 +120,8 @@ defmodule SamgitaProtocolCodex.Schema do
 
   def validate_result(direction, method, result, opts \\ []) do
     with {:ok, filename} <- result_path(direction, method) do
-      validate(read(filename, "experimental"), result, opts)
+      document = Output.contract(filename, read(filename, "experimental"))
+      validate(document, result, opts)
     end
   end
 

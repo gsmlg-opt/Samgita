@@ -293,6 +293,11 @@ def inventory(source):
                               legacy=item["legacy"], schema_version=VERSION,
                               error_schema="JSONRPCError.json", capabilities=item["capabilities"],
                               prerequisites=item["prerequisites"])
+                from generate_output_semantics import SCHEMA, SEMANTICS, contract_hash, derive
+                if result_schema == SCHEMA:
+                    semantics = derive(VENDOR)
+                    result.update(output_semantics=SEMANTICS,
+                                  native_output_sha256=contract_hash(experimental[result_schema], semantics))
                 entries.append(result)
             entries.append(item)
     for name in ("JSONRPCError", "JSONRPCErrorError", "JSONRPCResponse", "JSONRPCMessage"):
@@ -331,6 +336,17 @@ def inventory(source):
                     row["pointer"] = pointer + row["pointer"]
                     row["id"] = f"schema:{filename}#{row['pointer']}"
                 contracts.extend(nested)
+    from generate_output_semantics import SCHEMA, SEMANTICS, derive
+    semantics = derive(VENDOR)
+    branches = experimental[SCHEMA]["definitions"][semantics["definition"]]["oneOf"]
+    for index, branch in enumerate(branches):
+        renames = semantics["renames"].get(branch["properties"]["type"]["enum"][0], {})
+        for row in contracts:
+            prefix = f"/definitions/{semantics['definition']}/oneOf/{index}/properties/"
+            if row["schema"] == SCHEMA and row["pointer"].startswith(prefix):
+                field = row["pointer"].removeprefix(prefix)
+                if field in renames:
+                    row.update(native_wire_name=renames[field], output_semantics=SEMANTICS)
     return {"manifest_version": 1, "upstream_version": VERSION, "source_commit": COMMIT,
             "entries": sorted(entries, key=lambda row: row["id"]),
             "schema_contracts": sorted(contracts, key=lambda row: row["id"])}
@@ -376,11 +392,17 @@ def generate(source):
         ts_destination.mkdir(parents=True, exist_ok=True)
         for name in (*TYPES, *ALIASES, "ClientRequest", "ServerNotification"):
             shutil.copyfile(ts_output / (name + ".ts"), ts_destination / (name + ".ts"))
+        output_ts = VENDOR / "source/output-typescript"
+        output_ts.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ts_output / "v2/ThreadTimelineEntry.ts", output_ts / "ThreadTimelineEntry.ts")
     (VENDOR / "source").mkdir(parents=True, exist_ok=True)
     shutil.copyfile(source / PROTOCOL / "common.rs", VENDOR / "source/common.rs")
     for name in ("v1.rs", "export.rs"):
         origin = source / PROTOCOL / name if name == "v1.rs" else source / "codex-rs/app-server-protocol/src/export.rs"
         shutil.copyfile(origin, VENDOR / "source" / name)
+    shutil.copyfile(source / PROTOCOL / "v2/thread.rs", VENDOR / "source/thread.rs")
+    from generate_output_semantics import write as write_output_semantics
+    write_output_semantics(VENDOR)
     (VENDOR / "source/supplemental-origin.json").write_text(encode({
         "kind": "locally-derived-not-official-json-export",
         "generator": "scripts/codex/generate_supplement.py",
@@ -420,7 +442,8 @@ def merge_progress(expected, actual):
         old = {row["id"]: row for row in actual.get(section, [])}
         for row in expected[section]:
             previous = old.get(row["id"], {})
-            if row.get("schema_sha256") == previous.get("schema_sha256"):
+            if (row.get("schema_sha256") == previous.get("schema_sha256")
+                    and row.get("native_output_sha256") == previous.get("native_output_sha256")):
                 row.update({key: previous[key] for key in PROGRESS if key in previous})
                 if row["implementation_module"] in {"SamgitaProtocolCodex.Native", "SamgitaProtocolCodex.Native.Schema", "SamgitaProtocolCodex.Session"}:
                     row["implementation_module"] = "SamgitaCodexDriver.Session" if row["direction"] in {"lifecycle_rule", "client_notification", "server_notification"} else "SamgitaProtocolCodex.Wire" if row["direction"] == "response_error_envelope" else "SamgitaProtocolCodex.Schema"
@@ -445,6 +468,9 @@ def main():
     actual = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {}
     expected = merge_progress(expected, actual)
     if args.check or args.require_verified:
+        from generate_output_semantics import SEMANTICS, derive
+        if (VENDOR / SEMANTICS).read_text() != encode(derive(VENDOR)):
+            raise SystemExit("Source-derived output semantics changed")
         from generate_supplement import generate as supplemental_contracts
         for relative, schema in supplemental_contracts(VENDOR).items():
             if (VENDOR / "supplemental" / relative).read_text() != encode(schema):

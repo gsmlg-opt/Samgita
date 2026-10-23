@@ -28,6 +28,13 @@ recorded separately; the original 318 stable and 452 experimental JSON artifacts
 remain unchanged. The full source inventory contains 485 requirements and 6,621
 field/variant contracts; generated examples do not verify their runtime behavior.
 
+The same pin's timeline JSON export disagrees with its native serializer on two
+turn-boundary variants. A separately derived, hash-checked output contract uses
+the Rust/TypeScript camelCase names while preserving every original export and
+all value/type constraints. See
+`docs/codex-app-server/thread-history-qualification.md`; received values are
+never rewritten to fit an incorrect export.
+
 Tests distinguish generated schema examples, real executable journeys and the
 restricted convenience mapping. See `docs/codex-app-server/qualification.md` for
 current evidence and gaps. Complete behavioral compatibility, real account/backend
