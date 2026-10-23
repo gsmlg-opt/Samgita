@@ -30,6 +30,7 @@ defmodule SamgitaWeb.FakeAgentLifecycleTest do
 
     port = fake |> FakeAgent.url() |> URI.parse() |> Map.fetch!(:port)
     listener = :sys.get_state(fake).listener
+    original_socket_facts = beam_socket_facts(port)
     fake_monitor = Process.monitor(fake)
     listener_monitor = Process.monitor(listener)
     assert :erlang.suspend_process(listener)
@@ -53,7 +54,19 @@ defmodule SamgitaWeb.FakeAgentLifecycleTest do
       assert_receive {:DOWN, ^fake_monitor, :process, ^fake, :shutdown}, 5_000
 
       restarted =
-        start_supervised!({FakeAgent, journal: path, token: "lifecycle-only", port: port})
+        case start_supervised({FakeAgent, journal: path, token: "lifecycle-only", port: port}) do
+          {:ok, restarted} ->
+            restarted
+
+          {:error, reason} ->
+            flunk(
+              inspect(%{
+                restart_failed: reason,
+                original_socket_facts: original_socket_facts,
+                current_socket_facts: socket_facts(port)
+              })
+            )
+        end
 
       assert URI.parse(FakeAgent.url(restarted)).port == port
       assert :ok = stop_supervised(FakeAgent)
@@ -93,5 +106,39 @@ defmodule SamgitaWeb.FakeAgentLifecycleTest do
     assert :already_started = FakeAgent.start_once(restarted, operation)
     assert FakeAgent.snapshot(restarted)["starts"] == [operation]
     assert FakeAgent.snapshot(restarted)["stops"] == %{operation => evidence}
+  end
+
+  defp socket_facts(port) do
+    hex_port = port |> Integer.to_string(16) |> String.upcase() |> String.pad_leading(4, "0")
+
+    kernel =
+      for path <- ["/proc/net/tcp", "/proc/net/tcp6"],
+          {:ok, text} <- [File.read(path)],
+          line <- text |> String.split("\n") |> Enum.drop(1),
+          fields = String.split(line),
+          length(fields) >= 10,
+          String.ends_with?(Enum.at(fields, 1), ":" <> hex_port) do
+        %{
+          table: path,
+          local: Enum.at(fields, 1),
+          remote: Enum.at(fields, 2),
+          state: Enum.at(fields, 3),
+          inode: Enum.at(fields, 9)
+        }
+      end
+
+    ss =
+      if executable = System.find_executable("ss"),
+        do: System.cmd(executable, ["-tanp", "sport", "=", ":#{port}"]),
+        else: :unavailable
+
+    %{port: port, kernel: kernel, beam: beam_socket_facts(port), ss: ss}
+  end
+
+  defp beam_socket_facts(port) do
+    for socket <- :erlang.ports(),
+        {:ok, {address, ^port}} <- [:inet.sockname(socket)] do
+      %{socket: socket, address: address, owner: Port.info(socket, :connected)}
+    end
   end
 end
