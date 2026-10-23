@@ -149,6 +149,17 @@ class InventoryTest(unittest.TestCase):
                 if row["direction"] == direction:
                     self.assertEqual(row["capabilities"], [])
 
+    def test_initialized_notification_has_no_server_readiness_prerequisite(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            path = root / inventory.PROTOCOL / "common.rs"
+            path.parent.mkdir(parents=True)
+            path.write_text((inventory.VENDOR / "source/common.rs").read_text())
+            rows = {row["id"]: row for row in inventory.inventory(root)["entries"]}
+        self.assertEqual(rows["client_notification:initialized"]["prerequisites"], [])
+        self.assertEqual(rows["client_request:initialize"]["prerequisites"], [])
+        self.assertEqual(rows["client_request:thread/list"]["prerequisites"], ["initialized"])
+
 
 if __name__ == "__main__":
     unittest.main()

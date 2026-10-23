@@ -272,7 +272,10 @@ def inventory(source):
                         schema_sha256=digest(schema_file("experimental", path)),
                         experimental=experimental_gate, legacy=False,
                         capabilities=capabilities,
-                        prerequisites=["initialized"] if wire != "initialize" else [],
+                        # The unit notification is logging-only on the pinned
+                        # server, including before initialize. It is not its
+                        # own readiness prerequisite.
+                        prerequisites=[] if wire in {"initialize", "initialized"} else ["initialized"],
                         params=variant.get("properties", {}).get("params"),
                         params_required="params" in variant.get("required", []),
                         source=(notification_gates.get(wire) if direction == "server_notification"

@@ -3,17 +3,20 @@
     {
       "capabilities": [],
       "direction": "client_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "experimental": false,
       "id": "client_notification:initialized",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Selected Linux stdio/capability-token WebSocket/UDS behavior; other deployment profiles remain unqualified.",
+        "Session emits the canonical notification automatically; arbitrary native notification envelopes currently require Wire/Transport access."
+      ],
       "params": null,
       "params_required": false,
-      "prerequisites": [
-        "initialized"
-      ],
+      "prerequisites": [],
       "schema": "ClientNotification.json",
       "schema_pointer": "/oneOf/0",
       "schema_sha256": "706cf248d75027c84a3c63348d0ed507182e8eba40069dd17541793de029145a",
@@ -26,9 +29,18 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_protocol_codex/test/initialized_notification_test.exs",
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs",
+          "scripts/codex/test_inventory.py:test_initialized_notification_has_no_server_readiness_prerequisite"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "initialized"
     },
     {
@@ -8157,10 +8169,14 @@
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/initialization-qualification.md"
+      ],
       "id": "lifecycle:initialization-order",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "Selected Linux readiness and scripted Session failure/generation evidence; complete initialization capabilities and deployment profiles remain unqualified."
+      ],
       "required_behavior": "initialize response precedes initialized; other requests require initialization; repeated initialize rejects",
       "schema_sha256": "09c41c42fe37bf87a37b8dcca70c814a371191b4711a3367c2eb51de253c9913",
       "schema_version": "0.163.0",
@@ -8171,9 +8187,16 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/initialized_transport_test.exs",
+          "apps/samgita_codex_driver/test/initialization_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token",
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "initialization-order"
     },
     {
