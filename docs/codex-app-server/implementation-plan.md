@@ -31,11 +31,12 @@ Codex conformance.
 The official Linux musl executable and source archive are hash-pinned. Stable and
 experimental generation produced 318 and 452 JSON artifacts. The reproducible
 manifest now inventories 485 message/result/envelope/lifecycle requirements plus
-6,621 field/variant contracts. Four legacy approval method entries and the
-advertised MCP item-progress notification are `blocked` by source-proven absent
-production emitters. Selected native method/notification entries now total
+6,621 field/variant contracts. Four legacy approval method entries, the
+advertised MCP item-progress notification and the explicitly deprecated
+file-change output notification are `blocked` by source-proven absent production
+emitters. Selected native method/notification entries now total
 330 `implemented`, with 649 exact field/variant schema contracts
-implemented; 150 requirements and 5,972 contracts remain `missing`. None is fully verified.
+implemented; 149 requirements and 5,972 contracts remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
 synthetic schema examples cannot advance entries to verified.
@@ -282,6 +283,12 @@ Next concrete work (repair follow-up, 2026-10-24):
    at both seeds without a repair, make no model requests and add six entries
    and twelve directly asserted fields. No runtime pause-duration, eviction
    timing or unrelated history field is inferred.
+   Source inspection also identifies `item/fileChange/outputDelta` as expressly
+   non-emitting in this pin. Its [retained contract](retained-output-qualification.md)
+   now has two executed synthetic codec/handler cases; its native requirement
+   is blocked, and no field is promoted from synthetic evidence. The other
+   seven audited output notices have production routes and still need direct
+   native assertions.
    Continue remaining image-byte limits, account backend variants,
    environment/permission/turn variants and real-service authentication profiles.
    Preserve entry-specific evidence and

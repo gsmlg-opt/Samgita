@@ -10653,12 +10653,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-output-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:item/fileChange/outputDelta",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin."
+      ],
       "params": {
         "$ref": "#/definitions/FileChangeOutputDeltaNotification"
       },
@@ -10671,16 +10675,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/retained_output_notification_contract_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "scripted-session/stable-and-experimental"
+      ],
       "wire_name": "item/fileChange/outputDelta"
     },
     {
@@ -119434,12 +119442,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-output-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangeOutputDeltaNotification.json#/properties/delta",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin."
+      ],
       "nullable": false,
       "pointer": "/properties/delta",
       "required": true,
@@ -119452,20 +119464,28 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/retained_output_notification_contract_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "scripted-session/stable-and-experimental"
+      ],
       "wire_name": "delta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-output-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangeOutputDeltaNotification.json#/properties/itemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin."
+      ],
       "nullable": false,
       "pointer": "/properties/itemId",
       "required": true,
@@ -119478,20 +119498,28 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/retained_output_notification_contract_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "scripted-session/stable-and-experimental"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-output-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangeOutputDeltaNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
@@ -119504,20 +119532,28 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/retained_output_notification_contract_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "scripted-session/stable-and-experimental"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-output-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FileChangeOutputDeltaNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Pinned 83086188 v2/item.rs:1517-1524 explicitly declares this deprecated notification is no longer emitted; whole pinned Rust search finds declarations and consumers only. Two executed synthetic schema/codec/Session tests preserve retained strings and receipt under stable/experimental negotiation, without native-emission evidence. Native enabled success is blocked; do not replace it with a scripted peer, modified executable or different pin."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
@@ -119530,9 +119566,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/retained_output_notification_contract_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "scripted-session/stable-and-experimental"
+      ],
       "wire_name": "turnId"
     },
     {

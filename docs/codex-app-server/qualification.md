@@ -1,7 +1,7 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 330 implemented / 150 missing /
-5 blocked requirements** and **0 verified / 649 implemented / 5,972 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 330 implemented / 149 missing /
+6 blocked requirements** and **0 verified / 649 implemented / 5,972 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
@@ -27,8 +27,9 @@ Latest method records: [history](thread-history-qualification.md),
 [persisted metadata](thread-metadata-qualification.md),
 [isolated authentication](isolated-auth.md), [native executor environments](isolated-environment.md)
 [Apps metadata](isolated-apps.md) and [realtime output contracts](realtime-output-qualification.md).
-The five blocked requirements retain four legacy approval entries plus the
-advertised MCP progress notification with no discovered production emitter.
+The six blocked requirements retain four legacy approval entries, the
+advertised MCP progress notification with no discovered production emitter,
+and the explicitly deprecated non-emitting file-change output notification.
 Field contracts and external/platform success profiles remain incomplete.
 
 Additional method records: [queues](queue-lifecycle-qualification.md),
@@ -1353,3 +1354,28 @@ twelve fields** were previously missing. Regenerated totals: **485 entries:
 0 verified / 330 implemented / 150 missing / 5 blocked**; **6,621 contracts:
 0 verified / 649 implemented / 5,972 missing**. These scoped cases do not close
 the full compatibility, external acceptance, A11 or publication gates.
+
+## Retained non-emitting file-change output contract
+
+The immutable upstream source explicitly documents
+`item/fileChange/outputDelta` as deprecated and no longer emitted. A full pinned
+Rust search found only its two declarations, media classification and two TUI
+consumers. [Retained-output qualification](retained-output-qualification.md)
+links the exact upstream comment and wire declaration; source evidence is
+separate from observed absence in a test run.
+
+Two new explicitly synthetic tests preserve all four required string fields,
+empty/Unicode/control-text codec behavior, malformed-field rejection, stable
+and experimental Session receipt, complete future envelope data and separation
+from a pending RPC. They passed **2/0 twice** at `501432` and `987654`
+(**0.2s each**); independent/root compilation, focused formatting and scoped
+strict Credo (**322 source files, 69 checks, no issues**) passed without a
+repair. No native process was run by this unit.
+
+The message entry moves from missing to **blocked** for its absent native
+emitter. Its four fields gain limited synthetic evidence while remaining
+missing. Regenerated totals: **485 entries: 0 verified / 330 implemented /
+149 missing / 6 blocked**; **6,621 contracts: 0 verified / 649 implemented /
+5,972 missing**. Neither synthetic messages nor another executable can satisfy
+that native-emission requirement. No target exclusion, full acceptance, A11
+closure, publication or deployment is claimed.
