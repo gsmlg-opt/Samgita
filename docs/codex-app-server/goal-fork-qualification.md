@@ -118,3 +118,46 @@ and logs are `/tmp/samgita-native-repair-continuation-v2-20261025/`. The existin
 physical deferral owner gains stronger evidence and no inventory-count change.
 Remaining status/default/config/active-flush/deployment profiles and complete
 final-source local/hosted qualification remain open.
+
+## Source absence, per-fork config and stopped goal states
+
+Two further differentials use the same native process restarts and exactly
+three provider requests. Before public goal setup, true-forking the materialized
+source preserves exact source/child history, distinct identity/path and nil goal.
+The existing first restart confirms the child stays nil and cold. After the
+source's active goal exists, the exact per-fork override
+`config:{"features.goals":false}` produces a persistent child with copied
+history and no goal; the adjacent unmodified true fork is the positive control
+that still inherits the source goal. Existing second restart cold-reads both.
+Global server goals stay enabled; this is not a global-disabled API claim.
+
+`thread_processor.rs:5275-5295,5394-5402,5548-5574` passes dotted request config
+and checks effective goals before copying. `thread_fork_goal.rs:5-28` returns
+false when no source goal exists. Public goal reads are cold store reads
+(`thread_goal_processor.rs:254-272`) and do not load/execute the thread.
+
+After all original prefix/cold/empty-child/target checks, the first still-cold
+prefix child is changed only through public user-origin status commands:
+complete, paused, blocked, usageLimited. Every returned snapshot retains21
+tokens/budget20, original goal identity/times/objective except status/update
+time, and is captured after the authorized history append. Four true forks
+copy those exact current snapshots and canonical histories; the cold source's
+goal, history and rollout bytes then remain unchanged. Original source and
+target remain unchanged, with exactly three provider requests and the original
+final no-work observation/cleanup. This is public stopped-state setup, not proof
+of a naturally occurring backend quota event. New stopped children are not
+cold-restarted in this extension.
+
+The initial complete is necessary: `state/src/runtime/goals.rs:290-360` keeps
+paused/blocked requests sticky when the previous status is budgetLimited.
+`ext/goal/src/api.rs:215-288` preserves usage on status-only edits;
+`thread_goal_user_context.rs:10-60` persists legitimate user intent before the
+post-command history snapshot. No SQLite rows, runtime state or events are
+seeded. The existing source/target baseline is never redefined to hide changes.
+
+The full sixteen-file native owning block passes **92/0 twice**, fixed seeds
+501432/987654, with compile, format, strict Credo and unchanged executable-source
+guard. Commands/logs are `/tmp/samgita-native-repair-continuation-v3-20261025/`.
+This strengthens the existing deferral owner without a count or verified-state
+promotion. Positive elapsed-time control, active-source concurrent flush, newly
+stopped-child cold recovery and other deployment profiles remain unqualified.

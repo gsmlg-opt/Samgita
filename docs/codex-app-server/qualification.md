@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,204 implemented / 3,417 missing
+11 blocked requirements** and **0 verified / 3,205 implemented / 3,416 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,204 directly exercised
+MCP entries have scoped implementation evidence. These 3,205 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -20,15 +20,17 @@ can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
 The latest [scoped continuation](repair-qualification.md#scoped-continuation-after-636b2ad)
-passes the full **91/0** owning block at both fixed seeds, with warning-free
+passes the full **92/0** owning block at both fixed seeds, with warning-free
 compile, format, root strict Credo and a matching executable-source guard.
 It adds [actual configured executor expiry](environment-owners-qualification.md),
 [new-thread personality instruction selection](default-gates-qualification.md#new-thread-personality-instruction-differential)
 and [accounted prefix goal inheritance](goal-fork-qualification.md#current-goal-snapshot-with-historical-prefixes).
+The next extension observes the exact [executor request-ID](environment-owners-qualification.md#exact-original-upgrade-request-id-through-reconnect)
+across two physical connections, plus [no-goal/config/stopped-state forks](goal-fork-qualification.md#source-absence-per-fork-config-and-stopped-goal-states).
 The [queued-notification barrier](notification-test-synchronization.md#queued-notification-after-reconnect)
 preserves exact generation/error/no-write assertions without a deadline increase;
 the historical failure's scheduling/loss cause remains unestablished.
-Thirteen exact physical owners gain implemented evidence; none becomes verified.
+Fourteen exact physical owners gain implemented evidence; none becomes verified.
 The preceding [local v17](repair-qualification.md#frozen-local-matrix-at-636b2ad)
 is failed and incomplete; [hosted636b2ad](repair-qualification.md#hosted-checkpoint-at-636b2ad)
 passes foundation/native execution but fails mandatory completeness. New-source

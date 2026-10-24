@@ -130057,27 +130057,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentAddParams.json#/properties/websocketRequestId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Exact mixed-case request-ID observed in original native initial and explicitly recovered executor upgrade headers; one registration/two connections with actual metadata and no work. Bytes forwarded unchanged. Omitted/null/invalid/rotation, remote WSS, other transports/OS and execution paths unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/websocketRequestId",
       "required": false,
       "schema": "v2/EnvironmentAddParams.json",
       "schema_sha256": "b5d89eadb63e32a83eb116abe6eba1a271acb346b9b4456d0a89a6a3cd001fff",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_request_id_profile.exs:57-140"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "websocketRequestId"
     },
     {
@@ -169420,7 +169428,7 @@
       "id": "schema:v2/ThreadForkParams.json#/properties/deferGoalContinuation",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_deferred_goal_fork: Public cold goal setup, exact omitted/false/no-inheritance and null/disabled/ephemeral gates; enabled true preserves source goal/history/bytes and defers through native restart/resume. Explicit net9 then automatic net12 ends budgetLimited21/20 with exact native/provider records. Three historical2/1/0-turn prefix forks copy current21 snapshot, survive existing cold restart and zero-turn stopped resume without work. Positive elapsed time, other states, no-source-goal, per-fork goals-disabled, active flush races and other transport/OS/service profiles unqualified."
+        "actual_native_deferred_goal_fork: Public cold goal setup, exact omitted/false/no-inheritance and null/disabled/ephemeral gates; enabled true preserves source goal/history/bytes and defers through native restart/resume. Explicit net9 then automatic net12 ends budgetLimited21/20 with exact native/provider records. Three historical2/1/0-turn prefix forks copy current21 snapshot, survive existing cold restart and zero-turn stopped resume without work. No-source-goal and effective per-fork goals-disabled children remain nil through existing cold restarts; public complete/paused/blocked/usageLimited source snapshots copy exact21-token/history state to four distinct children. Positive elapsed time, stopped-child cold recovery, concurrent active flush races and other transport/OS/service profiles unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/deferGoalContinuation",
@@ -169435,7 +169443,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_goal_fork_profile.exs:133-420"
+          "apps/samgita_codex_driver/test/native_goal_fork_profile.exs:133-512"
         ]
       },
       "transport_coverage": [

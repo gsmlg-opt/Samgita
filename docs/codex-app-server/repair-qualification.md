@@ -8,6 +8,19 @@ remain separate gates. No production data, credentials or services are changed.
 
 ## Scoped continuation after 636b2ad
 
+The next v3 extension passes the full sixteen-file owning block **92/0 twice**,
+seeds501432/987654. It adds [exact native upgrade request-ID and reconnect](environment-owners-qualification.md#exact-original-upgrade-request-id-through-reconnect),
+and [no-source-goal, per-fork config and public stopped-state inheritance](goal-fork-qualification.md#source-absence-per-fork-config-and-stopped-goal-states).
+The timeout fixture also compares bearer values case-sensitively. Existing
+deadlines, caps, three goal provider requests, restarts, guards and cleanup remain.
+Compile, format, root strict Credo and executable/config/workflow source guard
+pass. Exact commands/logs are `/tmp/samgita-native-repair-continuation-v3-20261025/`;
+results SHA256 `2a99c6e37ecb807251bb04836c4b110107db7cc775e807642581f844b9d9c516`,
+source SHA256 `6e6ae83bdcc3c7c8fd9728c5b95ae09f5424a110ef3591fbc940cc48473f540d`.
+One further exact physical owner becomes implemented: **3,205 implemented /
+3,416 missing**, zero verified; requirements remain unchanged. This is48 required
+hosted profiles, with final-source local/hosted qualification still required.
+
 The fifteen-file owning block passes **91/0 twice**, seeds `501432` and
 `987654`, after the same-sender queued-notification barrier and three native
 extensions. The [notification record](notification-test-synchronization.md#queued-notification-after-reconnect)

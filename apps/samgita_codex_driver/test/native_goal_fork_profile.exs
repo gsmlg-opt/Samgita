@@ -153,8 +153,37 @@ defmodule SamgitaCodexDriver.NativeGoalForkProfileTest do
     assert [source_history] = turns(pid, source)
     assert Enum.filter(source_history["items"], &(&1["type"] == "agentMessage")) == [assistant(1)]
 
+    no_goal_path =
+      call(pid, "thread/read", %{"threadId" => source, "includeTurns" => false})["thread"]["path"]
+
+    no_goal_source = %{
+      path: no_goal_path,
+      bytes: File.read!(no_goal_path),
+      history: [source_history],
+      goal: nil
+    }
+
+    no_goal_params = %{
+      "threadId" => source,
+      "excludeTurns" => true,
+      "deferGoalContinuation" => true
+    }
+
+    no_goal_child = call(pid, "thread/fork", no_goal_params)["thread"]
+    assert_uuid(no_goal_child["id"])
+    assert no_goal_child["id"] != source and no_goal_child["forkedFromId"] == source
+    assert no_goal_child["turns"] == [] and no_goal_child["path"] != no_goal_path
+    assert String.starts_with?(no_goal_child["path"], ctx.root <> "/codex/")
+    assert goal(pid, no_goal_child["id"]) == nil
+    assert turns(pid, no_goal_child["id"]) == [source_history]
+    assert_goal_fork_source(pid, source, no_goal_source)
+    assert_attempts(ctx, 1)
+
     {cold, _sent} = restart(ctx, pid)
     assert loaded(cold) == []
+    assert goal(cold, no_goal_child["id"]) == nil
+    assert turns(cold, no_goal_child["id"]) == [source_history] and loaded(cold) == []
+    assert_goal_fork_source(cold, source, no_goal_source)
     timing = %{wall: System.system_time(:second), mono: now()}
     # A real API mutation on the cold materialized source records user intent but
     # has no registered runtime to start. No database rows or protocol frames are seeded.
@@ -243,6 +272,18 @@ defmodule SamgitaCodexDriver.NativeGoalForkProfileTest do
     assert_source(cold, source, baseline)
     quiet(ctx, enabled, 1)
 
+    disabled_params = Map.put(params, "config", %{"features.goals" => false})
+    disabled = call(enabled, "thread/fork", disabled_params)["thread"]
+    assert_uuid(disabled["id"])
+    assert disabled["id"] != source and disabled["forkedFromId"] == source
+    assert disabled["turns"] == [] and disabled["path"] != path
+    assert String.starts_with?(disabled["path"], ctx.root <> "/codex/")
+    assert goal(enabled, disabled["id"]) == nil
+    assert turns(enabled, disabled["id"]) == baseline.history
+    assert last_params(sent, "thread/fork") == disabled_params
+    assert_source(cold, source, baseline)
+    assert_attempts(ctx, 1)
+
     child = call(enabled, "thread/fork", params)["thread"]
     target = child["id"]
     assert_uuid(target)
@@ -257,6 +298,8 @@ defmodule SamgitaCodexDriver.NativeGoalForkProfileTest do
 
     {resumed, _sent} = restart(ctx, enabled)
     assert loaded(resumed) == [] and goal(resumed, target) == inherited
+    assert goal(resumed, disabled["id"]) == nil
+    assert turns(resumed, disabled["id"]) == baseline.history and loaded(resumed) == []
     assert turns(resumed, target) == baseline.history and loaded(resumed) == []
     assert call(resumed, "thread/resume", %{"threadId" => target})["thread"]["id"] == target
     assert goal(resumed, target) == inherited
@@ -407,6 +450,62 @@ defmodule SamgitaCodexDriver.NativeGoalForkProfileTest do
     assert goal(last, target) == final and turns(last, target) == target_history
     assert_source(last, source, baseline)
     assert_idle(last, target)
+
+    # All original cold-prefix checks are complete. Mutate only the still-cold
+    # first prefix child; the original source and target retain their goals.
+    stopped_source = hd(prefix_children)
+    refute stopped_source.id in loaded(last)
+    assert stopped_source.goal["status"] == "budgetLimited"
+    assert stopped_source.goal["tokensUsed"] == 21
+
+    stopped_children =
+      for status <- ["complete", "paused", "blocked", "usageLimited"] do
+        # budgetLimited is sticky for paused/blocked, so establish complete first.
+        updated =
+          call(last, "thread/goal/set", %{
+            "threadId" => stopped_source.id,
+            "status" => status,
+            "origin" => "user"
+          })["goal"]
+
+        assert_goal(updated, stopped_source.id, status, 21, initial["createdAt"], timing)
+
+        assert Map.drop(updated, ["status", "updatedAt"]) ==
+                 Map.drop(stopped_source.goal, ["status", "updatedAt"])
+
+        assert updated["updatedAt"] >= stopped_source.goal["updatedAt"]
+
+        snapshot = %{
+          path: stopped_source.path,
+          bytes: File.read!(stopped_source.path),
+          history: turns(last, stopped_source.id),
+          goal: updated
+        }
+
+        forked =
+          call(last, "thread/fork", %{
+            "threadId" => stopped_source.id,
+            "excludeTurns" => true,
+            "deferGoalContinuation" => true
+          })["thread"]
+
+        id = forked["id"]
+        assert_uuid(id)
+        refute id in [source, target, stopped_source.id]
+        assert forked["forkedFromId"] == stopped_source.id and forked["turns"] == []
+        assert String.starts_with?(forked["path"], ctx.root <> "/codex/")
+        refute forked["path"] in [baseline.path, child["path"], stopped_source.path]
+        assert goal(last, id) == Map.put(updated, "threadId", id)
+        assert turns(last, id) == snapshot.history
+        assert_source(last, stopped_source.id, snapshot)
+        assert goal(last, target) == final and turns(last, target) == target_history
+        assert_source(last, source, baseline)
+        assert_attempts(ctx, 3)
+        %{id: id, path: forked["path"]}
+      end
+
+    assert length(Enum.uniq_by(stopped_children, & &1.id)) == 4
+    assert length(Enum.uniq_by(stopped_children, & &1.path)) == 4
     quiet(ctx, last, 3)
     assert :ok = Session.close(last)
     control(ctx, "close")

@@ -79,6 +79,52 @@ other OS profiles remain unqualified. Supplied required skills and exact
 request-ID upgrade/reconnect observation remain separate missing owners until
 their own native scenarios pass.
 
+## Exact original upgrade request ID through reconnect
+
+The dedicated `isolated_environment_request_id_fixture.py` wrapper now checks
+the original downstream upgrade bytes for exactly one case-sensitive
+`Owned-Request-ID-20261025` value, independently checks the exact bearer, and
+returns the original bytes unchanged. Only header names are case-insensitive.
+It records the synthetic request ID and connection ordinal, never raw upgrade
+headers or credentials. The shared metadata firewall and its frame, journal,
+connection, process and stderr bounds remain unchanged.
+
+One exact environment/add registers the actual owned executor. After real
+metadata/ready and the initial header check, controlled socket pause/closure
+produces a native disconnected status; explicit resume and read-only metadata
+recovery require the same exact header on the second physical upgrade. Exactly
+one registration and two successful connections occur, with no loaded threads,
+execution/turn request or provider call. Transport reconnection is not a new
+execution. The timeout wrapper's separate bearer check is also narrowed to exact
+case-sensitive token equality without changing the native timeout/control test.
+
+Immutable source anchors are `environment.rs:46-49`,
+`environment_processor.rs:40-44`, `connect_options.rs:55-100`, and
+`exec-server/src/client_transport.rs:273-285,537-565`. Native connection options
+retain the trusted header map when resuming; the test observes that actual map
+on the wire rather than inferring it from a connected socket.
+
+The physical primary owner
+`schema:v2/EnvironmentAddParams.json#/properties/websocketRequestId`, SHA256
+`b5d89eadb63e32a83eb116abe6eba1a271acb346b9b4456d0a89a6a3cd001fff`,
+gains scoped implemented evidence. Omitted/null/empty/malformed values,
+external WSS/other OS, credential rotation and arbitrary headers remain
+unqualified. The existing insecure nonloopback-header rejection remains a
+separate negative. Required skills and their pre-inference gate are still
+missing until a real ordinary-thread discovery journey passes.
+
+In verified Devenv with the immutable binary, the new profile passes **1/0**
+at seed501432. The complete sixteen-file owning block passes **92/0** at each
+of501432/987654 (146.6/145.9 seconds), including the new goal absence/config/
+stopped-state extensions, the unchanged timeout oracle and notification/process
+regressions. Compile, format, root strict Credo and executable-source guard pass.
+Exact commands/logs are `/tmp/samgita-native-repair-continuation-v3-20261025/`.
+This is the48th explicitly required hosted profile; complete final-source and
+hosted qualification remain separate. The source-only preparation report is
+`/tmp/samgita-environment-request-id-skills-audit-20261025.md`, SHA256
+`1667d954393be99149263271f673f2717c98ebae8b8959c81efd67f25df4ec09`;
+its unexecuted skills proposal is not positive native evidence.
+
 ## Actual validation and initial fixture failure
 
 From the independent driver in verified Devenv, `MIX_ENV=test` and the immutable

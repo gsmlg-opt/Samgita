@@ -88,12 +88,18 @@ consumption. One owner brings contracts to **3,191 implemented / 3,430 missing**
 zero verified. All46 profiles have explicit required hosted steps. Initial strict
 Credo nesting failure and unchanged-cleanup extraction remain recorded.
 
-Next freeze executable source for the complete preserved-platform/package/
-consumer and final-pushed hosted matrix. Then continue the source-audited
-five-case thread/start.personality request-instruction differential; its enabled
-and default behavior remains unrun and missing. The audit is retained at
-`/tmp/samgita-thread-start-personality-audit-20261025.md`; it supplies no native
-acceptance by itself.
+The subsequent [repair continuation](repair-qualification.md#scoped-continuation-after-636b2ad)
+passes **92/0 twice** with strict checks and a matching source guard: a deterministic
+queued-notification processing barrier, actual executor timeout/control and exact
+upgrade request-ID, five-case personality instruction selection, and expanded
+goal-prefix/no-goal/config/stopped-state inheritance. Fourteen exact owners bring
+contracts to **3,205 implemented / 3,416 missing**, zero verified. All48 isolated
+profiles have required hosted steps. Initial failures and scope limits remain
+recorded. Required-skills and positive elapsed-time inheritance remain unqualified.
+
+Next complete the source-audited required-skills native differential and meaningful
+positive-time assertion, then freeze executable source for the complete preserved-
+platform/package/consumer and final-pushed hosted matrix.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.
 No scoped green checkpoint completes the full goal.

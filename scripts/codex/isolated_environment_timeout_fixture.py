@@ -37,8 +37,9 @@ class Fixture(shared.Fixture):
         identity = self.header_owner.identity
         assert identity in (1, 2), "unexpected owned timeout connection"
         lines = data.decode("ascii").split("\r\n")
-        auth = [line for line in lines if line.lower().startswith("authorization:")]
-        assert len(auth) == 1 and auth[0].lower() == ("Authorization: Bearer " + TOKEN).lower()
+        auth = [line.split(":", 1)[1].strip() for line in lines
+                if line.split(":", 1)[0].lower() == "authorization"]
+        assert auth == ["Bearer " + TOKEN], "native upgrade bearer mismatch"
         started = time.monotonic_ns()
         with self.hold_lock:
             self.held_at[identity] = started
