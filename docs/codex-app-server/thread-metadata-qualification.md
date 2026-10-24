@@ -97,3 +97,34 @@ Other transports and operating systems, remote/enterprise thread stores,
 concurrent writers, missing-row repair, every Git URL form and Daybreak access
 or execution remain unqualified. This unit does not establish full Codex
 compatibility, production readiness, publication or deployment.
+
+## Background-plugin fixture repair
+
+Hosted conformance [40063234384](https://github.com/gsmlg-opt/Samgita/actions/runs/40063234384)
+at `6dcd341` failed the origin-credential case during its complete recursive
+scan: an owned `.tmp/plugins-clone-*/plugins/cloudflare/...` file disappeared
+between discovery and `File.read!`. The second driver partition finished
+**254 tests / one failure**. It was not a credential-content assertion failure,
+but it prevents a passing confidentiality-test claim.
+
+The pinned [plugin default](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/features/src/lib.rs#L1620-L1623)
+is enabled. [App-server startup](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/message_processor.rs#L544-L560)
+launches plugin warmups; the [plugin gate](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core-plugins/src/manager.rs#L2824-L2831)
+controls those tasks. Curated startup sync clones into a temporary directory
+and renames that checkout. The metadata fixture had not disabled this unrelated
+background behavior. This is a fixture-isolation repair, not an upstream defect.
+
+Only this test module's setup now appends supported `plugins = false` and
+`recommended_plugins = false` feature settings before any native startup. Shared
+fixtures and explicitly enabled plugin profiles are unchanged. Complete response,
+rollout, cold-read and recursive file-content assertions remain intact, as do
+`File.read!`, process guardians and zero-provider-request checks. No disappearing
+file is ignored, no scan path is excluded and no sleep/deadline is changed.
+
+Serial warnings-as-errors compile, formatting, both complete metadata/prediction
+repeats and strict Credo pass. Each repeat reports **13/0** (seven metadata plus
+six prediction cases), seeds `501432`/`987654`, 33.3/33.2s. Full commands, exits
+and logs: `/tmp/samgita-native-metadata-repair-20261024/`. The next final-source
+hosted partition must validate the repair there. No schema entry or verified
+status is promoted, and this does not audit all other fixtures' background
+activity or close platform A11.

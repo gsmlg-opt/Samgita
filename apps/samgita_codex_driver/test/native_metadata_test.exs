@@ -11,7 +11,14 @@ defmodule SamgitaCodexDriver.NativeMetadataTest do
   @missing "00000000-0000-4000-8000-000000000000"
 
   setup context do
-    TurnFixture.setup(context)
+    context = TurnFixture.setup(context)
+    config = Path.join(context.fixture.codex_home, "config.toml")
+
+    # Metadata-only cases must not start the unrelated remote plugin sync, whose
+    # temporary checkouts can move while the complete credential scan reads them.
+    File.write!(config, "\n[features]\nplugins = false\nrecommended_plugins = false\n", [:append])
+
+    context
   end
 
   test "Git patches trim replacements preserve omissions and clear explicit nulls", ctx do

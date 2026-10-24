@@ -6,6 +6,38 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted checkpoint at 6dcd341 and new fixture repairs
+
+Exact source `6dcd341f4c58296e5eeda739e5f9207b1056a24a` reached terminal
+hosted results. [Foundation 40063212399](https://github.com/gsmlg-opt/Samgita/actions/runs/40063212399)
+passed both populated seeds (**224 core/0/one excluded; 128 web/0/five excluded**
+each), restart/rollback, neutral core **32/0**, both outside consumers **1/0**,
+neutral WebSocket and native wire **42/0** each, all strict checks/audits,
+forced Dialyzer, assets and local production assembly.
+
+[Conformance 40063234384](https://github.com/gsmlg-opt/Samgita/actions/runs/40063234384)
+failed overall. All **30 explicit profiles, 205/0**, passed. The selected job
+passed native wire **42/0** and driver partition one **285/0**, then failed
+partition two **254/one failure**. Outside-consumer and native-platform steps
+did not run. The failure is the
+[metadata plugin-startup race](thread-metadata-qualification.md#background-plugin-fixture-repair),
+not an owned-process cleanup failure. The separate required evidence gate also
+failed: **485 requirements: 462 implemented / 12 missing / 11 blocked;
+6,621 contracts: 2,132 implemented / 4,489 missing; zero verified**. Complete
+terminal metadata/logs: `/tmp/samgita-hosted-6dcd341-20261024/`.
+
+The frozen local v6 package attempt ended **539/one failure**, seed `501432`,
+507.5s, and aborted before its remaining package/profile commands. Its distinct
+[prediction timestamp precondition](prediction-boundary-qualification.md#durable-state-precondition-repair)
+is repaired by materializing durable metadata while retaining complete timestamp
+and history-byte equality. Its original failure is preserved in
+`/tmp/samgita-repair-final-packages-v6-20261024/`. New metadata/prediction repeats
+pass **13/0** at both seeds with all scoped static checks; network/span units
+have their separately recorded native results. None substitutes for the new
+combined-source, preserved-database and hosted final matrix. A11, immutable
+non-emitting legacy paths, external/OS acceptance and the complete goal remain
+incomplete; no release/tag/publication/deployment occurred.
+
 ## Hosted checkpoint at e4dd2be
 
 Exact pushed source `e4dd2be02980f09b7f3462626b091f3f40c45f46` completed both
