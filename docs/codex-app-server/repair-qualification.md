@@ -6,6 +6,96 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Frozen local matrix at 5c22159
+
+The v13 combined runner is terminal against executable source
+`5c221594fa19c0d686cba63f387f2bee6f16f70b`. All **23 independent-package
+commands passed**. All **17 platform commands ran**, with only the first
+populated-root aggregate failing. Both complete executable/configuration/workflow
+source guards match the current documentation head `7324d90`; no executable
+change occurred during validation. The combined runner exited one and retains
+the aggregate failure. There was no reset, task deletion or guard bypass.
+
+| Independent check | Actual terminal result |
+| --- | --- |
+| Complete default driver, seeds 501432 / 987654 | **653/0** each |
+| All 31 isolated native profiles, both seeds | **214/0** each |
+| Neutral WebSocket, seeds 455834 / 501432 / 987654 | **42/0** each |
+| Native wire and neutral core | **42/0**, **32/0** |
+| Native and both neutral outside consumers | **1/0** each |
+| Inventory regressions/consistency, namespace/sandbox prerequisites, package compile/format/audits | Passed |
+
+| Preserved platform check | Actual terminal result |
+| --- | --- |
+| Populated root, seed 501432 | Core **224/0/1 excluded**, web **128/1/5 excluded** |
+| Consecutive root, seed 987654 | Core **224/0/1 excluded**, web **128/0/5 excluded** |
+| Native runtime/API/concurrency | Core **53/0**, web **8/0** |
+| Consecutive recovery/restart, both seeds | Core **4/0**, web **1/0** each |
+| Compile, format, strict Credo, forced Dialyzer, audit, legacy exclusion | Passed |
+| Frozen frontend install, assets and production assembly | Passed; assembly never started |
+
+The only aggregate failure remains `github_controller_test.exs:56` (test
+declared at 39): the retained populated database does not guarantee a newly
+inserted connection is on page one. No GitHub fixture, pagination, assertion or
+retained row is changed. This is separate from activation/restart recovery.
+
+Exact commands, terminal exits, logs and source hashes are retained in
+`/tmp/samgita-repair-final-{combined-v13,platform-v11,packages-v13}-20261024/`,
+with adjacent `.py` runners. Platform results SHA256 is
+`432581ea27e502d7e376980478531b82cfc76148a132736a7a2f4701f9bef094`;
+package results SHA256 is
+`1e1e8662e0cd4ab5839ec381827bd54237d8a8aaea34b55ae165ee8d5769e353`.
+The documentation-only `7324d90` foundation repeat
+[40087442409](https://github.com/gsmlg-opt/Samgita/actions/runs/40087442409)
+also reached terminal success. Neither this checkpoint nor the hosted execution
+success below completes compatibility, A11, source-unreachable or external/OS
+acceptance. No publication, tag or deployment follows. Executable work resumes
+only after this terminal checkpoint.
+
+## Hosted checkpoint at 5c22159
+
+Both workflows reached terminal status at exact pushed executable source
+`5c221594fa19c0d686cba63f387f2bee6f16f70b`.
+[Foundation 40086202012](https://github.com/gsmlg-opt/Samgita/actions/runs/40086202012)
+passed every required step. Both populated aggregates passed **224 core/0/one
+excluded + 128 web/0/five excluded**, seeds `329070` and `984655`.
+Restart/rollback passed **1/0**; neutral core **32/0**, both outside consumers
+**1/0** each, neutral WebSocket **42/0** and native wire **42/0** passed.
+Strict checks, forced Dialyzer, audits, assets and production assembly passed.
+The assembled release was not started or published.
+
+[Conformance 40086270651](https://github.com/gsmlg-opt/Samgita/actions/runs/40086270651)
+is **failed overall**, with two successful execution jobs and the required failed
+completeness job. The selected actual-binary/platform job passed native wire
+**42/0**, both complete default-driver partitions **330/0 + 323/0 = 653/0**
+at `501432`, the native outside consumer **1/0**, and native runtime/API/
+concurrency **53 core + 8 web / zero failures** at `664202`. No downstream
+consumer/platform step was skipped. The isolated-native job passed all **31
+required profiles, 214/0**, with no exclusions, including the newly required
+actual-native BEM profile. The MCP cleanup-marker assertions and production
+guardians remain intact; this new-source run no longer has the previous hosted
+MCP fixture-close failure. The older failure remains recorded below.
+
+The completeness job passed **37 inventory regressions** and consistency, then
+failed `--require-verified` with **485 requirements: 0 verified / 462 implemented /
+12 missing / 11 blocked**. Its historical ledger has **6,621 contracts: 0 verified /
+2,795 implemented / 3,826 missing**. Later documentation-only owner indexing at
+`7324d90` raises the scoped implemented count to 2,821 without changing executable
+source or retroactively changing this hosted report. Selected successful native
+jobs do not close completeness, source-unreachable contracts, external/OS success
+or A11.
+
+The read-only collector
+`/tmp/samgita-collect-hosted-5c22159-20261024.py` asserts exact heads and terminal
+states before downloading full logs. Metadata, parsed counts, per-step line
+anchors and complete logs are retained in `/tmp/samgita-hosted-5c22159-20261024/`.
+The foundation log SHA256 is
+`f8c293705e8cd01e42a849a9936b4bfc461215dd51f89d4bfe95370c6b32751d`;
+the conformance log SHA256 is
+`49f0f3f01809932a15f6d4ceeb6bca2a82d6a47414a82332bb0a2f7eec364b8c`.
+These are local retained evidence artifacts, not published package artifacts.
+No tag, release, deployment or production-readiness claim follows.
+
 ## Frozen local matrix at 0629d92
 
 The v12 combined runner reached terminal status against executable source

@@ -19,6 +19,19 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [hosted checkpoint at 5c22159](repair-qualification.md#hosted-checkpoint-at-5c22159)
+passes foundation and both native execution jobs: both complete driver partitions
+total **653/0**, all 31 isolated profiles total **214/0**, and the real native
+outside consumer and platform/API/concurrency journeys pass without skipped
+steps. The earlier MCP fixture-close failure no longer occurs. The separate
+completeness job still fails and A11 remains blocked. The frozen local matrix
+is now [terminal](repair-qualification.md#frozen-local-matrix-at-5c22159): all 23
+package commands pass, including both **653/0** driver and **214/0** profile
+repeats. The 17 platform commands retain the first populated GitHub-page
+assertion failure while both recovery/restart repeats pass. Both source guards
+match; hosted fresh-database success does not erase that retained
+GitHub first-page failure or establish full compatibility.
+
 The [queue-start and managed-requirements unit](queue-managed-state-qualification.md)
 adds 46 precise implemented owners. Both scoped seeds pass **11/0**, with exact
 queue response snapshots, ordered inert metadata, reload/removal and confirmed
@@ -83,7 +96,8 @@ and platform steps were skipped; completeness also fails. The subsequent
 [MCP fixture repair](mcp-cleanup-order-qualification.md) has deterministic
 red/green ordering evidence, **9/0** complete MCP cases at `501432` and **29/0**
 MCP/process cleanup cases at `987654`, with unchanged production guardians and
-deadlines. Its hosted repeat remains required. These actual outcomes supersede any inference
+deadlines. Its subsequent hosted repeat passed at `5c22159`, as recorded above.
+These actual outcomes supersede any inference
 that the new executable combination is fully green.
 
 The prior [hosted checkpoint at 67d2c32](repair-qualification.md#hosted-checkpoint-at-67d2c32)
