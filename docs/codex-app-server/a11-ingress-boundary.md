@@ -7,6 +7,35 @@ confidentiality acceptance. It was reviewed against `main` at `f5fc9155` and the
 retained Bandit 1.13.1, Phoenix 1.8.13, LiveView 1.2.11 and Plug 1.20.3 sources.
 Plug.Crypto 2.2.1 fixes its separate advisory; it does not redact these events.
 
+## Latest stable upstream availability
+
+The2026-10-25 read-only availability check also inspects newer official
+Phoenix1.8.16 (`b5026660dc744424545e7d2e3b7547507443ab40`) and
+LiveView1.2.13 (`d8252e1e21238e150e9e6b3d7285d4c060d28e6e`). Neither supplies
+a supported projection covering all accepted raw-event boundaries. Bandit1.13.1
+(`ee75d310582b4f65f9354ab81eeecb079609a492`) is still its latest stable tag/Hex
+version; the three relevant retained Bandit files match byte for byte.
+
+| Immutable upstream emission | Still exposed before application handling |
+| --- | --- |
+| [Bandit pipeline](https://github.com/mtrudel/bandit/blob/ee75d310582b4f65f9354ab81eeecb079609a492/lib/bandit/pipeline.ex#L34-L58), [HTTP1 buffer](https://github.com/mtrudel/bandit/blob/ee75d310582b4f65f9354ab81eeecb079609a492/lib/bandit/http1/socket.ex#L178-L199), [retained exception metadata](https://github.com/mtrudel/bandit/blob/ee75d310582b4f65f9354ab81eeecb079609a492/lib/bandit/telemetry.ex#L170-L210) | Original conn, headers and potentially coalesced body buffer; exception retains initial snapshot. |
+| [Phoenix socket](https://github.com/phoenixframework/phoenix/blob/b5026660dc744424545e7d2e3b7547507443ab40/lib/phoenix/socket.ex#L519-L532), [channel](https://github.com/phoenixframework/phoenix/blob/b5026660dc744424545e7d2e3b7547507443ab40/lib/phoenix/channel/server.ex#L308-L329), [render errors](https://github.com/phoenixframework/phoenix/blob/b5026660dc744424545e7d2e3b7547507443ab40/lib/phoenix/endpoint/render_errors.ex#L72-L88) | Original decoded connect/join/event params, sockets, conns and errors. |
+| [LiveView event](https://github.com/phoenixframework/phoenix_live_view/blob/d8252e1e21238e150e9e6b3d7285d4c060d28e6e/lib/phoenix_live_view/channel.ex#L567-L592), [component](https://github.com/phoenixframework/phoenix_live_view/blob/d8252e1e21238e150e9e6b3d7285d4c060d28e6e/lib/phoenix_live_view/channel.ex#L856-L902), [mount](https://github.com/phoenixframework/phoenix_live_view/blob/d8252e1e21238e150e9e6b3d7285d4c060d28e6e/lib/phoenix_live_view/utils.ex#L350-L365), [params](https://github.com/phoenixframework/phoenix_live_view/blob/d8252e1e21238e150e9e6b3d7285d4c060d28e6e/lib/phoenix_live_view/utils.ex#L459-L478) | Raw event/mount/params and socket enter spans before lifecycle hooks. |
+| [Telemetry1.4.2 span](https://github.com/beam-telemetry/telemetry/blob/7baf8085e406d5ae9e43b284d7c866742ae04b28/src/telemetry.erl#L350-L386) | Start precedes callback; exception reuses original start metadata. |
+
+Supported [Bandit options](https://github.com/mtrudel/bandit/blob/ee75d310582b4f65f9354ab81eeecb079609a492/lib/bandit.ex#L270-L301)
+and [LiveView hooks](https://github.com/phoenixframework/phoenix_live_view/blob/d8252e1e21238e150e9e6b3d7285d4c060d28e6e/lib/phoenix_live_view.ex#L1655-L1703)
+do not replace those original terms before emission. Logger filters act after
+emission. Upgrading only these versions is therefore not an established closure.
+No dependency update, new runtime canary or upstream contact occurs in this check.
+The actual exposure reproductions below remain the runtime evidence.
+
+Full immutable URLs/file hashes and release/Hex queries are retained in
+`/tmp/samgita-a11-upstream-check-20261025/source-manifest.json` and
+`/tmp/samgita-a11-upstream-availability-audit-20261025.md`.
+The minimum supported upstream/whole-ingress prerequisite below remains unmet;
+A11 is blocked while independent compatibility work continues.
+
 ## Why application handlers cannot close it
 
 Bandit's `pipeline.ex:38-39` emits the full connection before entering the

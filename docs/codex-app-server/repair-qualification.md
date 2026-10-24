@@ -53,6 +53,43 @@ local and terminal636b2ad hosted outcomes below remain historical evidence;
 complete final-source local/hosted qualification, further reachable behavior,
 A11 and external/OS success remain required. No publication or deployment.
 
+## Hosted checkpoint at 589e02f
+
+Both workflows are terminal at exact pushed source
+`589e02ffd96f7372b2d654835e8c0df0c183511b`.
+[Foundation40127514136](https://github.com/gsmlg-opt/Samgita/actions/runs/40127514136)
+passes every step: both populated aggregates (**230 core/0/one excluded +
+130 web/0/seven excluded** each), restart/rollback **1/0**, neutral core **32/0**,
+both neutral outside consumers **1/0** each, WebSocket/native wire **42/0** each,
+strict static checks, forced Dialyzer, audits, assets and production assembly.
+The assembly is never started, published or deployed.
+
+[Conformance40127696162](https://github.com/gsmlg-opt/Samgita/actions/runs/40127696162)
+is **failed overall**. Both native execution jobs pass every step: default
+driver partitions **365/0 +306/0 =671/0**, seed501432; wire **42/0**; native
+outside consumer **1/0**; fenced runtime/API/concurrency **59 core +10 web/0**;
+and all **47 explicit isolated profiles,271/0**, without excluded tests or
+skipped downstream steps. These include actual executor expiry/control, personality
+instruction selection and accounted prefix inheritance. App-server frames come
+from the immutable pin; owned synthetic dependencies do not prove live providers.
+
+Mandatory completeness passes all **37 inventory regressions** and generated
+source consistency, then fails `--require-verified`: **485 requirements:0
+verified/462 implemented/12 missing/11 blocked;6621 contracts:0 verified/3204
+implemented/3417 missing**. Those are the hosted source's original counts; later
+request-ID/goal extensions are not retroactively qualified. This does not repair
+the retained local populated GitHub assertion or complete the entire local matrix.
+
+The terminal-only read-only collector
+`/tmp/samgita-collect-hosted-589e02f-20261025.py` verifies exact head and completed
+status before saving both full logs/step metadata in
+`/tmp/samgita-hosted-589e02f-20261025/`. Its report SHA256 is
+`10a115e7cd7a2abcbffc88018b30f1789be34c1b890f21fe14ee2fdd147eb2d9`.
+The [latest stable A11 source recheck](a11-ingress-boundary.md#latest-stable-upstream-availability)
+still finds no supported complete pre-emission projection. Full final-source
+local/hosted qualification, reachable remaining behavior, source-unreachable
+emitters and external/OS success remain incomplete. No release or deployment.
+
 ## Frozen local matrix at 636b2ad
 
 The v17 combined runner is terminal against executable source
