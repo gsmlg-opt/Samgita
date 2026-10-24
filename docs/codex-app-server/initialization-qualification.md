@@ -118,3 +118,30 @@ platform-family values, every opt-out/gating interaction, signed-JWT success
 and other deployment profiles remain unqualified. The manifest does not promote
 those fields because the selected tests only construct or forward them, or do
 not assert their actual native meaning. No entry is marked `verified`.
+
+## Response metadata and validation
+
+`native_initialization_metadata_test.exs` adds two stock-native cases. Explicit
+null capabilities initialize a connection; distinct fresh originating clients
+select their prescribed name/version user-agent boundaries. CR, LF and lambda
+in the selected version sanitize to exactly three underscores. The variable
+OS/terminal segment is deliberately not asserted as a portable constant.
+Native codexHome, platformFamily=unix and platformOs=linux are exact, with zero
+loaded threads or provider requests.
+
+An invalid header client name returns the exact native -32600 error and leaves
+initialization uncommitted. A valid name succeeds on that same connection;
+the invalid identity cannot contaminate its user-agent. Source is
+`app-server/src/request_processors/initialize_processor.rs:80-104,130-218`,
+`login/src/auth/default_client.rs:152-203` and
+`app-server-protocol/src/protocol/v1.rs:27-40,72-84` at the pinned commit.
+
+The **17/0** combined block passes both seeds `501432` and `987654`; compile,
+format, strict Credo and source guards pass. Logs are
+`/tmp/samgita-native-followup-projections-v3-20261024/`.
+Five exact fields/branches gain scoped evidence: client name/version,
+explicit-null capabilities, platform family and selected user-agent semantics.
+Title, full capabilities/opt-outs, shared-process identity, other transports,
+OSes and full verification remain incomplete. The earlier paragraph's withheld
+null/identity/family claims apply to its earlier evidence, superseded only for
+these selected new cases.

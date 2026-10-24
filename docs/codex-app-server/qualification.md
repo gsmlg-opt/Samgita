@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,473 implemented / 4,148 missing
+11 blocked requirements** and **0 verified / 2,657 implemented / 3,964 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,473 directly exercised
+MCP entries have scoped implementation evidence. These 2,657 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,23 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The next seventeen actual-native cases cover
+[filesystem selection/clocks](filesystem-qualification.md#prescribed-timestamps-and-directory-selection),
+[initialization metadata](initialization-qualification.md#response-metadata-and-validation),
+[persisted media](persisted-tool-items-qualification.md#persisted-image-and-audio),
+[safety metadata](config-safety-projections-qualification.md),
+[typed user history](persisted-user-inputs-qualification.md) and
+[execution history](persisted-execution-items-qualification.md).
+The complete owning block passes **17/0** at both seeds `501432` and `987654`,
+with warnings-as-errors compile/tests, formatting, strict Credo and source
+guards. Initial draft warnings, static failure and the source-backed
+unifiedExecStartup correction remain recorded in the linked evidence.
+These cases plus [44 retained envelope owners](native-envelope-owners-qualification.md)
+add **184 precise implemented contracts**, with three existing file-change
+fields gaining supplemental evidence. No complete-method, whole-envelope,
+sibling-schema or fully verified promotion follows. A new executable combination
+still requires its own full local and hosted matrix.
 
 The next bounded units add ten native cases: four
 [captured request](client-request-capture-qualification.md), four

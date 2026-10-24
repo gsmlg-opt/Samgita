@@ -6,6 +6,44 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Frozen independent matrix at 5cd40c9
+
+The explicitly owned v10 runner reached both terminal results at unchanged
+`5cd40c940093eab63fefe5003f1039098ece0a37`, with no concurrent local native/Mix
+validation or executable/config changes. The package matrix passed all commands;
+the independent platform matrix failed its two populated aggregate runs.
+
+| Check | Actual outcome |
+| --- | --- |
+| Inventory regressions / consistency | 37/0; 485 requirements and 6,621 contracts, zero verified |
+| Required namespace and native sandbox probes | Passed |
+| Complete default driver, seeds 501432 / 987654 | **621/0** each |
+| All 30 isolated native profiles, both seeds | **205/0** each |
+| Independent native / neutral outside consumers | Passed |
+| Neutral WebSocket, seeds 455834 / 501432 / 987654 | **42/0** each |
+| Independent native wire | **42/0** |
+| Package compiles, formats and strict audits | Passed |
+| Preserved root aggregate, both seeds | Core **224/0/1 excluded**; web **128/1/5 excluded** each |
+| Native platform/API/race journeys | Core **53/0**, web **8/0** |
+| Two consecutive recovery/restart seeds | Core **4/0**, web **1/0** each |
+| Root compile/format/strict Credo/forced Dialyzer/audit | Passed |
+| Legacy exclusion, frozen frontend install, assets, production assembly | Passed |
+
+Both aggregate failures are the unchanged `github_controller_test.exs:56`
+assertion (test declared at line 39): a newly registered connection is absent
+from the first default page on this populated database. This is independent of
+the passing recovery/activation tests; neither repeat was counted green.
+The named database `samgita_redesign_recovery_repair_test` was preserved, with
+no reset, record removal, fake mapping, activation bypass or automatic replay.
+The production assembly was never started. No tag/publication/deployment follows.
+
+Exact commands, times, source guards and raw logs are retained in
+`/tmp/samgita-repair-final-packages-v10-20261024/`,
+`/tmp/samgita-repair-final-platform-v8-20261024/` and
+`/tmp/samgita-repair-final-combined-v10-20261024/results.json`.
+These outcomes qualify that frozen snapshot; new executable tests require their
+own final-source matrix. A11 and complete conformance remain incomplete.
+
 ## Hosted prerequisite checkpoint at 5cd40c9
 
 Both terminal workflows used exact source

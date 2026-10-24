@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 462 `implemented`,
-with 2,473 exact field/variant schema contracts implemented; 12 requirements and 4,148 contracts
+with 2,657 exact field/variant schema contracts implemented; 12 requirements and 3,964 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -616,3 +616,19 @@ source, run the entire required local/hosted matrix with explicit runner
 ownership and terminal-result tracking, then continue remaining reachable
 behavior. No test deadline, activation guard, assertion, production boundary
 or full-completeness requirement is weakened.
+
+The following seventeen native cases add filesystem selection/mtime, initialized
+identity metadata, persisted media/typed inputs/execution and parsed safety
+metadata. The owning block passes both seeds with strict checks and source
+guards; see [qualification](qualification.md). With 44 retained native envelope
+owners, the regenerated ledger is **2,657 implemented / 3,964 missing** contracts;
+requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified.
+The complete preceding frozen package matrix passed **621/0** default twice,
+**205/0** profiles twice, outside consumers, three WebSocket seeds including
+`455834`, audits and wire checks. The retained platform matrix failed the same
+GitHub first-page test at both seeds; no data/pagination/assertion was changed.
+Hosted `5cd40c9` additionally exposed missing ripgrep; `063cf65` explicitly
+provisions it without weakening the fixture. Continue remaining native approval
+context/effect/loss coverage and final-source full local/hosted qualification.
+All current [A11](a11-ingress-boundary.md), upstream-unreachable, external/OS and
+aggregate gates retain their actual incomplete status.

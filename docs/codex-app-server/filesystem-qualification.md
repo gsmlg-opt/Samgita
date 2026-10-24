@@ -77,3 +77,27 @@ hashes match. See [hosted evidence](repair-qualification.md#combined-source-plat
 The indexing itself executed no native test; subsequent final-source evidence
 must include these tests. No Task acceptance, A11 or complete compatibility
 claim is made.
+
+## Prescribed timestamps and directory selection
+
+`native_filesystem_projections_test.exs` adds two stock-native cases. Two
+ordinary files receive independently prescribed positive whole-second mtimes,
+checked with `File.stat!(time: :posix)`. Alternating their requested paths must
+return the exact corresponding millisecond values. Changing only one mtime
+must change only its native result. This supplies an accuracy/selection oracle
+for `modifiedAtMs`; `createdAtMs` remains withheld.
+
+Two selected directories contain disjoint ordinary-file names and a nested
+directory. Exact direct-child maps before and after an owned cross-directory
+rename prove path selection and ordinary-file flags. Sorting makes no directory
+order claim. Contents remain exact; no thread or model request is created.
+
+Pinned producers are `exec-server/src/local_file_system.rs:657-703,1257-1262`
+and `app-server/src/request_processors/fs_processor.rs:115-153`, relative to
+the immutable source in qualification. The new cases pass in the **17/0**
+combined block at seeds `501432` and `987654`; commands/source hashes are in
+`/tmp/samgita-native-followup-projections-v3-20261024/`.
+Only three new physical owners gain scoped implemented evidence: metadata path,
+directory path and modifiedAtMs. Fractional/negative/unavailable creation or
+modification timestamps, path aliases, other transports/OSes and full method
+verification remain unqualified.

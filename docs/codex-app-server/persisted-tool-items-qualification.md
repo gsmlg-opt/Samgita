@@ -45,3 +45,33 @@ and entry turnId/start/completion timestamps. Null namespace is the tested
 namespace value. No other ThreadItem branch, complete lifecycle, transport/OS
 matrix, external provider, A11 or fully verified promotion is implied. Final
 combined-source, static and hosted checks are separate required gates.
+
+## Persisted image and audio
+
+Two cases in `native_persisted_media_test.exs` supply known text, a complete 1x1
+PNG and a complete mono PCM WAV through an explicit dynamic-tool reply, once
+with success=true and once false. The actual next Responses request must contain
+the independently prescribed text, image and audio objects and exact decoded
+bytes. The binary generates every app-server frame; the provider only supplies
+the deterministic model response.
+
+Hot selective `thread/items/read`, duplicate/missing/reversed selectors and a
+distinct cold native process retain the exact original content, success and
+completed/failed state. `thread/read` is a store barrier, never the expected
+content oracle. User/tool/assistant ordering remains checked; cold reads do not
+load the thread, execute another turn or add a provider request. Existing
+process-group guardians and fixture cleanup remain intact.
+
+These cases pass within **17/0** at both seeds `501432` and `987654`, with
+warnings-as-errors, formatting, strict Credo and source hashes in
+`/tmp/samgita-native-followup-projections-v3-20261024/`. Its preceding v1 run
+passed the fourteen original new cases twice but failed strict Credo on an
+escaped JSON literal; a byte-equivalent sigil fixes only that readability issue.
+
+Eight exact physical ThreadItemsReadResponse image/audio branch/field/tag
+owners gain scoped implemented evidence. No nonexistent structuredContent
+alternative is invented. Actual media decoding/understanding, all dynamic-tool
+variants, sibling schemas, other transports/OSes and full verification remain
+unqualified. Source follows `core/src/tools/handlers/dynamic.rs:219-270`,
+`core/src/session/mod.rs:2709-2765` and
+`app-server-protocol/src/protocol/v2/item.rs:948-965` at the pin.
