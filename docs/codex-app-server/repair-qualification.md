@@ -6,6 +6,37 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted prerequisite checkpoint at 5cd40c9
+
+Both terminal workflows used exact source
+`5cd40c940093eab63fefe5003f1039098ece0a37`. Foundation
+[40073298832](https://github.com/gsmlg-opt/Samgita/actions/runs/40073298832)
+passed; conformance
+[40073376712](https://github.com/gsmlg-opt/Samgita/actions/runs/40073376712)
+failed. Native protocol passed **42/0**. Driver partition 1 reported **340 tests,
+2 failures**, seed `501432`: both content-search cases failed setup with
+`BLOCKED_ENV: ripgrep required`. Partition 2, outside consumer and platform
+journeys were skipped. The separate 30-profile job passed **205/0**. Required
+completeness failed with all **485 requirements** unverified; source consistency
+recorded **462 implemented / 12 missing / 11 blocked** requirements and
+**2,473 implemented / 4,148 missing** contracts, zero verified.
+
+The selected-conformance job now explicitly installs and checks distribution
+`ripgrep`. The fixture still discovers only that executable for its private
+PATH and fails when it is absent. No assertion, deadline, capability, sandbox
+policy or required gate changes. A subsequent terminal hosted run must validate
+this environment repair; the preceding run does not qualify the changed workflow.
+Collection metadata, line-anchored failure/count excerpts and immutable raw logs
+are retained in `/tmp/samgita-hosted-5cd40c9-20261024/`.
+
+Local validation from `apps/samgita_codex_driver`, with `CODEX_BINARY` set to the
+pinned `tmp/codex/0.163.0/codex-x86_64-unknown-linux-musl`, ran
+`devenv shell --no-tui -- mix test test/native_search_projections_test.exs --seed 501432`:
+**2/0**. An initial invocation omitted that required variable and failed setup
+with `BLOCKED_ENV: immutable CODEX_BINARY required`; no native scenario ran in
+that invocation. This is local regression evidence, not hosted validation of
+the package-install step.
+
 ## Combined-source platform checkpoint at e39ca5f
 
 The input/form additions are committed and pushed at

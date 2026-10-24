@@ -36,6 +36,14 @@ ripgrep executable to its private PATH. No command/tool is requested. Native
 read barriers establish persistence; there is no search polling or frame
 synthesis. Owned processes use the retained cleanup guards.
 
+The host must supply `rg` on PATH before this test starts. Install the `ripgrep`
+distribution package for local Debian/Ubuntu runs. The selected conformance CI
+job installs it explicitly before its required driver partitions; the fixture
+then adds the discovered executable to its owned bin directory. A missing tool
+fails setup with `BLOCKED_ENV: ripgrep required`, rather than skipping content
+assertions or inheriting an unrestricted child environment. Provisioning this
+prerequisite does not itself establish a passing hosted run.
+
 Pinned producers are `protocol/common.rs:840-845`,
 `protocol/v2/thread.rs:1581-1602`,
 `thread_processor.rs:2765-2815,2858-2884,6396-6445`,

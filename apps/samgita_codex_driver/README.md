@@ -164,6 +164,13 @@ Authentication, executor and account/Apps namespace profiles are separate requir
 CI steps as recorded in the qualification ledger. A denied prerequisite fails;
 there is no skip or host-network fallback.
 
+The default actual-native suite also requires the `rg` executable from ripgrep
+on the host PATH. On Debian/Ubuntu, install the `ripgrep` package before running
+the suite. The content-search fixture adds only the explicitly discovered
+executable to its private PATH; missing ripgrep fails with
+`BLOCKED_ENV: ripgrep required`. The selected conformance CI job installs this
+prerequisite before running both required driver partitions.
+
 Run from this package directory in the repository's Elixir/OTP environment:
 
 ```sh

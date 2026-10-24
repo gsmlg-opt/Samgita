@@ -45,6 +45,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Isolate the verified native artifact cache
         run: echo "RUSTLER_PRECOMPILED_GLOBAL_CACHE_PATH=$RUNNER_TEMP/samgita-conformance-nifs" >> "$GITHUB_ENV"
+      - name: Required native content-search executable
+        timeout-minutes: 3
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y ripgrep
+          rg --version
       - uses: erlef/setup-beam@v1
         with:
           elixir-version: ${{ env.ELIXIR_VERSION }}
