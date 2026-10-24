@@ -188,3 +188,39 @@ are `/tmp/samgita-native-repair-continuation-v6-20261025/`, with hashes in
 [repair qualification](repair-qualification.md#scoped-continuation-after-636b2ad).
 Only warning/context's two exact physical enum owners gain new implemented
 behavior here; the separate three-literal source index changes no test behavior.
+
+## Stop continuation and selected persisted HookPrompt
+
+The ninth scenario uses one explicitly trusted synchronous Stop hook, two fixed
+assistant responses and exclusive first/second invocation records. The first
+Stop receives `stop_hook_active:false` and the prescribed draft; its literal
+block reason becomes one HookPrompt fragment. The second receives true and the
+prescribed final answer, and returns an empty result. A third provider request
+or hook invocation fails the fixture. Existing eight scenarios, deadlines,
+namespace/route checks, trust rules and owned-process guardians remain.
+
+Pinned `hooks/src/events/stop.rs:312-323,391-398` produces continuation text and
+the real hook run reference. `core/src/session/turn.rs:737-754` records and emits
+the native prompt before continuing the same turn; `v2/item.rs:881-887,1071-1076`
+projects its complete fragment. UserPromptSubmit additionalContext remains
+developer context, and its earlier stopped scenario is not this Stop path.
+
+The test prescribes the complete prompt type and literal feedback, binds only
+generated item/run identities, and checks the ten-step draft/hook/prompt/final/
+hook/turn order. This pin reuses the handler run ID across invocations. A real
+`thread/read(includeTurns:true)` store barrier precedes singleton
+`thread/items/read`; the selected complete item must equal that independent
+oracle. Exactly two model requests, one injected user hook prompt in the second
+request, no extra execution/uncertainty, and reaped owned PIDs are asserted.
+No app-server frame is scripted or rewritten.
+
+The initial combined run was61/1 because the new timeline comprehension treated
+an assigned nil item type as a filter, discarding actual turn/hook notices.
+Changing only that binding to a singleton generator retains nil entries; the
+ten-step expected order and all deadlines remain unchanged. The subsequent
+complete nine-file native block passes61/0 at501432 and987654. Logs are
+`/tmp/samgita-native-stop-cwd-authority-v{1,2}-20261025/`; the original failed
+oracle is retained. Seven exact selected-response owners gain scoped implemented
+evidence. This is warm paginated Linux stdio, not other hook events, async/cold
+restoration, live providers, A11 or fully verified compatibility. Final combined
+and hosted checks remain separate gates.

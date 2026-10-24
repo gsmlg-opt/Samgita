@@ -9,6 +9,7 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
   @script Path.expand("../../../scripts/codex/isolated_hook_lifecycle_fixture.py", __DIR__)
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @prompt "Owned synthetic hook lifecycle input"
+  @stop_reason "Owned synthetic Stop continuation λ🙂"
 
   setup tags do
     binary = System.get_env("CODEX_BINARY")
@@ -53,7 +54,7 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
         pids = Enum.map(["native_pid", "controller_pid", "namespace_owner_pid"], &proof[&1])
 
         hook_pids =
-          for event <- ["SessionStart", "UserPromptSubmit"],
+          for event <- ["SessionStart", "UserPromptSubmit", "Stop-first", "Stop-second"],
               File.exists?(Path.join(root, event <> ".json")),
               do: read_json(ctx, event <> ".json")["pid"]
 
@@ -245,14 +246,169 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
     end
   end
 
-  defp hooks(pid, ctx) do
+  @tag hook_scenario: "stop-continuation"
+  test "native Stop continuation persists an exact hook prompt before completing the same turn",
+       ctx do
+    pid = ctx.pid
+    [hook] = hooks(pid, ctx, ["stop"])
+    assert hook["trustStatus"] == "untrusted" and hook["enabled"]
+    assert read_json(ctx, "requests.json") == []
+    assert {:ok, registration_events} = Session.drain(pid)
+    assert lifecycle(registration_events) == []
+    assert Path.wildcard(Path.join(ctx.root, "Stop-*.json")) == []
+
+    states = %{hook["key"] => %{"trusted_hash" => hook["currentHash"], "enabled" => true}}
+
+    call(pid, "config/batchWrite", %{
+      "edits" => [
+        %{"keyPath" => "hooks.state", "value" => states, "mergeStrategy" => "upsert"}
+      ],
+      "reloadUserConfig" => true
+    })
+
+    [approved] = hooks(pid, ctx, ["stop"])
+    assert approved["trustStatus"] == "trusted" and approved["enabled"]
+
+    thread =
+      call(pid, "thread/start", %{
+        "cwd" => ctx.workspace,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "sandbox" => "read-only",
+        "approvalPolicy" => "on-request",
+        "historyMode" => "paginated"
+      })["thread"]["id"]
+
+    assert {:ok, thread_events} = Session.drain(pid)
+    assert lifecycle(thread_events) == []
+    assert read_json(ctx, "requests.json") == []
+    assert Path.wildcard(Path.join(ctx.root, "Stop-*.json")) == []
+
+    turn =
+      call(pid, "turn/start", %{
+        "threadId" => thread,
+        "input" => [%{"type" => "text", "text" => @prompt}]
+      })["turn"]["id"]
+
+    events =
+      collect(pid, fn events ->
+        Enum.any?(events, fn event ->
+          event.wire["method"] == "turn/completed" and
+            event.wire["params"]["turn"]["id"] == turn
+        end)
+      end)
+
+    # includeTurns persists the native paginated projection before selection.
+    read = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+    assert read["id"] == thread and read["historyMode"] == "paginated"
+    assert {:ok, tail} = Session.drain(pid)
+    events = events ++ tail
+    refute Enum.any?(events, &(&1.kind == :server_request))
+
+    assert [%{"threadId" => ^thread, "turn" => %{"id" => ^turn}}] =
+             notices(events, "turn/started")
+
+    assert [
+             %{
+               "threadId" => ^thread,
+               "turn" => %{"id" => ^turn, "status" => "completed", "error" => nil}
+             }
+           ] = notices(events, "turn/completed")
+
+    [first_start, blocked, second_start, completed] = lifecycle(events)
+
+    assert Enum.map(lifecycle(events), & &1.wire["method"]) == [
+             "hook/started",
+             "hook/completed",
+             "hook/started",
+             "hook/completed"
+           ]
+
+    for {started, done, status} <- [
+          {first_start, blocked, "blocked"},
+          {second_start, completed, "completed"}
+        ] do
+      for event <- [started, done] do
+        assert event.kind == :notification
+        assert event.wire["params"]["threadId"] == thread
+        assert event.wire["params"]["turnId"] == turn
+        assert event.wire["params"]["run"]["eventName"] == "stop"
+      end
+
+      first = started.wire["params"]["run"]
+      last = done.wire["params"]["run"]
+      assert_run_identity(first, last, approved, ctx, "stop")
+      assert_run_lifecycle(first, last, status)
+    end
+
+    assert blocked.wire["params"]["run"]["entries"] == [
+             %{"kind" => "feedback", "text" => @stop_reason}
+           ]
+
+    assert completed.wire["params"]["run"]["entries"] == []
+    blocked_run_id = blocked.wire["params"]["run"]["id"]
+
+    # A handler's run ID is stable across these two invocations.
+    assert completed.wire["params"]["run"]["id"] == blocked_run_id
+
+    assert [
+             %{"item" => %{"id" => "owned-hook-answer-1", "text" => "Owned hook draft λ🙂"}},
+             %{"item" => %{"id" => "owned-hook-answer-2", "text" => "Owned hook final α🙂"}}
+           ] =
+             Enum.filter(
+               notices(events, "item/completed"),
+               &(&1["item"]["type"] == "agentMessage")
+             )
+
+    [started_prompt] =
+      Enum.filter(notices(events, "item/started"), &(&1["item"]["type"] == "hookPrompt"))
+
+    prompt_id = started_prompt["item"]["id"]
+    assert is_binary(prompt_id) and prompt_id != ""
+
+    expected = %{
+      "type" => "hookPrompt",
+      "id" => prompt_id,
+      "fragments" => [%{"text" => @stop_reason, "hookRunId" => blocked_run_id}]
+    }
+
+    assert %{
+             "threadId" => ^thread,
+             "turnId" => ^turn,
+             "item" => ^expected,
+             "startedAtMs" => started_at
+           } = started_prompt
+
+    assert is_integer(started_at) and started_at > 0
+
+    assert [%{"threadId" => ^thread, "turnId" => ^turn, "item" => ^expected}] =
+             Enum.filter(notices(events, "item/completed"), &(&1["item"]["type"] == "hookPrompt"))
+
+    assert_stop_order(events)
+
+    query = %{"threadId" => thread, "turnId" => turn, "itemIds" => [prompt_id]}
+
+    assert %{"data" => [%{"turnId" => ^turn, "item" => ^expected}]} =
+             call(pid, "thread/items/read", query)
+
+    assert {:ok, after_read} = Session.drain(pid)
+    refute Enum.any?(after_read, &(&1.kind == :server_request))
+    assert lifecycle(after_read) == []
+    assert notices(after_read, "turn/started") == []
+    assert notices(after_read, "turn/completed") == []
+    assert Session.uncertain_operations(pid) == []
+    assert %{phase: :ready, pending: 0, interactions: 0} = Session.status(pid)
+    assert read_json(ctx, "provider-errors.json") == []
+    assert_stop_records(ctx, thread, turn)
+    assert_stop_provider_inputs(ctx, blocked_run_id)
+    assert :ok = Session.close(pid)
+  end
+
+  defp hooks(pid, ctx, expected_events \\ ["sessionStart", "userPromptSubmit"]) do
     assert [entry] = call(pid, "hooks/list", %{"cwds" => [ctx.workspace]})["data"]
     assert entry["cwd"] == ctx.workspace and entry["warnings"] == [] and entry["errors"] == []
 
-    assert Enum.sort(Enum.map(entry["hooks"], & &1["eventName"])) == [
-             "sessionStart",
-             "userPromptSubmit"
-           ]
+    assert Enum.sort(Enum.map(entry["hooks"], & &1["eventName"])) == Enum.sort(expected_events)
 
     for hook <- entry["hooks"], do: assert_hook(hook, ctx)
 
@@ -260,7 +416,13 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
   end
 
   defp assert_hook(hook, ctx) do
-    event = if hook["eventName"] == "sessionStart", do: "SessionStart", else: "UserPromptSubmit"
+    event =
+      %{
+        "sessionStart" => "SessionStart",
+        "userPromptSubmit" => "UserPromptSubmit",
+        "stop" => "Stop"
+      }[hook["eventName"]]
+
     assert hook["command"] == state(ctx)["commands"][event]
     assert hook["handlerType"] == "command" and hook["async"] == false
     assert hook["sourcePath"] == Path.join(ctx.root, "codex/config.toml")
@@ -325,7 +487,14 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
              first["sourcePath"] == Path.join(ctx.root, "codex/config.toml")
 
     assert first["displayOrder"] == hook["displayOrder"]
-    label = if event_name == "sessionStart", do: "session-start", else: "user-prompt-submit"
+
+    label =
+      %{
+        "sessionStart" => "session-start",
+        "userPromptSubmit" => "user-prompt-submit",
+        "stop" => "stop"
+      }[event_name]
+
     assert first["id"] == "#{label}:#{hook["displayOrder"]}:#{hook["sourcePath"]}"
     assert first["scope"] == if(event_name == "sessionStart", do: "thread", else: "turn")
   end
@@ -370,6 +539,72 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
     assert Enum.count(developer_content, &(&1 == context)) == expected_count
     refute JSON.encode!(request) =~ "Owned synthetic hook warning"
   end
+
+  defp assert_stop_order(events) do
+    timeline =
+      for event <- events,
+          method = event.wire["method"],
+          item_type <- [event.wire["params"]["item"]["type"]],
+          method in ~w(turn/started hook/started hook/completed turn/completed) or
+            (method == "item/started" and item_type == "hookPrompt") or
+            (method == "item/completed" and item_type in ["agentMessage", "hookPrompt"]),
+          do: {method, item_type}
+
+    assert timeline == [
+             {"turn/started", nil},
+             {"item/completed", "agentMessage"},
+             {"hook/started", nil},
+             {"hook/completed", nil},
+             {"item/started", "hookPrompt"},
+             {"item/completed", "hookPrompt"},
+             {"item/completed", "agentMessage"},
+             {"hook/started", nil},
+             {"hook/completed", nil},
+             {"turn/completed", nil}
+           ]
+  end
+
+  defp assert_stop_records(ctx, thread, turn) do
+    files = Path.wildcard(Path.join(ctx.root, "Stop-*.json"))
+    assert Enum.map(files, &Path.basename/1) == ["Stop-first.json", "Stop-second.json"]
+
+    for {file, active, text} <- [
+          {"Stop-first.json", false, "Owned hook draft λ🙂"},
+          {"Stop-second.json", true, "Owned hook final α🙂"}
+        ] do
+      record = read_json(ctx, file)
+      assert record["event"] == "Stop" and record["scenario"] == "stop-continuation"
+      assert record["session_id"] == thread and record["turn_id"] == turn
+      assert record["namespace"] == state(ctx)["child"]
+      assert record["permission_mode"] == "default"
+      assert record["stop_hook_active"] == active and record["last_assistant_message"] == text
+      assert is_nil(record["transcript_path"]) or is_binary(record["transcript_path"])
+      refute File.exists?("/proc/#{record["pid"]}")
+    end
+
+    refute File.exists?(Path.join(ctx.root, "SessionStart.json"))
+    refute File.exists?(Path.join(ctx.root, "UserPromptSubmit.json"))
+  end
+
+  defp assert_stop_provider_inputs(ctx, run_id) do
+    assert [first, second] = read_json(ctx, "requests.json")
+    assert first["model"] == "mock-model" and second["model"] == "mock-model"
+    expected = "<hook_prompt hook_run_id=\"#{run_id}\">#{@stop_reason}</hook_prompt>"
+
+    user_texts = fn request ->
+      for item <- request["input"],
+          item["role"] == "user",
+          part <- item["content"],
+          part["type"] == "input_text",
+          do: part["text"]
+    end
+
+    refute Enum.any?(user_texts.(first), &String.contains?(&1, @stop_reason))
+    assert Enum.count(user_texts.(second), &(&1 == expected)) == 1
+  end
+
+  defp notices(events, method),
+    do: for(event <- events, event.wire["method"] == method, do: event.wire["params"])
 
   defp lifecycle(events),
     do: Enum.filter(events, &(&1.wire["method"] in ["hook/started", "hook/completed"]))

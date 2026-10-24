@@ -19,7 +19,8 @@ import threading
 
 
 SHA256 = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
-SCENARIOS = ("success", "untrusted", "disabled", "blocked", "failed", "stopped", "warning", "context")
+SCENARIOS = ("success", "untrusted", "disabled", "blocked", "failed", "stopped", "warning", "context",
+             "stop-continuation")
 PROMPT = "Owned synthetic hook lifecycle input"
 HOOK_PROGRAM = r'''import json
 import os
@@ -28,8 +29,9 @@ import sys
 
 root = Path(sys.argv[1]).resolve(strict=True)
 event, scenario = sys.argv[2:]
-assert event in {"SessionStart", "UserPromptSubmit"}
-assert scenario in {"success", "untrusted", "disabled", "blocked", "failed", "stopped", "warning", "context"}
+assert event in {"SessionStart", "UserPromptSubmit", "Stop"}
+assert scenario in {"success", "untrusted", "disabled", "blocked", "failed", "stopped", "warning", "context",
+                    "stop-continuation"}
 assert Path.cwd() == root / "workspace"
 proof = json.loads((root / "state.json").read_text())
 assert os.readlink("/proc/self/ns/net") == proof["child"]
@@ -43,20 +45,44 @@ assert data["model"] == "mock-model"
 assert isinstance(data["session_id"], str) and data["session_id"]
 if event == "SessionStart":
     assert data["source"] == "startup" and "turn_id" not in data
-else:
+elif event == "UserPromptSubmit":
     assert isinstance(data["turn_id"], str) and data["turn_id"]
     assert data["prompt"] == "Owned synthetic hook lifecycle input"
+else:
+    assert scenario == "stop-continuation"
+    assert set(data) == {"session_id", "turn_id", "transcript_path", "cwd", "hook_event_name",
+                         "model", "permission_mode", "stop_hook_active", "last_assistant_message"}
+    assert isinstance(data["turn_id"], str) and data["turn_id"]
+    assert data["permission_mode"] == "default"
+    assert data["transcript_path"] is None or isinstance(data["transcript_path"], str)
+    assert type(data["stop_hook_active"]) is bool
+    expected = "Owned hook final α🙂" if data["stop_hook_active"] else "Owned hook draft λ🙂"
+    assert data["last_assistant_message"] == expected
 record = {"event": event, "scenario": scenario, "pid": os.getpid(),
           "session_id": data["session_id"], "turn_id": data.get("turn_id"),
           "namespace": os.readlink("/proc/self/ns/net")}
-with (root / (event + ".json")).open("x") as output:
+record_name = event
+if event == "Stop":
+    record_name = "Stop-second" if data["stop_hook_active"] else "Stop-first"
+    record.update({key: data[key] for key in (
+        "stop_hook_active", "last_assistant_message", "permission_mode", "transcript_path")})
+    if data["stop_hook_active"]:
+        assert (root / "Stop-first.json").is_file()
+    else:
+        assert not (root / "Stop-second.json").exists()
+# Exclusive slots reject duplicate invocations, including a third Stop run.
+with (root / (record_name + ".json")).open("x") as output:
     json.dump(record, output)
 if event == "UserPromptSubmit" and scenario == "blocked":
     print("Owned synthetic hook denied input", file=sys.stderr)
     raise SystemExit(2)
 if event == "UserPromptSubmit" and scenario == "failed":
     raise SystemExit(7)
-if event == "UserPromptSubmit" and scenario == "stopped":
+if event == "Stop":
+    output = {} if data["stop_hook_active"] else {
+        "decision": "block", "reason": "Owned synthetic Stop continuation λ🙂"}
+    print(json.dumps(output, ensure_ascii=False))
+elif event == "UserPromptSubmit" and scenario == "stopped":
     print(json.dumps({"continue": False, "stopReason": "Owned synthetic hook stopped input"}))
 elif event == "UserPromptSubmit" and scenario == "warning":
     print(json.dumps({"systemMessage": "Owned synthetic hook warning"}))
@@ -91,7 +117,7 @@ def isolation(args):
 
 
 class Provider:
-    def __init__(self, root):
+    def __init__(self, root, scenario):
         self.root, self.requests, self.errors = root, [], []
         self.lock = threading.Lock()
         fixture = self
@@ -128,10 +154,22 @@ class Provider:
                     fixture.requests.append(request)
                     index = len(fixture.requests)
                     atomic_json(root / "requests.json", fixture.requests)
-                assert index == 1, "Unexpected additional synthetic inference"
-                identity = "owned-hook-response"
-                item = {"type": "message", "role": "assistant", "id": "owned-hook-answer",
-                        "content": [{"type": "output_text", "text": "Owned hook fixture answer"}]}
+                if scenario == "stop-continuation":
+                    assert index in (1, 2), "Unexpected additional synthetic inference"
+                    if index == 1:
+                        assert not (root / "Stop-first.json").exists()
+                    else:
+                        assert (root / "Stop-first.json").is_file()
+                        assert not (root / "Stop-second.json").exists()
+                    identity = f"owned-hook-response-{index}"
+                    item_id = f"owned-hook-answer-{index}"
+                    text = ("Owned hook draft λ🙂", "Owned hook final α🙂")[index - 1]
+                else:
+                    assert index == 1, "Unexpected additional synthetic inference"
+                    identity, item_id = "owned-hook-response", "owned-hook-answer"
+                    text = "Owned hook fixture answer"
+                item = {"type": "message", "role": "assistant", "id": item_id,
+                        "content": [{"type": "output_text", "text": text}]}
                 events = [
                     {"type": "response.created", "response": {"id": identity}},
                     {"type": "response.output_item.done", "item": item},
@@ -170,9 +208,10 @@ def configure(args, provider):
         "support_verbosity": False, "truncation_policy": {"mode": "bytes", "limit": 10000},
         "input_modalities": ["text"], "experimental_supported_tools": [],
     }]})
+    events = ("Stop",) if args.scenario == "stop-continuation" else ("SessionStart", "UserPromptSubmit")
     commands = {event: "exec " + shlex.join([
         sys.executable, str(hook), str(root), event, args.scenario])
-        for event in ("SessionStart", "UserPromptSubmit")}
+        for event in events}
     config = f'''model = "mock-model"
 model_provider = "fixture"
 model_catalog_json = {json.dumps(str(catalog))}
@@ -229,7 +268,7 @@ def run(args):
                               os.readlink("/proc/self/ns/user")])
     subprocess.run([args.ip, "link", "set", "lo", "up"], check=True, timeout=5)
     proof = isolation(args)
-    provider = Provider(args.root)
+    provider = Provider(args.root, args.scenario)
     commands = configure(args, provider)
     provider.thread.start()
     environment = {key: os.environ[key] for key in (

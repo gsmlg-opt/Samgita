@@ -251,6 +251,118 @@ defmodule SamgitaCodexDriver.NativeReviewDeliveryProfileTest do
     end
   end
 
+  @tag scenario: "inline"
+  test "paginated review entry survives selective warm and unhydrated cold reads", ctx do
+    pid = connect(ctx)
+    original = thread(pid, ctx, "paginated")
+    review = call(pid, "review/start", review_params(original, "inline"))
+    turn = assert_immediate(review, original, @instructions)
+
+    pending =
+      collect(pid, fn rows ->
+        item(rows, "item/started", "enteredReviewMode") &&
+          item(rows, "item/completed", "enteredReviewMode")
+      end)
+
+    entered = item(pending, "item/started", "enteredReviewMode")
+    completed = item(pending, "item/completed", "enteredReviewMode")
+    entered_id = entered["item"]["id"]
+    assert_uuid(entered_id)
+    started = entered["startedAtMs"]
+    finished = completed["completedAtMs"]
+    assert is_integer(started) and started > 0
+    assert is_integer(finished) and finished >= started
+
+    # Only generated identity/times come from observations; fields are prescribed.
+    expected_item = %{
+      "type" => "enteredReviewMode",
+      "id" => entered_id,
+      "review" => @instructions
+    }
+
+    assert entered == %{
+             "threadId" => original,
+             "turnId" => turn,
+             "item" => expected_item,
+             "startedAtMs" => started
+           }
+
+    assert completed == %{
+             "threadId" => original,
+             "turnId" => turn,
+             "item" => expected_item,
+             "completedAtMs" => finished
+           }
+
+    await(fn -> length(events(ctx, "review-http.json", "review_pending")) == 1 end)
+    refute completed?(pending, original, turn)
+    assert events(ctx, "review-http.json", "response_released") == []
+    control(ctx, "releaseReview")
+    execution = collect(pid, &completed?(&1, original, turn), pending)
+    assert_completed(execution, original, turn)
+
+    for {method, expected} <- [{"item/started", entered}, {"item/completed", completed}] do
+      assert Enum.filter(notices(execution, method), &(&1["item"]["type"] == "enteredReviewMode")) ==
+               [expected]
+    end
+
+    assert notices(execution, "deprecationNotice") == []
+    assert notices(execution, "thread/started") == []
+    requests = json(ctx, "requests.json")
+    assert [request] = requests
+    assert @instructions in user_texts(request)
+    refute @raw_instructions in user_texts(request)
+
+    # Native producer/store readiness only; history never supplies expected fields.
+    hydrated = call(pid, "thread/read", %{"threadId" => original, "includeTurns" => true})
+    assert hydrated["thread"]["id"] == original
+    assert hydrated["thread"]["historyMode"] == "paginated"
+
+    query = %{"threadId" => original, "turnId" => turn, "itemIds" => [entered_id]}
+
+    expected_entry = %{
+      "turnId" => turn,
+      "item" => expected_item,
+      "startedAtMs" => started,
+      "completedAtMs" => finished
+    }
+
+    assert_selected = fn client ->
+      response = call(client, "thread/items/read", query)
+      assert Map.keys(response) == ["data"]
+      assert [entry] = response["data"]
+      assert Enum.sort(Map.keys(entry)) == ~w(completedAtMs item startedAtMs turnId)
+      assert entry == expected_entry
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-review-item", entered_id, entered_id]
+             }) == %{"data" => [expected_entry]}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-review-item"]
+             }) == %{"data" => []}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "turnId" => "owned-absent-review-turn"
+             }) == %{"data" => []}
+
+      assert json(ctx, "requests.json") == requests
+    end
+
+    assert_selected.(pid)
+    assert_safe(ctx, pid, execution, 1)
+    cold = restart(ctx, pid)
+
+    # First thread-content operation in the new process: no resume/read/turn.
+    assert_selected.(cold)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert_safe(ctx, cold, [], 1)
+    finish(ctx, cold)
+  end
+
   defp connect(ctx) do
     {:ok, pid} =
       Session.start_link(

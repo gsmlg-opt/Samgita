@@ -110,3 +110,33 @@ and exclusions are in
 No other bundled definition, global alias/enum, unasserted field, review quality,
 external/OS success or whole lifecycle is promoted. Zero rows become fully
 verified, and A11/full compatibility remain incomplete.
+
+## Selective enteredReviewMode across native restart
+
+An additive ninth case reuses the held inline-review provider and the existing
+private namespace/UDS/restart guardians. A paginated persistent thread receives
+the exact custom review request with padded input. Both actual entered-marker
+notifications must have the prescribed type and trimmed review literal, one
+generated UUID, matching thread/turn and exact started/completed timestamp
+fields. Only identity/times come from observations; history supplies no expected
+review text or item shape.
+
+After explicit provider release and the native includeTurns store barrier,
+`thread/items/read` must return one exact four-key entry with the independently
+constructed marker. Duplicate IDs plus an absent ID return that singleton;
+missing-only and wrong-turn queries return empty data. Following checked owned
+restart, the first thread-content operation repeats these queries before
+resume/read/history hydration. The loaded-thread list remains empty and the
+complete provider request list remains exactly the original one. Existing safe
+workspace, no-server-request, no-uncertainty and process cleanup assertions stay.
+
+The pinned producer is `core/src/session/review.rs:164-171`; projection is
+`v2/item.rs:1020-1023`; native history/store upserts are
+`thread_history.rs:632-662` and `thread-store/src/local/thread_history.rs:433-460`.
+`thread_processor.rs:3639-3669` filters by exact thread/turn/item identities.
+This genuine cold selective-read case passes in the complete nine-file native
+block61/0 at both fixed seeds; exact commands/source hashes are in
+`/tmp/samgita-native-stop-cwd-authority-v2-20261025/`.
+Five primary selected-response owners gain implemented evidence, zero verified.
+Detached/legacy selection, all review targets, real review quality, other
+OS/transports/services and A11/full compatibility remain unqualified.
