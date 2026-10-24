@@ -183,10 +183,68 @@ defmodule SamgitaCodexDriver.NativeNotificationTest do
     )
 
     :ok = :sys.resume(pid)
-    assert_receive {^reconnect_ref, :ok}
-    assert_receive {^notify_ref, {:error, %Error{code: :stale_session, uncertain: false}}}
+    assert %{generation: next_generation, phase: :new, pending: 0} = Session.status(pid)
+    assert next_generation == generation + 1
+    assert_received {^reconnect_ref, :ok}
+    assert_received {^notify_ref, {:error, %Error{code: :stale_session, uncertain: false}}}
     refute_receive {:sent, ^pid, _}
-    assert Session.status(pid).generation == generation + 1
+  end
+
+  test "a held notification waits for its processed-state barrier before reply assertions" do
+    pid = connection()
+    %{generation: generation} = Session.status(pid)
+    caller = self()
+    reconnect_ref = make_ref()
+    notify_ref = make_ref()
+    release_ref = make_ref()
+    hook_id = make_ref()
+
+    barrier =
+      Task.async(fn ->
+        receive do
+          {:trace, ^caller, :send, {:"$gen_call", _, :status}, ^pid} ->
+            send(pid, {release_ref, :release_notification})
+            :released
+        end
+      end)
+
+    try do
+      :ok = :sys.install(pid, {hook_id, notification_hold(caller, notify_ref, release_ref), nil})
+      :ok = :sys.suspend(pid)
+      :erlang.trace(self(), true, [:send, {:tracer, barrier.pid}])
+      send(pid, {:"$gen_call", {self(), reconnect_ref}, :reconnect})
+
+      send(
+        pid,
+        {:"$gen_call", {self(), notify_ref},
+         {:notify_native, %{"method" => "initialized"}, [expected_generation: generation]}}
+      )
+
+      :ok = :sys.resume(pid)
+      assert_receive {:notification_held, ^notify_ref}
+      refute_receive {^notify_ref, _}, 100
+      refute_received {:sent, ^pid, _}
+
+      assert %{generation: next_generation, phase: :new, pending: 0} = Session.status(pid)
+      assert next_generation == generation + 1
+      assert :released = Task.await(barrier)
+      assert_received {^reconnect_ref, :ok}
+      assert_received {^notify_ref, {:error, %Error{code: :stale_session, uncertain: false}}}
+      refute_receive {^notify_ref, _}
+      refute_receive {:sent, ^pid, _}
+    after
+      :erlang.trace(self(), false, [:send])
+      send(pid, {release_ref, :release_notification})
+
+      try do
+        if Process.alive?(pid) do
+          :sys.resume(pid)
+          :sys.remove(pid, hook_id)
+        end
+      after
+        Task.shutdown(barrier, :brutal_kill)
+      end
+    end
   end
 
   test "disconnected notifications fail locally and reconnect never replays a successful send" do
@@ -227,6 +285,26 @@ defmodule SamgitaCodexDriver.NativeNotificationTest do
     assert :ok = Session.reconnect(pid)
     assert [%{id: "pending", reason: :send_failed}] = Session.uncertain_operations(pid)
     refute_receive {:sent, ^pid, _}
+  end
+
+  defp notification_hold(caller, notify_ref, release_ref) do
+    fn
+      _state, {:in, {:"$gen_call", {^caller, ^notify_ref}, {:notify_native, _, _}}}, _ ->
+        monitor = Process.monitor(caller)
+        send(caller, {:notification_held, notify_ref})
+
+        try do
+          receive do
+            {^release_ref, :release_notification} -> :done
+            {:DOWN, ^monitor, :process, ^caller, _} -> :done
+          end
+        after
+          Process.demonitor(monitor, [:flush])
+        end
+
+      state, _, _ ->
+        state
+    end
   end
 
   defp connection(opts \\ [], transport_opts \\ []) do

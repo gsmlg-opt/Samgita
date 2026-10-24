@@ -63,3 +63,45 @@ required completeness/evidence gate. Full log:
 This closes that ordering/acquisition checkpoint, not final-source qualification
 after later additions. Neither repair nor selected conformance closes full
 manifest, external-profile or A11 requirements.
+
+## Queued notification after reconnect
+
+The frozen local v17 default-driver repeat at `636b2ad`, seed `987654`,
+failed the adjacent queued-notification test: the reconnect reply arrived but
+the exact `stale_session, uncertain: false` notification reply was absent at
+the unchanged 100 ms assertion. The log does not distinguish a pending callback,
+lost reply or wrong reply. The isolated original module passed both fixed seeds
+(**10/0** each), and ten additional cold/warm observations returned the expected
+reply within that bound. Those observations do not establish the historical
+scheduling or I/O cause and are not called a repair.
+
+The test sent reconnect and notification calls directly from the same process,
+but asserted replies before checking that the notification callback completed.
+It now places the existing same-sender `Session.status/1` barrier first, requires
+generation +1, phase `new` and zero pending requests, then requires both exact
+replies immediately. The no-send assertion remains. Production Session and all
+request/assertion deadlines are unchanged.
+
+A new deterministic regression uses supported OTP `:sys.install/2` to hold only
+the selected notification before its callback. It proves the reply is absent
+for the original 100 ms, then releases the callback only when public send tracing
+observes the same caller's queued status request. The processed-state barrier
+must return the exact new generation/state before the single stale reply and
+absence of transport writes are checked. Cleanup disables tracing, releases
+the hold, resumes/removes the debug hook and shuts down the helper; the hold
+also monitors its owner. This establishes the test's missing causal barrier,
+not a proven native protocol loss or a claimed historical scheduler cause.
+
+In verified Devenv, `MIX_ENV=test`, the repaired module passes **11/0** at seeds
+`987654` and `501432`. The initial diagnosis and ten observations remain under
+`/tmp/samgita-notification-diagnosis-v1-20261025/`; the repaired module logs are
+`/tmp/samgita-native-repair-continuation-v1-20261025/notification-*.log`.
+That runner's later new executor profile initially failed before native startup
+because its draft omitted the required isolated `CODEX_HOME`. This separate
+fixture error is retained and corrected without relaxing the driver guard.
+The follow-up full 15-file owning block passes **91/0 twice**, seeds `501432`
+and `987654`, including real default, goal and executor profiles. Compilation,
+formatting, root strict Credo (431 files) and the executable before/after guard
+pass; logs and exact commands are under
+`/tmp/samgita-native-repair-continuation-v2-20261025/`. Complete final-source
+default-driver/aggregate/hosted validation remains separately required.
