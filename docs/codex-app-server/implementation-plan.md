@@ -104,8 +104,15 @@ Compile/format/strict Credo and source guard pass. One physical bool owner bring
 contracts to **3,206 implemented / 3,415 missing**, zero verified; requirements
 stay unchanged. Existing reply/goal owners gain evidence without a state change.
 
-Next complete the source-audited required-skills native differential, then freeze
-executable source for the complete preserved-
+The [required-skills native differential](environment-skills-qualification.md)
+passes the full nineteen-file owning block **113/0 twice**, with compile,
+format, strict Credo and unchanged source guard. Two primary properties bring
+contracts to **3,208 implemented / 3,413 missing**, zero verified. Initial
+firewall rejections and supported per-thread fixture corrections remain
+documented. All49 profiles have explicit required hosted steps.
+
+Next qualify successful operator-reply receipt replay after worker-authority
+removal, then freeze executable source for the complete preserved-
 platform/package/consumer and final-pushed hosted matrix.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.

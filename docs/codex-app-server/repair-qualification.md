@@ -8,6 +8,22 @@ remain separate gates. No production data, credentials or services are changed.
 
 ## Scoped continuation after 636b2ad
 
+The [required-skills native differential](environment-skills-qualification.md)
+passes the complete nineteen-file owning block **113/0 twice**, seeds501432/
+987654 (168.4/171.8 seconds). Skills-first and timeout-first controls each pass
+**1/0**; compile, format, strict Credo433 files and executable/config/workflow
+guard pass. Exact commands/logs are
+`/tmp/samgita-native-repair-continuation-v5-20261025/`;
+results SHA256 `0bd111e5478afd8ce449be4e6e9814856db7ba0a3c56fe9e094dc570e390ae68`,
+source SHA256 `104fc85eb0e8ac2b5dd1c234797116af680b081606ccdd59403f1d6a308e75af`.
+The real executor discovers only owned inert files; a missing skill fails before
+inference. The synthetic provider is not live backend acceptance. Initial
+refused HTTP/ancestor traffic and supported per-thread fixture configuration
+repair remain in the linked record; no deadlines/caps/assertions are relaxed.
+Two exact physical properties become implemented: **3,208 implemented /
+3,413 missing**, zero verified; requirements remain unchanged. This is49
+required hosted profiles. Full final-source local/hosted matrices remain open.
+
 The [granular/default and unsupported strict-session permission unit](permission-lifetime-qualification.md#granular-policy-and-unsupported-session-strictness)
 passes **30/0 twice**, seeds501432/987654, in the complete seven-file owning
 block; the lifetime file alone passes **9/0**. The same block proves

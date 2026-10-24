@@ -158,6 +158,10 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_environment_request_id_profile.exs --seed 501432
+      - name: Required native executor available and missing skill gates
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_environment_skills_profile.exs --seed 501432
       - name: Required selected-thread executor connection lifecycle profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver

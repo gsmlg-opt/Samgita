@@ -110,8 +110,10 @@ The physical primary owner
 gains scoped implemented evidence. Omitted/null/empty/malformed values,
 external WSS/other OS, credential rotation and arbitrary headers remain
 unqualified. The existing insecure nonloopback-header rejection remains a
-separate negative. Required skills and their pre-inference gate are still
-missing until a real ordinary-thread discovery journey passes.
+separate negative. At this checkpoint required skills remain missing. The later
+[ordinary-thread required-skills journey](environment-skills-qualification.md)
+now supplies actual pre-inference discovery/rejection evidence for its two
+selected primary owners without changing these historical results.
 
 In verified Devenv with the immutable binary, the new profile passes **1/0**
 at seed501432. The complete sixteen-file owning block passes **92/0** at each

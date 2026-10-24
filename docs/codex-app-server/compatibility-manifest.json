@@ -1502,14 +1502,16 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/environment-qualification.md",
-        "docs/codex-app-server/isolated-environment.md"
+        "docs/codex-app-server/isolated-environment.md",
+        "docs/codex-app-server/environment-skills-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:environment/add",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified."
+        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified.",
+        "Actual-native selected required-skills gate: two registered environments require exact owned:review versus owned:absent; real owned executor filesystem discovery of inert namespace/skill files precedes one fixed synthetic assistant request for the available name and exact native Fatal/other/willRetry:false failed turn before any request for the missing name. Exact registration/thread/turn/provider counts, native associations, bounded original frames/RPC firewall, unchanged files/config/shared sources, namespace/auth and checked-owned cleanup; nineteen-file owning block113/0 twice. Global plugins stay disabled, supported per-thread plugins/cwd-relative-diffs enable confined discovery without startup HTTP/ancestor probes. Only these nonempty lists and selected Linux/stdio/executor path; omitted/null/empty/update/deselection/skill invocation/other roots/OS/transports/live backend/A11 and full lifecycle remain unqualified. No alias/wrapper/fully verified promotion."
       ],
       "params": {
         "$ref": "#/definitions/EnvironmentAddParams"
@@ -1541,7 +1543,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/environment_profiles_test.exs",
-          "apps/samgita_codex_driver/test/native_environment_profile.exs"
+          "apps/samgita_codex_driver/test/native_environment_profile.exs",
+          "apps/samgita_codex_driver/test/native_environment_skills_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -16108,14 +16111,16 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/environment-qualification.md",
-        "docs/codex-app-server/isolated-environment.md"
+        "docs/codex-app-server/isolated-environment.md",
+        "docs/codex-app-server/environment-skills-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:environment/add",
       "implementation_module": "SamgitaProtocolCodex.Schema; SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified."
+        "Selected local discovery and permission-profile evidence plus isolated authenticated native executor registration, readiness, metadata, invalid credentials, explicit replacement and credential-preserving reconnect. Thread-selected environment events, sandbox execution, remote/cloud/Noise/AWS backends, every field and other OS/transport profiles remain unqualified.",
+        "Actual-native selected required-skills gate: two registered environments require exact owned:review versus owned:absent; real owned executor filesystem discovery of inert namespace/skill files precedes one fixed synthetic assistant request for the available name and exact native Fatal/other/willRetry:false failed turn before any request for the missing name. Exact registration/thread/turn/provider counts, native associations, bounded original frames/RPC firewall, unchanged files/config/shared sources, namespace/auth and checked-owned cleanup; nineteen-file owning block113/0 twice. Global plugins stay disabled, supported per-thread plugins/cwd-relative-diffs enable confined discovery without startup HTTP/ancestor probes. Only these nonempty lists and selected Linux/stdio/executor path; omitted/null/empty/update/deselection/skill invocation/other roots/OS/transports/live backend/A11 and full lifecycle remain unqualified. No alias/wrapper/fully verified promotion."
       ],
       "prerequisites": [
         "initialized"
@@ -16133,7 +16138,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/environment_profiles_test.exs",
-          "apps/samgita_codex_driver/test/native_environment_profile.exs"
+          "apps/samgita_codex_driver/test/native_environment_profile.exs",
+          "apps/samgita_codex_driver/test/native_environment_skills_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -129846,27 +129852,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-skills-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentAddParams.json#/definitions/EnvironmentSkillsParams/properties/required",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected required-skills gate: two registered environments require exact owned:review versus owned:absent; real owned executor filesystem discovery of inert namespace/skill files precedes one fixed synthetic assistant request for the available name and exact native Fatal/other/willRetry:false failed turn before any request for the missing name. Exact registration/thread/turn/provider counts, native associations, bounded original frames/RPC firewall, unchanged files/config/shared sources, namespace/auth and checked-owned cleanup; nineteen-file owning block113/0 twice. Global plugins stay disabled, supported per-thread plugins/cwd-relative-diffs enable confined discovery without startup HTTP/ancestor probes. Only these nonempty lists and selected Linux/stdio/executor path; omitted/null/empty/update/deselection/skill invocation/other roots/OS/transports/live backend/A11 and full lifecycle remain unqualified. No alias/wrapper/fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/EnvironmentSkillsParams/properties/required",
       "required": false,
       "schema": "v2/EnvironmentAddParams.json",
       "schema_sha256": "194c548147940b450311462180d07417b504c041f27cb7fd8dad668dc3d61776",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_skills_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "required"
     },
     {
@@ -130010,27 +130024,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-skills-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentAddParams.json#/properties/skills",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected required-skills gate: two registered environments require exact owned:review versus owned:absent; real owned executor filesystem discovery of inert namespace/skill files precedes one fixed synthetic assistant request for the available name and exact native Fatal/other/willRetry:false failed turn before any request for the missing name. Exact registration/thread/turn/provider counts, native associations, bounded original frames/RPC firewall, unchanged files/config/shared sources, namespace/auth and checked-owned cleanup; nineteen-file owning block113/0 twice. Global plugins stay disabled, supported per-thread plugins/cwd-relative-diffs enable confined discovery without startup HTTP/ancestor probes. Only these nonempty lists and selected Linux/stdio/executor path; omitted/null/empty/update/deselection/skill invocation/other roots/OS/transports/live backend/A11 and full lifecycle remain unqualified. No alias/wrapper/fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/skills",
       "required": false,
       "schema": "v2/EnvironmentAddParams.json",
       "schema_sha256": "a77713bf9ef162b189e32a79014f55dfb7e254d66ab37af3c14dc7f4c4058b13",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_skills_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills"
     },
     {
