@@ -6,6 +6,73 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted and populated-platform checkpoint at 3fbaf74
+
+Exact pushed source `3fbaf74d9eec8a9cdf0b391ec940b7b324a94b62` completed the
+normal hosted workflows. [Foundation 40064532193](https://github.com/gsmlg-opt/Samgita/actions/runs/40064532193)
+passed both populated seeds (**224 core/0/one excluded + 128 web/0/five excluded**
+each), restart/rollback **1/0**, neutral core **32/0**, both outside consumers
+**1/0** each, neutral WebSocket and native wire **42/0** each, all strict
+checks/audits, forced Dialyzer, assets and local production assembly.
+
+[Conformance 40064648290](https://github.com/gsmlg-opt/Samgita/actions/runs/40064648290)
+remains **failed overall**. Its selected actual-binary/platform job passed native
+wire **42/0**, both full driver partitions (**297/0 + 250/0 = 547/0**), the native
+outside consumer **1/0**, and native platform/API/concurrency **53 core + 8 web /
+zero failures**. All **30 explicit isolated profiles, 205/0**, passed in the
+separate native job. Both original eight-minute driver-partition deadlines
+remain unchanged. The required evidence gate failed with **485 requirements:
+462 implemented / 12 missing / 11 blocked; zero verified**. The matching manifest
+also retains **6,621 contracts: 2,165 implemented / 4,456 missing; zero verified**.
+Terminal metadata and complete logs: `/tmp/samgita-hosted-3fbaf74-20261024/`.
+
+These hosted results include the prediction durable-metadata precondition,
+metadata plugin-startup isolation, managed-network metadata and persisted
+Unicode-span tests. They supersede the two selected failures at `6dcd341` only
+for this tested source and environment; their original failures remain below.
+Plugin startup is disabled in the affected metadata module. No suite-wide
+startup/egress-isolation claim is made for other fixtures.
+
+The local v6 platform runner completed all **17 commands** at the same source,
+with its end-of-run executable/configuration/workflow hash guard passing. The
+preserved `samgita_redesign_recovery_repair_test` database was neither reset nor
+trimmed. Root seed `501432` passed **224 core/0/one excluded + 128 web/0/five
+excluded**. Seed `987654` passed core but failed **one of 128 web tests** at
+`github_controller_test.exs:56`: the unchanged default-first-page assumption for
+a newly created connection still encounters retained populated fixtures. This
+is an **aggregate failure**; no page size, fixture, assertion or GitHub code was
+changed. Fresh hosted success does not erase the local failure.
+
+Native runtime/API/race cases passed **53 core + 8 web / zero failures**.
+Consecutive recovery/activation and restart checks passed **4 core + 1 web /
+zero failures**, at both seeds. Genuine unresolved work remains fail-closed.
+Compile, format, strict Credo, legacy tests/scan, forced Dialyzer, strict audit,
+frozen web dependencies, assets and production dependencies/assets/assembly all
+passed. The runner exits nonzero for the retained aggregate failure. Exact
+commands, source hashes, exits and logs:
+`/tmp/samgita-repair-final-platform-v6-20261024/`. The assembly at
+`/tmp/samgita-repair-final-prod-v6-20261024/rel/samgita` was never started.
+
+The v7 independent-package runner completed **23 commands / zero failures**,
+with its end-of-run executable/configuration/workflow hash guard passing.
+Default driver seeds `501432` and `987654` passed **547/0** each,
+463.3/466.6s. All 30 profiles together passed **205/0** at both seeds,
+402.3/408.8s. The native outside consumer passed **1/0**; neutral core and
+both outside consumers passed **32/0 + 1/0 + 1/0**. Neutral WebSocket seeds
+`455834`, `501432` and `987654` passed **42/0** each; native wire passed
+**42/0**. Compile/format, strict dependency audits, namespace/native-sandbox
+prerequisites and 37 inventory regressions/checks passed. Commands, tool/source
+hashes, exits and complete logs:
+`/tmp/samgita-repair-final-packages-v7-20261024/`.
+
+The subsequent documentation-only timestamp-owner indexing advances two exact
+contracts to scoped implemented: current totals are **2,167 implemented / 4,454
+missing contracts, zero verified**. The hosted run above retains its historical
+2,165 count. This indexing changes no executable source. A11, source-unreachable
+legacy paths, real external/OS success, the local aggregate failure and complete
+compatibility remain incomplete. No release, tag, publication, production
+migration or deployment occurred.
+
 ## Hosted checkpoint at 6dcd341 and new fixture repairs
 
 Exact source `6dcd341f4c58296e5eeda739e5f9207b1056a24a` reached terminal

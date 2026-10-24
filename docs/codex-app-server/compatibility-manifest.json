@@ -165150,27 +165150,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-cursor-qualification.md#existing-item-timestamp-owner-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadItemsListResponse.json#/definitions/ThreadItemEntry/properties/completedAtMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Positive exact owning-method evidence: native_history_cursor_semantics_test.exs:39-48,153-178,193-243,257-271 constructs six entries from original matching item/completed and item/started notifications, requires integer completion >= start, and compares complete direct thread/items/list pages and cold replay against those event-derived values. native_persisted_tool_items_test.exs:144-147,189-231,253-266 independently corroborates selected tool entries. Selected completed local items only; absent/null, in-progress, remote storage, cross-host clocks and other OS/transport profiles remain unqualified. No sibling read-response or generic forwarding inference; zero fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItemEntry/properties/completedAtMs",
       "required": false,
       "schema": "v2/ThreadItemsListResponse.json",
       "schema_sha256": "347cedef6caf881a9d1e49e12baaaffdf3b0ec7984df3ab75e7fa74173447354",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs:39",
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:144"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "completedAtMs"
     },
     {
@@ -165210,27 +165219,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-cursor-qualification.md#existing-item-timestamp-owner-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadItemsListResponse.json#/definitions/ThreadItemEntry/properties/startedAtMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Positive exact owning-method evidence: native_history_cursor_semantics_test.exs:39-48,153-178,193-243,257-271 constructs six entries from original matching item/started notifications, requires integer start > 0 and exact item/thread/turn association, and compares complete direct thread/items/list pages and cold replay against those event-derived values. native_persisted_tool_items_test.exs:144-147,189-231,253-266 independently corroborates selected tool entries. Selected completed local items only; absent/null, in-progress, remote storage, cross-host clocks and other OS/transport profiles remain unqualified. No sibling read-response or generic forwarding inference; zero fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItemEntry/properties/startedAtMs",
       "required": false,
       "schema": "v2/ThreadItemsListResponse.json",
       "schema_sha256": "645952a08f6e98d8d2d3f6696f5b59c7babd0009dd8906036d3e99c60de9f37b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs:39",
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:144"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "startedAtMs"
     },
     {

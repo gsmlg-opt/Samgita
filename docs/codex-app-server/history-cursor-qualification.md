@@ -59,3 +59,30 @@ different contract and stays missing. These turn/item success cases neither
 repair that immutable upstream defect nor promote it. No whole method, broad
 lifecycle or fully verified claim follows. Final combined-source and hosted
 checks remain separate; there is no tag, publication or deployment.
+
+## Existing item timestamp owner evidence
+
+A later source audit indexes two more exact owning contracts,
+`ThreadItemsListResponse`'s `ThreadItemEntry.startedAtMs` and `completedAtMs`,
+from the unchanged positive test at `native_history_cursor_semantics_test.exs:39`.
+At lines 153–178 the expected entries obtain their timestamps from the original
+matching native start/completion notifications, with positive integer start,
+completion not before start, and exact item/thread/turn identity. Lines 193–243
+compare complete direct `thread/items/list` pages in both directions against
+those expected entries; lines 257–271 repeat every query after confirmed owned
+shutdown and a distinct native process. No list response supplies its own oracle.
+
+The unchanged persisted-tool test at lines 144–147, 189–231 and 253–266
+independently corroborates the same owning method with selected tool items.
+Its direct list evidence, rather than sibling `thread/items/read` equality,
+is used here. Both modules retain their prior two-seed native results. They also
+ran inside both successful hosted default-driver partitions, **547/0** total,
+at `3fbaf74` in conformance run
+[40064648290](https://github.com/gsmlg-opt/Samgita/actions/runs/40064648290).
+
+Only these two timestamp contracts become scoped `implemented`, with zero
+`verified`; no new test or runtime change is introduced. Null/absent timestamps,
+in-progress histories, remote storage, cross-host clock ordering, other
+OS/transport profiles and whole-method qualification remain incomplete. The
+reviewed source-only candidate report is
+`/tmp/samgita-thread-items-list-existing-assertions-20261024-candidates.json`.
