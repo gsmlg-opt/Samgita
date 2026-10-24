@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 progress, deprecated file-change output, three prediction entries and
 `thread/compacted` are `blocked` by exact source-proven unavailable success
 paths: ten required entries, with no scope waiver. Selected native
-method/notification entries now total 446 `implemented`, with 1,232 exact
-field/variant schema contracts implemented; 29 requirements and 5,389 contracts
+method/notification entries now total 448 `implemented`, with 1,236 exact
+field/variant schema contracts implemented; 27 requirements and 5,385 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -420,6 +420,12 @@ gain evidence. Successful login/OS-keyring persistence remains incomplete; the
 login result and succeeded variant are not promoted. Continue the separately
 owned Bedrock auth-recovery and thread-environment notification profiles, then
 the complete final-source matrix; this unit does not finish the goal.
+The [Bedrock recovery pair](bedrock-recovery-qualification.md) now passes both
+native cases at both seeds. Exact provider notices, real SigV4 and owned
+profile/export refresh add two entries and four positive fields. Native alias
+PATH and HashMap key-order fixture assumptions were repaired from direct
+diagnostics and pinned source. Failed/disabled/concurrent refresh and real AWS
+profiles remain incomplete.
 
 ## Known boundaries
 

@@ -11938,12 +11938,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-recovery-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:modelProvider/authRecoveryCompleted",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two isolated cases exercise built-in Bedrock with real SigV4 OLD401, fixed owned refresh helper, NEW200 and exact Started/Completed maps, order and turn association. Full semantic payload equality and each raw body signature are checked; native HashMap JSON key order may change. Profile/export helpers verify pinned PPID/group/namespace and exclusive search path. Real AWS/SSO, failed/disabled refresh, concurrency/cancellation and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/AuthRecoveryNotification"
       },
@@ -11956,27 +11960,35 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_recovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider/authRecoveryCompleted"
     },
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-recovery-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:modelProvider/authRecoveryStarted",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two isolated cases exercise built-in Bedrock with real SigV4 OLD401, fixed owned refresh helper, NEW200 and exact Started/Completed maps, order and turn association. Full semantic payload equality and each raw body signature are checked; native HashMap JSON key order may change. Profile/export helpers verify pinned PPID/group/namespace and exclusive search path. Real AWS/SSO, failed/disabled refresh, concurrency/cancellation and other deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/AuthRecoveryNotification"
       },
@@ -11989,16 +12001,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_recovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider/authRecoveryStarted"
     },
     {
@@ -106134,105 +106150,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-recovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AuthRecoveryNotification.json#/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two isolated cases exercise built-in Bedrock with real SigV4 OLD401, fixed owned refresh helper, NEW200 and exact Started/Completed maps, order and turn association. Full semantic payload equality and each raw body signature are checked; native HashMap JSON key order may change. Profile/export helpers verify pinned PPID/group/namespace and exclusive search path. Real AWS/SSO, failed/disabled refresh, concurrency/cancellation and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/message",
       "required": true,
       "schema": "v2/AuthRecoveryNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_recovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-recovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AuthRecoveryNotification.json#/properties/provider",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two isolated cases exercise built-in Bedrock with real SigV4 OLD401, fixed owned refresh helper, NEW200 and exact Started/Completed maps, order and turn association. Full semantic payload equality and each raw body signature are checked; native HashMap JSON key order may change. Profile/export helpers verify pinned PPID/group/namespace and exclusive search path. Real AWS/SSO, failed/disabled refresh, concurrency/cancellation and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/provider",
       "required": true,
       "schema": "v2/AuthRecoveryNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_recovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "provider"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-recovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AuthRecoveryNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two isolated cases exercise built-in Bedrock with real SigV4 OLD401, fixed owned refresh helper, NEW200 and exact Started/Completed maps, order and turn association. Full semantic payload equality and each raw body signature are checked; native HashMap JSON key order may change. Profile/export helpers verify pinned PPID/group/namespace and exclusive search path. Real AWS/SSO, failed/disabled refresh, concurrency/cancellation and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/AuthRecoveryNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_recovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/bedrock-recovery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/AuthRecoveryNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two isolated cases exercise built-in Bedrock with real SigV4 OLD401, fixed owned refresh helper, NEW200 and exact Started/Completed maps, order and turn association. Full semantic payload equality and each raw body signature are checked; native HashMap JSON key order may change. Profile/export helpers verify pinned PPID/group/namespace and exclusive search path. Real AWS/SSO, failed/disabled refresh, concurrency/cancellation and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/turnId",
       "required": true,
       "schema": "v2/AuthRecoveryNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_bedrock_recovery_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turnId"
     },
     {
