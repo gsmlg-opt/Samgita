@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,132 implemented / 4,489 missing
+11 blocked requirements** and **0 verified / 2,149 implemented / 4,472 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,132 directly exercised
+MCP entries have scoped implementation evidence. These 2,149 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -74,6 +74,14 @@ parent/child histories and source-specific instruction presence semantics.
 The ordinary thread-list reverse-cursor defect remains missing. These additions
 require the final combined-source package/platform/hosted matrix; no broad
 lifecycle or verified status changes.
+
+Five [disabled managed-network metadata cases](managed-network-qualification.md)
+add seventeen exact owning contracts. Both seeds pass in an eleven-case block
+with the [prediction materialization repair](prediction-boundary-qualification.md#durable-state-precondition-repair).
+Network execution stays disabled; exact sparse/null/empty values, legacy
+normalization, malformed recovery and cold restart do not qualify proxy or
+runtime-enforcement behavior. Final combined-source and hosted checks remain
+separate gates.
 
 Latest method records: [history](thread-history-qualification.md),
 [configuration](configuration-qualification.md), [goals](native-goal-qualification.md),

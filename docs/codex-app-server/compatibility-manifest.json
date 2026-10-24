@@ -121502,27 +121502,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/network",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/network",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "c4278a730e19da63382af6a58096a21c82f5cc3589474d4d0beb2eddee3e3310",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "network"
     },
     {
@@ -122729,24 +122737,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkDomainPermission/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "pointer": "/definitions/NetworkDomainPermission/enum/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "a42e03abf3ceafd8d316664a5ae7e9f7cce41c478e0da289bc2cd7b74d63056b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -122784,383 +122800,503 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/allowLocalBinding",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/allowLocalBinding",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowLocalBinding"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/allowUnixSockets",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/allowUnixSockets",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "2a56c9dc0bc4cc072d9f81644ef947d9057a4b009dc1fce633a9e46ba02954d3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowUnixSockets"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/allowUpstreamProxy",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/allowUpstreamProxy",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowUpstreamProxy"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/allowedDomains",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/allowedDomains",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "c149d4b089b639cf8102557bf25d3de1b05fcd63538f97f95d8b3b10930f2dc1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowedDomains"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/dangerouslyAllowAllUnixSockets",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/dangerouslyAllowAllUnixSockets",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "dangerouslyAllowAllUnixSockets"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/dangerouslyAllowNonLoopbackProxy",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/dangerouslyAllowNonLoopbackProxy",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "dangerouslyAllowNonLoopbackProxy"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/deniedDomains",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/deniedDomains",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "c149d4b089b639cf8102557bf25d3de1b05fcd63538f97f95d8b3b10930f2dc1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "deniedDomains"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/domains",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/domains",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "c92218af9fa6faffc80589f390a20e5a9917822f8f7bc6798c4d739cbe611de9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "domains"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/enabled",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/enabled",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/httpPort",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/httpPort",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "httpPort"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/managedAllowedDomainsOnly",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/managedAllowedDomainsOnly",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b7e4fbb1c654d26b61cb7fcbc35f76676b6679145ae715dd98bde0cbd90b864e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "managedAllowedDomainsOnly"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/socksPort",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/socksPort",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "socksPort"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkRequirements/properties/unixSockets",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/NetworkRequirements/properties/unixSockets",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "234c7a9d572f98aef47ebb5b3572d891adac1c2578d873a526d1b67b55aa4836",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "unixSockets"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkUnixSocketPermission/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "pointer": "/definitions/NetworkUnixSocketPermission/enum/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "a42e03abf3ceafd8d316664a5ae7e9f7cce41c478e0da289bc2cd7b74d63056b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-network-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkUnixSocketPermission/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_disabled_network_metadata: exact canonical/sparse/empty/legacy maps, nullable values, sorted compatibility lists and owned-file reload/cold restart. enabled=false only; dangerous/upstream/local-binding flags false; no proxy, network enforcement, external service or full-profile qualification. No sibling or union-wrapper promotion."
+      ],
       "pointer": "/definitions/NetworkUnixSocketPermission/enum/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "02f97a1800ef06704f994cae34328477c8ac48b002dc7cc67de1d1fe3bb336cf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
