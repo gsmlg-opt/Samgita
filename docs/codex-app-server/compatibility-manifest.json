@@ -90195,13 +90195,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "pointer": "/definitions/ThreadItem/oneOf/15",
       "schema": "ServerNotification.json",
@@ -90217,7 +90219,9 @@
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -90229,14 +90233,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/failure",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/failure",
@@ -90254,7 +90260,9 @@
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -90296,13 +90304,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/1",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: failure=null at item/started Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: failure=null at item/started Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/1",
       "schema": "ServerNotification.json",
@@ -90316,7 +90326,9 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -90328,14 +90340,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/id",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/id",
@@ -90353,7 +90367,9 @@
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -90365,14 +90381,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/result",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/result",
@@ -90390,7 +90408,9 @@
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -90402,14 +90422,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/revisedPrompt",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/revisedPrompt",
@@ -90427,7 +90449,9 @@
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -90438,49 +90462,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-success-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/savedPath",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/savedPath",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "81fc07724af4da0dbdd7c594319ff306bf34d99f9e6ad1ede0a058d1e159e1a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "savedPath"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-success-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/savedPath/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/savedPath/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -90509,14 +90551,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/status",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only in_progress/failed notification status or failed read status is asserted; schema is unconstrained string. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only in_progress/failed notification status or failed read status is asserted; schema is unconstrained string. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/status",
@@ -90534,7 +90578,9 @@
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -90546,14 +90592,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/transparentBackground",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only explicit null background is positively observed; boolean values and omitted-default handling are not qualified. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only explicit null background is positively observed; boolean values and omitted-default handling are not qualified. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/transparentBackground",
@@ -90571,7 +90619,9 @@
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -90583,14 +90633,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/type",
@@ -90608,7 +90660,9 @@
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -90619,13 +90673,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Observed item/started plus item/completed notifications, opaque and transparent results in both legacy and paginated cases. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/type/enum/0",
       "schema": "ServerNotification.json",
@@ -90641,7 +90697,9 @@
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:266-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -175290,13 +175348,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "pointer": "/definitions/ThreadItem/oneOf/15",
       "schema": "v2/ThreadItemsReadResponse.json",
@@ -175311,7 +175371,11 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -175323,14 +175387,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/failure",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/failure",
@@ -175347,7 +175413,11 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -175389,38 +175459,51 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-success-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/id",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/id",
@@ -175437,7 +175520,11 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -175449,14 +175536,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/result",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/result",
@@ -175473,7 +175562,11 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -175485,14 +175578,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/revisedPrompt",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only the populated prompt string is returned by items/read; null prompt is exercised only by notification owner. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only the populated prompt string is returned by items/read; null prompt is exercised only by notification owner. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/revisedPrompt",
@@ -175509,7 +175604,11 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -175520,49 +175619,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-success-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/savedPath",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/savedPath",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "81fc07724af4da0dbdd7c594319ff306bf34d99f9e6ad1ede0a058d1e159e1a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "savedPath"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-success-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/savedPath/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/savedPath/anyOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -175591,14 +175712,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/status",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only in_progress/failed notification status or failed read status is asserted; schema is unconstrained string. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only in_progress/failed notification status or failed read status is asserted; schema is unconstrained string. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/status",
@@ -175615,7 +175738,11 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -175627,14 +175754,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/transparentBackground",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only explicit null background is positively observed; boolean values and omitted-default handling are not qualified. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only explicit null background is positively observed; boolean values and omitted-default handling are not qualified. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/transparentBackground",
@@ -175651,7 +175780,11 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -175663,14 +175796,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/type",
@@ -175687,7 +175822,11 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [
@@ -175698,13 +175837,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/native-image-quota-qualification.md"
+        "docs/codex-app-server/native-image-quota-qualification.md",
+        "docs/codex-app-server/native-image-success-qualification.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open.",
+        "Additional actual-native image success: Actual thread/items/read response only for paginated cases, opaque and transparent, warm exact item maps and cold full response equality. Exact completed map, PNG70 bytes/hash and independently computed CODEX_HOME path; response background controls false/true despite identical transparent request; fixed high-detail model output/hint, warm/cold full history and no regeneration. SavedPath is positively present only on completion, never an explicit null; legacy user/assistant IDs follow the pinned sequential projection, with full image equality. Only actual physical notification/backing-item owner; no uncalled/same-hash transfer, real image/account, alpha-pixel correctness, whole lifecycle, A11 or fully verified claim. Both complete owning seed repeats pass; older quota limitations describe their own scope."
       ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
@@ -175719,7 +175860,11 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
           "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
-          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:301-310",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:213-225",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:248-251",
+          "apps/samgita_codex_driver/test/native_imagegen_success_profile.exs:337-349"
         ]
       },
       "transport_coverage": [

@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,901 implemented / 3,720 missing
+11 blocked requirements** and **0 verified / 2,906 implemented / 3,715 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,901 directly exercised
+MCP entries have scoped implementation evidence. These 2,906 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -41,6 +41,15 @@ Five [remote-plugin detail cases](remote-plugin-detail-qualification.md) pass
 collections, native u32/opaque string semantics, whole-detail decode errors and
 explicit authentication/HTTP errors. Thirty exact response owners gain scoped
 implemented evidence; no schedule execution or real marketplace is claimed.
+
+Four [image result/artifact cases](native-image-success-qualification.md) now
+pass with both quota regressions, **6/0** at each seed. Exact PNG bytes/path,
+response-derived transparency, model input and cold full history are checked.
+The initial **6/2** legacy identity failure is retained and explained by the
+pin's sequential message-ID projection; complete equality remains enforced.
+Five positive saved-path/null-failure owners gain implemented evidence, and
+nineteen existing image owners receive scoped success evidence. Saved-path null
+alternatives remain missing.
 
 The [hosted checkpoint at 5c22159](repair-qualification.md#hosted-checkpoint-at-5c22159)
 passes foundation and both native execution jobs: both complete driver partitions
