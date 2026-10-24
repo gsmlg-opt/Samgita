@@ -62173,79 +62173,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/AdditionalFileSystemPermissions/properties/entries",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/AdditionalFileSystemPermissions/properties/entries",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "de759f86425a5713e93103ca63994abcfc4bf7f571881adadcaa63620820563c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "entries"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/AdditionalFileSystemPermissions/properties/globScanMaxDepth",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/AdditionalFileSystemPermissions/properties/globScanMaxDepth",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "3d0e0063c9ebe41694bb84955086ba0256af6c7d8c22110c07f7ca8f57ea354e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "globScanMaxDepth"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/AdditionalFileSystemPermissions/properties/read",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/AdditionalFileSystemPermissions/properties/read",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "c1715f3e6d735ff6529fa7a64a62e1da7c6049e74aea10d54992f80baa6fb881",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:99-129,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "read"
     },
     {
@@ -62286,27 +62310,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/AdditionalNetworkPermissions/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/AdditionalNetworkPermissions/properties/enabled",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:57-96,99-129,132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
@@ -63491,260 +63523,348 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemAccessMode/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/FileSystemAccessMode/enum/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "04a362f6eb2c541562bb7e89cdfaa3412f33332c198b77477a254c572d1b8d97",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemAccessMode/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/FileSystemAccessMode/enum/1",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "82ee4bab4811eb94c0f374d537dd229ea9a76bce54cff125d962a02e6c084525",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemAccessMode/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/FileSystemAccessMode/enum/2",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "02f97a1800ef06704f994cae34328477c8ac48b002dc7cc67de1d1fe3bb336cf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemPath/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/FileSystemPath/oneOf/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "077f9076cd748c6cec7af2fce2c4a6028a2e4ea5c25ee81d5baac71c3235b2bf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemPath/oneOf/0/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileSystemPath/oneOf/0/properties/path",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemPath/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileSystemPath/oneOf/0/properties/type",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "feb0197572c846ad4cfcd4d6113e5a6f145bb3e2b7049bc9dc09ef94f9d93914",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemPath/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/FileSystemPath/oneOf/0/properties/type/enum/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "514e58ade28907a83f7a67bf8a1263f0b7567c8c480c4ad33ef7965a86251ef8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemPath/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/FileSystemPath/oneOf/1",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "3f793673b5cb3f7c8248e346606bed8f40278e1925e6a861c1a71ac92944678c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemPath/oneOf/1/properties/pattern",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileSystemPath/oneOf/1/properties/pattern",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pattern"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemPath/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileSystemPath/oneOf/1/properties/type",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "6a5588d509402db320f3da6c3f397b64153de0f05e75e697acdad205d43948c8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemPath/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/FileSystemPath/oneOf/1/properties/type/enum/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "4bea65a5c6ef4083ac0d4a7cb35bf4840fef5a8926e815db8abe9def01e38c6c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -63846,53 +63966,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemSandboxEntry/properties/access",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileSystemSandboxEntry/properties/access",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "375c84c229ccf7ba1f344c3545898ef972940f863e3a2586ffd3f8c282fd8c6e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "access"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/FileSystemSandboxEntry/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileSystemSandboxEntry/properties/path",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "b5172e444745c06e149e11e40e6e61bbbcffff73c112c47b87c9c2abfa61c46a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
@@ -71830,94 +71966,126 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/definitions/RequestPermissionProfile/properties/fileSystem/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/RequestPermissionProfile/properties/fileSystem/anyOf/1",
       "schema": "PermissionsRequestApprovalParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:57-96,99-129,132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/definitions/RequestPermissionProfile/properties/network",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/RequestPermissionProfile/properties/network",
       "required": false,
       "schema": "PermissionsRequestApprovalParams.json",
       "schema_sha256": "739a38bd1baf284715e8ab20983ff55cc8c9b53d8d5ad5f0f9e23b649bfd1ddd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:57-96,99-129,132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "network"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/definitions/RequestPermissionProfile/properties/network/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/RequestPermissionProfile/properties/network/anyOf/0",
       "schema": "PermissionsRequestApprovalParams.json",
       "schema_sha256": "738e8e02753d0d48ab9873fd281687d442f31d289cec5ee68f992b8cfa702659",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:57-96,99-129,132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/definitions/RequestPermissionProfile/properties/network/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/RequestPermissionProfile/properties/network/anyOf/1",
       "schema": "PermissionsRequestApprovalParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:57-96,99-129,132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -72324,94 +72492,126 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/definitions/GrantedPermissionProfile/properties/fileSystem/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/GrantedPermissionProfile/properties/fileSystem/anyOf/1",
       "schema": "PermissionsRequestApprovalResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:57-96,99-129,132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/definitions/GrantedPermissionProfile/properties/network",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/GrantedPermissionProfile/properties/network",
       "required": false,
       "schema": "PermissionsRequestApprovalResponse.json",
       "schema_sha256": "739a38bd1baf284715e8ab20983ff55cc8c9b53d8d5ad5f0f9e23b649bfd1ddd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:57-96,99-129,132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "network"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/definitions/GrantedPermissionProfile/properties/network/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/GrantedPermissionProfile/properties/network/anyOf/0",
       "schema": "PermissionsRequestApprovalResponse.json",
       "schema_sha256": "738e8e02753d0d48ab9873fd281687d442f31d289cec5ee68f992b8cfa702659",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:57-96,99-129,132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-variants-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/definitions/GrantedPermissionProfile/properties/network/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+      ],
       "pointer": "/definitions/GrantedPermissionProfile/properties/network/anyOf/1",
       "schema": "PermissionsRequestApprovalResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:57-96,99-129,132-186,347-375"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -72592,21 +72792,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-variants-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/properties/strictAutoReview",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Boundary/partial evidence only; retain missing: Strict auto-review/session branch has fail-closed or weak string-only grant evidence, no successful scoped session authorization proof. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:190-213 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Boundary/partial evidence only; retain missing: Strict auto-review/session branch has fail-closed or weak string-only grant evidence, no successful scoped session authorization proof. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:190-213 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
       ],
       "nullable": true,
       "pointer": "/properties/strictAutoReview",
       "required": false,
       "schema": "PermissionsRequestApprovalResponse.json",
       "schema_sha256": "1522441ed46b623d4bc6d2ba5ce0d95e6223f29316da51432957dcfc9f537a5c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -72615,10 +72817,13 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+          "apps/samgita_codex_driver/test/server_interactions_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:225-298,347-375"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "strictAutoReview"
     },
     {
