@@ -319,6 +319,223 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
     assert_sources.()
   end
 
+  test "owned Git plugin source preserves pinned revision metadata and cache across restart",
+       ctx do
+    source = Path.join(ctx.root, "owned-plugin-git")
+    plugin_root = Path.join(source, "plugins/owned")
+    manifest_path = Path.join(plugin_root, ".codex-plugin/plugin.json")
+    skill_path = Path.join(plugin_root, "skills/inspect/SKILL.md")
+    template = Path.join(ctx.root, "empty-git-template")
+    File.mkdir_p!(Path.dirname(manifest_path))
+    File.mkdir_p!(Path.dirname(skill_path))
+    File.mkdir_p!(template)
+
+    # Fixture Git commands also discard inherited Git settings; no global config is changed.
+    git_environment =
+      System.get_env()
+      |> Map.keys()
+      |> Enum.filter(&String.starts_with?(&1, "GIT_"))
+      |> Map.new(&{&1, nil})
+      |> Map.merge(environment(ctx))
+      |> Map.to_list()
+
+    owned_git = fn args ->
+      {output, status} =
+        System.cmd("git", args,
+          cd: source,
+          env: git_environment,
+          stderr_to_stdout: true
+        )
+
+      assert status == 0, "owned Git plugin fixture failed: #{output}"
+      String.trim(output)
+    end
+
+    owned_git.([
+      "init",
+      "--initial-branch=main",
+      "--object-format=sha1",
+      "--template=#{template}"
+    ])
+
+    File.mkdir_p!(Path.join(source, ".git/hooks"))
+
+    manifest_bytes =
+      JSON.encode!(%{"name" => @plugin, "description" => "Owned Git plugin metadata"})
+
+    skill_a =
+      "---\nname: inspect\ndescription: Owned pinned Git inspection\n---\nOWNED_GIT_COMMIT_A\n"
+
+    skill_b =
+      "---\nname: inspect\ndescription: Owned pinned Git inspection\n---\nOWNED_GIT_MAIN_B\n"
+
+    File.write!(manifest_path, manifest_bytes)
+    File.write!(skill_path, skill_a)
+
+    commit_owned = fn message ->
+      owned_git.(["add", "."])
+
+      owned_git.([
+        "-c",
+        "user.name=Owned synthetic fixture",
+        "-c",
+        "user.email=fixture@example.invalid",
+        "-c",
+        "commit.gpgSign=false",
+        "commit",
+        "-m",
+        message
+      ])
+    end
+
+    commit_owned.("Owned plugin commit A")
+    sha_a = owned_git.(["rev-parse", "HEAD"])
+    File.write!(skill_path, skill_b)
+    commit_owned.("Owned plugin main B")
+    sha_b = owned_git.(["rev-parse", "HEAD"])
+    assert Regex.match?(~r/\A[0-9a-f]{40}\z/, sha_a)
+    assert Regex.match?(~r/\A[0-9a-f]{40}\z/, sha_b)
+    refute sha_a == sha_b
+
+    assert owned_git.(["show", "#{sha_a}:plugins/owned/skills/inspect/SKILL.md"]) ===
+             String.trim(skill_a)
+
+    git_config = Path.join(source, ".git/config")
+    git_config_bytes = File.read!(git_config)
+
+    marketplace = ctx.marketplace |> File.read!() |> JSON.decode!()
+
+    entries =
+      Enum.map(marketplace["plugins"], fn
+        %{"name" => @plugin} = plugin ->
+          Map.put(plugin, "source", %{
+            "source" => "git-subdir",
+            "url" => source,
+            "path" => "./plugins/owned",
+            "ref" => "main",
+            "sha" => sha_a
+          })
+
+        plugin ->
+          plugin
+      end)
+
+    marketplace_bytes = marketplace |> Map.put("plugins", entries) |> JSON.encode!()
+    File.write!(ctx.marketplace, marketplace_bytes)
+
+    expected_source = %{
+      "type" => "git",
+      "url" => source,
+      "path" => "plugins/owned",
+      "refName" => "main",
+      "sha" => sha_a
+    }
+
+    expected_summary = %{
+      "id" => @id,
+      "remotePluginId" => nil,
+      "version" => nil,
+      "localVersion" => nil,
+      "name" => @plugin,
+      "shareContext" => nil,
+      "source" => expected_source,
+      "installed" => true,
+      "installedAt" => nil,
+      "enabled" => true,
+      "installPolicy" => "AVAILABLE",
+      "installPolicySource" => nil,
+      "mustShowInstallationInterstitial" => nil,
+      "authPolicy" => "ON_INSTALL",
+      "availability" => "AVAILABLE",
+      "disabledReason" => nil,
+      "eligiblePlanTypes" => nil,
+      "interface" => nil,
+      "keywords" => []
+    }
+
+    expected = %{
+      "marketplaces" => [
+        %{
+          "name" => @market,
+          "path" => ctx.marketplace,
+          "interface" => nil,
+          "plugins" => [expected_summary]
+        }
+      ],
+      "marketplaceLoadErrors" => []
+    }
+
+    cache_root = Path.join(ctx.root, "codex/plugins/cache/#{@market}/#{@plugin}/local")
+    cached_manifest = Path.join(cache_root, ".codex-plugin/plugin.json")
+    cached_skill = Path.join(cache_root, "skills/inspect/SKILL.md")
+
+    assert_sources = fn ->
+      assert owned_git.(["symbolic-ref", "--short", "HEAD"]) === "main"
+      assert owned_git.(["rev-parse", "HEAD"]) === sha_b
+      assert owned_git.(["rev-parse", "refs/heads/main"]) === sha_b
+      assert owned_git.(["rev-parse", "#{sha_b}^"]) === sha_a
+      assert owned_git.(["status", "--porcelain"]) === ""
+      assert owned_git.(["remote"]) === ""
+      assert File.read!(git_config) === git_config_bytes
+      assert File.ls!(Path.join(source, ".git/hooks")) == []
+      refute File.exists?(Path.join(source, ".gitmodules"))
+      assert File.lstat!(manifest_path).type == :regular
+      assert File.read!(manifest_path) === manifest_bytes
+      assert File.lstat!(skill_path).type == :regular
+      assert File.read!(skill_path) === skill_b
+      assert File.read!(ctx.marketplace) === marketplace_bytes
+
+      for path <- ["codex/auth.json", "home/.git-credentials", "home/.netrc"] do
+        refute File.exists?(Path.join(ctx.root, path))
+      end
+    end
+
+    assert_cache = fn ->
+      assert File.lstat!(cache_root).type == :directory
+      assert File.lstat!(cached_manifest).type == :regular
+      assert File.read!(cached_manifest) === manifest_bytes
+      assert File.lstat!(cached_skill).type == :regular
+      assert File.read!(cached_skill) === skill_a
+      refute File.exists?(Path.join(cache_root, ".git"))
+    end
+
+    assert_sources.()
+    refute File.exists?(cache_root)
+    pid = start(ctx)
+
+    assert call(pid, "plugin/installed", %{"cwds" => [ctx.workspace]}) === %{
+             "marketplaces" => [],
+             "marketplaceLoadErrors" => []
+           }
+
+    install(pid, ctx)
+
+    # SHA wins over ref during materialization; refName here remains source metadata.
+    assert call(pid, "plugin/installed", %{"cwds" => [ctx.workspace]}) === expected
+    assert call(pid, "plugin/read", params(ctx))["plugin"]["summary"] === expected_summary
+    assert_cache.()
+    assert_sources.()
+    assert_idle(pid)
+    native = call(pid, "server/diagnostics", %{})["process"]["id"]
+    %{connection: connection} = :sys.get_state(pid)
+    assert :ok = StdioSessionFixture.close(pid, connection)
+    await_process_exit(native)
+
+    cold = start(ctx)
+    cold_native = call(cold, "server/diagnostics", %{})["process"]["id"]
+    refute cold_native == native
+    assert call(cold, "plugin/installed", %{"cwds" => [ctx.workspace]}) === expected
+    assert call(cold, "plugin/read", params(ctx))["plugin"]["summary"] === expected_summary
+    assert_cache.()
+    assert_sources.()
+    assert_idle(cold)
+    %{connection: cold_connection} = :sys.get_state(cold)
+    assert :ok = StdioSessionFixture.close(cold, cold_connection)
+    await_process_exit(cold_native)
+    assert_cache.()
+    assert_sources.()
+  end
+
   test "uninstall removes installed runtime skills while retaining owned source and cold state",
        ctx do
     pid = start(ctx)

@@ -150302,176 +150302,232 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_local_git_plugin: Native install materializes prescribed commit A from an owned absolute local repo/subdir while main/HEAD remain later B. Exact complete installed source/summary maps and cached A manifest/skill bytes warm/cold, source B/config immutable, no remotes/submodules/credentials, no Git protocol relaxation or skill execution. refName is provenance, not a ref-only selection result. Remote Git/auth, null/omitted source fields, other branches/OS and full compatibility remain unqualified."
+      ],
       "pointer": "/definitions/PluginSource/oneOf/1",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "987c3fc89a97317c79dde462acdb30f13c8d8e5d9da31fec83d947d2a5f64492",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:322"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/1/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_local_git_plugin: Native install materializes prescribed commit A from an owned absolute local repo/subdir while main/HEAD remain later B. Exact complete installed source/summary maps and cached A manifest/skill bytes warm/cold, source B/config immutable, no remotes/submodules/credentials, no Git protocol relaxation or skill execution. refName is provenance, not a ref-only selection result. Remote Git/auth, null/omitted source fields, other branches/OS and full compatibility remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/path",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:322"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/1/properties/refName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_local_git_plugin: Native install materializes prescribed commit A from an owned absolute local repo/subdir while main/HEAD remain later B. Exact complete installed source/summary maps and cached A manifest/skill bytes warm/cold, source B/config immutable, no remotes/submodules/credentials, no Git protocol relaxation or skill execution. refName is provenance, not a ref-only selection result. Remote Git/auth, null/omitted source fields, other branches/OS and full compatibility remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/refName",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:322"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "refName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/1/properties/sha",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_local_git_plugin: Native install materializes prescribed commit A from an owned absolute local repo/subdir while main/HEAD remain later B. Exact complete installed source/summary maps and cached A manifest/skill bytes warm/cold, source B/config immutable, no remotes/submodules/credentials, no Git protocol relaxation or skill execution. refName is provenance, not a ref-only selection result. Remote Git/auth, null/omitted source fields, other branches/OS and full compatibility remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/sha",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:322"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "sha"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_local_git_plugin: Native install materializes prescribed commit A from an owned absolute local repo/subdir while main/HEAD remain later B. Exact complete installed source/summary maps and cached A manifest/skill bytes warm/cold, source B/config immutable, no remotes/submodules/credentials, no Git protocol relaxation or skill execution. refName is provenance, not a ref-only selection result. Remote Git/auth, null/omitted source fields, other branches/OS and full compatibility remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "eec489482a63d574f104fb4759971c70dfacc8e7dfea8b27986a418f588ec2b5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:322"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_local_git_plugin: Native install materializes prescribed commit A from an owned absolute local repo/subdir while main/HEAD remain later B. Exact complete installed source/summary maps and cached A manifest/skill bytes warm/cold, source B/config immutable, no remotes/submodules/credentials, no Git protocol relaxation or skill execution. refName is provenance, not a ref-only selection result. Remote Git/auth, null/omitted source fields, other branches/OS and full compatibility remain unqualified."
+      ],
       "pointer": "/definitions/PluginSource/oneOf/1/properties/type/enum/0",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "36f30d444fd3be40b54f75e246869520a96a1be71ad00a8e647a7c1764fcaeea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:322"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/1/properties/url",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_local_git_plugin: Native install materializes prescribed commit A from an owned absolute local repo/subdir while main/HEAD remain later B. Exact complete installed source/summary maps and cached A manifest/skill bytes warm/cold, source B/config immutable, no remotes/submodules/credentials, no Git protocol relaxation or skill execution. refName is provenance, not a ref-only selection result. Remote Git/auth, null/omitted source fields, other branches/OS and full compatibility remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginSource/oneOf/1/properties/url",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:322"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "url"
     },
     {

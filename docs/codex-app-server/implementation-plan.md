@@ -35,15 +35,24 @@ cold restart, System-skill shared cache and queued PNG snapshots now have scoped
 native two-seed evidence and required hosted execution steps. Their source-backed
 oracle corrections and initial failures remain in the linked qualification
 records. A [source-only 37-owner index](native-owner-supplement-qualification.md)
-brings contracts to **3,084 implemented / 3,537 missing**, zero verified.
+brings contracts to **3,084 implemented / 3,537 missing**, zero verified at that checkpoint.
 Requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified;
 all four legacy requirements remain blocked.
 
-Next qualify the owned private-/etc Admin-skill draft, stock system-clock sleep/steer/cold
-history draft and selected queued-assistant history proposal. These unexecuted
-drafts receive no acceptance credit. New executable changes require complete
-final-source local/hosted checks. A11, source-unreachable emitters and external/OS
-profiles remain open. No release or deployment.
+The subsequent [Admin](admin-skills-qualification.md), [sleep/steer](sleep-steer-qualification.md),
+[goal continuation/budget](goal-budget-qualification.md),
+[local/Git plugin metadata](local-plugin-metadata-qualification.md) and
+[selected queued assistant](queue-image-snapshot-qualification.md#independently-expected-selected-assistant-after-restart)
+units now pass both fixed seeds with strict checks/source guards. Exactly57
+direct owners add scoped implemented evidence: **3,141 implemented / 3,480 missing**,
+zero verified. No requirement state changes; all four legacy requirements stay
+blocked. CI explicitly runs all42 isolated profiles.
+
+Next freeze this source and execute the complete final local matrix, preserving
+actual populated-database failures, then inspect exact-SHA hosted foundation and
+conformance results. Continue remaining behavior work; A11, source-unreachable
+emitters and external/OS success remain incomplete. No scoped green checkpoint
+completes the full goal.
 
 ## Earlier scoped units
 

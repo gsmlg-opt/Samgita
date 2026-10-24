@@ -62,3 +62,40 @@ No native failure occurred in these two new cases. Existing CI already runs
 the complete owning profile explicitly; final-source hosted/aggregate checks
 remain required. A11, missing emitters and full compatibility remain incomplete.
 No publication, release, production migration or deployment follows.
+
+## Owned local Git source and immutable cache
+
+One later additive case uses stock plugin/install with an absolute owned local
+Git repository and subdirectory. The source has main/HEAD at commit B, whose
+parent is requested SHA A, with independently prescribed distinct skill bytes.
+The native cache must contain exact A bytes while source main/HEAD/files stay B.
+The complete installed response and plugin/read summary must equal independently
+prescribed maps with exact Git url/path/refName/sha. Both maps and cached bytes
+are rechecked after confirmed native PID replacement. No skill executes and no
+thread or model request starts.
+
+The fixture discards inherited Git environment, uses isolated HOME, disables
+system/global Git config and initializes with an owned empty template/hooks
+directory. Source remotes/submodules/credentials are absent; Git config remains
+byte-identical. No `protocol.file.allow` override, permission change or remote
+access is introduced. The explicit top-level local clone uses Git's normal file
+policy. SHA wins over ref during materialization; refName remains provenance,
+so this proves no ref-only selection or remote-Git success.
+
+`devenv shell --no-tui -- python3 -B
+/tmp/samgita-native-git-plugin-v1-20261024.py` passes compile, format, root strict
+Credo and the complete **11/0** owning profile at both seeds501432/987654, with
+a matching executable-source guard. No runtime failure occurred in this case.
+`results.json` SHA256:
+`b06e2290ec3a8a63a888566595b7287802fd34b0a68b2b124088608048344678`;
+source snapshot SHA256:
+`b1d4759eafb78672db3b80b336281f7e5e4d69bc56177215618f2a64e3beba8d`.
+The existing required hosted step runs this full profile.
+
+Exactly seven still-missing physical owners under
+`schema:v2/PluginInstalledResponse.json#/definitions/PluginSource/oneOf/1`
+gain scoped implemented evidence: selected complete Git alternative, properties
+path/refName/sha/type/url and type's git literal. Each subtree hash is
+independently recomputed. Null/omission, remote auth/protocol, other platform,
+plugin execution, policy and full qualification stay incomplete. Earlier local
+source/rich-interface evidence above retains its original scope and counts.

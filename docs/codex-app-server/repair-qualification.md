@@ -77,8 +77,9 @@ Completeness passes **37 inventory regressions** and consistency, then fails
 The subsequent [source index](native-owner-supplement-qualification.md) first
 adds 22 notification/configuration/selective-history owners, then fifteen native
 goal owners. Neither unit retroactively changes this run or turns an entry fully
-verified. The current contracts total **3,084 implemented / 3,537 missing**;
-the exact hosted completeness outcome above remains unchanged.
+verified. That index brings contracts to **3,084 implemented / 3,537 missing**;
+later scoped native units bring the current total to **3,141 implemented /
+3,480 missing**. The exact hosted completeness outcome above remains unchanged.
 
 The read-only collector
 `/tmp/samgita-collect-hosted-0bc98a3-20261024.py` asserts exact heads and terminal
