@@ -6,6 +6,47 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted checkpoint at 0bc98a3
+
+Both workflows are terminal at exact pushed commit
+`0bc98a34686ecda75acf3d03f9ef6e013d6a476b`.
+[Foundation 40099601790](https://github.com/gsmlg-opt/Samgita/actions/runs/40099601790)
+passes all required steps: both populated aggregates (**224 core/0/one excluded
++ 128 web/0/five excluded** each), restart/rollback **1/0**, independent protocol
+packages/consumers, strict checks, forced Dialyzer, audits, assets and production
+assembly. No release process is started.
+
+[Conformance 40099682575](https://github.com/gsmlg-opt/Samgita/actions/runs/40099682575)
+is **failed overall**, with both native execution jobs successful and mandatory
+completeness failed. The default driver partitions pass **366/0 + 299/0 = 665/0**,
+seed501432; native wire **42/0**, outside native consumer **1/0** and fenced native
+runtime/API/concurrency **53 core + 8 web/zero failures** pass. All **39 explicit
+isolated profiles, 253/0**, pass without exclusions or skipped downstream steps.
+This includes Git review targets, unanswered-approval cold restart, System-skill
+shared cache, queued PNG snapshots and V1/V3 realtime controls.
+
+Completeness passes **37 inventory regressions** and consistency, then fails
+`--require-verified`: **485 requirements: 0 verified / 462 implemented / 12 missing /
+11 blocked; 6,621 contracts: 0 verified / 3,047 implemented / 3,574 missing**.
+The subsequent [22-owner source index](native-owner-supplement-qualification.md)
+does not retroactively change this run or turn any entry fully verified.
+
+The read-only collector
+`/tmp/samgita-collect-hosted-0bc98a3-20261024.py` asserts exact heads and terminal
+states. Full logs, per-step counts/anchors and metadata are retained in
+`/tmp/samgita-hosted-0bc98a3-20261024/`. Foundation log SHA256 is
+`0e7dbbd52a0ab33b01d1bfb78bb1bdf91c2834f64545bcf957034b062b7e95af`;
+conformance log SHA256 is
+`1eab1a2b8cffafdaf21bbc9725b92f36d10f2a62cd01c9371a9c3bf7f551624e`.
+
+The independent frozen local v15 matrix is still running when this hosted record
+is added. Its second populated aggregate reproduces the unchanged GitHub
+first-page assertion at `github_controller_test.exs:56`; both recovery/restart
+repeats pass without resetting the database. Hosted fresh-run success does not
+repair or erase that local failure. The complete local terminal result remains
+required. Full compatibility, A11, unreachable emitters and external/OS success
+remain incomplete; no tag, publication, production migration or deployment.
+
 ## Frozen local matrix at 7a5de5e
 
 The v14 combined runner is terminal against executable source

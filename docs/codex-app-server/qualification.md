@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,047 implemented / 3,574 missing
+11 blocked requirements** and **0 verified / 3,069 implemented / 3,552 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,047 directly exercised
+MCP entries have scoped implementation evidence. These 3,069 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -19,7 +19,18 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
-The [frozen local checkpoint at 7a5de5e](repair-qualification.md#frozen-local-matrix-at-7a5de5e)
+The [hosted checkpoint at 0bc98a3](repair-qualification.md#hosted-checkpoint-at-0bc98a3)
+passes foundation and both native execution jobs: **665/0** default driver,
+**253/0** across 39 explicit isolated profiles, outside consumer and fenced
+platform/API/concurrency. Mandatory completeness fails. The separate frozen
+local v15 matrix remains running; it reproduces the unchanged populated-database
+GitHub first-page assertion while both recovery/restart repeats pass. No reset,
+guard bypass or claimed GitHub repair follows. A
+[source-only index](native-owner-supplement-qualification.md) adds 22 exact
+notification/config/selective-history owners from existing assertions; no new
+execution, fully verified promotion or retroactive hosted count follows.
+
+The earlier [frozen local checkpoint at 7a5de5e](repair-qualification.md#frozen-local-matrix-at-7a5de5e)
 passes all 17 platform and 23 package commands, both **663/0** default-driver and
 **237/0** isolated-profile repeats, three **42/0** neutral WebSocket repeats and
 all outside consumers. Both source guards match. Both populated root aggregates
@@ -73,7 +84,8 @@ destroy another process's cache, and queued PNG snapshots survive source loss,
 rejected updates and cold dispatch. Source-backed legacy history differences and
 initial failures remain recorded. Fourteen direct owners become implemented;
 no requirement becomes verified. Their explicit hosted steps bring the isolated
-profile count to39. Final combined-source and hosted checks remain pending.
+profile count to 39. These hosted execution jobs now pass at 0bc98a3; the full
+local matrix and mandatory completeness remain separate incomplete gates.
 
 Eight [review delivery cases](review-delivery-qualification.md) pass at both
 fixed seeds with warning-free compilation, format, strict Credo and a matching

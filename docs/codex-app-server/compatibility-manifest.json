@@ -91854,27 +91854,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/2/properties/delivery",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_completed_notification_null: Actual native item/completed AgentMessage wire key present with explicit JSON null; exact complete item-map equality. Local synthetic model responses, stock native serialization, real UDS driver.. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/delivery",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "d8745268a11a88e61e4efbe5f8b6bc3e968bcf06acc8592c5a795dcf7bd5c3f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "delivery"
     },
     {
@@ -91901,24 +91909,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/2/properties/delivery/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_completed_notification_null: Actual native item/completed AgentMessage wire key present with explicit JSON null; exact complete item-map equality. Local synthetic model responses, stock native serialization, real UDS driver.. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/delivery/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -91958,27 +91974,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/2/properties/memoryCitation",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_completed_notification_null: Actual native item/completed AgentMessage wire key present with explicit JSON null; exact complete item-map equality. Local synthetic model responses, stock native serialization, real UDS driver.. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/memoryCitation",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "9d1505dc2cc978b127f8e6161f10210e73e57a599d170be38998fafbdf9e1d54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "memoryCitation"
     },
     {
@@ -92005,50 +92029,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/2/properties/memoryCitation/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_completed_notification_null: Actual native item/completed AgentMessage wire key present with explicit JSON null; exact complete item-map equality. Local synthetic model responses, stock native serialization, real UDS driver.. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/memoryCitation/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/2/properties/phase",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_completed_notification_null: Actual native item/completed AgentMessage wire key present with explicit JSON null; exact complete item-map equality. Local synthetic model responses, stock native serialization, real UDS driver.. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/phase",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "73a53c28e395caaf58d851413f635bfcc864694564df2ba3cdeefdda74ca501a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "phase"
     },
     {
@@ -92075,50 +92115,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/2/properties/phase/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_completed_notification_null: Actual native item/completed AgentMessage wire key present with explicit JSON null; exact complete item-map equality. Local synthetic model responses, stock native serialization, real UDS driver.. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/phase/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/2/properties/questions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_completed_notification_null: Actual native item/completed AgentMessage wire key present with explicit JSON null; exact complete item-map equality. Local synthetic model responses, stock native serialization, real UDS driver.. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/questions",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "f90b62cbc6367751539161c7e08783472391a74f0583d81c0288c53ad4f9ccf1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "questions"
     },
     {
@@ -116391,68 +116447,92 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppToolApproval/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_config_projection_owner: Exact selected AppToolApproval literal only; no auto or approval enforcement. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/AppToolApproval/enum/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "60b5693ef09527a4bcf56d65322b1fa843bbda2534ddbf928150ee3267d52e97",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:129-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppToolApproval/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_config_projection_owner: Exact selected AppToolApproval literal only; no auto or approval enforcement. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/AppToolApproval/enum/2",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "e3d176384061ff482ec6cea51d03e52f34eadd844c2a92aa31d9f486891126db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:129-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppToolApproval/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_config_projection_owner: Exact selected AppToolApproval literal only; no auto or approval enforcement. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/AppToolApproval/enum/3",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "4d858e5d77bfcfec6565527ad221741d724d72022a9410b5519fa759f6ef254d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:129-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -119736,49 +119816,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/web_search",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_config_projection_owner: Present non-null disabled only; no null, omission, cached, indexed, live, or whole enum/anyOf promotion. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/web_search",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "d233343f1c0c44f68499c4384a0d5a00124c74d95f15931736041f1910ed947d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:185-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "web_search"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/web_search/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_config_projection_owner: Present non-null disabled only; no null, omission, cached, indexed, live, or whole enum/anyOf promotion. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/Config/properties/web_search/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "cc5108bdf59e0be2659f06347feb262bddc5acb07f53978a71646153027e1748",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:185-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -121279,46 +121375,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ToolExposureSurface/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_config_projection_owner: Selected deferred variant only; no code_mode/direct or actual tool-discovery behavior. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ToolExposureSurface/oneOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "a48f7cef773797872f4fe882a718eb6d3001a3b3e12ff7c65ccad5287c7efe54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:129-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ToolExposureSurface/oneOf/1/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_config_projection_owner: Selected deferred variant only; no code_mode/direct or actual tool-discovery behavior. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ToolExposureSurface/oneOf/1/enum/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "f44e21b0185cfc85a1feedd97e0129b68ca9c1e198529e72b7834e81648b614d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:129-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -121759,24 +121871,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/WebSearchMode/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_config_projection_owner: Present non-null disabled only; no null, omission, cached, indexed, live, or whole enum/anyOf promotion. Exact physical owner only; existing scoped two-seed native and exact current hosted native job evidence, no new execution in this source-only index. Other nonnull/null/omission/default variants, reference targets, policy enforcement, external/OS/A11 and fully verified acceptance remain unqualified."
+      ],
       "pointer": "/definitions/WebSearchMode/enum/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "8084c32c3acf29e3072793e9d2b7c536453e34a7a008df660af345ae1cb2e23a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:185-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -172145,24 +172265,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CommandExecutionSource/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_execution_owner: Only unifiedExecStartup; agent/userShell/unifiedExecInteraction and default behavior remain missing. Independent exact selected command/MCP field or complete added-file oracle, physical effect and distinct cold-process selective read; exact current hosted complete driver passes665/0. Older17/0 scoped two-seed record has only test/Git-head snapshot; its limitation is retained. No whole command/MCP union, unasserted nullable/timestamps/other enum owner, source-unreachable, external/OS/A11 or verified/full-compatibility claim."
+      ],
       "pointer": "/definitions/CommandExecutionSource/enum/2",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "3dfc4e761418d4f85678536071840a3c106b7e8f423a860c250cc83a9161bf94",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_execution_items_test.exs:94-105,136-152,203-219,231-271"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -172211,24 +172339,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CommandExecutionStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_execution_owner: Only completed; inProgress/failed/declined or full lifecycle not qualified. Independent exact selected command/MCP field or complete added-file oracle, physical effect and distinct cold-process selective read; exact current hosted complete driver passes665/0. Older17/0 scoped two-seed record has only test/Git-head snapshot; its limitation is retained. No whole command/MCP union, unasserted nullable/timestamps/other enum owner, source-unreachable, external/OS/A11 or verified/full-compatibility claim."
+      ],
       "pointer": "/definitions/CommandExecutionStatus/enum/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_execution_items_test.exs:94-105,136-152,203-219,231-271"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -174139,24 +174275,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/McpToolCallStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_execution_owner: Only completed; inProgress/failed/declined or full lifecycle not qualified. Independent exact selected command/MCP field or complete added-file oracle, physical effect and distinct cold-process selective read; exact current hosted complete driver passes665/0. Older17/0 scoped two-seed record has only test/Git-head snapshot; its limitation is retained. No whole command/MCP union, unasserted nullable/timestamps/other enum owner, source-unreachable, external/OS/A11 or verified/full-compatibility claim."
+      ],
       "pointer": "/definitions/McpToolCallStatus/enum/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_execution_items_test.exs:94-105,136-152,203-219,231-271"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -174583,24 +174727,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchChangeKind/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_execution_owner: Only complete add variant; delete/update/move_path remain outside this nomination. Independent exact selected command/MCP field or complete added-file oracle, physical effect and distinct cold-process selective read; exact current hosted complete driver passes665/0. Older17/0 scoped two-seed record has only test/Git-head snapshot; its limitation is retained. No whole command/MCP union, unasserted nullable/timestamps/other enum owner, source-unreachable, external/OS/A11 or verified/full-compatibility claim."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "2b35cd83717e50c4dff0e581e79238198b4ad2429b88b2c832c1a167fed68815",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_execution_items_test.exs:94-105,136-152,203-219,231-271"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -178377,24 +178529,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/6/properties/cwd/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_execution_owner: Only independently owned workspace path; no universal path behavior. Independent exact selected command/MCP field or complete added-file oracle, physical effect and distinct cold-process selective read; exact current hosted complete driver passes665/0. Older17/0 scoped two-seed record has only test/Git-head snapshot; its limitation is retained. No whole command/MCP union, unasserted nullable/timestamps/other enum owner, source-unreachable, external/OS/A11 or verified/full-compatibility claim."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/6/properties/cwd/allOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_execution_items_test.exs:94-105,136-152,203-219,231-271"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -178608,24 +178768,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/6/properties/source/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_execution_owner: Only unifiedExecStartup; agent/userShell/unifiedExecInteraction and default behavior remain missing. Independent exact selected command/MCP field or complete added-file oracle, physical effect and distinct cold-process selective read; exact current hosted complete driver passes665/0. Older17/0 scoped two-seed record has only test/Git-head snapshot; its limitation is retained. No whole command/MCP union, unasserted nullable/timestamps/other enum owner, source-unreachable, external/OS/A11 or verified/full-compatibility claim."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/6/properties/source/allOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "f2c10df60f7846b8ffe419d216c8cab818267d2ec44d38377675159bc4238e4d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_execution_items_test.exs:94-105,136-152,203-219,231-271"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -178731,24 +178899,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/7",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_execution_owner: Only complete four-property added-file item with status completed and one fixed patch; no full file-change lifecycle. Independent exact selected command/MCP field or complete added-file oracle, physical effect and distinct cold-process selective read; exact current hosted complete driver passes665/0. Older17/0 scoped two-seed record has only test/Git-head snapshot; its limitation is retained. No whole command/MCP union, unasserted nullable/timestamps/other enum owner, source-unreachable, external/OS/A11 or verified/full-compatibility claim."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/7",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "dc813afcd08e24239ae6997fab35612b4b6a52ef63764db66619cbddbe455b0f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_execution_items_test.exs:94-105,136-152,203-219,231-271"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {

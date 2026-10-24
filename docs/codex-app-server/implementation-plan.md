@@ -21,30 +21,29 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
-The [v14 local matrix](repair-qualification.md#frozen-local-matrix-at-7a5de5e)
-is terminal: all 17 platform and 23 package commands pass, including both **663/0**
-default-driver and **237/0** isolated-profile repeats. Both source guards match;
-both populated aggregates and recovery/restart repeats preserve the database.
-Hosted `7a5de5e` passes foundation and both execution jobs; completeness still fails.
-The old GitHub-page failure is retained, with no cause or repair inferred from
-this pass. An evidence-only index adds five native review and 52 synthetic legacy
-owners: **3,020 implemented / 3,601 missing** contracts, zero verified. Requirements
-remain **462 implemented / 12 missing / 11 blocked**, zero verified; all four
-legacy requirements remain blocked. The
-[native interaction deadline/control unit](interaction-deadline-qualification.md)
-now passes the full owning block **12/0** at both fixed seeds with strict checks
-and a matching source guard; lifecycle state/counts remain unchanged. The
-[V1/V3 control unit](realtime-controls-qualification.md) also passes **11/0**
-twice, with exact physical-frame barriers and a source-backed fixture correction.
-One direct property owner brings current contracts to **3,021 implemented /
-3,600 missing**, zero verified. The
-[review-target unit](review-targets-qualification.md) now passes **8/0** twice,
-with exact complete parent/delegate history and source-backed oracle corrections.
-Twelve direct owners bring contracts to **3,033 implemented / 3,588 missing**,
-zero verified; requirements remain unchanged. Next qualify owned native death
-during unanswered approval and System-skill shared-cache behavior, then repeat
-the complete final-source local/hosted matrix. Their drafts have no acceptance
-credit. A11, source-unreachable emitters and external/OS profiles remain open.
+The [hosted 0bc98a3 checkpoint](repair-qualification.md#hosted-checkpoint-at-0bc98a3)
+is terminal: foundation and both native execution jobs pass, including **665/0**
+default driver and **253/0** across 39 required isolated profiles. Mandatory
+completeness fails. The earlier v14 local matrix passed all 17+23 commands; the
+current frozen v15 matrix remains running and reproduces the unchanged GitHub
+first-page assertion in its second populated aggregate. Both recovery/restart
+repeats pass without reset or guard bypass. No unrelated GitHub repair is claimed.
+
+Interaction deadlines, V1/V3 controls, Git review targets, hard pending-approval
+cold restart, System-skill shared cache and queued PNG snapshots now have scoped
+native two-seed evidence and required hosted execution steps. Their source-backed
+oracle corrections and initial failures remain in the linked qualification
+records. A [source-only 22-owner index](native-owner-supplement-qualification.md)
+brings contracts to **3,069 implemented / 3,552 missing**, zero verified.
+Requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified;
+all four legacy requirements remain blocked.
+
+Next finish the frozen local matrix and preserve its actual failure; then qualify
+the owned private-/etc Admin-skill draft, stock system-clock sleep/steer/cold
+history draft and selected queued-assistant history proposal. These unexecuted
+drafts receive no acceptance credit. New executable changes require complete
+final-source local/hosted checks. A11, source-unreachable emitters and external/OS
+profiles remain open. No release or deployment.
 
 ## Earlier scoped units
 
