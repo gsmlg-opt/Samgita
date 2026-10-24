@@ -2007,3 +2007,24 @@ types/emission are not promoted by read-only evidence. Ledger: **440 implemented
 35 missing / 10 blocked** requirements, **1,217 implemented / 5,404 missing**
 contracts, **zero verified**. CI selects the profile. Real quota services,
 external/platform/OS profiles, final aggregate/hosted and A11 remain unqualified.
+
+## Native managed-network allow and deny
+
+Two [network-amendment cases](network-amendment-qualification.md) pass **2/0** at
+both recorded seeds, 3.9 seconds each. The stock binary's managed proxy emits
+the real v2 approval; explicit typed allow/deny replies persist the exact host
+rule and control actual owned-origin access. A repeated turn reuses the rule
+without another prompt. Private user/mount/network namespace proofs, native
+sandbox denial of direct origin access and zero surviving owned resources are
+asserted. No host requirements, public route or real credential is used.
+
+Initial and diagnostic **2/2 cleanup failures** exposed adopted bwrap zombies
+outside the native PGID. The fixture retains the leader until its last group
+signal and reaps enumerated actual children across groups. It preserves the
+0.75-second budget, all effect assertions and the production cleanup repair.
+AST, namespace, compile, format and strict Credo pass. Thirteen positive
+contracts gain scoped implemented evidence. Ledger: **460 implemented /
+14 missing / 11 blocked** requirements; **1,310 implemented / 5,311 missing**
+contracts; **zero verified**. CI selects the profile. Edited/mismatched replies,
+other protocols, loss/restart, legacy reachability, final aggregate/hosted and
+A11 remain incomplete.

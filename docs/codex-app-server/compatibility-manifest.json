@@ -9335,7 +9335,8 @@
       "evidence": [
         "docs/codex-app-server/approval-qualification.md",
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/background-terminal-qualification.md"
+        "docs/codex-app-server/background-terminal-qualification.md",
+        "docs/codex-app-server/network-amendment-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:item/commandExecution/requestApproval",
@@ -9344,7 +9345,8 @@
       "limitations": [
         "Positive selected behavior: Native exact command approval supports accept/decline/cancel/session cache and exact execpolicy amendment. Rule survives process restart; stale handle cannot decide next matching request; explicit reply error fails without execution/rule. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
         "No applyNetworkPolicyAmendment, network-host prompts, arbitrary edits, alternate environments, managed policy or all platform profiles.",
-        "command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
+        "command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants.",
+        "actual_native_managed_proxy: Both typed persistent allow/deny amendments execute on stock native HTTP proxy, preserve exact rules, and avoid another prompt on same-host repetition; edited/mismatched decisions, loss/restart and complete approval lifecycle remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -9366,7 +9368,8 @@
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
           "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:240",
           "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:312",
-          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419",
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -9731,13 +9734,15 @@
     {
       "direction": "lifecycle_rule",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/network-amendment-qualification.md"
       ],
       "id": "lifecycle:approval-decisions",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Boundary/partial evidence only; retain missing: Selected v2 decision variants, filesystem effects, stale handles and durable exact rule are positive; requirement says every decision variant and edits, but applyNetworkPolicyAmendment and edits remain unqualified. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "Do not promote full lifecycle from selected variants."
+        "Do not promote full lifecycle from selected variants.",
+        "actual_native_managed_proxy: Both typed persistent allow/deny amendments execute on stock native HTTP proxy, preserve exact rules, and avoid another prompt on same-host repetition; edited/mismatched decisions, loss/restart and complete approval lifecycle remain unqualified."
       ],
       "required_behavior": "preserve every decision variant and edits; require explicit authorized handler",
       "schema_sha256": "b0c99e763de6cb504aee7aadd4177c897fe5cb9065748cf7fe5e988558d1ae5e",
@@ -9752,7 +9757,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs"
         ]
       },
       "transport_coverage": [],
@@ -14464,7 +14470,8 @@
       "evidence": [
         "docs/codex-app-server/approval-qualification.md",
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/background-terminal-qualification.md"
+        "docs/codex-app-server/background-terminal-qualification.md",
+        "docs/codex-app-server/network-amendment-qualification.md"
       ],
       "experimental": false,
       "id": "server_request:item/commandExecution/requestApproval",
@@ -14473,7 +14480,8 @@
       "limitations": [
         "Positive selected behavior: Native exact command approval supports accept/decline/cancel/session cache and exact execpolicy amendment. Rule survives process restart; stale handle cannot decide next matching request; explicit reply error fails without execution/rule. Assertions: apps/samgita_codex_driver/test/real_session_test.exs:242-286 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:181-244 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:43-126 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:275-310 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
         "No applyNetworkPolicyAmendment, network-host prompts, arbitrary edits, alternate environments, managed policy or all platform profiles.",
-        "command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants."
+        "command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants.",
+        "actual_native_managed_proxy: Both typed persistent allow/deny amendments execute on stock native HTTP proxy, preserve exact rules, and avoid another prompt on same-host repetition; edited/mismatched decisions, loss/restart and complete approval lifecycle remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/CommandExecutionRequestApprovalParams"
@@ -14509,7 +14517,8 @@
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
           "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:240",
           "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:312",
-          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419"
+          "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419",
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -22011,97 +22020,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/NetworkPolicyAmendment/properties/action",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/NetworkPolicyAmendment/properties/action",
       "required": true,
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "af44518c20b47011381b757a81bf985b29a01bde85bc884c91ba0d682f69cbde",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "action"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/NetworkPolicyAmendment/properties/host",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/NetworkPolicyAmendment/properties/host",
       "required": true,
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "host"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/NetworkPolicyRuleAction/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/NetworkPolicyRuleAction/enum/0",
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "a42e03abf3ceafd8d316664a5ae7e9f7cce41c478e0da289bc2cd7b74d63056b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/NetworkPolicyRuleAction/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/NetworkPolicyRuleAction/enum/1",
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "02f97a1800ef06704f994cae34328477c8ac48b002dc7cc67de1d1fe3bb336cf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "enum"
     },
     {
@@ -62128,76 +62169,100 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandExecutionApprovalDecision/oneOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/CommandExecutionApprovalDecision/oneOf/3",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "9647d2fa8a3028708a2b1eda31a981e774277b0e370d4a4ee9560bb3b130e615",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandExecutionApprovalDecision/oneOf/3/properties/applyNetworkPolicyAmendment",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandExecutionApprovalDecision/oneOf/3/properties/applyNetworkPolicyAmendment",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "5e8268882e20425597f19014fd8cace3e373bb11d51867e37efc78b721a1ceb8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "applyNetworkPolicyAmendment"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/CommandExecutionApprovalDecision/oneOf/3/properties/applyNetworkPolicyAmendment/properties/network_policy_amendment",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/CommandExecutionApprovalDecision/oneOf/3/properties/applyNetworkPolicyAmendment/properties/network_policy_amendment",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "b6d39432a418e8475377ee3d6c2b95fc2789bfab7bf806150a7a09d742414547",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "network_policy_amendment"
     },
     {
@@ -63385,75 +63450,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/NetworkApprovalContext/properties/host",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/NetworkApprovalContext/properties/host",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "host"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/NetworkApprovalContext/properties/protocol",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/NetworkApprovalContext/properties/protocol",
       "required": true,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "735ba1bcf6cadf164d5b3be1a4e49ba9552c17fbb619a030168ee95688402fd9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "protocol"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/definitions/NetworkApprovalProtocol/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/NetworkApprovalProtocol/enum/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "193e14554c8af6a2e2a8dfc5196252eaf0b31f2b0417aa8ae151e48fcd55fecb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "enum"
     },
     {
@@ -63966,49 +64055,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/networkApprovalContext",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/networkApprovalContext",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "28442e875bbf9c0fa27d060902b3436fc5fb7a58def83a7998be8f37283b9679",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "networkApprovalContext"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/networkApprovalContext/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "pointer": "/properties/networkApprovalContext/anyOf/0",
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "b95e068d3a9003bf8faaafac4d1facc84f762c166622d7402c43ee53f01fd8e6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -64077,27 +64182,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/network-amendment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:CommandExecutionRequestApprovalParams.json#/properties/proposedNetworkPolicyAmendments",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_proxy: Exact HTTP host/context and proposed amendments at200-215; explicit allow/deny reply at231-244 persists exact rule and repeats same-host effect without another approval at132-165. Shared canonical typed network definitions do not imply legacy runtime acceptance. Other protocols, edited/mismatched replies, loss/restart and full lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/proposedNetworkPolicyAmendments",
       "required": false,
       "schema": "CommandExecutionRequestApprovalParams.json",
       "schema_sha256": "2e5cc9d4e1126bea3a99eb0275b822765e0a7c811f7c212c30e7b35e1f41ac5a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_network_amendment_profile.exs:112-165,200-215,218-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket/private-user-mount-network-namespace"
+      ],
       "wire_name": "proposedNetworkPolicyAmendments"
     },
     {
