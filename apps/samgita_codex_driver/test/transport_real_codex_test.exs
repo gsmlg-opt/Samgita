@@ -19,7 +19,8 @@ defmodule SamgitaCodexDriver.TransportRealCodexTest do
   defp process_opts(binary, dir, listen) do
     [
       executable: binary,
-      args: ["app-server", "--listen", listen],
+      args:
+        SamgitaCodexDriver.NativeLaunchFixture.ordinary_args(["app-server", "--listen", listen]),
       cwd: dir,
       env: %{"HOME" => dir, "CODEX_HOME" => dir, "CODEX_DISABLE_REMOTE_CONTROL" => "1"}
     ]

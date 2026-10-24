@@ -121,13 +121,14 @@ defmodule SamgitaCodexDriver.PluginSelectionTest do
     assert is_integer(skill_position) and is_integer(hint_position)
     assert skill_position < hint_position
     assert :ok = Session.close(pid)
-    resumed = start(context)
+    resumed = start(context, local_plugins: true)
     assert call(resumed, "thread/resume", %{"threadId" => thread})["thread"]["id"] == thread
     assert [_, _, _] = ModelFixture.requests(context.fixture)
   end
 
   defp installed(context) do
-    pid = start(context)
+    pid = start(context, local_plugins: true)
+    assert call(pid, "config/read", %{})["config"]["features"]["plugins"] == true
 
     listing =
       call(pid, "plugin/list", %{

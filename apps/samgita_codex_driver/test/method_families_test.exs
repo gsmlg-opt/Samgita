@@ -46,7 +46,12 @@ defmodule SamgitaCodexDriver.MethodFamiliesTest do
           {Stdio,
            [
              executable: context.binary,
-             args: ["app-server", "--listen", "stdio://"],
+             args:
+               SamgitaCodexDriver.NativeLaunchFixture.ordinary_args([
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ]),
              cwd: context.fixture.workspace,
              env: env
            ]}

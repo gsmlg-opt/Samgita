@@ -290,7 +290,12 @@ defmodule SamgitaCodexDriver.NativeHistoryCursorSemanticsTest do
           {Stdio,
            [
              executable: Path.expand(ctx.binary),
-             args: ["app-server", "--listen", "stdio://"],
+             args:
+               SamgitaCodexDriver.NativeLaunchFixture.ordinary_args([
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ]),
              cwd: fixture.workspace,
              inherit_env: [],
              env: %{

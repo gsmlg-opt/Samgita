@@ -1,7 +1,7 @@
 defmodule SamgitaCodexDriver.AdditionalMethodFamiliesTest do
   use ExUnit.Case, async: false
 
-  alias SamgitaCodexDriver.{ModelFixture, Session, StdioSessionFixture}
+  alias SamgitaCodexDriver.{ModelFixture, NativeLaunchFixture, Session, StdioSessionFixture}
   alias SamgitaCodexDriver.Transport.Stdio
   alias SamgitaProtocolCodex.Error
 
@@ -30,17 +30,29 @@ defmodule SamgitaCodexDriver.AdditionalMethodFamiliesTest do
     %{binary: binary, fixture: fixture}
   end
 
-  defp start(context, config \\ "") do
+  defp start(context, config \\ "", opts \\ []) do
     path = Path.join(context.fixture.codex_home, "config.toml")
     File.write!(path, File.read!(path) <> "\n" <> config)
 
+    args = ["app-server", "--listen", "stdio://"]
+
+    if Keyword.get(opts, :local_plugins, false) do
+      NativeLaunchFixture.local_plugins_after_initialize(path, fn ->
+        start_initialized(context, args)
+      end)
+    else
+      start_initialized(context, NativeLaunchFixture.ordinary_args(args))
+    end
+  end
+
+  defp start_initialized(context, args) do
     {:ok, pid} =
       Session.start_link(
         transport:
           {Stdio,
            [
              executable: context.binary,
-             args: ["app-server", "--listen", "stdio://"],
+             args: args,
              cwd: context.fixture.workspace,
              env: %{
                "HOME" => context.fixture.home,
@@ -635,7 +647,10 @@ defmodule SamgitaCodexDriver.AdditionalMethodFamiliesTest do
       JSON.encode!(%{"name" => "fixture-plugin", "description" => "Synthetic local plugin"})
     )
 
-    pid = start(context, "[features]\nplugins = true\nremote_plugin = false\n")
+    pid =
+      start(context, "[features]\nplugins = true\nremote_plugin = false\n", local_plugins: true)
+
+    assert call(pid, "config/read", %{})["config"]["features"]["plugins"] == true
 
     listing =
       call(pid, "plugin/list", %{

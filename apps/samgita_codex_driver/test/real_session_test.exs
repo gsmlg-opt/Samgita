@@ -30,7 +30,8 @@ defmodule SamgitaCodexDriver.RealSessionTest do
   defp process_opts(binary, fixture, listen \\ "stdio://") do
     [
       executable: binary,
-      args: ["app-server", "--listen", listen],
+      args:
+        SamgitaCodexDriver.NativeLaunchFixture.ordinary_args(["app-server", "--listen", listen]),
       cwd: fixture.workspace,
       env: %{
         "HOME" => fixture.home,

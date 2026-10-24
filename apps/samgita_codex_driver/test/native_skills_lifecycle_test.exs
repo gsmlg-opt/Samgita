@@ -1,7 +1,14 @@
 defmodule SamgitaCodexDriver.NativeSkillsLifecycleTest do
   use ExUnit.Case, async: false
 
-  alias SamgitaCodexDriver.{ModelFixture, Session, StdioSessionFixture, TurnFixture}
+  alias SamgitaCodexDriver.{
+    ModelFixture,
+    NativeLaunchFixture,
+    Session,
+    StdioSessionFixture,
+    TurnFixture
+  }
+
   alias SamgitaCodexDriver.Transport.Stdio
   alias SamgitaProtocolCodex.Error
 
@@ -165,7 +172,8 @@ defmodule SamgitaCodexDriver.NativeSkillsLifecycleTest do
   test "force reload follows installed local plugin roots and feature or plugin disablement",
        ctx do
     marketplace = local_plugin(ctx)
-    pid = start(ctx)
+    pid = start(ctx, local_plugins: true)
+    assert call(pid, "config/read", %{})["config"]["features"]["plugins"] == true
     params = %{"marketplacePath" => marketplace, "pluginName" => @plugin}
 
     listing =
@@ -287,6 +295,18 @@ defmodule SamgitaCodexDriver.NativeSkillsLifecycleTest do
   end
 
   defp start(ctx, opts \\ []) do
+    args = ["app-server", "--listen", "stdio://"]
+
+    if Keyword.get(opts, :local_plugins, false) do
+      NativeLaunchFixture.local_plugins_after_initialize(config_path(ctx), fn ->
+        start_initialized(ctx, opts, args)
+      end)
+    else
+      start_initialized(ctx, opts, NativeLaunchFixture.ordinary_args(args))
+    end
+  end
+
+  defp start_initialized(ctx, opts, args) do
     fixture = ctx.fixture
 
     env =
@@ -307,7 +327,7 @@ defmodule SamgitaCodexDriver.NativeSkillsLifecycleTest do
           {Stdio,
            [
              executable: ctx.binary,
-             args: ["app-server", "--listen", "stdio://"],
+             args: args,
              cwd: fixture.workspace,
              env: env
            ]}

@@ -49,7 +49,12 @@ defmodule SamgitaCodexDriver.ServerInteractionsTest do
           {Stdio,
            [
              executable: binary,
-             args: ["app-server", "--listen", "stdio://"],
+             args:
+               SamgitaCodexDriver.NativeLaunchFixture.ordinary_args([
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ]),
              cwd: fixture.workspace,
              env: %{
                "HOME" => fixture.home,

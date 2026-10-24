@@ -276,7 +276,12 @@ defmodule SamgitaCodexDriver.NativeFuzzySearchTest do
           {Stdio,
            [
              executable: ctx.binary,
-             args: ["app-server", "--listen", "stdio://"],
+             args:
+               SamgitaCodexDriver.NativeLaunchFixture.ordinary_args([
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ]),
              cwd: ctx.workspace,
              env: %{
                "HOME" => Path.join(ctx.root, "home"),

@@ -305,7 +305,12 @@ defmodule SamgitaCodexDriver.NativePermissionVariantsTest do
           {Stdio,
            [
              executable: ctx.binary,
-             args: ["app-server", "--listen", "stdio://"],
+             args:
+               SamgitaCodexDriver.NativeLaunchFixture.ordinary_args([
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ]),
              cwd: ctx.fixture.workspace,
              inherit_env: [],
              env: %{

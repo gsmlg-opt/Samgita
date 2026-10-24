@@ -214,7 +214,12 @@ defmodule SamgitaCodexDriver.NativeProjectProfilesTest do
           {Stdio,
            [
              executable: ctx.binary,
-             args: ["app-server", "--listen", "stdio://"],
+             args:
+               SamgitaCodexDriver.NativeLaunchFixture.ordinary_args([
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ]),
              cwd: ctx.fixture.workspace,
              env: %{
                "HOME" => ctx.fixture.home,

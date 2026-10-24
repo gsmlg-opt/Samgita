@@ -4,6 +4,7 @@ defmodule SamgitaCodexDriver.InitializedFixture do
   import ExUnit.Assertions
   import ExUnit.Callbacks
 
+  alias SamgitaCodexDriver.NativeLaunchFixture
   alias SamgitaCodexDriver.Transport.{Stdio, UnixSocket, WebSocket}
   alias SamgitaProtocolCodex.Wire
 
@@ -182,7 +183,7 @@ defmodule SamgitaCodexDriver.InitializedFixture do
   defp process_opts(context, listen) do
     [
       executable: context.binary,
-      args: ["app-server", "--listen", listen],
+      args: NativeLaunchFixture.ordinary_args(["app-server", "--listen", listen]),
       cwd: context.workspace,
       env: %{
         "HOME" => context.home,

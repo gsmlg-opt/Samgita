@@ -156,7 +156,12 @@ defmodule SamgitaCodexDriver.LegacyApprovalContractTest do
       {:ok, state} =
         Stdio.open(
           executable: binary,
-          args: ["app-server", "--listen", "stdio://"],
+          args:
+            SamgitaCodexDriver.NativeLaunchFixture.ordinary_args([
+              "app-server",
+              "--listen",
+              "stdio://"
+            ]),
           cwd: dir,
           env: %{"HOME" => dir, "CODEX_HOME" => dir, "CODEX_DISABLE_REMOTE_CONTROL" => "1"}
         )

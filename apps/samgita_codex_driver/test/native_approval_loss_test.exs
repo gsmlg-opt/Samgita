@@ -50,15 +50,16 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
     {:ok, owner} =
       Stdio.open(
         executable: binary,
-        args: [
-          "app-server",
-          "--listen",
-          "ws://127.0.0.1:#{port}",
-          "--ws-auth",
-          "capability-token",
-          "--ws-token-sha256",
-          digest
-        ],
+        args:
+          SamgitaCodexDriver.NativeLaunchFixture.ordinary_args([
+            "app-server",
+            "--listen",
+            "ws://127.0.0.1:#{port}",
+            "--ws-auth",
+            "capability-token",
+            "--ws-token-sha256",
+            digest
+          ]),
         cwd: fixture.workspace,
         env: %{
           "HOME" => fixture.home,

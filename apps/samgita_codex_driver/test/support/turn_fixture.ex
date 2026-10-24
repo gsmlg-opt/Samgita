@@ -3,7 +3,7 @@ defmodule SamgitaCodexDriver.TurnFixture do
   import ExUnit.Assertions
   import ExUnit.Callbacks
 
-  alias SamgitaCodexDriver.{ModelFixture, Session, StdioSessionFixture}
+  alias SamgitaCodexDriver.{ModelFixture, NativeLaunchFixture, Session, StdioSessionFixture}
   alias SamgitaCodexDriver.Transport.Stdio
   alias SamgitaProtocolCodex.Error
 
@@ -33,6 +33,20 @@ defmodule SamgitaCodexDriver.TurnFixture do
   end
 
   def start(context, opts \\ []) do
+    args = ["app-server", "--listen", "stdio://"]
+
+    if Keyword.get(opts, :local_plugins, false) do
+      config = Path.join(context.fixture.codex_home, "config.toml")
+
+      NativeLaunchFixture.local_plugins_after_initialize(config, fn ->
+        start_initialized(context, opts, args)
+      end)
+    else
+      start_initialized(context, opts, NativeLaunchFixture.ordinary_args(args))
+    end
+  end
+
+  defp start_initialized(context, opts, args) do
     fixture = context.fixture
 
     {:ok, pid} =
@@ -41,7 +55,7 @@ defmodule SamgitaCodexDriver.TurnFixture do
           {Stdio,
            [
              executable: context.binary,
-             args: ["app-server", "--listen", "stdio://"],
+             args: args,
              cwd: fixture.workspace,
              env: %{
                "HOME" => fixture.home,
