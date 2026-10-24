@@ -859,3 +859,17 @@ this is no full-compatibility or A11 closure. Continue the remaining native
 default/history differentials, operator-authority time/connection branches and
 driver OTP confidentiality boundary, then freeze the combined source for the
 complete preserved-platform/package/consumer and final-pushed hosted matrix.
+
+The [next scoped block](repair-qualification.md#scoped-continuation-after-636b2ad)
+passes **91/0** at both fixed seeds, strict checks and the unchanged source
+guard. It repairs the queued-notification test's missing processed-state barrier
+and adds real connection-timeout, provider-instruction and accounted prefix-fork
+oracles. Thirteen exact physical owners become implemented, zero verified;
+the ledger is **3204 implemented/3417 missing** contracts, with unchanged
+**462 implemented/12 missing/11 blocked** requirements. The terminal local v17
+failed second driver run and retained GitHub-page failure remain recorded;
+hosted636b2ad passes foundation and all46 native profiles but fails completeness.
+Continue exact request-ID reconnect, no-goal/config/stopped fork variants and
+required-skill production discovery, then the complete final-source matrix.
+No selected checkpoint closes A11, source-unreachable paths, real external/OS
+success or full compatibility.

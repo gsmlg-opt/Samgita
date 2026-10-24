@@ -129849,105 +129849,139 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentAddParams.json#/properties/authBearerToken",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Null/wrong credential401, corrected explicit upsert, retained authenticated reconnect without another add. Synthetic loopback only; live rotation, external WSS and universal confidentiality unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/authBearerToken",
       "required": false,
       "schema": "v2/EnvironmentAddParams.json",
       "schema_sha256": "396e713a67e2ee070c2c46a02e7fd515acdeeca9c431500ee7dc2f1a720e6087",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:49-66"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "authBearerToken"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentAddParams.json#/properties/connectTimeoutMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Native held upgrade500ms expiry/EOF, exact disconnected error and status no-retry; separate5000ms control held at least1s then original-byte release yields actual executor initialize/metadata. Exactly two physical connections, no work. Omitted/null/default/zero/max/invalid, initialize timeout, later recovery, external WSS/OS unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/connectTimeoutMs",
       "required": false,
       "schema": "v2/EnvironmentAddParams.json",
       "schema_sha256": "3808f32ffd19ac8287ee6f271684c543bf0689290c95ca385087dbf604961de7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_timeout_profile.exs:56-180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "connectTimeoutMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentAddParams.json#/properties/environmentId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Identity-specific metadata, rejected replacement/explicit upsert and selected Unicode ID. No app-server restart persistence or arbitrary normalization."
+      ],
       "nullable": false,
       "pointer": "/properties/environmentId",
       "required": true,
       "schema": "v2/EnvironmentAddParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:35-94",
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs:62-100"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentAddParams.json#/properties/execServerUrl",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Approved owned loopback metadata and invalid replacement/security rejection. External WSS, DNS/SSRF, arbitrary destination authorization and Noise/rendezvous unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/execServerUrl",
       "required": true,
       "schema": "v2/EnvironmentAddParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:35-94",
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:65-91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "execServerUrl"
     },
     {
@@ -130117,105 +130151,143 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentInfoParams.json#/properties/environmentId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Local/remote/unknown/case-sensitive identity and explicit metadata recovery. No work retry or external selection authority."
+      ],
       "nullable": false,
       "pointer": "/properties/environmentId",
       "required": true,
       "schema": "v2/EnvironmentInfoParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:161-167",
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:20-48",
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs:98"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentInfoResponse.json#/definitions/EnvironmentShellInfo/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Owned/local Linux shell metadata with nonempty name. Other OS, all-shell and shell-execution profiles unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/EnvironmentShellInfo/properties/name",
       "required": true,
       "schema": "v2/EnvironmentInfoResponse.json",
       "schema_sha256": "9379328e2aa9f94e42c7585b4010fef990797db756aa03041ded68febeaae295",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:162-167",
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:21-22"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentInfoResponse.json#/definitions/EnvironmentShellInfo/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Nonempty native Linux shell path. Exact arbitrary executable and Windows/UNC profiles unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/EnvironmentShellInfo/properties/path",
       "required": true,
       "schema": "v2/EnvironmentInfoResponse.json",
       "schema_sha256": "2016195a5fa5f6eb30eacbb55fc5b6913c5159338743af68f3cbfa80a990daea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:162-167",
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:21-23"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentInfoResponse.json#/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Exact nonnull POSIX file URI for owned remote/local cwd including recovery. Null, Windows/UNC, URI escaping and arbitrary paths unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cwd",
       "required": false,
       "schema": "v2/EnvironmentInfoResponse.json",
       "schema_sha256": "810d11408e594e2cc0502059800944d9ac9c41b276065db540aa9d0a4d1080a5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:165",
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:24",
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs:274"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "cwd"
     },
     {
@@ -130265,53 +130337,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentInfoResponse.json#/properties/shell",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Required local/owned Linux shell object with nonempty name/path. Other platforms and unavailable-executor success unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/shell",
       "required": true,
       "schema": "v2/EnvironmentInfoResponse.json",
       "schema_sha256": "4dfee0b114b185272a95df4c8f7f95900fcddbd0368b570d6b44c0ea65a9b999",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:162-167",
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:21-23"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "shell"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentStatusParams.json#/properties/environmentId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Identity-specific unknown/pending/ready/disconnected reads and selected Unicode ID. No execution or blind recovery from status."
+      ],
       "nullable": false,
       "pointer": "/properties/environmentId",
       "required": true,
       "schema": "v2/EnvironmentStatusParams.json",
       "schema_sha256": "6d64979702939ebecfe2a807701896922da8f87b1154ff187261c825a073d3a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:86-112",
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs:64-115"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "environmentId"
     },
     {
@@ -130493,53 +130583,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentStatusResponse.json#/properties/error",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Unknown/disconnected error and omission in exact ready map. Explicit-null output and universal transport error text unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/error",
       "required": false,
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "6e8fa88a1261e4b44377d36bd972a26734af89fd4108d9ed99ad7bd8e51afcbc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:49-51,86-89,105-106,171",
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs:102-115"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "error"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/environment-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/EnvironmentStatusResponse.json#/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Four actual current states including deterministically gated pending and native reconnection. Durable replay, external health and other OS unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/EnvironmentStatusResponse.json",
       "schema_sha256": "52a1f3dbe4932f184acf7ec3b49bbb94eb9832dc160c76bca3c0d290d92c2db9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_environment_profile.exs:86-112,171",
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs:64-115"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio/owned-executor-websocket"
+      ],
       "wire_name": "status"
     },
     {
@@ -169312,7 +169420,7 @@
       "id": "schema:v2/ThreadForkParams.json#/properties/deferGoalContinuation",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_deferred_goal_fork: Cold materialized source receives user-origin active goal only through public API without loading/inference. Omitted/false forks have no copied goal; null, disabled true and enabled ephemeral incompatibility reject explicitly. Persistent enabled true copies exact zero-use goal and history, survives native restart/resume without execution, then explicit net9 clears deferral and one automatic net12 continuation ends budgetLimited21/20. Source goal/history/bytes, actual HTTP/SSE/native IDs/notifications and final cold no-work recovery are asserted. Nonzero source use/time, prefix variants, other goal states, disabled goals, no-goal sources, active flush races and other transport/OS/service profiles remain unqualified."
+        "actual_native_deferred_goal_fork: Public cold goal setup, exact omitted/false/no-inheritance and null/disabled/ephemeral gates; enabled true preserves source goal/history/bytes and defers through native restart/resume. Explicit net9 then automatic net12 ends budgetLimited21/20 with exact native/provider records. Three historical2/1/0-turn prefix forks copy current21 snapshot, survive existing cold restart and zero-turn stopped resume without work. Positive elapsed time, other states, no-source-goal, per-fork goals-disabled, active flush races and other transport/OS/service profiles unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/deferGoalContinuation",
@@ -169327,7 +169435,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_goal_fork_profile.exs:133-347"
+          "apps/samgita_codex_driver/test/native_goal_fork_profile.exs:133-420"
         ]
       },
       "transport_coverage": [
@@ -202425,27 +202533,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/default-gates-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/personality",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_selected_physical_owner: Five-thread actual provider-instruction differential with configured none and no custom base: omitted/null/none strip catalog Personality H1 through next H1; friendly/pragmatic preserve full literal template including uninterpolated placeholder. Exact outbound presence, no preturn inference, five synthetic assistant-only requests and saved native history. Prose-style, custom-base, heading-edge, resume/fork and all-default semantics unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/personality",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "788a0d55655bf7a122818c80143775b839315a3b174b12d14816ee784788f615",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs:961-1064"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "personality"
     },
     {

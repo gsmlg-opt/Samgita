@@ -958,6 +958,111 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     assert :ok = Session.close(pid)
   end
 
+  test "thread personality defaults inherit none while named values preserve catalog instructions",
+       ctx do
+    literal = """
+    Owned catalog intro λ
+    # Personality
+    Owned fixed style {{ personality }}
+    ## Details
+    Owned removable detail.
+    # Rules
+    Owned stable rule.
+    """
+
+    stripped = """
+    Owned catalog intro λ
+    # Rules
+    Owned stable rule.
+    """
+
+    config_path = Path.join(ctx.root, "codex/config.toml")
+    config = File.read!(config_path)
+    refute Regex.match?(~r/^\s*(personality|instructions|model_instructions_file)\s*=/m, config)
+    catalog_path = Path.join(ctx.root, "codex/models.json")
+    catalog = read(ctx, "codex/models.json")
+    assert length(catalog["models"]) == 1
+
+    catalog =
+      put_in(
+        catalog,
+        ["models", Access.at(0), "model_messages", "instructions_template"],
+        literal
+      )
+
+    File.write!(catalog_path, JSON.encode!(catalog))
+    File.write!(config_path, "personality = \"none\"\n" <> config)
+    restart_owned_native(ctx)
+    {pid, journal} = client(ctx, false)
+    assert read(ctx, "requests.json") == []
+
+    cases = [
+      {%{}, false, stripped},
+      {%{"personality" => nil}, true, stripped},
+      {%{"personality" => "none"}, true, stripped},
+      {%{"personality" => "friendly"}, true, literal},
+      {%{"personality" => "pragmatic"}, true, literal}
+    ]
+
+    ids =
+      for {{extra, present, expected}, marker} <- Enum.with_index(cases, 930) do
+        requests = read(ctx, "requests.json")
+        response = start(pid, ctx, extra)
+        assert last_params(journal, "thread/start") == params(ctx, extra)
+        assert Map.has_key?(last_params(journal, "thread/start"), "personality") == present
+        assert_default_session_settings(ctx, response, "low")
+        thread = response["thread"]["id"]
+        assert is_binary(thread) and thread != ""
+        assert response["thread"]["turns"] == []
+        assert response["thread"]["status"] == %{"type" => "idle"}
+        assert_no_import_work(ctx, pid, requests)
+
+        turn = start_turn(pid, thread, marker, %{})
+        assert last_params(journal, "turn/start") == turn_params(thread, marker, %{})
+        assert_default_completion(finish(pid, turn), thread, turn)
+        actual = read(ctx, "requests.json")
+        assert length(actual) == marker - 929
+        assert Enum.take(actual, length(requests)) == requests
+        request = List.last(actual)
+        assert request["model"] == "mock-model"
+        refute Map.has_key?(request, "instructions")
+
+        assert %{
+                 "type" => "message",
+                 "role" => "developer",
+                 "content" => [%{"type" => "input_text", "text" => ^expected}]
+               } = hd(request["input"])
+
+        user_texts =
+          for input <- request["input"],
+              input["role"] == "user",
+              content <- input["content"],
+              content["type"] == "input_text",
+              do: content["text"]
+
+        assert Enum.count(user_texts, &(&1 == "synthetic:defaults:#{marker}")) == 1
+
+        for other <- 930..934, other != marker do
+          refute Enum.any?(user_texts, &String.contains?(&1, "synthetic:defaults:#{other}"))
+        end
+
+        saved =
+          call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+        assert [saved_turn] = saved["turns"]
+        assert_default_text_turn(saved_turn, turn, marker)
+        assert_no_import_work(ctx, pid, actual)
+        thread
+      end
+
+    assert length(Enum.uniq(ids)) == 5
+    assert Enum.sort(call(pid, "thread/loaded/list", %{})["data"]) == Enum.sort(ids)
+    assert count(journal, "thread/start") == 5
+    assert count(journal, "turn/start") == 5
+    assert length(read(ctx, "requests.json")) == 5
+    assert :ok = Session.close(pid)
+  end
+
   test "omitted section lists all while explicit null lists only unsectioned threads", ctx do
     {pid, journal} = client(ctx, true)
     unsectioned = start(pid, ctx)["thread"]["id"]

@@ -87,9 +87,34 @@ results/source hashes are
 That runner stopped before its final source guard; only v2 claims guard success.
 
 One physical property gains scoped implemented evidence, zero verified. This
-enabled success is the 46th explicitly required hosted native profile. Nonzero
-source usage/time inheritance, prefix selection, other goal states, disabled
-goals/no-goal sources, concurrent active-source flush and other transport/OS/
-service profiles remain unqualified. No Samgita decision engine, Task acceptance,
+enabled success is the 46th explicitly required hosted native profile. Positive
+source elapsed time, other goal states, disabled goals/no-goal sources,
+concurrent active-source flush and other transport/OS/service profiles remain
+unqualified. No Samgita decision engine, Task acceptance,
 exactly-once guarantee, full compatibility, A11 closure, publication or deployment
 follows. Complete final-source local/hosted checks remain required.
+
+## Current goal snapshot with historical prefixes
+
+The real budgetLimited child at21/20 now supplies three additional true forks:
+`lastTurnId` selects two turns, `beforeTurnId` selects one, and cutting before
+the original source turn selects zero. Each child copies the exact **current**
+goal snapshot, changing only thread ID, even when its selected history predates
+that usage. Original goal, full history and every rollout byte remain unchanged.
+No fourth provider request is permitted.
+
+The existing final owned restart cold-reads all three goals/histories/identities
+without loading a runtime, then explicitly resumes the zero-turn stopped child.
+Its budgetLimited goal remains exact and it does not execute. Original target
+resume, no-work observations, source invariants and all cleanup checks remain.
+Pinned `thread_fork_goal.rs:5-28` copies the current snapshot independently of
+history cutoffs; `thread_processor.rs:5548-5574` controls persistence/deferral.
+This is nonzero **token** inheritance and prefix/cold-empty-child evidence;
+there is no positive elapsed-time claim or direct state-store seeding.
+
+The full 15-file owning block passes **91/0** at each fixed seed, with compile,
+format, root strict Credo and a matching executable-source guard. Exact commands
+and logs are `/tmp/samgita-native-repair-continuation-v2-20261025/`. The existing
+physical deferral owner gains stronger evidence and no inventory-count change.
+Remaining status/default/config/active-flush/deployment profiles and complete
+final-source local/hosted qualification remain open.

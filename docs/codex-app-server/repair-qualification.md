@@ -6,6 +6,131 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Scoped continuation after 636b2ad
+
+The fifteen-file owning block passes **91/0 twice**, seeds `501432` and
+`987654`, after the same-sender queued-notification barrier and three native
+extensions. The [notification record](notification-test-synchronization.md#queued-notification-after-reconnect)
+preserves the unexplained historical failure, isolated negative reproduction
+results and deterministic held-callback regression. No production Session or
+deadline changes. The new [executor timeout](environment-owners-qualification.md)
+distinguishes real500ms expiry from delayed5000ms success without status retries;
+the [personality differential](default-gates-qualification.md#new-thread-personality-instruction-differential)
+asserts actual provider instructions; the [goal prefix extension](goal-fork-qualification.md#current-goal-snapshot-with-historical-prefixes)
+copies the current accounted21 snapshot through2/1/0-turn histories and cold
+empty-child resume, with exactly the existing three provider requests.
+
+Warning-free compile/tests, formatting, root strict Credo (431 files) and the
+executable/config/workflow source guard pass. Exact commands and logs are under
+`/tmp/samgita-native-repair-continuation-v2-20261025/`; results SHA256
+`c967f72292bd73506520f86958662d8ea1c3a37106624e4eab1f9b6dd2d292f7`,
+source SHA256 `595ddba6fe770b9b229e3fddcc7f820fba6008c8959596354b99e8046779c4ca`.
+The initial v1 timeout profile failed before native startup because the draft
+omitted required isolated `CODEX_HOME`. Supplying the same explicit scratch
+environment as the retained thread fixture corrects the fixture without
+relaxing the driver guard. Both initial and successful logs remain.
+
+Eleven existing direct environment owners plus the two new primary properties
+gain implemented-only evidence after checking each physical node/hash. Inventory
+regressions **37/0** and generated consistency pass: **485 requirements:0
+verified/462 implemented/12 missing/11 blocked;6621 contracts:0 verified/3204
+implemented/3417 missing**. Prefix enrichment changes no count. The timeout is
+the47th explicitly required hosted profile, not a hosted pass. The failed v17
+local and terminal636b2ad hosted outcomes below remain historical evidence;
+complete final-source local/hosted qualification, further reachable behavior,
+A11 and external/OS success remain required. No publication or deployment.
+
+## Frozen local matrix at 636b2ad
+
+The v17 combined runner is terminal against executable source
+`636b2adaaac39a33cc77608883b77d0585ed0212`, exiting one. All **17 platform
+commands** ran. The package runner executed **8/23 commands** before its
+retained fail-fast rule stopped on the second default-driver run; the remaining
+15 commands, including both46-profile repeats, consumers and WebSocket/wire
+checks, were **not run** locally in this matrix. Hosted results below are a
+separate qualification and do not fill these local cells.
+
+| Preserved platform check | Actual terminal result |
+| --- | --- |
+| Populated root seed501432 | Core **230/0/1 excluded**, web **130/0/7 excluded** |
+| Populated root seed987654 | Core **230/0/1 excluded**, web **130/1/7 excluded** |
+| Native runtime/API/concurrency | Core **59/0**, web **10/0** |
+| Both consecutive recovery/restart repeats | Core **4/0**, web **1/0** each |
+| Compile, format, strict Credo, forced Dialyzer, audit, legacy exclusion | Passed |
+| Frozen frontend install, assets and production assembly | Passed; assembly never started |
+
+The platform failure is the unchanged GitHub first-page assertion at
+`github_controller_test.exs:56`. The database remains
+`samgita_redesign_recovery_repair_test`; no reset, task/history deletion,
+pagination/assertion change, fake mapping or activation bypass occurs. Both
+recovery/restart repeats pass after the populated suites. The earlier Fake Agent
+listener-rebind failure remains without a claimed repair.
+
+Package inventory37 regressions/consistency, namespace/native-sandbox preflight,
+driver compile and format pass. Complete default driver seed501432 passes
+**670/0** in654.2s; seed987654 finishes **670/1** in646.7s. The new failure is
+`native_notification_test.exs:171,187`: after reconnect acknowledgement, the
+queued notification's exact stale-session reply is absent from the displayed
+mailbox at the unchanged100ms assertion. Reconnect close/gap/open notifications
+are present. This log alone does not establish delayed, lost or wrong replies.
+It is not classified as harmless flakiness. The bounded diagnosis checks a
+same-sender processed-state barrier and preserves exact generation/no-send
+requirements; its results are separate from this failed original matrix.
+
+Platform's executable source guard passes. Package's final guard was **not
+reached** after the failure. A separate post-failure comparison nevertheless
+matches all **1476** saved executable/configuration/workflow files, recorded in
+`post-failure-source-check.json`. Documentation-only edits do not change those
+inputs. Exact commands/logs remain in
+`/tmp/samgita-repair-final-{combined,platform,packages}-v17-20261024/` and adjacent
+`.py` runners. Platform/package/combined results SHA256 values are respectively
+`2f0182807f8a43e7abb38eb3ae2c6c7bc7755aad6d948689c7fcb96c8e282717`,
+`ddbbd4596d750fa4adbc45253c3e9346b4f7c3cb76d2ddeea7cb8ac84dc2e509`,
+`8b6e2c0699a04efbf57d773df86ea2b741ede91d9074c3752a1410af6c01b21e`.
+No complete-local-matrix, full-compatibility, A11, publication or deployment
+claim follows. The notification repair and complete final-source rerun remain
+required.
+
+## Hosted checkpoint at 636b2ad
+
+Both workflows are terminal at exact pushed source
+`636b2adaaac39a33cc77608883b77d0585ed0212`.
+[Foundation 40124365695](https://github.com/gsmlg-opt/Samgita/actions/runs/40124365695)
+passes every step: both populated aggregates (**230 core/0/one excluded +
+130 web/0/seven excluded** each), restart/rollback **1/0**, neutral core **32/0**,
+both neutral outside consumers **1/0** each, neutral WebSocket and native wire
+**42/0** each, strict static checks, forced Dialyzer, audits, assets and local
+production assembly. The assembled release is never started or published.
+
+[Conformance 40124375328](https://github.com/gsmlg-opt/Samgita/actions/runs/40124375328)
+is **failed overall**. Both native execution jobs pass every step: driver
+partitions **364/0 + 306/0 = 670/0**, seed501432; native wire **42/0**; native
+outside consumer **1/0**; fenced runtime/API/concurrency **59 core + 10 web/zero
+failures**; and all **46 explicit isolated profiles, 269/0**, without exclusions
+or skipped downstream steps. These include supplied-history imports, actual
+session-start provenance and deferred goal inheritance with cold restart.
+The app-server frames come from the immutable pin; model/service dependencies
+are owned synthetic fixtures. No live provider success follows.
+
+Mandatory completeness passes all **37 inventory regressions** and source
+consistency, then fails `--require-verified`: **485 requirements: 0 verified /
+462 implemented / 12 missing / 11 blocked; 6,621 contracts: 0 verified /
+3,191 implemented / 3,430 missing**. Passing selected journeys does not waive
+the remaining behavior, unreachable production emitters, external/OS success
+or A11. The [terminal preserved local matrix](#frozen-local-matrix-at-636b2ad)
+retains its populated GitHub assertion and new seed987654 queued-notification
+failure; hosted seed501432 does not repair them.
+
+The terminal-only read-only collector
+`/tmp/samgita-collect-hosted-636b2ad-20261025.py` verifies exact head and completed
+status before collecting. Metadata, exact counts/line anchors and complete logs
+remain in `/tmp/samgita-hosted-636b2ad-20261025/`. Foundation log SHA256 is
+`ae4f0df04fb16c5f7625477d0b88613a47cb7772b96e85751d2aa165a5afc8b6`;
+conformance log SHA256 is
+`4d4e2ec6cd46a7818860d7b300b4b9bc329e877be6bb9a90741f6e530dcf01e8`.
+No tag, package publication, production migration, credential or deployment
+change occurs. The full goal remains active and incomplete.
+
 ## Frozen local matrix at 96f7130
 
 The v16 combined runner is terminal against executable source

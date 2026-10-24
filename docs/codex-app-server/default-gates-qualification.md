@@ -156,3 +156,44 @@ all source-specific defaults, arbitrary dynamic tools, model fallback,
 nonempty selected roots/environments, alternate stores, transports, backend
 success profiles, reconnect/cancellation races, credentials or A11.
 The lifecycle rows must remain incomplete even after these selected cases pass.
+
+## New-thread personality instruction differential
+
+One additional actual-native case compares five new ordinary threads with
+configured `personality="none"`: request omission, JSON null and string `none`
+produce the independent stripped catalog text; `friendly` and `pragmatic`
+preserve the full literal template. The owned catalog deliberately contains an
+exact `# Personality` H1, nested H2 and following `# Rules` H1. The unchanged
+`{{ personality }}` literal proves no style interpolation is inferred.
+
+Pinned `core/src/config/mod.rs:4190` uses request personality or configured
+personality; `models-manager/src/model_info.rs:46-98` strips the catalog section
+only for effective enum None without custom base instructions.
+`prompts/src/model_instructions.rs:8-16` and
+`protocol/src/openai_models.rs:545-560` render this template literally.
+The test verifies the scratch config has no competing custom instruction keys,
+changes only its owned catalog/config, and reuses the existing confirmed native
+restart. Shared fixture source and the 32-request bound remain unchanged.
+
+Exact outbound field presence, idle/no-inference state before each explicit
+turn, the first real provider developer-message text, distinct user markers,
+correlated native completion and full saved text-turn histories are asserted.
+Exactly five assistant-only synthetic provider requests occur; the app-server
+frames and input construction come from the immutable native executable. This
+qualifies request instruction selection, not generated personality/prose quality.
+
+The primary physical owner
+`schema:v2/ThreadStartParams.json#/properties/personality`, SHA256
+`788a0d55655bf7a122818c80143775b839315a3b174b12d14816ee784788f615`,
+gains scoped implemented evidence only. No global enum or nullable child is
+promoted. Custom-base precedence, heading edge cases, resume/fork settings and
+all-source default semantics remain incomplete.
+
+The full 15-file owning block in verified Devenv passes **91/0** twice, seeds
+`501432` and `987654`, including this enlarged profile. Warning-free compile,
+format, root strict Credo (431 files) and the unchanged executable-source guard
+pass. Exact commands/logs are under
+`/tmp/samgita-native-repair-continuation-v2-20261025/`; the read-only source
+audit is `/tmp/samgita-thread-start-personality-audit-20261025.md`, SHA256
+`cbb1fa41a7322a4827d320bd2262af7b6a24144012a4b640a766408489c9e590`.
+Complete final-source local/hosted qualification remains a separate gate.

@@ -333,9 +333,76 @@ defmodule SamgitaCodexDriver.NativeGoalForkProfileTest do
     assert_idle(resumed, target)
     quiet(ctx, resumed, 3)
 
+    # Cutoffs select historical turns, while goal inheritance copies the current
+    # native snapshot. None of these stopped children may issue another request.
+    prefix_source = %{
+      path: child["path"],
+      bytes: File.read!(child["path"]),
+      history: target_history,
+      goal: final
+    }
+
+    prefix_children =
+      for {boundary, expected_history} <- [
+            {%{"lastTurnId" => explicit_turn}, Enum.take(target_history, 2)},
+            {%{"beforeTurnId" => explicit_turn}, Enum.take(target_history, 1)},
+            {%{"beforeTurnId" => source_turn}, []}
+          ] do
+        params =
+          Map.merge(
+            %{"threadId" => target, "excludeTurns" => true, "deferGoalContinuation" => true},
+            boundary
+          )
+
+        forked = call(resumed, "thread/fork", params)["thread"]
+        id = forked["id"]
+        assert_uuid(id)
+        refute id in [source, target]
+        assert forked["forkedFromId"] == target and forked["turns"] == []
+        assert String.starts_with?(forked["path"], ctx.root <> "/codex/")
+        refute forked["path"] in [baseline.path, prefix_source.path]
+        expected_goal = Map.put(final, "threadId", id)
+        assert goal(resumed, id) == expected_goal
+        assert turns(resumed, id) == expected_history
+        assert_goal_fork_source(resumed, target, prefix_source)
+        assert_attempts(ctx, 3)
+        %{id: id, path: forked["path"], goal: expected_goal, history: expected_history}
+      end
+
+    assert length(Enum.uniq_by(prefix_children, & &1.id)) == 3
+    assert length(Enum.uniq_by(prefix_children, & &1.path)) == 3
+
     {last, _sent} = restart(ctx, resumed)
     assert loaded(last) == [] and goal(last, target) == final
     assert turns(last, target) == target_history and loaded(last) == []
+
+    for prefix <- prefix_children do
+      assert goal(last, prefix.id) == prefix.goal
+      assert turns(last, prefix.id) == prefix.history
+
+      stored =
+        call(last, "thread/read", %{"threadId" => prefix.id, "includeTurns" => false})["thread"]
+
+      assert stored["id"] == prefix.id and stored["path"] == prefix.path
+      assert stored["forkedFromId"] == target
+      assert loaded(last) == []
+    end
+
+    assert_goal_fork_source(last, target, prefix_source)
+    assert_source(last, source, baseline)
+    empty = List.last(prefix_children)
+    assert empty.history == []
+
+    restored =
+      call(last, "thread/resume", %{"threadId" => empty.id, "excludeTurns" => true})["thread"]
+
+    assert restored["id"] == empty.id and restored["turns"] == []
+    assert goal(last, empty.id) == empty.goal and turns(last, empty.id) == []
+    assert_idle(last, empty.id)
+    assert loaded(last) == [empty.id]
+    assert_goal_fork_source(last, target, prefix_source)
+    assert_attempts(ctx, 3)
+
     assert call(last, "thread/resume", %{"threadId" => target})["thread"]["id"] == target
     assert goal(last, target) == final and turns(last, target) == target_history
     assert_source(last, source, baseline)
@@ -351,6 +418,12 @@ defmodule SamgitaCodexDriver.NativeGoalForkProfileTest do
     assert turns(pid, id) == baseline.history
     assert File.read!(baseline.path) == baseline.bytes
     refute id in loaded(pid)
+  end
+
+  defp assert_goal_fork_source(pid, id, snapshot) do
+    assert goal(pid, id) == snapshot.goal
+    assert turns(pid, id) == snapshot.history
+    assert File.read!(snapshot.path) == snapshot.bytes
   end
 
   defp assert_goal(value, id, status, tokens, created, timing) do
