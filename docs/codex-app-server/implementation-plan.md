@@ -33,6 +33,12 @@ passes both seeds with exact permitted/declined physical patch effects. It adds
 supplemental permission/file evidence only; source-distinct exact-file and glob
 denies receive no invented callback or runtime acceptance claim.
 
+The [replayed-command cancellation case](command-replay-cancellation-qualification.md)
+passes both seeds over two real borrowed WebSocket reconnects. Explicit warm
+replay preserves the original envelope; explicit interruption retires it before
+the next resume, with zero approval replies or command effects. The native
+in-memory callback store does not imply cold-process restoration.
+
 2026-10-23: inspected live `main` at
 `4fe354f2ce916aa32517c361a171b8878bf6ca84`. Only the user goal/plan inputs were
 untracked before this work; preserve them. Read both inputs in full, AGENTS.md,

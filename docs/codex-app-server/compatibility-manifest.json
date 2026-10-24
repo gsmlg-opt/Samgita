@@ -7749,7 +7749,8 @@
         "docs/codex-app-server/approval-lifetime-qualification.md",
         "docs/codex-app-server/permission-lifetime-qualification.md",
         "docs/codex-app-server/resume-page-qualification.md",
-        "docs/codex-app-server/approval-loss-qualification.md"
+        "docs/codex-app-server/approval-loss-qualification.md",
+        "docs/codex-app-server/command-replay-cancellation-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/resume",
@@ -7761,7 +7762,8 @@
         "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
         "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
         "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim.",
-        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing.",
+        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits."
       ],
       "params": {
         "$ref": "#/definitions/ThreadResumeParams"
@@ -7797,7 +7799,8 @@
           "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
           "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-197,199-242,260-300",
           "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-223",
-          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372",
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
         ]
       },
       "transport_coverage": [
@@ -8596,7 +8599,8 @@
         "docs/codex-app-server/deferred-mcp-qualification.md",
         "docs/codex-app-server/core-thread-turn-qualification.md",
         "docs/codex-app-server/approval-lifetime-qualification.md",
-        "docs/codex-app-server/permission-lifetime-qualification.md"
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/command-replay-cancellation-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:turn/interrupt",
@@ -8606,7 +8610,8 @@
         "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified.",
         "Selected actual-native behavior: ACK then native interrupted completion and pending interaction retirement. Selected pending tool/input cases only; not success/retry authorization.",
         "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
-        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits."
       ],
       "params": {
         "$ref": "#/definitions/TurnInterruptParams"
@@ -8640,7 +8645,8 @@
           "apps/samgita_codex_driver/test/deferred_mcp_test.exs",
           "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs",
           "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
-          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:144-197,272-300,326-351"
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:144-197,272-300,326-351",
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
         ]
       },
       "transport_coverage": [
@@ -9833,7 +9839,8 @@
         "docs/codex-app-server/approval-loss-qualification.md",
         "docs/codex-app-server/approval-validation-qualification.md",
         "docs/codex-app-server/approval-cache-context-qualification.md",
-        "docs/codex-app-server/permission-effects-qualification.md"
+        "docs/codex-app-server/permission-effects-qualification.md",
+        "docs/codex-app-server/command-replay-cancellation-qualification.md"
       ],
       "id": "lifecycle:approval-decisions",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -9849,7 +9856,8 @@
         "Selected actual-native invalid-reply preservation and barrier-released competing replies: one local settlement, stale rejection, separate native resolution/effects/history. Selected nested permission response conversion/intersection; no shared command-request owner or exactly-once external execution claim. Broad approval lifecycle, legacy emitters and other deployment profiles remain incomplete.",
         "Additional actual-native command cache context: exact fixed private-shell argv in cwd A reuses session approval, cwd B prompts anew and is declined; confirmed native restart/cold resume prompts for A again. Exact stdout/exit/effects/provider counts and all turn IDs asserted; ordinary declined pre-launch commands are live items but absent from durable command history. No persisted amendment, pending cold restoration, all key/environment/transport/OS or fully verified claim. Earlier limitations describe their owning checkpoint scopes.",
         "Additional actual-native ALL-key patch cache: accepted A plus fresh B requires one callback correlated to both prescribed native item changes; decline preserves A bytes/B absence, later A-only update reuses original cache. Exact physical bytes/provider continuations/history; no generic patch atomicity or all cache/permission/loss/deployment qualification. Earlier limitations describe their owning checkpoint scopes.",
-        "Additional actual-native denied-directory effects: omitted requested deny is retained during explicit turn-grant intersection; permitted sibling patch has exact real bytes without file approval, denied directory child prompts before effects and explicit decline preserves bytes. Exact native item/callback association, normalized grant/provider counts/resolution/history and owned cleanup. Only this directory/child and positive control; no exact-file/glob enforcement, symlink/hardlink, full lifecycle/environment/OS/backend/A11 or verified promotion. Older records retain their own scoped limits."
+        "Additional actual-native denied-directory effects: omitted requested deny is retained during explicit turn-grant intersection; permitted sibling patch has exact real bytes without file approval, denied directory child prompts before effects and explicit decline preserves bytes. Exact native item/callback association, normalized grant/provider counts/resolution/history and owned cleanup. Only this directory/child and positive control; no exact-file/glob enforcement, symlink/hardlink, full lifecycle/environment/OS/backend/A11 or verified promotion. Older records retain their own scoped limits.",
+        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits."
       ],
       "required_behavior": "preserve every decision variant and edits; require explicit authorized handler",
       "schema_sha256": "b0c99e763de6cb504aee7aadd4177c897fe5cb9065748cf7fe5e988558d1ae5e",
@@ -9875,7 +9883,8 @@
           "apps/samgita_codex_driver/test/native_permission_nested_test.exs",
           "apps/samgita_codex_driver/test/native_command_cache_context_test.exs:76-215,226-259",
           "apps/samgita_codex_driver/test/native_multifile_approval_test.exs:53-202,207-253",
-          "apps/samgita_codex_driver/test/native_permission_effects_test.exs:70-240,255-291"
+          "apps/samgita_codex_driver/test/native_permission_effects_test.exs:70-240,255-291",
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
         ]
       },
       "transport_coverage": [
@@ -10046,7 +10055,8 @@
       "direction": "lifecycle_rule",
       "evidence": [
         "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
-        "docs/codex-app-server/approval-loss-qualification.md"
+        "docs/codex-app-server/approval-loss-qualification.md",
+        "docs/codex-app-server/command-replay-cancellation-qualification.md"
       ],
       "id": "lifecycle:disconnect-reconnect",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10054,7 +10064,8 @@
         "actual_native_reconnect_local_synthetic_backend: Borrowed native WebSocket reconnect requires fresh initialize; explicit resume retains one turn and exactly one provider request434-442.",
         "scripted_peer_fault: Dropped mutation returns uncertainty; pending cleared; reconnect never replays; old ID rejected and explicit reconciliation only.",
         "Earlier completed-turn native reconnect and scripted-peer ambiguity are supplemented by selected actual native file/permission callback loss cases. No upstream deduplication or replay cursor guarantee.",
-        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing.",
+        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits."
       ],
       "required_behavior": "new connection initializes separately; no fabricated replay or upstream deduplication guarantees",
       "schema_sha256": "10c97a79f947489227cef9b60bf9e6dab1c44aece1679f59d42f88c73a6744ce",
@@ -10069,7 +10080,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs:424",
           "apps/samgita_codex_driver/test/session_test.exs:203",
-          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372",
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
         ]
       },
       "transport_coverage": [
@@ -12535,7 +12547,8 @@
         "docs/codex-app-server/tool-interactions-qualification.md",
         "docs/codex-app-server/approval-lifetime-qualification.md",
         "docs/codex-app-server/permission-lifetime-qualification.md",
-        "docs/codex-app-server/approval-loss-qualification.md"
+        "docs/codex-app-server/approval-loss-qualification.md",
+        "docs/codex-app-server/command-replay-cancellation-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:serverRequest/resolved",
@@ -12545,7 +12558,8 @@
         "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified.",
         "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
         "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
-        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing.",
+        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits."
       ],
       "params": {
         "$ref": "#/definitions/ServerRequestResolvedNotification"
@@ -12571,7 +12585,8 @@
           "apps/samgita_codex_driver/test/session_tool_retirement_test.exs",
           "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
           "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:144-197,272-300,326-351",
-          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372",
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
         ]
       },
       "transport_coverage": [
@@ -14634,7 +14649,8 @@
         "docs/codex-app-server/network-amendment-qualification.md",
         "docs/codex-app-server/approval-edits-qualification.md",
         "docs/codex-app-server/approval-lifetime-qualification.md",
-        "docs/codex-app-server/approval-cache-context-qualification.md"
+        "docs/codex-app-server/approval-cache-context-qualification.md",
+        "docs/codex-app-server/command-replay-cancellation-qualification.md"
       ],
       "experimental": false,
       "id": "server_request:item/commandExecution/requestApproval",
@@ -14648,7 +14664,8 @@
         "Expanded actual native HTTP decisions at171-369: one-shot/session, equivalent-host edit, mismatched allow vs deny cache, explicit error, decline and interruption preserve exact effects/rules/warnings/provider counts. Remaining cross-context, loss/restart, protocol/OS and full lifecycle profiles stay unqualified.",
         "actual_native_edited_prefix: Exact narrower/unrelated safe prefixes persist with current execution but distinct later prompting; empty prefix warns before file creation while current approval still executes. Subsequent original commands explicitly decline; stale handles/history/effects asserted. No broad prefix, legacy runtime or full lifecycle qualification.",
         "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
-        "Additional actual-native command cache context: exact fixed private-shell argv in cwd A reuses session approval, cwd B prompts anew and is declined; confirmed native restart/cold resume prompts for A again. Exact stdout/exit/effects/provider counts and all turn IDs asserted; ordinary declined pre-launch commands are live items but absent from durable command history. No persisted amendment, pending cold restoration, all key/environment/transport/OS or fully verified claim. Earlier limitations describe their owning checkpoint scopes."
+        "Additional actual-native command cache context: exact fixed private-shell argv in cwd A reuses session approval, cwd B prompts anew and is declined; confirmed native restart/cold resume prompts for A again. Exact stdout/exit/effects/provider counts and all turn IDs asserted; ordinary declined pre-launch commands are live items but absent from durable command history. No persisted amendment, pending cold restoration, all key/environment/transport/OS or fully verified claim. Earlier limitations describe their owning checkpoint scopes.",
+        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits."
       ],
       "params": {
         "$ref": "#/definitions/CommandExecutionRequestApprovalParams"
@@ -14688,7 +14705,8 @@
           "apps/samgita_codex_driver/test/native_network_amendment_profile.exs",
           "apps/samgita_codex_driver/test/native_approval_edits_test.exs:46-130,157-175,226-282",
           "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
-          "apps/samgita_codex_driver/test/native_command_cache_context_test.exs:76-215,226-259"
+          "apps/samgita_codex_driver/test/native_command_cache_context_test.exs:76-215,226-259",
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
         ]
       },
       "transport_coverage": [
@@ -20717,7 +20735,8 @@
         "docs/codex-app-server/core-thread-turn-qualification.md",
         "docs/codex-app-server/thread-event-lifecycle-qualification.md",
         "docs/codex-app-server/approval-lifetime-qualification.md",
-        "docs/codex-app-server/resume-page-qualification.md"
+        "docs/codex-app-server/resume-page-qualification.md",
+        "docs/codex-app-server/command-replay-cancellation-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/resume",
@@ -20727,7 +20746,8 @@
         "Selected actual-native behavior: Explicit cold resume recovers identity and history without provider request. Path/history/setting overrides and paginated resume fields missing.",
         "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
         "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
-        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim.",
+        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits."
       ],
       "prerequisites": [
         "initialized"
@@ -20747,7 +20767,8 @@
           "apps/samgita_codex_driver/test/turn_input_test.exs",
           "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
           "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
-          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-223"
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-223",
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
         ]
       },
       "transport_coverage": [
@@ -21357,7 +21378,8 @@
       "evidence": [
         "docs/codex-app-server/deferred-mcp-qualification.md",
         "docs/codex-app-server/core-thread-turn-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/command-replay-cancellation-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:turn/interrupt",
@@ -21366,7 +21388,8 @@
       "limitations": [
         "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified.",
         "Selected actual-native behavior: ACK then native interrupted completion and pending interaction retirement. Selected pending tool/input cases only; not success/retry authorization.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits."
       ],
       "prerequisites": [
         "initialized"
@@ -21385,7 +21408,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/deferred_mcp_test.exs",
           "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
         ]
       },
       "transport_coverage": [
