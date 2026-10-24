@@ -38,7 +38,7 @@ The subsequent [queue/managed unit](queue-managed-state-qualification.md) passes
 **15/0** in the complete owning block at both seeds, adding nine further owners.
 The [BEM unit](realtime-bem-qualification.md) passes **3/0** at both seeds and
 adds 13 owners plus the 31st required hosted profile. Current totals are
-**2,840 implemented / 3,781 missing**, zero verified contracts. Requirements remain **462 implemented /
+**2,871 implemented / 3,750 missing**, zero verified contracts. Requirements remain **462 implemented /
 12 missing / 11 blocked**. Hosted `5c22159` now passes foundation, both complete
 driver partitions (**653/0**), all 31 isolated profiles (**214/0**), the native
 outside consumer and platform journeys. Its completeness job still fails;
@@ -46,8 +46,10 @@ the [frozen local matrix](repair-qualification.md#frozen-local-matrix-at-5c22159
 is terminal with all 23 package commands passing, **653/0** defaults and
 **214/0** profiles at both seeds, and the same retained first-page aggregate
 failure across 17 platform commands. Both source guards match and both
-recovery/restart repeats pass. Next are genuine native command-cap/default-timeout,
-explicit-null skills/input and read-state cases, and image quota failure/BEM
+recovery/restart repeats pass. Command-cap/default-timeout, explicit-null
+skills/input/read-state and image quota failure/BEM cases now pass their scoped
+owning block; final combined/hosted checks for the new source remain required.
+Next are authenticated plugin schedule metadata and image success/artifact
 qualification. A11, source-unreachable and external/OS requirements
 stay incomplete. Do not infer full compatibility or release.
 

@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,840 implemented / 3,781 missing
+11 blocked requirements** and **0 verified / 2,871 implemented / 3,750 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,840 directly exercised
+MCP entries have scoped implementation evidence. These 2,871 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -26,6 +26,15 @@ owners gain implemented evidence. No existing deadline changes; the new
 disableTimeout case explicitly crosses the native ten-second default. The
 ephemeral read uses a healthy durable receipt control, without altering any
 store. These scoped results do not close the full goal or final-source checks.
+
+Two [image quota cases](native-image-quota-qualification.md) pass in that same
+**31/0** owning block at both seeds. Actual HTTP429 handling produces typed
+reset/null failures, one image BEM promotion and identical cold backing history.
+The first run's two fixture-prerequisite failures and supported configuration
+correction remain recorded. No native deadline or assertion changes; synthetic
+account/backend evidence does not establish real image-service integration.
+Thirty-one exact physical failure/item owners gain implemented evidence; no
+contract becomes fully verified.
 
 The [hosted checkpoint at 5c22159](repair-qualification.md#hosted-checkpoint-at-5c22159)
 passes foundation and both native execution jobs: both complete driver partitions

@@ -82940,124 +82940,169 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ImageGenerationFailure/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "650bc5c3e4d996a7655ae006b4fbe57c236b938ee501f4dea53895d348633d54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ImageGenerationFailure/oneOf/0/properties/limitId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0/properties/limitId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "limitId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ImageGenerationFailure/oneOf/0/properties/resetsAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0/properties/resetsAt",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "resetsAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ImageGenerationFailure/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "c4b4ffaeb308165f4a6716052013319f973947c733bd0a8c12bae17910e1e5f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ImageGenerationFailure/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "7b4b0ebf6f6b5c83a1f365e79708d16167afc0696f74ce57eeb2ac777940039c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -90149,172 +90194,245 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15",
       "schema": "ServerNotification.json",
       "schema_sha256": "92a4f98d8d956329647331581b5bfb8840838cbdefd160d8dfd8810b0fbb5df9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/failure",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/failure",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "f169a18bcebc52a6644cc5acb5a6b6f7a1780fd7b48839c8320d50721bc3c903",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "failure"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: ImageGenerationFailure reference branch carries usageLimitExceeded, image_gen limitId and reset integer/null in completed image. Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "9d6be064bb5dccfe1c4f1b72d962685718b736414dbecf2e54ac3baf4bc7787f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: failure=null at item/started Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/result",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/result",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "result"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/revisedPrompt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/revisedPrompt",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "revisedPrompt"
     },
     {
@@ -90390,101 +90508,145 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only in_progress/failed notification status or failed read status is asserted; schema is unconstrained string. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/status",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/transparentBackground",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only explicit null background is positively observed; boolean values and omitted-default handling are not qualified. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/transparentBackground",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "e0967022225ced84090753f68ab33a2d09e0758212b09b10ce9b09dfa8e9a9d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "transparentBackground"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "b972a3c2c72a640147fcc2542d9a5f10c24b481790ed06ee6e530164dc51925a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/15/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: started in_progress image item: fixed id, null prompt/background/failure, empty result; completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "d1bbb220efc0c0dad7a8062b6c99bded3555ccbbccb35e77c9ec35b8c60a97a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:264-272",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-262",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:254-259"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -171857,124 +172019,174 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ImageGenerationFailure/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "650bc5c3e4d996a7655ae006b4fbe57c236b938ee501f4dea53895d348633d54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ImageGenerationFailure/oneOf/0/properties/limitId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0/properties/limitId",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "limitId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ImageGenerationFailure/oneOf/0/properties/resetsAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0/properties/resetsAt",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "resetsAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ImageGenerationFailure/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "c4b4ffaeb308165f4a6716052013319f973947c733bd0a8c12bae17910e1e5f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ImageGenerationFailure/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: type=usageLimitExceeded; limitId=image_gen; resetsAt=1786150800 in reset scenario; resetsAt=null in no_reset scenario Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Reset and absent-reset are both supplied consistently in response body/header; precedence when they disagree and fallback-only reset extraction are not tested. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ImageGenerationFailure/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "7b4b0ebf6f6b5c83a1f365e79708d16167afc0696f74ce57eeb2ac777940039c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -174724,72 +174936,102 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "92a4f98d8d956329647331581b5bfb8840838cbdefd160d8dfd8810b0fbb5df9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/failure",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/failure",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "f169a18bcebc52a6644cc5acb5a6b6f7a1780fd7b48839c8320d50721bc3c903",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "failure"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: ImageGenerationFailure reference branch carries usageLimitExceeded, image_gen limitId and reset integer/null in completed image. Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/failure/anyOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "9d6be064bb5dccfe1c4f1b72d962685718b736414dbecf2e54ac3baf4bc7787f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -174817,79 +175059,109 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/id",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/result",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/result",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "result"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/revisedPrompt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only the populated prompt string is returned by items/read; null prompt is exercised only by notification owner. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/revisedPrompt",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "revisedPrompt"
     },
     {
@@ -174965,101 +175237,141 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only in_progress/failed notification status or failed read status is asserted; schema is unconstrained string. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/status",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/transparentBackground",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Only explicit null background is positively observed; boolean values and omitted-default handling are not qualified. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/transparentBackground",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e0967022225ced84090753f68ab33a2d09e0758212b09b10ce9b09dfa8e9a9d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "transparentBackground"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b972a3c2c72a640147fcc2542d9a5f10c24b481790ed06ee6e530164dc51925a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-image-quota-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/15/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_image_quota: completed failed image item: fixed id, prompt, empty result, background null, typed failure Only owned image_gen HTTP429 usage-limit failure path; no successful image generation or image bytes. Selected physical owner only; equal hashes never transfer to a different schema. Selected imageGeneration branch does not establish the complete ThreadItem union. Both complete owning runs pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/15/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "d1bbb220efc0c0dad7a8062b6c99bded3555ccbbccb35e77c9ec35b8c60a97a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:286-298",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:220-228",
+          "apps/samgita_codex_driver/test/native_imagegen_failure_profile.exs:239-244"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
