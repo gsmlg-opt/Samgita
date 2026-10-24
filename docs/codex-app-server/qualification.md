@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 448 implemented / 27 missing /
-10 blocked requirements** and **0 verified / 1,236 implemented / 5,385 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 450 implemented / 25 missing /
+10 blocked requirements** and **0 verified / 1,242 implemented / 5,379 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,236 directly exercised
+MCP entries have scoped implementation evidence. These 1,242 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -49,6 +49,13 @@ four shared fields gain scoped evidence. The two source-derived fixture repairs
 retain exact credential sequence, raw-body HMACs and complete semantic payload
 comparison; neither increases deadlines nor changes production code. This is
 no AWS-service or real credential acceptance.
+
+The [selected-thread environment profile](thread-environment-qualification.md)
+passes three real-native cases at both seeds, with authenticated native
+exec-server metadata only, exact lifecycle routing, no initial-state replay,
+explicit recovery and no work replay. Two entries and six exact fields gain
+evidence. Zero-turn history remains explicitly unsupported and external
+executors/active work/restart variants remain incomplete.
 
 Additional method records: [queues](queue-lifecycle-qualification.md),
 [commands](command-lifecycle-qualification.md),

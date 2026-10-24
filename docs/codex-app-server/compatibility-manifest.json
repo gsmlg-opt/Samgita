@@ -12579,12 +12579,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-environment-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:thread/environment/connected",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/EnvironmentConnectionNotification"
       },
@@ -12601,16 +12605,20 @@
         "source_line": 1973,
         "variant": "EnvironmentConnected"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/environment/connected"
     },
     {
@@ -12618,12 +12626,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-environment-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:thread/environment/disconnected",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/EnvironmentConnectionNotification"
       },
@@ -12640,16 +12652,20 @@
         "source_line": 1975,
         "variant": "EnvironmentDisconnected"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/environment/disconnected"
     },
     {
@@ -38356,79 +38372,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-environment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/TurnEnvironmentParams/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/TurnEnvironmentParams/properties/cwd",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-environment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/TurnEnvironmentParams/properties/environmentId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/TurnEnvironmentParams/properties/environmentId",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-environment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/TurnEnvironmentParams/properties/runtimeWorkspaceRoots",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/TurnEnvironmentParams/properties/runtimeWorkspaceRoots",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "9062c323ceb6b7e4917a1f71f79b7041c0c0accd0e5a57746b073f4afc464fa5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "runtimeWorkspaceRoots"
     },
     {
@@ -120002,53 +120042,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-environment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/EnvironmentConnectionNotification.json#/properties/environmentId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/environmentId",
       "required": true,
       "schema": "v2/EnvironmentConnectionNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-environment-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/EnvironmentConnectionNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/EnvironmentConnectionNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -186364,27 +186420,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-environment-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/environments",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/environments",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "bd56500d4b08cecd158ced46c6bdee886e35ee09289dd86e47ee11dcf68bc2c7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environments"
     },
     {

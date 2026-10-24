@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 progress, deprecated file-change output, three prediction entries and
 `thread/compacted` are `blocked` by exact source-proven unavailable success
 paths: ten required entries, with no scope waiver. Selected native
-method/notification entries now total 448 `implemented`, with 1,236 exact
-field/variant schema contracts implemented; 27 requirements and 5,385 contracts
+method/notification entries now total 450 `implemented`, with 1,242 exact
+field/variant schema contracts implemented; 25 requirements and 5,379 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -426,6 +426,13 @@ profile/export refresh add two entries and four positive fields. Native alias
 PATH and HashMap key-order fixture assumptions were repaired from direct
 diagnostics and pinned source. Failed/disabled/concurrent refresh and real AWS
 profiles remain incomplete.
+
+The [thread/environment lifecycle](thread-environment-qualification.md) now
+passes three native cases at both seeds. Real authenticated executor metadata,
+selection routing, no initial-state replay and explicit recovery without new
+work add two notification entries and six exact contracts. The zero-turn
+history error remains an asserted upstream limit. Active work, app-server
+restart, external executors and other deployment profiles remain incomplete.
 
 ## Known boundaries
 
