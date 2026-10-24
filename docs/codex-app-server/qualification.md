@@ -2346,6 +2346,14 @@ warning-free compile/format and both focused source guards passed. Native
 processes use the exact pinned executable; synthetic peers supply only its
 owned model/MCP dependencies.
 
+The subsequent [command-context and multi-file cache cases](approval-cache-context-qualification.md)
+pass in a combined **19/0** native block at both recorded seeds. Exact physical
+effects distinguish same-cwd session reuse, fresh-cwd prompting, cold cache loss
+and the ALL-key multi-file rule. The record preserves three source-backed draft
+corrections, including live declined command items absent from durable history.
+Only supplemental requirement citations are added; no row becomes verified and
+the full approval lifecycle remains missing.
+
 The field ledger adds **64 exact contracts**: 15 selected input/skill metadata
 properties and 49 MCP properties/branches. It is now **2,347 implemented /
 4,274 missing, zero verified**. The **485 requirement** ledger remains

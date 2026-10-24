@@ -21,6 +21,13 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [command-context and multi-file approval unit](approval-cache-context-qualification.md)
+now adds two actual-native cases, passing with the seventeen prior projection/
+persistence cases at both seeds (**19/0** each). Cwd identity, cold ephemeral
+cache loss and ALL-key patch authorization have separate effect/history oracles.
+Five existing requirements gain supplemental citations only; full approval
+lifecycle, A11, external profiles and final combination/hosted gates stay open.
+
 2026-10-23: inspected live `main` at
 `4fe354f2ce916aa32517c361a171b8878bf6ca84`. Only the user goal/plan inputs were
 untracked before this work; preserve them. Read both inputs in full, AGENTS.md,
