@@ -1,7 +1,15 @@
 defmodule SamgitaCodexDriver.ProcessLifecycleTest do
   use ExUnit.Case, async: false
 
-  alias SamgitaCodexDriver.{ModelFixture, Session, TurnFixture}
+  alias SamgitaCodexDriver.{
+    ModelFixture,
+    NativeLaunchFixture,
+    Session,
+    StdioSessionFixture,
+    TurnFixture
+  }
+
+  alias SamgitaCodexDriver.Transport.Stdio
   alias SamgitaProtocolCodex.Error
 
   @moduletag :real_codex
@@ -10,6 +18,100 @@ defmodule SamgitaCodexDriver.ProcessLifecycleTest do
   setup tags do
     ctx = TurnFixture.setup(tags)
     Map.put(ctx, :session, TurnFixture.start(ctx))
+  end
+
+  test "child cwd and inherited environment retain override and unset semantics per spawn", ctx do
+    assert :ok = Session.close(ctx.session)
+
+    pid =
+      start_with_env(ctx, %{
+        "SAMGITA_PROCESS_KEEP" => "server-keep",
+        "SAMGITA_PROCESS_OVERRIDE" => "server-override",
+        "SAMGITA_PROCESS_UNSET" => "server-unset"
+      })
+
+    first_cwd = Path.join(ctx.fixture.workspace, "first-cwd")
+    second_cwd = Path.join(ctx.fixture.workspace, "second-cwd")
+    File.mkdir_p!(first_cwd)
+    File.mkdir_p!(second_cwd)
+
+    command =
+      python(ctx, "cwd-env", ~S"""
+      import json, os
+      observed = {
+          "cwd": os.getcwd(),
+          "keep": os.getenv("SAMGITA_PROCESS_KEEP"),
+          "override": os.getenv("SAMGITA_PROCESS_OVERRIDE"),
+          "unset": os.getenv("SAMGITA_PROCESS_UNSET"),
+      }
+      print(json.dumps(observed, ensure_ascii=False), end="")
+      """)
+
+    inherited = %{
+      "keep" => "server-keep",
+      "override" => "server-override",
+      "unset" => "server-unset"
+    }
+
+    changed = %{
+      "env" => %{
+        "SAMGITA_PROCESS_OVERRIDE" => "child-λ",
+        "SAMGITA_PROCESS_UNSET" => nil
+      }
+    }
+
+    for {handle, cwd, changes, expected} <- [
+          {"env-inherited", first_cwd, %{}, inherited},
+          {"env-changed", second_cwd, changed,
+           %{inherited | "override" => "child-λ", "unset" => nil}},
+          {"env-inherited-again", first_cwd, %{}, inherited}
+        ] do
+      params = Map.merge(spawn_params(ctx, handle, command), Map.put(changes, "cwd", cwd))
+      assert rpc(pid, "process/spawn", params) == %{}
+      events = collect(pid, &exited(&1, handle))
+      stdout = exited(events, handle)["stdout"]
+
+      assert JSON.decode!(stdout) == Map.put(expected, "cwd", cwd)
+      assert deltas(events, handle) == []
+      assert_exit(events, handle, 0, %{"stdout" => stdout})
+      assert_no_model_requests(ctx)
+    end
+
+    assert :ok = Session.close(pid)
+  end
+
+  test "omitted output cap uses the native per-stream MiB default while null retains every byte",
+       ctx do
+    default_cap = 1024 * 1024
+
+    command =
+      python(ctx, "past-output-default", ~S"""
+      import sys
+      sys.stdout.buffer.write(b"O" * (1024 * 1024 + 13))
+      sys.stdout.buffer.flush()
+      sys.stderr.buffer.write(b"E" * (1024 * 1024 + 29))
+      sys.stderr.buffer.flush()
+      """)
+
+    for {handle, changes, stdout_size, stderr_size, capped} <- [
+          {"default-output-cap", %{}, default_cap, default_cap, true},
+          {"null-output-cap", %{"outputBytesCap" => nil}, default_cap + 13, default_cap + 29,
+           false}
+        ] do
+      assert spawn_process(ctx, handle, command, changes) == %{}
+      events = collect(ctx.session, &exited(&1, handle))
+
+      assert deltas(events, handle) == []
+
+      assert_exit(events, handle, 0, %{
+        "stdout" => String.duplicate("O", stdout_size),
+        "stderr" => String.duplicate("E", stderr_size),
+        "stdoutCapReached" => capped,
+        "stderrCapReached" => capped
+      })
+
+      assert_no_model_requests(ctx)
+    end
   end
 
   test "PTY implies streaming and applies validated initial and resized terminal dimensions",
@@ -289,6 +391,48 @@ defmodule SamgitaCodexDriver.ProcessLifecycleTest do
     assert Enum.count(events, &(&1.wire["method"] == "process/exited")) == 1
     assert %{phase: :ready, pending: 0, uncertain: 0} = Session.status(ctx.session)
     assert_no_model_requests(ctx)
+  end
+
+  defp start_with_env(ctx, env) do
+    tmp = Path.join(ctx.root, "process-env-tmp")
+    File.mkdir_p!(tmp)
+
+    {:ok, pid} =
+      Session.start_link(
+        transport:
+          {Stdio,
+           [
+             executable: ctx.binary,
+             args: NativeLaunchFixture.ordinary_args(["app-server", "--listen", "stdio://"]),
+             cwd: ctx.fixture.workspace,
+             inherit_env: [],
+             env:
+               Map.merge(
+                 %{
+                   "HOME" => ctx.fixture.home,
+                   "CODEX_HOME" => ctx.fixture.codex_home,
+                   "TMPDIR" => tmp,
+                   "SHELL" => Path.join(ctx.fixture.bin, "sh"),
+                   "CODEX_DISABLE_REMOTE_CONTROL" => "1",
+                   "PATH" => ctx.fixture.bin <> ":" <> System.get_env("PATH", "/usr/bin:/bin"),
+                   "NO_COLOR" => "1",
+                   "RUST_LOG" => "off"
+                 },
+                 env
+               )
+           ]}
+      )
+
+    StdioSessionFixture.register_cleanup(pid)
+
+    assert {:ok, %{"result" => %{"platformOs" => "linux"}}} =
+             Session.initialize(
+               pid,
+               %{"name" => "samgita_process_env_fixture", "version" => "0.1.0"},
+               %{"experimentalApi" => true}
+             )
+
+    pid
   end
 
   defp python(ctx, name, source) do

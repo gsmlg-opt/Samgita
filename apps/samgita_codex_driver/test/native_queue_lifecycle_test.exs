@@ -41,6 +41,72 @@ defmodule SamgitaCodexDriver.NativeQueueLifecycleTest do
     %{binary: binary, fixture: fixture, root: root}
   end
 
+  test "capacity rejection preserves all 100 ordered submissions through native restart", ctx do
+    {pid, id} = unloaded(ctx)
+
+    expected =
+      for index <- 1..100 do
+        client = "capacity-client-#{index}"
+        text = "capacity message #{index}"
+        item = add(pid, id, client, text)
+        assert is_binary(item["id"]) and byte_size(item["id"]) > 0
+
+        assert item == %{
+                 "id" => item["id"],
+                 "clientUserMessageId" => client,
+                 "input" => normalized(text)
+               }
+
+        item
+      end
+
+    assert expected |> Enum.map(& &1["id"]) |> Enum.uniq() |> length() == 100
+
+    assert call(pid, "thread/queue/list", %{"threadId" => id, "limit" => 100}) == %{
+             "data" => expected,
+             "nextCursor" => nil
+           }
+
+    assert_unloaded(ctx, pid, id, 1)
+
+    assert upstream_error(pid, "thread/queue/add", %{
+             "threadId" => id,
+             "clientUserMessageId" => "capacity-overflow",
+             "input" => input("capacity item 101 must not persist")
+           }) == %{
+             "code" => -32_600,
+             "message" => "queue cannot contain more than 100 submissions"
+           }
+
+    assert call(pid, "thread/queue/list", %{"threadId" => id, "limit" => 100}) == %{
+             "data" => expected,
+             "nextCursor" => nil
+           }
+
+    assert_unloaded(ctx, pid, id, 1)
+    native = call(pid, "server/diagnostics", %{})["process"]["id"]
+    assert is_integer(native) and native > 0
+    assert File.read_link!("/proc/#{native}/exe") == Path.expand(ctx.binary)
+    instance = Session.status(pid).instance_id
+    %{transport: Stdio, connection: connection} = :sys.get_state(pid)
+    assert :ok = StdioSessionFixture.close(pid, connection)
+    refute File.exists?("/proc/#{native}")
+
+    cold = start(ctx)
+    cold_native = call(cold, "server/diagnostics", %{})["process"]["id"]
+    assert is_integer(cold_native) and cold_native > 0
+    refute cold_native == native
+    assert File.read_link!("/proc/#{cold_native}/exe") == Path.expand(ctx.binary)
+    refute Session.status(cold).instance_id == instance
+
+    assert call(cold, "thread/queue/list", %{"threadId" => id, "limit" => 100}) == %{
+             "data" => expected,
+             "nextCursor" => nil
+           }
+
+    assert_unloaded(ctx, cold, id, 1)
+  end
+
   test "unloaded queue CRUD order and client identities survive a second native restart", ctx do
     {pid, id} = unloaded(ctx)
     first = add(pid, id, "same-client", "first")

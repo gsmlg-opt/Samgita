@@ -67,6 +67,21 @@ defmodule SamgitaCodexDriver.NativeCommandLifecycleProfile do
       line = sys.stdin.readline().rstrip('\n')
       print('after:' + size(), flush=True)
       print('echo:' + line, flush=True)
+  elif mode == 'process-owner':
+      label = Path(marker).stem.encode('ascii')
+      effect = Path(marker).with_suffix('.input')
+      data = b''
+      effect.write_bytes(data)
+      sys.stdout.buffer.write(b'ready-out:' + label + b'\n'); sys.stdout.buffer.flush()
+      sys.stderr.buffer.write(b'ready-err:' + label + b'\n'); sys.stderr.buffer.flush()
+      while True:
+          chunk = os.read(sys.stdin.fileno(), 4096)
+          if not chunk:
+              break
+          data += chunk
+          effect.write_bytes(data)
+      sys.stdout.buffer.write(b'out:' + label + b':' + data); sys.stdout.buffer.flush()
+      sys.stderr.buffer.write(b'err:' + label + b':' + data); sys.stderr.buffer.flush()
   else:
       raise AssertionError('unowned synthetic command mode')
   """
@@ -639,6 +654,143 @@ defmodule SamgitaCodexDriver.NativeCommandLifecycleProfile do
     assert :ok = Session.close(survivor)
   end
 
+  # rust-v0.163.0 / 83086188ae0614bd882818ff1aa23f3194962012:
+  # process_exec_processor.rs:290-360 keys by connection + handle; :427-453
+  # removes and kills only the disconnected connection's children. Output and
+  # exit callbacks target that connection (:513-531, :595-607, :651-662).
+  test "process handles are connection-owned and reconnect reaps only the old generation",
+       ctx do
+    first = client(ctx)
+    second = client(ctx)
+    process_initialized(first)
+    process_initialized(second)
+    handle = "shared-process-handle"
+    first_name = "process-owner-one"
+    second_name = "process-owner-two"
+    fresh_name = "process-owner-fresh"
+
+    assert process_spawn(first, ctx, handle, first_name) == %{}
+    first_events = process_ready(first, handle, first_name)
+    one = assert_marker(ctx, first_name)
+    refute one["stdin_tty"] or one["stdout_tty"]
+    assert process_effect(ctx, first_name) == ""
+
+    # These are valid controls: errors must come from ownership lookup, rather
+    # than base64, empty-write, or terminal-size validation.
+    process_unknown_controls(second, handle)
+    process_no_notices(second)
+    assert File.exists?("/proc/#{one["pid"]}")
+    assert process_effect(ctx, first_name) == ""
+    first_bytes = <<0, 255, "first-owner\n">>
+    assert process_write(first, handle, first_bytes) == %{}
+    process_effect_until(ctx, first_name, first_bytes)
+
+    # The identical handle is legal on a different borrowed UDS connection.
+    assert process_spawn(second, ctx, handle, second_name) == %{}
+    second_events = process_ready(second, handle, second_name)
+    two = assert_marker(ctx, second_name)
+    assert one["pid"] != two["pid"]
+    assert one["native_pid"] == two["native_pid"]
+    refute two["stdin_tty"] or two["stdout_tty"]
+    process_no_notices(first)
+    second_prefix = <<254, 0, "second-owner\n">>
+    assert process_write(second, handle, second_prefix) == %{}
+    process_effect_until(ctx, second_name, second_prefix)
+    assert process_effect(ctx, first_name) == first_bytes
+
+    generation = Session.status(first).generation
+    assert %{gap: nil, uncertain: 0} = Session.status(first)
+    assert :ok = Session.reconnect(first)
+    assert Session.status(first).generation == generation + 1
+    reconnect_gap = Session.status(first).gap
+
+    assert %{reason: :explicit_reconnect, generation: ^generation, after_sequence: sequence} =
+             reconnect_gap
+
+    assert is_integer(sequence)
+    assert_receive {:codex_driver, ^first, {:gap, ^reconnect_gap}}
+    assert_gone(ctx, first_name)
+    assert process_effect(ctx, first_name) == first_bytes
+    assert File.exists?("/proc/#{two["pid"]}")
+    assert File.exists?("/proc/#{one["native_pid"]}")
+    assert Port.info(ctx.owner.port)
+    assert File.exists?(ctx.socket)
+    initialize(first)
+    process_initialized(first)
+    assert %{phase: :ready, pending: 0, uncertain: 0, gap: ^reconnect_gap} = Session.status(first)
+    assert Session.uncertain_operations(first) == []
+
+    # No old-handle control or reconnect automatically creates/replays a child.
+    process_unknown_controls(first, handle)
+    process_no_notices(first)
+    process_no_notices(second)
+    assert process_effect(ctx, second_name) == second_prefix
+    assert File.exists?("/proc/#{two["pid"]}")
+    assert length(Path.wildcard(Path.join(ctx.root, "markers/*.json"))) == 2
+    refute File.exists?(marker_path(ctx, fresh_name))
+
+    # Only an explicit spawn and its native reply create the fresh generation.
+    assert process_spawn(first, ctx, handle, fresh_name) == %{}
+    fresh_events = process_ready(first, handle, fresh_name)
+    fresh = assert_marker(ctx, fresh_name)
+    assert fresh["pid"] not in [one["pid"], two["pid"]]
+    assert fresh["native_pid"] == two["native_pid"]
+    assert process_effect(ctx, fresh_name) == ""
+    process_no_notices(second)
+    fresh_bytes = <<253, 0, "fresh-owner\n">>
+    assert process_write(first, handle, fresh_bytes) == %{}
+    process_effect_until(ctx, fresh_name, fresh_bytes)
+
+    assert call(first, "process/writeStdin", %{
+             "processHandle" => handle,
+             "closeStdin" => true
+           }) == %{}
+
+    fresh_events = process_finished(first, handle, fresh_name, fresh_bytes, fresh_events)
+    assert Enum.all?(fresh_events, &(&1.generation == generation + 1))
+    process_stale_controls(first, handle)
+    assert_gone(ctx, fresh_name)
+    assert File.exists?("/proc/#{two["pid"]}")
+    assert process_effect(ctx, first_name) == first_bytes
+    assert process_effect(ctx, second_name) == second_prefix
+
+    # Independent binary stdin and explicit EOF complete only the second child.
+    second_tail = <<0, 252, "second-tail">>
+    assert process_write(second, handle, second_tail) == %{}
+    process_effect_until(ctx, second_name, second_prefix <> second_tail)
+
+    assert call(second, "process/writeStdin", %{
+             "processHandle" => handle,
+             "closeStdin" => true
+           }) == %{}
+
+    second_events =
+      process_finished(second, handle, second_name, second_prefix <> second_tail, second_events)
+
+    assert Enum.all?(first_events ++ second_events, &(&1.generation == generation))
+    process_stale_controls(second, handle)
+    assert_gone(ctx, second_name)
+    process_no_notices(first)
+    process_no_notices(second)
+    assert process_effect(ctx, fresh_name) == fresh_bytes
+    assert process_effect(ctx, first_name) == first_bytes
+    assert length(Path.wildcard(Path.join(ctx.root, "markers/*.json"))) == 3
+
+    for {pid, expected_gap} <- [{first, reconnect_gap}, {second, nil}] do
+      assert %{phase: :ready, pending: 0, uncertain: 0, gap: ^expected_gap} = Session.status(pid)
+      assert Session.uncertain_operations(pid) == []
+      assert :ok = Session.close(pid)
+    end
+
+    assert Port.info(ctx.owner.port)
+    assert File.exists?("/proc/#{two["native_pid"]}")
+    assert File.exists?(ctx.socket)
+    survivor = client(ctx)
+    process_initialized(survivor)
+    process_no_notices(survivor)
+    assert :ok = Session.close(survivor)
+  end
+
   defp configure(ctx) do
     catalog = Path.join(ctx.codex_home, "models.json")
 
@@ -878,6 +1030,178 @@ defmodule SamgitaCodexDriver.NativeCommandLifecycleProfile do
 
       await(predicate, message, deadline)
     end
+  end
+
+  defp process_spawn(pid, ctx, handle, name) do
+    spawn_params =
+      params(ctx, "process-owner", name)
+      |> Map.delete("sandboxPolicy")
+      |> Map.merge(%{
+        "processHandle" => handle,
+        "streamStdin" => true,
+        "streamStdoutStderr" => true,
+        "outputBytesCap" => nil,
+        "timeoutMs" => nil
+      })
+
+    call(pid, "process/spawn", spawn_params)
+  end
+
+  defp process_write(pid, handle, bytes),
+    do:
+      call(pid, "process/writeStdin", %{
+        "processHandle" => handle,
+        "deltaBase64" => Base.encode64(bytes)
+      })
+
+  defp process_controls do
+    [
+      {"process/writeStdin", %{"deltaBase64" => Base.encode64(<<0, 255, "unowned">>)}},
+      {"process/resizePty", %{"size" => %{"rows" => 2, "cols" => 2}}},
+      {"process/kill", %{}}
+    ]
+  end
+
+  defp process_unknown_controls(pid, handle) do
+    for {method, extra} <- process_controls() do
+      assert upstream_error(pid, method, Map.put(extra, "processHandle", handle)) == %{
+               "code" => -32_600,
+               "message" => "no active process for process handle \"#{handle}\""
+             }
+    end
+  end
+
+  defp process_stale_controls(pid, handle) do
+    # run_process sends exited and awaits the transport write callback before
+    # start's task removes the key (:342-360, :595-607). Seeing exited does not
+    # guarantee removal; a closed control channel has a distinct native error
+    # (:455-483, :726-734). Both reject control; neither is retried or swallowed.
+    for {method, extra} <- process_controls() do
+      error = upstream_error(pid, method, Map.put(extra, "processHandle", handle))
+
+      assert error in [
+               %{
+                 "code" => -32_600,
+                 "message" => "no active process for process handle \"#{handle}\""
+               },
+               %{
+                 "code" => -32_600,
+                 "message" => "process \"#{handle}\" is no longer running"
+               }
+             ]
+    end
+  end
+
+  defp process_initialized(pid) do
+    # lib.rs:1238-1251 always sends this after initialize, independently of the
+    # response. Consume and validate that observable barrier before any spawn;
+    # it is not a process event and must not race with ownership assertions.
+    assert [event] =
+             events_until(
+               pid,
+               &Enum.any?(&1, fn event ->
+                 event.wire["method"] == "remoteControl/status/changed"
+               end),
+               []
+             )
+
+    assert event.kind == :notification
+    assert event.wire["method"] == "remoteControl/status/changed"
+    assert is_integer(event.wire["emittedAtMs"]) and event.wire["emittedAtMs"] > 0
+    status = event.wire["params"]
+    assert Enum.sort(Map.keys(status)) == ~w(environmentId installationId serverName status)
+    assert status["status"] == "disabled"
+    assert status["environmentId"] == nil
+    assert is_binary(status["serverName"]) and status["serverName"] != ""
+    assert is_binary(status["installationId"]) and status["installationId"] != ""
+    assert call(pid, "remoteControl/status/read", nil) == status
+  end
+
+  defp process_ready(pid, handle, name) do
+    process_events_until(pid, fn events ->
+      process_output(events, "stdout") == "ready-out:#{name}\n" and
+        process_output(events, "stderr") == "ready-err:#{name}\n"
+    end)
+    |> tap(fn events ->
+      assert Enum.all?(events, &(&1.wire["params"]["processHandle"] == handle))
+      refute Enum.any?(events, &(&1.wire["method"] == "process/exited"))
+    end)
+  end
+
+  defp process_finished(pid, handle, name, bytes, events) do
+    events =
+      process_events_until(
+        pid,
+        &Enum.any?(&1, fn event -> event.wire["method"] == "process/exited" end),
+        events
+      )
+
+    assert process_output(events, "stdout") == "ready-out:#{name}\nout:#{name}:" <> bytes
+    assert process_output(events, "stderr") == "ready-err:#{name}\nerr:#{name}:" <> bytes
+    assert Enum.all?(events, &(&1.wire["params"]["processHandle"] == handle))
+
+    assert [exit] =
+             for(
+               event <- events,
+               event.wire["method"] == "process/exited",
+               do: event.wire["params"]
+             )
+
+    assert exit == %{
+             "processHandle" => handle,
+             "exitCode" => 0,
+             "stdout" => "",
+             "stderr" => "",
+             "stdoutCapReached" => false,
+             "stderrCapReached" => false
+           }
+
+    events
+  end
+
+  defp process_events_until(pid, predicate, acc \\ []) do
+    expected_gap = Session.status(pid).gap
+    events = events_until(pid, predicate, acc)
+
+    for event <- events do
+      assert event.kind == :notification
+      assert event.wire["method"] in ["process/outputDelta", "process/exited"]
+      # outgoing_message.rs:905-908 stamps the envelope, not the params.
+      assert is_integer(event.wire["emittedAtMs"]) and event.wire["emittedAtMs"] > 0
+
+      if event.wire["method"] == "process/outputDelta" do
+        assert event.wire["params"]["stream"] in ["stdout", "stderr"]
+        assert event.wire["params"]["capReached"] == false
+        assert {:ok, _} = Base.decode64(event.wire["params"]["deltaBase64"])
+      end
+    end
+
+    assert %{gap: ^expected_gap, uncertain: 0} = Session.status(pid)
+    events
+  end
+
+  defp process_output(events, stream) do
+    events
+    |> Enum.filter(
+      &(&1.wire["method"] == "process/outputDelta" and
+          &1.wire["params"]["stream"] == stream)
+    )
+    |> Enum.map_join(&Base.decode64!(&1.wire["params"]["deltaBase64"]))
+  end
+
+  defp process_no_notices(pid) do
+    expected_gap = Session.status(pid).gap
+    assert call(pid, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil}
+    assert {:ok, events} = Session.drain(pid)
+    assert events == []
+    assert %{gap: ^expected_gap, uncertain: 0} = Session.status(pid)
+  end
+
+  defp process_effect(ctx, name),
+    do: File.read!(Path.rootname(marker_path(ctx, name)) <> ".input")
+
+  defp process_effect_until(ctx, name, bytes) do
+    await(fn -> process_effect(ctx, name) == bytes end, "owned process stdin effect")
   end
 
   defp now, do: System.monotonic_time(:millisecond)
