@@ -46339,24 +46339,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/13",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "First thread counts1->2 while second independently starts1, paused=true; balances after decrements, restarts native process with different PID, rejects unloaded persisted ID and resets runtime count to1 after resume. Experimental capability disabled has exact method-specific error; no provider requests.",
+        "Tests assert runtime count/paused response and independent operation sequence; no claim that a real in-progress tool/turn is paused or resumed.",
+        "No persistence of counters is claimed; cold test proves runtime reset only. Selected Linux stdio profile."
+      ],
       "pointer": "/oneOf/13",
       "schema": "ClientRequest.json",
       "schema_sha256": "c09967d83cb806e1dc94a6b72543a9eb8dcbd51515d649394ecadee360772a5b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs:164-175,186-215,252-257,279-281"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -46388,75 +46399,108 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/13/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "First thread counts1->2 while second independently starts1, paused=true; balances after decrements, restarts native process with different PID, rejects unloaded persisted ID and resets runtime count to1 after resume. Experimental capability disabled has exact method-specific error; no provider requests.",
+        "Tests assert runtime count/paused response and independent operation sequence; no claim that a real in-progress tool/turn is paused or resumed.",
+        "No persistence of counters is claimed; cold test proves runtime reset only. Selected Linux stdio profile."
+      ],
       "nullable": false,
       "pointer": "/oneOf/13/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "508b31a540c108b93be0b345ca71d8a6e86c38b3bb431c556ca43a43aba5010e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs:164-175,186-215,252-257,279-281"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/13/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "First thread counts1->2 while second independently starts1, paused=true; balances after decrements, restarts native process with different PID, rejects unloaded persisted ID and resets runtime count to1 after resume. Experimental capability disabled has exact method-specific error; no provider requests.",
+        "Tests assert runtime count/paused response and independent operation sequence; no claim that a real in-progress tool/turn is paused or resumed.",
+        "No persistence of counters is claimed; cold test proves runtime reset only. Selected Linux stdio profile."
+      ],
       "pointer": "/oneOf/13/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "babbb5298a2389b71bcb25089cfcde96d8fae8bb7da1ee419dbe1d17b7772711",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs:164-175,186-215,252-257,279-281"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/13/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "First thread counts1->2 while second independently starts1, paused=true; balances after decrements, restarts native process with different PID, rejects unloaded persisted ID and resets runtime count to1 after resume. Experimental capability disabled has exact method-specific error; no provider requests.",
+        "Tests assert runtime count/paused response and independent operation sequence; no claim that a real in-progress tool/turn is paused or resumed.",
+        "No persistence of counters is claimed; cold test proves runtime reset only. Selected Linux stdio profile."
+      ],
       "nullable": false,
       "pointer": "/oneOf/13/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ed50d08926150ade945a75d96aae621f0bbea2f110fe588a92a5de890dfa7b63",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs:164-175,186-215,252-257,279-281"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -46891,24 +46935,36 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/133",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Independent peer journal captures exactly four resources/read per negotiated version and exact URI; final native peer metadata contains prescribed selected_connector_ids=['synthetic-connector']. Native response has independently prescribed text, MIME, exact five binary bytes encoded as base64 and fixture metadata. Exact protocol and scoping errors distinguish failure paths.",
+        "originCallId local-server ignore is not evidence of hosted app origin routing.",
+        "Rejected target does not qualify McpResourceReadTarget.connectorId/linkId success or hosted account selection; neither nested owner is nominated.",
+        "Synthetic local MCP and selected versions only; no actual filesystem/network resource, remote service, other transport or all params combinations."
+      ],
       "pointer": "/oneOf/133",
       "schema": "ClientRequest.json",
       "schema_sha256": "cf9362fec23556eefed3bd55a7e7d367a36f8b04577f036171e1bd4c425255c7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs:126-151,157-158,170-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -46940,75 +46996,111 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/133/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Independent peer journal captures exactly four resources/read per negotiated version and exact URI; final native peer metadata contains prescribed selected_connector_ids=['synthetic-connector']. Native response has independently prescribed text, MIME, exact five binary bytes encoded as base64 and fixture metadata. Exact protocol and scoping errors distinguish failure paths.",
+        "originCallId local-server ignore is not evidence of hosted app origin routing.",
+        "Rejected target does not qualify McpResourceReadTarget.connectorId/linkId success or hosted account selection; neither nested owner is nominated.",
+        "Synthetic local MCP and selected versions only; no actual filesystem/network resource, remote service, other transport or all params combinations."
+      ],
       "nullable": false,
       "pointer": "/oneOf/133/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "3a664cbf8bea26329ae4b3bed1f56a04557af47a6f5162988755e1d120820edb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs:126-151,157-158,170-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/133/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Independent peer journal captures exactly four resources/read per negotiated version and exact URI; final native peer metadata contains prescribed selected_connector_ids=['synthetic-connector']. Native response has independently prescribed text, MIME, exact five binary bytes encoded as base64 and fixture metadata. Exact protocol and scoping errors distinguish failure paths.",
+        "originCallId local-server ignore is not evidence of hosted app origin routing.",
+        "Rejected target does not qualify McpResourceReadTarget.connectorId/linkId success or hosted account selection; neither nested owner is nominated.",
+        "Synthetic local MCP and selected versions only; no actual filesystem/network resource, remote service, other transport or all params combinations."
+      ],
       "pointer": "/oneOf/133/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "789c6fea2a459b626dae244bd9209faf5b8509488ea683e7e914910d6db7fa6b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs:126-151,157-158,170-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/133/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Independent peer journal captures exactly four resources/read per negotiated version and exact URI; final native peer metadata contains prescribed selected_connector_ids=['synthetic-connector']. Native response has independently prescribed text, MIME, exact five binary bytes encoded as base64 and fixture metadata. Exact protocol and scoping errors distinguish failure paths.",
+        "originCallId local-server ignore is not evidence of hosted app origin routing.",
+        "Rejected target does not qualify McpResourceReadTarget.connectorId/linkId success or hosted account selection; neither nested owner is nominated.",
+        "Synthetic local MCP and selected versions only; no actual filesystem/network resource, remote service, other transport or all params combinations."
+      ],
       "nullable": false,
       "pointer": "/oneOf/133/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d941bf3359648a30cbb8269d5194008d71a0b49f725d580dab6627ecc7d04a8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs:126-151,157-158,170-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -47289,24 +47381,36 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/136",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Independent peer input journal contains four native tools/call per negotiated MCP version with exact argument sequence [null,null,{},prescribed object], actual native thread replacing spoofed _meta.threadId, and exact preserved source. Native result has independently fixed text/content metadata/error flag and prescribed arguments; missing server/tool and protocol errors distinguish routing.",
+        "Peer is synthetic stdio MCP, not a production MCP service. MCP versions are 2025-06-18 and2026-07-28 only.",
+        "Fixture response echoes arguments, but qualification relies additionally on independently prescribed expected arrays and peer journal, not copied actual response values.",
+        "No whole ClientRequest request-id type/correlation qualification, hosted app tool authorization, arbitrary arguments or other transports."
+      ],
       "pointer": "/oneOf/136",
       "schema": "ClientRequest.json",
       "schema_sha256": "5c8efe212cb3ba3b144a399cd6f9ece31c3973adbb509678124e23eff853572a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs:34-59,64-65,74-98,104-107"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -47338,75 +47442,111 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/136/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Independent peer input journal contains four native tools/call per negotiated MCP version with exact argument sequence [null,null,{},prescribed object], actual native thread replacing spoofed _meta.threadId, and exact preserved source. Native result has independently fixed text/content metadata/error flag and prescribed arguments; missing server/tool and protocol errors distinguish routing.",
+        "Peer is synthetic stdio MCP, not a production MCP service. MCP versions are 2025-06-18 and2026-07-28 only.",
+        "Fixture response echoes arguments, but qualification relies additionally on independently prescribed expected arrays and peer journal, not copied actual response values.",
+        "No whole ClientRequest request-id type/correlation qualification, hosted app tool authorization, arbitrary arguments or other transports."
+      ],
       "nullable": false,
       "pointer": "/oneOf/136/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "46d090b54177dc072e1a237cf9094e54176b203edf930d9500649193c88e129a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs:34-59,64-65,74-98,104-107"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/136/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Independent peer input journal contains four native tools/call per negotiated MCP version with exact argument sequence [null,null,{},prescribed object], actual native thread replacing spoofed _meta.threadId, and exact preserved source. Native result has independently fixed text/content metadata/error flag and prescribed arguments; missing server/tool and protocol errors distinguish routing.",
+        "Peer is synthetic stdio MCP, not a production MCP service. MCP versions are 2025-06-18 and2026-07-28 only.",
+        "Fixture response echoes arguments, but qualification relies additionally on independently prescribed expected arrays and peer journal, not copied actual response values.",
+        "No whole ClientRequest request-id type/correlation qualification, hosted app tool authorization, arbitrary arguments or other transports."
+      ],
       "pointer": "/oneOf/136/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b6c1be149d545d3961ed75a04a47fc7c0ab0a9276b58b9d5f92c5fbc20ae3b88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs:34-59,64-65,74-98,104-107"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/136/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Independent peer input journal contains four native tools/call per negotiated MCP version with exact argument sequence [null,null,{},prescribed object], actual native thread replacing spoofed _meta.threadId, and exact preserved source. Native result has independently fixed text/content metadata/error flag and prescribed arguments; missing server/tool and protocol errors distinguish routing.",
+        "Peer is synthetic stdio MCP, not a production MCP service. MCP versions are 2025-06-18 and2026-07-28 only.",
+        "Fixture response echoes arguments, but qualification relies additionally on independently prescribed expected arrays and peer journal, not copied actual response values.",
+        "No whole ClientRequest request-id type/correlation qualification, hosted app tool authorization, arbitrary arguments or other transports."
+      ],
       "nullable": false,
       "pointer": "/oneOf/136/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "e9deddb224a9d6f84af08a65c0a3cc906967c3628ad843aa059b1964980b782d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/mcp_direct_test.exs:34-59,64-65,74-98,104-107"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -47801,24 +47941,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/14",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Prescribed interleaving proves thread-local decrement counts and paused=false exactly atzero; zero underflow returns -32600 with exact message, no wrapping. Cold counter reset and experimental disabled errors are independently prescribed; provider requests stay empty.",
+        "Runtime counter responses and guarded transitions only; no actual active execution pause/resume behavior or other transports.",
+        "Native process PID difference proves cold process replacement in source test; audit did not execute it."
+      ],
       "pointer": "/oneOf/14",
       "schema": "ClientRequest.json",
       "schema_sha256": "d79edd529897b9b3fa015713d73609fb838ce0fd7e7d3f3b5a56485df6cb4a50",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs:167-175,197-215,252-257,265-281"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -47850,75 +48001,108 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/14/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Prescribed interleaving proves thread-local decrement counts and paused=false exactly atzero; zero underflow returns -32600 with exact message, no wrapping. Cold counter reset and experimental disabled errors are independently prescribed; provider requests stay empty.",
+        "Runtime counter responses and guarded transitions only; no actual active execution pause/resume behavior or other transports.",
+        "Native process PID difference proves cold process replacement in source test; audit did not execute it."
+      ],
       "nullable": false,
       "pointer": "/oneOf/14/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "60b0cddf847216d1e26d4d064cb90f1cee3433a9ff9598277c3da900490d23f0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs:167-175,197-215,252-257,265-281"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/14/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Prescribed interleaving proves thread-local decrement counts and paused=false exactly atzero; zero underflow returns -32600 with exact message, no wrapping. Cold counter reset and experimental disabled errors are independently prescribed; provider requests stay empty.",
+        "Runtime counter responses and guarded transitions only; no actual active execution pause/resume behavior or other transports.",
+        "Native process PID difference proves cold process replacement in source test; audit did not execute it."
+      ],
       "pointer": "/oneOf/14/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "c1b90b61ce40eaa2b02d7cf0bc6c391b9ddc80cb9159ae2f67ba023ab8437d62",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs:167-175,197-215,252-257,265-281"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/14/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Prescribed interleaving proves thread-local decrement counts and paused=false exactly atzero; zero underflow returns -32600 with exact message, no wrapping. Cold counter reset and experimental disabled errors are independently prescribed; provider requests stay empty.",
+        "Runtime counter responses and guarded transitions only; no actual active execution pause/resume behavior or other transports.",
+        "Native process PID difference proves cold process replacement in source test; audit did not execute it."
+      ],
       "nullable": false,
       "pointer": "/oneOf/14/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "0cce69abdad0052b3c649d9b8590f8718553d0d5005a41667aaece66df6e7b16",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_control_queries_test.exs:167-175,197-215,252-257,265-281"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -52331,24 +52515,36 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/17",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Prescribed normalized objective/status/budget/zero usage; independently selected boundary errors with durable get of unchanged prior goal; a later explicit user turn captures exact quoted user-set objective/status/clear history and excludes absent/null/automatic objective strings.",
+        "Manual status updates do not establish automatic usageLimited or budgetLimited transitions.",
+        "Durable-equality checks partly use previous actual response; only the independently prescribed values and history strings above are nominated.",
+        "Selected paused-goal local synthetic-provider profile; no autonomous goal execution, real backend quota, other transports or all parameter combinations."
+      ],
       "pointer": "/oneOf/17",
       "schema": "ClientRequest.json",
       "schema_sha256": "3b1b2c89fa2fadb33202e0c85bb00344907323ca8df94176e47beca3f5fbbd21",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:45-50,53,57,59,64-67,95-100,110-115,183-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -52380,75 +52576,111 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/17/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Prescribed normalized objective/status/budget/zero usage; independently selected boundary errors with durable get of unchanged prior goal; a later explicit user turn captures exact quoted user-set objective/status/clear history and excludes absent/null/automatic objective strings.",
+        "Manual status updates do not establish automatic usageLimited or budgetLimited transitions.",
+        "Durable-equality checks partly use previous actual response; only the independently prescribed values and history strings above are nominated.",
+        "Selected paused-goal local synthetic-provider profile; no autonomous goal execution, real backend quota, other transports or all parameter combinations."
+      ],
       "nullable": false,
       "pointer": "/oneOf/17/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5f05e5db7facce55ae5938425be7a85a9a2fc9c566d3791a8daad347d1312e89",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:45-50,53,57,59,64-67,95-100,110-115,183-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/17/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Prescribed normalized objective/status/budget/zero usage; independently selected boundary errors with durable get of unchanged prior goal; a later explicit user turn captures exact quoted user-set objective/status/clear history and excludes absent/null/automatic objective strings.",
+        "Manual status updates do not establish automatic usageLimited or budgetLimited transitions.",
+        "Durable-equality checks partly use previous actual response; only the independently prescribed values and history strings above are nominated.",
+        "Selected paused-goal local synthetic-provider profile; no autonomous goal execution, real backend quota, other transports or all parameter combinations."
+      ],
       "pointer": "/oneOf/17/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b94997ea3490667217c5ed98b40a40e6990b88cf38a10098903168e29df1b12e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:45-50,53,57,59,64-67,95-100,110-115,183-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/17/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Prescribed normalized objective/status/budget/zero usage; independently selected boundary errors with durable get of unchanged prior goal; a later explicit user turn captures exact quoted user-set objective/status/clear history and excludes absent/null/automatic objective strings.",
+        "Manual status updates do not establish automatic usageLimited or budgetLimited transitions.",
+        "Durable-equality checks partly use previous actual response; only the independently prescribed values and history strings above are nominated.",
+        "Selected paused-goal local synthetic-provider profile; no autonomous goal execution, real backend quota, other transports or all parameter combinations."
+      ],
       "nullable": false,
       "pointer": "/oneOf/17/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "3604bacf80de1b13481977efd623956d254151f5f49bcb84e63209f05525e08d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:45-50,53,57,59,64-67,95-100,110-115,183-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -52761,24 +52993,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/18",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Initial and post-clear goal=nil; reading the same thread returns independently prescribed normalized objective, status and budget previously asserted by set profile; cold read retains durable goal; ephemeral/missing IDs yield exact native error boundaries.",
+        "Whole-goal equality uses the prior returned goal; independent expectations are nil and prescribed objective/status/budget/zero usage, plus exact ephemeral/missing errors.",
+        "No native automatic goal lifecycle or full output-schema qualification."
+      ],
       "pointer": "/oneOf/18",
       "schema": "ClientRequest.json",
       "schema_sha256": "e0a7e6472cadb2b981222ef01244c8d8c3a86ecfa336492016eb15d31d546e46",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:42,45-50,53,67,71,120-132,153,173,178"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -52810,75 +53053,108 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/18/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Initial and post-clear goal=nil; reading the same thread returns independently prescribed normalized objective, status and budget previously asserted by set profile; cold read retains durable goal; ephemeral/missing IDs yield exact native error boundaries.",
+        "Whole-goal equality uses the prior returned goal; independent expectations are nil and prescribed objective/status/budget/zero usage, plus exact ephemeral/missing errors.",
+        "No native automatic goal lifecycle or full output-schema qualification."
+      ],
       "nullable": false,
       "pointer": "/oneOf/18/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b1c2a6700d01f3a59794ad3ba43e06fe50788813321f2576814d38ab8e4d8814",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:42,45-50,53,67,71,120-132,153,173,178"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/18/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Initial and post-clear goal=nil; reading the same thread returns independently prescribed normalized objective, status and budget previously asserted by set profile; cold read retains durable goal; ephemeral/missing IDs yield exact native error boundaries.",
+        "Whole-goal equality uses the prior returned goal; independent expectations are nil and prescribed objective/status/budget/zero usage, plus exact ephemeral/missing errors.",
+        "No native automatic goal lifecycle or full output-schema qualification."
+      ],
       "pointer": "/oneOf/18/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b319dcd07086c980145177e20d73fe31cc5a520e906f815145f60c0a4fbc7bba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:42,45-50,53,67,71,120-132,153,173,178"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/18/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Initial and post-clear goal=nil; reading the same thread returns independently prescribed normalized objective, status and budget previously asserted by set profile; cold read retains durable goal; ephemeral/missing IDs yield exact native error boundaries.",
+        "Whole-goal equality uses the prior returned goal; independent expectations are nil and prescribed objective/status/budget/zero usage, plus exact ephemeral/missing errors.",
+        "No native automatic goal lifecycle or full output-schema qualification."
+      ],
       "nullable": false,
       "pointer": "/oneOf/18/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1a1012564d276897f6c8aeab9f785a97745f0ca4137d19808155cd8857075355",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:42,45-50,53,67,71,120-132,153,173,178"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -60153,24 +60429,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/7",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Actual native thread/start returns independently prescribed cwd/provider/ephemeral=false/idle/empty turns and model mock-model, nonempty new ID, sensible timestamps and no provider requests. Notification echo alone is not the oracle.",
+        "Only this root envelope's selected persisted empty-thread request is nominated; method/params owners already implemented.",
+        "Dynamic IDs/timestamps and notification equality are supplementary. No all-settings, side-effect execution or other transports."
+      ],
       "pointer": "/oneOf/7",
       "schema": "ClientRequest.json",
       "schema_sha256": "cca16c446175fec3e592b59ee52bcad886b8add8b0aa7e146f5e3192c73aa060",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:43-55"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -61513,24 +61800,36 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/8",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "Cold resume restores exact independently named thread and returns prescribed effective model/provider/cwd/reviewer/profile/tier/effort; no provider requests, server requests or turn/item lifecycle events. Reviewer guardian_subagent maps to auto_review and null tier todefault.",
+        "Only this root envelope's selected empty persisted cold-resume profile is nominated; method/params owners already implemented.",
+        "No history injection, nonempty rollout hydration, prediction, arbitrary config, all parameters or other transports.",
+        "Binary hash explicitly asserted at test lines10,17-18; not executed by audit."
+      ],
       "pointer": "/oneOf/8",
       "schema": "ClientRequest.json",
       "schema_sha256": "894988e0bc9b4ebc6469e22e7fa520ebe2987da5a937a86a58e87f26988e1f9a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:87-92,108-114,135-149,288-305,315-324"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -62985,24 +63284,36 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/9",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "New child differs from parent, forkedFromId is actual selected parent, gets a separate durable rollout, is the only newly loaded thread, and parent bytes/read remain unchanged. Independently prescribed settings map reviewer guardian_subagent->auto_review, tier null->default and read-only profile; invalid types/paths preserve unloaded parent before explicit recovery.",
+        "Empty parent selected profile; no nonempty-history cut points, prediction forks, goal-continuation forks, arbitrary overrides or other transports.",
+        "Some parent identity/name comparisons use captured parent data; nomination additionally rests on independent nonidentity/new-file/new-loaded membership and fixed settings assertions.",
+        "Binary hash is explicitly asserted at test lines10,17-18; this audit did not run it."
+      ],
       "pointer": "/oneOf/9",
       "schema": "ClientRequest.json",
       "schema_sha256": "83b13fc9b739ba9f0e6954929700625ab38e34f2bea11569f8df3c250f713e3f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:92,110,133-143,160,179-225,263-284,294-316"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -63034,75 +63345,111 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/9/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "New child differs from parent, forkedFromId is actual selected parent, gets a separate durable rollout, is the only newly loaded thread, and parent bytes/read remain unchanged. Independently prescribed settings map reviewer guardian_subagent->auto_review, tier null->default and read-only profile; invalid types/paths preserve unloaded parent before explicit recovery.",
+        "Empty parent selected profile; no nonempty-history cut points, prediction forks, goal-continuation forks, arbitrary overrides or other transports.",
+        "Some parent identity/name comparisons use captured parent data; nomination additionally rests on independent nonidentity/new-file/new-loaded membership and fixed settings assertions.",
+        "Binary hash is explicitly asserted at test lines10,17-18; this audit did not run it."
+      ],
       "nullable": false,
       "pointer": "/oneOf/9/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "de747c1cec5594d39ce019dae5c5ead010c5c437516390a40947926599d0f87d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:92,110,133-143,160,179-225,263-284,294-316"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/9/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "New child differs from parent, forkedFromId is actual selected parent, gets a separate durable rollout, is the only newly loaded thread, and parent bytes/read remain unchanged. Independently prescribed settings map reviewer guardian_subagent->auto_review, tier null->default and read-only profile; invalid types/paths preserve unloaded parent before explicit recovery.",
+        "Empty parent selected profile; no nonempty-history cut points, prediction forks, goal-continuation forks, arbitrary overrides or other transports.",
+        "Some parent identity/name comparisons use captured parent data; nomination additionally rests on independent nonidentity/new-file/new-loaded membership and fixed settings assertions.",
+        "Binary hash is explicitly asserted at test lines10,17-18; this audit did not run it."
+      ],
       "pointer": "/oneOf/9/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "1021d58a6fd6c710ee56eedfee4aacbd589275a5b2505413c7575bf35f782a68",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:92,110,133-143,160,179-225,263-284,294-316"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-envelope-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/9/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_selected_request_owner: unchanged actual-native selected call and independent outcome/capture. Physical envelope/method/literal/params-ref only; no inferred request-ID, referenced-field, whole-method or fully verified promotion.",
+        "New child differs from parent, forkedFromId is actual selected parent, gets a separate durable rollout, is the only newly loaded thread, and parent bytes/read remain unchanged. Independently prescribed settings map reviewer guardian_subagent->auto_review, tier null->default and read-only profile; invalid types/paths preserve unloaded parent before explicit recovery.",
+        "Empty parent selected profile; no nonempty-history cut points, prediction forks, goal-continuation forks, arbitrary overrides or other transports.",
+        "Some parent identity/name comparisons use captured parent data; nomination additionally rests on independent nonidentity/new-file/new-loaded membership and fixed settings assertions.",
+        "Binary hash is explicitly asserted at test lines10,17-18; this audit did not run it."
+      ],
       "nullable": false,
       "pointer": "/oneOf/9/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a98e21bca16b726b529f37f9e23620eca0ffeb56a7fb24fac34cbcf3d0a7507c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:92,110,133-143,160,179-225,263-284,294-316"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

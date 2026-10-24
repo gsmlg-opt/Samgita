@@ -6,6 +6,90 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Frozen local matrix at 96f7130
+
+The v16 combined runner is terminal against executable source
+`96f7130f57286c02f8ec2af940b3ca2a462e446d`. All **23 package commands** pass;
+all **17 platform commands** run. Both populated root repeats fail the retained
+GitHub first-page assertion at `github_controller_test.exs:56`, so the combined
+runner exits one. Both source guards match all1465 executable/configuration/
+workflow files. No executable source changes during qualification.
+
+| Independent check | Actual terminal result |
+| --- | --- |
+| Complete default driver, seeds501432/987654 | **665/0** each |
+| All42 isolated native profiles, both seeds | **259/0** each |
+| Neutral WebSocket, seeds455834/501432/987654 | **42/0** each |
+| Native wire and neutral core | **42/0**, **32/0** |
+| Native and both neutral outside consumers | **1/0** each |
+| Inventory37 regressions/consistency, namespace/sandbox, package compile/format/audits | Passed |
+
+| Preserved platform check | Actual terminal result |
+| --- | --- |
+| Both populated root repeats | Core **224/0/1 excluded**, web **128/1/5 excluded** each |
+| Native runtime/API/concurrency | Core **53/0**, web **8/0** |
+| Both consecutive recovery/restart repeats | Core **4/0**, web **1/0** each |
+| Compile, format, strict Credo, forced Dialyzer2166 modules, audit, legacy exclusion | Passed |
+| Frozen frontend install, assets and production assembly | Passed; assembly never started |
+
+The database remains `samgita_redesign_recovery_repair_test`. No reset, retained
+row deletion, assertion/pagination change, fake mapping or activation bypass
+occurs. These results preserve the unrelated GitHub failure and do not repair
+the earlier Fake Agent listener-rebind failure. Exact commands/logs remain in
+`/tmp/samgita-repair-final-{combined,platform,packages}-v16-20261024/`, with
+adjacent `.py` runners. Platform results SHA256 is
+`3abf0ee27dbe261b67ed222cf33c6ccb78867ddd3ee1e08e3d4e9475c2eec60c`;
+package results SHA256 is
+`bbaea62444aac089536009ab98fd205802b29e2806c543ac804f963cf2632741`;
+combined results SHA256 is
+`5e218d5e775d6caeb6ab45964f3a68dde0c10b59626c1781dfe4e815948eb880`.
+
+A later documentation-only [thirty-owner request index](native-envelope-owners-qualification.md#thirty-selected-request-owners-at-96f7130)
+binds unchanged native assertions to exact physical owners, bringing contracts
+to3171 implemented/3450 missing, zero verified. The frozen run's inventory
+remains3141/3480; indexing does not change that historical result. Requirements
+stay462 implemented/12 missing/11 blocked, zero verified. New executable units
+need final-source local/hosted qualification. Full compatibility, A11, unreachable
+emitters and external/OS acceptance remain incomplete; no release or deployment.
+
+## Hosted checkpoint at 96f7130
+
+Both workflows are terminal at exact pushed source
+`96f7130f57286c02f8ec2af940b3ca2a462e446d`.
+[Foundation 40104781858](https://github.com/gsmlg-opt/Samgita/actions/runs/40104781858)
+passes every required step, including both populated aggregates (**224 core/0/one
+excluded + 128 web/0/five excluded** each), restart/rollback **1/0**, neutral core
+**32/0**, both neutral outside consumers **1/0** each, neutral WebSocket and native
+wire **42/0** each, strict static checks, forced Dialyzer, audits, assets and local
+production assembly. The assembled release is never started or published.
+
+[Conformance 40104857905](https://github.com/gsmlg-opt/Samgita/actions/runs/40104857905)
+is **failed overall**. Both native execution jobs pass: complete default driver
+partitions **366/0 + 299/0 = 665/0**, seed501432; native wire **42/0**; native
+outside consumer **1/0**; fenced runtime/API/concurrency **53 core + 8 web/zero
+failures**; and all **42 explicit isolated profiles, 259/0**, without exclusions
+or skipped downstream steps. This includes Admin discovery, stock sleep/steer,
+computed goal budgeting and local/Git plugin metadata. Model/service dependencies
+in these scenarios are synthetic; actual app-server frames come from the pin.
+
+Mandatory completeness passes all **37 inventory regressions** and consistency,
+then fails `--require-verified`: **485 requirements: 0 verified / 462 implemented /
+12 missing / 11 blocked; 6,621 contracts: 0 verified / 3,141 implemented / 3,480
+missing**. No requirement is waived or promoted by passing selected journeys.
+A11, source-unreachable emitters, external/OS success and full compatibility remain
+incomplete. Fresh hosted success does not repair the separate retained populated
+local database's GitHub first-page assertion or earlier Fake Agent listener failure.
+
+The terminal-only read-only collector
+`/tmp/samgita-collect-hosted-96f7130-20261024.py` checks exact head and completion
+before collecting logs. Full metadata, counts, line anchors and logs are retained
+in `/tmp/samgita-hosted-96f7130-20261024/`. Foundation log SHA256 is
+`5674a010369eda0e89a9fa848f0afdabd921b4ec6b52941e35dfad61eba4a0bb`;
+conformance log SHA256 is
+`e7dd433fd9eec76f4cc1ae037f626b6d6d93f92e75e24a90ee3f980e24389260`.
+Documentation records these results without changing the tested executable inputs.
+No tag, publication, production migration, credential or deployment change occurs.
+
 ## Frozen local matrix at 0bc98a3
 
 The v15 combined runner is terminal against executable source

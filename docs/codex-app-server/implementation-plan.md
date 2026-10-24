@@ -21,12 +21,12 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
-The [hosted 0bc98a3 checkpoint](repair-qualification.md#hosted-checkpoint-at-0bc98a3)
+The [hosted96f7130 checkpoint](repair-qualification.md#hosted-checkpoint-at-96f7130)
 is terminal: foundation and both native execution jobs pass, including **665/0**
-default driver and **253/0** across 39 required isolated profiles. Mandatory
-completeness fails. The [terminal v15 local matrix](repair-qualification.md#frozen-local-matrix-at-0bc98a3)
-passes all 23 package commands and runs all 17 platform commands, reproducing the
-unchanged GitHub first-page assertion in its second populated aggregate. Both
+default driver and **259/0** across42 required isolated profiles. Mandatory
+completeness fails. The [terminal v16 local matrix](repair-qualification.md#frozen-local-matrix-at-96f7130)
+passes all23 package commands and runs all17 platform commands, reproducing the
+unchanged GitHub first-page assertion in both populated aggregates. Both
 recovery/restart repeats pass without reset or guard bypass. Both source guards
 match. No unrelated GitHub repair is claimed.
 
@@ -48,9 +48,15 @@ direct owners add scoped implemented evidence: **3,141 implemented / 3,480 missi
 zero verified. No requirement state changes; all four legacy requirements stay
 blocked. CI explicitly runs all42 isolated profiles.
 
-Next freeze this source and execute the complete final local matrix, preserving
-actual populated-database failures, then inspect exact-SHA hosted foundation and
-conformance results. Continue remaining behavior work; A11, source-unreachable
+The subsequent [thirty-owner request index](native-envelope-owners-qualification.md#thirty-selected-request-owners-at-96f7130)
+adds scoped evidence from unchanged native assertions: **3171 implemented /
+3450 missing** contracts, zero verified. It does not retroactively change the
+frozen/hosted manifest or qualify all fields behind the selected wrappers.
+
+Next implement source-backed native goal quota/tool/origin and plugin-MCP
+profiles, plus sent-unconfirmed approval hard restart. Run focused owning blocks,
+then freeze the final source for the complete local/hosted matrix. Preserve
+actual populated-database failures. Continue remaining behavior work; A11, source-unreachable
 emitters and external/OS success remain incomplete. No scoped green checkpoint
 completes the full goal.
 
