@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,906 implemented / 3,715 missing
+11 blocked requirements** and **0 verified / 2,921 implemented / 3,700 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,906 directly exercised
+MCP entries have scoped implementation evidence. These 2,921 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,17 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+Eight [review delivery cases](review-delivery-qualification.md) pass at both
+fixed seeds with warning-free compilation, format, strict Credo and a matching
+source guard. The actual binary handles legacy detached and omitted/null/inline
+in both history modes; paginated detached rejects without execution. The record
+retains the original three legacy inline history failures and their exact
+source-backed marker oracle correction. Full parent/cold history and cleanup
+assertions remain. Three precise delivery owners and twelve
+[retained realtime method discriminators](envelope-fields-qualification.md)
+gain scoped implemented evidence, with zero verified promotions. Final-source
+aggregate, package and hosted checks remain separate requirements.
 
 Seven [command and explicit-null cases](native-command-null-boundaries-qualification.md)
 pass in the complete **31/0** owning block at both fixed seeds, with strict checks

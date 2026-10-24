@@ -21,7 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
-Executable source `0629d92` has a terminal frozen local matrix: all **23 package
+The [review delivery unit](review-delivery-qualification.md) adds eight
+actual-native cases, passing both fixed seeds with compile/format/strict Credo
+and a matching source guard. Exact legacy marker persistence and full warm/cold
+Turn equality correct three retained draft failures; detached retains complete
+parent history equality. Three new delivery owners and twelve
+[retained realtime method discriminators](envelope-fields-qualification.md)
+bring the ledger to **2,921 implemented / 3,700 missing** contracts, zero verified.
+Requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified.
+Continue remaining reachable behavior and complete final-source local/hosted
+qualification. A11, source-unreachable production emitters and unavailable
+external/OS acceptance remain incomplete; no publication or deployment.
+
+Earlier executable source `0629d92` has a terminal frozen local matrix: all **23 package
 commands pass**, including both **647/0** default-driver and **208/0** isolated
 profile runs plus three **42/0** neutral WebSocket runs. All 17 platform commands
 ran; the first aggregate retains the GitHub first-page failure, while the second

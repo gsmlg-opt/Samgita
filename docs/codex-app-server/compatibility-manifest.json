@@ -36073,24 +36073,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-delivery-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewDelivery/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native scoped review delivery: Detached branch succeeds on a materialized legacy parent and routes result to a distinct child, not the original thread. Child is introduced before its status changes, model response is explicitly held until response/introduction observed, then completes with prescribed fixed output. Eight real-native cases pass at both owning seeds; legacy inline requires exact live-ID review marker pair and full cold Turn equality, detached retains stronger complete parent equality. Paginated detached is explicitly rejected without execution. Only this canonical request-side owner; no other target, params/result/ref owner, live quality/backend/OS/A11, whole lifecycle or fully verified promotion."
+      ],
       "pointer": "/definitions/ReviewDelivery/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "197afdc1cd11e51336214fb9d4c76e62569846098f27599f34cce3af93fdffc3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:116-151",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:153-166",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:168-174"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -162819,46 +162829,68 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-delivery-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ReviewStartParams.json#/properties/delivery/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native scoped review delivery: Both referenced enum values are passed unchanged through driver validation and actual native call sites. Inline returns original thread and completes with prescribed markers/result for both histories; legacy persistence has exact2 markers, paginated has the prescribed assistant message. Detached uses ordinary legacy child lifecycle with fixed result and unchanged parent full warm/cold history. Eight real-native cases pass at both owning seeds; legacy inline requires exact live-ID review marker pair and full cold Turn equality, detached retains stronger complete parent equality. Paginated detached is explicitly rejected without execution. Only this canonical request-side owner; no other target, params/result/ref owner, live quality/backend/OS/A11, whole lifecycle or fully verified promotion."
+      ],
       "pointer": "/properties/delivery/anyOf/0",
       "schema": "v2/ReviewStartParams.json",
       "schema_sha256": "ee43f10e8280a85c03c522cc7a2cc5e58f673c01a77fa0cf4dcef2bc464371a5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:210-243",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:116-174",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:347-365",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:238-243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-delivery-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ReviewStartParams.json#/properties/delivery/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native scoped review delivery: Explicit JSON null is retained and accepted at driver/native request boundaries, defaults inline and executes on original legacy/paginated thread. Omitted and explicit-inline are separate controls with prescribed identity/marker/result assertions, not equality-only inference. Legacy null has exact2 persisted marker maps with live UUID identity and complete cold/warm Turn equality; paginated null retains fixed assistant-message proof. Eight real-native cases pass at both owning seeds; legacy inline requires exact live-ID review marker pair and full cold Turn equality, detached retains stronger complete parent equality. Paginated detached is explicitly rejected without execution. Only this canonical request-side owner; no other target, params/result/ref owner, live quality/backend/OS/A11, whole lifecycle or fully verified promotion."
+      ],
       "pointer": "/properties/delivery/anyOf/1",
       "schema": "v2/ReviewStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:210-243",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:292-299",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:347-365",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:238-248"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
