@@ -2306,3 +2306,29 @@ settings and 6 errors. Regenerated ledger: **462 implemented / 12 missing /
 legacy paths, external/OS profiles and A11 remain incomplete. Final package,
 populated-database and hosted outcomes stay separate gates; no release,
 publication, production migration or deployment is claimed.
+
+## Native input discrimination and MCP form variants
+
+The [input/metadata unit](input-metadata-qualification.md) adds seven native
+cases; [MCP variants](mcp-form-variants-qualification.md) adds sixteen. All
+**23 new cases** passed both seeds `501432` and `987654`. The focused enum run
+also retains four earlier scalar/titled regressions. Root strict Credo, driver
+warning-free compile/format and both focused source guards passed. Native
+processes use the exact pinned executable; synthetic peers supply only its
+owned model/MCP dependencies.
+
+The field ledger adds **64 exact contracts**: 15 selected input/skill metadata
+properties and 49 MCP properties/branches. It is now **2,347 implemented /
+4,274 missing, zero verified**. The **485 requirement** ledger remains
+**462 implemented / 12 missing / 11 blocked, zero verified**. The preceding
+retained-test indexing added 63 other contracts, documented separately in
+[Project/thread fields](project-thread-input-fields-qualification.md) and
+[notification/error/plugin fields](notification-error-plugin-fields-qualification.md).
+No equal-hash/alias or whole-method propagation is used.
+
+The [c3dda0c package and hosted checkpoint](repair-qualification.md) predates
+these executable additions. Final combined-source package, preserved-platform
+and hosted checks must run again. Their results cannot be inferred from these
+focused passes. A11, upstream-unreachable paths, missing reverse-cursor success,
+external/OS profiles and complete compatibility remain incomplete. No release,
+publication, deployment or production migration is claimed.

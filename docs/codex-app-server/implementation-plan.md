@@ -586,3 +586,18 @@ frozen package matrix passes all commands, including **495/0** default twice and
 **205/0** profiles twice. Continue new-source full/hosted qualification and the
 remaining attributable thread-source behavior; neither checkpoint completes the
 goal or clears A11, unavailable upstream emitters, external accounts or OS profiles.
+
+The [input/metadata unit](input-metadata-qualification.md) and
+[MCP form variants](mcp-form-variants-qualification.md) add **23 real-native
+cases**, all passing both recorded seeds, with compile/format/strict Credo and
+source guards. Distinct start policy, persisted replacement/empty roots and
+nonempty import metadata close the three prior nondiscriminating input gaps.
+Both OpenAI form producers have actual native accept/decline/cancel evidence;
+typed enum siblings and string dialect/format preservation have exact oracles.
+These tests add **64 precise contracts**, without verified promotions. The
+ledger is **462 implemented / 12 missing / 11 blocked** requirements and
+**2,347 implemented / 4,274 missing** contracts, zero verified. Freeze the
+combined executable source and run the new complete independent-package,
+preserved populated-database and hosted matrix. Source-only field audits may
+continue independently. A11, source-unreachable emitters, external/OS success
+and the retained unrelated aggregate failure remain incomplete.
