@@ -23876,7 +23876,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/end",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -23909,7 +23909,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/start",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -26711,7 +26711,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "pointer": "/definitions/FunctionCallOutputContentItem/oneOf/0",
@@ -26742,7 +26742,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "nullable": false,
@@ -26775,7 +26775,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "nullable": false,
@@ -26806,7 +26806,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "pointer": "/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type/enum/0",
@@ -37896,7 +37896,7 @@
       "id": "schema:ClientRequest.json#/definitions/ThreadMetadataGitInfoUpdateParams/properties/branch",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Padded feature/\u03bb trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
+        "actual_native_selected_values: Padded feature/λ trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
         "Native metadata update and readback in an isolated synthetic local thread; no remote Git or credentials."
       ],
       "nullable": true,
@@ -39719,7 +39719,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0",
@@ -39750,7 +39750,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -39783,7 +39783,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text_elements",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -39816,7 +39816,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -39847,7 +39847,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0/properties/type/enum/0",
@@ -43394,24 +43394,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/115",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Empty boundary page is exact full result; other catalog values are dynamically checked. No complete feature behavior or nested promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/115",
       "schema": "ClientRequest.json",
       "schema_sha256": "071bd7349b44249c39f2507bf97c4812a9df6a287f063c96395738902cf1805d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:243-277,285-291"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -43443,97 +43451,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/115/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Empty boundary page is exact full result; other catalog values are dynamically checked. No complete feature behavior or nested promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/115/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "edc38459515a3750b90a6c604c9cd2cf91f937b500644bcd68478bf199ebad67",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:243-277,285-291"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/115/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Empty boundary page is exact full result; other catalog values are dynamically checked. No complete feature behavior or nested promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/115/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9cd8990fa1ba852806f928c1f3ebbeac0af4b53bd8b594c4fa6d450e5035a5d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:243-277,285-291"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/115/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Empty boundary page is exact full result; other catalog values are dynamically checked. No complete feature behavior or nested promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/115/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f43dc01050773ffb030c02b9d4815a0ab3088b16e11c2919bf7b40caa578c9a5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:243-277,285-291"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/116",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Discovery metadata only; no selection, permission grant, sandbox enforcement, credentials or remote executor acceptance. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/116",
       "schema": "ClientRequest.json",
       "schema_sha256": "83b306d296c2520521569f338d9b17ed74a0b3002c073565634c5fd711124eaf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:133-172"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -43565,97 +43605,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/116/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Discovery metadata only; no selection, permission grant, sandbox enforcement, credentials or remote executor acceptance. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/116/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ec83d510d4182c051f4e55ea78cb0774047223c1be245335b7ea81cacc1c5aed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:133-172"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/116/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Discovery metadata only; no selection, permission grant, sandbox enforcement, credentials or remote executor acceptance. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/116/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "8d8e5b6dc959cfeeb748de002868f8856291615c59dc8dec4d67c94c911adb43",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:133-172"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/116/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Discovery metadata only; no selection, permission grant, sandbox enforcement, credentials or remote executor acceptance. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/116/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "233ae65422118c829d4b422b89e00ded8098206194cb2583a2ec7e7d9f6ab1e6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/environment_profiles_test.exs:133-172"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/117",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Native runtime feature toggle response only; disk precedence and restart behavior are tested but Samgita authorization is unchanged. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/117",
       "schema": "ClientRequest.json",
       "schema_sha256": "1b3cb663a0eb1a3b18511108e19bab4346d57428223bc36262f70460cf766497",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:308-353"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -43687,75 +43759,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/117/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Native runtime feature toggle response only; disk precedence and restart behavior are tested but Samgita authorization is unchanged. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/117/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "686a291f3be7a06a151ad9804d1de3c98b1ef59f48a148ac227de80558163585",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:308-353"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/117/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Native runtime feature toggle response only; disk precedence and restart behavior are tested but Samgita authorization is unchanged. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/117/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "550ee0831b39e392fd5953eaeb6ce99e1d084f9cfe0aa0d403e95c7cb7f528dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:308-353"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/117/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Native runtime feature toggle response only; disk precedence and restart behavior are tested but Samgita authorization is unchanged. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/117/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a9296cba7de973e8fed64dcbbdfdd06de405c2270eb544307dbb178db2a02f7e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:308-353"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -45742,24 +45838,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/131",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Reload success is exact {}; malformed config error message prefix is checked, recovery observed. Native strict failure may publish partially; no rollback guarantee. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/131",
       "schema": "ClientRequest.json",
       "schema_sha256": "cf192684c55a6e087cdf8e4577bbd2aae2df7877f41470d6231156543ac73b61",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:134-150"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -45791,97 +45895,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/131/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Reload success is exact {}; malformed config error message prefix is checked, recovery observed. Native strict failure may publish partially; no rollback guarantee. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/131/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "88733c5edc38a7857cbdabe8c5446ae815a91a3bb6ff7b588d6ca0c6dd3712fa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:134-150"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/131/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Reload success is exact {}; malformed config error message prefix is checked, recovery observed. Native strict failure may publish partially; no rollback guarantee. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/131/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "719707a23e5ade3346389ed8c1de2857cee48a25a60b06f51b553c7bf8d66945",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:134-150"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/131/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Reload success is exact {}; malformed config error message prefix is checked, recovery observed. Native strict failure may publish partially; no rollback guarantee. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/oneOf/131/properties/params",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:134-150"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/132",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Selected fixture MCP inventories on isolated Linux UDS, not real services. Complete response map is not fixed-literal asserted; no referenced MCP payload promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/132",
       "schema": "ClientRequest.json",
       "schema_sha256": "bb5ca12184c2fb46e6f790cbe1947d2672a6b4d0c1cbd7c5fd430ce052ce2577",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:87-125,490-539"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -45913,75 +46049,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/132/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Selected fixture MCP inventories on isolated Linux UDS, not real services. Complete response map is not fixed-literal asserted; no referenced MCP payload promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/132/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "517e419616ef2af44feb9910924346fddd504cf16bccd4e58d2631bfcecbb842",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:87-125,490-539"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/132/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Selected fixture MCP inventories on isolated Linux UDS, not real services. Complete response map is not fixed-literal asserted; no referenced MCP payload promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/132/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "4f9b3e20a5751237f9f3f2b091faf866d82d768c6b0fc649f59b57c51c8f6b89",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:87-125,490-539"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/132/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Selected fixture MCP inventories on isolated Linux UDS, not real services. Complete response map is not fixed-literal asserted; no referenced MCP payload promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/132/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "8647b09e0e0b5c72f9a7c745748c61b0facc0220cbe15ed6732ddf05a5e3a8bb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:87-125,490-539"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "params"
     },
     {
@@ -46230,24 +46390,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/135",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Active, repeated and unknown-owned stops return {}; only selected per-connection subscription lifecycle on isolated Linux UDS. No stream-start or notification contracts promoted. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/135",
       "schema": "ClientRequest.json",
       "schema_sha256": "5f8afea6c950f68112e81f6020834de78e4aa3e5c791ef1e1fba4a6d63be0877",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:307-323"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -46279,75 +46447,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/135/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Active, repeated and unknown-owned stops return {}; only selected per-connection subscription lifecycle on isolated Linux UDS. No stream-start or notification contracts promoted. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/135/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "74a7ecbc756956c8465837c999ed6cd38021f225ccf77a105769745c4f0be360",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:307-323"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/135/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Active, repeated and unknown-owned stops return {}; only selected per-connection subscription lifecycle on isolated Linux UDS. No stream-start or notification contracts promoted. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/135/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b81db944113ebfef458fd02288a93cc21a997fe06341e8e300ab2acd629c767e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:307-323"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/135/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Active, repeated and unknown-owned stops return {}; only selected per-connection subscription lifecycle on isolated Linux UDS. No stream-start or notification contracts promoted. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/135/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "22c3b743511e428406af8ba47ef0b28e0c67724b32473a31b923e21037371524",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs:307-323"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "params"
     },
     {
@@ -49554,24 +49746,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/159",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Default/scoped response maps are dynamic; no fixed full-response literal or all configuration fields claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/159",
       "schema": "ClientRequest.json",
       "schema_sha256": "58d399928d911be908b58a2a22c83c81a712dfd9ffaaf7762082ff414a00de77",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:29-32,37-48"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -49603,75 +49803,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/159/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Default/scoped response maps are dynamic; no fixed full-response literal or all configuration fields claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/159/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d8a10276b00c9d3b332388d15614b99f6cffac6fe4e166218ec3c17a639a96bd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:29-32,37-48"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/159/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Default/scoped response maps are dynamic; no fixed full-response literal or all configuration fields claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/159/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "1bdfe039580f443ed1447e49d8e5627e726df054e8ff4307102b4e1d5a821591",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:29-32,37-48"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/159/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Default/scoped response maps are dynamic; no fixed full-response literal or all configuration fields claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/159/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c5fe5f34206c8730510e1fe3324d076c90ff4e43f5012523f7f590d4fc762870",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:29-32,37-48"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -50286,24 +50510,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/164",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Only selected local write/merge/delete/version operations; error helper does not assert the entire message; no all-schema/field promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/164",
       "schema": "ClientRequest.json",
       "schema_sha256": "2d966d09cdfcdd3f35cce781519f7e6e41c08985d9c3a3b5ae6d873d8067246d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:56-58,69-89,93-103"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -50335,97 +50567,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/164/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Only selected local write/merge/delete/version operations; error helper does not assert the entire message; no all-schema/field promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/164/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c4c264dac8239d662980bee5dc860cb97bd7fd732809cc2e6a081fafab7c103a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:56-58,69-89,93-103"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/164/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Only selected local write/merge/delete/version operations; error helper does not assert the entire message; no all-schema/field promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/164/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "71b3bce047bfc5d91a94862ae43966173213ee9d3ef7442b670012eabdfbbcc4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:56-58,69-89,93-103"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/164/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Only selected local write/merge/delete/version operations; error helper does not assert the entire message; no all-schema/field promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/164/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ecc3947b8dbd92c7d52ba6adad425f8ecb225bf060c29d09cafda853ce15c5f1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:56-58,69-89,93-103"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/165",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Dynamic version and partial response assertions; only disposable local configuration, no all-setting hot-reload claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/165",
       "schema": "ClientRequest.json",
       "schema_sha256": "059eabd0dcb7330205804ab36bb733aa90bd3460b662b72e4074d2636a74854d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:118-127,140-157,161-165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -50457,75 +50721,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/165/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Dynamic version and partial response assertions; only disposable local configuration, no all-setting hot-reload claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/165/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "7a8fb523bb2e99e9cb5ee2e2f981082e2b1a078b056e34402667771a63c11dc8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:118-127,140-157,161-165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/165/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Dynamic version and partial response assertions; only disposable local configuration, no all-setting hot-reload claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/165/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "cb3006cfb16c8f326d0097a5f7f508a703f23240d58eb20d0d3bcbc7550a8750",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:118-127,140-157,161-165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/165/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Dynamic version and partial response assertions; only disposable local configuration, no all-setting hot-reload claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/165/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "031454625d651b254f4c2e891b78820fbffad1009637d2ec48e086cdeba1c702",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:118-127,140-157,161-165"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -51846,24 +52134,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/20",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Shared helper extracts queuedSubmission rather than asserting full add response; outer envelope only. No generated ID-field alternative promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/20",
       "schema": "ClientRequest.json",
       "schema_sha256": "34fa83d1e59b2bb43d26d4dd511d410d096af794426d5a4ffdbbad8e26af2d24",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:49-63,119-125"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -51895,97 +52191,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/20/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Shared helper extracts queuedSubmission rather than asserting full add response; outer envelope only. No generated ID-field alternative promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/20/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b2f005368aefe4da92cbccd31252450514463a0064e0ff5299130c1851ae2e21",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:49-63,119-125"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/20/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Shared helper extracts queuedSubmission rather than asserting full add response; outer envelope only. No generated ID-field alternative promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/20/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "16998a27a00e0c3ab325186c34a7266757c290588952b0864ebbaf77cf1834ca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:49-63,119-125"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/20/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Shared helper extracts queuedSubmission rather than asserting full add response; outer envelope only. No generated ID-field alternative promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/20/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "224d44aaa3cc5efa2735110abc92ac288019ecc2b47aa0c2d985ff0e2669ec7b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:49-63,119-125"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/21",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Only selected native durable queue pages/cursors; no all-pagination or state alternatives claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/21",
       "schema": "ClientRequest.json",
       "schema_sha256": "bcc9ad4f28a25eb254d5be0f3f5135d624d67efd5efc2250d1a55c43061bdfc6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:53-63,128-139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -52017,97 +52345,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/21/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Only selected native durable queue pages/cursors; no all-pagination or state alternatives claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/21/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ec1c11d5d4b1cdc0932d21507260e5ca7ad3de1f4c3f45e1bc7013d60d472324",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:53-63,128-139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/21/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Only selected native durable queue pages/cursors; no all-pagination or state alternatives claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/21/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "0ded2987f7e1111af523a94ab25b1563f4db2ada9079ab155c23d818118456cf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:53-63,128-139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/21/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Only selected native durable queue pages/cursors; no all-pagination or state alternatives claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/21/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "54d9ab3f54a9af8fe613553945fbfa4ff92796885f6c04c419e336c6bcce3e0b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:53-63,128-139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/22",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Helper extracts queuedSubmission; no full outer result map or all input variants claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/22",
       "schema": "ClientRequest.json",
       "schema_sha256": "2e4f4703070ef700c3a958c43858cca94a034c9115efc0a61f1a586adabc29b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:65-66,110-125"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -52139,97 +52499,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/22/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Helper extracts queuedSubmission; no full outer result map or all input variants claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/22/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "e7b08675ac9be67b9747b55cfa3aaa600e479a7afd9a518aa7004764a2db6047",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:65-66,110-125"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/22/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Helper extracts queuedSubmission; no full outer result map or all input variants claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/22/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "fd978d298078eb5b6230dc07c0a66de079d8bca9e0ca885e560f19b90d474c70",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:65-66,110-125"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/22/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Helper extracts queuedSubmission; no full outer result map or all input variants claim. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/22/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "541a161c00a3a1f63acb9486b9b1ace139391fde183b9c59158c3f39f6fe1fbd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:65-66,110-125"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/23",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Missing identity separately returns deleted:false. Durable list checks validate deletion; no ID/leaf-field promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/23",
       "schema": "ClientRequest.json",
       "schema_sha256": "acc5c6f039fb443a6b86b52dc04912351a003cff5d3bd586fea019dcdf1404b1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:73-79,116"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -52261,97 +52653,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/23/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Missing identity separately returns deleted:false. Durable list checks validate deletion; no ID/leaf-field promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/23/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "2998f6bc5de1d381764f4da28f970974c118b87fa38b59d08602f59d5b49baef",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:73-79,116"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/23/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Missing identity separately returns deleted:false. Durable list checks validate deletion; no ID/leaf-field promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/23/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "eaaf46a66aaf2fcf66a381f54bb44839327a0ac8d6f42f992d01a77a88c175e9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:73-79,116"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/23/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Missing identity separately returns deleted:false. Durable list checks validate deletion; no ID/leaf-field promotion. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/23/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "48a3c74b5687ef894334e1076749cc1ed5edc13b09851f55320a9f0e4e70eee9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:73-79,116"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/24",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Permutations are selected examples; no all queue/concurrency variants claim. Invalid permutation exact error follows explicit upstream call. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/24",
       "schema": "ClientRequest.json",
       "schema_sha256": "309c3b4998689f948d7d462d67bd45e2dd259245c1cac66ac9c6d3378a287abf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:68-79,99-107"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -52383,97 +52807,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/24/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Permutations are selected examples; no all queue/concurrency variants claim. Invalid permutation exact error follows explicit upstream call. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/24/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c82e1d014eff46325b309fa257dded2c557b1f7d8faa146c7baec320a3b1b13a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:68-79,99-107"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/24/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Permutations are selected examples; no all queue/concurrency variants claim. Invalid permutation exact error follows explicit upstream call. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/24/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "fdca0c5b370e3f3fa6892f9ad89263b58a71ef4124ed3b2b1856bb45a570fc27",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:68-79,99-107"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/24/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Permutations are selected examples; no all queue/concurrency variants claim. Invalid permutation exact error follows explicit upstream call. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/24/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "28f98d7b03e1b81852e76cfa95faca96de4e495b8100bb2ff31677ffbb43eb67",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:68-79,99-107"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/25",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Turn response is partial, not entire fixed result. Existing tests execute only owned synthetic-provider work; this audit launches nothing and confers no Samgita Task acceptance. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/25",
       "schema": "ClientRequest.json",
       "schema_sha256": "ee469445daf4c59e8fec0446993fdf544e37103441d1118b9c0108daad9b0360",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:251-261"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -52505,75 +52961,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/25/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Turn response is partial, not entire fixed result. Existing tests execute only owned synthetic-provider work; this audit launches nothing and confers no Samgita Task acceptance. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/25/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "502815f13a393c5e1e103bb5c24126e969b49093c8a899fb5e8a12f735a79375",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:251-261"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/25/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Turn response is partial, not entire fixed result. Existing tests execute only owned synthetic-provider work; this audit launches nothing and confers no Samgita Task acceptance. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/25/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "6056408599d0caf8cd114044814ee2f9429554b7886c0e0a002882b303d28a34",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:251-261"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/25/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_config_mcp_queue_wrapper: explicit call arguments, unchanged deterministic constructor and positive native result. Turn response is partial, not entire fixed result. Existing tests execute only owned synthetic-provider work; this audit launches nothing and confers no Samgita Task acceptance. Only observed outer branch/method/discriminator/params wrapper; no ID or nested promotion. Source-only indexing, no new outgoing capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/25/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "346224704f2c73527dda69af5d6445e2aa3632da11bfd70811265a4309701096",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:251-261"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -69267,7 +69747,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69301,7 +69781,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69335,7 +69815,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69369,7 +69849,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69399,7 +69879,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69751,7 +70231,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69785,7 +70265,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69819,7 +70299,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69853,7 +70333,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69887,7 +70367,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69921,7 +70401,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69951,7 +70431,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -69981,7 +70461,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70011,7 +70491,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70159,7 +70639,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70193,7 +70673,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70227,7 +70707,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70301,7 +70781,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70401,7 +70881,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70435,7 +70915,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70469,7 +70949,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70547,7 +71027,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70581,7 +71061,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70615,7 +71095,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70649,7 +71129,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -70679,7 +71159,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -71611,7 +72091,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -71645,7 +72125,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -71745,7 +72225,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -72367,7 +72847,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -72494,7 +72974,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+          "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
         ]
       },
       "transport_coverage": [
@@ -92616,24 +93096,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/activePermissionProfile/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_settings_leaf: Output-only null variant. Applying legacy readOnly sandbox after named audit permissions yields applied activePermissionProfile:null and unchanged readOnly policy. This does not qualify all legacy policies or nonnull profile object variants. Source-only indexing of direct prior native assertions; no new execution, whole-reference or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadSettings/properties/activePermissionProfile/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:458-466,479-503"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -92864,24 +93352,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/effort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_settings_leaf: Output-only null variant. Builtin default collaboration settings with reasoning_effort:null produce applied threadSettings.effort:null. This is not a top-level effort:null clearing claim. Source-only indexing of direct prior native assertions; no new execution, whole-reference or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadSettings/properties/effort/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:304-305,479-503"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -139935,7 +140431,7 @@
       "id": "schema:v2/ModelListResponse.json#/definitions/ReasoningEffortOption/properties/description",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact Focused \u03bb and Maximum effort descriptions.",
+        "actual_native_selected_values: Exact Focused λ and Maximum effort descriptions.",
         "Real pinned native model/list projection from offline synthetic static local catalog. Metadata only; no inference, real provider authorization, hosted discovery, managed policy or advertised capability execution success."
       ],
       "nullable": false,
@@ -184440,7 +184936,7 @@
       "id": "schema:v2/ThreadSearchOccurrencesResponse.json#/definitions/ThreadSearchOccurrence/properties/snippet",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact original \ud83d\ude00 Needle needle NEEDLE source text.",
+        "actual_native_selected_values: Exact original 😀 Needle needle NEEDLE source text.",
         "Real pinned native thread/searchOccurrences over one local paginated Unicode turn; UTF16 ranges, item identity, cursor continuation and cold equality asserted."
       ],
       "nullable": false,
@@ -185132,7 +185628,7 @@
       "id": "schema:v2/ThreadSearchParams.json#/properties/searchTerm",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Literal quoted \"needle\" with backslash, \u00e9 and emoji selects exactly matching native histories.",
+        "actual_native_selected_values: Literal quoted \"needle\" with backslash, é and emoji selects exactly matching native histories.",
         "Real pinned native thread/search over isolated paginated synthetic local histories; result selection and pagination asserted. No independent sort-precedence fixture."
       ],
       "nullable": false,
@@ -189342,68 +189838,92 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/ReasoningSummary/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_settings_leaf: Request-only auto enum variant submitted to native thread/settings/update and directly matched in the applied output summary. Does not qualify generated model reasoning, model support, default behavior or none. Source-only indexing of direct prior native assertions; no new execution, whole-reference or fully verified promotion."
+      ],
       "pointer": "/definitions/ReasoningSummary/oneOf/0/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "e29286b1c27e643bc7559b984d22570fa470515902de9f5034e20c811c10213a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:224-230,479-503"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/ReasoningSummary/oneOf/0/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_settings_leaf: Request-only concise enum variant, used as marker in explicit proactive ignored-field case. Submitted marker is directly matched in applied output; exact preservation excludes only summary. No claim of reasoning generation or delegation effect. Source-only indexing of direct prior native assertions; no new execution, whole-reference or fully verified promotion."
+      ],
       "pointer": "/definitions/ReasoningSummary/oneOf/0/enum/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "950fd0b2421e0956155434856966eb38a461ecb5c4b4ab8c45ad0a3d006cdf56",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:374-385,479-503"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/ReasoningSummary/oneOf/0/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_settings_leaf: Request-only detailed enum variant submitted with selected saved approval/reviewer/personality settings and directly matched in applied output. Does not qualify generated model reasoning. Source-only indexing of direct prior native assertions; no new execution, whole-reference or fully verified promotion."
+      ],
       "pointer": "/definitions/ReasoningSummary/oneOf/0/enum/2",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "c64a1ef7259e228f12a4fd75fbf64a538ae5be908aa5616f32173224d7065e11",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:186-192,479-503"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

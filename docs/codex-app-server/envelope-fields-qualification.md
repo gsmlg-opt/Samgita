@@ -104,3 +104,45 @@ these wrappers. Status is scoped implemented, with **zero fully verified**.
 This adds no runtime/configuration change, full-method claim, external/OS
 acceptance, A11 closure or permission to publish. Final source checks remain
 separate gates.
+
+## Configuration, permissions, queue and MCP wrappers
+
+A further bounded source-only audit indexes **60 previously missing wrapper
+contracts across 15 methods**. Each contributes only its ClientRequest branch,
+method property, literal method discriminator and params wrapper. The unchanged
+positive tests ran in the complete **495/0** default suite on `0cb70cc`, including
+both required hosted partitions in conformance run `40058706792`. This indexing
+adds no test or outgoing wire capture.
+
+| Method | Branch | Owning test and positive assertion ranges |
+| --- | --- | --- |
+| config/read | 159 | native_config_test.exs:29-32,37-48 |
+| config/value/write | 164 | native_config_test.exs:56-58,69-89,93-103 |
+| config/batchWrite | 165 | native_config_test.exs:118-127,140-157,161-165 |
+| experimentalFeature/list | 115 | native_config_test.exs:243-277,285-291 |
+| experimentalFeature/enablement/set | 117 | native_config_test.exs:308-353 |
+| permissionProfile/list | 116 | environment_profiles_test.exs:133-172 |
+| thread/queue/add | 20 | native_queue_lifecycle_test.exs:49-63,119-125 |
+| thread/queue/list | 21 | native_queue_lifecycle_test.exs:53-63,128-139 |
+| thread/queue/update | 22 | native_queue_lifecycle_test.exs:65-66,110-125 |
+| thread/queue/delete | 23 | native_queue_lifecycle_test.exs:73-79,116 |
+| thread/queue/reorder | 24 | native_queue_lifecycle_test.exs:68-79,99-107 |
+| thread/queue/start | 25 | native_queue_lifecycle_test.exs:251-261 |
+| mcpServerStatus/list | 132 | native_mcp_control_lifecycle_test.exs:87-125,490-539 |
+| config/mcpServer/reload | 131 | native_mcp_control_lifecycle_test.exs:134-150 |
+| mcpServer/event/stream/stop | 135 | native_mcp_control_lifecycle_test.exs:307-323 |
+
+Config, permissions and queues use Linux stdio; these MCP cases use the owned
+native Unix-socket endpoint. Every method has a positive native call, rather
+than disabled-only evidence. Partial result checks and dynamic observed-map
+equality are labeled as such in the audit; they establish no fixed full-result,
+nested-field, request-ID, complete-method or fully verified coverage.
+
+Exact IDs, independently recomputed subtree hashes, test/source hashes,
+constructor ranges and immutable upstream declaration/dispatch anchors:
+`/tmp/samgita-client-envelope-config-mcp-queue-candidates-20261024.json`, SHA256
+`ebd41fdea88fc82d583cb7b3014dd7805e4758f67a609401e5952dffaefb53d1`.
+All 60 selected rows were missing and disjoint from the prior 48. Reference
+closures match per-method schemas under the structural rules above; this
+comparison alone adds no behavioral evidence. Status stays scoped implemented,
+with zero fully verified, no broader service/OS acceptance and no A11 closure.

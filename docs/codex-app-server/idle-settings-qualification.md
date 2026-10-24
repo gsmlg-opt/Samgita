@@ -54,3 +54,28 @@ generated prose. No broader sandbox alternative, permissions escalation,
 inference effect, complete default/negotiation behavior, deployment/OS profile,
 A11 or fully verified promotion is implied. This remains a bounded qualification
 unit inside the active full compatibility goal.
+
+## Later exact-leaf indexing
+
+A source-only follow-up links five additional missing contracts to these same
+native assertions, without adding a runtime test. The canonical ThreadSettings
+output type is owned by `ServerNotification.json`: its `effort` null branch is
+directly asserted at test lines 304-305; `activePermissionProfile` null is asserted
+at 458-466. The applied-snapshot helper at 479-503 supplies the native event
+barrier. Root `effort: null` remains a preservation operation; only nested
+collaboration reasoning effort produces the asserted null output here.
+
+The request ReasoningSummary variants `auto`, `concise` and `detailed` are
+explicitly submitted and matched in native applied output at 224-230, 374-385
+and 186-192 respectively. This establishes selected saved values, not model
+reasoning generation, the `none` alternative or an entire referenced schema.
+Canonical ownership was checked through complete local reference semantics.
+The missing ConfigLayerMetadata.version was excluded: the existing config
+helper reads layers[].version, whose ConfigLayer.version is already indexed.
+Identical string-node hashes cannot establish metadata-origin coverage.
+
+Exact IDs, hashes, source mappings, assertion ranges and exclusions are in
+`/tmp/samgita-config-settings-leaf-candidates-20261024.json`, SHA256
+`84c8d3102911d7a5bcecfe43c22d1b343454c8a7fd5f2c6e5ecdf64cca412393`.
+All five were missing before indexing. They remain scoped implemented with
+zero fully verified; this is no new native run or broader lifecycle claim.

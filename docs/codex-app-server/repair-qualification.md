@@ -6,6 +6,34 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted checkpoint at 0cb70cc
+
+Exact pushed source `0cb70cc3b9d747fe9e9dd76cddcef0331a505767` completed both
+normal workflows. [Foundation 40058689978](https://github.com/gsmlg-opt/Samgita/actions/runs/40058689978)
+passed both populated-database seeds (**224 core/0/one excluded + 125 web/0/two
+excluded**, each), dedicated restart/rollback **1/0**, neutral core **32/0**,
+both outside consumers **1/0** each, WebSocket **42/0**, native wire **42/0**,
+strict checks/audits, assets and local production assembly. This hosted database
+does not supersede the unchanged local GitHub first-page failure below.
+
+[Conformance 40058706792](https://github.com/gsmlg-opt/Samgita/actions/runs/40058706792)
+finished **failed overall**. Its selected actual-binary/platform job passed
+native wire **42/0**, both required default-driver partitions (**256/0 +
+239/0 = 495/0**), outside consumer **1/0**, and native platform **53 core +
+5 web / zero failures**. The independent isolated-native job passed all
+**30 explicit profiles, 205/0**, including private Secret Service persistence.
+Both Mix partitions retain the original eight-minute step deadline and cover
+the complete sorted default test-file set, with no excluded native scenario.
+
+The separate required evidence gate failed unchanged: **485 requirements:
+462 implemented / 12 missing / 11 blocked**; **6,621 contracts: 1,931 implemented /
+4,690 missing**, **zero verified**. These selected real-binary successes do not
+close the full compatibility goal, A11, source-unreachable legacy paths or
+external/OS acceptance. Terminal metadata, complete logs and per-step counts:
+`/tmp/samgita-hosted-0cb70cc-20261024/`. No release, tag, publication, deployment
+or live credential change occurred. Later executable additions require their
+own combined-source and hosted checks.
+
 ## Hosted checkpoint at 570a6f0
 
 Exact pushed source `570a6f04639c730b94a10c6ea735c912c5d06fc9` finished both
