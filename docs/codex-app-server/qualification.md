@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,871 implemented / 3,750 missing
+11 blocked requirements** and **0 verified / 2,901 implemented / 3,720 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,871 directly exercised
+MCP entries have scoped implementation evidence. These 2,901 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -35,6 +35,12 @@ correction remain recorded. No native deadline or assertion changes; synthetic
 account/backend evidence does not establish real image-service integration.
 Thirty-one exact physical failure/item owners gain implemented evidence; no
 contract becomes fully verified.
+
+Five [remote-plugin detail cases](remote-plugin-detail-qualification.md) pass
+**5/0** at both fixed seeds, preserving four schedule metadata tags, null/empty
+collections, native u32/opaque string semantics, whole-detail decode errors and
+explicit authentication/HTTP errors. Thirty exact response owners gain scoped
+implemented evidence; no schedule execution or real marketplace is claimed.
 
 The [hosted checkpoint at 5c22159](repair-qualification.md#hosted-checkpoint-at-5c22159)
 passes foundation and both native execution jobs: both complete driver partitions

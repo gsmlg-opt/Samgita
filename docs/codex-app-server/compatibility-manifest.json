@@ -150958,27 +150958,38 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/PluginDetail/properties/scheduledTasks",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: absent and explicit-null backend metadata yield explicit scheduledTasks:null; empty array remains[]; populated data cannot bleed into later absent metadata Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. No complete PluginDetail field set is asserted or proposed from this one collection field. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginDetail/properties/scheduledTasks",
       "required": false,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "c51512042bb41e8740b75d1d7489abdc58f7a7ddb433234cd8eabf3dd37a4ffc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:66-77",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-264",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:46-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "scheduledTasks"
     },
     {
@@ -151128,696 +151139,1038 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag hourly, intervalHours2 and MO/WE/FR days survive warm/repeat/cold GET; intervalHours0 and4294967295 survive; omitted/null days output null; empty days remains[] Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. No real recurrence calculation or interval minimum beyond serde u32 is claimed; zero is accepted metadata. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/0",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "50bacc13cc1b66d08de6b43f1fb726ee38fcafe7b50185a8c74e9396384e0726",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:47-47",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:84-87",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/0/properties/days",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag hourly, intervalHours2 and MO/WE/FR days survive warm/repeat/cold GET; intervalHours0 and4294967295 survive; omitted/null days output null; empty days remains[] Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. No real recurrence calculation or interval minimum beyond serde u32 is claimed; zero is accepted metadata. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": true,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/0/properties/days",
       "required": false,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "ed6f39c719b8e7d0e0a2b5de81725a9ba8469180b32df58235b5e208f501eac6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:47-47",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:84-87",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "days"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/0/properties/intervalHours",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag hourly, intervalHours2 and MO/WE/FR days survive warm/repeat/cold GET; intervalHours0 and4294967295 survive; omitted/null days output null; empty days remains[] Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. No real recurrence calculation or interval minimum beyond serde u32 is claimed; zero is accepted metadata. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/0/properties/intervalHours",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:47-47",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:84-87",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "intervalHours"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag hourly, intervalHours2 and MO/WE/FR days survive warm/repeat/cold GET; intervalHours0 and4294967295 survive; omitted/null days output null; empty days remains[] Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. No real recurrence calculation or interval minimum beyond serde u32 is claimed; zero is accepted metadata. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "df5ce2f6f55a5acafe0ead2ac7c0ec80ddc01364af7f8e3db6846cac43e25b38",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:47-47",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:84-87",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag hourly, intervalHours2 and MO/WE/FR days survive warm/repeat/cold GET; intervalHours0 and4294967295 survive; omitted/null days output null; empty days remains[] Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. No real recurrence calculation or interval minimum beyond serde u32 is claimed; zero is accepted metadata. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/0/properties/type/enum/0",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "aeba24780b98ace0bddd70bc4be5208e1f4a38ba2b9ee7aaef2da5fc9b943547",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:47-47",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:84-87",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag daily and09:15 time survive warm/repeat/cold GET; opaque Unicode time string survives; native does not parse clocks Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/1",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "028f52579d6e37e4fecebf42f787c4a235fe5fe06cee2a02dd7df7dba7b6135d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:48-48",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:88-88",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/1/properties/time",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag daily and09:15 time survive warm/repeat/cold GET; opaque Unicode time string survives; native does not parse clocks Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/1/properties/time",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:48-48",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:88-88",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "time"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag daily and09:15 time survive warm/repeat/cold GET; opaque Unicode time string survives; native does not parse clocks Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "8a43837cd1866b66f7d5475c229cccc7882df752eb54b3ace1ca75ca85577b39",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:48-48",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:88-88",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag daily and09:15 time survive warm/repeat/cold GET; opaque Unicode time string survives; native does not parse clocks Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/1/properties/type/enum/0",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "fea2973d0d04e2b1c01cf76a7b7519830d201ae8255215cd9466944f3a385a30",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:48-48",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:88-88",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag weekdays and08:30 time survive warm/repeat/cold GET; empty time stays empty; weekdays is not expanded to weekly days Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/2",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "367e4e9d6bfac2d1c94f7fc463321430562a71fe906d01f90759906957d020bd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:49-49",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:89-89",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/2/properties/time",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag weekdays and08:30 time survive warm/repeat/cold GET; empty time stays empty; weekdays is not expanded to weekly days Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/2/properties/time",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:49-49",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:89-89",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "time"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag weekdays and08:30 time survive warm/repeat/cold GET; empty time stays empty; weekdays is not expanded to weekly days Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "affbd0f8541777d38892ba6e6908f005d0c52d052137ee2213ff4df437660309",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:49-49",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:89-89",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag weekdays and08:30 time survive warm/repeat/cold GET; empty time stays empty; weekdays is not expanded to weekly days Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/2/properties/type/enum/0",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "844a07bb3f31f7c09f8ee379ef0f9f173c7c7e96048466ebdb4427a317a218e5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:49-49",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:89-89",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag weekly,16:45 time and all7uppercase weekday values survive warm/repeat/cold GET; SU,MO,SU order/duplicates preserved; empty days array remains[]; opaque25:99 time preserved Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Required days type is tested; no scheduling semantics or actual weekday recurrence is qualified. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/3",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "12f0edd06b19c455c21d6d6c77781ec8c120615bca4df7c5bd5a2f317f4adbba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:90-91",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/3/properties/days",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag weekly,16:45 time and all7uppercase weekday values survive warm/repeat/cold GET; SU,MO,SU order/duplicates preserved; empty days array remains[]; opaque25:99 time preserved Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Required days type is tested; no scheduling semantics or actual weekday recurrence is qualified. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/3/properties/days",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "920a103b558967400683231dba9d8784b72c06d1e2afa48481062cfb1cd93d12",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:90-91",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "days"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/3/properties/time",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag weekly,16:45 time and all7uppercase weekday values survive warm/repeat/cold GET; SU,MO,SU order/duplicates preserved; empty days array remains[]; opaque25:99 time preserved Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Required days type is tested; no scheduling semantics or actual weekday recurrence is qualified. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/3/properties/time",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:90-91",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "time"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/3/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag weekly,16:45 time and all7uppercase weekday values survive warm/repeat/cold GET; SU,MO,SU order/duplicates preserved; empty days array remains[]; opaque25:99 time preserved Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Required days type is tested; no scheduling semantics or actual weekday recurrence is qualified. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/3/properties/type",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "132d40ae0225c906be73ebdfb1ae185a5ddd8fd8f0efac2401b8d917892918db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:90-91",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSchedule/oneOf/3/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: tag weekly,16:45 time and all7uppercase weekday values survive warm/repeat/cold GET; SU,MO,SU order/duplicates preserved; empty days array remains[]; opaque25:99 time preserved Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Required days type is tested; no scheduling semantics or actual weekday recurrence is qualified. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskSchedule/oneOf/3/properties/type/enum/0",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "26827a6e9a30c71224d9ef892efba7093ebad3e46e5d3ad80847dfe93277344a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:90-91",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:94-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSummary/properties/key",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: key/name/prompt/schedule survive exact collection equality, preserving task order and Unicode prompt Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSummary/properties/key",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:234-240",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:46-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:84-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "key"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSummary/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: key/name/prompt/schedule survive exact collection equality, preserving task order and Unicode prompt Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSummary/properties/name",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:234-240",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:46-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:84-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSummary/properties/prompt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: key/name/prompt/schedule survive exact collection equality, preserving task order and Unicode prompt Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSummary/properties/prompt",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:234-240",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:46-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:84-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "prompt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskSummary/properties/schedule",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: key/name/prompt/schedule survive exact collection equality, preserving task order and Unicode prompt Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Both complete native repeats pass; full qualification remains open."
+      ],
       "nullable": false,
       "pointer": "/definitions/ScheduledTaskSummary/properties/schedule",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "c82ccf619bc9ff3e9a1a6dfe0668e7bdd69d5d02d939585e082ca619a193974c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:234-240",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:46-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:84-96",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "schedule"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskWeekday/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: valid uppercase weekday MO serialized unchanged in actual plugin/read response Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Only valid enum value preservation is counted; lowercase error is separate negative evidence, not another successful enum value. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskWeekday/enum/0",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "61078dcc6d0dd01cfbece586fd2be1546d4b6146f185ce7ecbaba311de7d1d8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskWeekday/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: valid uppercase weekday TU serialized unchanged in actual plugin/read response Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Only valid enum value preservation is counted; lowercase error is separate negative evidence, not another successful enum value. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskWeekday/enum/1",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "b3c6b4d6f24c68dbcc87d0df9ec071cde006b2cffc8a460fa0129de1be241adc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskWeekday/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: valid uppercase weekday WE serialized unchanged in actual plugin/read response Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Only valid enum value preservation is counted; lowercase error is separate negative evidence, not another successful enum value. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskWeekday/enum/2",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "4eb9f2a259051045ed2456286081d20627e21ad1123f228169c344585bdef8cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskWeekday/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: valid uppercase weekday TH serialized unchanged in actual plugin/read response Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Only valid enum value preservation is counted; lowercase error is separate negative evidence, not another successful enum value. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskWeekday/enum/3",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "59844e39f95412089835a4fa2706bb109cdf7accf76ac207459e86e5719a6199",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskWeekday/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: valid uppercase weekday FR serialized unchanged in actual plugin/read response Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Only valid enum value preservation is counted; lowercase error is separate negative evidence, not another successful enum value. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskWeekday/enum/4",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "172d284e88db2535b38fe1dd8bb95478b31d3be67f4d69e4b93e49e89c782149",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskWeekday/enum/5",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: valid uppercase weekday SA serialized unchanged in actual plugin/read response Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Only valid enum value preservation is counted; lowercase error is separate negative evidence, not another successful enum value. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskWeekday/enum/5",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "743fb2da8df387b6a8e313367c7374cc6687acfa9af2adf43f726b882484a368",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/remote-plugin-detail-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/ScheduledTaskWeekday/enum/6",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_plugin_schedule_metadata: valid uppercase weekday SU serialized unchanged in actual plugin/read response Only metadata returned by successful actual plugin/read; no scheduler execution, model request, remote mutation, live account or permissions granted. Exact physical PluginReadResponse owner only; no whole PluginDetail/whole schema union, other response owner or same-hash transfer. Parent final native-run reports and source hashes match this assertion map; parent owns evidence binding/state promotion. Only valid enum value preservation is counted; lowercase error is separate negative evidence, not another successful enum value. Both complete native repeats pass; full qualification remains open."
+      ],
       "pointer": "/definitions/ScheduledTaskWeekday/enum/6",
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "fa0b6919ab94d6526feeee3dbee2996ff49b79fdb2f4023fb5fda1923dd34aa9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:14-14",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:50-50",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:53-62",
+          "apps/samgita_codex_driver/test/native_remote_plugin_detail_profile.exs:258-278"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
