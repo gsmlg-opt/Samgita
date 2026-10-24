@@ -6,6 +6,48 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted and independent-package checkpoint at c3dda0c
+
+Exact source `c3dda0c2b89edfe821c63bc4808fd3e307ecbccf` completed the normal
+hosted workflows. [Foundation 40068650688](https://github.com/gsmlg-opt/Samgita/actions/runs/40068650688)
+passed both seeds (**224 core/0/one excluded + 128 web/0/five excluded** each),
+restart/rollback **1/0**, neutral core **32/0**, both outside consumers **1/0**
+each, neutral WebSocket/native wire **42/0** each, strict checks, audits, assets
+and production assembly.
+
+[Conformance 40068677611](https://github.com/gsmlg-opt/Samgita/actions/runs/40068677611)
+is **failed overall**. Its selected actual-binary/platform job passed native
+wire **42/0**, both default driver partitions (**317/0 + 271/0 = 588/0**), the
+native outside consumer **1/0**, and native platform/API/races **53 core + 8 web /
+zero failures**. The isolated native job passed all **30 profiles, 205/0**.
+The unchanged eight-minute partition deadlines remained in place. The required
+completeness job failed with **485 requirements: 462 implemented / 12 missing /
+11 blocked; zero verified**, and **6,621 contracts: 2,220 implemented / 4,401
+missing; zero verified**. Exact head metadata and complete logs:
+`/tmp/samgita-hosted-c3dda0c-20261024/`.
+
+The local v8 independent-package runner then passed **23 commands** and its
+end-of-run executable/configuration/workflow hash guard. Default driver seeds
+`501432` and `987654` passed **588/0**, 521.3/520.3s; all 30 profiles passed
+**205/0**, 408.4/407.9s. Native and neutral outside consumers passed;
+WebSocket seeds `455834`, `501432`, `987654` each passed **42/0**, and native
+wire passed **42/0**. Inventory regressions **37/0**, inventory consistency,
+namespace/native-sandbox prerequisites, package compile/format and all relevant
+strict dependency audits passed. Full commands, hashes, exits and logs:
+`/tmp/samgita-repair-final-packages-v8-20261024/`.
+
+The following source-reviewed indexing adds **63 exact contracts**, without
+executable changes or verified promotions:
+[47 Project/thread inputs](project-thread-input-fields-qualification.md) and
+[16 notification/error/plugin fields](notification-error-plugin-fields-qualification.md).
+The resulting field ledger is **2,283 implemented / 4,338 missing; zero
+verified**; the requirement ledger is unchanged. These counts do not rewrite
+the historical hosted evidence. Subsequent executable tests require a fresh
+final-source local and hosted matrix. The last retained populated-database
+aggregate still has the unchanged GitHub first-page failure; A11,
+upstream-unreachable emitters, external/OS success and full compatibility remain
+incomplete. No release, publication or deployment occurred.
+
 ## Hosted and populated-platform checkpoint at 3fbaf74
 
 Exact pushed source `3fbaf74d9eec8a9cdf0b391ec940b7b324a94b62` completed the

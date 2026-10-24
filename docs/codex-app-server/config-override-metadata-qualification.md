@@ -37,7 +37,7 @@ mix test test/native_config_override_metadata_test.exs --seed 501432
 mix test test/native_config_override_metadata_test.exs --seed 987654
 ```
 
-Both passed **3 tests / zero failures**, 2.0s each. Changed-file formatting and
+Both passed **3 tests / zero failures**, 2.0/2.1s. Changed-file formatting and
 warnings-as-errors compile passed. Exact commands/exits and logs are in
 `/tmp/samgita-config-override-adoption-v3-20261024/`. The initial v1 adoption
 failed formatting because the new file had not been applied; no test ran. The

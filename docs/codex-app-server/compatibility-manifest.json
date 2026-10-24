@@ -74968,27 +74968,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/description",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Exact nonempty Directory beta/alpha/gamma/delta descriptions from independent fixture inputs, joined to emitted notification full maps. Non-null string branch only. No null branch inference or equal-hash propagation. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/description",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs:44-59,90-111,258-307"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
@@ -75072,105 +75080,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Exact nonempty beta, alpha, gamma IDs in initial emitted data; exact delta and beta IDs after controlled refresh. Full map equality joins IDs to the expected corresponding fields and ordering. Synthetic directory/discovery profile only; no claim about arbitrary provider IDs. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppInfo/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs:44-59,90-111,258-307"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/installUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Exact independently specified https://chatgpt.com/apps/<id>-directory/<id> URLs for each controlled ID, observed in actual emitted maps. The fixture only supplies directory facts; the test expects the native derived URL. Non-null string branch only; URL presence does not demonstrate navigation or installation. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/AppInfo/properties/installUrl",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs:44-59,90-111,258-307"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "installUrl"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/isAccessible",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Both boolean values in emitted notification maps: beta true and alpha/gamma false initially; after controlled discovery refresh delta true and beta false. Beta's accessibility changes under independent fixture state. Discovery-derived accessibility only; no invocation or real hosted entitlement claim. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppInfo/properties/isAccessible",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs:44-59,90-111,258-307"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "isAccessible"
     },
     {
       "default": true,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/isEnabled",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Explicit isEnabled:true key is required by exact full map equality in actual native notifications for beta/alpha/gamma/delta. True/default-enabled case only. Joined catalogs never contain disabled. Do not claim false, configuration changes, disable transitions or installed-response evidence for this notification owner. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppInfo/properties/isEnabled",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "03390ad415911a789ce8276b0b7534455d74f0271107e8c35f5f7a4c71dfe9cf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs:44-59,90-111,258-307"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "isEnabled"
     },
     {
@@ -75254,27 +75294,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/AppInfo/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Exact nonempty Beta Directory, Alpha Directory, Gamma Directory and refreshed Delta Directory strings, independently expected and bound to their IDs in emitted notification maps. Own direct field assertions; identical id schema hash does not propagate evidence. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/AppInfo/properties/name",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_app_catalog_profile.exs:44-59,90-111,258-307"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
@@ -95229,21 +95277,21 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Turn/properties/error",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "null_only: Null error only; non-null/failed/interrupted behavior unqualified. Installed assertion lines 83,85. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_native_bounded_owner: Failed native turn carries a present non-null exact terminal error map across HTTP429/403/500/503 cases; whole error also matches independently expected map in SSE exhausted/overload cases187-194. This is selected field evidence, not every possible error family. HTTP cases prescribe exact terminal message and classification;316-321 compares complete terminal map (including explicit nil misalignment/additionalDetails),325 Map.fetch!s turn/completed.turn.error and compares to that independently fixed map. Completed helper385-390 selects exact notification thread/turn. Thus typed terminal evidence is anchored in fixed expectations, not merely equality of two uninterpreted outputs. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
       ],
       "nullable": true,
       "pointer": "/definitions/Turn/properties/error",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "80a18f860e1b4daf124d3aaab1d56f598b45efb8af674aa0cc16e27c09d5f759",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -95251,49 +95299,59 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-235,274-280,290-325,382-390"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "error"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Turn/properties/error/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Positive typed TurnError object in failed turn/completed; explicit independently expected message/classification/null fields. HTTP cases prescribe exact terminal message and classification;316-321 compares complete terminal map (including explicit nil misalignment/additionalDetails),325 Map.fetch!s turn/completed.turn.error and compares to that independently fixed map. Completed helper385-390 selects exact notification thread/turn. Thus typed terminal evidence is anchored in fixed expectations, not merely equality of two uninterpreted outputs. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "pointer": "/definitions/Turn/properties/error/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "c1aaa92f65bbaec529d993afd04174f79910b3e3d2a00be166ac49abdaba1745",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-235,274-280,290-325,382-390"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
       ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Turn/properties/error/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "null_only: Null error only; non-null/failed/interrupted behavior unqualified. Installed assertion lines 83,85. Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "actual_native_bounded_owner: Turn.error null branch in successful terminal recovery; separate from non-null failed-turn terminal error. Does not imply terminal CodexErrorInfo null or any new error family. After actual native failure, caller explicitly starts a distinct next turn. No error notification, exact completed status, Map.fetch!(next_completed[turn],error)==nil and one independently fixed assistant answer prove present explicit null. Lines171,212,347 use Map.fetch! so absent error cannot pass. The recovery turn is exactly correlated by385-390. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
       ],
       "pointer": "/definitions/Turn/properties/error/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -95301,10 +95359,12 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:169-172,204-214,336-349,382-390"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -95583,49 +95643,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/TurnError/properties/codexErrorInfo",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Present non-null classification: rateLimitExceeded/serverOverloaded, usageLimitExceeded/flexUnavailable/internalServerError, httpConnectionFailed403 and responseTooManyFailedAttempts429. This property evidence does not promote all CodexErrorInfo branches. HTTP cases prescribe exact terminal message and classification;316-321 compares complete terminal map (including explicit nil misalignment/additionalDetails),325 Map.fetch!s turn/completed.turn.error and compares to that independently fixed map. Completed helper385-390 selects exact notification thread/turn. Thus typed terminal evidence is anchored in fixed expectations, not merely equality of two uninterpreted outputs. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/TurnError/properties/codexErrorInfo",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "10daedac9c1391368783ac616be99c403332ba59a178fb8e0f14616a85ec4228",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-235,274-280,290-325,382-390"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "codexErrorInfo"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/TurnError/properties/codexErrorInfo/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Non-null referenced CodexErrorInfo reachable inside typed terminal TurnError for the exercised known string/object classifications; no null/future fallback-family claim. HTTP cases prescribe exact terminal message and classification;316-321 compares complete terminal map (including explicit nil misalignment/additionalDetails),325 Map.fetch!s turn/completed.turn.error and compares to that independently fixed map. Completed helper385-390 selects exact notification thread/turn. Thus typed terminal evidence is anchored in fixed expectations, not merely equality of two uninterpreted outputs. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "pointer": "/definitions/TurnError/properties/codexErrorInfo/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "31bacac5a6a9291d9130208653fc0162b5b746d7cefcb90149a401479100fe99",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-235,274-280,290-325,382-390"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -95653,53 +95729,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/TurnError/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Exact independently fixed messages: rate limit exceeded: Owned provider rate limit.; selected-model capacity; retry limit status429; quota; flex; internal overload;403 message built using actual recorded loopback URL plus a fixed prefix/suffix. HTTP message oracle297-298 is sourced from peer request journal, not native terminal output. HTTP cases prescribe exact terminal message and classification;316-321 compares complete terminal map (including explicit nil misalignment/additionalDetails),325 Map.fetch!s turn/completed.turn.error and compares to that independently fixed map. Completed helper385-390 selects exact notification thread/turn. Thus typed terminal evidence is anchored in fixed expectations, not merely equality of two uninterpreted outputs. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/TurnError/properties/message",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-235,274-280,290-325,382-390"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/TurnError/properties/misalignment",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Whole exact terminal map contains the key with explicit nil, so absence cannot pass. Null-only property evidence; no MisalignmentErrorDetails object/continuation behavior. HTTP cases prescribe exact terminal message and classification;316-321 compares complete terminal map (including explicit nil misalignment/additionalDetails),325 Map.fetch!s turn/completed.turn.error and compares to that independently fixed map. Completed helper385-390 selects exact notification thread/turn. Thus typed terminal evidence is anchored in fixed expectations, not merely equality of two uninterpreted outputs. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/TurnError/properties/misalignment",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "c8694b64c20f1fd502320f7dd881f50f3f81850c0802dc1917ec36e98e2a7865",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-235,274-280,290-325,382-390"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "misalignment"
     },
     {
@@ -95726,24 +95818,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/TurnError/properties/misalignment/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Explicit null inside independently fixed terminal map, transferred into typed turn/completed via Map.fetch!, not Access-to-nil or schema-default inference. HTTP cases prescribe exact terminal message and classification;316-321 compares complete terminal map (including explicit nil misalignment/additionalDetails),325 Map.fetch!s turn/completed.turn.error and compares to that independently fixed map. Completed helper385-390 selects exact notification thread/turn. Thus typed terminal evidence is anchored in fixed expectations, not merely equality of two uninterpreted outputs. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "pointer": "/definitions/TurnError/properties/misalignment/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-235,274-280,290-325,382-390"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -147813,27 +147913,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/PluginDetail/properties/skills",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: Setup writes a controlled local fixture-market marketplace pointing at fixture-capabilities, a local plugin manifest and exactly one skills/inspect/SKILL.md. Lines 39-42 independently create the inspect skill with explicit description/body. The helper installs that named plugin at lines 142-143, reads the actual native plugin/read response at 144 and requires exactly one skills list entry at 147. It does not derive the expected singleton list from another response. Positive singleton package-detail skills collection only. The assertion pattern checks only the enabled field of its member. Do not infer its name, path, description, shortDescription or interface. Do not transfer separately asserted skills/list runtime names/paths into plugin/read. No empty-list, additional-skill or onboardingSkill claim. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginDetail/properties/skills",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "d762f40785b707bc32393ce9ef43dbe49229ba952f8d3725ac73768a42332cc2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs:39-42,142-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skills"
     },
     {
@@ -148940,27 +149048,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-error-plugin-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/SkillSummary/properties/enabled",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_bounded_owner: A known local inspect skill is written before install; local plugins are explicitly enabled and remote plugins disabled in setup. Successful native installation is followed by a native plugin/read. Exact map pattern requires an actual enabled key equal to true in the sole SkillSummary; missing or null fails the pattern. True only. Thread disabledPluginIds exercise turn injection and history later in the test; they do not re-read plugin/read or prove SkillSummary.enabled false. No default/absence/null inference and no same-hash transfer. Only the nominated physical field or branch is indexed; other aliases, methods, error families, transports, OS, live services and fully verified status remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SkillSummary/properties/enabled",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/plugin_selection_test.exs:39-42,142-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
@@ -155039,53 +155155,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ProjectChangedNotification.json#/properties/changeType",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Exact buffered created/updated/deleted native notifications joined to relevant IDs; no RPC-versus-notification wire-order claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/changeType",
       "required": true,
       "schema": "v2/ProjectChangedNotification.json",
       "schema_sha256": "da3e43222515a39779ede3415eaf0c72da7c1899dfadd1defe6028fe546566a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:41,109-112,168,201,245,320-333"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "changeType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ProjectChangedNotification.json#/properties/projectId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Exact buffered created/updated/deleted native notifications joined to relevant IDs; no RPC-versus-notification wire-order claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/projectId",
       "required": true,
       "schema": "v2/ProjectChangedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:41,109-112,168,201,245,320-333"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "projectId"
     },
     {
@@ -155117,105 +155249,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateParams.json#/properties/idempotencyKey",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Exact trimmed name, metadata object and owned roots; key replay returns original without notification; invalid key/name/root controls preserve state; cold read equals saved project. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/idempotencyKey",
       "required": true,
       "schema": "v2/ProjectCreateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:27-70"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "idempotencyKey"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateParams.json#/properties/metadata",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Exact trimmed name, metadata object and owned roots; key replay returns original without notification; invalid key/name/root controls preserve state; cold read equals saved project. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/metadata",
       "required": false,
       "schema": "v2/ProjectCreateParams.json",
       "schema_sha256": "0b68571ac84e5ae5fbc46d950f8d353b4b171b3daa19df8528d3706d0b201b23",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:27-70"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "metadata"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateParams.json#/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Exact trimmed name, metadata object and owned roots; key replay returns original without notification; invalid key/name/root controls preserve state; cold read equals saved project. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/name",
       "required": true,
       "schema": "v2/ProjectCreateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:27-70"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateParams.json#/properties/roots",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Exact trimmed name, metadata object and owned roots; key replay returns original without notification; invalid key/name/root controls preserve state; cold read equals saved project. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/roots",
       "required": true,
       "schema": "v2/ProjectCreateParams.json",
       "schema_sha256": "9db9005e85fcacd1932b764ee4a3791163e964cf6b92cdfd21d64cdd8fc1d75a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:27-70"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "roots"
     },
     {
@@ -155429,79 +155593,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectCreateResponse.json#/properties/project",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Nonempty outer project carries independently asserted trimmed name/roots/metadata/timestamps and durable cold read; no full nested contract inference. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/project",
       "required": true,
       "schema": "v2/ProjectCreateResponse.json",
       "schema_sha256": "43b413c614a0fe7f8d469e6d594d379da35998f0e7e103f404bf7d62c47f4986",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:34-46,66-70"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectDeleteParams.json#/properties/projectId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Delete only classification, clear member association, preserve exact two-turn history and sentinel before and after cold restart; reading deleted ID fails. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/projectId",
       "required": true,
       "schema": "v2/ProjectDeleteParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:226-260"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "projectId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectImportParams.json#/properties/idempotencyKey",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Actual imported existing thread membership, filters and cold resume; duplicate/missing/ephemeral threads reject atomically; same key with changed valid payload retains original membership and no duplicate notification. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/idempotencyKey",
       "required": true,
       "schema": "v2/ProjectImportParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:73-131"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "idempotencyKey"
     },
     {
@@ -155585,53 +155773,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectImportParams.json#/properties/threads",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Actual imported existing thread membership, filters and cold resume; duplicate/missing/ephemeral threads reject atomically; same key with changed valid payload retains original membership and no duplicate notification. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/threads",
       "required": false,
       "schema": "v2/ProjectImportParams.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:73-131"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threads"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectImportResponse.json#/properties/project",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Outer project object supplies native ID that is durably associated with selected existing thread; changed payload replay returns same object and no reassignment. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/project",
       "required": true,
       "schema": "v2/ProjectImportResponse.json",
       "schema_sha256": "43b413c614a0fe7f8d469e6d594d379da35998f0e7e103f404bf7d62c47f4986",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:107-129"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project"
     },
     {
@@ -155725,53 +155929,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectListParams.json#/properties/cursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: One-project pages use returned opaque cursor, contain no duplicate IDs and collectively equal exact three-project post-move order. Nonempty cursor continuation and termination after the three expected IDs are necessary for equality; no arbitrary-limit or full cursor-variant claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:183-224,309-314"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectListParams.json#/properties/limit",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: One-project pages use returned opaque cursor, contain no duplicate IDs and collectively equal exact three-project post-move order. Nonempty cursor continuation and termination after the three expected IDs are necessary for equality; no arbitrary-limit or full cursor-variant claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "80c78c2078367c04c0ef237db981a743ed785ac504a7837582217736021b046e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:183-224,309-314"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "limit"
     },
     {
@@ -155847,27 +156067,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectListParams.json#/properties/sortKey",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Explicit recencyAt orders nonempty members ahead of empty project; recency values are numeric and archive clears selected membership recency. Explicit descending success is not covered. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/sortKey",
       "required": false,
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "59cbb0fc60157aa449413db7aa35a94e16a32a6608095c901874b576d49121c8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:204-217"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sortKey"
     },
     {
@@ -155917,287 +156145,375 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectListResponse.json#/properties/data",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Exact one-project page and complete three-ID order require nonempty next cursor continuation; missing/ignored cursor would fail. No all nested fields or reverse cursor claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/ProjectListResponse.json",
       "schema_sha256": "1a3dce051eb24901a4338fe6f0690a0f4407b51c574a735395754e10afd27756",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:202,222,309-314"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectListResponse.json#/properties/nextCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Exact one-project page and complete three-ID order require nonempty next cursor continuation; missing/ignored cursor would fail. No all nested fields or reverse cursor claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ProjectListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:202,222,309-314"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectMoveParams.json#/properties/beforeProjectId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Move empty project before the named first project; exact paginated order and selected updated notification. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/beforeProjectId",
       "required": false,
       "schema": "v2/ProjectMoveParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:194-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "beforeProjectId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectMoveParams.json#/properties/projectId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Move empty project before the named first project; exact paginated order and selected updated notification. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/projectId",
       "required": true,
       "schema": "v2/ProjectMoveParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:194-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "projectId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectReadParams.json#/properties/projectId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Selected ID read equals complete saved project before and after cold restart. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/projectId",
       "required": true,
       "schema": "v2/ProjectReadParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:66-70,273-274"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "projectId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectReadResponse.json#/properties/project",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Outer read project equals saved full native-created project across cold restart; no all-project-fields promotion. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/project",
       "required": true,
       "schema": "v2/ProjectReadResponse.json",
       "schema_sha256": "43b413c614a0fe7f8d469e6d594d379da35998f0e7e103f404bf7d62c47f4986",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:66-70,273-274"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectUpdateParams.json#/properties/metadata",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Omitted/null fields retain exact original; explicit trimmed name and empty roots/metadata change the requested project while preserving identity, createdAt, recencyAt and membership, and repeat emits no duplicate notice. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/metadata",
       "required": false,
       "schema": "v2/ProjectUpdateParams.json",
       "schema_sha256": "0b68571ac84e5ae5fbc46d950f8d353b4b171b3daa19df8528d3706d0b201b23",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:133-180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "metadata"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectUpdateParams.json#/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Omitted/null fields retain exact original; explicit trimmed name and empty roots/metadata change the requested project while preserving identity, createdAt, recencyAt and membership, and repeat emits no duplicate notice. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/name",
       "required": false,
       "schema": "v2/ProjectUpdateParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:133-180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectUpdateParams.json#/properties/projectId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Omitted/null fields retain exact original; explicit trimmed name and empty roots/metadata change the requested project while preserving identity, createdAt, recencyAt and membership, and repeat emits no duplicate notice. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/projectId",
       "required": true,
       "schema": "v2/ProjectUpdateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:133-180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "projectId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectUpdateParams.json#/properties/roots",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Omitted/null fields retain exact original; explicit trimmed name and empty roots/metadata change the requested project while preserving identity, createdAt, recencyAt and membership, and repeat emits no duplicate notice. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/roots",
       "required": false,
       "schema": "v2/ProjectUpdateParams.json",
       "schema_sha256": "4ec2e1958a3368c2f4ad9cabb6dee34d8b8f23d3934e097ea2552a5a303274c7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:133-180"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "roots"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectUpdateResponse.json#/properties/project",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Outer update project contains exact trimmed name/cleared fields, retained identity, createdAt and recencyAt; exact repeat returns same object. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/project",
       "required": true,
       "schema": "v2/ProjectUpdateResponse.json",
       "schema_sha256": "43b413c614a0fe7f8d469e6d594d379da35998f0e7e103f404bf7d62c47f4986",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_projects_test.exs:161-172"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "project"
     },
     {
@@ -162964,27 +163280,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/approvalPolicy",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independent exact effective omitted/null/typed child settings under both history stores; alternate owned model/provider/cwd, null tier sentinel, readonly profile and reasoning config. Parent whole history bytes and live loaded state remain protected; no execution. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalPolicy",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "91a2bc100e245cb328e54d0295881eabeb7387bb185a986a1c38a989cdb360f9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:72-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalPolicy"
     },
     {
@@ -163034,27 +163358,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/approvalsReviewer",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independent exact effective omitted/null/typed child settings under both history stores; alternate owned model/provider/cwd, null tier sentinel, readonly profile and reasoning config. Parent whole history bytes and live loaded state remain protected; no execution. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalsReviewer",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "1d9d7e589af08eae02ac20f3dad76d64ccaacb0a0c534686a357b00238f2f96f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:72-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
@@ -163172,53 +163504,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/config",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independent exact effective omitted/null/typed child settings under both history stores; alternate owned model/provider/cwd, null tier sentinel, readonly profile and reasoning config. Parent whole history bytes and live loaded state remain protected; no execution. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/config",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "739cb0c0defcb7f0ed857b685e2d027b2b62284b06f53af782bfb441863f28b3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:72-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "config"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independent exact effective omitted/null/typed child settings under both history stores; alternate owned model/provider/cwd, null tier sentinel, readonly profile and reasoning config. Parent whole history bytes and live loaded state remain protected; no execution. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/cwd",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:72-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
@@ -163352,27 +163700,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/experimentalPredictionMode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Native rejects missing ephemeral prerequisite without changing parent, then explicit ephemeral prediction-mode fork inherits nonempty disabled-plugin list unlike ordinary fork, with null child path and unchanged parent. Does not qualify separate blocked prediction APIs. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/experimentalPredictionMode",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "8ea0fee471d5f89975689c35ea52eadb7109ba0cfd2cf87c5e92064ce32a17d4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs:118-150"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "experimentalPredictionMode"
     },
     {
@@ -163416,131 +163772,171 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/model",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independent exact effective omitted/null/typed child settings under both history stores; alternate owned model/provider/cwd, null tier sentinel, readonly profile and reasoning config. Parent whole history bytes and live loaded state remain protected; no execution. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/model",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "7f99d472333687fc7e16dd8a3583ee8e3e63f1289bc3ca986fedbaa5ecefc818",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:72-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/modelProvider",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independent exact effective omitted/null/typed child settings under both history stores; alternate owned model/provider/cwd, null tier sentinel, readonly profile and reasoning config. Parent whole history bytes and live loaded state remain protected; no execution. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/modelProvider",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:72-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadForkParams.json#/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Explicit existing rollout path selects actual source despite deliberately invalid threadId; child has distinct ID/path and source association, parent retains exact whole history; invalid/missing/directory paths reject separately. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/path",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "6288bb4cebf772cc6fad82b67e2d21622179952454abe033b57a12d3d80792db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:149-163,259-286"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/permissions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independent exact effective omitted/null/typed child settings under both history stores; alternate owned model/provider/cwd, null tier sentinel, readonly profile and reasoning config. Parent whole history bytes and live loaded state remain protected; no execution. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/permissions",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "ca2699ff0105041dafa93cdf8fe74940b01c23f9b6da6adc21a722a3bc76e49c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:72-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "permissions"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/runtimeWorkspaceRoots",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Ordinary fork with explicit two owned roots returns exact ordered root list, instruction source and readonly sandbox; distinct child identity, no dispatch. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/runtimeWorkspaceRoots",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "a4054798a6167a75971c1f4b37f021f38ebe0a66a2ef4595d3bf9bb6adab69bf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs:99-116,194-208"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "runtimeWorkspaceRoots"
     },
     {
@@ -163616,27 +164012,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/serviceTier",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independent exact effective omitted/null/typed child settings under both history stores; alternate owned model/provider/cwd, null tier sentinel, readonly profile and reasoning config. Parent whole history bytes and live loaded state remain protected; no execution. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/serviceTier",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:72-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serviceTier"
     },
     {
@@ -179997,79 +180401,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateParams.json#/properties/expectedRevision",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Actual legacy/paginated native read/unread operations with fresh revisions change exactly selected read state, emit exact notices and retain Thread/history; stale revisions return exact conflict and winner through cold restart; new explicit command uses fresh revision. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/expectedRevision",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateParams.json",
       "schema_sha256": "4f2e602ac0645f4f4448ba9fa498ff5bd628ccaf179c97e82c427dddf5c82dcf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:24-108,131-154"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "expectedRevision"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateParams.json#/properties/operation",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Actual legacy/paginated native read/unread operations with fresh revisions change exactly selected read state, emit exact notices and retain Thread/history; stale revisions return exact conflict and winner through cold restart; new explicit command uses fresh revision. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/operation",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateParams.json",
       "schema_sha256": "40ba6f31a04a37882a3cb9eb8e68136b0bd9777d732f8ce48091447390a0904a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:24-108,131-154"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "operation"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Actual legacy/paginated native read/unread operations with fresh revisions change exactly selected read state, emit exact notices and retain Thread/history; stale revisions return exact conflict and winner through cold restart; new explicit command uses fresh revision. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:24-108,131-154"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -184595,27 +185023,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/approvalPolicy",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independently expected cold alternate model/provider/cwd, never policy, canonical reviewer alias, one reasoning-config key, absent/null/flex tier sentinel and explicit named readonly-profile metadata, plus loaded-subscriber precedence. Permission explicit null is untested; no arbitrary config, reviewer routing, provider/network or OS enforcement claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalPolicy",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "91a2bc100e245cb328e54d0295881eabeb7387bb185a986a1c38a989cdb360f9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:72-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalPolicy"
     },
     {
@@ -184665,27 +185101,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/approvalsReviewer",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independently expected cold alternate model/provider/cwd, never policy, canonical reviewer alias, one reasoning-config key, absent/null/flex tier sentinel and explicit named readonly-profile metadata, plus loaded-subscriber precedence. Permission explicit null is untested; no arbitrary config, reviewer routing, provider/network or OS enforcement claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalsReviewer",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "1d9d7e589af08eae02ac20f3dad76d64ccaacb0a0c534686a357b00238f2f96f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:72-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
@@ -184769,53 +185213,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/config",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independently expected cold alternate model/provider/cwd, never policy, canonical reviewer alias, one reasoning-config key, absent/null/flex tier sentinel and explicit named readonly-profile metadata, plus loaded-subscriber precedence. Permission explicit null is untested; no arbitrary config, reviewer routing, provider/network or OS enforcement claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/config",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "739cb0c0defcb7f0ed857b685e2d027b2b62284b06f53af782bfb441863f28b3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:72-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "config"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independently expected cold alternate model/provider/cwd, never policy, canonical reviewer alias, one reasoning-config key, absent/null/flex tier sentinel and explicit named readonly-profile metadata, plus loaded-subscriber precedence. Permission explicit null is untested; no arbitrary config, reviewer routing, provider/network or OS enforcement claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/cwd",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:72-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
@@ -185009,53 +185469,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/model",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independently expected cold alternate model/provider/cwd, never policy, canonical reviewer alias, one reasoning-config key, absent/null/flex tier sentinel and explicit named readonly-profile metadata, plus loaded-subscriber precedence. Permission explicit null is untested; no arbitrary config, reviewer routing, provider/network or OS enforcement claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/model",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "ce2d49d02f6463c7572d66c0a275c50abdcb383ddf3ea9b657238b18d1cb0d2a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:72-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/modelProvider",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independently expected cold alternate model/provider/cwd, never policy, canonical reviewer alias, one reasoning-config key, absent/null/flex tier sentinel and explicit named readonly-profile metadata, plus loaded-subscriber precedence. Permission explicit null is untested; no arbitrary config, reviewer routing, provider/network or OS enforcement claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/modelProvider",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:72-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider"
     },
     {
@@ -185087,27 +185563,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/permissions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independently expected cold alternate model/provider/cwd, never policy, canonical reviewer alias, one reasoning-config key, absent/null/flex tier sentinel and explicit named readonly-profile metadata, plus loaded-subscriber precedence. Permission explicit null is untested; no arbitrary config, reviewer routing, provider/network or OS enforcement claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/permissions",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "3c2430a35509a15bb884cdf0ea84e20c58056502b3af9567f54063baeaeea87c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:72-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "permissions"
     },
     {
@@ -185279,27 +185763,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/serviceTier",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_stdio_bounded: Independently expected cold alternate model/provider/cwd, never policy, canonical reviewer alias, one reasoning-config key, absent/null/flex tier sentinel and explicit named readonly-profile metadata, plus loaded-subscriber precedence. Permission explicit null is untested; no arbitrary config, reviewer routing, provider/network or OS enforcement claim. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/serviceTier",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:72-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serviceTier"
     },
     {
