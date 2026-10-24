@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,256 implemented / 3,365 missing
+11 blocked requirements** and **0 verified / 3,383 implemented / 3,238 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,256 directly exercised
+MCP entries have scoped implementation evidence. These 3,383 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,28 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [cold item/process/config continuation](cold-items-process-config-qualification.md)
+passes its complete 15-file native owning block **115/0 at both fixed seeds**,
+with compile, format, strict Credo437 files and a matching 1,488-file source guard.
+It adds exact cold HookPrompt/review/output/command/MCP projections, structured
+MCP success/failure, low/high image preparation, connection-owned process effects,
+queue capacity/restart and selected config metadata. Exactly127 physical owners
+gain scoped implemented evidence; zero become verified. Source-backed failed
+oracles stay recorded. Complete combined-source local and exact-head hosted
+qualification remain required; these passes do not close any broader gate.
+
+The terminal [4db58a8 hosted checkpoint](repair-qualification.md#hosted-checkpoint-at-4db58a8)
+passes foundation and both native execution jobs: driver **678/0**, all 49
+isolated profiles **277/0**, outside actual-native consumer **1/0**, platform
+**59 core + 11 web/0**, and dedicated authority **3/0 at both fixed seeds**.
+Mandatory completeness fails. These exact-source results do not clear A11,
+unreachable production emitters, external/OS success or the retained local
+GitHub-page failure. The terminal [v20 local matrix](repair-qualification.md#terminal-frozen-v20-local-matrix)
+passes all 23 independent-package commands and executes all 19 platform commands;
+both retained GitHub-page assertions and mandatory completeness fail. Both
+manifest-inclusive source guards match. Subsequent source changes require new
+complete qualification.
 
 The [Stop continuation](hook-lifecycle-qualification.md#stop-continuation-and-selected-persisted-hookprompt),
 [cold selected review](review-delivery-qualification.md#selective-enteredreviewmode-across-native-restart)

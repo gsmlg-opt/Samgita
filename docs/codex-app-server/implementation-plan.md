@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [cold item/process/config continuation](cold-items-process-config-qualification.md)
+passes the complete 15-file native owning block **115/0 twice**, fixed seeds,
+with warnings-as-errors compilation, format, strict Credo437 files and matching
+manifest-inclusive source guard. Exactly127 physical owners bring contracts to
+**3383 implemented /3238 missing**, zero verified. Requirements stay **462
+implemented /12 missing /11 blocked**, zero verified. Low-detail provider
+preparation and initialization status/null-parameter test corrections retain
+their initial failures. Next integrate the separate native view_image and fork
+sandbox gaps, then freeze final source for the complete preserved-platform,
+packages/consumers and exact-head hosted matrix. All broader blocked gates stay
+incomplete; no release/publication/deployment is authorized by a scoped pass.
+
 The [hosted96f7130 checkpoint](repair-qualification.md#hosted-checkpoint-at-96f7130)
 is terminal: foundation and both native execution jobs pass, including **665/0**
 default driver and **259/0** across42 required isolated profiles. Mandatory

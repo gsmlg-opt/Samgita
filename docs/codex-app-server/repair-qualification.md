@@ -6,6 +6,90 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Cold item, process and config continuation
+
+The [owning record](cold-items-process-config-qualification.md) retains all first
+failures and exact source-backed oracle corrections. Five new structured-MCP
+and content-array native cases pass5/0 at both fixed seeds; the complete
+15-file owning block passes115/0 twice, with compile/format, strict Credo437
+files and matching 1,488-file source guard. No production driver, original
+cleanup, timeout or assertion is weakened. A low-detail image deliberately
+remains a negative provider-preparation case; public input/history stays exact.
+
+Exactly127 physical owners gain scoped implemented evidence, with four existing
+MCP metadata owners gaining nonnull depth and existing content/image/namespace
+rows gaining further depth without another count. Regenerated ledger:485
+requirements, **462 implemented/12 missing/11 blocked**;6621 contracts,
+**3383 implemented/3238 missing**;zero verified. Inventory consistency passes.
+Final combined-source local/hosted matrices remain required; v20 below is a
+historical exact-source result. A11, upstream-unreachable native emitters,
+required external/OS success and full compatibility stay incomplete.
+
+## Terminal frozen v20 local matrix
+
+Before the next source edits, both complete runners finish on the unchanged
+`4db58a8` executable snapshot. Both 1,485-file source guards include the manifest
+and match. All 19 platform commands execute. At both 501432 and 987654, core
+passes **230/0/one excluded**; web reports **131/one failure/eight excluded**.
+Both failures are the retained `GitHubControllerTest` first-page assertion at
+`github_controller_test.exs:56`. No reset, row deletion or unrelated repair occurs.
+
+The platform/API/native block passes **59 core + 11 web/0**. Dedicated authority
+passes **3/0 at both seeds** in its separate retained database; original recovery
+and restart pass **4 core + 1 web/0 twice** in the original populated database.
+Compile, format, strict Credo, forced Dialyzer, strict audit, frozen frontend
+dependencies, assets, legacy exclusion and local production assembly pass.
+
+All 23 independent-package commands pass. Complete driver repeats are
+**678/0 twice**; all 49 explicit profiles are **277/0 twice**. Actual-native and
+neutral outside consumers pass. Neutral WebSocket passes **42/0** at each of
+455834, 501432 and 987654. Wire tests pass **42/0**; independent audits,
+warning-free compile/format, inventory consistency and Python regressions pass.
+
+Commands, full logs, source hashes and terminal results are retained in
+`/tmp/samgita-repair-final-{combined,platform,packages}-v20-20261025/` and matching
+Python runners. The terminal summary is
+`/tmp/samgita-repair-final-v20-terminal-20261025.json`, SHA256
+`d431ca9d15bad038b085887774bd0cc6231fc9ea1140f6c0197fa86fdd2a40f3`.
+The combined command exits 1 for the retained aggregate failures and mandatory
+completeness exit 1. Counts remain **462 implemented / 12 missing / 11 blocked**
+requirements, **3256 implemented / 3365 missing** contracts, zero verified.
+This matrix does not qualify subsequent source changes or clear A11,
+source-unreachable emitters, unavailable external/OS success or publication gates.
+
+## Hosted checkpoint at 4db58a8
+
+Both workflows are terminal on exact pushed source
+`4db58a8860e62d67117fa2b0ca093374ede1c7e0`.
+[Foundation 40137498744](https://github.com/gsmlg-opt/Samgita/actions/runs/40137498744)
+passes. [Conformance 40137556158](https://github.com/gsmlg-opt/Samgita/actions/runs/40137556158)
+passes both native execution jobs and fails the mandatory full-evidence gate.
+The overall conformance workflow remains **failed**.
+
+The wire package passes 42 tests; default driver partitions pass
+**368 + 310 = 678/0**, seed 501432; the outside-umbrella actual-native consumer passes 1/0.
+Platform/API/native scenarios pass **59 core + 11 web/0**. The separate retained
+authority profile passes **3/0 at each of 501432/987654**. All 49 required isolated
+native profiles execute **277/0/zero excluded**, including the added Stop and
+selected review cases. These use the immutable real Codex binary with synthetic
+dependencies; they do not qualify real external accounts/backends or other OSes.
+
+Foundation's two populated repeats each pass **230 core/0/one excluded** and
+**131 web/0/eight excluded**, alongside isolated restart/rollback, independent
+packages/consumers, static checks, forced Dialyzer, strict audit, assets and local
+production assembly. Fresh hosted data does not erase the preserved local
+GitHub first-page failure. No release, publication or deployment occurs.
+
+Exact-head metadata, full logs, parsed per-step counts and hashes are retained in
+`/tmp/samgita-hosted-4db58a8-20261025/`. Report SHA256 is
+`b045c590170b02c9134f7e369cef6701d521be28befd1c74950e7c7158cd9fd4`;
+conformance log SHA256 is
+`6a12b78dc06463f4435a51f42cb10819ce8498720cf4b2f9d089b618bdd98221`.
+The tested manifest records **462 implemented / 12 missing / 11 blocked**
+requirements and **3256 implemented / 3365 missing** contracts, **zero verified**.
+A11, source-unreachable emitters, required external/OS success and all remaining
+behavior evidence stay incomplete; no target exclusion is inferred.
+
 ## Stop, review, cwd and native settlement continuation
 
 Three actual-native cases add Stop continuation with selected persisted
