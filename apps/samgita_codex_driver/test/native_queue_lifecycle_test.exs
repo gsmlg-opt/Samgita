@@ -217,9 +217,8 @@ defmodule SamgitaCodexDriver.NativeQueueLifecycleTest do
     assert length(ModelFixture.requests(ctx.fixture)) == 1
 
     started =
-      call(cold, "thread/queue/start", %{"threadId" => id, "queuedSubmissionId" => second["id"]})[
-        "turn"
-      ]
+      call(cold, "thread/queue/start", %{"threadId" => id, "queuedSubmissionId" => second["id"]})
+      |> assert_start_snapshot()
 
     assert started["status"] == "inProgress"
     assert started["rootTurnId"] == started["id"]
@@ -249,7 +248,7 @@ defmodule SamgitaCodexDriver.NativeQueueLifecycleTest do
            }) == %{"code" => -32_600, "message" => "queued submission not found: missing"}
 
     assert queue(pid, id) == [first, second]
-    started = call(pid, "thread/queue/start", %{"threadId" => id})["turn"]
+    started = call(pid, "thread/queue/start", %{"threadId" => id}) |> assert_start_snapshot()
     events = finish_queue(pid, id, [first, second])
     assert user_item(events, first["clientUserMessageId"])["turnId"] == started["id"]
     assert started["rootTurnId"] == started["id"]
@@ -395,6 +394,27 @@ defmodule SamgitaCodexDriver.NativeQueueLifecycleTest do
 
   defp input(text), do: [%{"type" => "text", "text" => text}]
   defp normalized(text), do: [%{"type" => "text", "text" => text, "text_elements" => []}]
+
+  defp assert_start_snapshot(response) do
+    assert Map.keys(response) == ["turn"]
+    turn = response["turn"]
+    turn_id = turn["id"]
+    assert is_binary(turn_id) and byte_size(turn_id) > 0
+
+    assert turn == %{
+             "id" => turn_id,
+             "rootTurnId" => turn_id,
+             "items" => [],
+             "itemsView" => "notLoaded",
+             "status" => "inProgress",
+             "error" => nil,
+             "startedAt" => nil,
+             "completedAt" => nil,
+             "durationMs" => nil
+           }
+
+    turn
+  end
 
   defp start_turn(pid, id, text),
     do: call(pid, "turn/start", %{"threadId" => id, "input" => input(text)})["turn"]["id"]

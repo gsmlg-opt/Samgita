@@ -120764,27 +120764,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseExtensionRequirements/properties/requestHeaders",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 1; ordered two-entry and explicit empty lists only Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseExtensionRequirements/properties/requestHeaders",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "d1d72ff0cc0f54e885d8ef3c3625586bdd2f7de59cc541a7a6e84b18ce0c19cd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:101-110"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "requestHeaders"
     },
     {
@@ -121579,27 +121587,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/extension",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 1; explicit object/list, empty list, removed null lifecycle Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseRequirements/properties/extension",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "7c822ca01a06eb0d8bed4f1c56970d93c1bd4b77cded50a293d548c3ccb52138",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:101-110"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "extension"
     },
     {
@@ -121626,24 +121642,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/extension/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 1; explicitly removed extension, present null response member Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "pointer": "/definitions/BrowserUseRequirements/properties/extension/anyOf/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:105-107"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -123454,27 +123478,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/hooks",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2/3; explicit records, reload, removal and restart Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/hooks",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "9e603d5cd6e4b5564475dcb01f7624e295a2fe1242d03327920ffdf8bfdf883a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:150-152,184-191,236-250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hooks"
     },
     {
@@ -123501,24 +123533,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/hooks/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2/3; removal yields present null Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/hooks/anyOf/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:191,247"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -123961,205 +124001,269 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/0/properties/additionalContextLimit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; explicit0 then17, no spill execution Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/0/properties/additionalContextLimit",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "11563be5730a444a4584787f1aa49d07b4a139427f0d60804310e1172b4c22dc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "additionalContextLimit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/0/properties/async",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; explicit true then false Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/0/properties/async",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "async"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/0/properties/command",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; two distinct owned command strings remain inert Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/0/properties/command",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "command"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/0/properties/commandWindows",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; selected nonempty then empty string, no Windows execution Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/0/properties/commandWindows",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "commandWindows"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/0/properties/statusMessage",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; explicit empty then Unicode string Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/0/properties/statusMessage",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "statusMessage"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/0/properties/timeoutSec",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; explicit input timeout7 then11 maps to timeoutSec Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/0/properties/timeoutSec",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "8f759d27691871647f729a7988d8638fcadd6eb4c42b76dcaadb49e493060583",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "timeoutSec"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; command discriminator only Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "9ba33650d52ed397fa5628d38cd4ce1856c50e9a4bdd82253bae94c8f7ef42c4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; command scalar only Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/0/properties/type/enum/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "7d4941e3da3dc8f43aace381595553de9ed751ec1e245e4bebca9bb5e738605e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -124187,179 +124291,235 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/1/properties/input",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; exact nested string/integer/bool object Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/1/properties/input",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b697b1595c2d8f9677b6d14572d7a100ee9694279919359d64f493f6cadc3541",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "input"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/1/properties/server",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; owned-unused-server retained, no server lookup Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/1/properties/server",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "server"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/1/properties/statusMessage",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; explicit inert string Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/1/properties/statusMessage",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "statusMessage"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/1/properties/timeoutSec",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; explicit9 from timeout input, no timeout execution Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/1/properties/timeoutSec",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "8f759d27691871647f729a7988d8638fcadd6eb4c42b76dcaadb49e493060583",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "timeoutSec"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/1/properties/tool",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; owned-unused-tool retained, no invocation Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/1/properties/tool",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tool"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; mcp_tool discriminator only Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "e1a0e3a64d45943c6a488eaa778def3521e05aba4b34016c5f0fa42af5ddbe95",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; mcp_tool scalar only Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/1/properties/type/enum/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "6643366939ac6a2d860a581881756b901ced546fd7be608b4fff2c080903b7fc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -124387,49 +124547,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; prompt discriminator retained in order only Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "6a0890931cf1dd06a26036494af2389380ae31025cfca0c2f711afe2f7d00c88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; prompt scalar only Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/2/properties/type/enum/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "60b5693ef09527a4bcf56d65322b1fa843bbda2534ddbf928150ee3267d52e97",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -124457,101 +124633,133 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/3/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; agent discriminator retained in order only Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/3/properties/type",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "68d591638aee5440c18d959f1aa9311faca7f42c87b0c4df87f6b41c2ae42e81",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/3/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; agent scalar only Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/3/properties/type/enum/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "6cf85bf41d9570deed965109eed6c05c9512f6d79e321c70f3f3d900c8d06c74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookMatcherGroup/properties/hooks",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2/3; exact single-command and ordered mixed lists Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfiguredHookMatcherGroup/properties/hooks",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "c55709ef91735f3952cf5cb2c272a55d72062ccc3d84a820e23b8ea99536e8a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190,236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "hooks"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookMatcherGroup/properties/matcher",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2/3; apply_patch, exec_command, owned-metadata-only retained Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfiguredHookMatcherGroup/properties/matcher",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,186,190,236,246,248,250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "matcher"
     },
     {
@@ -124655,27 +124863,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/PermissionRequest",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 3; exact ordered mixed group, reordered and restored Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/PermissionRequest",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:236,246-250"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "PermissionRequest"
     },
     {
@@ -124707,27 +124923,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/PostToolUse",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; [] becomes populated event on live reload Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/PostToolUse",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:152,186,190"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "PostToolUse"
     },
     {
@@ -124759,27 +124983,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/PreToolUse",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 2; populated event becomes [] after relocation Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/PreToolUse",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:151,185,189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "PreToolUse"
     },
     {
@@ -125795,53 +126027,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/RequestHeader/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 1; repeated x-owned retained Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/RequestHeader/properties/name",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:101-110"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/RequestHeader/properties/value",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: 1; literal template and Unicode retained without expansion Requirements metadata only, with hooks/browser/computer/apps/plugins disabled. No hook execution, command invocation, MCP connection, browser header injection/template expansion, Windows behavior, whole handler union or unasserted siblings."
+      ],
       "nullable": false,
       "pointer": "/definitions/RequestHeader/properties/value",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs:101-110"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "value"
     },
     {
@@ -182380,79 +182628,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/completedAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Explicit present null completedAt. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/Turn/properties/completedAt",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "693f17a8081be4c8c564f6fea365c046ee1d4e6a2c0911d82ae6cc91739797d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "completedAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/durationMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Explicit present null durationMs. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/Turn/properties/durationMs",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "0f639cc00e55d34b75c971d641cdcd4f4e27e9a8c22ff94f1cfc783506941294",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "durationMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/error",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Explicit present null error; no error object. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/Turn/properties/error",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "80a18f860e1b4daf124d3aaab1d56f598b45efb8af674aa0cc16e27c09d5f759",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "error"
     },
     {
@@ -182479,202 +182751,266 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/error/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Selected null error alternative only. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "pointer": "/definitions/Turn/properties/error/anyOf/1",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Nonempty native id equals later selected queued user-item turnId and provider turn metadata. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/Turn/properties/id",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "6df2629dd0adc30fd65ee4845583a45380f96f0275690a38d85324cc3554f4e1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:401-406,219-226,251-254,541-555"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/items",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Exact empty items array; no populated item evidence. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/Turn/properties/items",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "7b2cb603b00cddbd844891d502290c3bcaf36c1fcc3cb7b66e9bfbdd408255f0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "items"
     },
     {
       "default": "full",
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/itemsView",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Exact notLoaded literal; no default substitution. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/Turn/properties/itemsView",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "ce30c59903348b4e0566a2ff76ffc9744de303a37c19ddb0868303164f1d8386",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemsView"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/itemsView/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Referenced itemsView owner selected as notLoaded only. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "pointer": "/definitions/Turn/properties/itemsView/allOf/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "02c5ea88241aa847cf8106554fcb224d082c8903bd0544eec44fca2ea268514c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/rootTurnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Nonnull rootTurnId equals the independently correlated started turn id. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/Turn/properties/rootTurnId",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "091693fa6ffa19d2277a533c92ef007c6a5c7a3b29e314b65363a43d6e6f3819",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-406,223-226,251-254"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rootTurnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/startedAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Explicit present null startedAt. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": true,
       "pointer": "/definitions/Turn/properties/startedAt",
       "required": false,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "8b717adbb707f775c7d900cb2647a619e15dde073baf5b26a625517a5e5fb6e4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "startedAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/Turn/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Exact inProgress start snapshot. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": false,
       "pointer": "/definitions/Turn/properties/status",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "412d0b2b584e1ad059dbf39540af914266423246ea2fa8e09aa7d90f10a9c591",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414,223-226"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
@@ -182871,46 +183207,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnItemsView/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Selected notLoaded branch only. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "pointer": "/definitions/TurnItemsView/oneOf/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "980eb3a7f07f2ebc18d70871569078dc0d026fd9c336f080dafe1af65e9eb342",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnItemsView/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Exact notLoaded scalar. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "pointer": "/definitions/TurnItemsView/oneOf/0/enum/0",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "e0bbb2211b532e8397c389572ad55200cb782c8072cb383816b2e649fcfcc761",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -183069,50 +183421,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadQueueStartResponse.json#/definitions/TurnStatus/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Exact inProgress scalar. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "pointer": "/definitions/TurnStatus/enum/3",
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:404-414,223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-managed-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueStartResponse.json#/properties/turn",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_queue_managed_owner: Exact one-key response containing all nine fixed Turn fields. Only the fixed start response: nonempty correlated id/rootTurnId, empty items, notLoaded, inProgress, explicit null error/timestamps/duration. No other Turn alternative or later method owner transfers; 57 response contracts stay missing."
+      ],
       "nullable": false,
       "pointer": "/properties/turn",
       "required": true,
       "schema": "v2/ThreadQueueStartResponse.json",
       "schema_sha256": "a41ef4d4a9c5d57c07d9fe626b53d50d1a3edba409714e36ee1a335fd1ab5480",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_lifecycle_test.exs:399-414,219-226,250-254"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turn"
     },
     {

@@ -21,17 +21,23 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
-Exact source `67d2c32dd85dc90eec57060a8fe720e769d8851d` now has terminal hosted
-foundation and selected actual-native/platform success: complete default-driver
-partitions **643/0**, all **30 isolated profiles, 205/0**, independent consumers
-and native platform/API/concurrency. The required completeness job still fails;
-both preserved local aggregates retain the GitHub first-page failure, separate
-from passing recovery/restart. Both local halves have terminated: all
-**23 package commands pass**, including
-two **643/0** default runs, two **205/0** isolated-profile runs and three **42/0**
-neutral WebSocket runs. The platform half and combined matrix fail on the retained
-GitHub assertion. See [the checkpoint record](repair-qualification.md#hosted-checkpoint-at-67d2c32)
-for exact results and artifacts. Do not infer full compatibility, A11 or release.
+Executable source `0629d92` has a terminal frozen local matrix: all **23 package
+commands pass**, including both **647/0** default-driver and **208/0** isolated
+profile runs plus three **42/0** neutral WebSocket runs. All 17 platform commands
+ran; the first aggregate retains the GitHub first-page failure, while the second
+aggregate and both recovery/restart repeats pass. The combined matrix remains
+failed. Hosted `3dcf64b` passes foundation and all 30 profiles, but driver partition
+2 fails the MCP graceful-close marker and skips downstream consumer/platform
+steps. See [the checkpoint record](repair-qualification.md#frozen-local-matrix-at-0629d92).
+
+Commit `1715d1c` repairs fixture shutdown ordering with deterministic red/green
+evidence, **9/0** complete MCP cases and **29/0** MCP/process cleanup cases.
+The subsequent [queue/managed unit](queue-managed-state-qualification.md) passes
+**11/0** at both seeds and adds 46 precise owners: **2,773 implemented / 3,848
+missing**, zero verified contracts. Requirements remain **462 implemented /
+12 missing / 11 blocked**. Final combined-source/hosted checks and remaining
+reachable variants are next; A11, source-unreachable and external/OS requirements
+stay incomplete. Do not infer full compatibility or release.
 
 The [command-context and multi-file approval unit](approval-cache-context-qualification.md)
 now adds two actual-native cases, passing with the seventeen prior projection/
