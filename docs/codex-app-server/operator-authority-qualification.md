@@ -124,3 +124,45 @@ remaining authorization branches are required before that broad rule can be
 qualified. These tests do not demonstrate instantaneous revocation of an
 already issued dispatch ticket before native transmission; that stronger
 guarantee is not inferred from later-command rejection or database serialization.
+
+## Remaining time and connection predispatch branches
+
+Six additive context cases reject operator replies after disabling the owning
+Agent, disconnecting its connection, expiring the Attempt lease or execution
+deadline, changing the Attempt connection generation, or moving the execution
+session to another real connection. The last case creates a separately owned
+Agent/connection through existing fixtures, preserving foreign-key constraints
+and isolating the intended session-binding mismatch. Snapshots are taken after
+invalidation; two identical submissions must return exact `ownership_lost` and
+leave all selected domain/journal/events, receipt and job counts unchanged.
+
+Two additional genuine native pending-approval cases exercise lease and deadline
+expiry. The pinned executable emits the original command approval. Both repeated
+operator replies reject while its same native interaction remains pending,
+exactly one model-dependency request exists, no response/resolution/completion
+or command dispatch occurs, no ticket exists and Task acceptance does not occur.
+Explicit checked-owned shutdown retains unresolved durable effects. This adds
+real emission plus the time-authority boundary, rather than counting a synthetic
+pending event as native success. No production guard, lease or timeout changes.
+
+The full two-file owning block passes **17 core + 6 web tests, zero failures** at
+each seed501432/987654 against the same retained
+`samgita_redesign_recovery_repair_test` database, without reset, data deletion,
+mapping substitution or activation bypass. Exact commands/results are in
+`/tmp/samgita-operator-authority-time-v1-20261025/`. Compile/format pass. Its last
+command fails before analysis because the runner supplied unsupported Credo
+`--files`; that exit130 is an invocation error, not a passing static check or
+signal diagnosis. The separate unchanged-source static-v2 runner uses the
+supported positional file argument for each file; both strict checks and format
+pass. Runtime tests were not rerun merely to replace that CLI failure.
+
+| Evidence | SHA256 |
+| --- | --- |
+| v1 results | a7ba7dfc15aba7e4fcf0cd7c4321fe878bcf0db59bfb05fc767e6684145d0797 |
+| owning source snapshot | 3a414358ddf67d20c5f87a481b969115496992ce27aff05f3243b22708e245bc |
+| static-v2 results | 4ed4ee827a8e4bd13803d23f4e4128ab86e0977aaa2eb75b82860e46fba50c5b |
+
+The existing explicit hosted platform selection includes both files; complete
+final-source local/hosted checks remain required. The broad authorization rule
+stays missing; no schema count, already-issued-ticket revocation guarantee,
+full API/race/transport qualification or A11 closure is inferred.

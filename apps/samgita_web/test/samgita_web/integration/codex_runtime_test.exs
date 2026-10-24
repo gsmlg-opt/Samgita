@@ -183,7 +183,7 @@ defmodule SamgitaWeb.CodexRuntimeIntegrationTest do
     end
   end
 
-  for invalidation <- [:membership, :task_fence] do
+  for invalidation <- [:membership, :task_fence, :lease_expiry, :execution_deadline] do
     @invalidation invalidation
     test "native pending approval rejects repeated operator replies after #{@invalidation}" do
       {ctx, pid, fixture, event, recorded} = pending_authority_fixture()
@@ -421,6 +421,20 @@ defmodule SamgitaWeb.CodexRuntimeIntegrationTest do
     assert task.execution_hold
     assert task.fence_counter == before.fence_counter + 1
     assert Repo.get!(TaskAttempt, ctx.attempt["id"]).state == "cancelled"
+  end
+
+  defp invalidate_authority(ctx, :lease_expiry) do
+    ctx.attempt["id"]
+    |> then(&Repo.get!(TaskAttempt, &1))
+    |> change(lease_expires_at: DateTime.add(DateTime.utc_now(), -60, :second))
+    |> Repo.update!()
+  end
+
+  defp invalidate_authority(ctx, :execution_deadline) do
+    ctx.attempt["id"]
+    |> then(&Repo.get!(TaskAttempt, &1))
+    |> change(execution_deadline: DateTime.add(DateTime.utc_now(), -60, :second))
+    |> Repo.update!()
   end
 
   defp authority_snapshot(ctx) do

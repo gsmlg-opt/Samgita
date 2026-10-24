@@ -183,6 +183,40 @@ defmodule Samgita.CodexRuntimeOperatorAuthorityTest do
     assert_rejected_without_effects(ctx)
   end
 
+  test "operator reply rejects a disabled owning Agent", ctx do
+    replace!(Agent, ctx.agent["id"], enabled: false)
+    assert_rejected_without_effects(ctx)
+  end
+
+  test "operator reply rejects a disconnected owning Agent connection", ctx do
+    replace!(AgentConnection, ctx.connection["id"], state: "disconnected")
+    assert_rejected_without_effects(ctx)
+  end
+
+  test "operator reply rejects an expired Attempt lease", ctx do
+    replace!(TaskAttempt, ctx.attempt["id"], lease_expires_at: past())
+    assert_rejected_without_effects(ctx)
+  end
+
+  test "operator reply rejects an expired execution deadline", ctx do
+    replace!(TaskAttempt, ctx.attempt["id"], execution_deadline: past())
+    assert_rejected_without_effects(ctx)
+  end
+
+  test "operator reply rejects an Attempt connection generation mismatch", ctx do
+    attempt = Repo.get!(TaskAttempt, ctx.attempt["id"])
+    replace!(TaskAttempt, attempt.id, connection_generation: attempt.connection_generation + 1)
+    assert_rejected_without_effects(ctx)
+  end
+
+  test "operator reply rejects an execution session bound to another connection", ctx do
+    other_agent = agent_fixture()
+    {_principal, other_connection, _credential} = connection_fixture(other_agent)
+    refute other_connection["id"] == ctx.connection["id"]
+    replace!(ExecutionSession, ctx.session["id"], connection_id: other_connection["id"])
+    assert_rejected_without_effects(ctx)
+  end
+
   defp assert_rejected_without_effects(ctx) do
     # Capture after the intentional authority mutation, so rejection must not
     # rewrite it or change any journal/domain records or enqueue new jobs.
