@@ -45,3 +45,35 @@ across multiple clients of one persistent server; other transport/OS/backend
 profiles remain unqualified. Native filesystem access does not grant Samgita
 Project authorization or Task acceptance. Final aggregate/hosted evidence is
 separate from these local scenarios.
+
+## Physical-field evidence
+
+The later source-reviewed indexing adds **25 exact physical fields** from these
+unchanged tests: 11 response/notification fields and 14 request parameters.
+The manifest records precise input/assertion ranges and limits for each owner;
+no whole method, schema alias, nullable branch or verified promotion follows.
+
+| Exact owners | Independent data and effects |
+| --- | --- |
+| FsGetMetadataResponse isDirectory/isFile/isSymlink | Known regular file/directory and independently created symlinks produce four prescribed type combinations |
+| FsReadDirectoryResponse entries and nested fileName/isDirectory/isFile | Owned tree and recursive copy produce the exact sorted two-entry directory/symlink result; empty directory is explicit |
+| FsReadFileResponse dataBase64 | Prescribed NUL/invalid-UTF8 bytes, truncation and empty content equal physical and native readbacks |
+| FsWatchResponse path; FsChangedNotification watchId/changedPaths | Known Unicode/missing paths, explicit subscription IDs and actual writes/atomic replacement correlate to exact notifications |
+| FsCopy/CreateDirectory/ReadFile/Remove/Unwatch/Watch/WriteFile params | Prescribed paths, bytes and false/default controls produce observed copy guards, source preservation, creation/removal, selected release and exact readback effects |
+
+Timestamps remain withheld: their retained type/range assertions are not an
+independent accuracy oracle. Directory entry booleans cover the selected
+directory-resolving entries, not a regular-file entry; sorting claims no native
+directory order. Returned watch paths qualify only the selected absolute paths,
+not arbitrary normalization. Sequential restart does not prove simultaneous
+persistent-server clients or other transports/OSes.
+
+The test-file SHA256 remains
+`bb63b9a6ab70e47bfaa1190ff038ff5e9d7e6ce8d0bef0c7e398f287a2a1d9e9`.
+It does not hash its executable internally; binary identity is supplied by the
+immutable acquisition/workflow and parent validation environment. These retained
+tests passed in the exact `e39ca5f` driver run, **611/0**, and current source
+hashes match. See [hosted evidence](repair-qualification.md#combined-source-platform-checkpoint-at-e39ca5f).
+The indexing itself executed no native test; subsequent final-source evidence
+must include these tests. No Task acceptance, A11 or complete compatibility
+claim is made.

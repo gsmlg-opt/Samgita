@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 462 `implemented`,
-with 2,220 exact field/variant schema contracts implemented; 12 requirements and 4,401 contracts
+with 2,473 exact field/variant schema contracts implemented; 12 requirements and 4,148 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -601,3 +601,18 @@ combined executable source and run the new complete independent-package,
 preserved populated-database and hosted matrix. Source-only field audits may
 continue independently. A11, source-unreachable emitters, external/OS success
 and the retained unrelated aggregate failure remain incomplete.
+
+The next [captured requests](client-request-capture-qualification.md),
+[parsed config](config-projections-qualification.md) and
+[search projections](search-projections-qualification.md) add **ten native
+cases**, passing their owning blocks twice with scoped strict checks/source
+guards. Their 72 exact contracts plus 29 retained config/history and 25 retained
+filesystem owners make **2,473 implemented / 4,148 missing** contracts; the
+requirement ledger remains **462 implemented / 12 missing / 11 blocked**,
+zero verified. The e39 hosted execution jobs passed while completeness failed;
+the local package matrix was interrupted at exit143, with cause unestablished
+and no partial pass. Preserve that record. Next: freeze this new executable
+source, run the entire required local/hosted matrix with explicit runner
+ownership and terminal-result tracking, then continue remaining reachable
+behavior. No test deadline, activation guard, assertion, production boundary
+or full-completeness requirement is weakened.

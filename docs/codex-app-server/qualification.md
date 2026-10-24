@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,220 implemented / 4,401 missing
+11 blocked requirements** and **0 verified / 2,473 implemented / 4,148 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,220 directly exercised
+MCP entries have scoped implementation evidence. These 2,473 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,18 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The next bounded units add ten native cases: four
+[captured request](client-request-capture-qualification.md), four
+[parsed configuration](config-projections-qualification.md) and two
+[search projection](search-projections-qualification.md) cases. Their owning
+blocks pass both recorded seeds, with strict static checks and source guards.
+The manifest indexes 72 precise new contracts plus
+[29 retained config/history owners](config-history-branches-qualification.md)
+and [25 retained filesystem fields](filesystem-qualification.md#physical-field-evidence).
+No whole-method or fully verified promotion follows. Prior-source hosted and
+interrupted local outcomes remain in [repair qualification](repair-qualification.md);
+the new executable combination still needs complete final-source checks.
 
 Fifteen [thread settings, metadata and read-state cases](thread-settings-read-state-qualification.md)
 add forty exact owning contracts. With three concurrent approval cases, the

@@ -38007,22 +38007,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadReadStateOperation/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "006117b6f0afcfbe645bb8780f14c44bbf134a1e1dc703614b12966be5a6d577",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:249-302,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -38030,69 +38036,87 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadReadStateOperation/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/0/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "359dc02de8ed1bb70dc7803e09fc8580020ec4aab05e699d1a52edddd3e3d6ed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:249-302,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadReadStateOperation/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/0/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "04a362f6eb2c541562bb7e89cdfaa3412f33332c198b77477a254c572d1b8d97",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:249-302,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadReadStateOperation/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "d2dc0a38efc38e85c238dee0a7f8415d12f0e09fa7a1d555b34af6222f054559",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:249-302,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -38100,47 +38124,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadReadStateOperation/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/1/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "15ff2d234a1c8286f02c23242a2262f203b722f2760c3686ee776fa9cdcd8e1d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:249-302,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadReadStateOperation/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/1/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "5ed0acec26d3434c28f016a675efa5b430c908fc086e41e86cb9e80bec77a600",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:249-302,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -56254,47 +56290,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/47/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/47/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "def294db5e5d28c6787a57ab0a6677e148ad2eee326fe30128f169d1f362d1dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:187-246,305-318,382-393"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/47/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "pointer": "/oneOf/47/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "248de34b914d095bf53575538bbdba4723daf8565e4d70daf3ab406a81fd8bc3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:187-246,305-318,382-393"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -56302,25 +56350,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/47/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/47/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d721d9f9b7c2ac518b0431baee76a7a49db1701cf05f72131d1adf1e7ab0eb6e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:187-246,305-318,382-393"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -56498,47 +56552,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/49/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/49/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "56a68448931f9126bb55cd2c59afc199bfb240fee5971e219c66f566608ebc25",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:187-246,305-318,382-393"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/49/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "pointer": "/oneOf/49/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "f752321b990e75763ff64cc54f3e0d636f1a23ed2a21a0b2f82508a491682513",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:187-246,305-318,382-393"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -56546,25 +56612,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/49/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/49/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ce6823f96038c0eb4ff5cebc5692f373d1635cd8c28e96d075a7dd0735922550",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:187-246,305-318,382-393"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -58238,47 +58310,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/61/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/61/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4fc0542402508fa1e90635bbdd94156291362eb8a5733c2973c869274c9a9931",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:249-302,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/61/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "pointer": "/oneOf/61/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "1593e4d5003b41bafe366d30e4fbd361ad8ae263866dbee0df44d4c22bd9281c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:249-302,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -58286,25 +58370,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/61/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/61/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d504b854d49b4e0a567c48b9782feefb1bd624f7b4f80c06f9d88418c5806818",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:249-302,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -59400,47 +59490,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/7/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/7/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "fb5b1cb829c1d40f58b3001a8044207a10994e954259feecb84f3cf94dbefcc2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:96-123,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/7/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "pointer": "/oneOf/7/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "138e7c2476eaec4f0f5b248e9e3ee7bf5fe8b9a4dcd671f3c9d37edac5f1d11d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:96-123,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -59448,25 +59550,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/7/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/7/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "98def3907538ae8b2755499dd7cb01a6ef1cb258c4822d536d4a8065624ebf90",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:96-123,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -60742,47 +60850,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/8/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/8/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d4040a400410b72fb411d584cbd8f2184b30f8c18eb8b4ab15c686fb7a9e878a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:126-184,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/8/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "pointer": "/oneOf/8/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "4924f3d11d57cdf141b73fa8fa530a379c4078c2d097e9d8401e2ee242f7f5e1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:126-184,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -60790,25 +60910,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/client-request-capture-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/8/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected synthetic params captured after successful actual Stdio send and correlated by the native response ID; independent durable state/restart effects are asserted. No all-parameter, whole-request, request-ID variant, other transport, complete method or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/8/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "fe5e1b83684cf6b7833004057e3aa67b48e9c3f50a5e21a45225e7385d0e4464",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_client_request_capture_test.exs:126-184,305-318"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "params"
@@ -113334,25 +113460,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AnalyticsConfig/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "An empty analytics table serializes enabled:null; explicit enabled=false remains false. No analytics delivery/exporter/enforcement qualification.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/AnalyticsConfig/properties/enabled",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enabled"
@@ -115264,69 +115397,90 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/analytics",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/analytics",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "f1f5087b1aec37475afc79c2b78d7ff7df9784d407768f42716abf19ba47f597",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "analytics"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/analytics/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Separately reviewed nonnull referenced branch from explicit positive object. No equal-hash propagation or other sibling inferred.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Config/properties/analytics/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "d1d6becd9d2225c9bea4397906b7e69ee0d099237e6b88dd740465e19fdfe46c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/analytics/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Separately reviewed type:null branch from explicit Map.fetch! === nil. No equal-hash propagation or other sibling inferred.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Config/properties/analytics/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -115334,25 +115488,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/approval_policy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only effective config/read approval policy after the owned legacy managed overlay; no approval execution or other AskForApproval variants.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/approval_policy",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "91a2bc100e245cb328e54d0295881eabeb7387bb185a986a1c38a989cdb360f9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:119-123,125-128"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "approval_policy"
@@ -115614,25 +115775,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/compact_prompt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/compact_prompt",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "compact_prompt"
@@ -115743,25 +115911,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/developer_instructions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/developer_instructions",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "developer_instructions"
@@ -115909,25 +116084,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/instructions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/instructions",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "instructions"
@@ -115968,25 +116150,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_auto_compact_token_limit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/model_auto_compact_token_limit",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "model_auto_compact_token_limit"
@@ -116064,25 +116253,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_context_window",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/model_context_window",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "model_context_window"
@@ -116207,69 +116403,90 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_reasoning_summary",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/model_reasoning_summary",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "de121fa6d5785ee520d33e058602d65221991fc6b71769074621e1945a8c3016",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "model_reasoning_summary"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_reasoning_summary/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Separately reviewed nonnull referenced branch from explicit positive string. No equal-hash propagation or other sibling inferred.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Config/properties/model_reasoning_summary/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "1b53e765f5a08c3aeaf2d1c4d6662bfbe58b1c323363acdb57a53e2e0baa5a66",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_reasoning_summary/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Separately reviewed type:null branch from explicit Map.fetch! === nil. No equal-hash propagation or other sibling inferred.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Config/properties/model_reasoning_summary/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -116277,69 +116494,90 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_verbosity",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/model_verbosity",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "a8ffd1f348f9d89b90ff472f0fab7bb9ec2c9a83bf75d6873c6342b3879e1369",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "model_verbosity"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_verbosity/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Separately reviewed nonnull referenced branch from explicit positive string. No equal-hash propagation or other sibling inferred.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Config/properties/model_verbosity/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "50e2be74b34a49f4be5c5dd806212a8400fccbc3f4750f64fb64da55978cd9c9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_verbosity/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Separately reviewed type:null branch from explicit Map.fetch! === nil. No equal-hash propagation or other sibling inferred.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Config/properties/model_verbosity/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -116347,25 +116585,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/review_model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/review_model",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-138,177-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "review_model"
@@ -116443,69 +116688,90 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/sandbox_workspace_write",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit presence+null under absence and independently prescribed concrete values/default nested maps only; no execution/application/enforcement claim.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/sandbox_workspace_write",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "8af34fb63166d514ac95ee4ec155853bbec144c7f5ded8ba2f2b0b1d6971d182",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "sandbox_workspace_write"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/sandbox_workspace_write/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Separately reviewed nonnull referenced branch from explicit positive object. No equal-hash propagation or other sibling inferred.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Config/properties/sandbox_workspace_write/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "ab483bc717d742d2371d4ef73fdbdd987a9c858061cba8b029c0c18593fb252c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/sandbox_workspace_write/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Separately reviewed type:null branch from explicit Map.fetch! === nil. No equal-hash propagation or other sibling inferred.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Config/properties/sandbox_workspace_write/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -116513,25 +116779,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/service_tier",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only effective config/read preserves the user service_tier string. This does not qualify new-thread application or provider speed behavior.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/service_tier",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs:60-68,119-124"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "service_tier"
@@ -116679,25 +116952,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayer/properties/config",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "The config layer contains the independently written desktop object; no claim about all arbitrary config values or layer-version bytes.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfigLayer/properties/config",
       "required": true,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs:104-110,113-117"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "config"
@@ -117970,25 +118250,32 @@
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/SandboxWorkspaceWrite/properties/exclude_slash_tmp",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact empty-table parsed default and explicit owned path/true flag projection only. Global sandbox remains read-only; no tools, turns, filesystem effects or network use.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxWorkspaceWrite/properties/exclude_slash_tmp",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "exclude_slash_tmp"
@@ -117996,25 +118283,32 @@
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/SandboxWorkspaceWrite/properties/exclude_tmpdir_env_var",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact empty-table parsed default and explicit owned path/true flag projection only. Global sandbox remains read-only; no tools, turns, filesystem effects or network use.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxWorkspaceWrite/properties/exclude_tmpdir_env_var",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "exclude_tmpdir_env_var"
@@ -118022,25 +118316,32 @@
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/SandboxWorkspaceWrite/properties/network_access",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact empty-table parsed default and explicit owned path/true flag projection only. Global sandbox remains read-only; no tools, turns, filesystem effects or network use.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxWorkspaceWrite/properties/network_access",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "network_access"
@@ -118048,25 +118349,32 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/SandboxWorkspaceWrite/properties/writable_roots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact empty-table parsed default and explicit owned path/true flag projection only. Global sandbox remains read-only; no tools, turns, filesystem effects or network use.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxWorkspaceWrite/properties/writable_roots",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "aac2a4e83d2823be6d45475fa797647d1e2a6c55cfa5a4632ae455eeacdd2e88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:99-104,141-186"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "writable_roots"
@@ -118275,22 +118583,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Verbosity/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only explicitly configured low enum member preserved in config/read; no provider response length behavior or other enum member.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Verbosity/enum/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "7f5fe2c9fd64628de81bad16e2204fef4533d051cffbc31ecfe3e6ebc93cdc9b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:48-57,107-121,189-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -118319,22 +118634,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Verbosity/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only explicitly configured high enum member preserved in config/read; no provider response length behavior or other enum member.",
+        "Actual pinned config/read only, with independently prescribed TOML and literal positive/null projections. No runtime prompt, model, browser, filesystem or network enforcement claim; broader lifecycle and external profiles remain incomplete."
+      ],
       "pointer": "/definitions/Verbosity/enum/2",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "245588ecc2ea866aad46ec952380729500395a188fb3ba436dd4a775a6cc060b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs:58-67,124-138,189-192"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -118972,22 +119294,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ApplicationRequirements/properties/network/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only restrictive child-only native managed metadata and the selected positive branch; browser/computer actions and enforcement remain unqualified.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ApplicationRequirements/properties/network/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "61f3ae97ccdef4e18cbcc6260be2222ce2930cdbcbc2c828c513aa9fdbff66f5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:11-46,237-239"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -119200,22 +119529,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/access/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the exact known access positive literal in the independently specified and fully compared defaultOriginPolicy map; no other enum member or null branch.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/access/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "fabf8059901c005fbd1d444e9aa05eb64c0cbc66004b6f998335d60e67d817a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:12-12,209-223"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -119280,22 +119616,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/accessApprovalLifetime/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the exact known accessApprovalLifetime positive literal in the independently specified and fully compared defaultOriginPolicy map; no other enum member or null branch.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/accessApprovalLifetime/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "23a03497d8190491339586ace27908683d73313cb41f4294a2024c7790f77bee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:18-18,209-223"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -119360,22 +119703,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/autoReview/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the exact known autoReview positive literal in the independently specified and fully compared defaultOriginPolicy map; no other enum member or null branch.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/autoReview/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "fabf8059901c005fbd1d444e9aa05eb64c0cbc66004b6f998335d60e67d817a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:16-16,209-223"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -119440,22 +119790,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/downloads/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the exact known downloads positive literal in the independently specified and fully compared defaultOriginPolicy map; no other enum member or null branch.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/downloads/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "fabf8059901c005fbd1d444e9aa05eb64c0cbc66004b6f998335d60e67d817a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:13-13,209-223"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -119520,22 +119877,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/fullCdpAccess/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the exact known fullCdpAccess positive literal in the independently specified and fully compared defaultOriginPolicy map; no other enum member or null branch.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/fullCdpAccess/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "fabf8059901c005fbd1d444e9aa05eb64c0cbc66004b6f998335d60e67d817a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:15-15,209-223"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -119636,22 +120000,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/uploads/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the exact known uploads positive literal in the independently specified and fully compared defaultOriginPolicy map; no other enum member or null branch.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/uploads/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "fabf8059901c005fbd1d444e9aa05eb64c0cbc66004b6f998335d60e67d817a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:14-14,209-223"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -119824,22 +120195,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/defaultOriginPolicy/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only restrictive child-only native managed metadata and the selected positive branch; browser/computer actions and enforcement remain unqualified.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/BrowserUseRequirements/properties/defaultOriginPolicy/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "7668d241a442778b9284c2f1f9d1c24209cc44bbee788db79b2c19052a01b6c7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:11-46,209-223"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -120242,22 +120620,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/defaultAppAccess/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only restrictive child-only native managed metadata and the selected positive branch; browser/computer actions and enforcement remain unqualified.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ComputerUseRequirements/properties/defaultAppAccess/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "fabf8059901c005fbd1d444e9aa05eb64c0cbc66004b6f998335d60e67d817a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:11-46,225-233"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -121071,22 +121456,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/application/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only restrictive child-only native managed metadata and the selected positive branch; browser/computer actions and enforcement remain unqualified.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/application/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "f7899dcea5d677351968e91ecb0340f66f8406d73d096953e92017b985915651",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:11-46,237-239"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -121149,22 +121541,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/autoReview/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the controlled inert managed-model metadata and selected positive branch. No model execution, default application, auto-review action or residency enforcement claim.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/autoReview/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "c9ecf93c0ec4298d507195eb91c33f490654748d3977f7cca93a8fba7963d3d7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs:11-35,102-105"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -121229,22 +121628,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/browserUse/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only restrictive child-only native managed metadata and the selected positive branch; browser/computer actions and enforcement remain unqualified.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/browserUse/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "4a1681ab05224096072cf885ef22e9c9bb8df8d254c6b445d261f0a028c8a5a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:11-46,205-223"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -121381,22 +121787,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/cliAuthCredentialsStore/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected ephemeral metadata; no keyring/file/auto backend, credential write or null branch.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/cliAuthCredentialsStore/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "85837a70a0b5f71d23d6ad435948cb6b2faa61e3d61927692f0396225cd03d62",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_provider_requirements_test.exs:22-33,99-103"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -121461,22 +121874,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/computerUse/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only restrictive child-only native managed metadata and the selected positive branch; browser/computer actions and enforcement remain unqualified.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/computerUse/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "f62a378730d4d1d3e705670f526f9883e841f6bf86125fc2fdfd26a51ec80d18",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:11-46,225-233"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -121565,22 +121985,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/enforceResidency/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the controlled inert managed-model metadata and selected positive branch. No model execution, default application, auto-review action or residency enforcement claim.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/enforceResidency/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "d5fbb6b9e40a6537b66d498e18cc5e7e6e7a121cc342382ce8f09c883724b1d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs:11-35,102-107"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -121679,22 +122106,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/feedback/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only explicit restrictive feedback object metadata; no feedback submission or null branch.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/feedback/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "82de9f8c4a49f93e9fc2248bfa0cd0efd7d0faeb8c133f1cfaf2f7cf1f23bb21",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:23-24,82-101"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -121829,22 +122263,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/inAppBrowser/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only restrictive child-only native managed metadata and the selected positive branch; browser/computer actions and enforcement remain unqualified.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/inAppBrowser/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "97578b353f5cafc4672e5b57c02b1111dcad7c339bb62ad040e5d9ff434802c4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:11-46,235-235"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -122031,22 +122472,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/models/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the controlled inert managed-model metadata and selected positive branch. No model execution, default application, auto-review action or residency enforcement claim.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/models/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "1c96dba665df203b80fecf4c6eb04d15277b6bd73b12b203435c1caea7d36f03",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs:11-35,102-104"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -122109,22 +122557,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/network/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only disabled managed-network canonical metadata in a private network namespace. No binding, proxy, socket contact or enforcement qualification.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/network/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "051fc32ac900b678ee5dd37b255241da1a04e69cf680e21f59d258be4e5241ca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs:252-280,81-87"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -123267,22 +123722,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ModelsRequirements/properties/newThread/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the controlled inert managed-model metadata and selected positive branch. No model execution, default application, auto-review action or residency enforcement claim.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/ModelsRequirements/properties/newThread/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "168e3dab64922a254133ffc1510b3cb72d5265d747cbb109577f0b3b08b4ec09",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs:11-35,102-104"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -123943,22 +124405,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NewThreadModelDefaults/properties/modelReasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the controlled inert managed-model metadata and selected positive branch. No model execution, default application, auto-review action or residency enforcement claim.",
+        "Only individually selected positive native config/requirements metadata; no null branch, permission enforcement, complete union, external/OS success or verified promotion."
+      ],
       "pointer": "/definitions/NewThreadModelDefaults/properties/modelReasoningEffort/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs:11-35,102-104"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -128761,25 +129230,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsChangedNotification.json#/properties/changedPaths",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected one-path notifications, watch identity and atomic replacement. No full event batching/coalescing, ordering, duplicate guarantees or emitted timestamp correctness claim.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/changedPaths",
       "required": true,
       "schema": "v2/FsChangedNotification.json",
       "schema_sha256": "30d178f6e1480b23296c3795b71032fb5162a8008eee202f926a598a91416760",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:18-25,36-44,62-73,316-338,53-54,76-78"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "changedPaths"
@@ -128787,25 +129263,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsChangedNotification.json#/properties/watchId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected one-path notifications, watch identity and atomic replacement. No full event batching/coalescing, ordering, duplicate guarantees or emitted timestamp correctness claim.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/watchId",
       "required": true,
       "schema": "v2/FsChangedNotification.json",
       "schema_sha256": "fe240f2792924b6f8da34d74322b5cab2584f5cefe8ae8161c5d3d58ffe67268",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:18-25,36-44,62-73,316-338,53-54,76-78"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "watchId"
@@ -128813,25 +129296,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsCopyParams.json#/properties/destinationPath",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected recursive directory and nonrecursive file copy plus self/descendant guards; symlink target data and original source remain preserved. No remote/backend or cross-device completeness.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/destinationPath",
       "required": true,
       "schema": "v2/FsCopyParams.json",
       "schema_sha256": "187073079ac0709ebe23e1593532ce49061dc267efcf6279c71eeee62467d8f2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:198-211,229-233,247-251,214-227,235-243,253-256"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "destinationPath"
@@ -128861,25 +129351,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsCopyParams.json#/properties/recursive",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected recursive directory and nonrecursive file copy plus self/descendant guards; symlink target data and original source remain preserved. No remote/backend or cross-device completeness.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/recursive",
       "required": false,
       "schema": "v2/FsCopyParams.json",
       "schema_sha256": "56aa92385e2ffb938de15fb2d8f9956de252c18f1188495ba26ee4b5e953c3ee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:198-211,229-233,247-251,214-227,235-243,253-256"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "recursive"
@@ -128887,25 +129384,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsCopyParams.json#/properties/sourcePath",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected recursive directory and nonrecursive file copy plus self/descendant guards; symlink target data and original source remain preserved. No remote/backend or cross-device completeness.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/sourcePath",
       "required": true,
       "schema": "v2/FsCopyParams.json",
       "schema_sha256": "488f5bfd58339a707c76eaefae805425af91988443d2c4117c526e9a3f262e3f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:198-211,229-233,247-251,214-227,235-243,253-256"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "sourcePath"
@@ -128935,25 +129439,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsCreateDirectoryParams.json#/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped positive directory creation/default behavior and explicit false protection, with actual filesystem observations. No sibling null-only/alias branch promotion.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/path",
       "required": true,
       "schema": "v2/FsCreateDirectoryParams.json",
       "schema_sha256": "deae76f4530283a11758d34509eb3f02e573f1cacf35ecd905221581e259f274",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:160-169,162-170"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -128983,25 +129494,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsCreateDirectoryParams.json#/properties/recursive",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Scoped positive directory creation/default behavior and explicit false protection, with actual filesystem observations. No sibling null-only/alias branch promotion.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/recursive",
       "required": false,
       "schema": "v2/FsCreateDirectoryParams.json",
       "schema_sha256": "56ef81ccd94b635cb9060b799fa1725281a5a14455087706d5338eef32f8afe6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:160-169,162-170"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "recursive"
@@ -129083,25 +129601,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsGetMetadataResponse.json#/properties/isDirectory",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected local regular file/directory and symlink-to-file/directory flags. Timestamp accuracy, dangling links, permissions, remote filesystems and other OSes remain unqualified.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/isDirectory",
       "required": true,
       "schema": "v2/FsGetMetadataResponse.json",
       "schema_sha256": "883597f01a1268eafce6f0d1a1d587ed66b2d91e5b4c7c6bc8d5fe480afecd4d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:97-98,119-132,133-140"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "isDirectory"
@@ -129109,25 +129634,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsGetMetadataResponse.json#/properties/isFile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected local regular file/directory and symlink-to-file/directory flags. Timestamp accuracy, dangling links, permissions, remote filesystems and other OSes remain unqualified.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/isFile",
       "required": true,
       "schema": "v2/FsGetMetadataResponse.json",
       "schema_sha256": "6343bd658252d357813b5819d9333f5c558ed4069a99948de6f772e943a3e245",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:97-98,119-132,133-140"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "isFile"
@@ -129135,25 +129667,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsGetMetadataResponse.json#/properties/isSymlink",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected local regular file/directory and symlink-to-file/directory flags. Timestamp accuracy, dangling links, permissions, remote filesystems and other OSes remain unqualified.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/isSymlink",
       "required": true,
       "schema": "v2/FsGetMetadataResponse.json",
       "schema_sha256": "258f26bf2c3c0c08fe4bc6ededcc7100b47eb7586571d7a19bc947317210d4be",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:97-98,119-132,133-140"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "isSymlink"
@@ -129235,25 +129774,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsReadDirectoryResponse.json#/definitions/FsReadDirectoryEntry/properties/fileName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the two prescribed direct child names; no normalization or ordering guarantee.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/FsReadDirectoryEntry/properties/fileName",
       "required": true,
       "schema": "v2/FsReadDirectoryResponse.json",
       "schema_sha256": "4a88f18cf28798d13c2b88fc83598ea38129d4b4f57e8f130852e15d11d74d0d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:198-204,229-236,238-243"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "fileName"
@@ -129261,25 +129807,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsReadDirectoryResponse.json#/definitions/FsReadDirectoryEntry/properties/isDirectory",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the two directory-resolving entries (isDirectory=true and isFile=false). A regular-file directory entry is not asserted.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/FsReadDirectoryEntry/properties/isDirectory",
       "required": true,
       "schema": "v2/FsReadDirectoryResponse.json",
       "schema_sha256": "40bd3390b406340cf2a1b685c674e438a5c6a2d36da75d70d47da26cd8a6f1ad",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:198-204,229-236,238-243"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "isDirectory"
@@ -129287,25 +129840,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsReadDirectoryResponse.json#/definitions/FsReadDirectoryEntry/properties/isFile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the two directory-resolving entries (isDirectory=true and isFile=false). A regular-file directory entry is not asserted.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/FsReadDirectoryEntry/properties/isFile",
       "required": true,
       "schema": "v2/FsReadDirectoryResponse.json",
       "schema_sha256": "d31755140b91a63d6e5c1bceb41c779e922f8e88da8c5bd045cdfe490fe32de4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:198-204,229-236,238-243"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "isFile"
@@ -129313,25 +129873,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsReadDirectoryResponse.json#/properties/entries",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact sorted membership for the two known directory/symlink entries and an empty directory; native listing order, regular-file entries and arbitrary traversal are not established.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/entries",
       "required": true,
       "schema": "v2/FsReadDirectoryResponse.json",
       "schema_sha256": "c3072a895c24eb183b3124bccacc423de1b49f4e0e12d17a2a2ab2ea293f5d6c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:198-204,229-236,238-243,145-145"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "entries"
@@ -129339,25 +129906,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsReadFileParams.json#/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected absolute owned file reads; no arbitrary path resolution or authorization claim.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/path",
       "required": true,
       "schema": "v2/FsReadFileParams.json",
       "schema_sha256": "588538daafd86b01eb6df4a778669d4878f2b1f25e4705a43c8885cf7d5c3d80",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:97-104,106-110"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -129387,25 +129961,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsReadFileResponse.json#/properties/dataBase64",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Binary including invalid UTF-8, truncation and empty content only; no text normalization or large-file/streaming claim.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/dataBase64",
       "required": true,
       "schema": "v2/FsReadFileResponse.json",
       "schema_sha256": "45ee4add0a16788702fb6257ecb1ae936c20c64c9ee16ed9dac2052be2633ac6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:97-104,106-110"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "dataBase64"
@@ -129413,25 +129994,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsRemoveParams.json#/properties/force",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected removal/default/protection behavior only; no unsupported concurrent ownership, remote backend or blanket filesystem safety claim.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/force",
       "required": false,
       "schema": "v2/FsRemoveParams.json",
       "schema_sha256": "7cfc3890fd3fbe8e14539e6844ec43ea14e47f60b2f50875854935dc52bb8269",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:167-178,181-182,180-189,254-256"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "force"
@@ -129439,25 +130027,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsRemoveParams.json#/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected removal/default/protection behavior only; no unsupported concurrent ownership, remote backend or blanket filesystem safety claim.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/path",
       "required": true,
       "schema": "v2/FsRemoveParams.json",
       "schema_sha256": "f5b49a95c1741ab3a32684f7d6cd0966aa5773d63460886d27f4a9c79233abda",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:167-178,181-182,180-189,254-256"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -129487,25 +130082,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsRemoveParams.json#/properties/recursive",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected removal/default/protection behavior only; no unsupported concurrent ownership, remote backend or blanket filesystem safety claim.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/recursive",
       "required": false,
       "schema": "v2/FsRemoveParams.json",
       "schema_sha256": "8abf370d047b2a681450d34e23b7ff1704e214c1d85f0ef42d423a8f8f412557",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:167-178,181-182,180-189,254-256"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "recursive"
@@ -129513,25 +130115,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsUnwatchParams.json#/properties/watchId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only bounded selected-ID unwatch barrier and explicit reuse on retained local stdio fixture; not universal absence or simultaneous multi-client server ownership.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/watchId",
       "required": true,
       "schema": "v2/FsUnwatchParams.json",
       "schema_sha256": "fe240f2792924b6f8da34d74322b5cab2584f5cefe8ae8161c5d3d58ffe67268",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:18-25,32-44,38-56,365-382"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "watchId"
@@ -129539,25 +130148,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsWatchParams.json#/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected connection-scoped watch identity and delivery only; no inferred alias promotion, general canonicalization or other-platform/backend guarantees.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/path",
       "required": true,
       "schema": "v2/FsWatchParams.json",
       "schema_sha256": "77500ce09bf7d861aa12f4788b15d7ec08eedf794bf0afbfcbab772a45a5ec3a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:18-25,32-36,25-56,316-338"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -129587,25 +130203,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsWatchParams.json#/properties/watchId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected connection-scoped watch identity and delivery only; no inferred alias promotion, general canonicalization or other-platform/backend guarantees.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/watchId",
       "required": true,
       "schema": "v2/FsWatchParams.json",
       "schema_sha256": "cdd370a4e70966f6a21a52350ed7aff23a472ae4fc126e64d6ad8cd2f8547102",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:18-25,32-36,25-56,316-338"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "watchId"
@@ -129613,25 +130236,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsWatchResponse.json#/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact returned path for selected normalized owned paths; no general symlink canonicalization, cross-client persistent-server or other transport claim.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/path",
       "required": true,
       "schema": "v2/FsWatchResponse.json",
       "schema_sha256": "4489926da9b6aa7cf15fd9f8c6517caafa782386ac3ebb2da592fa30fcc45d79",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:18-23,62-63,25-27,65-67,84-86"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -129661,25 +130291,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsWriteFileParams.json#/properties/dataBase64",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected binary writes/truncation/empty content and malformed encoding protection. No text conversion, streaming or large-file completeness.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/dataBase64",
       "required": true,
       "schema": "v2/FsWriteFileParams.json",
       "schema_sha256": "45ee4add0a16788702fb6257ecb1ae936c20c64c9ee16ed9dac2052be2633ac6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:97-104,106-119"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "dataBase64"
@@ -129687,25 +130324,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/filesystem-qualification.md#physical-field-evidence"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsWriteFileParams.json#/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only selected binary writes/truncation/empty content and malformed encoding protection. No text conversion, streaming or large-file completeness.",
+        "Actual pinned Linux stdio with independently prescribed owned filesystem data/effects only. No other OS, remote filesystem, other transport, path alias, nullable sibling, timestamp accuracy or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/path",
       "required": true,
       "schema": "v2/FsWriteFileParams.json",
       "schema_sha256": "40235895a58fce51c513a92f2bb8f2c59779ea448a3936991dc186224101c604",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:97-104,106-119"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -167941,22 +168585,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/DynamicToolCallOutputContentItem/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only inputText branch for selected Unicode text. No image/audio branch, future catchall or other schema owner."
+      ],
       "pointer": "/definitions/DynamicToolCallOutputContentItem/oneOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "37b6a64b873707407075a3c097922733980c8e4eed1d804cba6eb72f39014b43",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:77-95,121-133,144-147,165-181,201-212"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -170498,22 +171148,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "User-message branch for this selected text/span/client ID combination only; not all UserInput variants or malformed-data acceptance."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "23756b4de27a3329d66c9934e5453bda9b4c2d7cc760434c2b2c7bbbb9c134e6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_text_span_history_test.exs:27-56,63-80,86-95,143-160"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -170521,25 +171177,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/0/properties/clientId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected present nonempty Unicode client ID only; no omission/null or deduplication semantics, and no transfer to TurnStartParams owner."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/0/properties/clientId",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_text_span_history_test.exs:53-56,63-80,86-95"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "clientId"
@@ -174596,22 +175258,28 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected terminal dynamic call success/failure maps only. Started inProgress/content-null fields are notification evidence and are not promoted into this persisted owner. No nonnull namespace or additional output modality."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/9",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "664c8564f4b51fbf6aaaac8f35683a88c05133d02ea225d9051e168b4ce3317d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-95,118-147,165-181,201-212,218-231"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -174989,25 +175657,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-history-branches-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItemEntry/properties/item",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected userMessage and terminal dynamicToolCall item values only; not complete ThreadItem union compatibility. Assistant item fields lacking independent expected values do not gain coverage."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItemEntry/properties/item",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "a6cda00a2e3e5a345356f5a1dc06786b919a7a730a3ba059868f40688d7e1fa5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:106-147,165-181,201-212,218-231",
+          "apps/samgita_codex_driver/test/native_text_span_history_test.exs:63-95,143-160"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "item"
@@ -189458,25 +190133,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/cwd",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "5649db933e2934e65c9bb74f6276efcb85f2c14102e0d2f0fee7f439c0b436b7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "cwd"
@@ -189558,25 +190239,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/ephemeral",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/ephemeral",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "6238417efdd08aa07fd5b4d10e5e9ecf4de279112412d734c84dfba9f9c162af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "ephemeral"
@@ -189750,25 +190437,31 @@
     {
       "default": "legacy",
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/historyMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/historyMode",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "edae7bb6521dcc9122cc0a2ab4c7d0287eabee06bc4a6c90abd89deaf7d9c71c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "historyMode"
@@ -189857,25 +190550,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/modelProvider",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/modelProvider",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "6c0776f6f8e8fca97cfcc4ad49472419dd9a9eb71f65235069366615eb3068b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "modelProvider"
@@ -189883,25 +190582,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/name",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "a793a286afab26b452673c3be1fc73ee4bc95c0be550fcff160b48a57194277c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "name"
@@ -189961,25 +190666,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/path",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b5b835c79d31bb675806b5ec07a021a769f01fc61e491c185c697e2025a60f87",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -190013,25 +190724,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/projectId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/projectId",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "c3ae3eeb8bffc9a81fa6211ce2fde2a3c80652044e5e3f930b5aa19b704e030a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "projectId"
@@ -190135,69 +190852,87 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/section",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/section",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "0c49c335b2fdbe8f67cdc300599bee91201dfddbaaeef7b6831660706b3e5b81",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "section"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/section/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "pointer": "/definitions/Thread/properties/section/anyOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "fb2c4ef3e45bebf72e4a132dfe1c7f7f0172ba7838612dd90239a71a2a6a82b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/section/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "pointer": "/definitions/Thread/properties/section/anyOf/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -190205,25 +190940,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/sectionEnteredAt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/sectionEnteredAt",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "29dbcc7c8df6ce8c53499899dee25d3c002765669b7a763025d4f06b08ba71ff",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "sectionEnteredAt"
@@ -190231,25 +190972,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/sessionId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/sessionId",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "57adcbecf706d6c35e7b9860a22cc627f09209cd442635ef5baf8c90406006a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "sessionId"
@@ -190319,25 +191066,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/status",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b1b141edb5584e392ddf52766fad2fe19abe8f6d87611a3eac6f324da3e42db2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "status"
@@ -190445,25 +191198,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/turns",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/turns",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "446b6a9474df49236d2f4a8fd2b55c11751619a6c54634038dffc40150688ccb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "turns"
@@ -190729,47 +191488,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadSection/properties/appearance",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadSection/properties/appearance",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "3aea52214e65ac4d8abb96156d25372212b1d3d378d4ef30682e351df25f8d72",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "appearance"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadSection/properties/appearance/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "pointer": "/definitions/ThreadSection/properties/appearance/anyOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "c52f9891d0c00ac1f0f9e62f855e1b96215e8197352633dc2b19b818074993b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "anyOf"
@@ -190799,25 +191570,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadSection/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSection/properties/id",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "cf58b11b1c3d0629ecc383347fbee6a94d306a02eec565bfeb8e468b982d751b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "id"
@@ -190825,25 +191602,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadSection/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSection/properties/name",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "f4a45c435513c6b82992c02faf02a822f1a75e2249796c154ef328dc1e46050e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "name"
@@ -190851,25 +191634,31 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadSectionAppearance/properties/color",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadSectionAppearance/properties/color",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "color"
@@ -190877,47 +191666,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadSectionAppearance/properties/icon",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadSectionAppearance/properties/icon",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "icon"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "13a7ab24344304b208ce5ad9ac64fee52c27e9cae2905b30ff7e5c6075d48d88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -190925,69 +191726,87 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadStatus/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "2dc270dd10f5991165c5ba633f21c73a69d37e407527e05ddd2b05c072aaa4c1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "e0bbb2211b532e8397c389572ad55200cb782c8072cb383816b2e649fcfcc761",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "83ae9a251eb2066dba0783aa7550b21d34be484260fdb2153a43ac4f45ec8ea2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "oneOf"
@@ -190995,47 +191814,59 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadStatus/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "c19555a57a9f7a30ab02938c94264d5631e33431ebc783eebb4fef7b2f1347f1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/search-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadStatus/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Only the selected metadata-only search projection with two owned completed histories, known sections/projects and hot/cold native reads. No other Thread owner, transcript content, appearance-null branch, other status/history mode or complete method/verified promotion."
+      ],
       "pointer": "/definitions/ThreadStatus/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "0df85741e83f6fea3308a3f30cb818b35fe482ead65c3fafb247a4d580e7c411",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:47-216,219-303"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"

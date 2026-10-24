@@ -6,6 +6,69 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Combined-source platform checkpoint at e39ca5f
+
+The input/form additions are committed and pushed at
+`e39ca5f8c7738c0f6fd1188de555e89dd1edb6a9`; local HEAD, origin/main and the live
+remote ref matched. The only untracked file is the user-supplied repair prompt,
+which is deliberately excluded from commits.
+
+The v7 preserved-platform runner completed **17 commands** against this exact
+executable source and passed its end-of-run source guard. The same retained
+`samgita_redesign_recovery_repair_test` database was neither reset nor trimmed.
+Seed `501432` passed **224 core/0/one excluded + 128 web/0/five excluded**.
+Seed `987654` passed core and failed **one of 128 web cases**: the retained
+`github_controller_test.exs:56` first-page assertion, in the test declared at
+line 39. This remains an aggregate failure. No GitHub code, pagination, fixture,
+assertion or database contents were changed to hide it.
+
+Real native runtime/API/races passed **53 core + 8 web / zero failures**.
+Both consecutive activation/recovery/restart seeds passed **4 core + 1 web /
+zero failures**. Genuine unmapped work remains blocked; no dispatch, journal or
+review/acceptance protection is bypassed. Warning-free compile, format, strict
+Credo, forced Dialyzer, legacy tests/scan, audit, frozen web dependencies, assets
+and production dependencies/assets/assembly all passed. The runner returned
+nonzero for the one actual aggregate failure. Complete commands, source hashes,
+exits and logs: `/tmp/samgita-repair-final-platform-v7-20261024/`. The assembly
+at `/tmp/samgita-repair-final-prod-v7-20261024/rel/samgita` was never started.
+
+The independent-package v9 matrix started serially after that platform runner,
+but its command group terminated with **exit 143** during default driver seed
+`501432`, without an ExUnit summary or a recorded command result. The cause is
+unestablished. Its inventory/prerequisite/compile/format commands passed; the
+partial default run and all unexecuted later commands remain **incomplete**.
+The tail contains guardian broken-pipe cleanup diagnostics after the parent
+disappeared; these do not establish a test assertion failure or its cause.
+Read-only process inspection found no remaining Codex/fixture processes from
+that group. Original logs and results remain in
+`/tmp/samgita-repair-final-packages-v9-20261024/` and
+`/tmp/samgita-repair-final-combined-v9-20261024/`; no partial pass is claimed.
+Subsequent executable additions require a new complete matrix.
+
+Hosted [CI 40071661625](https://github.com/gsmlg-opt/Samgita/actions/runs/40071661625)
+and [conformance 40071678362](https://github.com/gsmlg-opt/Samgita/actions/runs/40071678362)
+are terminal at the same exact head. CI passed its first and populated-repeat
+seeds (**224 core/0/one excluded + 128 web/0/five excluded** each),
+restart/rollback **1/0**, independent packages/consumers, strict checks, audits,
+assets and production assembly. This hosted success does not erase the retained
+local first-page failure above.
+
+Conformance is **failed overall** at its required completeness step. Both
+execution jobs passed: native wire **42/0**, default driver partitions
+**325/0 + 286/0 = 611/0**, all 30 isolated profiles **205/0**, native outside
+consumer **1/0**, and platform **53 core + 8 web/0**. Driver partitions and
+profiles used seed `501432`; consumer/platform used `578177`/`979423`.
+The driver-suite count includes different test layers, not 611 individually
+claimed real-binary cases. Inventory regressions **37/0** and source consistency
+passed. The strict gate exited one: `unverified requirements remain in entries`.
+Its matching ledger was **485 requirements: 462 implemented / 12 missing /
+11 blocked; zero verified**, and **6,621 contracts: 2,347 implemented / 4,274
+missing; zero verified**. Terminal metadata, exact counts and complete logs:
+`/tmp/samgita-hosted-e39ca5f-20261024/`. Later additions need new final-source
+checks. A11, source-unreachable paths, external/OS success and complete evidence
+remain incomplete. No tag, publication, deployment or production migration
+occurred.
+
 ## Hosted and independent-package checkpoint at c3dda0c
 
 Exact source `c3dda0c2b89edfe821c63bc4808fd3e307ecbccf` completed the normal
