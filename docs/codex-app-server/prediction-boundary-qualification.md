@@ -69,7 +69,7 @@ mix test test/native_configuration_notice_test.exs test/native_account_control_p
 mix format --check-formatted test/native_prediction_boundary_test.exs
 ```
 
-The prediction file passed **5/0** at both seeds (2.4/2.3s): three actual-native
+At that historical checkpoint, the prediction file passed **5/0** at both seeds (2.4/2.3s): three actual-native
 cases and two explicitly synthetic codec cases. The coordinating-owner combined
 repeat passed **21/0**, 29.6s. Root warnings-as-errors compile and positional
 `mix credo apps/samgita_codex_driver/test/native_prediction_boundary_test.exs --strict`
@@ -99,3 +99,37 @@ separate source-blocked legacy approvals, MCP progress and file-change output
 contracts. Reconcile this advertised-but-unimplemented
 surface only through an explicit target/evidence-policy decision. Do not modify
 the pin, invent a server emitter or silently waive required success behavior.
+
+## Durable-state precondition repair
+
+The frozen default-driver run at `6dcd341` ended **539 tests / one failure**,
+seed `501432`, 507.5s. Its sole failure compared two pre-materialization
+`thread/read` responses across a second boundary. Only `createdAt`, `updatedAt`
+and `recencyAt` differed. The exact pinned
+[read fallback](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L3021-L3033)
+uses the loaded snapshot when no stored thread exists;
+[snapshot construction](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L6581-L6613)
+assigns the current second to all three fields. Equality within one second had
+hidden this invalid test precondition. This is not evidence of prediction work
+or a driver mutation.
+
+The test now explicitly persists an empty thread with `thread/name/set` before
+taking its baseline. Both legacy and paginated histories must retain the entire
+response, including all timestamps, and the exact history-file bytes after each
+unknown-thread and registered-thread prediction error. Zero turns, provider
+requests, pending calls, uncertain operations and interactions remain asserted.
+No timestamp is filtered, no clock is rewritten, and no sleep, deadline or
+runtime behavior changes. The pinned unimplemented arm and all three blocked
+entries remain unchanged.
+
+The repaired file has six cases: four actual-native and two synthetic codec
+cases. Together with the five disabled managed-network cases, it passes **11/0**
+at each of `501432` and `987654`, 12.5/12.4s ExUnit time, with warnings-as-errors
+compilation, formatting, required namespace preflight and strict Credo. Logs and
+commands: `/tmp/samgita-native-prediction-network-20261024-attempt02/`.
+The preceding attempt also passed both native repeats but failed two new network
+test string-style checks; sigils preserve the exact TOML bytes and strict Credo
+then passes. The original failed full run remains in
+`/tmp/samgita-repair-final-packages-v6-20261024/`. That runner aborted after its
+first default-driver seed; remaining final checks were not run by that attempt.
+These scoped results require a new combined-source and hosted matrix.

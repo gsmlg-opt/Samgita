@@ -5,7 +5,7 @@ defmodule SamgitaCodexDriver.NativePredictionBoundaryTest do
   alias SamgitaProtocolCodex.Error
 
   import TurnFixture,
-    only: [call: 3, start: 1, start: 2, thread: 2, upstream_error: 3, upstream_error: 4]
+    only: [call: 3, start: 1, start: 2, thread: 3, upstream_error: 3, upstream_error: 4]
 
   @moduletag :real_codex
   @moduletag timeout: 60_000
@@ -22,21 +22,42 @@ defmodule SamgitaCodexDriver.NativePredictionBoundaryTest do
     :ok
   end
 
-  test "the advertised experimental operation returns the exact native unimplemented error",
-       ctx do
-    pid = start(ctx)
-    id = thread(ctx, pid)
-    before = call(pid, "thread/read", %{"threadId" => id})
+  for mode <- ["legacy", "paginated"] do
+    @history_mode mode
 
-    for params <- [@params, %{"threadId" => id, "sourceTurnId" => "synthetic-turn"}] do
-      assert upstream_error(pid, @method, params) == %{
-               "code" => -32_601,
-               "message" => "thread/prediction/request is not implemented yet"
-             }
+    test "#{mode} prediction returns the native unimplemented error and preserves durable history",
+         ctx do
+      pid = start(ctx)
+      id = thread(ctx, pid, %{"historyMode" => @history_mode})
+
+      # Before materialization, the pinned native metadata-only read constructs
+      # three timestamps from the current second on every call. Persist through
+      # the public metadata operation so exact equality checks durable state.
+      assert call(pid, "thread/name/set", %{
+               "threadId" => id,
+               "name" => "Owned unimplemented prediction survivor"
+             }) == %{}
+
+      before = call(pid, "thread/read", %{"threadId" => id, "includeTurns" => true})
+      assert before["thread"]["id"] == id
+      assert before["thread"]["historyMode"] == @history_mode
+      assert before["thread"]["name"] == "Owned unimplemented prediction survivor"
+      assert before["thread"]["turns"] == []
+      path = before["thread"]["path"]
+      bytes = File.read!(path)
+      assert_no_prediction_work(ctx, pid)
+
+      for params <- [@params, %{"threadId" => id, "sourceTurnId" => "synthetic-turn"}] do
+        assert upstream_error(pid, @method, params) == %{
+                 "code" => -32_601,
+                 "message" => "thread/prediction/request is not implemented yet"
+               }
+
+        assert call(pid, "thread/read", %{"threadId" => id, "includeTurns" => true}) == before
+        assert File.read!(path) == bytes
+        assert_no_prediction_work(ctx, pid)
+      end
     end
-
-    assert call(pid, "thread/read", %{"threadId" => id}) == before
-    assert_no_prediction_work(ctx, pid)
   end
 
   test "stable negotiation rejects the experimental operation at both local and native boundaries",
