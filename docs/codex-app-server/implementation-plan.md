@@ -116,12 +116,15 @@ HTTP allow/deny amendments, repeats their effects without a second approval,
 and reaps bwrap-adopted children across process groups under the original
 cleanup budget. Both seeds and static checks pass; see
 [network amendments](network-amendment-qualification.md). The approval lifecycle
-remains missing pending edited/mismatched decisions and the remaining profiles.
+remains missing pending the remaining profiles.
 The exact turn/history/configuration field owners now pass both recorded seeds
 (48, 29 and 46 tests per run); 322 selected contracts gain indexed evidence in
-[field qualification](field-evidence-qualification.md). Next: bounded approval
-decision edits, then the complete final local and hosted matrix. No selected
-unit closes A11 or completeness.
+[field qualification](field-evidence-qualification.md). Decision edits now add
+three actual-native prefix cases and expand the managed network profile to ten
+cases, including mismatch/error/cancel. Both repeated native blocks and strict
+static checks pass; see [edited approvals](approval-edits-qualification.md).
+Next: private-keyring Gateway success prerequisites, then the complete final
+local and hosted matrix. No selected unit closes A11 or completeness.
 
 1. The production shutdown fix stays intact. The new test cleanup barrier is
    `5964db9`, followed by its strict-Credo syntax correction `20277f1`.

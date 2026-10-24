@@ -3,6 +3,7 @@ defmodule SamgitaCodexDriver.NativeNetworkAmendmentProfile do
 
   alias SamgitaCodexDriver.Session
   alias SamgitaCodexDriver.Transport.{Stdio, UnixSocket}
+  alias SamgitaProtocolCodex.Error
 
   @moduletag :real_codex
   @moduletag :isolated_network_amendment
@@ -167,6 +168,291 @@ defmodule SamgitaCodexDriver.NativeNetworkAmendmentProfile do
     end
   end
 
+  test "plain network acceptance permits one request and requires another explicit decision",
+       ctx do
+    pid = client(ctx)
+    thread = network_thread(pid, ctx)
+    first = turn(pid, thread, "1")
+    {events, [approval]} = finish_decision(pid, thread, first, "accept", true)
+    assert_approval(approval, thread, first)
+    assert_network_success(events)
+    assert length(read(ctx, "origin-hits.json")) == 1
+    refute File.exists?(rules_path(ctx))
+
+    second = turn(pid, thread, "2")
+    {next, [current]} = finish_decision(pid, thread, second, "decline", true)
+    assert_approval(current, thread, second)
+    assert current.handle != approval.handle
+    assert tool_outputs(ctx, "owned-network-2") |> Enum.join("\n") =~ "rejected by user"
+    refute command_outputs(next) |> Enum.join("\n") =~ "owned network request succeeded"
+    assert length(read(ctx, "origin-hits.json")) == 1
+    refute File.exists?(rules_path(ctx))
+    assert length(read(ctx, "requests.json")) == 4
+    assert Session.status(pid).interactions == 0
+    assert :ok = Session.close(pid)
+  end
+
+  test "session network acceptance permits a later request without writing a persistent rule",
+       ctx do
+    pid = client(ctx)
+    thread = network_thread(pid, ctx)
+    first = turn(pid, thread, "1")
+    {events, [approval]} = finish_decision(pid, thread, first, "acceptForSession", true)
+    assert_approval(approval, thread, first)
+    assert_network_success(events)
+    assert length(read(ctx, "origin-hits.json")) == 1
+    refute File.exists?(rules_path(ctx))
+
+    second = turn(pid, thread, "2")
+    {next, []} = finish_decision(pid, thread, second, "acceptForSession", false)
+    assert_network_success(next)
+    assert length(read(ctx, "origin-hits.json")) == 2
+    refute File.exists?(rules_path(ctx))
+    assert length(read(ctx, "requests.json")) == 4
+    assert Session.status(pid).interactions == 0
+    assert :ok = Session.close(pid)
+  end
+
+  test "an equivalent edited network host persists only the canonical approved destination",
+       ctx do
+    pid = client(ctx)
+    thread = network_thread(pid, ctx)
+    first = turn(pid, thread, "1")
+    decision = network_decision(" 127.0.0.3. ", "allow")
+    {events, [approval]} = finish_decision(pid, thread, first, decision, true)
+    assert_approval(approval, thread, first)
+    assert_network_success(events)
+    assert length(read(ctx, "origin-hits.json")) == 1
+
+    expected =
+      ~s|network_rule(host="#{@host}", protocol="http", decision="allow", justification="Allow http access to #{@host}")\n|
+
+    assert File.read!(rules_path(ctx)) == expected
+    second = turn(pid, thread, "2")
+    {next, []} = finish_decision(pid, thread, second, decision, false)
+    assert_network_success(next)
+    assert length(read(ctx, "origin-hits.json")) == 2
+    assert File.read!(rules_path(ctx)) == expected
+    assert length(read(ctx, "requests.json")) == 4
+    assert Session.status(pid).interactions == 0
+    assert :ok = Session.close(pid)
+  end
+
+  test "a different-host allow amendment warns and requires a new original-host decision", ctx do
+    pid = client(ctx)
+    thread = network_thread(pid, ctx)
+    first = turn(pid, thread, "1")
+    decision = network_decision("127.0.0.4", "allow")
+    {events, [approval]} = finish_decision(pid, thread, first, decision, true)
+    assert_approval(approval, thread, first)
+    assert_mismatch_warning(events, thread)
+    assert tool_outputs(ctx, "owned-network-1") |> Enum.join("\n") =~ "blocked by policy"
+    assert_no_network_effect(ctx, events)
+    assert_stale(pid, approval)
+    assert_idle(pid)
+    assert_provider_counts(ctx, 2, 0)
+
+    second = turn(pid, thread, "2")
+    {next, [current]} = finish_decision(pid, thread, second, "decline", true)
+    assert_approval(current, thread, second)
+    assert current.handle != approval.handle
+    assert tool_outputs(ctx, "owned-network-2") |> Enum.join("\n") =~ "rejected by user"
+    assert_no_network_effect(ctx, next)
+    assert network_warnings(next) == []
+    assert_stale(pid, current)
+    assert_idle(pid)
+    assert_provider_counts(ctx, 2, 2)
+    assert :ok = Session.close(pid)
+  end
+
+  test "a different-host deny amendment warns but caches denial of the original host", ctx do
+    pid = client(ctx)
+    thread = network_thread(pid, ctx)
+    first = turn(pid, thread, "1")
+    decision = network_decision("127.0.0.4", "deny")
+    {events, [approval]} = finish_decision(pid, thread, first, decision, true)
+    assert_approval(approval, thread, first)
+    assert_mismatch_warning(events, thread)
+    assert tool_outputs(ctx, "owned-network-1") |> Enum.join("\n") =~ "rejected by user"
+    assert_no_network_effect(ctx, events)
+    assert_stale(pid, approval)
+    assert_idle(pid)
+    assert_provider_counts(ctx, 2, 0)
+
+    second = turn(pid, thread, "2")
+    {next, []} = finish_decision(pid, thread, second, "decline", false)
+    assert tool_outputs(ctx, "owned-network-2") |> Enum.join("\n") =~ "blocked"
+    assert_no_network_effect(ctx, next)
+    assert network_warnings(next) == []
+    assert_idle(pid)
+    assert_provider_counts(ctx, 2, 2)
+    assert :ok = Session.close(pid)
+  end
+
+  test "an explicit network approval error grants no access and permits a later explicit decision",
+       ctx do
+    pid = client(ctx)
+    thread = network_thread(pid, ctx)
+    first = turn(pid, thread, "1")
+    error = {:error, %{"code" => -32_001, "message" => "Synthetic explicit refusal"}}
+    {events, [approval]} = finish_response(pid, thread, first, error, true, "completed")
+    assert_approval(approval, thread, first)
+    assert tool_outputs(ctx, "owned-network-1") |> Enum.join("\n") =~ "approval request failed"
+    assert_no_network_effect(ctx, events)
+    assert network_warnings(events) == []
+    assert_stale(pid, approval)
+    assert_idle(pid)
+    assert_provider_counts(ctx, 2, 0)
+
+    second = turn(pid, thread, "2")
+    {next, [current]} = finish_decision(pid, thread, second, "decline", true)
+    assert_approval(current, thread, second)
+    assert current.handle != approval.handle
+    assert tool_outputs(ctx, "owned-network-2") |> Enum.join("\n") =~ "rejected by user"
+    assert_no_network_effect(ctx, next)
+    assert_stale(pid, current)
+    assert_idle(pid)
+    assert_provider_counts(ctx, 2, 2)
+    assert :ok = Session.close(pid)
+  end
+
+  test "declining network access completes the turn without a session grant", ctx do
+    pid = client(ctx)
+    thread = network_thread(pid, ctx)
+    first = turn(pid, thread, "1")
+    {events, [approval]} = finish_decision(pid, thread, first, "decline", true)
+    assert_approval(approval, thread, first)
+    assert tool_outputs(ctx, "owned-network-1") |> Enum.join("\n") =~ "rejected by user"
+    assert_no_network_effect(ctx, events)
+    assert network_warnings(events) == []
+    assert_stale(pid, approval)
+    assert_idle(pid)
+    assert_provider_counts(ctx, 2, 0)
+
+    second = turn(pid, thread, "2")
+    {next, [current]} = finish_decision(pid, thread, second, "decline", true)
+    assert_approval(current, thread, second)
+    assert current.handle != approval.handle
+    assert tool_outputs(ctx, "owned-network-2") |> Enum.join("\n") =~ "rejected by user"
+    assert_no_network_effect(ctx, next)
+    assert_stale(pid, current)
+    assert_idle(pid)
+    assert_provider_counts(ctx, 2, 2)
+    assert :ok = Session.close(pid)
+  end
+
+  test "cancelling network approval interrupts the turn without granting host access",
+       ctx do
+    pid = client(ctx)
+    thread = network_thread(pid, ctx)
+    first = turn(pid, thread, "1")
+    response = {:ok, %{"decision" => "cancel"}}
+    {events, [approval]} = finish_response(pid, thread, first, response, true, "interrupted")
+    assert_approval(approval, thread, first)
+    assert_no_network_effect(ctx, events)
+    assert network_warnings(events) == []
+    assert_stale(pid, approval)
+    assert_idle(pid)
+    assert_provider_counts(ctx, 1, 0)
+
+    # This is an explicitly new turn after interruption, never a timeout retry.
+    second = turn(pid, thread, "2")
+    {next, [current]} = finish_decision(pid, thread, second, "decline", true)
+    assert_approval(current, thread, second)
+    assert current.handle != approval.handle
+    assert tool_outputs(ctx, "owned-network-2") |> Enum.join("\n") =~ "rejected by user"
+    assert_no_network_effect(ctx, next)
+    assert_stale(pid, current)
+    assert_idle(pid)
+    assert_provider_counts(ctx, 1, 2)
+    assert :ok = Session.close(pid)
+  end
+
+  defp assert_no_network_effect(ctx, events) do
+    assert read(ctx, "origin-hits.json") == []
+    refute File.exists?(rules_path(ctx))
+    refute command_outputs(events) |> Enum.join("\n") =~ "owned network request succeeded"
+  end
+
+  defp assert_mismatch_warning(events, thread) do
+    message =
+      "Failed to apply network policy amendment: network policy amendment host '127.0.0.4' " <>
+        "does not match approved host '#{@host}'"
+
+    assert network_warnings(events) == [%{"threadId" => thread, "message" => message}]
+  end
+
+  defp network_warnings(events) do
+    for event <- events,
+        event.wire["method"] == "warning",
+        String.starts_with?(
+          event.wire["params"]["message"],
+          "Failed to apply network policy amendment:"
+        ),
+        do: event.wire["params"]
+  end
+
+  defp assert_stale(pid, approval) do
+    assert {:error, %Error{code: :stale_interaction}} =
+             Session.respond(pid, approval.handle, {:ok, %{"decision" => "accept"}})
+  end
+
+  defp assert_idle(pid) do
+    assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0} = Session.status(pid)
+  end
+
+  defp assert_provider_counts(ctx, first, second) do
+    counts =
+      for request <- read(ctx, "requests.json") do
+        markers =
+          for item <- request["input"],
+              item["role"] == "user",
+              part <- item["content"] || [],
+              part["type"] == "input_text",
+              part["text"] in ["synthetic:network:1", "synthetic:network:2"],
+              do: part["text"]
+
+        assert markers != []
+        List.last(markers)
+      end
+      |> Enum.frequencies()
+
+    expected = %{"synthetic:network:1" => first}
+
+    expected =
+      if second == 0, do: expected, else: Map.put(expected, "synthetic:network:2", second)
+
+    assert counts == expected
+  end
+
+  defp network_thread(pid, ctx) do
+    call(pid, "thread/start", %{
+      "cwd" => Path.join(ctx.root, "workspace"),
+      "historyMode" => "legacy",
+      "model" => "mock-model",
+      "modelProvider" => "fixture",
+      "sandbox" => "read-only",
+      "approvalPolicy" => "on-request",
+      "approvalsReviewer" => "user"
+    })["thread"]["id"]
+  end
+
+  defp network_decision(host, action) do
+    %{
+      "applyNetworkPolicyAmendment" => %{
+        "network_policy_amendment" => %{"host" => host, "action" => action}
+      }
+    }
+  end
+
+  defp assert_network_success(events) do
+    output = command_outputs(events) |> Enum.join("\n")
+    assert output =~ "owned direct access blocked"
+    assert output =~ "owned network request succeeded"
+  end
+
+  defp rules_path(ctx), do: Path.join(ctx.root, "codex/rules/default.rules")
+
   defp client(ctx) do
     {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
 
@@ -216,10 +502,27 @@ defmodule SamgitaCodexDriver.NativeNetworkAmendmentProfile do
   end
 
   defp finish(pid, thread, turn, action, expected) do
-    finish_loop(pid, thread, turn, action, expected, [], [], now() + 20_000)
+    finish_decision(pid, thread, turn, network_decision(@host, action), expected)
   end
 
-  defp finish_loop(pid, thread, turn, action, expected, acc, approvals, deadline) do
+  defp finish_decision(pid, thread, turn, decision, expected) do
+    finish_response(pid, thread, turn, {:ok, %{"decision" => decision}}, expected, "completed")
+  end
+
+  defp finish_response(pid, thread, turn, response, expected, terminal_status) do
+    finish_loop(pid, thread, turn, response, {expected, terminal_status}, [], [], now() + 20_000)
+  end
+
+  defp finish_loop(
+         pid,
+         thread,
+         turn,
+         response,
+         {expected, terminal_status},
+         acc,
+         approvals,
+         deadline
+       ) do
     assert {:ok, incoming} = Session.drain(pid)
 
     approvals =
@@ -232,17 +535,7 @@ defmodule SamgitaCodexDriver.NativeNetworkAmendmentProfile do
                    Session.respond(
                      pid,
                      event.handle,
-                     {:ok,
-                      %{
-                        "decision" => %{
-                          "applyNetworkPolicyAmendment" => %{
-                            "network_policy_amendment" => %{
-                              "host" => @host,
-                              "action" => action
-                            }
-                          }
-                        }
-                      }}
+                     response
                    )
 
           seen ++ [event]
@@ -261,7 +554,7 @@ defmodule SamgitaCodexDriver.NativeNetworkAmendmentProfile do
       )
 
     if completed do
-      assert completed.wire["params"]["turn"]["status"] == "completed"
+      assert completed.wire["params"]["turn"]["status"] == terminal_status
       assert length(approvals) == if(expected, do: 1, else: 0)
       {acc, approvals}
     else
@@ -272,7 +565,16 @@ defmodule SamgitaCodexDriver.NativeNetworkAmendmentProfile do
         10 -> :ok
       end
 
-      finish_loop(pid, thread, turn, action, expected, acc, approvals, deadline)
+      finish_loop(
+        pid,
+        thread,
+        turn,
+        response,
+        {expected, terminal_status},
+        acc,
+        approvals,
+        deadline
+      )
     end
   end
 

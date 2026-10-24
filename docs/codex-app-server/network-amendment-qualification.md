@@ -90,12 +90,45 @@ and scoped strict Credo also passed. Logs use
 profile and fails if namespace/mount/sandbox prerequisites are unavailable.
 Final aggregate and hosted outcomes are separate gates.
 
+## Expanded decisions and edits
+
+Eight further cases retain the original two and exercise these exact native
+branches:
+
+| Decision/context | Observed result |
+| --- | --- |
+| Plain accept | One owned-origin success, no rule; the next original-host request prompts and is explicitly declined. |
+| acceptForSession | Two owned-origin successes with one approval and no persistent rule. |
+| Equivalent edited `" 127.0.0.3. "` allow | Only the canonical original-host rule persists; two successful turns, one approval. |
+| Different-host allow | Exact mismatch warning, no rule/effect; a later original-host request prompts again. |
+| Different-host deny | Exact mismatch warning, no rule/effect; the original host remains denied by the session cache without another prompt. |
+| Explicit JSON-RPC error | Native reports approval failure with no access/rule; the next original-host request prompts. |
+| Decline | Turn completes with rejection and no access/rule/session grant; the next request prompts. |
+| Cancel | Turn is interrupted, with one provider request and no access/rule. A separately explicit next turn prompts and is declined. |
+
+The mismatched host exists only in the typed response; no command connects to
+it. Native host normalization and equality checks are at
+`core/src/session/mod.rs:2811-2889`; allow/deny mismatch cache behavior is
+asymmetric at `core/src/tools/network_approval.rs:921-1018`. Tests preserve that
+observed distinction rather than imposing symmetric rejection. Exact per-marker
+provider counts, stale-handle rejection, terminal status, no pending state and
+zero owned-origin effect are asserted. Original approval-context and cleanup
+checks remain unchanged; the Python fixture is unchanged.
+
+Both five-case intermediate runs passed **5/0**, 9.7/9.8 seconds. Both expanded
+ten-case runs passed **10/0**, 18.8/18.7 seconds, then strict Credo rejected a
+nine-parameter test helper. Grouping the expected approval/terminal pair into
+one tuple retains all assertions and deadlines. The final ten-case block again
+passes both seeds, **10/0**, 18.6/19.5 seconds, with compile, format and strict
+Credo; logs are `/tmp/samgita-network-negative-final-*-20261024.log`.
+
 Thirteen exact positive field/variant contracts gain scoped `implemented`
 evidence. Shared canonical NetworkPolicyAmendment definitions describe the typed
 v2 decision exercised here; they do not imply legacy ApplyPatchApproval runtime
-acceptance. No entry becomes fully verified. Edited/mismatched amendments,
-response errors, decline/cancel, lost replies, cold-restart policy persistence,
-other network protocols and legacy approval methods still require separate
-evidence. See [legacy reachability](legacy-approval-qualification.md); this v2
+acceptance. Existing decision contracts gain the expanded selected evidence;
+no entry becomes fully verified. Cross-context edits, lost replies, native
+cold-restart policy persistence, other network protocols and legacy approval
+methods still require separate evidence. See
+[legacy reachability](legacy-approval-qualification.md); this v2
 request must never be rewritten to counterfeit a legacy emission. A11 and the
 remaining external/OS/full-compatibility gates remain incomplete.

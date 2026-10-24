@@ -2029,6 +2029,30 @@ contracts; **zero verified**. CI selects the profile. Edited/mismatched replies,
 other protocols, loss/restart, legacy reachability, final aggregate/hosted and
 A11 remain incomplete.
 
+## Native edited prefix and expanded network decisions
+
+Three [edited-prefix cases](approval-edits-qualification.md) pass **3/0** at both
+seeds, 3.5/3.6 seconds. Narrower and unrelated safe edits persist exactly, while
+the current action runs once; only the matching rule suppresses a later prompt.
+An empty prefix emits the exact native persistence warning without creating a
+file and still permits the current approved action. Later unmatched commands
+are explicitly declined and old handles are rejected.
+
+The [network profile](network-amendment-qualification.md) expands from two to
+ten cases. Both final native repeats pass **10/0**, 18.6/19.5 seconds, plus strict
+static checks after grouping a nine-argument test helper's expected-state pair.
+No assertion or deadline changes. One-shot/session acceptance, equivalent host
+edits, different-host allow/deny asymmetry, explicit errors, decline and cancel
+are actual native outcomes with exact rules/effects/warnings and provider counts.
+Cleanup remains within 0.75 seconds with zero owned resources.
+
+These strengthen existing contract evidence; counts stay **460 implemented /
+14 missing / 11 blocked** requirements and **1,632 implemented / 4,989 missing**
+contracts, **zero verified**. Complete approval/permission lifetimes, lost replies,
+cold policy reload, legacy emissions, A11 and external profiles remain incomplete.
+Default native CI includes the prefix tests; the explicit CI profile includes all
+network cases. Final aggregate/hosted results remain separate gates.
+
 ## Exact retained native field indexing
 
 The [field evidence unit](field-evidence-qualification.md) reruns the actual
