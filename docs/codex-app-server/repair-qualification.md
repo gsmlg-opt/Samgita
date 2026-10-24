@@ -6,6 +6,24 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Image-view and sandbox continuation
+
+The [owning record](image-view-fork-qualification.md) adds a real native image
+read, exact independently decoded pixels and warm/first-cold selective history
+after only the owned image is removed. Invalid bytes and low detail produce the
+exact model-visible error without any invented imageView record. Fork omitted/
+null preserve the named readonly profile; invalid enum/type preserve histories
+before the explicit valid override and permitted child turn. The complete
+six-file native block passes36/0 twice, fixed seeds, with compile/format,
+strict Credo438 files and a matching manifest-inclusive source guard.
+
+Twelve exact physical owners bring contracts to **3395 implemented/3226 missing**,
+zero verified; requirements stay **462 implemented/12 missing/11 blocked**,
+zero verified. The prior cold/process/config block below keeps its historical
+counts. Complete final-source local/hosted checks remain required; no selected
+pass closes A11, upstream-unreachable runtime paths, external/OS success or the
+full goal.
+
 ## Cold item, process and config continuation
 
 The [owning record](cold-items-process-config-qualification.md) retains all first

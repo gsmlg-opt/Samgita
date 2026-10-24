@@ -91463,124 +91463,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/13",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/13",
       "schema": "ServerNotification.json",
       "schema_sha256": "17247eaf457097a8347fb78a19b1d18fa63dd028caa5b83210ab9745f7efcac4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/13/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/13/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/13/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/13/properties/path",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/13/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/13/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "fa13a4959c135f51fd5fece5925a43ed3e8b86b38c169e1daf895d68d6ae931f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/13/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/13/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "a12421e9e2b649d4217475a6498aeb8df6127c3dae656e9348d4a2f7f0c3b42f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -161549,8 +161589,7 @@
       "id": "schema:v2/ProcessSpawnParams.json#/properties/outputBytesCap",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Explicit0/3/6/null branches only; omission default1MiB still requires a dedicated native assertion.",
-        "Additional exact default1MiB-per-stream and explicit-null unlimited buffered-output effects; no arbitrary binary UTF8 conversion, remote or cross-OS qualification."
+        "Selected explicit0/3/6/null and omitted native1MiB-per-stream buffered effects; exact byte counts/cap flags. No arbitrary binary UTF8 conversion, remote or cross-OS qualification."
       ],
       "nullable": true,
       "pointer": "/properties/outputBytesCap",
@@ -170893,27 +170932,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/sandbox",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Standalone read-only sandbox with permissions absent: exact effective policy/profile, independent loaded settings, parent/sibling isolation and one permitted assistant-only child turn. Omitted/null preserve the named readonly profile; invalid type/enum reject locally and natively without changing parent/inherited children, before explicit valid recovery. Other modes, filesystem write-denial, full sandbox lifecycle and cross-OS remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/sandbox",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "011faee344543d2bd518e69654adaed17d51be0e95c5cb2992258b62c80c9c08",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:149-297"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sandbox"
     },
     {
@@ -170940,24 +170987,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/sandbox/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Explicit sandbox:null with permissions absent preserves the independently expected parent named readonly profile and exact child effective policy. Omission is a separate positive control. Invalid integer/enum rejection preserves source/child snapshots before a valid standalone override and permitted assistant turn. Only this primitive null branch; no reference wrapper, alternate mode, write-denial, full sandbox or cross-OS qualification."
+      ],
       "pointer": "/properties/sandbox/anyOf/1",
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs:173-211"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -178852,124 +178907,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/13",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/13",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "17247eaf457097a8347fb78a19b1d18fa63dd028caa5b83210ab9745f7efcac4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/13/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/13/properties/id",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/13/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/13/properties/path",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/13/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/13/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "fa13a4959c135f51fd5fece5925a43ed3e8b86b38c169e1daf895d68d6ae931f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/image-view-fork-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/13/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Exact prescribed local 2x2 PNG imageView live/warm/first-cold item and independently decoded provider pixels; cold selective history succeeds after owned source removal with no inference/re-execution. Additional invalid-image bytes and detail:low return exact model-visible errors with no live/warm/first-cold imageView, no image continuation, unchanged owned files and exactly two provider requests. Other file/model/detail, remote environment, image budgets and other-OS variants remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/13/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "a12421e9e2b649d4217475a6498aeb8df6127c3dae656e9348d4a2f7f0c3b42f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_image_view_items_test.exs:72-408"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

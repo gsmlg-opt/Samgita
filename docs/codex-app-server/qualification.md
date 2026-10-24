@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,383 implemented / 3,238 missing
+11 blocked requirements** and **0 verified / 3,395 implemented / 3,226 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,383 directly exercised
+MCP entries have scoped implementation evidence. These 3,395 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,15 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [image-view/fork continuation](image-view-fork-qualification.md) passes the
+complete six-file native block **36/0 twice**, with compile, format, strict
+Credo438 files and a matching source guard. It adds actual imageView live/warm/
+first-cold persistence after owned source removal, exact native image/detail
+errors without invented failure items, and sandbox omitted/null/invalid/valid
+selection with parent/sibling preservation. Twelve physical owners gain scoped
+implemented evidence; none becomes verified. The complete final-source local
+and hosted matrices remain required, alongside all broader blocked gates.
 
 The [cold item/process/config continuation](cold-items-process-config-qualification.md)
 passes its complete 15-file native owning block **115/0 at both fixed seeds**,
