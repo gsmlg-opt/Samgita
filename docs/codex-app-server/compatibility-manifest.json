@@ -169304,27 +169304,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-fork-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/deferGoalContinuation",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_deferred_goal_fork: Cold materialized source receives user-origin active goal only through public API without loading/inference. Omitted/false forks have no copied goal; null, disabled true and enabled ephemeral incompatibility reject explicitly. Persistent enabled true copies exact zero-use goal and history, survives native restart/resume without execution, then explicit net9 clears deferral and one automatic net12 continuation ends budgetLimited21/20. Source goal/history/bytes, actual HTTP/SSE/native IDs/notifications and final cold no-work recovery are asserted. Nonzero source use/time, prefix variants, other goal states, disabled goals, no-goal sources, active flush races and other transport/OS/service profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/deferGoalContinuation",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "9069a7ddda0a2ad33e11023a26d968cce581b77298fba8f368af547ce506a2df",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_fork_profile.exs:133-347"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "deferGoalContinuation"
     },
     {

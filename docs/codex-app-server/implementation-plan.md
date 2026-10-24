@@ -81,9 +81,19 @@ passes **55/0 twice** with strict checks/source guard and no repair. One direct
 owner brings contracts to **3,190 implemented / 3,431 missing**, zero verified;
 Startup/Clear hook effects stay unqualified.
 
-Next implement the separately source-audited deferred goal-fork profile using
-public cold goal setup and bounded local inference, then freeze executable source
-for the complete preserved-platform/package/consumer and final-pushed hosted matrix.
+The [deferred goal-fork profile](goal-fork-qualification.md) now passes **10/0
+twice**, strict checks and a matching source guard. Public cold goal setup avoids
+direct state seeding; actual continuation ends21/20 after explicit deferral
+consumption. One owner brings contracts to **3,191 implemented / 3,430 missing**,
+zero verified. All46 profiles have explicit required hosted steps. Initial strict
+Credo nesting failure and unchanged-cleanup extraction remain recorded.
+
+Next freeze executable source for the complete preserved-platform/package/
+consumer and final-pushed hosted matrix. Then continue the source-audited
+five-case thread/start.personality request-instruction differential; its enabled
+and default behavior remains unrun and missing. The audit is retained at
+`/tmp/samgita-thread-start-personality-audit-20261025.md`; it supplies no native
+acceptance by itself.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.
 No scoped green checkpoint completes the full goal.

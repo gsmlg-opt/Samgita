@@ -226,6 +226,16 @@ does not qualify enabled realtime backend behavior.
 
 ## Implemented platform boundary
 
+Native Codex goal scheduling remains owned by Codex. In the pinned fork path,
+omitted/false `deferGoalContinuation` does not copy a source goal; enabled true
+with persistent history and goals enabled copies it with a durable deferral.
+Cold resume does not itself consume that deferral; an explicit turn does. The
+[scoped native journey](goal-fork-qualification.md) proves this with bounded local
+inference and public cold goal APIs. It adds no Samgita planner, automatic
+dispatch or acceptance authority. Likewise
+[`sessionStartSource:clear`](default-semantics-qualification.md#session-start-source-and-actual-request-provenance)
+classifies a newly created runtime; it does not delete another thread's history.
+
 `Samgita.CodexRuntime` adds an explicit journal around an ordinary Agent's running
 Attempt. Registration stores `runtime_driver=codex` and `runtime_version=0.163.0`;
 it starts no worker, executable, connection or listener. Stable Agent identity,

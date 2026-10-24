@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,190 implemented / 3,431 missing
+11 blocked requirements** and **0 verified / 3,191 implemented / 3,430 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,190 directly exercised
+MCP entries have scoped implementation evidence. These 3,191 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -42,6 +42,14 @@ and an unchanged source guard. Exact actual HTTP provenance distinguishes
 new/cleared while earlier roots/history/bytes remain unchanged. One physical
 owner gains implemented status; hooks, general defaults and verified states do
 not. Final-source full matrices and the remaining goal stay incomplete.
+
+The [deferred goal-fork journey](goal-fork-qualification.md) passes **10/0 twice**
+in its full owning block, strict checks and a matching source guard. Public cold
+goal setup, no-inheritance/gate errors, deferred native restart/resume and bounded
+explicit/automatic21/20 accounting are distinct assertions. Only one property
+owner becomes implemented. The initial cleanup-nesting Credo failure and exact
+repair remain recorded. All46 native profiles have required hosted steps;
+complete final-source checks, A11 and full compatibility remain incomplete.
 
 Six further actual-native cases add [goal provenance/quota/stock tools](goal-control-qualification.md),
 [same-thread plugin MCP policy and uninstall](plugin-mcp-qualification.md), and
