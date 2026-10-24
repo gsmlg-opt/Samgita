@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 1,741 implemented / 4,880 missing
+11 blocked requirements** and **0 verified / 1,772 implemented / 4,849 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,741 directly exercised
+MCP entries have scoped implementation evidence. These 1,772 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -2165,6 +2165,18 @@ anchor guarantee. The positive backwardsCursor contract stays missing. No native
 database write, upstream change, driver cursor rewrite, retry or deadline change
 is introduced. Full aggregate/package/hosted and external/A11 gates remain
 separate and incomplete.
+
+## Native envelope and canonical output fields
+
+[The bounded envelope audit](envelope-fields-qualification.md) links 31 exact
+missing contracts to existing positive native assertions: seven notification
+envelopes and three canonical GitInfo output fields. It changes no executable or
+test. Reference-closure equivalence preserves schema semantics, and every selected
+row names its actual owning assertions and limitations. Unrelated leaf matches,
+uncalled methods, whole referenced payloads and notification production for the
+shared GitInfo type gain no evidence. The current ledger is **1,772 implemented /
+4,849 missing contracts**, with zero verified. Actual combined-source and hosted
+results remain separate gates.
 
 ## Native graph, permission, future-settings and error semantics
 

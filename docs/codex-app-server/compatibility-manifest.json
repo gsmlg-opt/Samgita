@@ -76738,79 +76738,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GitInfo/properties/branch",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Canonical shared GitInfo branch output field in actual thread/metadata/update and thread/read responses: positive strings, trimming, partial replacement and cold retained read. The canonical shared type is inventoried under ServerNotification.json, but this evidence is RESPONSE use only. It does not establish any GitInfo-bearing notification producer, other methods/transports or Git remote access. No request GitInfoUpdate alias, null outer gitInfo-to-null-member inference, hosted provider or A11 qualification. No explicit-null branch MEMBER output assertion is claimed: clearing all members yields an outer null GitInfo, which does not prove that branch-member value."
+      ],
       "nullable": true,
       "pointer": "/definitions/GitInfo/properties/branch",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs:22-60"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "branch"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GitInfo/properties/originUrl",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Canonical shared GitInfo output field in actual thread/metadata/update and thread/read responses, including positive strings and explicit-null exact maps. The canonical shared type is inventoried under ServerNotification.json, but this evidence is RESPONSE use only. It does not establish any GitInfo-bearing notification producer, other methods/transports or Git remote access. No request GitInfoUpdate alias, null outer gitInfo-to-null-member inference, hosted provider or A11 qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/GitInfo/properties/originUrl",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs:22-60,69-86"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "originUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/GitInfo/properties/sha",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Canonical shared GitInfo output field in actual thread/metadata/update and thread/read responses, including positive strings and explicit-null exact maps. The canonical shared type is inventoried under ServerNotification.json, but this evidence is RESPONSE use only. It does not establish any GitInfo-bearing notification producer, other methods/transports or Git remote access. No request GitInfoUpdate alias, null outer gitInfo-to-null-member inference, hosted provider or A11 qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/GitInfo/properties/sha",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_metadata_test.exs:22-60"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sha"
     },
     {
@@ -94575,98 +94599,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native error notification discriminator and params for recovered/exhausted HTTP200 SSE rate failure and immediate overload without advice. Linux musl Unix-socket owned private-network-namespace synthetic provider only. No actual HTTP429, positive httpStatusCode, hosted provider enforcement, other error families, protocol reconnect, task acceptance or A11 qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "7ece3ed8998aa4e708759b5507e75c46f67250f7c5779204bf2e61e8347249f0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-160,163-199,242-243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/0/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native error notification discriminator and params for recovered/exhausted HTTP200 SSE rate failure and immediate overload without advice. Linux musl Unix-socket owned private-network-namespace synthetic provider only. No actual HTTP429, positive httpStatusCode, hosted provider enforcement, other error families, protocol reconnect, task acceptance or A11 qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e7d2dd64d8200b6d3023a08a852295f09a3165e2ac09a9f23704c8ec936cda6d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-160,163-199,242-243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/0/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native error notification discriminator and params for recovered/exhausted HTTP200 SSE rate failure and immediate overload without advice. Linux musl Unix-socket owned private-network-namespace synthetic provider only. No actual HTTP429, positive httpStatusCode, hosted provider enforcement, other error families, protocol reconnect, task acceptance or A11 qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/0/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "ec442f8b717f74f76cd14b2691ad661f4e6244920308b6e9154517f47eb079d8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-160,163-199,242-243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/0/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native error notification discriminator and params for recovered/exhausted HTTP200 SSE rate failure and immediate overload without advice. Linux musl Unix-socket owned private-network-namespace synthetic provider only. No actual HTTP429, positive httpStatusCode, hosted provider enforcement, other error families, protocol reconnect, task acceptance or A11 qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "20f6af75a0839bad931288524f81a8ae2d9bcc6fb9fd7dd9dc0ba50c1b0d56ca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-160,163-199,242-243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "params"
     },
     {
@@ -94767,98 +94823,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/10",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native normalized positive name notices, post-error barrier and retained read. Linux musl stdio owned fixture only; positive threadName strings, not null/clear name, every transport/concurrent naming or external integration. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/10",
       "schema": "ServerNotification.json",
       "schema_sha256": "e1f78b80d2b289b30ac14a1391edfba2c1c1918d3b641b5b386117c5f9442bcf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:152-159,171-188,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/10/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native normalized positive name notices, post-error barrier and retained read. Linux musl stdio owned fixture only; positive threadName strings, not null/clear name, every transport/concurrent naming or external integration. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/10/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "883c9cfa4a98fb8c25a52cc166e5296f86730304e018e1870f067d35953dc441",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:152-159,171-188,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/10/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native normalized positive name notices, post-error barrier and retained read. Linux musl stdio owned fixture only; positive threadName strings, not null/clear name, every transport/concurrent naming or external integration. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/10/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "cd75099e2514046b792bb3701c82057b63e0e25cc099dfe414b6c3bea40d2b67",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:152-159,171-188,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/10/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native normalized positive name notices, post-error barrier and retained read. Linux musl stdio owned fixture only; positive threadName strings, not null/clear name, every transport/concurrent naming or external integration. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/10/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e989c606f22f989c0ce18c2ce4f40df383c948d884a03eaf99945677de80a495",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:152-159,171-188,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -97167,98 +97255,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/33",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native UTF-8 streaming agentMessage delta envelope and identity/order with model-only synthetic Responses stream. Linux musl stdio owned fixture only; not every streaming item, transport loss/reconnect/replay, hosted model or A11 qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/33",
       "schema": "ServerNotification.json",
       "schema_sha256": "fb7f14564169800cb782703fc191161e565d5aab6ee7777946d79cb01604a511",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:59-109,410-446,449-465,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/33/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native UTF-8 streaming agentMessage delta envelope and identity/order with model-only synthetic Responses stream. Linux musl stdio owned fixture only; not every streaming item, transport loss/reconnect/replay, hosted model or A11 qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/33/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "67069cdfc623e6b74f8fd180e882fe3b0b867e8e4cedaeb0671cf099572e61a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:59-109,410-446,449-465,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/33/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native UTF-8 streaming agentMessage delta envelope and identity/order with model-only synthetic Responses stream. Linux musl stdio owned fixture only; not every streaming item, transport loss/reconnect/replay, hosted model or A11 qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/33/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "d9694161ad9f9593737c2c1f359cc5e854b060ba8adcbca404eb8a27b1f4b902",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:59-109,410-446,449-465,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/33/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native UTF-8 streaming agentMessage delta envelope and identity/order with model-only synthetic Responses stream. Linux musl stdio owned fixture only; not every streaming item, transport loss/reconnect/replay, hosted model or A11 qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/33/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "65f95f09e3afc29773b1ea0c845717b242fd4137e37db9af1955a7732cc3fe4f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:59-109,410-446,449-465,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -97839,98 +97959,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native archive notification after explicit archive transition. Linux musl stdio owned fixture thread only; no automatic replay, all archive races/transports or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "2817f9d3e306b867f1618a61b35502911dc80619ca8092475740fd9d1e50f67e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:206-211,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/4/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native archive notification after explicit archive transition. Linux musl stdio owned fixture thread only; no automatic replay, all archive races/transports or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e38435608cb8f87c42248109481d246b6f7c1fb12a5d91d3e34d7fae25dfb91f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:206-211,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/4/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native archive notification after explicit archive transition. Linux musl stdio owned fixture thread only; no automatic replay, all archive races/transports or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/4/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "7db25772d3ceb9ec07b26eef8c27f3e33d66e94c28ca889283f7911da02c3d87",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:206-211,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/4/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native archive notification after explicit archive transition. Linux musl stdio owned fixture thread only; no automatic replay, all archive races/transports or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "1d555b77035d79c8aaabf2b2a0c27fc999ac1d2519faec2ad3aec1f7b114c7b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:206-211,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -98895,98 +99047,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/5",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native deleted notification and failed post-delete read after explicit deletion. Linux musl stdio owned fixture thread only; no all deletion/recovery/race/transport profiles or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/5",
       "schema": "ServerNotification.json",
       "schema_sha256": "f5828892bfdde41b94f7c6b3f2404434b64fc58b1d89aad39391d76262a6af6d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:219-226,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/5/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native deleted notification and failed post-delete read after explicit deletion. Linux musl stdio owned fixture thread only; no all deletion/recovery/race/transport profiles or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/5/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "3b1de5c9be9343aac74e074721363193af4b542d57aafba2ea5d7a03b15c2174",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:219-226,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/5/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native deleted notification and failed post-delete read after explicit deletion. Linux musl stdio owned fixture thread only; no all deletion/recovery/race/transport profiles or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/5/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "dccf29140dd84db0b8cdcb6879dfa904ad847ce8e52e8a3dfc24a32f0558c43b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:219-226,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/5/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native deleted notification and failed post-delete read after explicit deletion. Linux musl stdio owned fixture thread only; no all deletion/recovery/race/transport profiles or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/5/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "6ad99d68a36334aa2070f176e4ca9fc7114e79db55f66df8759222fba00c4036",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:219-226,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -99951,98 +100135,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/6",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native unarchived notification after explicit restore. Linux musl stdio owned fixture thread only; no all restore/race/transport profiles or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/6",
       "schema": "ServerNotification.json",
       "schema_sha256": "b52a9910fb5b2e1bbe4e9374dcbbbe66eace0cb5a0d5494be1cb7b368d5b84d9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:212-218,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/6/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native unarchived notification after explicit restore. Linux musl stdio owned fixture thread only; no all restore/race/transport profiles or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/6/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "2967ed6e8115caacd1dc9e57eebb26e1509e1be7caa749e6f8e5f22221214401",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:212-218,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/6/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native unarchived notification after explicit restore. Linux musl stdio owned fixture thread only; no all restore/race/transport profiles or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/6/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "7ec4153af7a950501ce544a12c68ce98f9e5fedd7436de009ba1d5a3fd91ab74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:212-218,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/6/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native unarchived notification after explicit restore. Linux musl stdio owned fixture thread only; no all restore/race/transport profiles or external integration qualification. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/6/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f0e3fbfbc063aa94dfbf48916ec597945fe43ed92c61152784200299e43e7a39",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:212-218,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -101007,98 +101223,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/7",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native closed notification from configured idle eviction, distinct from unsubscribe acknowledgement. Linux musl stdio explicit zero-delay fixture only; not all eviction timings, reconnect/loss/races or close causes. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/7",
       "schema": "ServerNotification.json",
       "schema_sha256": "7d5e901e2c5db412043656b524cd26a25fb6fb045e423b80d17286aac8edc66e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:230-247,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/7/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native closed notification from configured idle eviction, distinct from unsubscribe acknowledgement. Linux musl stdio explicit zero-delay fixture only; not all eviction timings, reconnect/loss/races or close causes. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/7/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "4ea51d103a69e67a40122c740da37af5bfb4c6b515a3332ef8137aa6a2c722ca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:230-247,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/7/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native closed notification from configured idle eviction, distinct from unsubscribe acknowledgement. Linux musl stdio explicit zero-delay fixture only; not all eviction timings, reconnect/loss/races or close causes. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "pointer": "/oneOf/7/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "611ca94fecb45b12f76d38b52dbb3bb38220e85792d9f5368002793d647855bf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:230-247,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/7/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_assertions: Actual native closed notification from configured idle eviction, distinct from unsubscribe acknowledgement. Linux musl stdio explicit zero-delay fixture only; not all eviction timings, reconnect/loss/races or close causes. Envelope evidence does not promote every referenced payload field/variant or every use site."
+      ],
       "nullable": false,
       "pointer": "/oneOf/7/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "e33cf46a17176284d5bd2ad521422b622f449ed3452c9fe59c5cc2f120be576c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:230-247,488-493"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {

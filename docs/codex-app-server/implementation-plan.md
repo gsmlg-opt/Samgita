@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 462 `implemented`,
-with 1,741 exact field/variant schema contracts implemented; 12 requirements and 4,880 contracts
+with 1,772 exact field/variant schema contracts implemented; 12 requirements and 4,849 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -110,6 +110,13 @@ tests and 112 executed web tests twice, plus the selected actual-binary/API
 journey. Exact remaining aggregate and hosted outcomes belong in qualification.
 
 Next concrete work (repair follow-up, 2026-10-24):
+
+The [bounded envelope evidence audit](envelope-fields-qualification.md) adds only
+31 exact existing native assertions to the ledger, with no runtime/test change
+or fully verified promotion. A further native dynamic-tool persisted-history
+unit and actual provider HTTP error variants are being prepared; neither has
+execution evidence yet. Complete their scoped validation, then refresh final
+combined-source/hosted results and continue the remaining behavior variants.
 
 The next four [native units](qualification.md#native-graph-permission-future-settings-and-error-semantics)
 now pass 18 cases at both recorded seeds: real spawned relations/cold graph,
