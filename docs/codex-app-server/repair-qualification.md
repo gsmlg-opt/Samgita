@@ -6,6 +6,29 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Frozen independent-package checkpoint before managed policy
+
+The v5 runner completed **23 commands / zero failures** with executable,
+configuration and workflow hashes frozen at `0cb70cc`; subsequent `fbcbd79` and
+`3904bac` changed documentation/manifest only. Its end-of-run source guard passed.
+Default driver seeds `728846` and `987654` passed **495/0** each, 441.0/423.6s.
+All 30 profiles together passed **205/0** at seeds `501432` and `987654`,
+436.0/450.0s, with the corrected explicit private Secret Service tool paths.
+Native outside consumer passed **1/0**; neutral core and both outside consumers
+passed **32/0 + 1/0 + 1/0**. Neutral WebSocket seeds `455834`, `501432` and
+`987654` passed **42/0** each; native wire passed **42/0**. All selected
+compile/format/audit, namespace/native-sandbox and 37 inventory regressions/checks
+passed. Commands, source/tool hashes, exits and complete logs:
+`/tmp/samgita-repair-final-packages-v5-20261024/`.
+
+This supersedes the earlier omitted-tool prerequisite failure for this runner's
+scope. It precedes the new managed-policy tests; their focused **13/0** repeats
+and the single corrected Credo draft failure are recorded in
+[managed qualification](managed-requirements-qualification.md). New executable
+test/helper source still requires its own combined/hosted qualification. The
+unchanged populated-database GitHub failure, A11, completeness and external/OS
+gates remain unmet. No publication, tag or deployment occurred.
+
 ## Hosted checkpoint at 0cb70cc
 
 Exact pushed source `0cb70cc3b9d747fe9e9dd76cddcef0331a505767` completed both

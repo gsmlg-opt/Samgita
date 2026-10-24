@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,056 implemented / 4,565 missing
+11 blocked requirements** and **0 verified / 2,099 implemented / 4,522 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,056 directly exercised
+MCP entries have scoped implementation evidence. These 2,099 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -38,6 +38,15 @@ completeness job still fails. See [the exact hosted checkpoint](repair-qualifica
 A further 60 filesystem/process/search/skills outer contracts link existing
 positive native calls and outcomes. This final bounded wrapper batch adds no
 runtime test, nested-field promotion or fully verified claim.
+
+The [managed requirements unit](managed-requirements-qualification.md) adds
+13 real-native cases, **13/0** at both recorded seeds. It proves restrictive
+policy metadata, atomic managed-write rejection, repair after malformed policy,
+owned ancestor-config exclusion, effective overlays and cold restart. Only 43
+directly demonstrated contracts gain scoped implemented evidence; no model,
+browser/computer execution, full-method or fully verified claim follows. The
+latest frozen package matrix before these additions passed two **495/0** default
+and two **205/0** profile runs; this new source still needs combined/hosted checks.
 
 Latest method records: [history](thread-history-qualification.md),
 [configuration](configuration-qualification.md), [goals](native-goal-qualification.md),

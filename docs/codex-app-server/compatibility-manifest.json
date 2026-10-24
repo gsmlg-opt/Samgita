@@ -118264,79 +118264,109 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ApplicationNetworkRequirements/properties/domains",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Exact normalized .invalid deny map plus native parse-error/reload/cold-read behavior only; no destination contact or enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": false,
       "pointer": "/definitions/ApplicationNetworkRequirements/properties/domains",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cb33412c7496191b1a27b4fc963373e6e4ea966c2850419014a117299e280a24",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "domains"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ApplicationNetworkRequirements/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": false,
       "pointer": "/definitions/ApplicationNetworkRequirements/properties/enabled",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "f7e84c2529256bd8e8bfd40796b23eb514ed86769f9bc48a6261faaeb65dcaf4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ApplicationRequirements/properties/network",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ApplicationRequirements/properties/network",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b09ea4b98226436b324e752d6006d0bb335f3886e3c678afc1dfa82d5b7db32b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "network"
     },
     {
@@ -118437,24 +118467,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseAccessApprovalLifetime/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Exact turn enum member only; no thread member, union, approval granting or execution claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "pointer": "/definitions/BrowserUseAccessApprovalLifetime/enum/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "51b5af118ab00bb2dfda4c21a2646056568d783a77f21293c41670d634c6d86c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -118508,27 +118548,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/access",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/access",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "2d7580e8471be2f2533d28e461ba9432eb850f9eae8a00b9bd3b4ce5d39c1347",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "access"
     },
     {
@@ -118578,27 +118628,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/accessApprovalLifetime",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/accessApprovalLifetime",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "c455a79b78e8a93417b7d1ec0a3935bab0fe0afb140163dc9a3a76089ea86640",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "accessApprovalLifetime"
     },
     {
@@ -118648,27 +118708,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/autoReview",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/autoReview",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "2d7580e8471be2f2533d28e461ba9432eb850f9eae8a00b9bd3b4ce5d39c1347",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "autoReview"
     },
     {
@@ -118718,27 +118788,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/downloads",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/downloads",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "2d7580e8471be2f2533d28e461ba9432eb850f9eae8a00b9bd3b4ce5d39c1347",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "downloads"
     },
     {
@@ -118788,27 +118868,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/fullCdpAccess",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/fullCdpAccess",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "2d7580e8471be2f2533d28e461ba9432eb850f9eae8a00b9bd3b4ce5d39c1347",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "fullCdpAccess"
     },
     {
@@ -118858,53 +118948,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/persistentApproval",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/persistentApproval",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "persistentApproval"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseOriginPolicy/properties/uploads",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseOriginPolicy/properties/uploads",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "2d7580e8471be2f2533d28e461ba9432eb850f9eae8a00b9bd3b4ce5d39c1347",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "uploads"
     },
     {
@@ -118954,105 +119064,145 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/allowGlobalPersistentApproval",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseRequirements/properties/allowGlobalPersistentApproval",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowGlobalPersistentApproval"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/allowHistoryAccess",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseRequirements/properties/allowHistoryAccess",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowHistoryAccess"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/allowWebmcp",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseRequirements/properties/allowWebmcp",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowWebmcp"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/defaultOriginPolicy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseRequirements/properties/defaultOriginPolicy",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "4695d1f28cf768997732f1cee7318258e5b586faa12022cb7d6e2f67a1d91396",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "defaultOriginPolicy"
     },
     {
@@ -119102,27 +119252,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/disableAutoReview",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseRequirements/properties/disableAutoReview",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "disableAutoReview"
     },
     {
@@ -119198,27 +119358,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/origins",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/BrowserUseRequirements/properties/origins",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "33e18a0c9210e703f456b0e1c664c8d31a023f01193d80ad6377cee233e5ddc3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "origins"
     },
     {
@@ -119289,24 +119459,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/CliAuthCredentialsStoreMode/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_provider_requirements_test.exs:96-121; test SHA256 c8519bdaf07bcba6f58208cd1c813796246d5620321940b306e44dbd7534b8f6.",
+        "Only exact ephemeral enum member; no enum union or other enum members.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "pointer": "/definitions/CliAuthCredentialsStoreMode/enum/3",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "bf5228684bcf542fe011385276d6dd32fef8cab6f29aebd6da49bf8d2b51a61b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_provider_requirements_test.exs:96-121 (managed provider definitions overlay user values without persisting the overlay)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -119338,79 +119518,109 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/allowLockedComputerUse",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ComputerUseRequirements/properties/allowLockedComputerUse",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowLockedComputerUse"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/allowPersistentApproval",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ComputerUseRequirements/properties/allowPersistentApproval",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowPersistentApproval"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/defaultAppAccess",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ComputerUseRequirements/properties/defaultAppAccess",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "2d7580e8471be2f2533d28e461ba9432eb850f9eae8a00b9bd3b4ce5d39c1347",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "defaultAppAccess"
     },
     {
@@ -119756,209 +119966,289 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/additionalDeveloperInstructions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/additionalDeveloperInstructions",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "additionalDeveloperInstructions"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowAppshots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowAppshots",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowAppshots"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowBrowserAndComputerUse",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowBrowserAndComputerUse",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowBrowserAndComputerUse"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowLoginShell",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowLoginShell",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowLoginShell"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowManagedHooksOnly",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowManagedHooksOnly",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowManagedHooksOnly"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowRemoteControl",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowRemoteControl",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowRemoteControl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowedApprovalPolicies",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowedApprovalPolicies",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cf6a88ae8c07fdb5c1f8fb48e1c6cb5631001f1531da3915c20a2b2741e72fd6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowedApprovalPolicies"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowedApprovalsReviewers",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowedApprovalsReviewers",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "daebaf79e8782bf24a7c24586d79e769b131bd23e41f9042857f476ebcab62ce",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowedApprovalsReviewers"
     },
     {
@@ -120023,53 +120313,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowedSandboxModes",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowedSandboxModes",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "42b0161f0733e5e14495f088d28ab04e290fb7ed90c5b467aea5bec29fa37991",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowedSandboxModes"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowedWebSearchModes",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowedWebSearchModes",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "ef7506f2ce1ad3a7d2eabbaa72094c43ceee4b06b54db397eb3b2d852a787cc5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowedWebSearchModes"
     },
     {
@@ -120101,27 +120411,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/application",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/application",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "12ec31d87ab3e37c0472562a34ad8a2332535b32b5148abebb88e6347bb7974a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "application"
     },
     {
@@ -120241,27 +120561,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/browserUse",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/browserUse",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "e17e2d8ca05eedac7e3611f3c7d187f462ccadf8310bbf32fabd3414064f6370",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "browserUse"
     },
     {
@@ -120311,79 +120641,109 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/chatgptBaseUrl",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_provider_requirements_test.exs:96-121; test SHA256 c8519bdaf07bcba6f58208cd1c813796246d5620321940b306e44dbd7534b8f6.",
+        "Only a synthetic closed-loopback URL, effective overlay and managed write rejection; no ChatGPT service behavior.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/chatgptBaseUrl",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_provider_requirements_test.exs:96-121 (managed provider definitions overlay user values without persisting the overlay)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "chatgptBaseUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/checkForUpdateOnStartup",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/checkForUpdateOnStartup",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "checkForUpdateOnStartup"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/cliAuthCredentialsStore",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_provider_requirements_test.exs:96-121; test SHA256 c8519bdaf07bcba6f58208cd1c813796246d5620321940b306e44dbd7534b8f6.",
+        "Only managed ephemeral mode; no actual login, credential retrieval, storage or other credential-store modes.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/cliAuthCredentialsStore",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "76256c5713d9610fed9808fd82734f69a7a14fa917d255ef110d70a31d1273a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_provider_requirements_test.exs:96-121 (managed provider definitions overlay user values without persisting the overlay)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cliAuthCredentialsStore"
     },
     {
@@ -120433,27 +120793,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/computerUse",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/computerUse",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "86a3f1627283d49a791dcc6323d6839e105d6fcfc0fe1f835d5dfc065f88053c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "computerUse"
     },
     {
@@ -120625,27 +120995,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/feedback",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected restrictive local value only; no aggregate union or broader enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/feedback",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "710049329d4a9c4d6cd5b49ce1707b35d475327ddec72a33df37fec4ab78b815",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "feedback"
     },
     {
@@ -120765,27 +121145,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/inAppBrowser",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/inAppBrowser",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "be67ae0a4d11b6126936cef5e94312b095a1add7fec92f3c5064c202de6057c4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "inAppBrowser"
     },
     {
@@ -120920,27 +121310,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/modelProviders",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_provider_requirements_test.exs:96-121; test SHA256 c8519bdaf07bcba6f58208cd1c813796246d5620321940b306e44dbd7534b8f6.",
+        "Only fixture provider ID, seven directly compared provider fields, effective overlay equality and scoped write fencing; arbitrary nested JSON remains unqualified.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/modelProviders",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "25cd51b32a47eec4f2715c9a89f8ca4f8149d7890e39a01a5bbc4e45399e3523",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_provider_requirements_test.exs:96-121 (managed provider definitions overlay user values without persisting the overlay)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProviders"
     },
     {
@@ -121730,53 +122130,73 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/FeedbackRequirements/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108; test SHA256 6751d33677d3a2a12eb0ff6285c1f87ee3eca101a353eab1693e96d7106c4f25.",
+        "Selected false leaf only; no feedback telemetry behavior or aggregate union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/FeedbackRequirements/properties/enabled",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs:81-108 (actual managed requirements retain restrictive values and normalize empty web search choices)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/InAppBrowserRequirements/properties/allowExternalBrowserSettingsImport",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Selected typed local metadata only; no browser/computer/network execution, security enforcement, OS/service or union claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "nullable": true,
       "pointer": "/definitions/InAppBrowserRequirements/properties/allowExternalBrowserSettingsImport",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowExternalBrowserSettingsImport"
     },
     {
@@ -122237,24 +122657,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-requirements-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NetworkDomainPermission/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_private_managed_policy: Selected exact output from stock rust-v0.163.0 in child-only user/mount/network namespaces, with read-only synthetic /etc/codex and owned workspace marker. Assertions apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239; test SHA256 584aa6eaa59c4e2400822d418877816f0735b9eb0640a625a7bd6411f9297f9f.",
+        "Exact deny enum member only; no allow member, union or active network enforcement claim.",
+        "13 focused cases pass seeds 501432/987654; no task/model turn, real credential, browser/computer/network execution, complete schema union, full lifecycle or external/OS/A11 qualification. Broader final-source and hosted checks remain separate."
+      ],
       "pointer": "/definitions/NetworkDomainPermission/enum/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "02f97a1800ef06704f994cae34328477c8ac48b002dc7cc67de1d1fe3bb336cf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_feature_requirements_test.exs:113-123,205-239 (restrictive nested requirements retain typed browser computer and application metadata)"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

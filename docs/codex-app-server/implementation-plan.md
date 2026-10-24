@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 462 `implemented`,
-with 2,056 exact field/variant schema contracts implemented; 12 requirements and 4,565 contracts
+with 2,099 exact field/variant schema contracts implemented; 12 requirements and 4,522 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -543,9 +543,10 @@ journey adds task-acceptance separation. No row is verified and the broad
 approval/default/authorization lifecycle rules remain missing. Read the linked
 unit records for initial test failures, source anchors and deployment limits.
 
-The [populated-database aggregate](repair-qualification.md#latest-populated-database-aggregate-checkpoint)
-fails both seeds at the unchanged GitHub API first-page assertion. Preserve that
-failure without out-of-scope repairs, reset or gate suppression. Native platform,
+The [populated-database aggregate](repair-qualification.md#latest-populated-database-aggregate-checkpoint-at-c5c0cba)
+still fails the unchanged GitHub API first-page assertion at seed `987654`;
+seed `501432` passes, depending on the generated UUID's first-page placement.
+Preserve that failure without out-of-scope repairs, reset or gate suppression. Native platform,
 consecutive recovery/restart, strict checks, audit, assets and local assembly
 pass separately. Continue the independent remaining method/field evidence and
 final package/hosted checks. A11, upstream-unreachable paths and external/OS
@@ -559,3 +560,12 @@ actual observed response, and the positive backwardsCursor contract stays
 missing. No driver/native-state workaround is applied. The full isolated package
 matrix now runs against this frozen source; source-only ancestry and permission
 variant investigation can continue independently without altering that snapshot.
+
+The [managed requirements unit](managed-requirements-qualification.md) now passes
+13 native cases at both seeds, with namespace/ancestor-boundary proof, exact
+policy metadata, atomic write fencing, malformed-policy recovery and cold
+restart. It adds 43 precise contracts, with zero verified promotions. The prior
+frozen package matrix passes all commands, including **495/0** default twice and
+**205/0** profiles twice. Continue new-source full/hosted qualification and the
+remaining attributable thread-source behavior; neither checkpoint completes the
+goal or clears A11, unavailable upstream emitters, external accounts or OS profiles.
