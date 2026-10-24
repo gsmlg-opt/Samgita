@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 1,996 implemented / 4,625 missing
+11 blocked requirements** and **0 verified / 2,056 implemented / 4,565 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,996 directly exercised
+MCP entries have scoped implementation evidence. These 2,056 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -35,6 +35,9 @@ audits index **60 outer contracts plus five exact leaves** from unchanged native
 assertions. They add no runtime test or complete-method claim. At `0cb70cc`,
 hosted foundation and both selected native/platform jobs pass; the required
 completeness job still fails. See [the exact hosted checkpoint](repair-qualification.md#hosted-checkpoint-at-0cb70cc).
+A further 60 filesystem/process/search/skills outer contracts link existing
+positive native calls and outcomes. This final bounded wrapper batch adds no
+runtime test, nested-field promotion or fully verified claim.
 
 Latest method records: [history](thread-history-qualification.md),
 [configuration](configuration-qualification.md), [goals](native-goal-qualification.md),

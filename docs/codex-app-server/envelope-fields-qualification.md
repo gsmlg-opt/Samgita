@@ -146,3 +146,40 @@ All 60 selected rows were missing and disjoint from the prior 48. Reference
 closures match per-method schemas under the structural rules above; this
 comparison alone adds no behavioral evidence. Status stays scoped implemented,
 with zero fully verified, no broader service/OS acceptance and no A11 closure.
+
+## Filesystem, process, search and skills wrappers
+
+The next **60 missing outer contracts** have positive native evidence across
+15 methods below. They use the unchanged Linux stdio fixture and deterministic
+request constructor, with real filesystem/process/catalog effects and native
+responses. These tests are included in the **495/0** default suite at `0cb70cc`.
+No new native run or captured outgoing bytes are claimed by this indexing.
+
+| Method | ClientRequest branch | Owning test and direct assertion ranges |
+| --- | --- | --- |
+| fs/readFile | 86 | filesystem_lifecycle_test.exs:104-110 |
+| fs/writeFile | 87 | filesystem_lifecycle_test.exs:104-106 |
+| fs/remove | 91 | filesystem_lifecycle_test.exs:182-184 |
+| fs/copy | 92 | filesystem_lifecycle_test.exs:233-236,251-253 |
+| process/spawn | 155 | process_lifecycle_test.exs:45-47,70-75 |
+| process/writeStdin | 156 | process_lifecycle_test.exs:161-167 |
+| process/kill | 157 | process_lifecycle_test.exs:218-225 |
+| process/resizePty | 158 | process_lifecycle_test.exs:60-65,70-75 |
+| fuzzyFileSearch | 168 | native_fuzzy_search_test.exs:55-59 |
+| fuzzyFileSearch/sessionStart | 169 | native_fuzzy_search_test.exs:138-145 |
+| fuzzyFileSearch/sessionUpdate | 170 | native_fuzzy_search_test.exs:139-144 |
+| fuzzyFileSearch/sessionStop | 171 | native_fuzzy_search_test.exs:145-146 |
+| skills/list | 66 | native_skills_lifecycle_test.exs:36-47,49-54 |
+| skills/extraRoots/set | 67 | native_skills_lifecycle_test.exs:141-161 |
+| skills/config/write | 95 | native_skills_lifecycle_test.exs:76-89 |
+
+Each method contributes branch, method property, single discriminator and params
+wrapper only. Exact IDs, test/source hashes, constructor ranges, complete params
+reference equivalence and immutable upstream declaration/dispatch anchors are in
+`/tmp/samgita-client-envelope-fs-process-search-skills-candidates-20261024.json`,
+SHA256 `323863f847a1b1509f0a4a6b8eca58a3de00787289c56e5c37afdf653e1e4850`.
+All 60 were missing before indexing. Positive outcomes are required; no
+errors-only call qualifies a wrapper. Reference equality alone qualifies no
+runtime behavior. Request IDs, nested fields, complete methods, cancellation
+guarantees beyond owning assertions, external/OS acceptance and fully verified
+state remain outside this audit. No A11, publication or deployment claim follows.

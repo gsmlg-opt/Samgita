@@ -49258,24 +49258,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/155",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/155",
       "schema": "ClientRequest.json",
       "schema_sha256": "4d564a033f886a51b2df068140170b382df21a49120eb9824c3f812f2b1b9fab",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:45-47,70-75"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -49307,97 +49315,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/155/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/155/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5dd4eb8781fa9f38bb43c16a3d2a0894e6e01e9027b945bb798c764916d28150",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:45-47,70-75"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/155/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/155/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "0e66c4921124c611768a759e5e9766563b33186f0bc32802faf170a99d49e081",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:45-47,70-75"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/155/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/155/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a727fe88bcf2aa4a9a6c012b77f9037ce3ecd34def0e8082f36b775d79001028",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:45-47,70-75"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/156",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/156",
       "schema": "ClientRequest.json",
       "schema_sha256": "9af3199b6fb95ba0e9a0adb3ea10ee4f038afadd1ec1b980b74249ffa7e7927e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:161-167"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -49429,97 +49469,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/156/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/156/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ac7b5689b7aee274b01e53b99c44327764dee3d2f7d349d26c16917785568a2f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:161-167"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/156/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/156/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9995ce8bd754fb45e2889755787528a3c5d55471ebd7354990ffb3f15a64f62e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:161-167"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/156/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/156/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "14e9718a30152249d84988cf7731e7bcd02f489bc6956355d9712e0a9ec55434",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:161-167"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/157",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/157",
       "schema": "ClientRequest.json",
       "schema_sha256": "8d0d0ac14ec6df4a0ef8068b24e29d76abb0b9fd0091dd65fc5a75597b0cf392",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:218-225"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -49551,97 +49623,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/157/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/157/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c76c16cac6c3571c280d3d90bb1140e2cd8b6cd3b1ce44d39a9ac10569d35168",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:218-225"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/157/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/157/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "585d72dc2c7943dd9499cbbfb02bcc9b838d192168e23f43973963ae3b34cd4c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:218-225"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/157/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/157/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "2e624db8c96eafa358f237215850500d3f862e406c9f4b40fac8c7176db5e0ed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:218-225"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/158",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/158",
       "schema": "ClientRequest.json",
       "schema_sha256": "739269b62f6f2676c7634fe70a406c4bba3483e7c8c14121f9a24a71489d8db6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:60-65,70-75"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -49673,75 +49777,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/158/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/158/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "199dc6f93465ffbc15e60e722a42ed470402b8a5e0a1c9589d20235c1005f2ef",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:60-65,70-75"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/158/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/158/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "0c4c45fcd0f542964e5b88dcc50c2f6d899fd783fa87efca7e82d35d3ed23540",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:60-65,70-75"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/158/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/158/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ed30de463f1e72dcaccfb3e9752fa2b4db0dcf5739367eb1e73ac7a34b266ec1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/process_lifecycle_test.exs:60-65,70-75"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -51126,24 +51254,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/168",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/168",
       "schema": "ClientRequest.json",
       "schema_sha256": "5d676a4680bb928a94a33a3598c37c5196b0303ecc06d8a36a62682fe8d68078",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:55-59"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -51175,97 +51311,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/168/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/168/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "04688c91dce10b7cb984cbbacb02411332d32b1df2fa38210a22a40464a994ea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:55-59"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/168/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/168/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "ff9cd10c5009005ba91ee697e87bdb99e485af753923b4cc33bd2fbecf59eb3b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:55-59"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/168/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/168/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b95b96203e183a1a4a50755282604b16730274882a78fa56069985324f4ea472",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:55-59"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/169",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/169",
       "schema": "ClientRequest.json",
       "schema_sha256": "f6d914af07fbf72d33bd9fd1eeda028f5f553bd6cc81a4086b27b31d3c0ef1eb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:138-145"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -51297,75 +51465,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/169/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/169/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "61e8591d207bc049c62e3206b8a899353957e41cbe5ac499587aea9513837006",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:138-145"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/169/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/169/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "4c5aa8cac55e4f49cb7c966873f264f763fa3ee4d7784fe430ef96546a4d0116",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:138-145"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/169/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/169/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f02d8e7a6004a0a95a52cbee70213569150564fd37d7f3c5a33f3b7a92bcafed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:138-145"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -51492,24 +51684,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/170",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/170",
       "schema": "ClientRequest.json",
       "schema_sha256": "3c72b00ae80d41ef53e1a0fb09e4293da6de373227b95ba0f51d8b72e7428d06",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:139-144"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -51541,97 +51741,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/170/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/170/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f5e61a59dbc8ed68558e7a3d6942e3f9f1bd989659de9feea1aa33dd6a38ff9d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:139-144"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/170/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/170/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "e308d422aaf296a4c344f0273aa3749c8f91581076a313723ed2efec564e9ced",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:139-144"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/170/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/170/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "90dd1a5c9ed913f6cea1d6f175dc963de0d937479e0eb41c12e9cd91f934e709",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:139-144"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/171",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/171",
       "schema": "ClientRequest.json",
       "schema_sha256": "6a5cc56d87e2109f91e92abf7ced3cf0480ca997947a6879fe08be000e463130",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:145-146"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -51663,75 +51895,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/171/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/171/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "376711263b1bf2798f162d6fca4041cac7a5b2394de8eae9f2a5c1c951417ccb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:145-146"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/171/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/171/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "8f296d958e791e3787fe80d1540c9ee0442980344b61a14a7a55a7337e0609f6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:145-146"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/171/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/171/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1875373fefb03599ca9b17952a08bb4fc2f4d0b015b12b7da8f02220260d676a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_search_test.exs:145-146"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -58522,24 +58778,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/66",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/66",
       "schema": "ClientRequest.json",
       "schema_sha256": "5852985cbc675bc3366b76e58c2b2a1fd799affbebe05315d6920141c79130b8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:36-47,49-54"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -58571,97 +58835,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/66/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/66/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "10c2b641d4c6a030c0d0506fe44e58481ac9765bcc3c6694ce1d093876a4eb6c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:36-47,49-54"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/66/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/66/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "327cfee6071f68986ed0674bf8b21e763c76a74b86edde3ae51b148565d9e245",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:36-47,49-54"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/66/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/66/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f0369bf9f925e21ea771613e389544843869485bc48ed4db1a20bff385eb9bf7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:36-47,49-54"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/67",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/67",
       "schema": "ClientRequest.json",
       "schema_sha256": "0b31468a2130a394aab2f43c061aa60278e7e5e10ac3e2d6dbd042b1923ef46e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:141-161"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -58693,75 +58989,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/67/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/67/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "53bde56a555000862445365817986f2215e341af91dcab5e246b4be34d394116",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:141-161"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/67/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/67/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "853ef8b65408819c7654d7bda925d8570edfbed097843b6d244f178432872464",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:141-161"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/67/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/67/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ee3561cc218c96c9e36b02bedbbfe6b65dc24dc9d9fda55f311c5f7d9a8bdd69",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:141-161"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -61206,24 +61526,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/86",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/86",
       "schema": "ClientRequest.json",
       "schema_sha256": "3653b94e537214bd7e39becdad944322f355ac06acd0e2a543ad3d10fd7faed4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:104-110"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -61255,97 +61583,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/86/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/86/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "2d5405856a90d8fa6ca6351b52a5cd97fdad2bbd9c7f5cc66383261f10fd2544",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:104-110"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/86/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/86/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "67fcfee522933b8e71ccb51fdb71a79ce75fcc395739b39776a022e007aafe14",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:104-110"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/86/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/86/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5ff73bd4698bc46f478127ed649f9517f476e2c6a6f604297ab9dfbdad007e5e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:104-110"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/87",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/87",
       "schema": "ClientRequest.json",
       "schema_sha256": "07dce7b2cafabf6fe2cea9ff459f04cecf064620e011edb739d50e3b8aa8a9c5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:104-106"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -61377,75 +61737,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/87/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/87/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "adff04aa309c8336f751e7c90091932ca16620b86a8ff812ddbdaf6063a0e0d5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:104-106"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/87/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/87/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "1dd02c41ea97fda155107f7b207dca23c975cfb532ffed82a1b80be457ba9051",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:104-106"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/87/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/87/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4f6308581817f901c072bae88cc454baecc4d139d235efed87e12be4959d0b3d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:104-106"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -61938,24 +62322,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/91",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/91",
       "schema": "ClientRequest.json",
       "schema_sha256": "96140a8c46179269728aa32e8e022671d242c049fd7f3551517a150d032e9361",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:182-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -61987,97 +62379,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/91/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/91/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a24124677630afc1273980d282db83556e2179354c7bb382adf000c1b055c1e2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:182-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/91/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/91/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "61bc24d97b788034def125e6a38e6cde42fa933c5ba687cf1ce98c72bf3a232f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:182-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/91/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/91/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "51eb355c72aa38e4bc81e6263ec6ce87c100335637610ef1a02fdb23f3fecdd3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:182-184"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/92",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/92",
       "schema": "ClientRequest.json",
       "schema_sha256": "7ec71f8be609e81ff22c7c920a733cb34591d76df81b2d8c65481bf6695a9502",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:233-236,251-253"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -62109,75 +62533,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/92/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/92/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a1fad61ff689f821e0ca08b85f0a85b827695f9c7dcdda385ae7ded304c0c083",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:233-236,251-253"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/92/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/92/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "76ccce3b870d900203635e58fc58809fe9cb4f532a21eb171343d72b8563faec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:233-236,251-253"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/92/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/92/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "0b7d4d187bb86cf52434a28b6f9bb2794ac88857b2f2fe12bfe4b542de67bb4e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/filesystem_lifecycle_test.exs:233-236,251-253"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -62426,24 +62874,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/95",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/95",
       "schema": "ClientRequest.json",
       "schema_sha256": "dca3c56405df3953ba2cff1b4a8d8ed6a0f5e79f7bad0116f0af086f58a9f6ba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:76-89"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -62475,75 +62931,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/95/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/95/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "7ef4353ece5129a833dac747a0921f64312c6c8ba26b1cc802daa55bd2a9da59",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:76-89"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/95/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "pointer": "/oneOf/95/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "7a4ba2f5b3e70b16d9bc5d8589a02dbe84c0b7425643e056bcbee4aed2db1c2c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:76-89"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/95/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_fs_process_search_skills_wrapper: explicit positive native call, unchanged constructor and directly asserted outcome. Outer branch/method/discriminator/params only; no ID, nested payload, full-method or fully verified promotion. Source-only indexing, no new execution or outgoing capture."
+      ],
       "nullable": false,
       "pointer": "/oneOf/95/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "c88195c314f9891411b7468fa860f4cff0853931c8f71259ea89b4a360b3cbd4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:76-89"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
