@@ -10115,10 +10115,14 @@
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/operator-authority-qualification.md"
+      ],
       "id": "lifecycle:samgita-authorization",
       "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "limitations": [
+        "Eleven synthetic context-input cases reject repeated operator replies after owning credential, membership, Task/session/connection authority or driver registration invalidation, preserving exact domain/journal snapshots. No native process runs and no ticket exists beforehand. This does not prove native emission, all API/race branches or instantaneous revocation of already issued dispatch tickets; broad lifecycle qualification remains missing."
+      ],
       "required_behavior": "native operation access respects project membership, task fences and separately authorized human interactions",
       "schema_sha256": "ab837160c4317eb699721ffa7d4683a8da3ea3e8b0c1bc0d0e48cecef3e446b6",
       "schema_version": "0.163.0",
@@ -10129,7 +10133,9 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita/test/samgita/codex_runtime_operator_authority_test.exs"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "samgita-authorization"

@@ -65,6 +65,14 @@ nineteen exact contracts gain scoped evidence. There is no media engine, real
 provider or model turn; ICE/DTLS/SRTP, handoff and backend-api call creation remain
 unqualified. No requirement is promoted to fully verified.
 
+The [operator-reply authority regressions](operator-authority-qualification.md)
+pass eleven context tests at both seeds on the retained populated database.
+They invalidate current owning credentials, membership, Task/session/connection
+authority or driver registration before a new reply is prepared, and reject
+both identical submissions without persisted effects. The pending envelope is
+synthetic context input. This is neither real Codex emission nor revocation of
+an already issued native-send ticket; the broad authorization rule stays missing.
+
 Additional method records: [queues](queue-lifecycle-qualification.md),
 [commands](command-lifecycle-qualification.md),
 [user shell](user-shell-qualification.md),

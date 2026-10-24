@@ -442,6 +442,12 @@ does not qualify actual media, backend-api call creation, real providers or the
 remaining initial-role/handoff/reconnect variants. Continue platform gates,
 operator authority and network-approval variants before final-source checks.
 
+Eleven [operator-reply authority cases](operator-authority-qualification.md) now
+pass twice against the retained populated database. Repeated rejected commands
+preserve exact authority/domain/journal snapshots without dispatch or receipts.
+This context-only branch evidence leaves the broad authorization lifecycle rule
+missing and does not claim revocation of previously issued dispatch tickets.
+
 ## Known boundaries
 
 - Full compatibility is unproven; existing 13 adapter tests exercise a subset.
