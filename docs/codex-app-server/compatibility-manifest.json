@@ -23879,7 +23879,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/end",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -23912,7 +23912,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/start",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -26714,7 +26714,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "pointer": "/definitions/FunctionCallOutputContentItem/oneOf/0",
@@ -26745,7 +26745,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "nullable": false,
@@ -26778,7 +26778,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "nullable": false,
@@ -26809,7 +26809,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "pointer": "/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type/enum/0",
@@ -37899,7 +37899,7 @@
       "id": "schema:ClientRequest.json#/definitions/ThreadMetadataGitInfoUpdateParams/properties/branch",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Padded feature/λ trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
+        "actual_native_selected_values: Padded feature/\u03bb trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
         "Native metadata update and readback in an isolated synthetic local thread; no remote Git or credentials."
       ],
       "nullable": true,
@@ -39722,7 +39722,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0",
@@ -39753,7 +39753,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -39786,7 +39786,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text_elements",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -39819,7 +39819,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -39850,7 +39850,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0/properties/type/enum/0",
@@ -141611,7 +141611,7 @@
       "id": "schema:v2/ModelListResponse.json#/definitions/ReasoningEffortOption/properties/description",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact Focused λ and Maximum effort descriptions.",
+        "actual_native_selected_values: Exact Focused \u03bb and Maximum effort descriptions.",
         "Real pinned native model/list projection from offline synthetic static local catalog. Metadata only; no inference, real provider authorization, hosted discovery, managed policy or advertised capability execution success."
       ],
       "nullable": false,
@@ -163647,27 +163647,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadForkResponse.json#/properties/activePermissionProfile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/activePermissionProfile",
       "required": false,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "b9f635de3d4655df01b6343d2d43ed0f61c109ffb7baae6c8c8116fac0315654",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "activePermissionProfile"
     },
     {
@@ -163717,53 +163725,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/approvalPolicy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/approvalPolicy",
       "required": true,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "51bcd333cdd527eeddd4feea1f6b867a294ce2cea3129413ecb086f211516474",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalPolicy"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/approvalsReviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/approvalsReviewer",
       "required": true,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "f32a3e5e357899acbd469b4f25f8668eb60a6429975cfa11d837db1f6aa90543",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
@@ -163791,157 +163815,205 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/cwd",
       "required": true,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ThreadForkResponse.json#/properties/disabledPluginIds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native loaded/cold roots, cached instruction sources, effective read-only sandbox, exact plugin lists and loaded collaboration metadata; ordinary versus explicitly ephemeral prediction fork. No plugin effects, OS enforcement, prediction-request success, full null/default or external profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/disabledPluginIds",
       "required": false,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "f27565f754f924a35a552321462b8f9c8160cffc642e58704fd250f8292d6364",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "disabledPluginIds"
     },
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ThreadForkResponse.json#/properties/instructionSources",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native loaded/cold roots, cached instruction sources, effective read-only sandbox, exact plugin lists and loaded collaboration metadata; ordinary versus explicitly ephemeral prediction fork. No plugin effects, OS enforcement, prediction-request success, full null/default or external profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/instructionSources",
       "required": false,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "0c77a6c156dac04a538afc868200f0e245d8355a4e1bdf94aa5abdfcd8fab20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "instructionSources"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/model",
       "required": true,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/modelProvider",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/modelProvider",
       "required": true,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider"
     },
     {
       "default": "explicitRequestOnly",
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadForkResponse.json#/properties/multiAgentMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/multiAgentMode",
       "required": false,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "219d3952d088ee55315a4fecf1fb844f0699d1af70fc0cca81044c5339ae55bd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "multiAgentMode"
     },
     {
@@ -163969,27 +164041,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/reasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/reasoningEffort",
       "required": false,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "b35f6fda6c0f55b2823e86283ae32c907cc47538622b7ace6179046c6f9c93dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoningEffort"
     },
     {
@@ -164039,53 +164119,69 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadForkResponse.json#/properties/runtimeWorkspaceRoots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native loaded/cold roots, cached instruction sources, effective read-only sandbox, exact plugin lists and loaded collaboration metadata; ordinary versus explicitly ephemeral prediction fork. No plugin effects, OS enforcement, prediction-request success, full null/default or external profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/runtimeWorkspaceRoots",
       "required": false,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "ba86702639f6660cea485d96e1e2940928beae2937ccf8e2531398ef570f6853",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "runtimeWorkspaceRoots"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/sandbox",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native loaded/cold roots, cached instruction sources, effective read-only sandbox, exact plugin lists and loaded collaboration metadata; ordinary versus explicitly ephemeral prediction fork. No plugin effects, OS enforcement, prediction-request success, full null/default or external profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/sandbox",
       "required": true,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "328c0fc21cf6ecbc206629d0b21d8b25ce030654d795f5a9ebaf9fa9e02b13c3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sandbox"
     },
     {
@@ -164113,27 +164209,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/serviceTier",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/serviceTier",
       "required": false,
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_fork_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serviceTier"
     },
     {
@@ -179849,167 +179953,223 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadReadState/properties/firstUnread",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native legacy/paginated empty-thread null/threadStart CAS and exact conflict data, cold restart, unchanged complete history and zero dispatch. Turn-position branch, concurrent service/other deployment profiles and full lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadReadState/properties/firstUnread",
       "required": false,
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "46ec9226c13208db38d6eacd6035005bbc3fa0949437bffb43dadd9edb37bd2c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "firstUnread"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadReadState/properties/firstUnread/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native legacy/paginated empty-thread null/threadStart CAS and exact conflict data, cold restart, unchanged complete history and zero dispatch. Turn-position branch, concurrent service/other deployment profiles and full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/ThreadReadState/properties/firstUnread/anyOf/0",
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "07507507213cf11420c45422d1324856941b335cf1e53e7d897a4728f4fd6be6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadReadState/properties/firstUnread/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native legacy/paginated empty-thread null/threadStart CAS and exact conflict data, cold restart, unchanged complete history and zero dispatch. Turn-position branch, concurrent service/other deployment profiles and full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/ThreadReadState/properties/firstUnread/anyOf/1",
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadReadState/properties/revision",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native legacy/paginated empty-thread null/threadStart CAS and exact conflict data, cold restart, unchanged complete history and zero dispatch. Turn-position branch, concurrent service/other deployment profiles and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadReadState/properties/revision",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "revision"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native legacy/paginated empty-thread null/threadStart CAS and exact conflict data, cold restart, unchanged complete history and zero dispatch. Turn-position branch, concurrent service/other deployment profiles and full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/0",
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "f1af194902be6cae5c130e799e1fe08f07a7a4b140fdaaa391848a3bf5b5fd8d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native legacy/paginated empty-thread null/threadStart CAS and exact conflict data, cold restart, unchanged complete history and zero dispatch. Turn-position branch, concurrent service/other deployment profiles and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "9f4e18814d8c2e8402b4a054dee8fa70b82622a63c7b99f93de792945781374e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native legacy/paginated empty-thread null/threadStart CAS and exact conflict data, cold restart, unchanged complete history and zero dispatch. Turn-position branch, concurrent service/other deployment profiles and full lifecycle remain unqualified."
+      ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "cb103084ef05c5361ff47754b77a787639caa51916732e0cc0038a6674da26af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -180111,27 +180271,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/properties/readState",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native legacy/paginated empty-thread null/threadStart CAS and exact conflict data, cold restart, unchanged complete history and zero dispatch. Turn-position branch, concurrent service/other deployment profiles and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/readState",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "6389b1560ecaa37cbe2e7c9a18e4af879e277277983679616f95031c76cf6f3a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "readState"
     },
     {
@@ -185154,27 +185322,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/activePermissionProfile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/activePermissionProfile",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "b9f635de3d4655df01b6343d2d43ed0f61c109ffb7baae6c8c8116fac0315654",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "activePermissionProfile"
     },
     {
@@ -185224,53 +185400,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/approvalPolicy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/approvalPolicy",
       "required": true,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "51bcd333cdd527eeddd4feea1f6b867a294ce2cea3129413ecb086f211516474",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalPolicy"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/approvalsReviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/approvalsReviewer",
       "required": true,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "f32a3e5e357899acbd469b4f25f8668eb60a6429975cfa11d837db1f6aa90543",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
@@ -185298,27 +185490,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/collaborationMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native loaded/cold roots, cached instruction sources, effective read-only sandbox, exact plugin lists and loaded collaboration metadata; ordinary versus explicitly ephemeral prediction fork. No plugin effects, OS enforcement, prediction-request success, full null/default or external profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/collaborationMode",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "cbbc9f2937c1003e41370053dbc06cfcd1c8f824a0d7e927677e8de07bb2cb1b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "collaborationMode"
     },
     {
@@ -185368,53 +185568,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/cwd",
       "required": true,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/disabledPluginIds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native loaded/cold roots, cached instruction sources, effective read-only sandbox, exact plugin lists and loaded collaboration metadata; ordinary versus explicitly ephemeral prediction fork. No plugin effects, OS enforcement, prediction-request success, full null/default or external profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/disabledPluginIds",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "f27565f754f924a35a552321462b8f9c8160cffc642e58704fd250f8292d6364",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "disabledPluginIds"
     },
     {
@@ -185514,27 +185730,35 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/instructionSources",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native loaded/cold roots, cached instruction sources, effective read-only sandbox, exact plugin lists and loaded collaboration metadata; ordinary versus explicitly ephemeral prediction fork. No plugin effects, OS enforcement, prediction-request success, full null/default or external profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/instructionSources",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "0c77a6c156dac04a538afc868200f0e245d8355a4e1bdf94aa5abdfcd8fab20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "instructionSources"
     },
     {
@@ -185574,79 +185798,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/model",
       "required": true,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/modelProvider",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/modelProvider",
       "required": true,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider"
     },
     {
       "default": "explicitRequestOnly",
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/multiAgentMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/multiAgentMode",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "219d3952d088ee55315a4fecf1fb844f0699d1af70fc0cca81044c5339ae55bd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "multiAgentMode"
     },
     {
@@ -185674,27 +185922,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/reasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/reasoningEffort",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "b35f6fda6c0f55b2823e86283ae32c907cc47538622b7ace6179046c6f9c93dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoningEffort"
     },
     {
@@ -185744,53 +186000,69 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/runtimeWorkspaceRoots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native loaded/cold roots, cached instruction sources, effective read-only sandbox, exact plugin lists and loaded collaboration metadata; ordinary versus explicitly ephemeral prediction fork. No plugin effects, OS enforcement, prediction-request success, full null/default or external profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/runtimeWorkspaceRoots",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "ba86702639f6660cea485d96e1e2940928beae2937ccf8e2531398ef570f6853",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "runtimeWorkspaceRoots"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/sandbox",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native loaded/cold roots, cached instruction sources, effective read-only sandbox, exact plugin lists and loaded collaboration metadata; ordinary versus explicitly ephemeral prediction fork. No plugin effects, OS enforcement, prediction-request success, full null/default or external profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/sandbox",
       "required": true,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "328c0fc21cf6ecbc206629d0b21d8b25ce030654d795f5a9ebaf9fa9e02b13c3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sandbox"
     },
     {
@@ -185818,27 +186090,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/serviceTier",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/serviceTier",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serviceTier"
     },
     {
@@ -186334,7 +186614,7 @@
       "id": "schema:v2/ThreadSearchOccurrencesResponse.json#/definitions/ThreadSearchOccurrence/properties/snippet",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact original 😀 Needle needle NEEDLE source text.",
+        "actual_native_selected_values: Exact original \ud83d\ude00 Needle needle NEEDLE source text.",
         "Real pinned native thread/searchOccurrences over one local paginated Unicode turn; UTF16 ranges, item identity, cursor continuation and cold equality asserted."
       ],
       "nullable": false,
@@ -187026,7 +187306,7 @@
       "id": "schema:v2/ThreadSearchParams.json#/properties/searchTerm",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Literal quoted \"needle\" with backslash, é and emoji selects exactly matching native histories.",
+        "actual_native_selected_values: Literal quoted \"needle\" with backslash, \u00e9 and emoji selects exactly matching native histories.",
         "Real pinned native thread/search over isolated paginated synthetic local histories; result selection and pagination asserted. No independent sort-precedence fixture."
       ],
       "nullable": false,
@@ -194379,27 +194659,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadStartResponse.json#/properties/activePermissionProfile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/activePermissionProfile",
       "required": false,
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "b9f635de3d4655df01b6343d2d43ed0f61c109ffb7baae6c8c8116fac0315654",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "activePermissionProfile"
     },
     {
@@ -194449,53 +194737,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartResponse.json#/properties/approvalPolicy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/approvalPolicy",
       "required": true,
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "51bcd333cdd527eeddd4feea1f6b867a294ce2cea3129413ecb086f211516474",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalPolicy"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartResponse.json#/properties/approvalsReviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/approvalsReviewer",
       "required": true,
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "f32a3e5e357899acbd469b4f25f8668eb60a6429975cfa11d837db1f6aa90543",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
@@ -194683,27 +194987,35 @@
     {
       "default": "explicitRequestOnly",
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadStartResponse.json#/properties/multiAgentMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/multiAgentMode",
       "required": false,
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "219d3952d088ee55315a4fecf1fb844f0699d1af70fc0cca81044c5339ae55bd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "multiAgentMode"
     },
     {
@@ -194731,27 +195043,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-settings-read-state-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartResponse.json#/properties/reasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native exact top-level start/resume/fork settings, omitted/null/tier defaults, typed overrides, loaded versus cold behavior and malformed/permission-conflict preservation. Zero model dispatch; no full nested-union, enforcement, automatic-review execution or other deployment profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/reasoningEffort",
       "required": false,
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "b35f6fda6c0f55b2823e86283ae32c907cc47538622b7ace6179046c6f9c93dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoningEffort"
     },
     {
