@@ -62,6 +62,9 @@ def named_tools(value, name):
 
 
 class GoalBudgetProvider(ModelFixture):
+    request_limit = 3
+    output_label = "fixed_assistant_get_goal_assistant"
+
     def __init__(self, root):
         super().__init__("assistant", root / "workspace", root / "requests.json")
         self.root, self.records, self.errors = root, [], []
@@ -107,15 +110,16 @@ class GoalBudgetProvider(ModelFixture):
                                for key in ["thread_id", "turn_id"])
                     arrived = time.monotonic()
                     with provider.record_lock:
-                        assert len(provider.records) < 4, "Owned HTTP evidence bound"
+                        assert len(provider.records) < provider.request_limit + 1, "Owned HTTP evidence bound"
                         provider.records.append({
                             "index": index, "metadata": metadata, "path": self.path,
                             "requestAuth": "none", "responded": False,
                             "arrivalMonotonic": arrived,
+                            "arrivalWall": time.time(),
                             "rawBodyBase64": base64.b64encode(raw).decode(),
                             "rawBodySHA256": hashlib.sha256(raw).hexdigest()})
                         atomic(root / "goal-http.json", provider.records)
-                    assert index <= 3, "Responses request budget exceeded: fourth request"
+                    assert index <= provider.request_limit, "Responses request budget exceeded"
                     with provider.lock:
                         provider.requests.append(request)
                         atomic(provider.requests_file, provider.requests)
@@ -133,7 +137,7 @@ class GoalBudgetProvider(ModelFixture):
                 atomic(self.root / "provider-errors.json", self.errors)
             self.fatal.set()
         # The controller's existing finally path reaps only its owned native PID.
-        # Never supply a fourth synthetic answer or retryable HTTP error stream.
+        # Never supply an over-budget answer or retryable HTTP error stream.
         handler.close_connection = True
         os.kill(os.getpid(), signal.SIGTERM)
 
@@ -254,6 +258,31 @@ class GoalBudgetProvider(ModelFixture):
         super().close()
 
 
+class GoalQuotaProvider(GoalBudgetProvider):
+    request_limit = 1
+    output_label = "http429_insufficient_quota"
+
+    def write_response(self, handler, index, request):
+        assert index == 1, "Quota fixture must never answer another model request"
+        self.check_request(index, request)
+        raw = json.dumps({"error": {"code": "insufficient_quota",
+                                    "message": "Owned synthetic goal quota."}}).encode()
+        with self.record_lock:
+            self.records[index - 1].update({
+                "status": 429, "rawResponseBase64": base64.b64encode(raw).decode(),
+                "rawResponseSHA256": hashlib.sha256(raw).hexdigest()})
+            atomic(self.root / "goal-http.json", self.records)
+        handler.send_response(429)
+        handler.send_header("Content-Type", "application/json")
+        handler.send_header("Content-Length", str(len(raw)))
+        handler.end_headers()
+        handler.wfile.write(raw)
+        handler.wfile.flush()
+        with self.record_lock:
+            self.records[index - 1]["responded"] = True
+            atomic(self.root / "goal-http.json", self.records)
+
+
 class Fixture(BemFixture):
     def __init__(self, args, proof):
         super().__init__(argparse.Namespace(root=args.root, codex=args.codex, scenario="markdown"), proof)
@@ -263,7 +292,8 @@ class Fixture(BemFixture):
             (self.root / "bin").mkdir()
             shutil.copyfile("/bin/sh", self.root / "bin/sh")
             (self.root / "bin/sh").chmod(0o700)
-            self.provider = GoalBudgetProvider(self.root).start()
+            provider = {"budget": GoalBudgetProvider, "quota": GoalQuotaProvider}[args.scenario]
+            self.provider = provider(self.root).start()
             configure(self.root, self.provider)
             path = self.root / "codex/config.toml"
             config = path.read_text().replace("[features]\n", "[features]\n"
@@ -276,8 +306,8 @@ class Fixture(BemFixture):
             self.config = path.read_bytes()
             self.catalog = (self.root / "codex/models.json").read_bytes()
             self.record("goal_provider_ready", source_provider_requests=0,
-                        request_auth="none", request_budget=3,
-                        output="fixed_assistant_get_goal_assistant")
+                        request_auth="none", request_budget=self.provider.request_limit,
+                        output=self.provider.output_label)
         except BaseException:
             self.close()
             raise
@@ -305,6 +335,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
     parser.add_argument("--codex", required=True, type=Path)
+    parser.add_argument("--scenario", choices=["budget", "quota"], default="budget")
     parser.add_argument("--inside", action="store_true")
     parser.add_argument("--parent-netns")
     args = parser.parse_args()

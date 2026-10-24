@@ -13,7 +13,9 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
   @final "Owned synthetic budget run stopped with the objective retained."
   @call_id "owned-active-goal-read-1"
 
-  setup do
+  setup tags do
+    scenario = tags[:scenario] || "budget"
+    request_budget = if scenario == "quota", do: 1, else: 3
     binary = System.get_env("CODEX_BINARY")
 
     assert is_binary(binary) and File.regular?(binary),
@@ -33,7 +35,7 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
     {:ok, owner} =
       Stdio.open(
         executable: System.find_executable("python3"),
-        args: [@script, "--root", root, "--codex", Path.expand(binary)],
+        args: [@script, "--root", root, "--codex", Path.expand(binary), "--scenario", scenario],
         cwd: Path.join(root, "workspace"),
         inherit_env: [],
         env: %{
@@ -48,7 +50,13 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
         }
       )
 
-    ctx = %{root: root, owner: owner, socket: Path.join(root, "native.sock")}
+    ctx = %{
+      root: root,
+      owner: owner,
+      socket: Path.join(root, "native.sock"),
+      request_budget: request_budget
+    }
+
     on_exit(fn -> cleanup(ctx) end)
     await(fn -> File.exists?(Path.join(root, "state.json")) end)
     proof = json(ctx, "state.json")
@@ -57,9 +65,14 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
     assert proof["default_route"] == false and proof["ipv6_default_route"] == false
     assert File.read_link!("/proc/#{proof["native_pid"]}/ns/net") == proof["namespace"]
     assert [ready] = journal(ctx, "bem-journal.json", "goal_provider_ready")
-    assert ready["request_budget"] == 3 and ready["source_provider_requests"] == 0
+    assert ready["request_budget"] == request_budget and ready["source_provider_requests"] == 0
     assert ready["request_auth"] == "none"
-    assert ready["output"] == "fixed_assistant_get_goal_assistant"
+
+    assert ready["output"] ==
+             if(scenario == "quota",
+               do: "http429_insufficient_quota",
+               else: "fixed_assistant_get_goal_assistant"
+             )
 
     config = File.read!(Path.join(root, "codex/config.toml"))
 
@@ -157,6 +170,175 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
     assert_idle(cold, id)
     assert_quiet(ctx, cold)
     finish(ctx, cold)
+  end
+
+  @tag scenario: "quota"
+  test "native quota failure stops an active goal and cold resume cannot retry it", ctx do
+    pid = connect(ctx)
+
+    id =
+      call(pid, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => Path.join(ctx.root, "workspace"),
+        "sandbox" => "read-only",
+        "approvalPolicy" => "on-request",
+        "historyMode" => "paginated",
+        "ephemeral" => false
+      })["thread"]["id"]
+
+    assert_uuid(id)
+    assert call(pid, "thread/goal/get", %{"threadId" => id}) == %{"goal" => nil}
+    assert json(ctx, "goal-attempts.json") == 0
+    assert json(ctx, "requests.json") == []
+    assert json(ctx, "goal-http.json") == []
+    timing = %{wall: System.system_time(:second), mono: System.monotonic_time(:millisecond)}
+
+    assert %{"goal" => initial} =
+             call(pid, "thread/goal/set", %{
+               "threadId" => id,
+               "objective" => @objective,
+               "status" => "active",
+               "tokenBudget" => 20,
+               "origin" => "user"
+             })
+
+    assert_goal(initial, id, "active", 0, initial["createdAt"], timing, 0)
+
+    events =
+      collect(pid, fn seen ->
+        length(notices(seen, "turn/completed")) == 1 and
+          Enum.any?(
+            notices(seen, "thread/goal/updated"),
+            &(&1["goal"]["status"] == "usageLimited")
+          )
+      end)
+
+    turn = assert_quota_lifecycle(events, id)
+    assert %{"goal" => final} = call(pid, "thread/goal/get", %{"threadId" => id})
+    assert_goal(final, id, "usageLimited", 0, initial["createdAt"], timing, 0)
+    updates = notices(events, "thread/goal/updated")
+    assert %{"threadId" => id, "turnId" => nil, "goal" => initial} in updates
+    assert %{"threadId" => id, "turnId" => turn, "goal" => final} in updates
+    assert hd(updates) == %{"threadId" => id, "turnId" => nil, "goal" => initial}
+    assert List.last(updates) == %{"threadId" => id, "turnId" => turn, "goal" => final}
+
+    assert Enum.map(updates, & &1["goal"]["status"]) ==
+             List.duplicate("active", length(updates) - 1) ++ ["usageLimited"]
+
+    for update <- updates do
+      assert Enum.sort(Map.keys(update)) == ~w(goal threadId turnId)
+      assert update["threadId"] == id and update["turnId"] in [nil, turn]
+      assert update["goal"]["status"] in ["active", "usageLimited"]
+
+      assert_goal(
+        update["goal"],
+        id,
+        update["goal"]["status"],
+        0,
+        initial["createdAt"],
+        timing,
+        0
+      )
+    end
+
+    for [previous, current] <- Enum.chunk_every(updates, 2, 1, :discard),
+        key <- ~w(tokensUsed timeUsedSeconds updatedAt) do
+      assert current["goal"][key] >= previous["goal"][key]
+    end
+
+    assert_quota_provider(ctx, id, turn)
+    history = turns(pid, id)
+    assert_quota_history(history, turn)
+    assert_thread_status(pid, id, %{"type" => "systemError"})
+    assert_quiet(ctx, pid, {final, turn})
+
+    cold = restart(ctx, pid)
+    assert call(cold, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil}
+    assert call(cold, "thread/goal/get", %{"threadId" => id}) == %{"goal" => final}
+    assert_goal(final, id, "usageLimited", 0, initial["createdAt"], timing, 0)
+    assert turns(cold, id) == history
+    assert_quota_history(turns(cold, id), turn)
+    assert_quiet(ctx, cold, {final, turn})
+    assert call(cold, "thread/resume", %{"threadId" => id})["thread"]["id"] == id
+    assert call(cold, "thread/goal/get", %{"threadId" => id}) == %{"goal" => final}
+    assert_quota_history(turns(cold, id), turn)
+    assert turns(cold, id) == history
+    assert_idle(cold, id)
+    assert_quiet(ctx, cold, {final, turn})
+    finish(ctx, cold)
+  end
+
+  defp quota_error do
+    %{
+      "message" => "Quota exceeded. Check your plan and billing details.",
+      "codexErrorInfo" => "usageLimitExceeded",
+      "additionalDetails" => nil,
+      "misalignment" => nil
+    }
+  end
+
+  defp assert_quota_lifecycle(events, id) do
+    refute Enum.any?(events, &(&1.kind == :server_request))
+    assert [started] = notices(events, "turn/started")
+    assert started["threadId"] == id
+    turn = started["turn"]["id"]
+    assert_uuid(turn)
+
+    assert notices(events, "error") == [
+             %{"threadId" => id, "turnId" => turn, "error" => quota_error(), "willRetry" => false}
+           ]
+
+    assert [ended] = notices(events, "turn/completed")
+    assert ended["threadId"] == id and ended["turn"]["id"] == turn
+    assert ended["turn"]["status"] == "failed" and ended["turn"]["error"] == quota_error()
+
+    for method <- ["item/started", "item/completed", "item/agentMessage/delta"],
+        do: assert(notices(events, method) == [])
+
+    turn
+  end
+
+  defp assert_quota_history(history, turn) do
+    assert [stored] = history
+    assert stored["id"] == turn and stored["status"] == "failed"
+    assert stored["error"] == quota_error() and stored["items"] == []
+  end
+
+  defp assert_quota_provider(ctx, id, turn) do
+    await(fn ->
+      case json(ctx, "goal-http.json") do
+        [record] -> record["responded"]
+        _ -> false
+      end
+    end)
+
+    assert [request] = json(ctx, "requests.json")
+    assert [record] = json(ctx, "goal-http.json")
+    assert record["index"] == 1 and record["path"] == "/v1/responses"
+    assert record["status"] == 429 and record["requestAuth"] == "none"
+    assert record["metadata"]["thread_id"] == id and record["metadata"]["turn_id"] == turn
+    assert record["metadata"]["turn_trigger"] == "goal"
+    raw = Base.decode64!(record["rawBodyBase64"])
+    assert hash(raw) == record["rawBodySHA256"] and JSON.decode!(raw) == request
+    response = Base.decode64!(record["rawResponseBase64"])
+    assert hash(response) == record["rawResponseSHA256"]
+
+    assert JSON.decode!(response) == %{
+             "error" => %{
+               "code" => "insufficient_quota",
+               "message" => "Owned synthetic goal quota."
+             }
+           }
+
+    joined =
+      request["input"]
+      |> Enum.flat_map(&Map.get(&1, "content", []))
+      |> Enum.map_join("\n", &Map.get(&1, "text", ""))
+
+    assert joined =~ @objective
+    assert joined =~ "- Tokens used: 0\n- Token budget: 20\n- Tokens remaining: 20"
+    refute Enum.any?(request["input"], &(&1["type"] in ["function_call", "function_call_output"]))
   end
 
   defp assert_goal(goal, id, status, tokens, created, timing, minimum_seconds) do
@@ -285,7 +467,7 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
     requests = json(ctx, "requests.json")
     records = json(ctx, "goal-http.json")
     assert length(requests) == 3 and length(records) == 3
-    assert json(ctx, "goal-attempts.json") == 3
+    assert json(ctx, "goal-attempts.json") == ctx.request_budget
 
     for {record, index} <- Enum.with_index(records, 1) do
       raw = Base.decode64!(record["rawBodyBase64"])
@@ -402,24 +584,28 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
   end
 
   defp assert_idle(pid, id) do
+    assert_thread_status(pid, id, %{"type" => "idle"})
+  end
+
+  defp assert_thread_status(pid, id, status) do
     await(fn ->
       call(pid, "thread/read", %{"threadId" => id, "includeTurns" => false})["thread"]["status"] ==
-        %{"type" => "idle"}
+        status
     end)
   end
 
-  defp assert_quiet(ctx, pid) do
+  defp assert_quiet(ctx, pid, expected_goal \\ nil) do
     control(ctx, "barrier")
-    observe_quiet(ctx, pid, System.monotonic_time(:millisecond) + 1_000)
+    observe_quiet(ctx, pid, System.monotonic_time(:millisecond) + 1_000, expected_goal)
 
     assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
              Session.status(pid)
 
     assert Session.uncertain_operations(pid) == []
     assert json(ctx, "provider-errors.json") == []
-    assert json(ctx, "goal-attempts.json") == 3
-    assert length(json(ctx, "requests.json")) == 3
-    assert length(json(ctx, "goal-http.json")) == 3
+    assert json(ctx, "goal-attempts.json") == ctx.request_budget
+    assert length(json(ctx, "requests.json")) == ctx.request_budget
+    assert length(json(ctx, "goal-http.json")) == ctx.request_budget
     assert json(ctx, "rejected-realtime-posts.json") == []
     assert journal(ctx, "realtime-journal.json", "handshake") == []
     assert journal(ctx, "realtime-journal.json", "native_frame") == []
@@ -427,7 +613,7 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
     refute File.exists?(Path.join(ctx.root, "codex/auth.json"))
   end
 
-  defp observe_quiet(ctx, pid, deadline) do
+  defp observe_quiet(ctx, pid, deadline, expected_goal) do
     assert {:ok, batch} = Session.drain(pid)
 
     refute Enum.any?(
@@ -436,7 +622,19 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
                  &1.wire["method"] in ["error", "turn/started", "turn/completed"])
            )
 
-    assert json(ctx, "goal-attempts.json") == 3
+    if expected_goal do
+      {goal, turn} = expected_goal
+      refute Enum.any?(batch, &(&1.wire["method"] == "thread/goal/cleared"))
+
+      for update <- notices(batch, "thread/goal/updated") do
+        assert update in [
+                 %{"threadId" => goal["threadId"], "turnId" => nil, "goal" => goal},
+                 %{"threadId" => goal["threadId"], "turnId" => turn, "goal" => goal}
+               ]
+      end
+    end
+
+    assert json(ctx, "goal-attempts.json") == ctx.request_budget
 
     if System.monotonic_time(:millisecond) < deadline do
       receive do
@@ -446,7 +644,7 @@ defmodule SamgitaCodexDriver.NativeGoalBudgetProfileTest do
         20 -> :ok
       end
 
-      observe_quiet(ctx, pid, deadline)
+      observe_quiet(ctx, pid, deadline, expected_goal)
     end
   end
 

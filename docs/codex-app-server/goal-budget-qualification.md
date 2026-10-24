@@ -86,3 +86,11 @@ non-null completion report, active crash/replay, quota service, other OS or
 transport is inferred. This accepts no Samgita Task. A11, legacy emitters,
 external profiles and complete compatibility remain incomplete; no fully
 verified promotion, release, publication or deployment.
+
+The subsequent [quota and stock-tool profile](goal-control-qualification.md)
+adds actual-native usageLimited stopping, create/complete/replacement and nonnull
+completion reports against bounded synthetic dependencies. It also retains the
+warm systemError versus cold idle distinction. Read that record for its exact
+scope and failed-oracle history; the original three-request budget scenario
+above keeps its original cap and assertions. Neither profile proves active
+crash accounting or real provider acceptance.

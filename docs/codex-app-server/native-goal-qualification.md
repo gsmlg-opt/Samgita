@@ -52,7 +52,9 @@ Logs: `/tmp/samgita-native-goal-{initial,repair-1}.log` and
 objectives and credentials are synthetic. The provenance cases use the real
 app-server plus a loopback model fixture; no inference/provider account is used.
 
-Active goals, automatic continuation, usage/budget-limited continuation,
-guardian behavior, every concurrency/field variant and other deployment profiles
-remain unqualified. The three methods and their two notifications have selected
-implementation evidence; none is marked fully verified by these five cases.
+The later [automatic budget profile](goal-budget-qualification.md) and
+[provenance/quota/stock-tool profile](goal-control-qualification.md) add selected
+active continuation, computed stops and cold retention evidence. Active
+crash/accounting reconciliation, remaining concurrency/field variants and other
+deployment profiles remain unqualified. The three methods and their two
+notifications have selected implementation evidence; none is fully verified.
