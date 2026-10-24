@@ -165548,53 +165548,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ByteRange/properties/end",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_persisted_spans: exact independent UTF-8 byte ranges and nonempty/omitted/null/empty placeholders survive original events, full history and direct cold item read. Six malformed native types preserve history/provider count. Selected local paginated Linux stdio only; no semantic invalid-range, renderer, complete union or sibling qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ByteRange/properties/end",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "1a3e61af282b50192e00054d7bc630688b859f2adde57d60499d8235c64a995c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_text_span_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "end"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ByteRange/properties/start",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_persisted_spans: exact independent UTF-8 byte ranges and nonempty/omitted/null/empty placeholders survive original events, full history and direct cold item read. Six malformed native types preserve history/provider count. Selected local paginated Linux stdio only; no semantic invalid-range, renderer, complete union or sibling qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ByteRange/properties/start",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "1a3e61af282b50192e00054d7bc630688b859f2adde57d60499d8235c64a995c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_text_span_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "start"
     },
     {
@@ -169241,75 +169257,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/TextElement/properties/byteRange",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_persisted_spans: exact independent UTF-8 byte ranges and nonempty/omitted/null/empty placeholders survive original events, full history and direct cold item read. Six malformed native types preserve history/provider count. Selected local paginated Linux stdio only; no semantic invalid-range, renderer, complete union or sibling qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/TextElement/properties/byteRange",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "98f863936885966725d92697efe34391c2ca519830cfb412a9f2514ac9f7fbef",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_text_span_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "byteRange"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/TextElement/properties/byteRange/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_persisted_spans: exact independent UTF-8 byte ranges and nonempty/omitted/null/empty placeholders survive original events, full history and direct cold item read. Six malformed native types preserve history/provider count. Selected local paginated Linux stdio only; no semantic invalid-range, renderer, complete union or sibling qualification."
+      ],
       "pointer": "/definitions/TextElement/properties/byteRange/allOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd9e9a58aaf574dd2f8cd4af21ff89d8bd229b197088d3daf8d9a72d1484fcd8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_text_span_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/TextElement/properties/placeholder",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_persisted_spans: exact independent UTF-8 byte ranges and nonempty/omitted/null/empty placeholders survive original events, full history and direct cold item read. Six malformed native types preserve history/provider count. Selected local paginated Linux stdio only; no semantic invalid-range, renderer, complete union or sibling qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/TextElement/properties/placeholder",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "dcbbb2c240fc632629f1222311e1654df847e81867441bbf29ab510177be33b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_text_span_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "placeholder"
     },
     {
@@ -169363,101 +169403,133 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/0/properties/content",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_persisted_user: independently supplied nonempty Unicode text, exact original user identity/content/discriminator and literal text-input branch survive owning thread/items/read and cold process read. Existing dynamic-tool success/failure cases only; no complete input union or unasserted descendants."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/0/properties/content",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "8c8fc835c75f7e4ebc23ff608b4bbc16b9b8f5e53b7920bf1214b94060b6b9d6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "content"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/0/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_persisted_user: independently supplied nonempty Unicode text, exact original user identity/content/discriminator and literal text-input branch survive owning thread/items/read and cold process read. Existing dynamic-tool success/failure cases only; no complete input union or unasserted descendants."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/0/properties/id",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_persisted_user: independently supplied nonempty Unicode text, exact original user identity/content/discriminator and literal text-input branch survive owning thread/items/read and cold process read. Existing dynamic-tool success/failure cases only; no complete input union or unasserted descendants."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "55d1201c71598b5978fdacf295347d6872f03fad6be5b6c2e6ee0f793597a2af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_persisted_user: independently supplied nonempty Unicode text, exact original user identity/content/discriminator and literal text-input branch survive owning thread/items/read and cold process read. Existing dynamic-tool success/failure cases only; no complete input union or unasserted descendants."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "968e94358e718f4fb42703fe47c0f2acede6d1af32d810c2581217ef803deb92",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -173866,124 +173938,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/UserInput/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_persisted_user: independently supplied nonempty Unicode text, exact original user identity/content/discriminator and literal text-input branch survive owning thread/items/read and cold process read. Existing dynamic-tool success/failure cases only; no complete input union or unasserted descendants."
+      ],
       "pointer": "/definitions/UserInput/oneOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "07ddd5e0c6cf528f6807884726ec3093976e75d0a7f43977c2de69d696524acb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/UserInput/oneOf/0/properties/text",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_persisted_user: independently supplied nonempty Unicode text, exact original user identity/content/discriminator and literal text-input branch survive owning thread/items/read and cold process read. Existing dynamic-tool success/failure cases only; no complete input union or unasserted descendants."
+      ],
       "nullable": false,
       "pointer": "/definitions/UserInput/oneOf/0/properties/text",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "text"
     },
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/UserInput/oneOf/0/properties/text_elements",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_persisted_spans: exact independent UTF-8 byte ranges and nonempty/omitted/null/empty placeholders survive original events, full history and direct cold item read. Six malformed native types preserve history/provider count. Selected local paginated Linux stdio only; no semantic invalid-range, renderer, complete union or sibling qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/UserInput/oneOf/0/properties/text_elements",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e8771a502ad8f5c9c07ac612f1178fd24f2cb9329c2ba9f9edc6156c298079ae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_text_span_history_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "text_elements"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/UserInput/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_persisted_user: independently supplied nonempty Unicode text, exact original user identity/content/discriminator and literal text-input branch survive owning thread/items/read and cold process read. Existing dynamic-tool success/failure cases only; no complete input union or unasserted descendants."
+      ],
       "nullable": false,
       "pointer": "/definitions/UserInput/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bce75723db9a68802250a9905cd75446e0b8544ef1b82c727c7bc0474b2b0e1a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/UserInput/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_persisted_user: independently supplied nonempty Unicode text, exact original user identity/content/discriminator and literal text-input branch survive owning thread/items/read and cold process read. Existing dynamic-tool success/failure cases only; no complete input union or unasserted descendants."
+      ],
       "pointer": "/definitions/UserInput/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "dac9dd2e99a85b7f6a955288a0863b81f38fab9efd9011816937ff5b00742fd1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -179313,49 +179425,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadResponse.json#/properties/readState",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_read_state: owning thread/read directly asserts independent unread turn IDs, revisions, explicit read/unread changes, concurrent winner and cold persistence. Selected non-null object only; firstUnread:null does not establish readState:null. No null-branch or sibling promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/readState",
       "required": false,
       "schema": "v2/ThreadReadResponse.json",
       "schema_sha256": "6613230819804ff493c9b68135744d53d277a2a8ece2e8281496ee8af3bf6d0a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "readState"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-item-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadResponse.json#/properties/readState/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_existing_read_state: owning thread/read directly asserts independent unread turn IDs, revisions, explicit read/unread changes, concurrent winner and cold persistence. Selected non-null object only; firstUnread:null does not establish readState:null. No null-branch or sibling promotion."
+      ],
       "pointer": "/properties/readState/anyOf/0",
       "schema": "v2/ThreadReadResponse.json",
       "schema_sha256": "6389b1560ecaa37cbe2e7c9a18e4af879e277277983679616f95031c76cf6f3a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

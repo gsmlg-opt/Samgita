@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,149 implemented / 4,472 missing
+11 blocked requirements** and **0 verified / 2,165 implemented / 4,456 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,149 directly exercised
+MCP entries have scoped implementation evidence. These 2,165 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -82,6 +82,14 @@ Network execution stays disabled; exact sparse/null/empty values, legacy
 normalization, malformed recovery and cold restart do not qualify proxy or
 runtime-enforcement behavior. Final combined-source and hosted checks remain
 separate gates.
+
+The [owning history-item/read-state unit](history-item-fields-qualification.md)
+adds two real-native span cases and sixteen exact contracts, including ten
+indexed existing assertions. The input/persisted-item block passes **14/0** at
+both seeds. Original events, full history and cold direct item reads preserve
+UTF-8 byte ranges, placeholders and timestamps; malformed types preserve the
+baseline. Non-null read-state evidence does not qualify its missing null branch.
+No complete lifecycle or fully verified promotion follows.
 
 Latest method records: [history](thread-history-qualification.md),
 [configuration](configuration-qualification.md), [goals](native-goal-qualification.md),
