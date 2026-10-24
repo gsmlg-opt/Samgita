@@ -39108,24 +39108,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/4",
       "schema": "ClientRequest.json",
       "schema_sha256": "bd480700782209b2a1866a02d4f46f7f0eaafc14d2d98d34745d34a43c85996a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:54-118,192-213"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -39174,24 +39182,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSourceKind/enum/7",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadSourceKind/enum/7",
       "schema": "ClientRequest.json",
       "schema_sha256": "3e410a59dd1f59fca47ebbf3240ee77c8e5c3bb71227b5cafb7e285c9b384a36",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:54-118,192-213"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -75169,24 +75185,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentTool/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "ab52d084b5d89e25925646b3db59e02390582b68b6b02fa99c5d83a79f01463d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -75389,24 +75413,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CollabAgentToolCallStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "pointer": "/definitions/CollabAgentToolCallStatus/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -83479,50 +83511,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentSource/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "pointer": "/definitions/SubAgentSource/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "418b6a3cb6a8f2071c75bde43d24bd2d5e54f4393d2655d7d0b4b5d41ac805fc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:54-118,192-213"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "c6e5f3dbc6c89a404fc99ac62e681d6cbc78454bad267a4462fce04e91eb659d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:54-118,192-213"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread_spawn"
     },
     {
@@ -83650,53 +83698,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/depth",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/depth",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "47085548d16f4f9691d4e236f5b406942fd4c028ed6d749a409881235bd051e8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:54-118,192-213"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "depth"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/parent_thread_id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/parent_thread_id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "058aa6b620d3d27a8fdad20420f0333d0467e32d6c189d86534c1993b5ce1dba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:54-118,192-213"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "parent_thread_id"
     },
     {
@@ -84520,27 +84584,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/parentThreadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/parentThreadId",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "501109fd6040d8fd2281a6b1c52d28c4c218dde5af4e08a3b09756fd69693812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:54-118,192-213"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "parentThreadId"
     },
     {
@@ -85837,27 +85909,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "8a1dca17faf27f33d656eabc9789f95a930b839caee6d2455ed94bbe582daa1c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -85889,27 +85969,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/prompt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/prompt",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "5ad0d11b06f9db9bcf30a1d4ca872263e8d6159724ab65f760d34aae5e12565d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "prompt"
     },
     {
@@ -85985,197 +86073,261 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/receiverThreadIds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/receiverThreadIds",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "6058205d31ecc0b2012b37af3a015c3a4adf62c8496ed5d113cd62b2c764fe55",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "receiverThreadIds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/senderThreadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/senderThreadId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "614fa862af929a37085f3b6204999f590026d980acb2d1336a209f0f751b13a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "senderThreadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/status",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "4a01caed16a8d166e654bbe3e34e34b19fb77ff70e238bf4c230aaa43259eb55",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/status/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/status/allOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "9720646c12a957483a384a2cbcafcb1f27c002ee3f35965982b8304b63745839",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/tool",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/tool",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "00ac5e310a391b1558eb2de8a800f57e1d95b239f1ca6556ef8db78c03776a73",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tool"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/tool/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/tool/allOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "4fa78db6a6c1979053057653b73e289cb7bfcfd737d4f5752644c43fe75e995d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "ebceefe30b65c7c9758ba75bbc041d9f8c2493cdcc09b62b79600b6a7a3dc153",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/10/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e635e1199023fd116c7a3af1f24c3bbf693bf1085304153a335d9ec1ee3ef8f6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:45-51,177-189"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -171958,27 +172110,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/ancestorThreadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/ancestorThreadId",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "f12724b786bc9a57f8639208b2e6c7bfc042b10b214dee7c37f09406feb9bc35",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:54-118,192-213"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "ancestorThreadId"
     },
     {
@@ -172274,27 +172434,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-relations-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/parentThreadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_spawn_graph: Real V1 nonfork tree root->A->G and root->B plus unrelated thread; exact direct/recursive identities, source parents/depth, completed spawn notifications, source filters, forward cursors/exclusions and cold graph persistence with unchanged inference count. Eleven provider-only synthetic model requests; all app-server frames/IDs/edges come from stock native Codex. Spawn success alone is not durable graph proof. Healthy local Linux/stdio only; graph-write errors, reverse cursors, child recovery, mutation races, V2, unasserted optional fields, external/OS profiles and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/parentThreadId",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "84507d9c4ef9debff09d19e53add0499ffcf20b4e99bbb9b38cdb86e18bf270d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_relations_test.exs:54-118,192-213"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "parentThreadId"
     },
     {
