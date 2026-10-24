@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 460 implemented / 14 missing /
-11 blocked requirements** and **0 verified / 1,288 implemented / 5,333 missing
+11 blocked requirements** and **0 verified / 1,297 implemented / 5,324 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,288 directly exercised
+MCP entries have scoped implementation evidence. These 1,297 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -82,6 +82,14 @@ provisioning remain unqualified; six verification request/result entries retain
 missing success evidence. Exact upstream source has no Windows warning emitter,
 so that entry becomes blocked and its fields stay missing. No fake notification
 or OS-only assumption substitutes for this source boundary.
+
+The [defaults/experimental-presence differentials](default-gates-qualification.md)
+pass five actual-native cases at both seeds. Nine further exact contracts gain
+scoped evidence, including optional false/empty values, configured tier versus
+explicit null and LocalThreadStore history defaults. The first run's incorrect
+ephemeral-history expectation is documented and corrected from the complete
+upstream store fallback. Both broad lifecycle rules remain missing; no exhaustive
+negotiation/default claim follows from this matrix.
 
 Additional method records: [queues](queue-lifecycle-qualification.md),
 [commands](command-lifecycle-qualification.md),

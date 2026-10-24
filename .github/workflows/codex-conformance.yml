@@ -210,6 +210,10 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_platform_gates_profile.exs --seed 501432
+      - name: Required native defaults and experimental presence profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_default_gates_profile.exs --seed 501432
       - name: Required native local plugin and marketplace lifecycle profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver

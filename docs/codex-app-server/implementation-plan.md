@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 460 `implemented`,
-with 1,288 exact field/variant schema contracts implemented; 14 requirements and 5,333 contracts
+with 1,297 exact field/variant schema contracts implemented; 14 requirements and 5,324 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -456,6 +456,12 @@ pinned Rust-tree search proves the Windows warning has no production emitter;
 its required entry is blocked, its fields remain missing, and no scope waiver
 is inferred. Continue independent network-approval/default/field evidence and
 the complete final-source matrix.
+
+Five [defaults/experimental-presence cases](default-gates-qualification.md) now
+pass both seeds, adding nine selected contracts and stronger evidence for three
+already implemented fields. The source-backed ephemeral history correction
+retains every behavior assertion and deadline. The broad default/negotiation
+lifecycle rules remain missing; selected presence gates do not complete them.
 
 ## Known boundaries
 
