@@ -41944,49 +41944,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/102/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result; exact thread/realtime/started parameters and backend handshake/session.update model, authorization, instructions, modalities, PCM and voice facts. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "nullable": false,
       "pointer": "/oneOf/102/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b3b10085b917d7108914daac733745555315f928b72d0940dce2706abfa44126",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:863-869",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:79-96"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/102/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result; exact thread/realtime/started parameters and backend handshake/session.update model, authorization, instructions, modalities, PCM and voice facts. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "pointer": "/oneOf/102/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "aa5d476217dfcfbd651ae69907e52e7b705d29159d0a7781415a3f4b9ec2eec5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:863-869",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:79-96"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -42066,49 +42084,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/103/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result and independently prescribed BQYH bytes in the actual native input_audio_buffer.append backend frame. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "nullable": false,
       "pointer": "/oneOf/103/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "5dd0ee5feedb12439c51109913327109609c5584a112f4074e8a6eb7ef21eab5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:111-120",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:139-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/103/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result and independently prescribed BQYH bytes in the actual native input_audio_buffer.append backend frame. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "pointer": "/oneOf/103/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "5c1176ea3a21f82a2350064947651df7f363911a0c6830291556a49726c372b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:111-120",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:139-147"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -42188,49 +42224,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/104/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result for user, assistant and developer; actual native conversation.item.create role/content matches each prescribed transformed text. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "nullable": false,
       "pointer": "/oneOf/104/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4d9503fa0a48ece2fa9fa682ba7361f3bd14b62def40f6bf9d94031845cb62bd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:122-131",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:149-159"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/104/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result for user, assistant and developer; actual native conversation.item.create role/content matches each prescribed transformed text. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "pointer": "/oneOf/104/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "4ae081e9fba6a61c21a1a3cb2b443eff6fa2cff4d9abf6ed91a70b70628f3621",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:122-131",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:149-159"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -42310,49 +42364,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/105/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result; response.create barrier and actual native conversation.item.create user input_text containing [BACKEND] synthetic speech. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "nullable": false,
       "pointer": "/oneOf/105/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4f7dd725b81d5ea0493e413acc30a393b9a7742c958de89afe45df7f32ca6dc0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:134-137",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:139-140",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:149-159"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/105/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result; response.create barrier and actual native conversation.item.create user input_text containing [BACKEND] synthetic speech. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "pointer": "/oneOf/105/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "4b545203a54d032d116054f2dad585e0c20ba01794b6dab994dbe73959374399",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:134-137",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:139-140",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:149-159"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -42432,49 +42506,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/106/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result followed by exact native thread/realtime/closed parameters with matching threadId and requested reason. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "nullable": false,
       "pointer": "/oneOf/106/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f9fab9853e446e2f5066fc63747e3596660986d4c13f7a5c71e08121c5ed1425",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:872-879",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:873-879"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/106/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact empty native result followed by exact native thread/realtime/closed parameters with matching threadId and requested reason. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "pointer": "/oneOf/106/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "8c4c45f56a5e37aeedf250a9f37d077ce365dd7fc7c5c8e94ebd8531ea9a8e43",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:872-879",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:873-879"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -42676,49 +42768,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/108/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact native voice catalogue/default result from fixed @v1/@v2/@v3 constants; no loaded thread or backend handshake, then idle state. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "nullable": false,
       "pointer": "/oneOf/108/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ed2c321a9392dab0516235ca4b44d383e475cf36390f2fc1fe0331cc51493f95",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:32-40",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:42-45"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/108/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Retained actual-native realtime method envelope: Exact native voice catalogue/default result from fixed @v1/@v2/@v3 constants; no loaded thread or backend handshake, then idle state. Explicit method argument plus lossless Session constructor and pinned native dispatch; no outgoing byte-capture claim. Only this canonical method property/discriminator, no union/id/params/result/notification, full lifecycle, live media, backend/OS/A11 or fully verified promotion. Expanded profile hash matches the passing frozen v13 matrix; final-source combined and hosted checks remain required."
+      ],
       "pointer": "/oneOf/108/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "ecd5d6d3914bb0bda5ef0923d0d6eecdb088705078c5d5928e0efb8df2ca7b54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:32-40",
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:42-45"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

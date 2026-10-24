@@ -183,3 +183,35 @@ errors-only call qualifies a wrapper. Reference equality alone qualifies no
 runtime behavior. Request IDs, nested fields, complete methods, cancellation
 guarantees beyond owning assertions, external/OS acceptance and fully verified
 state remain outside this audit. No A11, publication or deployment claim follows.
+## Retained realtime method discriminators
+
+A further source audit links exactly **twelve** previously missing canonical
+contracts: `ClientRequest.json` branches102/103/104/105/106/108, each method
+property and single method literal. They cover `thread/realtime/start`,
+`appendAudio`, `appendText`, `appendSpeech`, `stop` and `listVoices`.
+
+The direct owners are `native_realtime_lifecycle_profile.exs:32–45,79–159,863–879`.
+The fixed input and method literals pass through the lossless Session constructor
+to pinned native dispatch; method-specific native results and effects are
+asserted independently. Audio reaches `input_audio_buffer.append`; text retains
+each role/content; speech reaches the prescribed conversation item after a
+response barrier; stop emits the exact closed notification; voice catalogs and
+defaults equal fixed constants without backend traffic. No outgoing JSON-RPC
+byte capture is claimed.
+
+The test SHA256
+`8f6e48020ee7d14e27ed380d2f5046425a7f20508e3939c22e4e3c8f36d87153`
+matches the complete passing frozen v13 package matrix, including both214/0
+isolated-profile repeats. The earlier fifteen-case logs in
+[read-state/realtime history](read-state-realtime-history-qualification.md)
+combine read-state and realtime tests; they are not fifteen realtime-only cases.
+This source-only indexing introduces no new runtime result. Its exact owner audit
+is `/tmp/samgita-realtime-method-envelope-candidates-20261024.json`, SHA256
+`baf473deac83712cb2398446667550284edd774dafdf97f9f778a2fb7edd1208`.
+
+Only the twelve method/discriminator rows become scoped implemented. No id,
+params, union, notification, response or whole method is promoted. Experimental
+negotiation, the Linux stdio/synthetic V2 backend boundary, unqualified V1/V3 and
+WebRTC/existing-call success, live media, external/OS acceptance and A11 remain
+explicit. Zero rows become fully verified; final-source and hosted checks remain
+required.
