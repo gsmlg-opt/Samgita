@@ -6,6 +6,84 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Frozen local matrix at 7a5de5e
+
+The v14 combined runner is terminal against executable source
+`7a5de5efe50bb7718c64fb0ec1172cfb67eae1d5`. All **17 platform commands** and
+**23 independent-package commands** pass; both complete executable/configuration/
+workflow source guards match. The combined runner exits zero. The database remains
+`samgita_redesign_recovery_repair_test`; no reset, record deletion, fake mapping or
+activation-guard bypass occurs.
+
+| Independent check | Actual terminal result |
+| --- | --- |
+| Complete default driver, seeds 501432 / 987654 | **663/0** each |
+| All 35 isolated native profiles, both seeds | **237/0** each |
+| Neutral WebSocket, seeds 455834 / 501432 / 987654 | **42/0** each |
+| Native wire and neutral core | **42/0**, **32/0** |
+| Native and both neutral outside consumers | **1/0** each |
+| Inventory regressions/consistency, namespace/sandbox prerequisites, package compile/format/audits | Passed |
+
+| Preserved platform check | Actual terminal result |
+| --- | --- |
+| Both consecutive populated root aggregates | Core **224/0/1 excluded**, web **128/0/5 excluded** each |
+| Native runtime/API/concurrency | Core **53/0**, web **8/0** |
+| Both consecutive recovery/restart repeats | Core **4/0**, web **1/0** each |
+| Compile, format, strict Credo, forced Dialyzer, audit, legacy exclusion | Passed |
+| Frozen frontend install, assets and production assembly | Passed; assembly never started |
+
+The prior GitHub first-page assertion failure does not reproduce in this run.
+Its cause is not repaired: no GitHub test, assertion, pagination, fixture or
+retained row was changed. Its older failures remain below. This successful
+checkpoint does not establish a listener-rebind repair or override completeness,
+A11, source-unreachable emitters or unavailable external/OS acceptance.
+
+Exact commands, terminal exits, logs and source hashes are retained in
+`/tmp/samgita-repair-final-{combined,platform,packages}-v14-20261024/`, with adjacent
+`.py` runners. Platform results SHA256 is
+`e41c0d0dc61f11924d836437a6409d4cb336b5a1d502e742218199029e564de4`;
+package results SHA256 is
+`999d3d5c2531166683e5b3b9e5149562440aa6e7c60a51d8a958a4b850ea5bbc`.
+The combined results SHA256 is
+`b2c60393564662bdd5f308ca9beff4f7e28845387805e0fbd5964d085211756e`.
+Subsequent executable edits require another complete final-source matrix.
+
+## Hosted checkpoint at 7a5de5e
+
+Both workflows reached terminal status at exact pushed source
+`7a5de5efe50bb7718c64fb0ec1172cfb67eae1d5`.
+[Foundation 40092693712](https://github.com/gsmlg-opt/Samgita/actions/runs/40092693712)
+passes every required step. Both populated aggregates pass **224 core/0/one
+excluded + 128 web/0/five excluded**, seeds 985029 and 951067. Restart/rollback
+passes **1/0**; neutral core **32/0**, both neutral outside consumers **1/0**
+each, neutral WebSocket **42/0** and native wire **42/0** pass. Compile, format,
+strict Credo, forced Dialyzer, audits, assets and production assembly pass.
+
+[Conformance 40092735407](https://github.com/gsmlg-opt/Samgita/actions/runs/40092735407)
+is **failed overall**, with both execution jobs successful and the required
+completeness job failed. The selected actual-binary/platform job passes native
+wire **42/0**, both complete default-driver partitions **364/0 + 299/0 = 663/0**
+at 501432, native outside consumer **1/0**, and native runtime/API/concurrency
+**53 core + 8 web / zero failures** at 49576. All **35 isolated native profiles,
+237/0**, pass with no exclusions. No consumer/platform step is skipped.
+
+Completeness passes **37 inventory regressions** and consistency, then fails
+`--require-verified`: **485 requirements: 0 verified / 462 implemented / 12 missing /
+11 blocked**; its source has **6,621 contracts: 0 verified / 2,963 implemented /
+3,658 missing**. Later documentation-only indexing of five native review owners
+and 52 synthetic legacy owners does not retroactively change this hosted ledger.
+It supplies no real legacy emitter or fully verified requirement.
+
+The read-only collector
+`/tmp/samgita-collect-hosted-7a5de5e-20261024.py` asserts exact heads and terminal
+states. Full logs, per-step counts/anchors, metadata and hashes are retained in
+`/tmp/samgita-hosted-7a5de5e-20261024/`. Foundation log SHA256 is
+`bc75bb1bf08b12d6756f07b3a27355af2b57ecab32b8b3612c0319b7b32f59e1`;
+conformance log SHA256 is
+`546089e01a3b7d4f6124fe2a7600c213e46a3d2123442ec8cdc9e25f557dd369`.
+These local evidence artifacts are not published packages. No release, tag,
+publication, production migration or deployment follows.
+
 ## Frozen local matrix at 5c22159
 
 The v13 combined runner is terminal against executable source

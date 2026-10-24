@@ -114,6 +114,37 @@ the same Devenv invocation. Command output is retained locally at
 `/tmp/samgita-legacy-approval-tests.log`. These are scoped local results; they do
 not establish hosted acceptance or enabled legacy approval success.
 
+## Local contract index
+
+A later source-only audit indexes **52 previously missing property/literal
+contracts** from these unchanged tests: 15 under `ApplyPatchApprovalParams`, 24
+under `ExecCommandApprovalParams`, 12 under the canonical shared `ReviewDecision`/
+`ApplyPatchApprovalResponse` and one under `ExecCommandApprovalResponse`.
+Each gains scoped `implemented` evidence only, explicitly labelled **synthetic
+codec/Session**. All four legacy method requirements remain **blocked** and
+there are **zero fully verified promotions**.
+
+The test at 30–58 round-trips each constructed request and preserves the exact
+server-request envelope at 237–241. Session validates the method-specific request
+before enqueueing it. Explicit replies at 43–45 retain the exact result after
+method-specific response validation. Optional presence tests at 60–78 cover only
+`grantRoot` and `approvalId` across omitted/null/present. Other fields retain
+their concrete tested-value limits. The 15 whole union containers, untested
+optional/null alternatives and four previously indexed network members are
+excluded from this supplemental index. No filesystem execution or policy effect
+is established.
+
+The exact candidate IDs, physical pointers, node hashes, construction/assertion
+ranges and exclusions are in
+`/tmp/samgita-legacy-approval-local-contract-candidates-20261024.json`, SHA256
+`71dc4920665cca8608fd09c3ae12227accbd2b49d647dcda9c486426b9a8dc7a`.
+Test SHA256 is
+`d6bdbff4eb80baaca11292246eb9860f29f122e6fa9b6e37ea5b8042875b3761`;
+it matches both complete 663-case driver repeats in the
+[frozen 7a5de5e matrix](repair-qualification.md#frozen-local-matrix-at-7a5de5e).
+This is indexing of existing assertions, not a new native legacy success run.
+The two actual-binary tests still establish removed-method rejection only.
+
 ## Remaining acceptance requirement
 
 Enabled legacy approval success remains unverified. Credentials and a different

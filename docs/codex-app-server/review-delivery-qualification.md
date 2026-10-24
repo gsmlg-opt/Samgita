@@ -80,8 +80,8 @@ confirmed reaping; evidence roots contain synthetic data and are retained.
 | `native_review_delivery_profile.exs` | 61c14c4b4424824e39e134c70eff39bf0092ee8adbf0664300d4fbd7552e33d5 |
 | `isolated_review_delivery_fixture.py` | c25f078f84824ddfe36b943e3dddc418784544b94b399f5acc791c2af1821c99 |
 
-Only the positively exercised detached enum and the two delivery alternatives
-gain scoped implemented evidence: three exact canonical owners, with explicit
+The initial index covers the positively exercised detached enum and two delivery alternatives;
+these gain scoped implemented evidence: three exact canonical owners, with explicit
 hashes and assertion references. Their final audit is
 `/tmp/samgita-review-delivery-physical-owner-audit-final-20261024.json`, SHA256
 `177343027b6ddf72be0317e065eb0b282bd83986a3f1bc7aa2d4af7a40ac76fd`.
@@ -90,3 +90,23 @@ quality, transport/OS, whole lifecycle or fully verified promotion follows.
 The complete combined-source and hosted matrices remain required. A11,
 upstream-unreachable production emitters and external/OS acceptance remain
 incomplete. No release, publication, deployment or production migration occurs.
+
+## Supplemental owner index
+
+Five further missing physical notification owners gain scoped implemented
+evidence from the same unchanged eight cases: the detached child's exact
+`Thread.sessionId`, and the entered/exited review variant objects plus their
+IDs. Native child identity is directly checked at 126–139. The three legacy inline
+cases bind live marker IDs at 238 to distinct UUIDv7 values at 347–350, exact
+three-field persisted maps at 354–357 and complete warm/cold Turn equality.
+No paginated marker-ID check or uncalled `thread/items/read` owner is inferred.
+
+The direct source hashes above match both 237-case isolated-profile repeats in
+the [frozen 7a5de5e matrix](repair-qualification.md#frozen-local-matrix-at-7a5de5e).
+This is an evidence-only index, not new runtime. Exact candidates/pointers/hashes
+and exclusions are in
+`/tmp/samgita-review-additional-owner-candidates-v1-20261024.json`, SHA256
+`6bdef35e454696770f8ec27db1097b7a2d1562a2b649080c9dea052fda4f6705`.
+No other bundled definition, global alias/enum, unasserted field, review quality,
+external/OS success or whole lifecycle is promoted. Zero rows become fully
+verified, and A11/full compatibility remain incomplete.

@@ -21862,25 +21862,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/0/properties/content",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileChange/oneOf/0/properties/content",
       "required": true,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:253-253",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "content"
@@ -21888,47 +21896,63 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileChange/oneOf/0/properties/type",
       "required": true,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "88aeacfa304283b8f84a5cc96d3cd9968a89a93284fd0d4b1c0a9bc12dbec9d6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:253-253",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/FileChange/oneOf/0/properties/type/enum/0",
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "0df9fd3f3f1ce543e5c1d5e5fdadd153ee6b75e9c9d5e1b1ebffa368e15301d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:253-253",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -21958,25 +21982,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/1/properties/content",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileChange/oneOf/1/properties/content",
       "required": true,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:254-254",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "content"
@@ -21984,47 +22016,63 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileChange/oneOf/1/properties/type",
       "required": true,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "b0579dcad67f1545c3e9cf5026b1e5f07943951200d6fa258d907cef43b081a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:254-254",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/FileChange/oneOf/1/properties/type/enum/0",
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "fc2c1b002031ef30f07794be21c7ca32ffeb0d66cee691de2ecddbf4700fc720",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:254-254",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -22054,25 +22102,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/2/properties/move_path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. move_path is present-string only; null and omission remain unqualified. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": true,
       "pointer": "/definitions/FileChange/oneOf/2/properties/move_path",
       "required": false,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:258-258",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "move_path"
@@ -22080,47 +22136,63 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/2/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileChange/oneOf/2/properties/type",
       "required": true,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "a8a7d9a6856b8600e2211c1fa5c7b16258157e8ff4c60d4adb6aec82aeb2ada5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:256-256",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/2/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/FileChange/oneOf/2/properties/type/enum/0",
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "8c957d8ccbb76dcf6868deb54805a0d2361c7c7aaf8b02044eb2c83faf67cc78",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:256-256",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -22128,25 +22200,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/definitions/FileChange/oneOf/2/properties/unified_diff",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/FileChange/oneOf/2/properties/unified_diff",
       "required": true,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:257-257",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "unified_diff"
@@ -22154,25 +22234,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/properties/callId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/callId",
       "required": true,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "c49d56ef9d01b423ce17bbdcb37713d834e1a4e52ff0e2b2ebafd0a9f5f35a8d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:245-245",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "callId"
@@ -22180,25 +22268,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/properties/conversationId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/conversationId",
       "required": true,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "058aa6b620d3d27a8fdad20420f0333d0467e32d6c189d86534c1993b5ce1dba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:245-245",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "conversationId"
@@ -22206,25 +22302,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/properties/fileChanges",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/fileChanges",
       "required": true,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "8efcefbb7b03e5dce2ee11e13ad49f2218e52cbdc4f97ebe7fdfec6bb82f7dd5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:252-260",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "fileChanges"
@@ -22232,25 +22336,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/properties/grantRoot",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Only grantRoot has the explicit omitted/null/present loop; no actual permission grant or persistent root authorization is established. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": true,
       "pointer": "/properties/grantRoot",
       "required": false,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "a64d10f2d40585b20eb39d79e5df9fecbfee0055aaae2d3a85ab6dc2372cdd46",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:251-251",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:63-75",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:75-78"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "grantRoot"
@@ -22258,25 +22372,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalParams.json#/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. reason is explicit null only; non-null and omitted reason cases are not asserted. Synthetic file-change metadata only. No native legacy request, filesystem effect, patch application, move or deletion is exercised. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": true,
       "pointer": "/properties/reason",
       "required": false,
       "schema": "ApplyPatchApprovalParams.json",
       "schema_sha256": "042b08f31100fd020fbf401e0c9d6bea047fb232e4af9b62d2907c61d262cc94",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:245-245",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "reason"
@@ -22437,22 +22559,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/0/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/ReviewDecision/oneOf/0/enum/0",
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "98a5ec063d868b41ac697982c1fc52541a65bd7163a76c7926304ba139898725",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:11-11",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -22482,25 +22611,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/1/properties/approved_execpolicy_amendment",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewDecision/oneOf/1/properties/approved_execpolicy_amendment",
       "required": true,
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "3c16d925e0a1b8bd1b123b614ff2c73dd743368ddcc90ab0920c0accd9c6eb87",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:16-16",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "approved_execpolicy_amendment"
@@ -22508,25 +22644,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/1/properties/approved_execpolicy_amendment/properties/proposed_execpolicy_amendment",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewDecision/oneOf/1/properties/approved_execpolicy_amendment/properties/proposed_execpolicy_amendment",
       "required": true,
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:16-16",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "proposed_execpolicy_amendment"
@@ -22555,22 +22698,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/2/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/ReviewDecision/oneOf/2/enum/0",
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "fde2ec67435802f2ad2cee1d82d7155bff9709829d851bcb334b12f446e6e4b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:12-12",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -22599,22 +22749,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/3/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/ReviewDecision/oneOf/3/enum/0",
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "3b11e7af73e86e8b2f2da602352694df20b8b5bb89ada83e6c5296af19bd3579",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:13-13",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -22644,25 +22801,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/4/properties/network_policy_amendment",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewDecision/oneOf/4/properties/network_policy_amendment",
       "required": true,
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "5e8268882e20425597f19014fd8cace3e373bb11d51867e37efc78b721a1ceb8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:17-26",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "network_policy_amendment"
@@ -22670,25 +22834,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/4/properties/network_policy_amendment/properties/network_policy_amendment",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewDecision/oneOf/4/properties/network_policy_amendment/properties/network_policy_amendment",
       "required": true,
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "b6d39432a418e8475377ee3d6c2b95fc2789bfab7bf806150a7a09d742414547",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:17-26",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "network_policy_amendment"
@@ -22718,25 +22889,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/5/properties/denied",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewDecision/oneOf/5/properties/denied",
       "required": true,
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "1dd94c1229714bbd67d30357814c5c8729b7614cc0ff1b715d4dd88e7372bdbb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:27-27",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:108-110"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "denied"
@@ -22744,25 +22923,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/5/properties/denied/properties/rejection",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewDecision/oneOf/5/properties/denied/properties/rejection",
       "required": true,
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:27-27",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:108-110"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "rejection"
@@ -22791,22 +22978,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/6/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/ReviewDecision/oneOf/6/enum/0",
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "cbf1e75e7cc35c5d0ac8978ce598db47375f38f8f5a8d04b12179e2d8e1fbd18",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:14-14",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -22835,22 +23029,29 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/definitions/ReviewDecision/oneOf/7/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/ReviewDecision/oneOf/7/enum/0",
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "c6532f182e49528e752db0d2740b1f06f19426c0cd6522cd1c0d9d231f50d2fa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:15-15",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -22858,25 +23059,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ApplyPatchApprovalResponse.json#/properties/decision",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/decision",
       "required": true,
       "schema": "ApplyPatchApprovalResponse.json",
       "schema_sha256": "cdc85183d7311610a5b8b407ec61da89ebdd3f4156940ddfc4da39d7c8c658b2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:10-28",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "decision"
@@ -68304,25 +68512,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/0/properties/cmd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/0/properties/cmd",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:271-271",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "cmd"
@@ -68330,25 +68546,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/0/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/0/properties/name",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:272-272",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "name"
@@ -68356,25 +68580,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/0/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/0/properties/path",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "853d3497a2c0839dff23433348226e08f9d6f8077e011126875100b2bf1de585",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:273-273",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -68382,47 +68614,63 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/0/properties/type",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "23edebb44013acd206a0c1cb0911cc7b3ebd193100a783c7c310b9f9edbafba5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:270-270",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/ParsedCommand/oneOf/0/properties/type/enum/0",
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "04a362f6eb2c541562bb7e89cdfaa3412f33332c198b77477a254c572d1b8d97",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:270-270",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -68452,25 +68700,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/1/properties/cmd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/1/properties/cmd",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:275-275",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "cmd"
@@ -68478,25 +68734,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/1/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. list_files.path is explicit null only; present string and omission remain unqualified. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": true,
       "pointer": "/definitions/ParsedCommand/oneOf/1/properties/path",
       "required": false,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:275-275",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -68504,47 +68768,63 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/1/properties/type",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "5ea9e6bad3358d39cd5410df08554af34f47ef1b7f737c6de94306338f9fc8f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:275-275",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/ParsedCommand/oneOf/1/properties/type/enum/0",
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "3b9096ea74c9695599363498260e484ca77f6076cf8a37e866025031c66c08a7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:275-275",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -68574,25 +68854,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/2/properties/cmd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/2/properties/cmd",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:278-278",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "cmd"
@@ -68600,25 +68888,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/2/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. search.path is present-string only; explicit null and omission remain unqualified. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": true,
       "pointer": "/definitions/ParsedCommand/oneOf/2/properties/path",
       "required": false,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:280-280",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "path"
@@ -68626,25 +68922,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/2/properties/query",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. search.query is present-string only; explicit null and omission remain unqualified. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": true,
       "pointer": "/definitions/ParsedCommand/oneOf/2/properties/query",
       "required": false,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:279-279",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "query"
@@ -68652,47 +68956,63 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/2/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/2/properties/type",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "828fdd76ed99e335099b411125d9cfea91a2c12bc10dd9571ce539916b2706d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:277-277",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/2/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/ParsedCommand/oneOf/2/properties/type/enum/0",
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "c98b38b7516ca9985b48db1c1f53b2270a3a1603165e960788dc5ff71f8bae1a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:277-277",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -68722,25 +69042,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/3/properties/cmd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/3/properties/cmd",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:282-282",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "cmd"
@@ -68748,47 +69076,63 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/3/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/definitions/ParsedCommand/oneOf/3/properties/type",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "3e16dca25cbf0cf9a97356ace73fa7f6cc52dd2aec8a2672abcbc9bca6b715ad",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:282-282",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ExecCommandApprovalParams.json#/definitions/ParsedCommand/oneOf/3/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "pointer": "/definitions/ParsedCommand/oneOf/3/properties/type/enum/0",
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:282-282",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "enum"
@@ -68796,25 +69140,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/properties/approvalId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Only approvalId has the explicit omitted/null/present loop; no real approval authorization is established. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalId",
       "required": false,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "cc021cc283245016d49c7a59edbe90fe3584e36bb63254101adcbf50f0c83bf0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:265-265",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:63-75",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:75-78"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "approvalId"
@@ -68822,25 +69176,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/properties/callId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/callId",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "10e945663c5e14ff9d4e216c3ed434b17df21ff497e6916aa4340e0fa1950e0b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:245-245",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "callId"
@@ -68848,25 +69210,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/properties/command",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/command",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:266-266",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "command"
@@ -68874,25 +69244,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/properties/conversationId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/conversationId",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "058aa6b620d3d27a8fdad20420f0333d0467e32d6c189d86534c1993b5ce1dba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:245-245",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "conversationId"
@@ -68900,25 +69278,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/cwd",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:267-267",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "cwd"
@@ -68926,25 +69312,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/properties/parsedCmd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/parsedCmd",
       "required": true,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "e4b4a2492239189e08e11dcfbc378cdc5df5945036a35735da5a8eddac9d089e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:268-283",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "parsedCmd"
@@ -68952,25 +69346,33 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalParams.json#/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_codec_roundtrip_and_session_request_preservation. reason is explicit null only; non-null and omitted reason cases are not asserted. Synthetic parsed-command metadata and argv only. No native legacy emission, command parser production, real command execution or filesystem observation is established. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": true,
       "pointer": "/properties/reason",
       "required": false,
       "schema": "ExecCommandApprovalParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:245-245",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:37-40",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:237-241"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "reason"
@@ -68978,25 +69380,32 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/legacy-approval-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ExecCommandApprovalResponse.json#/properties/decision",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Synthetic local contract only: synthetic_session_schema_validated_response. Explicit synthetic Session schema validation and ScriptedTransport result preservation only; decision acceptance does not prove a native legacy prompt or execution/policy effect. Exact codec/ScriptedTransport Session request/result assertions; no real legacy emitter, execution, side effect, policy persistence, live provider, whole variant or fully verified qualification. All four legacy method requirements remain blocked at the immutable pin."
+      ],
       "nullable": false,
       "pointer": "/properties/decision",
       "required": true,
       "schema": "ExecCommandApprovalResponse.json",
       "schema_sha256": "cdc85183d7311610a5b8b407ec61da89ebdd3f4156940ddfc4da39d7c8c658b2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:10-28",
+          "apps/samgita_codex_driver/test/legacy_approval_contract_test.exs:43-45"
+        ]
       },
       "transport_coverage": [],
       "wire_name": "decision"
@@ -88122,27 +88531,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-delivery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/sessionId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native supplemental review owner: Detached native review child Thread.sessionId is exactly the returned child UUID; no default/shared-session inference. One detached legacy review child only; not all thread trees or service backends. No other Thread properties or bundled duplicate owners are transferred. Existing eight-case native profile and exact source hashes are bound to both complete frozen repeats; no new runtime, other bundled definition, global alias, live review quality, OS/backend/A11 or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/sessionId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "57adcbecf706d6c35e7b9860a22cc627f09209cd442635ef5baf8c90406006a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:116-124",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:126-139"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "sessionId"
     },
     {
@@ -90837,50 +91255,76 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-delivery-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/16",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native supplemental review owner: All3required fields of native enteredReviewMode object are directly asserted: literal type, live UUID id and exact review text @instructions. Required-field branch only: id/type/review are directly checked; no other ThreadItem variants or whole lifecycle promoted. ID UUID/persisted equality proof is from the three legacy inline cases; paginated branch does not validate the captured marker UUIDs. Same-hash branch definitions under ThreadItemsReadResponse are excluded because that method is not called. No inferred type enum/alias owner promotions. Existing eight-case native profile and exact source hashes are bound to both complete frozen repeats; no new runtime, other bundled definition, global alias, live review quality, OS/backend/A11 or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/16",
       "schema": "ServerNotification.json",
       "schema_sha256": "25c94513975b09bee45ef8b2215206188280d7b56b1d48c65eb814109e89ff38",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:210-219",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:220-223",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:238-243",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:347-357",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:516-523",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:532-533"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-delivery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/16/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native supplemental review owner: Original live enteredReviewMode ID must be UUID-v7, differ from the other marker, and equal exact warm/cold persisted legacy marker ID. Required-field branch only: id/type/review are directly checked; no other ThreadItem variants or whole lifecycle promoted. ID UUID/persisted equality proof is from the three legacy inline cases; paginated branch does not validate the captured marker UUIDs. Same-hash branch definitions under ThreadItemsReadResponse are excluded because that method is not called. No inferred type enum/alias owner promotions. Existing eight-case native profile and exact source hashes are bound to both complete frozen repeats; no new runtime, other bundled definition, global alias, live review quality, OS/backend/A11 or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/16/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:210-219",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:220-223",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:238-243",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:347-357",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:516-523",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:532-533"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "id"
     },
     {
@@ -90983,50 +91427,76 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-delivery-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/17",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native supplemental review owner: All3required fields of native exitedReviewMode object are directly asserted: literal type, live UUID id and exact review text @answer. Required-field branch only: id/type/review are directly checked; no other ThreadItem variants or whole lifecycle promoted. ID UUID/persisted equality proof is from the three legacy inline cases; paginated branch does not validate the captured marker UUIDs. Same-hash branch definitions under ThreadItemsReadResponse are excluded because that method is not called. No inferred type enum/alias owner promotions. Existing eight-case native profile and exact source hashes are bound to both complete frozen repeats; no new runtime, other bundled definition, global alias, live review quality, OS/backend/A11 or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/17",
       "schema": "ServerNotification.json",
       "schema_sha256": "a3917e3c1a4198f605a73eddb7d74e55110c1f0be4136053bd3b1d00181b421b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:210-219",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:230-232",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:238-243",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:347-357",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:516-523",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:532-533"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-delivery-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/17/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native supplemental review owner: Original live exitedReviewMode ID must be UUID-v7, differ from the other marker, and equal exact warm/cold persisted legacy marker ID. Required-field branch only: id/type/review are directly checked; no other ThreadItem variants or whole lifecycle promoted. ID UUID/persisted equality proof is from the three legacy inline cases; paginated branch does not validate the captured marker UUIDs. Same-hash branch definitions under ThreadItemsReadResponse are excluded because that method is not called. No inferred type enum/alias owner promotions. Existing eight-case native profile and exact source hashes are bound to both complete frozen repeats; no new runtime, other bundled definition, global alias, live review quality, OS/backend/A11 or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/17/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:210-219",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:230-232",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:238-243",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:347-357",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:516-523",
+          "apps/samgita_codex_driver/test/native_review_delivery_profile.exs:532-533"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "id"
     },
     {
