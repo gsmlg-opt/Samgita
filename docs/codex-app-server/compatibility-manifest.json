@@ -176681,124 +176681,164 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/sleep-steer-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/14",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_stock_sleep_steer: Real clock.sleep duration60000, accepted same-turn steer is sole wake within unchanged shared10s bound; exact native model output, selective persisted sleep item and warm/cold timestamp equality, no reexecution. Synthetic model dependency only. Other wake/error/clock modes, cancellation, OS/transports, external providers and full acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/14",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "06167c547335aaf0708f3721b108c90238c4ba4d735e02a9d744bcb5e25d8638",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_steer_profile.exs:88"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/sleep-steer-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/14/properties/durationMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_stock_sleep_steer: Real clock.sleep duration60000, accepted same-turn steer is sole wake within unchanged shared10s bound; exact native model output, selective persisted sleep item and warm/cold timestamp equality, no reexecution. Synthetic model dependency only. Other wake/error/clock modes, cancellation, OS/transports, external providers and full acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/14/properties/durationMs",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "99f0708952f29c21a861010182d5171b9a4f5d30e408f018254be26a8cc20ec4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_steer_profile.exs:88"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "durationMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/sleep-steer-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/14/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_stock_sleep_steer: Real clock.sleep duration60000, accepted same-turn steer is sole wake within unchanged shared10s bound; exact native model output, selective persisted sleep item and warm/cold timestamp equality, no reexecution. Synthetic model dependency only. Other wake/error/clock modes, cancellation, OS/transports, external providers and full acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/14/properties/id",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_steer_profile.exs:88"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/sleep-steer-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/14/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_stock_sleep_steer: Real clock.sleep duration60000, accepted same-turn steer is sole wake within unchanged shared10s bound; exact native model output, selective persisted sleep item and warm/cold timestamp equality, no reexecution. Synthetic model dependency only. Other wake/error/clock modes, cancellation, OS/transports, external providers and full acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/14/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "4e04329ada7fc477fb4a8d06a0fe936647a2c3cb7f528ba73b6b5b8d551eebdf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_steer_profile.exs:88"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/sleep-steer-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/14/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_stock_sleep_steer: Real clock.sleep duration60000, accepted same-turn steer is sole wake within unchanged shared10s bound; exact native model output, selective persisted sleep item and warm/cold timestamp equality, no reexecution. Synthetic model dependency only. Other wake/error/clock modes, cancellation, OS/transports, external providers and full acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/14/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "a2291af1be89edadcf17a24d4d88c18f834ac1320275575f8fa1d7926f96bc5c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_sleep_steer_profile.exs:88"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
