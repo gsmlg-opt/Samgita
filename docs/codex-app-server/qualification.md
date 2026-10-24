@@ -2574,3 +2574,13 @@ and hosted checks must run again. Their results cannot be inferred from these
 focused passes. A11, upstream-unreachable paths, missing reverse-cursor success,
 external/OS profiles and complete compatibility remain incomplete. No release,
 publication, deployment or production migration is claimed.
+
+The [unanswered-approval hard-restart profile](approval-cold-restart-qualification.md)
+adds **2/0** at both fixed seeds, with exact legacy/paginated history differences,
+original persisted input, stale old authority despite reused native numeric IDs,
+zero recovery execution and one explicitly approved fresh command effect.
+Compile/format/strict Credo/AST and source guards pass. Both source-backed draft
+failures are retained. The broad approval lifecycle remains missing; counts do
+not change. The required explicit hosted step and final combined-source matrix
+remain separate gates. A11, unreachable legacy and external/OS success remain
+incomplete; no release/publication/deployment is claimed.
