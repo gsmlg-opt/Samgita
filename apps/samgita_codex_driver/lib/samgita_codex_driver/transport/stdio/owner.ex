@@ -37,6 +37,10 @@ defmodule SamgitaCodexDriver.Transport.Stdio.Owner do
     monitor = Process.monitor(owner)
     port = Port.open({:spawn_executable, python}, opts)
     {:ok, %{owner: owner, monitor: monitor, port: port, completion: completion, reaped: false}}
+  rescue
+    # Port startup exceptions retain raw arguments and environment in the stack.
+    # Return the conventional init failure before that stack escapes the owner.
+    _ -> {:stop, Error.new(:process_start_failed)}
   end
 
   @impl true
