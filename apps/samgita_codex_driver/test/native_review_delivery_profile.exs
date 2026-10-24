@@ -363,6 +363,110 @@ defmodule SamgitaCodexDriver.NativeReviewDeliveryProfileTest do
     finish(ctx, cold)
   end
 
+  @tag scenario: "inline"
+  test "paginated review exit survives selective warm and unhydrated cold reads", ctx do
+    pid = connect(ctx)
+    original = thread(pid, ctx, "paginated")
+    review = call(pid, "review/start", review_params(original, "inline"))
+    turn = assert_immediate(review, original, @instructions)
+
+    pending = collect(pid, &item(&1, "item/completed", "enteredReviewMode"))
+    entered = item(pending, "item/completed", "enteredReviewMode")
+    assert entered["threadId"] == original and entered["turnId"] == turn
+    assert entered["item"]["review"] == @instructions
+    await(fn -> length(events(ctx, "review-http.json", "review_pending")) == 1 end)
+    refute completed?(pending, original, turn)
+    assert events(ctx, "review-http.json", "response_released") == []
+    refute item(pending, "item/started", "exitedReviewMode")
+    control(ctx, "releaseReview")
+    execution = collect(pid, &completed?(&1, original, turn), pending)
+    assert_completed(execution, original, turn)
+
+    assert [started] =
+             Enum.filter(
+               notices(execution, "item/started"),
+               &(&1["item"]["type"] == "exitedReviewMode")
+             )
+
+    assert [completed] =
+             Enum.filter(
+               notices(execution, "item/completed"),
+               &(&1["item"]["type"] == "exitedReviewMode")
+             )
+
+    exit_id = started["item"]["id"]
+    assert_uuid(exit_id)
+    refute exit_id == entered["item"]["id"]
+    began = started["startedAtMs"]
+    ended = completed["completedAtMs"]
+    assert is_integer(began) and began > 0
+    assert is_integer(ended) and ended >= began
+
+    # The review text is prescribed, independently of native history reads.
+    expected_item = %{"type" => "exitedReviewMode", "id" => exit_id, "review" => @answer}
+
+    assert started == %{
+             "threadId" => original,
+             "turnId" => turn,
+             "item" => expected_item,
+             "startedAtMs" => began
+           }
+
+    assert completed == %{
+             "threadId" => original,
+             "turnId" => turn,
+             "item" => expected_item,
+             "completedAtMs" => ended
+           }
+
+    assert notices(execution, "deprecationNotice") == []
+    assert notices(execution, "thread/started") == []
+    assert [request] = requests = json(ctx, "requests.json")
+    assert @instructions in user_texts(request)
+    refute @raw_instructions in user_texts(request)
+    hydrated = call(pid, "thread/read", %{"threadId" => original, "includeTurns" => true})
+    assert hydrated["thread"]["historyMode"] == "paginated"
+
+    query = %{"threadId" => original, "turnId" => turn, "itemIds" => [exit_id]}
+
+    expected_entry = %{
+      "turnId" => turn,
+      "item" => expected_item,
+      "startedAtMs" => began,
+      "completedAtMs" => ended
+    }
+
+    assert_selected = fn client ->
+      assert call(client, "thread/items/read", query) == %{"data" => [expected_entry]}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-review-exit", exit_id, exit_id]
+             }) == %{"data" => [expected_entry]}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-review-exit"]
+             }) == %{"data" => []}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "turnId" => "owned-absent-review-turn"
+             }) == %{"data" => []}
+
+      assert json(ctx, "requests.json") == requests
+    end
+
+    assert_selected.(pid)
+    assert_safe(ctx, pid, execution, 1)
+    cold = restart(ctx, pid)
+    # No resume, hydration or turn request precedes this cold content read.
+    assert_selected.(cold)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert_safe(ctx, cold, [], 1)
+    finish(ctx, cold)
+  end
+
   defp connect(ctx) do
     {:ok, pid} =
       Session.start_link(

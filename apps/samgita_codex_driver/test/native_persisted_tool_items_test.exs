@@ -215,6 +215,183 @@ defmodule SamgitaCodexDriver.NativePersistedToolItemsTest do
     end
   end
 
+  test "retained standalone output survives selective warm and first cold reads", ctx do
+    pid = start(ctx)
+    %{connection: warm_connection} = :sys.get_state(pid)
+    warm_instance = Session.status(pid).instance_id
+
+    id =
+      thread(ctx, pid, %{
+        "historyMode" => "paginated",
+        "dynamicTools" => [@lookup]
+      })
+
+    turn =
+      start_turn(pid, id, [
+        %{"type" => "text", "text" => "Owned retained standalone selection: λ🙂"}
+      ])
+
+    {tool, events} = await_tool(pid, [], System.monotonic_time(:millisecond) + 10_000)
+    assert_pending(ctx, pid, id, turn, tool)
+
+    standalone = %{
+      "name" => "owned_retained_selection",
+      "namespace" => "owned_selection_namespace",
+      "output" => "Owned retained selection λ🙂",
+      "retain" => true
+    }
+
+    assert TurnFixture.start_turn(pid, id, [], %{"toolOutput" => standalone}) == turn
+    assert_pending(ctx, pid, id, turn, tool)
+    assert Session.interaction_outcomes(pid) == []
+    tool_result = "Owned fixed lookup completion λ🙂"
+
+    assert :ok =
+             Session.respond(
+               pid,
+               tool.handle,
+               {:ok,
+                %{
+                  "success" => true,
+                  "contentItems" => [%{"type" => "inputText", "text" => tool_result}]
+                }}
+             )
+
+    events = events ++ finish_turn(pid, id, turn)
+    assert [^tool] = Enum.filter(events, &(&1.kind == :server_request))
+    assert_turn(events, id, turn)
+    started = item_event(events, "item/started", "functionCallOutput")
+    completed = item_event(events, "item/completed", "functionCallOutput")
+    item_id = started["item"]["id"]
+    assert is_binary(item_id) and item_id != ""
+    began = started["startedAtMs"]
+    ended = completed["completedAtMs"]
+    assert is_integer(began) and began > 0
+    assert is_integer(ended) and ended >= began
+
+    # The payload is prescribed; only generated identity and times are observed.
+    expected_item = %{
+      "type" => "functionCallOutput",
+      "id" => item_id,
+      "name" => "owned_retained_selection",
+      "namespace" => "owned_selection_namespace",
+      "output" => "Owned retained selection λ🙂"
+    }
+
+    assert started == %{
+             "threadId" => id,
+             "turnId" => turn,
+             "item" => expected_item,
+             "startedAtMs" => began
+           }
+
+    assert completed == %{
+             "threadId" => id,
+             "turnId" => turn,
+             "item" => expected_item,
+             "completedAtMs" => ended
+           }
+
+    requests = ModelFixture.requests(ctx.fixture)
+    assert [first, continued] = requests
+    assert first["model"] == "mock-model" and continued["model"] == "mock-model"
+    refute Enum.any?(first["input"], &(&1["type"] == "function_call_output"))
+
+    assert [captured] =
+             Enum.filter(
+               continued["input"],
+               &(&1["type"] == "function_call_output" and
+                   &1["name"] == "owned_retained_selection")
+             )
+
+    assert captured == %{
+             "type" => "function_call_output",
+             "id" => item_id,
+             "name" => "owned_retained_selection",
+             "namespace" => "owned_selection_namespace",
+             "output" => "Owned retained selection λ🙂"
+           }
+
+    assert [lookup_output] =
+             Enum.filter(
+               continued["input"],
+               &(&1["type"] == "function_call_output" and &1["call_id"] == "fixture-call-1")
+             )
+
+    assert lookup_output["output"] == tool_result
+
+    assert length(Enum.filter(continued["input"], &(&1["type"] == "function_call_output"))) ==
+             2
+
+    assert item_event(events, "item/completed", "agentMessage")["item"]["text"] == @answer
+    assert_idle(pid)
+    assert Session.uncertain_operations(pid) == []
+    assert File.ls!(ctx.fixture.workspace) == []
+
+    # This native read persists the producer projection; it is never an oracle.
+    hydrated = call(pid, "thread/read", %{"threadId" => id, "includeTurns" => true})
+    assert hydrated["thread"]["id"] == id
+    assert hydrated["thread"]["historyMode"] == "paginated"
+
+    query = %{"threadId" => id, "turnId" => turn, "itemIds" => [item_id]}
+
+    expected_entry = %{
+      "turnId" => turn,
+      "item" => expected_item,
+      "startedAtMs" => began,
+      "completedAtMs" => ended
+    }
+
+    assert_selected = fn client ->
+      response = call(client, "thread/items/read", query)
+      assert Map.keys(response) == ["data"]
+      assert [entry] = response["data"]
+      assert Enum.sort(Map.keys(entry)) == ~w(completedAtMs item startedAtMs turnId)
+      assert entry == expected_entry
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-output-item", item_id, item_id]
+             }) == %{"data" => [expected_entry]}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-output-item"]
+             }) == %{"data" => []}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "turnId" => "owned-absent-output-turn"
+             }) == %{"data" => []}
+
+      assert ModelFixture.requests(ctx.fixture) == requests
+      assert File.ls!(ctx.fixture.workspace) == []
+      assert_idle(client)
+      assert %{gap: nil} = Session.status(client)
+      assert Session.uncertain_operations(client) == []
+    end
+
+    assert_selected.(pid)
+    warm_native = call(pid, "server/diagnostics", %{})["process"]["id"]
+    assert :ok = StdioSessionFixture.close(pid, warm_connection)
+    refute File.exists?("/proc/#{warm_native}")
+    cold = start(ctx)
+    %{connection: cold_connection} = :sys.get_state(cold)
+    assert Session.status(cold).instance_id != warm_instance
+    refute call(cold, "server/diagnostics", %{})["process"]["id"] == warm_native
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+
+    # First thread-content operation in this distinct native process.
+    assert_selected.(cold)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert {:ok, remaining} = Session.drain(cold)
+    refute Enum.any?(remaining, &(&1.kind == :server_request))
+    refute Enum.any?(remaining, &(&1.wire["method"] in ["turn/started", "turn/completed"]))
+    assert :ok = StdioSessionFixture.close(cold, cold_connection)
+    assert ModelFixture.requests(ctx.fixture) == requests
+    assert File.ls!(ctx.fixture.workspace) == []
+  end
+
   defp persisted_entry(events, id, turn, completed) do
     item = completed["item"]
     assert completed["threadId"] == id

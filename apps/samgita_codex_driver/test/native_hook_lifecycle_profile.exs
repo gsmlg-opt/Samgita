@@ -49,8 +49,9 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
 
     # Registered before the Session cleanup so LIFO cleanup reaps before checking.
     on_exit(fn ->
-      if File.exists?(Path.join(root, "state.json")) do
-        proof = state(ctx)
+      for proof_file <- ["state.json", "cold-state.json"],
+          File.exists?(Path.join(root, proof_file)) do
+        proof = read_json(ctx, proof_file)
         pids = Enum.map(["native_pid", "controller_pid", "namespace_owner_pid"], &proof[&1])
 
         hook_pids =
@@ -67,39 +68,37 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
       end
     end)
 
-    {:ok, pid} =
-      Session.start_link(
-        transport:
-          {Stdio,
-           [
-             executable: tools["python3"],
-             args: [
-               @script,
-               "--root",
-               root,
-               "--codex",
-               Path.expand(binary),
-               "--ip",
-               tools["ip"],
-               "--unshare",
-               tools["unshare"],
-               "--scenario",
-               tags.hook_scenario
-             ],
-             cwd: ctx.workspace,
-             inherit_env: [],
-             env: %{
-               "HOME" => Path.join(root, "home"),
-               "CODEX_HOME" => Path.join(root, "codex"),
-               "TMPDIR" => Path.join(root, "tmp"),
-               "PATH" => "/usr/bin:/bin",
-               "CODEX_DISABLE_REMOTE_CONTROL" => "1",
-               "NO_COLOR" => "1",
-               "RUST_LOG" => "off",
-               "PYTHONDONTWRITEBYTECODE" => "1"
-             }
-           ]}
-      )
+    launch =
+      [
+        executable: tools["python3"],
+        args: [
+          @script,
+          "--root",
+          root,
+          "--codex",
+          Path.expand(binary),
+          "--ip",
+          tools["ip"],
+          "--unshare",
+          tools["unshare"],
+          "--scenario",
+          tags.hook_scenario
+        ],
+        cwd: ctx.workspace,
+        inherit_env: [],
+        env: %{
+          "HOME" => Path.join(root, "home"),
+          "CODEX_HOME" => Path.join(root, "codex"),
+          "TMPDIR" => Path.join(root, "tmp"),
+          "PATH" => "/usr/bin:/bin",
+          "CODEX_DISABLE_REMOTE_CONTROL" => "1",
+          "NO_COLOR" => "1",
+          "RUST_LOG" => "off",
+          "PYTHONDONTWRITEBYTECODE" => "1"
+        }
+      ]
+
+    {:ok, pid} = Session.start_link(transport: {Stdio, launch})
 
     StdioSessionFixture.register_cleanup(pid)
     await(fn -> File.exists?(Path.join(root, "state.json")) end, "private hook fixture startup")
@@ -116,7 +115,7 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
                %{"experimentalApi" => true}
              )
 
-    Map.put(ctx, :pid, pid)
+    Map.merge(ctx, %{pid: pid, launch: launch})
   end
 
   for scenario <- [
@@ -388,8 +387,39 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
 
     query = %{"threadId" => thread, "turnId" => turn, "itemIds" => [prompt_id]}
 
-    assert %{"data" => [%{"turnId" => ^turn, "item" => ^expected}]} =
-             call(pid, "thread/items/read", query)
+    completed_prompt =
+      Enum.find(notices(events, "item/completed"), &(&1["item"]["type"] == "hookPrompt"))
+
+    completed_at = completed_prompt["completedAtMs"]
+    assert is_integer(completed_at) and completed_at >= started_at
+
+    expected_entry = %{
+      "turnId" => turn,
+      "item" => expected,
+      "startedAtMs" => started_at,
+      "completedAtMs" => completed_at
+    }
+
+    assert_selected = fn client ->
+      assert call(client, "thread/items/read", query) == %{"data" => [expected_entry]}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-hook-prompt", prompt_id, prompt_id]
+             }) == %{"data" => [expected_entry]}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-hook-prompt"]
+             }) == %{"data" => []}
+
+      assert call(client, "thread/items/read", %{
+               query
+               | "turnId" => "owned-absent-hook-turn"
+             }) == %{"data" => []}
+    end
+
+    assert_selected.(pid)
 
     assert {:ok, after_read} = Session.drain(pid)
     refute Enum.any?(after_read, &(&1.kind == :server_request))
@@ -401,7 +431,99 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
     assert read_json(ctx, "provider-errors.json") == []
     assert_stop_records(ctx, thread, turn)
     assert_stop_provider_inputs(ctx, blocked_run_id)
+    original_proof = state(ctx)
+    instance = Session.status(pid).instance_id
+    native = original_proof["native_pid"]
     assert :ok = Session.close(pid)
+
+    for os_pid <-
+          Enum.map(["native_pid", "controller_pid", "namespace_owner_pid"], &original_proof[&1]) do
+      await(
+        fn -> not File.exists?("/proc/#{os_pid}") end,
+        "old hook fixture reaped before restart"
+      )
+    end
+
+    requests = read_json(ctx, "requests.json")
+    assert length(requests) == 2
+
+    retained =
+      Map.new(
+        [
+          "state.json",
+          "requests.json",
+          "provider-errors.json",
+          "Stop-first.json",
+          "Stop-second.json",
+          "owned_hook.py",
+          "codex/config.toml",
+          "codex/models.json"
+        ],
+        fn name ->
+          {name,
+           Base.encode16(:crypto.hash(:sha256, File.read!(Path.join(ctx.root, name))),
+             case: :lower
+           )}
+        end
+      )
+
+    launch = Keyword.update!(ctx.launch, :args, &(&1 ++ ["--read-only-restart"]))
+    {:ok, cold} = Session.start_link(transport: {Stdio, launch})
+    StdioSessionFixture.register_cleanup(cold)
+
+    await(
+      fn -> File.exists?(Path.join(ctx.root, "cold-state.json")) end,
+      "read-only hook restart"
+    )
+
+    proof = read_json(ctx, "cold-state.json")
+    assert proof["read_only_restart"] and proof["provider_mode"] == "reject_all"
+    assert proof["native_pid"] != native
+    assert proof["parent"] == ctx.parent_netns and proof["child"] != ctx.parent_netns
+    assert proof["parent_user"] == ctx.parent_userns and proof["child_user"] != ctx.parent_userns
+    assert proof["interfaces"] == ["lo"]
+    refute proof["default_route"] or proof["ipv6_default_route"]
+    assert proof["retained_sha256"] == retained
+    assert read_json(ctx, "cold-provider-attempts.json") == []
+
+    assert {:ok, %{"result" => %{"platformOs" => "linux"}}} =
+             Session.initialize(
+               cold,
+               %{"name" => "samgita_cold_hooks", "version" => "0.1.0"},
+               %{"experimentalApi" => true}
+             )
+
+    refute Session.status(cold).instance_id == instance
+    # First content read in the new process; no resume, hydration or turn request.
+    assert_selected.(cold)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert {:ok, cold_events} = Session.drain(cold)
+    assert lifecycle(cold_events) == []
+    assert notices(cold_events, "turn/started") == []
+    assert notices(cold_events, "turn/completed") == []
+    refute Enum.any?(cold_events, &(&1.kind == :server_request or &1.wire["method"] == "error"))
+
+    assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
+             Session.status(cold)
+
+    assert Session.uncertain_operations(cold) == []
+    assert read_json(ctx, "requests.json") == requests
+    assert read_json(ctx, "cold-provider-attempts.json") == []
+    assert_stop_records(ctx, thread, turn)
+    assert_stop_provider_inputs(ctx, blocked_run_id)
+    assert :ok = Session.close(cold)
+
+    for {name, digest} <- retained do
+      assert Base.encode16(:crypto.hash(:sha256, File.read!(Path.join(ctx.root, name))),
+               case: :lower
+             ) == digest
+    end
+
+    for os_pid <- Enum.map(["native_pid", "controller_pid", "namespace_owner_pid"], &proof[&1]) do
+      await(fn -> not File.exists?("/proc/#{os_pid}") end, "cold hook fixture reaping")
+    end
+
+    assert read_json(ctx, "cold-provider-attempts.json") == []
   end
 
   defp hooks(pid, ctx, expected_events \\ ["sessionStart", "userPromptSubmit"]) do

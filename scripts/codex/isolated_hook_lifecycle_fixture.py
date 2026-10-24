@@ -2,7 +2,10 @@
 """Owned fixed hooks and synthetic Responses peer around unmodified native Codex.
 
 The native child alone writes app-server stdout. No external model or project
-hook is used. This source-only draft has not been executed or qualified.
+hook is used. Explicit read-only restart reuses the original CODEX_HOME and
+fixture inputs in a fresh private namespace with a rejection-only peer at the
+preserved origin. Codex still opens its store normally; this is not filesystem
+read-only mode or a claim of whole-store byte immutability.
 """
 import argparse
 import hashlib
@@ -16,6 +19,8 @@ import signal
 import subprocess
 import sys
 import threading
+import tomllib
+from urllib.parse import urlsplit
 
 
 SHA256 = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
@@ -194,6 +199,64 @@ class Provider:
         return f"http://127.0.0.1:{self.server.server_port}"
 
 
+class ReadOnlyPeer:
+    """Journal every accepted connection and reject cold HTTP requests safely."""
+
+    def __init__(self, root):
+        config = tomllib.loads((root / "codex/config.toml").read_text())
+        origins = [urlsplit(config["model_providers"]["fixture"]["base_url"]),
+                   urlsplit(config["openai_base_url"]), urlsplit(config["chatgpt_base_url"])]
+        for origin in origins:
+            assert origin.scheme == "http" and origin.hostname == "127.0.0.1"
+            assert origin.port and not origin.username and not origin.password
+            assert not origin.query and not origin.fragment
+        assert origins[0].path == origins[1].path == "/v1"
+        assert origins[2].path in {"", "/"}
+        assert len({origin.port for origin in origins}) == 1
+        records, lock = [], threading.Lock()
+        journal = root / "cold-provider-attempts.json"
+        atomic_json(journal, records)
+
+        class Server(ThreadingHTTPServer):
+            daemon_threads = True
+
+            def get_request(self):
+                connection, address = super().get_request()
+                with lock:
+                    records.append({"kind": "connection"})
+                    atomic_json(journal, records)
+                return connection, address
+
+            def handle_error(self, _request, _address):
+                with lock:
+                    records.append({"kind": "handler_error"})
+                    atomic_json(journal, records)
+
+        class Handler(BaseHTTPRequestHandler):
+            def setup(self):
+                super().setup()
+                self.connection.settimeout(5)
+
+            def log_message(self, *_args):
+                pass
+
+            def reject(self):
+                with lock:
+                    records.append({"kind": "request"})
+                    atomic_json(journal, records)
+                self.close_connection = True
+                self.send_response(503)
+                self.send_header("Content-Length", "0")
+                self.send_header("Connection", "close")
+                self.end_headers()
+
+            do_GET = do_POST = do_PUT = do_PATCH = do_DELETE = do_HEAD = do_OPTIONS = reject
+
+        self.server = Server(("127.0.0.1", origins[0].port), Handler)
+        self.thread = threading.Thread(
+            target=lambda: self.server.serve_forever(poll_interval=0.05), daemon=True)
+
+
 def configure(args, provider):
     root = args.root
     hook = root / "owned_hook.py"
@@ -268,9 +331,31 @@ def run(args):
                               os.readlink("/proc/self/ns/user")])
     subprocess.run([args.ip, "link", "set", "lo", "up"], check=True, timeout=5)
     proof = isolation(args)
-    provider = Provider(args.root, args.scenario)
-    commands = configure(args, provider)
-    provider.thread.start()
+    provider = None
+    retained = {}
+    if args.read_only_restart:
+        assert args.scenario == "stop-continuation"
+        original = json.loads((args.root / "state.json").read_text())
+        assert not Path(f"/proc/{original['native_pid']}").exists()
+        assert not Path(f"/proc/{original['controller_pid']}").exists()
+        assert not Path(f"/proc/{original['namespace_owner_pid']}").exists()
+        assert len(json.loads((args.root / "requests.json").read_text())) == 2
+        assert json.loads((args.root / "provider-errors.json").read_text()) == []
+        for name in ("state.json", "requests.json", "provider-errors.json", "Stop-first.json",
+                     "Stop-second.json", "owned_hook.py", "codex/config.toml", "codex/models.json"):
+            retained[name] = hashlib.sha256((args.root / name).read_bytes()).hexdigest()
+        for name in ("Stop-first.json", "Stop-second.json"):
+            hook = json.loads((args.root / name).read_text())
+            assert not Path(f"/proc/{hook['pid']}").exists()
+        commands = original["commands"]
+        proof_file = "cold-state.json"
+        provider = ReadOnlyPeer(args.root)
+        provider.thread.start()
+    else:
+        provider = Provider(args.root, args.scenario)
+        commands = configure(args, provider)
+        provider.thread.start()
+        proof_file = "state.json"
     environment = {key: os.environ[key] for key in (
         "HOME", "CODEX_HOME", "TMPDIR", "NO_COLOR", "RUST_LOG",
         "CODEX_DISABLE_REMOTE_CONTROL", "PYTHONDONTWRITEBYTECODE") if key in os.environ}
@@ -287,9 +372,12 @@ def run(args):
                                   cwd=args.root / "workspace", env=environment,
                                   stdin=sys.stdin.buffer, stdout=sys.stdout.buffer,
                                   stderr=subprocess.DEVNULL)
-        atomic_json(args.root / "state.json", {**proof, "native_pid": native.pid,
+        atomic_json(args.root / proof_file, {**proof, "native_pid": native.pid,
                     "controller_pid": os.getpid(), "namespace_owner_pid": os.getppid(),
-                    "commands": commands, "ready": True})
+                    "commands": commands, "ready": True,
+                    "read_only_restart": args.read_only_restart,
+                    "provider_mode": "reject_all" if args.read_only_restart else "fixed_responses",
+                    "retained_sha256": retained})
         return native.wait()
     finally:
         if native is not None and native.poll() is None:
@@ -299,9 +387,12 @@ def run(args):
             except subprocess.TimeoutExpired:
                 native.kill()
                 native.wait(timeout=0.15)
-        provider.server.shutdown()
-        provider.server.server_close()
-        provider.thread.join(timeout=0.1)
+        if provider is not None:
+            provider.server.shutdown()
+            provider.server.server_close()
+            provider.thread.join(timeout=0.1)
+        for name, digest in retained.items():
+            assert hashlib.sha256((args.root / name).read_bytes()).hexdigest() == digest
 
 
 def main():
@@ -311,6 +402,7 @@ def main():
     parser.add_argument("--ip", required=True)
     parser.add_argument("--unshare", required=True)
     parser.add_argument("--scenario", required=True, choices=SCENARIOS)
+    parser.add_argument("--read-only-restart", action="store_true")
     parser.add_argument("--inside", action="store_true")
     parser.add_argument("--parent-netns")
     parser.add_argument("--parent-userns")

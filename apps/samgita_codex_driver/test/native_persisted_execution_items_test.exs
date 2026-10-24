@@ -67,6 +67,10 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
 
   @tag provider_script: "server_interaction_fixture.py", scenario: "command_repeat"
   test "direct persisted command output survives a cold read without execution", ctx do
+    # Independent OS input to the exact pin's shell selection, before native execution.
+    command = expected_printf_command()
+    observed_after_ms = System.system_time(:millisecond)
+
     {pid, id, turn, approval, events} =
       pending(
         ctx,
@@ -80,9 +84,11 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
     assert params["cwd"] == ctx.fixture.workspace
     assert params["proposedExecpolicyAmendment"] == ["printf"]
     assert_command(params["command"])
+    assert params["command"] === command
     assert File.ls!(ctx.fixture.workspace) == []
     assert :ok = Session.respond(pid, approval.handle, {:ok, %{"decision" => "accept"}})
-    finish(pid, id, turn, approval, events)
+    events = finish(pid, id, turn, approval, events)
+    observed_before_ms = System.system_time(:millisecond)
 
     requests = assert_provider_continuation(ctx)
     [_, continued] = requests
@@ -91,9 +97,34 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
     assert output["output"] =~ "Process exited with code 0"
     assert String.ends_with?(output["output"], "Output:\nsamgita_interaction")
 
+    started = command_notification(events, "item/started")
+    completed = command_notification(events, "item/completed")
+    started_at_ms = Map.fetch!(started, "startedAtMs")
+    completed_at_ms = Map.fetch!(completed, "completedAtMs")
+
+    assert is_integer(started_at_ms)
+    assert is_integer(completed_at_ms)
+    assert observed_after_ms <= started_at_ms
+    assert started_at_ms <= completed_at_ms
+    assert completed_at_ms <= observed_before_ms
+
+    # Only these two generated execution values come from the live item.
+    process_id = Map.fetch!(completed["item"], "processId")
+    duration_ms = Map.fetch!(completed["item"], "durationMs")
+    assert is_binary(process_id) and Regex.match?(~r/^[1-9][0-9]{3,4}$/, process_id)
+    assert String.to_integer(process_id) in 1_000..99_999
+    assert is_integer(duration_ms) and duration_ms >= 0
+    assert duration_ms <= observed_before_ms - observed_after_ms + 1
+
     expected = %{
       "id" => @call_id,
       "type" => "commandExecution",
+      "pluginId" => nil,
+      "scriptPath" => nil,
+      "command" => command,
+      "commandActions" => [%{"type" => "unknown", "command" => "printf samgita_interaction"}],
+      "processId" => process_id,
+      "durationMs" => duration_ms,
       "cwd" => ctx.fixture.workspace,
       "source" => "unifiedExecStartup",
       "status" => "completed",
@@ -101,15 +132,64 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
       "aggregatedOutput" => "samgita_interaction"
     }
 
+    # Approval synthesizes the first start; core suppresses its later canonical start.
+    expected_started =
+      Map.merge(expected, %{
+        "source" => "agent",
+        "status" => "inProgress",
+        "processId" => nil,
+        "aggregatedOutput" => nil,
+        "exitCode" => nil,
+        "durationMs" => nil
+      })
+
+    assert started === %{
+             "threadId" => id,
+             "turnId" => turn,
+             "item" => expected_started,
+             "startedAtMs" => started_at_ms
+           }
+
+    assert completed === %{
+             "threadId" => id,
+             "turnId" => turn,
+             "item" => expected,
+             "completedAtMs" => completed_at_ms
+           }
+
     oracle = fn item ->
       assert Map.take(item, Map.keys(expected)) == expected
+      assert item === expected
       assert_command(Map.fetch!(item, "command"))
       assert File.ls!(ctx.fixture.workspace) == []
     end
 
-    persist_and_read_cold(ctx, pid, id, turn, requests, oracle, fn ->
-      assert File.ls!(ctx.fixture.workspace) == []
-    end)
+    entry_oracle = fn entry ->
+      # Canonical start is not exposed by the suppressed live start. Observe only
+      # this generated timestamp; independently bound it and retain exact cold equality.
+      stored_started_at_ms = Map.fetch!(entry, "startedAtMs")
+      assert is_integer(stored_started_at_ms)
+      assert started_at_ms <= stored_started_at_ms
+      assert stored_started_at_ms <= completed_at_ms
+
+      assert entry === %{
+               "turnId" => turn,
+               "item" => expected,
+               "startedAtMs" => stored_started_at_ms,
+               "completedAtMs" => completed_at_ms
+             }
+    end
+
+    persist_and_read_cold(
+      ctx,
+      pid,
+      id,
+      turn,
+      requests,
+      oracle,
+      fn -> assert File.ls!(ctx.fixture.workspace) == [] end,
+      entry_oracle
+    )
   end
 
   @tag provider_script: "server_interaction_fixture.py", scenario: "patch"
@@ -158,6 +238,8 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
 
   @tag provider_script: "mcp_titled_enum_fixture.py", scenario: "legacy"
   test "direct persisted MCP result keeps the fixed selection with one owned effect", ctx do
+    observed_after_ms = System.system_time(:millisecond)
+
     {pid, id, turn, request, events} =
       pending(ctx, @mcp_message, "mcpServer/elicitation/request", [
         %{"type" => "mention", "name" => "Fixture", "path" => "mcp://fixture"}
@@ -175,7 +257,8 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
 
     assert effects(ctx.fixture) == []
     assert :ok = Session.respond(pid, request.handle, {:ok, @mcp_reply})
-    finish(pid, id, turn, request, events)
+    events = finish(pid, id, turn, request, events)
+    observed_before_ms = System.system_time(:millisecond)
     requests = assert_provider_continuation(ctx)
     [_, continued] = requests
     assert [output] = tool_outputs(continued)
@@ -200,6 +283,19 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
 
     assert received === @mcp_received
 
+    started = mcp_notification(events, "item/started")
+    completed = mcp_notification(events, "item/completed")
+    started_at_ms = Map.fetch!(started, "startedAtMs")
+    completed_at_ms = Map.fetch!(completed, "completedAtMs")
+    duration_ms = Map.fetch!(completed["item"], "durationMs")
+    assert is_integer(started_at_ms)
+    assert is_integer(completed_at_ms)
+    assert observed_after_ms <= started_at_ms
+    assert started_at_ms <= completed_at_ms
+    assert completed_at_ms <= observed_before_ms
+    assert is_integer(duration_ms) and duration_ms >= 0
+    assert duration_ms <= observed_before_ms - observed_after_ms + 1
+
     expected = %{
       "id" => @call_id,
       "type" => "mcpToolCall",
@@ -209,6 +305,44 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
       "status" => "completed",
       "readOnlyHint" => true
     }
+
+    # Fixture tools/list has no app UI metadata or plugin attribution. Its
+    # tools/call result has one JSON text block and no structured content/_meta.
+    # Compare that fixed text as decoded JSON; preserve every other wire member.
+    expected_full =
+      Map.merge(expected, %{
+        "appContext" => nil,
+        "mcpAppUi" => nil,
+        "pluginId" => nil,
+        "error" => nil,
+        "durationMs" => duration_ms,
+        "result" => %{
+          "content" => [%{"type" => "text", "text" => @mcp_received}],
+          "structuredContent" => nil,
+          "_meta" => nil
+        }
+      })
+
+    expected_started =
+      Map.merge(expected_full, %{
+        "status" => "inProgress",
+        "durationMs" => nil,
+        "result" => nil
+      })
+
+    assert started === %{
+             "threadId" => id,
+             "turnId" => turn,
+             "item" => expected_started,
+             "startedAtMs" => started_at_ms
+           }
+
+    assert Map.update!(completed, "item", &mcp_result_semantics/1) === %{
+             "threadId" => id,
+             "turnId" => turn,
+             "item" => expected_full,
+             "completedAtMs" => completed_at_ms
+           }
 
     effect = fn ->
       assert effects(ctx.fixture) == [@mcp_effect]
@@ -220,13 +354,54 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
       assert [%{"type" => "text", "text" => result_text}] = item["result"]["content"]
       assert item["result"]["content"] == [%{"type" => "text", "text" => result_text}]
       assert JSON.decode!(result_text) === @mcp_received
+      assert mcp_result_semantics(item) === expected_full
+      refute Map.has_key?(item, "mcpAppResourceUri")
       effect.()
     end
 
-    persist_and_read_cold(ctx, pid, id, turn, requests, oracle, effect)
+    entry_oracle = fn entry ->
+      # This MCP path exposes its canonical start, unlike approval-synthetic commands.
+      assert Map.update!(entry, "item", &mcp_result_semantics/1) === %{
+               "turnId" => turn,
+               "item" => expected_full,
+               "startedAtMs" => started_at_ms,
+               "completedAtMs" => completed_at_ms
+             }
+    end
+
+    persist_and_read_cold(ctx, pid, id, turn, requests, oracle, effect, entry_oracle)
   end
 
-  defp persist_and_read_cold(ctx, pid, id, turn, requests, oracle, effect) do
+  defp mcp_notification(events, method) do
+    assert [params] =
+             for(
+               event <- events,
+               event.wire["method"] == method,
+               event.wire["params"]["item"]["id"] == @call_id,
+               do: event.wire["params"]
+             )
+
+    params
+  end
+
+  defp mcp_result_semantics(item) do
+    Map.update!(item, "result", fn result ->
+      assert [%{"type" => "text", "text" => text} = content] = Map.fetch!(result, "content")
+      assert is_binary(text)
+      Map.put(result, "content", [%{content | "text" => JSON.decode!(text)}])
+    end)
+  end
+
+  defp persist_and_read_cold(
+         ctx,
+         pid,
+         id,
+         turn,
+         requests,
+         oracle,
+         effect,
+         entry_oracle \\ fn _ -> :ok end
+       ) do
     effect.()
     assert_idle(pid)
 
@@ -238,7 +413,7 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
 
     query = %{"threadId" => id, "turnId" => turn, "itemIds" => [@call_id]}
     warm = call(pid, "thread/items/read", query)
-    assert_direct(warm, turn, oracle)
+    assert_direct(warm, turn, oracle, entry_oracle)
     assert_selection(pid, query, warm)
     assert ModelFixture.requests(ctx.fixture) == requests
     effect.()
@@ -251,7 +426,7 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
 
     # No resume/read barrier or new turn in this distinct process.
     persisted = call(cold, "thread/items/read", query)
-    assert_direct(persisted, turn, oracle)
+    assert_direct(persisted, turn, oracle, entry_oracle)
     assert persisted == warm
     assert_selection(cold, query, warm)
     assert call(cold, "thread/loaded/list", %{})["data"] == []
@@ -263,12 +438,13 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
     effect.()
   end
 
-  defp assert_direct(response, turn, oracle) do
+  defp assert_direct(response, turn, oracle, entry_oracle) do
     assert Map.keys(response) == ["data"]
     assert [%{"turnId" => ^turn, "item" => item} = entry] = response["data"]
     assert Enum.sort(Map.keys(entry)) == ~w(completedAtMs item startedAtMs turnId)
     assert item["id"] == @call_id
     oracle.(item)
+    entry_oracle.(entry)
   end
 
   defp assert_selection(pid, query, expected) do
@@ -334,6 +510,7 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
     assert [outcome] = Session.interaction_outcomes(pid)
     assert outcome.handle == request.handle and outcome.status == :resolution_observed
     assert_idle(pid)
+    events
   end
 
   defp assert_provider_continuation(ctx) do
@@ -347,6 +524,47 @@ defmodule SamgitaCodexDriver.NativePersistedExecutionItemsTest do
 
   defp tool_outputs(request),
     do: Enum.filter(request["input"], &(&1["type"] == "function_call_output"))
+
+  defp command_notification(events, method) do
+    assert [params] =
+             for(
+               event <- events,
+               event.wire["method"] == method,
+               event.wire["params"]["item"]["id"] == @call_id,
+               do: event.wire["params"]
+             )
+
+    params
+  end
+
+  defp expected_printf_command do
+    # rust-v0.163.0 shell_detect.rs reads passwd, not SHELL. For a recognized,
+    # existing account shell, get_shell_path returns that exact path before PATH.
+    # Python is already required by ModelFixture; pwd uses the same account lookup.
+    python = System.find_executable("python3")
+    assert is_binary(python), "BLOCKED_ENV: Python 3 required for independent shell oracle"
+
+    assert {encoded_shell, 0} =
+             System.cmd(python, [
+               "-c",
+               "import json,os,pwd; print(json.dumps(pwd.getpwuid(os.getuid()).pw_shell))"
+             ])
+
+    shell = JSON.decode!(String.trim(encoded_shell))
+
+    assert is_binary(shell) and Path.type(shell) == :absolute and File.regular?(shell),
+           "BLOCKED_ENV: expected a regular absolute account shell"
+
+    assert Path.basename(shell) in ~w(sh bash zsh),
+           "BLOCKED_ENV: independent command oracle requires a POSIX account shell"
+
+    # These characters are unquoted by pinned shlex 1.3.0. Keep other account
+    # names visibly unsupported rather than copying a native presentation value.
+    assert Regex.match?(~r|^[A-Za-z0-9_/.+@:-]+$|, shell),
+           "BLOCKED_ENV: independent shell path requires shlex-safe characters"
+
+    shell <> " -c 'printf samgita_interaction'"
+  end
 
   defp assert_command(command) do
     assert [shell, "-c", "printf samgita_interaction"] = OptionParser.split(command)
