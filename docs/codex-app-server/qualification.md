@@ -2028,3 +2028,21 @@ contracts gain scoped implemented evidence. Ledger: **460 implemented /
 contracts; **zero verified**. CI selects the profile. Edited/mismatched replies,
 other protocols, loss/restart, legacy reachability, final aggregate/hosted and
 A11 remain incomplete.
+
+## Exact retained native field indexing
+
+The [field evidence unit](field-evidence-qualification.md) reruns the actual
+owning tests at seeds `501432` and `987654`: turn/input/output **48/0** twice,
+history/metadata **29/0** twice and configuration/discovery **46/0** twice.
+Source hashes remain unchanged. It indexes 322 precise, previously missing
+positive contracts with source ranges, exercised values and semantic limits.
+No driver behavior, test assertion, timeout or upstream export changes.
+
+Shared types do not qualify uncalled operations; absent keys do not qualify
+explicit nulls; advertised metadata does not qualify execution or authorization.
+Timeline mappings retain their separate pinned-source provenance. All new rows
+are scoped implemented, with none fully verified. The generated ledger is
+**460 implemented / 14 missing / 11 blocked** requirements and **1,632 implemented /
+4,989 missing** contracts, **zero verified**. Final aggregate/hosted, full field
+and behavior coverage, A11, legacy reachability and external profiles remain
+incomplete.

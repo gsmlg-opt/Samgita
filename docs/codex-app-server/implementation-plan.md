@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 460 `implemented`,
-with 1,310 exact field/variant schema contracts implemented; 14 requirements and 5,311 contracts
+with 1,632 exact field/variant schema contracts implemented; 14 requirements and 4,989 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -117,8 +117,11 @@ and reaps bwrap-adopted children across process groups under the original
 cleanup budget. Both seeds and static checks pass; see
 [network amendments](network-amendment-qualification.md). The approval lifecycle
 remains missing pending edited/mismatched decisions and the remaining profiles.
-Next: rerun/index exact existing turn/history field assertions, then the complete
-final local and hosted matrix. No selected unit closes A11 or completeness.
+The exact turn/history/configuration field owners now pass both recorded seeds
+(48, 29 and 46 tests per run); 322 selected contracts gain indexed evidence in
+[field qualification](field-evidence-qualification.md). Next: bounded approval
+decision edits, then the complete final local and hosted matrix. No selected
+unit closes A11 or completeness.
 
 1. The production shutdown fix stays intact. The new test cleanup barrier is
    `5964db9`, followed by its strict-Credo syntax correction `20277f1`.
