@@ -116,7 +116,35 @@ package checkpoint only. The local populated umbrella failure, A11, unavailable
 native paths, external/OS profiles and full evidence gate remain incomplete.
 New native test units follow this frozen matrix and need their own results.
 
-## Latest populated-database aggregate checkpoint
+## Latest populated-database aggregate checkpoint at c5c0cba
+
+The serial v4 platform runner froze executable/configuration/workflow source
+at `c5c0cba` and passed its end-of-run hash guard. On the same retained
+`samgita_redesign_recovery_repair_test`, seed `501432` passed **224 core/0/one
+excluded + 125 web/0/two excluded**. Seed `987654` passed **224 core/0/one
+excluded**, but reported **125 web/one failure/two excluded**: the unchanged
+GitHub first-page assumption at `github_controller_test.exs:56` described below.
+The generated record UUID happens to fit one first page and miss the other;
+one passing run does not establish a pagination repair. No records were deleted,
+guard bypassed, mappings changed or assertions skipped. The aggregate is failed.
+
+Native runtime/API/races passed **53 core + 5 web / zero failures**. Both
+consecutive recovery/restart seeds passed **4 core + 1 web / zero failures**.
+Compilation, formatting, strict Credo, legacy checks, forced Dialyzer, strict
+root audit, frozen web dependencies, assets and local production assembly all
+passed. Exact commands, source hashes, every exit and logs:
+`/tmp/samgita-repair-final-platform-v4-20261024/`; unpublished local assembly:
+`/tmp/samgita-repair-final-prod-v4-20261024/rel/samgita`. It was not started.
+
+The subsequent CI-only change uses official Mix file partitions for the full
+default driver suite. Both partitions remain required, seed `501432`, each
+with the original eight-minute step limit and original native test deadlines.
+Hosted `570a6f0` already spent 463.9s on 475 tests before these 20 additions;
+sharding bounds growing work without excluding scenarios or increasing a
+failure timeout. Local full-suite repeats and both hosted partitions are
+separate final checks. No full evidence gate, A11 or release criterion changes.
+
+## Earlier populated-database aggregate checkpoint
 
 At `53ec89b95f6577e8cf328a22f1f77d9548384042`, the final-source platform
 runner retained `samgita_redesign_recovery_repair_test` without reset, row

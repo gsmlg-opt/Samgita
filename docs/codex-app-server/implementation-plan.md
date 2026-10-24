@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 462 `implemented`,
-with 1,883 exact field/variant schema contracts implemented; 12 requirements and 4,738 contracts
+with 1,931 exact field/variant schema contracts implemented; 12 requirements and 4,690 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -121,6 +121,8 @@ and 111 exact contracts as scoped implemented, with zero fully verified.
 Two invalid draft expectations were corrected from exact pinned upstream
 semantics; their failing runs remain recorded. Refresh final combined-source,
 populated-database and hosted checks, then continue remaining behavior variants.
+The subsequent bounded client-request audit adds only 48 existing positive
+wrapper evidence links; no new runtime, nested payload or verified claim.
 
 The next four [native units](qualification.md#native-graph-permission-future-settings-and-error-semantics)
 now pass 18 cases at both recorded seeds: real spawned relations/cold graph,

@@ -41256,24 +41256,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/10",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Exact archived identity is asserted after response. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/10",
       "schema": "ClientRequest.json",
       "schema_sha256": "7ee166747d4900767ca077b9e1fc478f24d7f91774ae48c6ff8160bbeb7c2ea7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:206-211"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -41305,75 +41313,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/10/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Exact archived identity is asserted after response. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/10/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "35e79b93190b47a5f399cdb082f0cc52dd1e4cb5c289a85c5d55acd50e9498ee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:206-211"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/10/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Exact archived identity is asserted after response. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/10/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "eca37b17ac52e674900077bc6aeba3801d5a86480c1d3cc340bed6cd05b05be0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:206-211"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/10/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Exact archived identity is asserted after response. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/10/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "11ec69fec75212d6c29f26651deac70c5cb214d6660c9966fc5f8cec660f70a0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:206-211"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -42598,24 +42630,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/11",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Exact deleted identity and subsequent missing-thread read are asserted. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/11",
       "schema": "ClientRequest.json",
       "schema_sha256": "435c92116583dcf61df16fa4aba502b9ea0c03779941ca3b9dc5c8be48d61e41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:219-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -42647,75 +42687,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/11/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Exact deleted identity and subsequent missing-thread read are asserted. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/11/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "1cc02c5c0a5c58addbf2a0d8ede2ee1e1f9c885924f26e2841bde803a0f8444d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:219-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/11/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Exact deleted identity and subsequent missing-thread read are asserted. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/11/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "160c52f8eb4d32121a6031fc915ddbad853383e67e2cf32d58683fe7af203448",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:219-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/11/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Exact deleted identity and subsequent missing-thread read are asserted. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/11/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "11d36167454318ec8391d2e64f4020c28fcef43ff64679da96ade1ff073c7c5c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:219-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -44028,24 +44092,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/12",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Idle eviction profile also asserts matching closed/notLoaded notices. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/12",
       "schema": "ClientRequest.json",
       "schema_sha256": "3f91957a073cb561310ac354515fa151a5de89e7db91b7437702e86b02eeba00",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:230-243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -44077,75 +44149,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/12/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Idle eviction profile also asserts matching closed/notLoaded notices. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/12/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "fa7f93fb02aa22e5c0534c520df6c3289c489e064ea262ba94b99e77f8a0a34c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:230-243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/12/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Idle eviction profile also asserts matching closed/notLoaded notices. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/12/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "574919b61f74e738546d1bab78b97e4868e4f32af04e338382f60b8337921c44",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:230-243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/12/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Idle eviction profile also asserts matching closed/notLoaded notices. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/12/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "77edd5e123b34236657dd4c21831178420bdc173f057f92cea72dc8634d5e666",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:230-243"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -44760,24 +44856,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/125",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Uses start(ctx) default experimentalApi:true at575-604; earlier gate rejection479 is not evidence. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/125",
       "schema": "ClientRequest.json",
       "schema_sha256": "5c0a3a1db5d7978d2f8205f7a472b5480a101286cc5f187dd0b72a42f280d0bb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs:519-536"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -44809,75 +44913,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/125/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Uses start(ctx) default experimentalApi:true at575-604; earlier gate rejection479 is not evidence. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/125/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b202eae7c9bfb179aa24a5781ac5968d7f040ab0c750e3cf5fa1cdf8f822ce55",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs:519-536"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/125/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Uses start(ctx) default experimentalApi:true at575-604; earlier gate rejection479 is not evidence. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/125/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "17eb697ee28df7521e91f05ff81de3b1e79d9d26e94f59c3dabaade79b84e960",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs:519-536"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/125/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Uses start(ctx) default experimentalApi:true at575-604; earlier gate rejection479 is not evidence. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/125/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "e8a882c9a6020dd0e87542cae24a3c2f98994953bd4202ddc3d425f4b483ac71",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_import_lifecycle_test.exs:519-536"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -47322,24 +47450,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/144",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_native_request_envelope_and_correlated_result. Both explicit null and omitted params produce {}; helper constructs native request and asserts matching response ID, but IDs are still excluded from this unit. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/144",
       "schema": "ClientRequest.json",
       "schema_sha256": "a710f732e97d0840e2b2ed7be4189bd6079cb8bc63acc450b0ae96e143bf00fe",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs:41-59,295-303"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -47371,75 +47507,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/144/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_native_request_envelope_and_correlated_result. Both explicit null and omitted params produce {}; helper constructs native request and asserts matching response ID, but IDs are still excluded from this unit. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/144/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "eb8eefaba3a18b5489e93f7319928dfbb2b4884e83bada8c7e99dda368507216",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs:41-59,295-303"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/144/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_native_request_envelope_and_correlated_result. Both explicit null and omitted params produce {}; helper constructs native request and asserts matching response ID, but IDs are still excluded from this unit. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/144/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "fc5a4fa2de2a7ded1feaaec922392ce21aa3cc250c59592e1fb93b1443d621ac",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs:41-59,295-303"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/144/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_native_request_envelope_and_correlated_result. Both explicit null and omitted params produce {}; helper constructs native request and asserts matching response ID, but IDs are still excluded from this unit. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/oneOf/144/properties/params",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs:41-59,295-303"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -48142,24 +48302,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/15",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Owned thread/name/updated notification asserts normalized name and same thread. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/15",
       "schema": "ClientRequest.json",
       "schema_sha256": "ecb29ea1341c74326f73f7900072c77543e493bf0222d6b13dccd3b12f762eea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:152-159,172-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -48191,75 +48359,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/15/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Owned thread/name/updated notification asserts normalized name and same thread. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/15/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "ea690c298b75b90054dba01f1ae06645eedc333c0e8cf1b70d57e50bcd0e1377",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:152-159,172-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/15/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Owned thread/name/updated notification asserts normalized name and same thread. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/15/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "447981101e297b9b86e39e079e37f6fe1993da6b538f13ec61850f83b63aad3b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:152-159,172-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/15/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Owned thread/name/updated notification asserts normalized name and same thread. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/15/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "28e99040274738124899b7008c4ca86eb1e976a48ea84708e909678700dc5c94",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs:152-159,172-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -50338,24 +50530,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/166",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Unrestricted local config only; excludes assumptions about all managed/forced requirements. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/166",
       "schema": "ClientRequest.json",
       "schema_sha256": "21286588ac91eb4732dd35d749912ddc920cc720f2a07d89aaf3b33437dc2950",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:213-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -50387,97 +50587,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/166/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Unrestricted local config only; excludes assumptions about all managed/forced requirements. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/166/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "e0870509701d66901c778f7a8dd0a8e6caa3875280dc1909ab4cac576fb60985",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:213-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/166/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Unrestricted local config only; excludes assumptions about all managed/forced requirements. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/166/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "d3bc785b72c2d31c2e8ba0eebc70a13666f371e948a8f29e8904822130731fb6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:213-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/166/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Unrestricted local config only; excludes assumptions about all managed/forced requirements. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/oneOf/166/properties/params",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_test.exs:213-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/167",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_native_request_envelope_and_correlated_result. Explicit unauthenticated local profile; no real account/backend acceptance. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/167",
       "schema": "ClientRequest.json",
       "schema_sha256": "f8916ec0339bda348abb57dd4e4144bb87c24a979699091f2c5cf45bd583159e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs:41-46,235-245,295-303"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -50509,75 +50741,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/167/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_native_request_envelope_and_correlated_result. Explicit unauthenticated local profile; no real account/backend acceptance. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/167/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "6a84f73128140d0a44343abca25e2e80c6705e599449a8bc7abd6198c95bbd50",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs:41-46,235-245,295-303"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/167/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_native_request_envelope_and_correlated_result. Explicit unauthenticated local profile; no real account/backend acceptance. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/167/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "ad1a0314f605a89cd47afaa2b9114ef9431c61d85887c17cb9621265940831e8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs:41-46,235-245,295-303"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/167/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_native_request_envelope_and_correlated_result. Explicit unauthenticated local profile; no real account/backend acceptance. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/167/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "9903340778c17b19e0838a281076b87eed9b2585f1e29d7a3e02dd5675ac2102",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs:41-46,235-245,295-303"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -51314,24 +51570,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/19",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Goals feature enabled by setup11-16; exact subsequent clear with origin:null returns cleared:false. Stable API with experimentalApi:false is supported, not a disabled goals profile. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/19",
       "schema": "ClientRequest.json",
       "schema_sha256": "0ba025811089094c2c0cf9b9d0f9539a3e5edbf66b43cf41756bd7f683fe151c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:38-77"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -51363,75 +51627,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/19/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Goals feature enabled by setup11-16; exact subsequent clear with origin:null returns cleared:false. Stable API with experimentalApi:false is supported, not a disabled goals profile. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/19/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "86172f2ec5b28d63677501dc08ccec3639cdafb3f031a8b71e29b3ddd2642d07",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:38-77"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/19/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Goals feature enabled by setup11-16; exact subsequent clear with origin:null returns cleared:false. Stable API with experimentalApi:false is supported, not a disabled goals profile. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/19/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "15e733ad2d416ec42cffd89327594a151240bd88a539b4d492c50a0be49143f1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:38-77"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/19/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Goals feature enabled by setup11-16; exact subsequent clear with origin:null returns cleared:false. Stable API with experimentalApi:false is supported, not a disabled goals profile. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/19/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "544d9b4cbe2419ff93d1b408bdb7e977a038561bafa0be62a7528d74292b45f6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:38-77"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -53388,24 +53676,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/34",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Enabled experimental profile with empty native memory; excludes separate disabled/error-only test63-78. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/34",
       "schema": "ClientRequest.json",
       "schema_sha256": "72bdc9406ee9091a1c6dfdf32e77a479202f04c83e4951cb8572054a01f05a5a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:80-89,146-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -53437,97 +53733,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/34/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Enabled experimental profile with empty native memory; excludes separate disabled/error-only test63-78. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/34/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "3b444a35438e18a4da8416bf0b9c12c5a159e0eadb0625f45d050775c9034bcc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:80-89,146-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/34/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Enabled experimental profile with empty native memory; excludes separate disabled/error-only test63-78. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/34/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "96396241637b4fb9fdaf41743011ef1f2d7f080702798fe8b218a7ec5ff45f22",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:80-89,146-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/34/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Enabled experimental profile with empty native memory; excludes separate disabled/error-only test63-78. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/34/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b34e23cb3dbb01f58f3d68a371d972ed42b726e9479b1ced59660b6e9de7b619",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:80-89,146-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/35",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Only an owned synthetic home with empty consolidation state; existing thread survives. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/35",
       "schema": "ClientRequest.json",
       "schema_sha256": "ef472aff5fbc39e538ac44a30209b1bb0909912b80d6366006f6ada178390038",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:80-96"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -53559,75 +53887,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/35/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Only an owned synthetic home with empty consolidation state; existing thread survives. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/35/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "d4f6604d7cf097bbe3d03fd842466288d338d7ba23b086c08cbcaadb81c9efbc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:80-96"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/35/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Only an owned synthetic home with empty consolidation state; existing thread survives. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/35/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "4c6e8b8f6ae9a60e6bb18c396a527d813fff49c7488ef09122c303bade8b3dae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:80-96"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/35/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Only an owned synthetic home with empty consolidation state; existing thread survives. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": true,
       "pointer": "/oneOf/35/properties/params",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:80-96"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -56682,24 +57034,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/59",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Cold owned native process after archival of two owned threads; use exact whole-result line53, not partial account helper status. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/59",
       "schema": "ClientRequest.json",
       "schema_sha256": "c65bb94caebcc2713285918ee1a3012cf92ff41281aa775909e12a19ea45f304",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:28-60"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -56731,75 +57091,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/59/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Cold owned native process after archival of two owned threads; use exact whole-result line53, not partial account helper status. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/59/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "eab273be47157bf1755bcf5dffc4e38829bed1364638ff6022c6bad91d089ffd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:28-60"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/59/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Cold owned native process after archival of two owned threads; use exact whole-result line53, not partial account helper status. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "pointer": "/oneOf/59/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "187e4cb7faa903d3a926212b93f17cb67decd93c839e0b65bf874f961e7f69de",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:28-60"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/envelope-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/59/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "existing_native_client_wrapper: explicit_call_arguments_plus_deterministic_wire_constructor_and_native_result. Cold owned native process after archival of two owned threads; use exact whole-result line53, not partial account helper status. Outer envelope only; no referenced payload, ID field/variant or complete-method promotion. Source-only indexing, no new runtime capture or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/59/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "21feb4a060f4a935bc1590abc131de032bd3d0c151fea9ca5e32c43b74d7ad45",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_diagnostics_memory_test.exs:28-60"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
