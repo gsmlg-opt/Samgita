@@ -27,6 +27,13 @@ defmodule SamgitaCodexDriver.NativeConfigOptionProjectionsTest do
   chatgpt_base_url = "http://127.0.0.1:9"
   openai_base_url = "http://127.0.0.1:9/v1"
   """
+  # Remove only the two explicit selections before supplying alternatives.
+  # approval_policy stays on-request; this is not an all-Config null fixture.
+  @selection_root_config String.replace(
+                           @root_config,
+                           "sandbox_mode = \"read-only\"\nweb_search = \"disabled\"\n",
+                           ""
+                         )
   @tables """
   [features]
   apps = false
@@ -102,6 +109,15 @@ defmodule SamgitaCodexDriver.NativeConfigOptionProjectionsTest do
     for field <- @optional_fields do
       assert Map.fetch!(config, field) === nil
     end
+
+    assert_projection(config, %{
+      "approvals_reviewer" => nil,
+      "forced_login_method" => nil,
+      "forced_chatgpt_workspace_id" => nil,
+      "model_auto_compact_token_limit_scope" => nil,
+      "sandbox_mode" => "read-only",
+      "web_search" => "disabled"
+    })
   end
 
   test "first explicit scalar projection preserves empty strings and selected low verbosity",
@@ -174,8 +190,107 @@ defmodule SamgitaCodexDriver.NativeConfigOptionProjectionsTest do
            }
   end
 
-  defp read(ctx, scalars \\ "", tables \\ "") do
-    input = @root_config <> scalars <> @tables <> tables
+  # Every case below reads metadata only in ManagedRequirementsFixture's private
+  # namespaces. Only initialization, config/read and idle metadata requests are sent.
+  test "absent selection options stay native nulls without copying runtime defaults", ctx do
+    config = read(ctx, "", "", @selection_root_config)
+
+    assert_projection(config, %{
+      "approvals_reviewer" => nil,
+      "forced_login_method" => nil,
+      "forced_chatgpt_workspace_id" => nil,
+      "model_auto_compact_token_limit_scope" => nil,
+      "sandbox_mode" => nil,
+      "web_search" => nil
+    })
+  end
+
+  test "user API and single-workspace metadata preserves total workspace-write cached selections",
+       ctx do
+    config =
+      read(
+        ctx,
+        """
+        approvals_reviewer = "user"
+        forced_login_method = "api"
+        forced_chatgpt_workspace_id = "123e4567-e89b-42d3-a456-426614174000"
+        model_auto_compact_token_limit_scope = "total"
+        sandbox_mode = "workspace-write"
+        web_search = "cached"
+        """,
+        "",
+        @selection_root_config
+      )
+
+    assert_projection(config, %{
+      "approvals_reviewer" => "user",
+      "forced_login_method" => "api",
+      "forced_chatgpt_workspace_id" => "123e4567-e89b-42d3-a456-426614174000",
+      "model_auto_compact_token_limit_scope" => "total",
+      "sandbox_mode" => "workspace-write",
+      "web_search" => "cached"
+    })
+  end
+
+  test "auto-review ChatGPT and workspace-list metadata preserves body-prefix full-access indexed selections",
+       ctx do
+    config =
+      read(
+        ctx,
+        """
+        approvals_reviewer = "auto_review"
+        forced_login_method = "chatgpt"
+        forced_chatgpt_workspace_id = ["123e4567-e89b-42d3-a456-426614174001", "123e4567-e89b-42d3-a456-426614174000"]
+        model_auto_compact_token_limit_scope = "body_after_prefix"
+        sandbox_mode = "danger-full-access"
+        web_search = "indexed"
+        """,
+        "",
+        @selection_root_config
+      )
+
+    assert_projection(config, %{
+      "approvals_reviewer" => "auto_review",
+      "forced_login_method" => "chatgpt",
+      "forced_chatgpt_workspace_id" => [
+        "123e4567-e89b-42d3-a456-426614174001",
+        "123e4567-e89b-42d3-a456-426614174000"
+      ],
+      "model_auto_compact_token_limit_scope" => "body_after_prefix",
+      "sandbox_mode" => "danger-full-access",
+      "web_search" => "indexed"
+    })
+  end
+
+  test "legacy reviewer alias normalizes while empty workspace and live-search metadata stay explicit",
+       ctx do
+    config =
+      read(
+        ctx,
+        """
+        approvals_reviewer = "guardian_subagent"
+        forced_chatgpt_workspace_id = []
+        sandbox_mode = "read-only"
+        web_search = "live"
+        """,
+        "",
+        @selection_root_config
+      )
+
+    # The alias is accepted input but serialized canonically as auto_review.
+    # Empty list is distinct from absent/null; no workspace authorization is tested.
+    assert_projection(config, %{
+      "approvals_reviewer" => "auto_review",
+      "forced_login_method" => nil,
+      "forced_chatgpt_workspace_id" => [],
+      "model_auto_compact_token_limit_scope" => nil,
+      "sandbox_mode" => "read-only",
+      "web_search" => "live"
+    })
+  end
+
+  defp read(ctx, scalars \\ "", tables \\ "", root_config \\ @root_config) do
+    input = root_config <> scalars <> @tables <> tables
     File.write!(ctx.config, input)
     pid = ManagedRequirementsFixture.start(ctx, "owned_config_option_projections")
     response = call(pid, "config/read", %{})
