@@ -37982,24 +37982,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadGoalStatus/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "pointer": "/definitions/ThreadGoalStatus/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "25ef0c801499f0259f32eb95b0f5be517b467b89dfc6eaf2dae4ed3af924b7e2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -89422,27 +89430,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadGoal/properties/updatedAt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadGoal/properties/updatedAt",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "updatedAt"
     },
     {
@@ -170198,123 +170214,163 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalGetParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadGoalGetParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalGetResponse.json#/properties/goal",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/goal",
       "required": false,
       "schema": "v2/ThreadGoalGetResponse.json",
       "schema_sha256": "2f0eb52b5116795f0518202fac6c7696365d2fc38c4ff5067031c0b2386e55b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "goal"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadGoalGetResponse.json#/properties/goal/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "pointer": "/properties/goal/anyOf/0",
       "schema": "v2/ThreadGoalGetResponse.json",
       "schema_sha256": "05cbe55f045a368108a2c0c3150e24cf48ea4ca4aa4c1d90fe4c92edc6c4b88e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadGoalGetResponse.json#/properties/goal/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "pointer": "/properties/goal/anyOf/1",
       "schema": "v2/ThreadGoalGetResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalSetParams.json#/properties/objective",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/objective",
       "required": false,
       "schema": "v2/ThreadGoalSetParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "objective"
     },
     {
@@ -170390,49 +170446,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalSetParams.json#/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/status",
       "required": false,
       "schema": "v2/ThreadGoalSetParams.json",
       "schema_sha256": "1f1729b0dba69b8e8d8e43e53f026f16b39de1f73bdf5231096a279c5cc2a471",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "status"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadGoalSetParams.json#/properties/status/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "pointer": "/properties/status/anyOf/0",
       "schema": "v2/ThreadGoalSetParams.json",
       "schema_sha256": "4b936118a7ae58693b8e8780f7f4b92ce4983e01bc63caf23fc1810802467bb6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -170460,157 +170532,205 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalSetParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadGoalSetParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalSetParams.json#/properties/tokenBudget",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/tokenBudget",
       "required": false,
       "schema": "v2/ThreadGoalSetParams.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "tokenBudget"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalSetResponse.json#/properties/goal",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": false,
       "pointer": "/properties/goal",
       "required": true,
       "schema": "v2/ThreadGoalSetResponse.json",
       "schema_sha256": "05cbe55f045a368108a2c0c3150e24cf48ea4ca4aa4c1d90fe4c92edc6c4b88e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "goal"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalUpdatedNotification.json#/properties/goal",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": false,
       "pointer": "/properties/goal",
       "required": true,
       "schema": "v2/ThreadGoalUpdatedNotification.json",
       "schema_sha256": "05cbe55f045a368108a2c0c3150e24cf48ea4ca4aa4c1d90fe4c92edc6c4b88e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "goal"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalUpdatedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadGoalUpdatedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-budget-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalUpdatedNotification.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_computed_goal_budget: One active user goal budget20 causes exactly two native goal-triggered turns and three owned model requests. Independent cached-token arithmetic9+0+12=21 produces native budgetLimited, strict typed/bounded full goal and update oracles, real positive elapsed time, stock get_goal output remaining11, cold stopped retention/resume with fail-on-fourth guard. Synthetic model dependency only; other statuses/tools, active crash/accounting ambiguity, service/OS/transports, Samgita Task acceptance and full qualification remain unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/turnId",
       "required": false,
       "schema": "v2/ThreadGoalUpdatedNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:91"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "turnId"
     },
     {
