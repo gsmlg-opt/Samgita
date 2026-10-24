@@ -165335,24 +165335,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/system-skills-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillScope/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_offline_system_skills: Genuine native-materialized review-agent with independent embedded-asset SHA, exact system/enabled/path/description/pluginId metadata. Enabled A, disabled B sharing one owned CODEX_HOME and A forceReload preserve entire bounded cache file/hash/size map; B hides System with errors empty. No inference, thread, interaction, auth file, host config mutation or inherited credentials; both native/controller owners reaped.1/0 both seeds, strict checks/source guards. Only this physical System enum owner; no admin scope, explicit-null optional metadata, skill execution, sibling/alias promotion, OS/backend/A11 or verified/full compatibility claim."
+      ],
       "pointer": "/definitions/SkillScope/enum/2",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "cf5fba424df88453fd1c04605897f3372415874ef6eb4d48b3e8bf745f291178",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_system_skills_profile.exs:76-124,155-177"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {

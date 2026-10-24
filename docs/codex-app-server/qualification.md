@@ -2584,3 +2584,13 @@ failures are retained. The broad approval lifecycle remains missing; counts do
 not change. The required explicit hosted step and final combined-source matrix
 remain separate gates. A11, unreachable legacy and external/OS success remain
 incomplete; no release/publication/deployment is claimed.
+
+The [native System-skill shared-cache case](system-skills-qualification.md) passes
+**1/0** at both fixed seeds. Only Codex materializes the embedded skill; an
+independently pinned byte oracle and whole-cache hashes prove enabled A,
+disabled B sharing the same home, and A forceReload preserve the cache. No
+model execution occurs. Strict checks/source guards pass; one exact System enum
+owner becomes implemented, leaving **3,034 implemented / 3,587 missing** contracts
+and unchanged **462 implemented / 12 missing / 11 blocked** requirements, zero
+verified. Final combined-source and hosted checks remain required; all broader
+A11/legacy/external/OS and full-compatibility gates stay incomplete.
