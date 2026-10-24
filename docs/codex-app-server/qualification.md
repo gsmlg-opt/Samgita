@@ -2094,3 +2094,21 @@ Ledger: **461 implemented / 13 missing / 11 blocked** requirements and
 **1,633 implemented / 4,988 missing** contracts, **zero verified**. Pending
 disconnect/multi-owner privacy, rotation/expiry, external accounts and other OS
 profiles, complete aggregate/hosted checks and A11 remain incomplete.
+
+## Native file approval lifetime and interruption
+
+Five [approval lifetime cases](approval-lifetime-qualification.md) pass **5/0**
+at both seeds, 5.9 seconds each. Actual native session acceptance suppresses a
+matching-path prompt but not another path; one-shot acceptance prompts again.
+Confirmed native shutdown followed by a distinct process and cold resume
+preserves files/history without restoring the approval cache. Explicit pending
+file/command interruptions retire the exact request/turn, preserve no-effect
+assertions and reject stale responses in either notification order.
+
+Both nullable file fields are explicitly present as null; nonnull behavior is
+not inferred. AST, namespace, compile, format and strict Credo pass without
+assertion/deadline changes. The default native CI suite includes these cases.
+Ledger: **461 implemented / 13 missing / 11 blocked** requirements and
+**1,635 implemented / 4,986 missing** contracts, **zero verified**. Full approval
+lifecycle, loss/replay, remaining field/environment/OS/service profiles, A11 and
+final aggregate/hosted checks remain incomplete.

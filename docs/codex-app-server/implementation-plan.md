@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 461 `implemented`,
-with 1,633 exact field/variant schema contracts implemented; 13 requirements and 4,988 contracts
+with 1,635 exact field/variant schema contracts implemented; 13 requirements and 4,986 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -127,8 +127,12 @@ The private-keyring Gateway unit now passes actual Session/UDS login, native
 ciphertext/keyring persistence, cold native restart and primary logout at both
 seeds; see [Gateway persistence](gateway-success-qualification.md). It qualifies
 selected synthetic-issuer behavior, not real providers or rotation.
-Next: finish file-approval lifetime indexing, then the complete final local and
-hosted matrix. No selected unit closes A11 or completeness.
+Five [approval lifetime cases](approval-lifetime-qualification.md) now pass both
+seeds for matching-path cache, one-shot prompting, cold resume and explicit
+interruption. Only the two exact-null fields newly advance; the broader approval
+lifecycle stays missing. Next: complete the final local/hosted matrix while
+independent source audits identify remaining reachable behavior. No selected
+unit closes A11 or completeness.
 
 1. The production shutdown fix stays intact. The new test cleanup barrier is
    `5964db9`, followed by its strict-Credo syntax correction `20277f1`.
