@@ -422,6 +422,33 @@ defmodule SamgitaCodexDriver.NativeMcpControlLifecycleTest do
     assert_profile(ctx, [pid])
   end
 
+  test "M9 fixture teardown is acknowledged before the live caller releases its guardian", ctx do
+    assert_profile(ctx, [])
+    assert [closed] = events(ctx, "fixture_closed")
+    assert [ack] = Enum.filter(events(ctx, "control_done"), &(&1["op"] == "close"))
+    assert closed["seq"] < ack["seq"]
+
+    proof = state(ctx)
+    for pid <- proof["native_pids"], do: refute(File.exists?("/proc/#{pid}"))
+    assert File.exists?("/proc/#{proof["controller_pid"]}")
+    assert File.exists?("/proc/#{proof["namespace_owner_pid"]}")
+    assert Process.alive?(ctx.owner.owner.pid)
+    assert :atomics.get(ctx.owner.owner.completion, 1) == 0
+
+    assert {:error, reason} =
+             :gen_tcp.connect(
+               {:local, String.to_charlist(ctx.socket)},
+               0,
+               [:binary, active: false],
+               100
+             )
+
+    assert reason in [:enoent, :econnrefused]
+    assert control(ctx, "barrier") == %{}
+    assert control(ctx, "close") == %{}
+    assert events(ctx, "fixture_closed") == [closed]
+  end
+
   defp connect(ctx) do
     {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
     on_exit(fn -> if Process.alive?(pid), do: assert(:ok = Session.close(pid)) end)
@@ -705,6 +732,10 @@ defmodule SamgitaCodexDriver.NativeMcpControlLifecycleTest do
       assert Session.status(pid).interactions == 0
       drain(pid)
     end
+
+    # Finish graceful fixture teardown while this caller still owns Stdio.
+    # Its unchanged owner-death guardian remains the hard cleanup fallback.
+    assert control(ctx, "close") == %{}
   end
 
   defp wait(predicate, remaining \\ 500)

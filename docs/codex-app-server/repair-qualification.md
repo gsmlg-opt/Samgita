@@ -6,6 +6,48 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Frozen local matrix at 0629d92
+
+The v12 combined runner reached terminal status against executable source
+`0629d92cd20fea196de729da3b4fa77747003080`. Both executable/configuration/
+workflow hash guards passed. All **23 independent-package commands passed**;
+the platform half ran all **17 commands** and failed its first populated-root
+aggregate. The combined matrix therefore failed, rather than suppressing that
+result. No database reset, task deletion, guard bypass or test exclusion was
+introduced for this repeat.
+
+| Independent check | Actual terminal result |
+| --- | --- |
+| Complete default driver, seeds 501432 / 987654 | **647/0** each |
+| All 30 isolated native profiles, both seeds | **208/0** each |
+| Neutral WebSocket, seeds 455834 / 501432 / 987654 | **42/0** each |
+| Independent native wire | **42/0** |
+| Native and both neutral outside consumers, package compile/format/audits | Passed |
+| Inventory regressions/consistency, namespace and native sandbox prerequisites | Passed |
+
+| Preserved platform check | Actual terminal result |
+| --- | --- |
+| Populated root, seed 501432 | Core **224/0/1 excluded**, web **128/1/5 excluded** |
+| Consecutive root, seed 987654 | Core **224/0/1 excluded**, web **128/0/5 excluded** |
+| Native runtime/API/concurrency | Core **53/0**, web **8/0** |
+| Consecutive recovery/restart, both seeds | Core **4/0**, web **1/0** each |
+| Compile, full format, strict Credo, forced Dialyzer and audit | Passed |
+| Legacy exclusion, frozen frontend install, assets and production assembly | Passed; assembly never started |
+
+The retained failure is the first-page assertion at
+`github_controller_test.exs:56` (test declared at 39): a newly inserted connection
+need not appear on the first page of this retained populated database. It is not
+the repaired activation/restart failure. The GitHub test, pagination and retained
+rows were not changed; its actual failure remains an aggregate gate. Later
+success at a different seed does not erase it.
+
+Exact commands, per-command logs, source hashes and terminal exits are in
+`/tmp/samgita-repair-final-{combined-v12,platform-v10,packages-v12}-20261024/`;
+the corresponding `.py` runners are adjacent to those directories. These local
+successes do not resolve the separately observed hosted MCP teardown failure
+below. Executable edits resume only after this terminal checkpoint. Completeness,
+A11, unreachable legacy branches and external/OS success remain incomplete.
+
 ## Hosted checkpoint at 3dcf64b
 
 Both workflows reached terminal state at exact pushed documentation head
@@ -38,9 +80,14 @@ No deadline, assertion, sandbox, cleanup or completeness gate was relaxed.
 Exact terminal metadata, complete raw logs, derived counts/line anchors and
 SHA256 fingerprints are retained in `/tmp/samgita-hosted-3dcf64b-20261024/`,
 collected by `/tmp/samgita-collect-hosted-3dcf64b-20261024.py`. The collector
-requires both exact heads and terminal statuses before download. The new
-cleanup failure is under investigation; successful prior checkpoints do not
-resolve it. The current local frozen matrix is still running. A11,
+requires both exact heads and terminal statuses before download. The
+[MCP ordering repair](mcp-cleanup-order-qualification.md) subsequently reproduces
+the missing live-caller marker before repair and passes the same regression plus
+**9/0** complete MCP cases at `501432` and **29/0** MCP/process cleanup cases at
+`987654`. It moves graceful fixture acknowledgement before caller death without
+changing production guardians, deadlines or existing cleanup assertions. The
+exact interrupted hosted shutdown stage remains unknown; new-source hosted
+qualification is still required. A11,
 source-unreachable branches, real external/OS success and complete compatibility
 remain incomplete. No tag, release, package publication or deployment follows.
 

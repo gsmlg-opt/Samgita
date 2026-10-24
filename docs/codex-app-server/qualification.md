@@ -37,7 +37,13 @@ and persisted failed FileChange states and populated move destinations. The
 initial move-summary, deny-glob and resume-checkpoint oracle failures remain
 recorded with source-backed corrections. No deadline, assertion, historical
 record or process-cleanup guarantee was weakened. The new executable source is
-`0629d92` after file unit `264b14c`; its full local checks are ongoing.
+`0629d92` after file unit `264b14c`; its full local checks are now terminal:
+all 23 package commands passed, with **647/0** at both driver seeds,
+**208/0** at both isolated-profile seeds and **42/0** at all three WebSocket
+seeds. The platform half ran all 17 commands and failed the retained GitHub
+first-page assertion at seed `501432`; its consecutive `987654` aggregate and
+both recovery/restart repeats passed. Both source guards matched. See the
+[exact local checkpoint](repair-qualification.md#frozen-local-matrix-at-0629d92).
 The earlier terminal checkpoint below remains evidence for its original source.
 Another [thirteen shared setting/order owners](shared-setting-owners-qualification.md)
 index unchanged, previously passing actual-native assertions with recomputed
@@ -48,8 +54,11 @@ The [terminal hosted checkpoint at 3dcf64b](repair-qualification.md#hosted-check
 passes foundation, native wire **42/0**, driver partition 1 **340/0** and all
 30 isolated profiles **208/0**. Driver partition 2 has **307 tests / one
 failure** in the MCP fixture's cleanup-marker assertion. Its outside-consumer
-and platform steps were skipped; completeness also fails. The cleanup cause
-remains under investigation. These actual outcomes supersede any inference
+and platform steps were skipped; completeness also fails. The subsequent
+[MCP fixture repair](mcp-cleanup-order-qualification.md) has deterministic
+red/green ordering evidence, **9/0** complete MCP cases at `501432` and **29/0**
+MCP/process cleanup cases at `987654`, with unchanged production guardians and
+deadlines. Its hosted repeat remains required. These actual outcomes supersede any inference
 that the new executable combination is fully green.
 
 The prior [hosted checkpoint at 67d2c32](repair-qualification.md#hosted-checkpoint-at-67d2c32)

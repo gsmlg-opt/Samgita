@@ -85,6 +85,7 @@ class Fixture:
     def __init__(self, root, binary, profile, proof):
         self.root, self.binary, self.profile, self.proof = root, binary, profile, proof
         self.lock, self.closing = threading.RLock(), threading.Event()
+        self.closed = False
         self.journal = {"events": []}
         self.streams, self.next_stream = {}, 0
         self.authorization, self.callback = None, None
@@ -549,11 +550,15 @@ http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
                 stream["queue"].put_nowait(output)
         elif operation == "barrier":
             pass
+        elif operation == "close":
+            self.close()
         else:
             raise AssertionError("unapproved fixture control")
         self.record("control_done", id=identity, op=operation, result=result)
 
     def close(self):
+        if self.closed:
+            return
         self.closing.set()
         self.stop_native()
         for stream in self.streams.values():
@@ -563,6 +568,7 @@ http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
         self.thread.join(5)
         assert not self.thread.is_alive(), "owned MCP HTTP listener did not stop"
         self.record("fixture_closed")
+        self.closed = True
 
 
 def main():

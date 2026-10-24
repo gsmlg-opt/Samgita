@@ -690,10 +690,17 @@ against all 23 passing commands of the frozen `67d2c32` package matrix.
 The regenerated ledger is **2,727 implemented / 3,894 missing** contracts,
 zero verified; requirements remain **462 implemented / 12 missing / 11 blocked**.
 No runtime/test/configuration change follows from this evidence indexing.
-The `0629d92` final-source local matrix remains in progress. Terminal hosted
+The `0629d92` local matrix is terminal: all 23 package commands pass, including
+both **647/0** driver and **208/0** isolated-profile repeats. All 17 platform
+commands ran; seed `501432` retains the GitHub first-page failure while the
+second aggregate and both recovery/restart repeats pass. Both source guards
+match; the combined matrix remains failed. Terminal hosted
 `3dcf64b` passes foundation and all 30 isolated profiles (**208/0**), but driver
 partition 2 fails the MCP fixture cleanup-marker assertion (**307/1**); native
 outside-consumer/platform steps were skipped. Investigate the exact cleanup
 cause with every guardian/assertion/deadline retained before claiming a repair.
-The separate completeness job fails correctly. Source-specific search projection
+The [MCP ordering repair](mcp-cleanup-order-qualification.md) now passes its
+deterministic red/green regression, complete first-seed MCP suite and second-seed
+MCP/process cleanup block, without changing production cleanup. Final combined
+source and hosted repeats remain required. The separate completeness job fails correctly. Source-specific search projection
 limits and reachable-but-untested realtime variants remain explicit.
