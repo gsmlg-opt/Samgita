@@ -289,6 +289,225 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     assert length(read(ctx, "requests.json")) == 6
   end
 
+  test "fork normalizes omitted null and empty paths before experimental negotiation", ctx do
+    for negotiation <- [:absent, false] do
+      {creator, _} = client(ctx, true)
+      id = start(creator, ctx, %{"historyMode" => "legacy"})["thread"]["id"]
+      name = "Owned empty-path fork #{negotiation}"
+      assert call(creator, "thread/name/set", %{"threadId" => id, "name" => name}) == %{}
+      parent_query = %{"threadId" => id, "includeTurns" => true}
+      saved = call(creator, "thread/read", parent_query)["thread"]
+      assert_idle_without_work(ctx, creator)
+      assert :ok = Session.close(creator)
+      restart_owned_native(ctx)
+      {pid, journal} = client(ctx, negotiation)
+      assert call(pid, "thread/loaded/list", %{})["data"] == []
+      parent = call(pid, "thread/read", parent_query)["thread"]
+      assert parent["id"] == id
+      assert parent["name"] == name
+      assert parent["historyMode"] == "legacy"
+      assert parent["turns"] == []
+      assert parent["path"] == saved["path"]
+      assert call(pid, "thread/loaded/list", %{})["data"] == []
+      parent_bytes = File.read!(parent["path"])
+
+      assert [parent_meta] =
+               parent_bytes |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
+
+      assert parent_meta["type"] == "session_meta"
+      assert parent_meta["payload"]["id"] == id
+      assert_idle_without_work(ctx, pid)
+
+      for extra <- [%{}, %{"path" => nil}, %{"path" => ""}] do
+        before = call(pid, "thread/loaded/list", %{})["data"] |> MapSet.new()
+        rollouts = Path.wildcard(Path.join(ctx.root, "codex/sessions/**/*.jsonl"))
+        active = %{"threadId" => id, "path" => parent["path"]}
+        sent_before = count(journal, "thread/fork")
+
+        assert {:error, %Error{code: :experimental_api_required}} =
+                 Session.request(pid, "thread/fork", active)
+
+        assert count(journal, "thread/fork") == sent_before
+
+        assert wire_error(pid, "thread/fork", active) == %{
+                 "code" => -32_600,
+                 "message" => "thread/fork.path requires experimentalApi capability"
+               }
+
+        assert last_params(journal, "thread/fork") == active
+        assert MapSet.new(call(pid, "thread/loaded/list", %{})["data"]) == before
+        assert Path.wildcard(Path.join(ctx.root, "codex/sessions/**/*.jsonl")) == rollouts
+        assert call(pid, "thread/read", parent_query)["thread"] == parent
+        assert File.read!(parent["path"]) == parent_bytes
+        assert_idle_without_work(ctx, pid)
+
+        request = Map.merge(%{"threadId" => id}, extra)
+        response = call(pid, "thread/fork", request)
+        assert last_params(journal, "thread/fork") == request
+
+        assert Map.has_key?(last_params(journal, "thread/fork"), "path") ==
+                 Map.has_key?(extra, "path")
+
+        child = Map.fetch!(response, "thread")
+        child_id = Map.fetch!(child, "id")
+        assert is_binary(child_id) and byte_size(child_id) > 0
+        refute child_id == id or MapSet.member?(before, child_id)
+        assert child["forkedFromId"] == id
+        assert child["name"] == name
+        assert child["historyMode"] == "legacy"
+        assert child["turns"] == []
+        child_path = Map.fetch!(child, "path")
+        refute child_path == parent["path"]
+        assert File.regular?(child_path)
+        assert_default_session_settings(ctx, response, "low")
+
+        assert MapSet.new(call(pid, "thread/loaded/list", %{})["data"]) ==
+                 MapSet.put(before, child_id)
+
+        persisted =
+          call(pid, "thread/read", %{"threadId" => child_id, "includeTurns" => true})["thread"]
+
+        for field <- ~w(id forkedFromId name historyMode turns path),
+            do: assert(Map.fetch!(persisted, field) == Map.fetch!(child, field))
+
+        await(
+          fn ->
+            bytes = File.read!(child_path)
+            String.ends_with?(bytes, "\n") and length(String.split(bytes, "\n", trim: true)) == 3
+          end,
+          "fork metadata inherited history and settings flush"
+        )
+
+        [meta, inherited, _checkpoint] =
+          child_path
+          |> File.read!()
+          |> String.split("\n", trim: true)
+          |> Enum.map(&JSON.decode!/1)
+
+        assert meta["type"] == "session_meta"
+        assert meta["payload"]["id"] == child_id
+        assert meta["payload"]["forked_from_id"] == id
+        assert meta["payload"]["history_mode"] == "legacy"
+        assert meta["payload"]["cwd"] == ctx.workspace
+        assert Map.delete(inherited, "timestamp") == Map.delete(parent_meta, "timestamp")
+        prefix = child_path |> File.read!() |> String.split("\n", trim: true) |> Enum.take(2)
+
+        assert_resume_rollout(
+          ctx,
+          child_path,
+          Enum.join(prefix, "\n") <> "\n",
+          child_id,
+          1,
+          "low"
+        )
+
+        assert call(pid, "thread/read", parent_query)["thread"] == parent
+        assert File.read!(parent["path"]) == parent_bytes
+        assert_idle_without_work(ctx, pid)
+      end
+
+      assert :ok = Session.close(pid)
+    end
+  end
+
+  test "cold resume history omission and null preserve history while empty history is active",
+       ctx do
+    {creator, _} = client(ctx, true)
+    id = start(creator, ctx, %{"historyMode" => "legacy"})["thread"]["id"]
+    name = "Owned cold-history resume"
+    assert call(creator, "thread/name/set", %{"threadId" => id, "name" => name}) == %{}
+    saved = call(creator, "thread/read", %{"threadId" => id, "includeTurns" => true})["thread"]
+    assert saved["id"] == id
+    assert saved["name"] == name
+    assert saved["historyMode"] == "legacy"
+    assert saved["turns"] == []
+    assert :ok = Session.close(creator)
+    restart_owned_native(ctx)
+    rollout = File.read!(saved["path"])
+    assert [meta] = rollout |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
+    assert meta["type"] == "session_meta"
+    assert meta["payload"]["id"] == id
+    assert meta["payload"]["history_mode"] == "legacy"
+    assert String.ends_with?(rollout, "\n")
+
+    cases =
+      for negotiation <- [:absent, false, true],
+          extra <- [%{}, %{"history" => nil}],
+          do: {negotiation, extra}
+
+    for {{negotiation, extra}, resume_count} <- Enum.with_index(cases, 1) do
+      {pid, journal} = client(ctx, negotiation)
+      assert call(pid, "thread/loaded/list", %{})["data"] == []
+      previous_rollout = File.read!(saved["path"])
+      rollouts = Path.wildcard(Path.join(ctx.root, "codex/sessions/**/*.jsonl"))
+      active = %{"threadId" => id, "history" => []}
+      sent_before = count(journal, "thread/resume")
+
+      unless negotiation == true do
+        assert {:error, %Error{code: :experimental_api_required}} =
+                 Session.request(pid, "thread/resume", active)
+
+        assert count(journal, "thread/resume") == sent_before
+      end
+
+      message =
+        if negotiation == true,
+          do: "history must not be empty",
+          else: "thread/resume.history requires experimentalApi capability"
+
+      assert wire_error(pid, "thread/resume", active) == %{
+               "code" => -32_600,
+               "message" => message
+             }
+
+      assert last_params(journal, "thread/resume") == active
+      assert call(pid, "thread/loaded/list", %{})["data"] == []
+      assert Path.wildcard(Path.join(ctx.root, "codex/sessions/**/*.jsonl")) == rollouts
+      assert File.read!(saved["path"]) == previous_rollout
+      assert_resume_rollout(ctx, saved["path"], rollout, id, resume_count - 1)
+      assert_idle_without_work(ctx, pid)
+
+      request = Map.merge(%{"threadId" => id}, extra)
+      response = call(pid, "thread/resume", request)
+      assert last_params(journal, "thread/resume") == request
+
+      assert Map.has_key?(last_params(journal, "thread/resume"), "history") ==
+               Map.has_key?(extra, "history")
+
+      resumed = Map.fetch!(response, "thread")
+      assert resumed["id"] == id
+      assert resumed["name"] == name
+      assert resumed["path"] == saved["path"]
+      assert resumed["historyMode"] == "legacy"
+      assert resumed["turns"] == []
+      assert_default_session_settings(ctx, response, nil)
+      assert call(pid, "thread/loaded/list", %{})["data"] == [id]
+      loaded = call(pid, "thread/read", %{"threadId" => id, "includeTurns" => true})["thread"]
+
+      for field <- ~w(id name historyMode turns path),
+          do: assert(Map.fetch!(loaded, field) == Map.fetch!(resumed, field))
+
+      assert_idle_without_work(ctx, pid)
+      assert :ok = Session.close(pid)
+
+      await(
+        fn ->
+          bytes = File.read!(saved["path"])
+
+          String.starts_with?(bytes, rollout) and String.ends_with?(bytes, "\n") and
+            length(String.split(bytes, "\n", trim: true)) == resume_count + 1
+        end,
+        "cold history resume settings checkpoint"
+      )
+
+      restart_owned_native(ctx)
+      assert_resume_rollout(ctx, saved["path"], rollout, id, resume_count)
+      durable = File.read!(saved["path"])
+      assert binary_part(durable, 0, byte_size(previous_rollout)) == previous_rollout
+      assert read(ctx, "requests.json") == []
+    end
+  end
+
   test "cold resume normalizes an empty path before experimental negotiation", ctx do
     {creator, _} = client(ctx, true)
     thread = start(creator, ctx, %{"historyMode" => "legacy"})["thread"]
@@ -492,6 +711,39 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     end
   end
 
+  defp assert_default_session_settings(ctx, response, reasoning_effort) do
+    for {field, expected} <- %{
+          "model" => "mock-model",
+          "modelProvider" => "fixture",
+          "cwd" => ctx.workspace,
+          "approvalPolicy" => "on-request",
+          "approvalsReviewer" => "user",
+          "serviceTier" => "flex",
+          "reasoningEffort" => reasoning_effort,
+          "sandbox" => %{"type" => "readOnly", "networkAccess" => false}
+        },
+        do: assert(Map.fetch!(response, field) == expected)
+  end
+
+  defp assert_idle_without_work(ctx, pid) do
+    assert read(ctx, "requests.json") == []
+
+    assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
+             Session.status(pid)
+
+    assert {:ok, events} = Session.drain(pid)
+    refute Enum.any?(events, &(&1.kind == :server_request))
+
+    refute Enum.any?(events, fn event ->
+             event.wire["method"] in [
+               "turn/started",
+               "turn/completed",
+               "item/started",
+               "item/completed"
+             ]
+           end)
+  end
+
   defp assert_section_filter_variants(pid, journal, ctx, unsectioned, selected, section) do
     base = %{
       "limit" => 10,
@@ -541,7 +793,7 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     for os_pid <- previous["native_pids"], do: refute(File.exists?("/proc/#{os_pid}"))
   end
 
-  defp assert_resume_rollout(ctx, path, prefix, id, expected_count) do
+  defp assert_resume_rollout(ctx, path, prefix, id, expected_count, reasoning_effort \\ nil) do
     bytes = File.read!(path)
     assert byte_size(bytes) >= byte_size(prefix)
     assert binary_part(bytes, 0, byte_size(prefix)) == prefix
@@ -581,7 +833,7 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
             "mode" => "default",
             "settings" => %{
               "model" => "mock-model",
-              "reasoning_effort" => nil,
+              "reasoning_effort" => reasoning_effort,
               "developer_instructions" => nil
             }
           },
@@ -589,6 +841,13 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
         }
       }
     }
+
+    expected =
+      if is_nil(reasoning_effort) do
+        expected
+      else
+        put_in(expected, ["payload", "thread_settings", "reasoning_effort"], reasoning_effort)
+      end
 
     for record <- records do
       assert Map.delete(record, "timestamp") == expected
