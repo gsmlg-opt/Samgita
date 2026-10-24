@@ -224,3 +224,10 @@ Phoenix or Samgita application is present. These checks remain scoped evidence;
 external authentication/backend/platform profiles and the manifest determine the
 remaining full-compatibility gates. Nothing here publishes a package or deploys
 a service. The separate Samgita A11 LiveView credential telemetry blocker remains.
+
+Callback-formatted Session status and error Inspect/messages redact native
+payloads. Privileged raw OTP debugging is not a safe export path: `:sys.get_state`
+exposes state, and on OTP27 enabling `:sys.log` leaves raw Debug history in the
+outer `:sys.get_status` term, outside the Session callback. Treat that access as
+trusted and keep it out of telemetry/exporters. This boundary does not establish
+complete credential isolation or close Samgita's raw framework A11 exposure.

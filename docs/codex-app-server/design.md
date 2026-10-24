@@ -85,7 +85,13 @@ evidence; it does not query upstream implicitly or resend anything.
 fields. Native schema validation is the default. Explicit `validation: :wire`
 allows protocol experiments without claiming schema conformance. Every response
 still passes envelope validation and retains upstream error data. Failures redact
-payloads in Inspect, exception messages and GenServer status output. Authorized
+payloads in Inspect, exception messages and callback-formatted GenServer status.
+Privileged raw diagnostics remain a separate boundary: OTP27 returns explicitly
+enabled `:sys.log` history outside that callback in `:sys.get_status`, and
+`:sys.get_state` intentionally exposes state. Neither is a sanitized exporter.
+The driver must preserve exact payloads for authorized consumers; application
+redaction cannot make arbitrary privileged debugging confidential. This does
+not close the broader credential-isolation or raw-framework A11 gates. Authorized
 callers remain responsible for handling raw native data as potentially secret.
 
 `notify_native/3` supplies the separate native client-notification path. It
