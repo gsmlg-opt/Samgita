@@ -61,6 +61,44 @@ defmodule SamgitaCodexDriver.NativeThreadFutureSettingsTest do
     %{binary: binary, root: root, fixture: fixture, next_cwd: next_cwd}
   end
 
+  @tag scenario: "assistant"
+  test "turn cwd overrides persist through omitted and null input without changing a sibling",
+       ctx do
+    pid = start(ctx)
+    selected = thread(ctx, pid, %{"model" => @model_a})
+    sibling = thread(ctx, pid, %{"model" => @model_a})
+    refute selected == sibling
+    config = Path.join(ctx.fixture.codex_home, "config.toml")
+    config_before = File.read!(config)
+
+    cases = [
+      {selected, %{}, ctx.fixture.workspace},
+      {selected, %{"cwd" => ctx.next_cwd}, ctx.next_cwd},
+      {selected, %{}, ctx.next_cwd},
+      {selected, %{"cwd" => nil}, ctx.next_cwd},
+      {sibling, %{}, ctx.fixture.workspace}
+    ]
+
+    for {{id, overrides, expected_cwd}, index} <- Enum.with_index(cases, 1) do
+      turn =
+        TurnFixture.start_turn(pid, id, text("Owned turn cwd selection #{index}: λ🙂"), overrides)
+
+      finish_turn(pid, id, turn)
+      requests = ModelFixture.requests(ctx.fixture)
+      assert length(requests) == index
+      request = List.last(requests)
+      assert_initial(request)
+      assert_environment(List.last(environment_texts(request)), expected_cwd)
+      assert_idle(pid)
+      assert Session.interaction_outcomes(pid) == []
+      assert Session.uncertain_operations(pid) == []
+    end
+
+    assert length(ModelFixture.requests(ctx.fixture)) == 5
+    assert File.read!(config) == config_before
+    assert :ok = Session.close(pid)
+  end
+
   test "thread publication changes future capture while the active turn retains its settings and environment",
        ctx do
     {pid, id, turn, tool, events} = active(ctx)

@@ -119,3 +119,26 @@ remain unqualified here. This suite does not extend the separate
 `turn/settings/update` qualification. Other platforms/transports, A11,
 aggregate/hosted release checks, full compatibility, publication and deployment
 remain independent and incomplete.
+
+## Direct turn cwd inheritance and sibling isolation
+
+An additive case uses the existing fixed assistant fixture without modifying its
+provider or lifecycle helpers. Two native threads start in owned cwd A. Five
+completed turns prescribe A for an omitted cwd, B for an explicit override, B
+for a later omission, B for explicit null, and A for the untouched sibling.
+Each completed turn must add exactly one provider request, with independently
+expected environment cwd/workspace roots and original model/reasoning settings.
+Configuration bytes remain unchanged; pending requests, interactions and
+uncertainty stay empty before checked owned shutdown.
+
+Pinned `v2/turn.rs:232-234` and
+`request_processors/turn_processor.rs:631-659,737-792` define optional cwd and
+sticky step-context capture. The exact primary owner is
+`schema:v2/TurnStartParams.json#/properties/cwd`, SHA256
+`74afb429559747df3a09611f5cc5bb55a50839f4a95f14886e83c47e9e1238de`.
+Only this direct property gains scoped implemented evidence; no null alias or
+whole default lifecycle is promoted. The complete nine-file native block passes
+61/0 at501432/987654, with commands/source hashes in
+`/tmp/samgita-native-stop-cwd-authority-v2-20261025/`. Concurrent changes,
+cold default restoration, other stores/OS/services and full compatibility remain
+separate requirements.
