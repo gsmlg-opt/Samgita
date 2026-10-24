@@ -124103,79 +124103,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-override-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigWriteResponse.json#/definitions/OverriddenMetadata/properties/effectiveValue",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native inert desktop CLI displacement, exact independent session-version oracle, persisted versus effective values, equality/null deletion, batch-order selection and cold restart. No managed/enterprise/credential override, concurrent-writer, other platform or full-method qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/OverriddenMetadata/properties/effectiveValue",
       "required": true,
       "schema": "v2/ConfigWriteResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "effectiveValue"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-override-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigWriteResponse.json#/definitions/OverriddenMetadata/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native inert desktop CLI displacement, exact independent session-version oracle, persisted versus effective values, equality/null deletion, batch-order selection and cold restart. No managed/enterprise/credential override, concurrent-writer, other platform or full-method qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/OverriddenMetadata/properties/message",
       "required": true,
       "schema": "v2/ConfigWriteResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-override-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigWriteResponse.json#/definitions/OverriddenMetadata/properties/overridingLayer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native inert desktop CLI displacement, exact independent session-version oracle, persisted versus effective values, equality/null deletion, batch-order selection and cold restart. No managed/enterprise/credential override, concurrent-writer, other platform or full-method qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/OverriddenMetadata/properties/overridingLayer",
       "required": true,
       "schema": "v2/ConfigWriteResponse.json",
       "schema_sha256": "cba8a0760e86deaa194ad26b617bfc59f3b70823d695cfc89a3bf6bf3183b4e5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "overridingLayer"
     },
     {
@@ -124209,24 +124233,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-override-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigWriteResponse.json#/definitions/WriteStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native inert desktop CLI displacement, exact independent session-version oracle, persisted versus effective values, equality/null deletion, batch-order selection and cold restart. No managed/enterprise/credential override, concurrent-writer, other platform or full-method qualification."
+      ],
       "pointer": "/definitions/WriteStatus/enum/1",
       "schema": "v2/ConfigWriteResponse.json",
       "schema_sha256": "acacda926d1d94f97687030d846ec2d65399af49916a94325fea9bfcf334ba49",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -124294,27 +124326,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-override-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigWriteResponse.json#/properties/overriddenMetadata",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native inert desktop CLI displacement, exact independent session-version oracle, persisted versus effective values, equality/null deletion, batch-order selection and cold restart. No managed/enterprise/credential override, concurrent-writer, other platform or full-method qualification."
+      ],
       "nullable": true,
       "pointer": "/properties/overriddenMetadata",
       "required": false,
       "schema": "v2/ConfigWriteResponse.json",
       "schema_sha256": "09e4490d3521035d8b4a206fe251f40cf2e685b6ff9c8b9273adc2df41f95f83",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "overriddenMetadata"
     },
     {
