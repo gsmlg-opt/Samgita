@@ -164,6 +164,63 @@ defmodule SamgitaCodexDriver.NativeOutputNoticeLifecycleTest do
     assert_profile(ctx, pid, events, 2)
   end
 
+  test "native paginated history selectively reads the exact completed reasoning item", ctx do
+    {pid, thread, turn, events} =
+      run(ctx, "reasoning", "default", "read-only", %{"historyMode" => "paginated"})
+
+    expected = %{
+      "type" => "reasoning",
+      "id" => "owned-reasoning",
+      "summary" => ["Synthetic summary λ🙂", "Synthetic second summary"],
+      "content" => ["", "", "Synthetic raw α🙂"]
+    }
+
+    assert [%{"threadId" => ^thread, "turnId" => ^turn, "item" => ^expected}] =
+             Enum.filter(notices(events, "item/completed"), &(&1["item"]["type"] == "reasoning"))
+
+    assert_profile(ctx, pid, events, 1)
+
+    # Native thread/read is the flush/project barrier; the oracle stays literal.
+    read = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})
+    assert read["thread"]["id"] == thread
+
+    query = %{"threadId" => thread, "turnId" => turn, "itemIds" => ["owned-reasoning"]}
+
+    assert %{"data" => [%{"turnId" => ^turn, "item" => ^expected}]} =
+             call(pid, "thread/items/read", query)
+
+    assert Session.uncertain_operations(pid) == []
+    assert_profile(ctx, pid, events, 1)
+  end
+
+  test "native paginated history selectively reads the exact completed Plan item", ctx do
+    {pid, thread, turn, events} =
+      run(ctx, "plan", "plan", "read-only", %{"historyMode" => "paginated"})
+
+    expected = %{
+      "type" => "plan",
+      "id" => turn <> "-plan",
+      "text" => "# Owned plan λ🙂\n- first\n- second\n"
+    }
+
+    assert [%{"threadId" => ^thread, "turnId" => ^turn, "item" => ^expected}] =
+             Enum.filter(notices(events, "item/completed"), &(&1["item"]["type"] == "plan"))
+
+    assert_profile(ctx, pid, events, 1)
+
+    # Native thread/read is the flush/project barrier; the oracle stays literal.
+    read = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})
+    assert read["thread"]["id"] == thread
+
+    query = %{"threadId" => thread, "turnId" => turn, "itemIds" => [expected["id"]]}
+
+    assert %{"data" => [%{"turnId" => ^turn, "item" => ^expected}]} =
+             call(pid, "thread/items/read", query)
+
+    assert Session.uncertain_operations(pid) == []
+    assert_profile(ctx, pid, events, 1)
+  end
+
   test "native streamed patch updates only the fixed owned regular file and emits exact final diff",
        ctx do
     path = Path.join(ctx.workspace, "owned-notice.txt")
@@ -219,7 +276,7 @@ defmodule SamgitaCodexDriver.NativeOutputNoticeLifecycleTest do
     assert_profile(ctx, pid, events, 2)
   end
 
-  defp run(ctx, scenario, mode \\ "default", sandbox \\ "read-only") do
+  defp run(ctx, scenario, mode \\ "default", sandbox \\ "read-only", thread_options \\ %{}) do
     {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
 
     on_exit(fn ->
@@ -234,13 +291,20 @@ defmodule SamgitaCodexDriver.NativeOutputNoticeLifecycleTest do
              )
 
     thread =
-      call(pid, "thread/start", %{
-        "model" => "mock-model",
-        "modelProvider" => "fixture",
-        "cwd" => ctx.workspace,
-        "sandbox" => sandbox,
-        "approvalPolicy" => "on-request"
-      })["thread"]["id"]
+      call(
+        pid,
+        "thread/start",
+        Map.merge(
+          %{
+            "model" => "mock-model",
+            "modelProvider" => "fixture",
+            "cwd" => ctx.workspace,
+            "sandbox" => sandbox,
+            "approvalPolicy" => "on-request"
+          },
+          thread_options
+        )
+      )["thread"]["id"]
 
     turn =
       call(pid, "turn/start", %{

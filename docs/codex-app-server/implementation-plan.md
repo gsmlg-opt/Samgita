@@ -126,8 +126,20 @@ hook-first control passes **8/0**. Compile/format/strict Credo and full source
 guard pass. Requirements stay **462 implemented /12 missing /11 blocked**,
 zero verified. No alias, positive-account value or full-lifecycle promotion.
 
-Next freeze executable source for the complete preserved-
-platform/package/consumer and final-pushed hosted matrix.
+The [selective persisted reasoning/Plan unit](output-notice-qualification.md#selective-persisted-reasoning-and-plan-items)
+passes **25/0 twice** in its complete eight-file owning block, with strict checks
+and source guard. Eleven exact owners bring contracts to **3235 implemented /
+3386 missing, zero verified**; requirements stay unchanged. Warm paginated UDS
+selection is distinct from cold restart or live backend acceptance.
+The [CI interpreter repair](repair-qualification.md#hosted-fixture-interpreter-prerequisite)
+provisions Python3.13 for the standard-library TOML fixture; the scoped real-native
+profile passes both seeds. Hosted confirmation/final-source matrices remain
+required. V18 local packages were explicitly interrupted before source edits;
+its completed platform matrix retains the GitHub-page failure.
+
+Next finish the dedicated scratch-DB native authority-race profile without
+polluting the preserved recovery database, then freeze executable source for
+the complete preserved-platform/package/consumer and final-pushed hosted matrix.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.
 No scoped green checkpoint completes the full goal.

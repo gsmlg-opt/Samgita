@@ -6,6 +6,19 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Persisted output continuation
+
+The [selective reasoning/Plan unit](output-notice-qualification.md#selective-persisted-reasoning-and-plan-items)
+passes **25/0 twice** in its complete eight-file owning block, plus changed-file
+**6/0**, warning-free compile/tests, formatting, strict Credo and an unchanged
+source guard. It preserves independently prescribed reasoning empty positions
+and extracted Plan body/turn identity through actual paginated `thread/items/read`.
+Eleven individually hash-checked physical owners bring the ledger to **3235
+implemented /3386 missing contracts**, zero verified; requirements remain
+**462 implemented /12 missing /11 blocked, zero verified**. The linked record
+contains commands/hashes and the warm UDS-only limitation. No cold process,
+live backend, A11 or full compatibility acceptance follows from the scoped pass.
+
 ## Hosted fixture interpreter prerequisite
 
 [Conformance40131233584](https://github.com/gsmlg-opt/Samgita/actions/runs/40131233584)

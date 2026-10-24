@@ -63,7 +63,7 @@ Paths are relative to the pinned codex-rs directory.
 - core/src/tools/events.rs:599–650 supplies canonical completion/tracked diff.
   Those upstream tests and native functions were read, not run here.
 
-## Four verified native cases
+## Four original native scenarios
 
 1. Active synthetic reasoning item emits two summary-part notices, three exact
    summary fragments with indices 0/1 and two raw fragments at content index2.
@@ -208,3 +208,62 @@ blocked by its explicit upstream non-emission contract; the four negative
 observations here cannot qualify native emission. This default-discovered test
 is included by the hosted independent-driver step; local success does not
 establish its hosted outcome.
+
+## Selective persisted reasoning and Plan items
+
+The continuation adds two cases in the same test file, leaving all four original
+cases and `output_notice_fixture.py` unchanged. Only these new threads explicitly
+request `historyMode:paginated`, because the pinned native store rejects selective
+item reads for Legacy history. Each case completes one real native turn, checks
+the complete completed item against independent literals, uses `thread/read`
+as a native flush/project barrier, and calls the real `thread/items/read` API.
+The selected result must contain exactly one item with the exact native turn ID.
+
+The reasoning oracle preserves two independently prescribed Unicode summary
+strings and raw content `["", "", "Synthetic raw α🙂"]`, including both empty
+positions. The Plan oracle requires ID `turnId <> "-plan"` and exactly
+`"# Owned plan λ🙂\n- first\n- second\n"`, with no proposed-plan tags, preface or
+postscript. Neither expected item is copied from a notification or another
+history result. Original isolation, untouched-file/sentinel checks, exact one
+provider request, absent approvals, no uncertain operation and confirmed owned
+cleanup remain asserted before/after selection.
+
+Production sources below belong to immutable official commit
+`83086188ae0614bd882818ff1aa23f3194962012`, under `codex-rs/`:
+
+- `core/src/event_mapping.rs:201-226` preserves final reasoning summary/raw
+  entries, including empty text positions; `app-server-protocol/src/protocol/v2/item.rs:916-920`
+  exposes the complete native arrays.
+- `core/src/session/turn.rs:2064-2082,2102-2116` derives the Plan ID from its
+  turn and emits the extracted authoritative Plan body;
+  `app-server-protocol/src/protocol/v2/item.rs:912-915` preserves ID/text.
+- `thread-store/src/local/thread_history.rs:433-480` serializes item JSON with
+  turn association. `app-server/src/request_processors/thread_processor.rs:3622-3669`
+  validates/selects requested items from that store; `thread-store/src/local/thread_history/read.rs:203-230`
+  establishes the paginated-history prerequisite. Upstream tests were read,
+  not claimed as locally run.
+
+Eleven exact physical owners in experimental `v2/ThreadItemsReadResponse.json`
+gain scoped **implemented** evidence: `ThreadItem/oneOf/4` and its `id`, `text`,
+`type`, `type/enum/0`; `ThreadItem/oneOf/5` and its `content`, `id`, `summary`,
+`type`, `type/enum/0`. Their canonical subtree hashes were individually
+recomputed and matched before indexing. No equal-hash alias or another method's
+wrapper is promoted. Array omission/defaults and other variants remain separate.
+
+The changed complete file passes **6/0**. Its eight-file output/persisted-history
+owning block passes **25/0 twice**, seeds501432/987654 (32.7 seconds each), with
+warning-free compilation/tests, formatting, root strict Credo and an unchanged
+executable/config/workflow source guard. Exact commands/logs:
+`/tmp/samgita-native-selected-output-history-v1-20261025/`;
+results SHA256 `49b865aec8b6b390986c4b3befff14a95eab1cc09e87335e4e52d6b4a48f80b1`,
+source SHA256 `4c065efb536bb52b0dbbd214bee45a492cf7c8fecb24af9579b5ccae57603240`.
+Inventory regressions **37/0** and consistency pass after indexing:
+**3235 implemented /3386 missing contracts, zero verified**; requirement states
+are unchanged. Full final-source local/hosted matrices remain required.
+
+This is a **warm persisted read through Linux UDS**, not a cold process restart
+or live provider profile. Reconnecting the same controller would not establish
+cold recovery, and this fixture has no restart control. No new timeout, provider
+request, shell action, process fallback or remote route is introduced. A11,
+source-unreachable emitters, other variants/transports/OS/service success and the
+full compatibility goal remain incomplete.
