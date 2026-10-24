@@ -8778,12 +8778,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:userVerification/cancel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/UserVerificationCancelParams"
       },
@@ -8805,16 +8809,20 @@
         "source_line": 543,
         "variant": "UserVerificationCancel"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/cancel"
     },
     {
@@ -8822,12 +8830,17 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:userVerification/delete",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified.",
+        "Native unavailable/invalid/capability rejection is evidenced; successful enroll/delete/verify execution and result payloads remain missing and are not promoted by Linux errors."
+      ],
       "params": {
         "$ref": "#/definitions/UserVerificationDeleteParams"
       },
@@ -8856,9 +8869,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/delete"
     },
     {
@@ -8866,12 +8883,17 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:userVerification/enroll",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified.",
+        "Native unavailable/invalid/capability rejection is evidenced; successful enroll/delete/verify execution and result payloads remain missing and are not promoted by Linux errors."
+      ],
       "params": {
         "$ref": "#/definitions/UserVerificationEnrollParams"
       },
@@ -8900,9 +8922,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/enroll"
     },
     {
@@ -8910,12 +8936,16 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:userVerification/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/UserVerificationStatusParams"
       },
@@ -8937,16 +8967,20 @@
         "source_line": 515,
         "variant": "UserVerificationStatus"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/status"
     },
     {
@@ -8954,12 +8988,17 @@
         "experimentalApi"
       ],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "client_request:userVerification/verify",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified.",
+        "Native unavailable/invalid/capability rejection is evidenced; successful enroll/delete/verify execution and result payloads remain missing and are not promoted by Linux errors."
+      ],
       "params": {
         "$ref": "#/definitions/UserVerificationVerifyParams"
       },
@@ -8988,20 +9027,28 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/verify"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:windowsSandbox/readiness",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "params": {
         "type": "null"
       },
@@ -9023,27 +9070,35 @@
         "source_line": 1295,
         "variant": "WindowsSandboxReadiness"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "windowsSandbox/readiness"
     },
     {
       "capabilities": [],
       "direction": "client_request",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "id": "client_request:windowsSandbox/setupStart",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/WindowsSandboxSetupStartParams"
       },
@@ -9065,16 +9120,20 @@
         "source_line": 1290,
         "variant": "WindowsSandboxSetupStart"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "windowsSandbox/setupStart"
     },
     {
@@ -14051,12 +14110,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:windows/worldWritableWarning",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "Source-proven upstream-unreachable: complete pinned Rust-tree search finds only the schema/wire declaration, exhaustive consumers/classification and an unrelated preference; no production construction/send site exists on any platform. Windows execution, scripted frames and schema fixtures do not qualify native emission. Required contract remains blocked without a scope waiver."
+      ],
       "params": {
         "$ref": "#/definitions/WindowsWorldWritableWarningNotification"
       },
@@ -14069,7 +14132,7 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "blocked",
       "tests": {
         "planned": [
           "schema-contract",
@@ -14084,12 +14147,16 @@
     {
       "capabilities": [],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "id": "server_notification:windowsSandbox/setupCompleted",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/WindowsSandboxSetupCompletedNotification"
       },
@@ -14102,16 +14169,20 @@
       "schema_sha256": "c626079776d401d358a8791b74cfe6c978d18aabbb78477ce7bd710a79779bc1",
       "schema_version": "0.163.0",
       "source": null,
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "windowsSandbox/setupCompleted"
     },
     {
@@ -21214,12 +21285,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:userVerification/cancel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -21227,16 +21302,20 @@
       "schema": "v2/UserVerificationCancelResponse.json",
       "schema_sha256": "384ef333de19d96b526e7b9eb5a336a38764a8017c9543b09909d4eeb084483f",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/cancel"
     },
     {
@@ -21245,12 +21324,17 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:userVerification/delete",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified.",
+        "Native unavailable/invalid/capability rejection is evidenced; successful enroll/delete/verify execution and result payloads remain missing and are not promoted by Linux errors."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -21265,9 +21349,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/delete"
     },
     {
@@ -21276,12 +21364,17 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:userVerification/enroll",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified.",
+        "Native unavailable/invalid/capability rejection is evidenced; successful enroll/delete/verify execution and result payloads remain missing and are not promoted by Linux errors."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -21296,9 +21389,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/enroll"
     },
     {
@@ -21307,12 +21404,16 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:userVerification/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -21320,16 +21421,20 @@
       "schema": "v2/UserVerificationStatusResponse.json",
       "schema_sha256": "a25ba7ed500b325f5a5cadb76412b73160704999a90e4cb63d921f28eeb7f93e",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/status"
     },
     {
@@ -21338,12 +21443,17 @@
       ],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "server_response:userVerification/verify",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified.",
+        "Native unavailable/invalid/capability rejection is evidenced; successful enroll/delete/verify execution and result payloads remain missing and are not promoted by Linux errors."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -21358,21 +21468,29 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "userVerification/verify"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:windowsSandbox/readiness",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -21380,28 +21498,36 @@
       "schema": "v2/WindowsSandboxReadinessResponse.json",
       "schema_sha256": "077f60a3d6d1fc226c45059472b29caf675fdc3fdebb29569eaab94bd05ceb00",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "windowsSandbox/readiness"
     },
     {
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:windowsSandbox/setupStart",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -21409,16 +21535,20 @@
       "schema": "v2/WindowsSandboxSetupStartResponse.json",
       "schema_sha256": "830bf89deac3e73e36b7d9799ceed32ee25e782c30b1d25266374aa020d3bc7e",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "windowsSandbox/setupStart"
     }
   ],
@@ -39749,46 +39879,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/WindowsSandboxSetupMode/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/definitions/WindowsSandboxSetupMode/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "0b1228324cc02f8a044049e173386ba166c892f054f60d8bfb9ac50e0750e886",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/WindowsSandboxSetupMode/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/definitions/WindowsSandboxSetupMode/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "4b2c0dd287bc5c26370e0a6ed0b7193075cbab864d3fa225c481650cfb952692",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -193029,27 +193175,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationCancelParams.json#/properties/requestId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/requestId",
       "required": true,
       "schema": "v2/UserVerificationCancelParams.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "requestId"
     },
     {
@@ -193176,194 +193330,258 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationErrorDetails/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/definitions/UserVerificationErrorDetails/oneOf/0",
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "d381ecf1273f84eea50a65f5abdd1fbf521fc5302511cd1bdbb9d2392c290a3a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationErrorDetails/oneOf/0/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/UserVerificationErrorDetails/oneOf/0/properties/reason",
       "required": true,
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "6f33784455ef4ca9d096eb632b3f6820be683ce0f3ed00fbd6f94fbd270154b9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reason"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationErrorDetails/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/UserVerificationErrorDetails/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "35051a199ed998bbcbc63a2c92644ec30ee58fb72c0d12032a226c62d18fa375",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationErrorDetails/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/definitions/UserVerificationErrorDetails/oneOf/0/properties/type/enum/0",
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "d85dcb67d5d8f0afd16ccc52c452c82fb3ad4b8d4addfeab1d25a81f444a2f38",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationErrorDetails/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/definitions/UserVerificationErrorDetails/oneOf/1",
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "e7136651f4798331043df0ee01cecdf0dc36f538fef6fb77ae7ba21e059c46ed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationErrorDetails/oneOf/1/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/UserVerificationErrorDetails/oneOf/1/properties/reason",
       "required": true,
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "df1341ed92fdf59c629c0c50aef4e3a681c54d2a1254edd2caedf4a822d82d90",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reason"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationErrorDetails/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/UserVerificationErrorDetails/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "ca36a3c8eb7f74b08aca8304befc34007c63ea322aa2ea4942669bd4354bbe0f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationErrorDetails/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/definitions/UserVerificationErrorDetails/oneOf/1/properties/type/enum/0",
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "c622b870e54c4a6ae809fc6d7c580072470c93b722317cb550d3b6d5211616ca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -193648,24 +193866,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationInvalidRequestReason/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/definitions/UserVerificationInvalidRequestReason/enum/0",
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "97228d58907ab96082cc2ff6a5444c3681d49ee8be8e272d45f69cc386a415d8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -193714,202 +193940,266 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/UserVerificationRpcError.json#/definitions/UserVerificationUnavailableReason/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/definitions/UserVerificationUnavailableReason/enum/2",
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "9ca645d2ef29d350f49a4ee08fa422427739fb27e20c9746058b825b7087cb35",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationRpcError.json#/properties/code",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/code",
       "required": true,
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "code"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationRpcError.json#/properties/data",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "5fba1dc2657b30154a86f0a45b55a766f48ce7f898cb4edd55097d04b2a25559",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationRpcError.json#/properties/message",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/message",
       "required": true,
       "schema": "v2/UserVerificationRpcError.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationStatusResponse.json#/properties/credentialId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/credentialId",
       "required": false,
       "schema": "v2/UserVerificationStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "credentialId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationStatusResponse.json#/properties/unavailableMessage",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/unavailableMessage",
       "required": false,
       "schema": "v2/UserVerificationStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "unavailableMessage"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/UserVerificationStatusResponse.json#/properties/unavailableReason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/unavailableReason",
       "required": false,
       "schema": "v2/UserVerificationStatusResponse.json",
       "schema_sha256": "16101e5d0953ab15c1cc38f12199a7c77af274ec2d96dfb46b0dc62559838a60",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "unavailableReason"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/UserVerificationStatusResponse.json#/properties/unavailableReason/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/properties/unavailableReason/anyOf/0",
       "schema": "v2/UserVerificationStatusResponse.json",
       "schema_sha256": "df1341ed92fdf59c629c0c50aef4e3a681c54d2a1254edd2caedf4a822d82d90",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -194184,24 +194474,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/WindowsSandboxReadinessResponse.json#/definitions/WindowsSandboxReadiness/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "pointer": "/definitions/WindowsSandboxReadiness/enum/1",
       "schema": "v2/WindowsSandboxReadinessResponse.json",
       "schema_sha256": "5a76aa09763e6cd1108505a88931ecc0251daa2b11fffe87e04ca1ccf73f0d4c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -194229,105 +194527,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/WindowsSandboxReadinessResponse.json#/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/WindowsSandboxReadinessResponse.json",
       "schema_sha256": "d3ff45eaeae142de780733c35103c10ddb7f8e9d96f8953c838daf5225ebd2bf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/WindowsSandboxSetupCompletedNotification.json#/properties/error",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/error",
       "required": false,
       "schema": "v2/WindowsSandboxSetupCompletedNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "error"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/WindowsSandboxSetupCompletedNotification.json#/properties/mode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/mode",
       "required": true,
       "schema": "v2/WindowsSandboxSetupCompletedNotification.json",
       "schema_sha256": "d704dc002c5a98419246f83045bacda9d0505df2c7ab53c7d7d9ccc5910fde7d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/WindowsSandboxSetupCompletedNotification.json#/properties/success",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/success",
       "required": true,
       "schema": "v2/WindowsSandboxSetupCompletedNotification.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "success"
     },
     {
@@ -194403,53 +194733,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/WindowsSandboxSetupStartParams.json#/properties/mode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/mode",
       "required": true,
       "schema": "v2/WindowsSandboxSetupStartParams.json",
       "schema_sha256": "d704dc002c5a98419246f83045bacda9d0505df2c7ab53c7d7d9ccc5910fde7d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-gates-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/WindowsSandboxSetupStartResponse.json#/properties/started",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_linux_unavailable_profile: Three isolated stock-binary cases assert exact verification providerUnavailable status/errors, semantic invalid-challenge errors, repeated completed/unknown typed-ID cancellation ACKs, experimental gates, stable Windows notConfigured, both setup-start ACKs and genuine failure notices, unchanged config/auth bytes and cleanup. Only 27 positive contracts are mapped. macOS enrollment/signing/active cancellation, Windows success/ACL/managed-policy and real account authorization remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/started",
       "required": true,
       "schema": "v2/WindowsSandboxSetupStartResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_platform_gates_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "started"
     },
     {

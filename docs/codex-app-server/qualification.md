@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 451 implemented / 24 missing /
-10 blocked requirements** and **0 verified / 1,261 implemented / 5,360 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 460 implemented / 14 missing /
+11 blocked requirements** and **0 verified / 1,288 implemented / 5,333 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,261 directly exercised
+MCP entries have scoped implementation evidence. These 1,288 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -27,11 +27,12 @@ Latest method records: [history](thread-history-qualification.md),
 [persisted metadata](thread-metadata-qualification.md),
 [isolated authentication](isolated-auth.md), [native executor environments](isolated-environment.md)
 [Apps metadata](isolated-apps.md) and [realtime output contracts](realtime-output-qualification.md).
-The ten blocked requirements retain four legacy approval entries, the
+The eleven blocked requirements retain four legacy approval entries, the
 advertised MCP progress notification with no discovered production emitter,
 the explicitly deprecated non-emitting file-change output notification,
 three [unimplemented prediction entries](prediction-boundary-qualification.md)
-and the [intentionally suppressed compaction notification](compacted-boundary.md).
+the [intentionally suppressed compaction notification](compacted-boundary.md)
+and the source-unreachable [Windows warning](platform-gates-qualification.md).
 Field contracts and external/platform success profiles remain incomplete.
 
 The [Gateway OAuth profile](gateway-oauth-qualification.md) passes five real
@@ -72,6 +73,15 @@ authority or driver registration before a new reply is prepared, and reject
 both identical submissions without persisted effects. The pending envelope is
 synthetic context input. This is neither real Codex emission nor revocation of
 an already issued native-send ticket; the broad authorization rule stays missing.
+
+The [platform gate profile](platform-gates-qualification.md) passes three
+actual-native Linux cases at both seeds. Nine entries and twenty-seven exact
+contracts gain scoped evidence for verification status/no-op cancellation and
+Windows readiness/setup failure. Successful native enrollment/signing and Windows
+provisioning remain unqualified; six verification request/result entries retain
+missing success evidence. Exact upstream source has no Windows warning emitter,
+so that entry becomes blocked and its fields stay missing. No fake notification
+or OS-only assumption substitutes for this source boundary.
 
 Additional method records: [queues](queue-lifecycle-qualification.md),
 [commands](command-lifecycle-qualification.md),

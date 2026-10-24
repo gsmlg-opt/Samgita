@@ -33,10 +33,10 @@ experimental generation produced 318 and 452 JSON artifacts. The reproducible
 manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 6,621 field/variant contracts. Four legacy approval method entries, MCP item
 progress, deprecated file-change output, three prediction entries and
-`thread/compacted` are `blocked` by exact source-proven unavailable success
-paths: ten required entries, with no scope waiver. Selected native
-method/notification entries now total 451 `implemented`, with 1,261 exact
-field/variant schema contracts implemented; 24 requirements and 5,360 contracts
+`thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
+source-proven unavailable success paths: eleven required entries, with no scope
+waiver. Selected native method/notification entries now total 460 `implemented`,
+with 1,288 exact field/variant schema contracts implemented; 14 requirements and 5,333 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -447,6 +447,15 @@ pass twice against the retained populated database. Repeated rejected commands
 preserve exact authority/domain/journal snapshots without dispatch or receipts.
 This context-only branch evidence leaves the broad authorization lifecycle rule
 missing and does not claim revocation of previously issued dispatch tickets.
+
+The [Linux platform gates](platform-gates-qualification.md) now pass three
+native cases at both seeds, adding nine selected entries and twenty-seven
+positive field/variant contracts. Linux unavailable/no-op and Windows failure
+are separate from macOS signing and Windows provisioning success. Complete
+pinned Rust-tree search proves the Windows warning has no production emitter;
+its required entry is blocked, its fields remain missing, and no scope waiver
+is inferred. Continue independent network-approval/default/field evidence and
+the complete final-source matrix.
 
 ## Known boundaries
 
