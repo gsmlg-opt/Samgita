@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 1,678 implemented / 4,943 missing
+11 blocked requirements** and **0 verified / 1,741 implemented / 4,880 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,678 directly exercised
+MCP entries have scoped implementation evidence. These 1,741 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -2165,3 +2165,33 @@ anchor guarantee. The positive backwardsCursor contract stays missing. No native
 database write, upstream change, driver cursor rewrite, retry or deadline change
 is introduced. Full aggregate/package/hosted and external/A11 gates remain
 separate and incomplete.
+
+## Native graph, permission, future-settings and error semantics
+
+Four bounded units add **18 actual-binary cases**, all passing at seeds
+`501432` and `987654`:
+
+| Unit | Actual results | Scoped behavior |
+| --- | --- | --- |
+| [Spawned thread relations](thread-relations-qualification.md) | 2/0 twice, 3.4s each | Real root/child/grandchild graph, exact direct/recursive identity sets, source/depth, forward paging and cold persistence; spawn success alone is not persistence evidence |
+| [Permission variants](permission-variants-qualification.md) | 11/0, 12.1/12.0s | Network and canonical path/deny/glob/depth conversion/intersection, empty-grant patch rejection and strict turn Guardian allow/deny/control with real printf outcomes; no network/deny/glob OS-enforcement claim |
+| [Future thread settings](thread-future-settings-qualification.md) | 2/0 twice, 2.4s each | Applied snapshot barrier; running A turn keeps original settings/environment while next turn captures B/new cwd; omitted/null no-ops and native malformed/target errors |
+| [Sampling errors](provider-errors-qualification.md) | 3/0, 6.0/6.6s | Actual SSE rate retry/success/exhaustion, immediate overload failure, exact retry/terminal classification and explicit next-turn recovery; no HTTP429 or real provider rate-limit claim |
+
+Every app-server frame and generated identity comes from immutable stock Codex;
+fixed peers supply model data only. Compile, scoped format, AST, namespace
+prerequisites and full strict Credo pass, the latter across **361 source files**.
+Initial draft failures remain in their records: public `subAgent` versus internal
+`subagent`, a missing test-helper arity import, and the documented UDS
+`socket_path` option. The corrections change no runtime, assertion, effect check
+or deadline. The permission fixture's later module-docstring cleanup changes no
+executable Python; final combination checks cover the delivered source.
+
+Exactly **63** new fields/variants gain scoped implemented evidence with pinned
+subtree hashes and owning assertion ranges: 21 graph, 26 permission, 10 future
+settings and 6 errors. Regenerated ledger: **462 implemented / 12 missing /
+11 blocked** requirements; **1,741 implemented / 4,880 missing** contracts;
+**zero verified**. Broad lifecycles, native reverse-cursor precision, unreachable
+legacy paths, external/OS profiles and A11 remain incomplete. Final package,
+populated-database and hosted outcomes stay separate gates; no release,
+publication, production migration or deployment is claimed.

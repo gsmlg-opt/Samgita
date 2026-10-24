@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 462 `implemented`,
-with 1,678 exact field/variant schema contracts implemented; 12 requirements and 4,943 contracts
+with 1,741 exact field/variant schema contracts implemented; 12 requirements and 4,880 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -110,6 +110,17 @@ tests and 112 executed web tests twice, plus the selected actual-binary/API
 journey. Exact remaining aggregate and hosted outcomes belong in qualification.
 
 Next concrete work (repair follow-up, 2026-10-24):
+
+The next four [native units](qualification.md#native-graph-permission-future-settings-and-error-semantics)
+now pass 18 cases at both recorded seeds: real spawned relations/cold graph,
+permission intersection and strict review, active-versus-future thread settings,
+and bounded sampling retry/terminal errors with explicit recovery. They add
+63 directly asserted contracts as scoped implemented, with zero verified.
+The frozen 457-test driver/205-test profile matrix and exact hosted outcomes are
+recorded in [repair qualification](repair-qualification.md); final combination
+checks must cover the newly delivered tests. Continue the remaining full field,
+behavior and deployment plan. A11 and the local GitHub first-page aggregate
+failure remain visible; no source/evidence gate is weakened.
 
 The selected managed-network unit now exercises both actual native persistent
 HTTP allow/deny amendments, repeats their effects without a second approval,
