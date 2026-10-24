@@ -9387,7 +9387,8 @@
         "docs/codex-app-server/interaction-evidence-qualification.md",
         "docs/codex-app-server/background-terminal-qualification.md",
         "docs/codex-app-server/network-amendment-qualification.md",
-        "docs/codex-app-server/approval-edits-qualification.md"
+        "docs/codex-app-server/approval-edits-qualification.md",
+        "docs/codex-app-server/approval-validation-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:item/commandExecution/requestApproval",
@@ -9399,7 +9400,8 @@
         "command/writeStdin kind variants; positive stdin approvalId, original environment and item/current turn; exact owned command/cwd/reason and timestamp integer; actual offered accept/cancel; exact owned-shell amendment suggestion and one-shot replies accept/cancel. Do not claim applying policy amendments or all decision variants.",
         "actual_native_managed_proxy: Both typed persistent allow/deny amendments execute on stock native HTTP proxy, preserve exact rules, and avoid another prompt on same-host repetition; cross-context decisions, loss/restart and complete approval lifecycle remain unqualified.",
         "Expanded actual native HTTP decisions at171-369: one-shot/session, equivalent-host edit, mismatched allow vs deny cache, explicit error, decline and interruption preserve exact effects/rules/warnings/provider counts. Remaining cross-context, loss/restart, protocol/OS and full lifecycle profiles stay unqualified.",
-        "actual_native_edited_prefix: Exact narrower/unrelated safe prefixes persist with current execution but distinct later prompting; empty prefix warns before file creation while current approval still executes. Subsequent original commands explicitly decline; stale handles/history/effects asserted. No broad prefix, legacy runtime or full lifecycle qualification."
+        "actual_native_edited_prefix: Exact narrower/unrelated safe prefixes persist with current execution but distinct later prompting; empty prefix warns before file creation while current approval still executes. Subsequent original commands explicitly decline; stale handles/history/effects asserted. No broad prefix, legacy runtime or full lifecycle qualification.",
+        "Selected actual-native invalid-reply preservation and barrier-released competing replies: one local settlement, stale rejection, separate native resolution/effects/history. Selected nested permission response conversion/intersection; no shared command-request owner or exactly-once external execution claim. Broad approval lifecycle, legacy emitters and other deployment profiles remain incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -9423,7 +9425,9 @@
           "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:312",
           "apps/samgita_codex_driver/test/native_background_terminal_profile.exs:419",
           "apps/samgita_codex_driver/test/native_network_amendment_profile.exs",
-          "apps/samgita_codex_driver/test/native_approval_edits_test.exs:46-130,157-175,226-282"
+          "apps/samgita_codex_driver/test/native_approval_edits_test.exs:46-130,157-175,226-282",
+          "apps/samgita_codex_driver/test/native_approval_validation_test.exs",
+          "apps/samgita_codex_driver/test/native_approval_duplicate_replies_test.exs"
         ]
       },
       "transport_coverage": [
@@ -9440,7 +9444,8 @@
         "docs/codex-app-server/approval-qualification.md",
         "docs/codex-app-server/interaction-evidence-qualification.md",
         "docs/codex-app-server/approval-lifetime-qualification.md",
-        "docs/codex-app-server/approval-loss-qualification.md"
+        "docs/codex-app-server/approval-loss-qualification.md",
+        "docs/codex-app-server/approval-validation-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:item/fileChange/requestApproval",
@@ -9449,7 +9454,8 @@
       "limitations": [
         "Positive selected behavior: Exact owned patch is absent before decision and applied only on accept/session accept; decline/cancel preserve target; explicit error declines. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
         "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
-        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing.",
+        "Selected actual-native invalid-reply preservation and barrier-released competing replies: one local settlement, stale rejection, separate native resolution/effects/history. Selected nested permission response conversion/intersection; no shared command-request owner or exactly-once external execution claim. Broad approval lifecycle, legacy emitters and other deployment profiles remain incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -9469,7 +9475,9 @@
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
           "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
-          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372",
+          "apps/samgita_codex_driver/test/native_approval_validation_test.exs",
+          "apps/samgita_codex_driver/test/native_approval_duplicate_replies_test.exs"
         ]
       },
       "transport_coverage": [
@@ -9486,7 +9494,8 @@
         "docs/codex-app-server/approval-qualification.md",
         "docs/codex-app-server/interaction-evidence-qualification.md",
         "docs/codex-app-server/permission-lifetime-qualification.md",
-        "docs/codex-app-server/approval-loss-qualification.md"
+        "docs/codex-app-server/approval-loss-qualification.md",
+        "docs/codex-app-server/approval-validation-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:item/permissions/requestApproval",
@@ -9495,7 +9504,8 @@
       "limitations": [
         "Positive selected behavior: Requested write directory remains exact; granted turn permissions reach model output, omitted scope defaults to turn; excess paths/network are intersected; strict session auto-review and reply errors fail closed. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
         "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
-        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing.",
+        "Selected actual-native invalid-reply preservation and barrier-released competing replies: one local settlement, stale rejection, separate native resolution/effects/history. Selected nested permission response conversion/intersection; no shared command-request owner or exactly-once external execution claim. Broad approval lifecycle, legacy emitters and other deployment profiles remain incomplete."
       ],
       "prerequisites": [
         "initialized"
@@ -9515,7 +9525,10 @@
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
           "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-197,199-242,260-300",
-          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372",
+          "apps/samgita_codex_driver/test/native_approval_validation_test.exs",
+          "apps/samgita_codex_driver/test/native_approval_duplicate_replies_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_nested_test.exs"
         ]
       },
       "transport_coverage": [
@@ -9805,7 +9818,8 @@
         "docs/codex-app-server/approval-edits-qualification.md",
         "docs/codex-app-server/approval-lifetime-qualification.md",
         "docs/codex-app-server/permission-lifetime-qualification.md",
-        "docs/codex-app-server/approval-loss-qualification.md"
+        "docs/codex-app-server/approval-loss-qualification.md",
+        "docs/codex-app-server/approval-validation-qualification.md"
       ],
       "id": "lifecycle:approval-decisions",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -9817,7 +9831,8 @@
         "actual_native_edited_prefix: Exact narrower/unrelated safe prefixes persist with current execution but distinct later prompting; empty prefix warns before file creation while current approval still executes. Subsequent original commands explicitly decline; stale handles/history/effects asserted. No broad prefix, legacy runtime or full lifecycle qualification.",
         "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
         "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
-        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing.",
+        "Selected actual-native invalid-reply preservation and barrier-released competing replies: one local settlement, stale rejection, separate native resolution/effects/history. Selected nested permission response conversion/intersection; no shared command-request owner or exactly-once external execution claim. Broad approval lifecycle, legacy emitters and other deployment profiles remain incomplete."
       ],
       "required_behavior": "preserve every decision variant and edits; require explicit authorized handler",
       "schema_sha256": "b0c99e763de6cb504aee7aadd4177c897fe5cb9065748cf7fe5e988558d1ae5e",
@@ -9837,7 +9852,10 @@
           "apps/samgita_codex_driver/test/native_approval_edits_test.exs:46-130,157-175,226-282",
           "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
           "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-197,199-242,260-300",
-          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372",
+          "apps/samgita_codex_driver/test/native_approval_validation_test.exs",
+          "apps/samgita_codex_driver/test/native_approval_duplicate_replies_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_nested_test.exs"
         ]
       },
       "transport_coverage": [
@@ -23879,7 +23897,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/end",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -23912,7 +23930,7 @@
       "id": "schema:ClientRequest.json#/definitions/ByteRange/properties/start",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text \u00e9\ud83d\ude42x; lifecycle and cold history equality",
+        "actual_native_selected_values: UTF-8 byte ranges {start:0,end:2},{start:2,end:6},{start:6,end:7} in text é🙂x; lifecycle and cold history equality",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. No overlap/boundary rejection policy inferred."
       ],
       "nullable": false,
@@ -26714,7 +26732,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "pointer": "/definitions/FunctionCallOutputContentItem/oneOf/0",
@@ -26745,7 +26763,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "nullable": false,
@@ -26778,7 +26796,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "nullable": false,
@@ -26809,7 +26827,7 @@
       "id": "schema:ClientRequest.json#/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: input_text Structured steering \u00e9\ud83d\ude42 in standalone structured toolOutput; exact native item/provider and cold history",
+        "actual_native_selected_values: input_text Structured steering é🙂 in standalone structured toolOutput; exact native item/provider and cold history",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Selected content variant; not every text/input limit."
       ],
       "pointer": "/definitions/FunctionCallOutputContentItem/oneOf/0/properties/type/enum/0",
@@ -37899,7 +37917,7 @@
       "id": "schema:ClientRequest.json#/definitions/ThreadMetadataGitInfoUpdateParams/properties/branch",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Padded feature/\u03bb trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
+        "actual_native_selected_values: Padded feature/λ trimmed; feature/partial replaces branch; explicit null clears; cold-update restores.",
         "Native metadata update and readback in an isolated synthetic local thread; no remote Git or credentials."
       ],
       "nullable": true,
@@ -39722,7 +39740,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0",
@@ -39753,7 +39771,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -39786,7 +39804,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/text_elements",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -39819,7 +39837,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "nullable": false,
@@ -39850,7 +39868,7 @@
       "id": "schema:ClientRequest.json#/definitions/UserInput/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: text \u00e9\ud83d\ude42x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
+        "actual_native_selected_values: text é🙂x with nonempty spans; first/second with omitted versus empty text_elements; native lifecycle/cold history/provider text",
         "Selected Linux stdio with synthetic Responses dependency; no full variant/transport/backend qualification. Branch means this observed text variant, not all values."
       ],
       "pointer": "/definitions/UserInput/oneOf/0/properties/type/enum/0",
@@ -141611,7 +141629,7 @@
       "id": "schema:v2/ModelListResponse.json#/definitions/ReasoningEffortOption/properties/description",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact Focused \u03bb and Maximum effort descriptions.",
+        "actual_native_selected_values: Exact Focused λ and Maximum effort descriptions.",
         "Real pinned native model/list projection from offline synthetic static local catalog. Metadata only; no inference, real provider authorization, hosted discovery, managed policy or advertised capability execution success."
       ],
       "nullable": false,
@@ -186614,7 +186632,7 @@
       "id": "schema:v2/ThreadSearchOccurrencesResponse.json#/definitions/ThreadSearchOccurrence/properties/snippet",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Exact original \ud83d\ude00 Needle needle NEEDLE source text.",
+        "actual_native_selected_values: Exact original 😀 Needle needle NEEDLE source text.",
         "Real pinned native thread/searchOccurrences over one local paginated Unicode turn; UTF16 ranges, item identity, cursor continuation and cold equality asserted."
       ],
       "nullable": false,
@@ -187306,7 +187324,7 @@
       "id": "schema:v2/ThreadSearchParams.json#/properties/searchTerm",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_selected_values: Literal quoted \"needle\" with backslash, \u00e9 and emoji selects exactly matching native histories.",
+        "actual_native_selected_values: Literal quoted \"needle\" with backslash, é and emoji selects exactly matching native histories.",
         "Real pinned native thread/search over isolated paginated synthetic local histories; result selection and pagination asserted. No independent sort-precedence fixture."
       ],
       "nullable": false,

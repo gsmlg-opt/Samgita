@@ -26,6 +26,14 @@ native null/name/unloaded projections and the prediction-fork ephemeral
 prerequisite are recorded without relaxing assertions or deadlines. Full
 default/profile, preserved-platform and hosted checks must include this source.
 
+Seventeen [approval validation, nested grant and concurrent-reply cases](approval-validation-qualification.md)
+add actual-native invalid-response preservation, selected permission conversion
+and one local settlement under competing callers. The fourteen validation/nested
+cases pass twice; three concurrent cases pass in the eighteen-case combination
+above. Response entries gain selected evidence, with no new field or verified
+promotion and no exactly-once external-execution claim. Legacy success and broad
+approval lifecycle acceptance remain incomplete.
+
 The latest bounded units add 20 native cases and 111 exact contracts:
 [persisted dynamic tools](persisted-tool-items-qualification.md),
 [actual HTTP errors](http-error-qualification.md),
