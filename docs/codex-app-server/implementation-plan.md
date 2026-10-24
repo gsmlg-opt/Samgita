@@ -145,11 +145,36 @@ Existing authority/race/integration **21 core +7 web/0 twice** and recovery/rest
 and an unchanged source guard. The initial template-encoding prerequisite and
 explicit UTF8 scratch provisioning remain recorded. No state/count promotion.
 
-Next freeze executable source for the complete preserved-platform, dedicated
-authority-profile, package/consumer and final-pushed hosted matrix.
+The [exact9a46afe hosted checkpoint](repair-qualification.md#hosted-checkpoint-at-9a46afe)
+now passes foundation and both native execution jobs: default driver677/0,
+all49 isolated profiles275/0, outside consumer1/0, platform59 core+11 web/0,
+and the separate authority profile1/0 at both fixed seeds. Mandatory completeness
+fails. The frozen v19 local platform completes19 commands with its unchanged
+GitHub first-page failure in seed501432; seed987654 and both retained-DB
+recovery/restart repeats pass. All23 package/consumer commands finish successfully:
+driver677/0 and all49 profiles275/0 at both fixed seeds, outside consumers,
+strict independent audits and neutral WebSocket42/0 at455834/501432/987654.
+Both source guards match; the complete v19 matrix still exits1 for the retained
+GitHub assertion and mandatory completeness. Subsequent additions require new
+combined-source evidence.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.
 No scoped green checkpoint completes the full goal.
+
+The [Stop](hook-lifecycle-qualification.md#stop-continuation-and-selected-persisted-hookprompt),
+[selected cold review](review-delivery-qualification.md#selective-enteredreviewmode-across-native-restart)
+and [direct turn cwd](thread-future-settings-qualification.md#direct-turn-cwd-inheritance-and-sibling-isolation)
+additions pass the complete nine-file native owning block61/0 at both fixed seeds.
+The [two new authority boundaries](native-authority-qualification.md#invalid-handle-after-ticket-commit-and-revocation-before-settlement)
+pass in the expanded dedicated profile3/0 twice; preserved-DB platform21 core+7
+web/0 and recovery4 core+1 web/0 also pass twice. Strict checks/source guards pass;
+initial failed oracles remain documented. Exactly21 primary owners, including
+the [eight unchanged direct assertions](native-direct-owner-qualification.md),
+bring contracts to3256 implemented/3365 missing, zero verified. Requirements
+stay462 implemented/12 missing/11 blocked. Next freeze this combined source for
+the full retained-platform/package/consumer matrix and exact-head hosted gates;
+then continue remaining reachable variants. A11, unreachable emitters, required
+external/OS success and the broad lifecycle contracts remain incomplete.
 
 ## Earlier scoped units
 

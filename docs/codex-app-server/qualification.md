@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,235 implemented / 3,386 missing
+11 blocked requirements** and **0 verified / 3,256 implemented / 3,365 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,235 directly exercised
+MCP entries have scoped implementation evidence. These 3,256 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,20 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [Stop continuation](hook-lifecycle-qualification.md#stop-continuation-and-selected-persisted-hookprompt),
+[cold selected review](review-delivery-qualification.md#selective-enteredreviewmode-across-native-restart)
+and [direct cwd](thread-future-settings-qualification.md#direct-turn-cwd-inheritance-and-sibling-isolation)
+cases pass in the complete native owning block61/0 at both fixed seeds. Together
+with the [eight direct-owner index](native-direct-owner-qualification.md), exactly21
+primary contracts gain implemented evidence, zero verified. The expanded
+[authority profile](native-authority-qualification.md#invalid-handle-after-ticket-commit-and-revocation-before-settlement)
+passes3/0 twice in its separate retained DB, while existing platform/race/native
+tests21 core+7 web/0 and original recovery4 core+1 web/0 pass twice. Strict Credo435
+files, compile/format, inventory37/0/consistency and source guards pass. Original
+test projection/ephemeral-history failures and their source-backed corrections
+remain recorded. New final-source complete local and hosted matrices are required;
+none of these selected results closes the remaining compatibility/security gates.
 
 The [native authority concurrency profile](native-authority-qualification.md#management-wins-dispatch-with-independent-postgresql-transactions)
 passes **1/0 twice** with three verified PostgreSQL backends and an observed
@@ -41,8 +55,12 @@ The [hosted interpreter prerequisite repair](repair-qualification.md#hosted-fixt
 follows an actual required-skills startup failure on pushed16e60c2. Its unchanged
 fixture fails to import under Python3.10 and loads under3.13; both native jobs
 now explicitly select3.13 and report/load the interpreter before native startup.
-The focused actual-native profile passes **1/0 at both fixed seeds**. Hosted
-confirmation remains pending. The v18 platform matrix completed with its
+The focused actual-native profile passes **1/0 at both fixed seeds**. The
+[terminal8fcf76c hosted checkpoint](repair-qualification.md#terminal-hosted-interpreter-repair-checkpoint)
+confirms Python3.13.16 and all49 isolated native profiles **275/0**, alongside
+selected driver **675/0**, consumer **1/0** and platform **59 core +11 web/0**.
+Foundation passes; mandatory completeness fails. These are exact8fcf76c results,
+not final-source acceptance of later additions. The v18 platform matrix completed with its
 retained GitHub-page failure; the package matrix was explicitly interrupted
 before source edits and is partial, not passed. Full final-source local/hosted
 checks and the compatibility/security gates below remain required.

@@ -6,6 +6,95 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Stop, review, cwd and native settlement continuation
+
+Three actual-native cases add Stop continuation with selected persisted
+HookPrompt, warm/cold selective enteredReviewMode, and five-turn cwd inheritance
+with sibling isolation. The complete nine-file native block passes61/0 at
+501432/987654, with the original failed timeline oracle retained in v1. The
+corrected projection preserves all expected events/deadlines. Exact evidence is
+`/tmp/samgita-native-stop-cwd-authority-v2-20261025/`.
+
+Two additional actual-native platform cases preserve uncertainty after a forged
+opaque handle and reject settlement after native completion/worker-role removal.
+The expanded dedicated retained-DB profile passes3/0 twice. Original platform
+authority/race/integration passes21 core+7 web/0 twice; original recovery/restart
+passes4 core+1 web/0 twice, with no reset, deleted records or activation bypass.
+The initial ephemeral includeTurns fixture error remains in v2; only the new
+history-dependent case now explicitly requests persistent paginated history.
+The passing v3 platform source guard differs from v2 only in that test fixture
+and authority profile; all passing native-source hashes remain exact.
+
+Root/driver warnings-as-errors compile, formatting, namespace preflight and
+strict Credo435 files pass. V3 commands/logs/source/results are
+`/tmp/samgita-native-stop-cwd-authority-v3-20261025/`.
+Only21 exact primary properties/variants gain scoped implemented evidence:
+seven HookPrompt, five enteredReviewMode, one cwd and eight existing direct
+native owners. Inventory consistency and all37 Python regressions pass.
+Generated ledger:462 implemented/12 missing/11 blocked requirements;
+3256 implemented/3365 missing contracts; zero verified. Full final-source local
+and hosted checks remain required; source-unreachable legacy/notification paths,
+real external/OS success and A11 are not passed. No release/publication/deployment.
+
+## Hosted checkpoint at 9a46afe
+
+Both workflows are terminal on exact pushed source
+`9a46afe995ed1c726ddab180d9935935419e68b8`:
+[foundation40133286182](https://github.com/gsmlg-opt/Samgita/actions/runs/40133286182)
+passes; [conformance40133297065](https://github.com/gsmlg-opt/Samgita/actions/runs/40133297065)
+passes both native execution jobs and fails mandatory completeness. The overall
+conformance workflow is **failed**, not waived or expected-success.
+
+The native wire package passes42 tests; default driver partitions pass
+**367+310=677/0**, seed501432; the actual-binary outside consumer passes1/0.
+Platform/API/native scenarios pass **59 core +11 web/0**. The dedicated retained
+authority database profile explicitly executes at both501432 and987654,
+**1/0 each**. All49 required isolated profiles execute **275/0/zero excluded**.
+Foundation's two populated repeats pass230 core/0/one excluded and131 web/0/eight
+excluded each, alongside restart/rollback, independent packages/consumers,
+static checks, forced Dialyzer, audit, assets and local production assembly.
+These fresh hosted aggregates do not erase the retained local GitHub-page failure.
+
+Exact-head metadata, complete logs, per-step counts and hashes are retained in
+`/tmp/samgita-hosted-9a46afe-20261025/`; `conformance.log` SHA256 is
+`a1e7606d1a8d63a87ca12bd0f0cdb3122eee5be3ce9ab5c3c21d81219adc4bdd`.
+The manifest remains **462 implemented /12 missing /11 blocked requirements**,
+**3235 implemented /3386 missing contracts**, zero verified. Full qualification,
+A11, source-unreachable legacy/notification success and required external/OS
+success remain incomplete. No publication, release or deployment follows.
+
+## Terminal frozen v19 local matrix
+
+The complete unchanged9a46afe executable snapshot finishes both runners before
+subsequent source edits. All19 platform commands execute; the sole failure is
+`GitHubControllerTest`'s unchanged first-page assertion
+(`github_controller_test.exs:56`) at seed501432. Core230/0 and web131/1 run at
+that seed; the second populated run passes230 core/0 and131 web/0. One core and
+eight web exclusions remain explicit. No row is removed, database reset or
+unrelated pagination repair performed.
+
+The platform/native block passes59 core+11 web/0. The dedicated retained
+authority profile passes1/0 at each fixed seed in its separate allowlisted DB;
+the original retained DB passes recovery/restart4 core+1 web/0 twice. Compile,
+format, strict Credo, forced Dialyzer, strict dependency audit, frozen frontend
+dependencies, assets, legacy exclusion and production assembly pass. Assembly
+does not publish or deploy anything.
+
+All23 independent package commands pass. Complete driver suites are677/0
+at501432 and987654; all49 native profiles are275/0 at both seeds. Actual-native
+and neutral outside consumers pass. Neutral WebSocket is42/0 at the original
+455834 seed and501432/987654. Wire tests, all package warning-free compile/
+format checks, inventory regressions/consistency and independent strict audits
+pass. Both final executable/config/workflow source guards match.
+
+Commands, logs and source hashes are retained in
+`/tmp/samgita-repair-final-{combined,platform,packages}-v19-20261025/` and their
+matching Python runners. The combined runner exits1 for the retained platform
+failure and required completeness exit1. The ledger remains3235 implemented/
+3386 missing contracts and462 implemented/12 missing/11 blocked requirements,
+zero verified. This records an executed complete matrix with explicit failures,
+not full compatibility, A11 closure or acceptance of subsequent source changes.
+
 ## Isolated native authority concurrency continuation
 
 The [management-wins profile](native-authority-qualification.md#management-wins-dispatch-with-independent-postgresql-transactions)
@@ -75,6 +164,39 @@ and an unchanged targeted workflow/fixture source guard. Evidence:
 `/tmp/samgita-hosted-skills-python-diagnosis-20261025.json`; the official runner
 source response is `/tmp/samgita-hosted-skills-runner-source-20261025.json`.
 These focused passes do not qualify the whole package or repair A11.
+
+### Terminal hosted interpreter-repair checkpoint
+
+At `8fcf76cbc226371b397232326ed1ea4e81fff4f5`,
+[foundation40132321197](https://github.com/gsmlg-opt/Samgita/actions/runs/40132321197)
+passes. [Conformance40132352439](https://github.com/gsmlg-opt/Samgita/actions/runs/40132352439)
+has terminal **successful selected and isolated native jobs**, while its mandatory
+completeness job fails. Both native jobs report **Python3.13.16** and load the
+unchanged TOML fixture before native startup. All49 required isolated profiles
+execute: **275 tests /0 failures /0 excluded**. The earlier required-skills
+startup failure is absent in this repair run; no assertion or deadline changed.
+
+The selected job passes **365+310=675 driver tests**, the outside-umbrella actual
+binary consumer **1/0**, and the platform/API/native journey **59 core +11 web/0**.
+Foundation passes both populated repeats (**230 core/0/one excluded;131 web/0/eight
+excluded** each), restart/rollback, packages/consumers, strict static checks,
+forced Dialyzer, audits, assets and local production assembly. Exclusions remain
+explicit and do not qualify the separate native profiles. Nothing is published
+or deployed.
+
+The previous16e60c2 selected job also subsequently finishes successfully with
+the same675 driver,1 consumer and59+11 platform counts. Its isolated job remains
+failed and later profiles skipped; the later8fcf76c run supplies the successful
+interpreter-repair evidence, not a retroactive pass for16e60c2.
+
+Exact-head metadata, logs and parsed counts are retained in
+`/tmp/samgita-hosted-8fcf76c-20261025/`; its `conformance.log` SHA256 is
+`80fcf19e5dbf575efe2563cc78a73e73db3506656fe9c81a0e20242b6ba6720e`.
+The mandatory gate exits1 at **462 implemented /12 missing /11 blocked
+requirements** and **3224 implemented /3397 missing contracts**, zero verified.
+That manifest predates the eleven later reasoning/Plan owners. It does not
+qualify subsequent executable additions or full compatibility. A11, unreachable
+production emitters and required external/OS success remain incomplete.
 
 ### Explicitly interrupted v18 local matrix
 
