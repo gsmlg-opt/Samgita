@@ -4,7 +4,10 @@ This profile exercises official Codex `rust-v0.163.0`, commit
 `83086188ae0614bd882818ff1aa23f3194962012`, Linux binary SHA256
 `399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215`.
 Five actual-binary cases pass at seeds `501432` and `987654`, 6.8/7.0 seconds
-on the final fixture source. Enabled successful sign-in remains unqualified.
+on that profile's final fixture source. Subsequent selected successful login and
+private-keyring reuse are qualified separately in
+[Gateway persistence](gateway-success-qualification.md); real-account acceptance
+remains incomplete.
 
 `native_gateway_oauth_profile.exs` covers the stable
 `account/gatewayOAuth/read`, `login` and `cancel` methods and genuine native
@@ -44,13 +47,15 @@ expressed with `length(Enum.filter(...)) >= 1`; replacing it with the equivalent
 was repeated on final source. No runtime code or timeout changed.
 
 Six selected request/result/notification entries gain scoped `implemented`
-evidence. The successful `account/gatewayOAuth/login` response remains missing:
+evidence. At that checkpoint the successful `account/gatewayOAuth/login` response was missing:
 cancel and token-exchange failure do not prove its successful `{}` result.
 Fifteen exact field/variant contracts gain evidence: the explicit initialization
 opt-in; notReady/started/failed statuses; all four changed-notice fields; all five
 read fields; and its exact status enum/null branches. The null branch is asserted
 only for the no-gateway read and confers no successful authentication evidence.
-The `succeeded` enum remains missing. CI explicitly selects this profile.
+The `succeeded` enum was also missing. The subsequent persistence profile now
+supplies selected positive evidence for both; it does not alter these failure
+fixtures. CI explicitly selects both profiles.
 No entry is promoted to fully verified; final aggregate/hosted and real-service
 acceptance are separate gates.
 

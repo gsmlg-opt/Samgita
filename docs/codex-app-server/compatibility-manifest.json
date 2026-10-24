@@ -205,14 +205,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/gateway-oauth-qualification.md"
+        "docs/codex-app-server/gateway-oauth-qualification.md",
+        "docs/codex-app-server/gateway-success-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:account/gatewayOAuth/cancel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. That earlier failure profile does not establish successful login or persistence; the subsequent private Secret Service profile supplies selected native login/succeeded/cold-reuse evidence. Rotation remains unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete.",
+        "actual_native_private_secret_service: Exact correlated login {}, public succeeded/readiness, one genuine PKCE exchange, native-created encrypted store and real keyring item persist across an explicit native process restart without reauthorization; primary logout retains this independent provider store. Synthetic issuer/GNOME50 Linux UDS only. Token use/rotation, pending disconnect/multi-owner privacy, other OSes and real services remain unqualified."
       ],
       "params": {
         "type": "null"
@@ -243,11 +245,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs",
+          "apps/samgita_codex_driver/test/native_gateway_success_profile.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "account/gatewayOAuth/cancel"
     },
@@ -255,14 +259,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/gateway-oauth-qualification.md"
+        "docs/codex-app-server/gateway-oauth-qualification.md",
+        "docs/codex-app-server/gateway-success-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:account/gatewayOAuth/login",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. That earlier failure profile does not establish successful login or persistence; the subsequent private Secret Service profile supplies selected native login/succeeded/cold-reuse evidence. Rotation remains unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete.",
+        "actual_native_private_secret_service: Exact correlated login {}, public succeeded/readiness, one genuine PKCE exchange, native-created encrypted store and real keyring item persist across an explicit native process restart without reauthorization; primary logout retains this independent provider store. Synthetic issuer/GNOME50 Linux UDS only. Token use/rotation, pending disconnect/multi-owner privacy, other OSes and real services remain unqualified."
       ],
       "params": {
         "type": "null"
@@ -293,11 +299,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs",
+          "apps/samgita_codex_driver/test/native_gateway_success_profile.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "account/gatewayOAuth/login"
     },
@@ -305,14 +313,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/gateway-oauth-qualification.md"
+        "docs/codex-app-server/gateway-oauth-qualification.md",
+        "docs/codex-app-server/gateway-success-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:account/gatewayOAuth/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. That earlier failure profile does not establish successful login or persistence; the subsequent private Secret Service profile supplies selected native login/succeeded/cold-reuse evidence. Rotation remains unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete.",
+        "actual_native_private_secret_service: Exact correlated login {}, public succeeded/readiness, one genuine PKCE exchange, native-created encrypted store and real keyring item persist across an explicit native process restart without reauthorization; primary logout retains this independent provider store. Synthetic issuer/GNOME50 Linux UDS only. Token use/rotation, pending disconnect/multi-owner privacy, other OSes and real services remain unqualified."
       ],
       "params": {
         "type": "null"
@@ -343,11 +353,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs",
+          "apps/samgita_codex_driver/test/native_gateway_success_profile.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "account/gatewayOAuth/read"
     },
@@ -10400,14 +10412,16 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/gateway-oauth-qualification.md"
+        "docs/codex-app-server/gateway-oauth-qualification.md",
+        "docs/codex-app-server/gateway-success-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:account/gatewayOAuth/changed",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. That earlier failure profile does not establish successful login or persistence; the subsequent private Secret Service profile supplies selected native login/succeeded/cold-reuse evidence. Rotation remains unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete.",
+        "actual_native_private_secret_service: Exact correlated login {}, public succeeded/readiness, one genuine PKCE exchange, native-created encrypted store and real keyring item persist across an explicit native process restart without reauthorization; primary logout retains this independent provider store. Synthetic issuer/GNOME50 Linux UDS only. Token use/rotation, pending disconnect/multi-owner privacy, other OSes and real services remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/GatewayOAuthChangedNotification"
@@ -10429,11 +10443,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs",
+          "apps/samgita_codex_driver/test/native_gateway_success_profile.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "account/gatewayOAuth/changed"
     },
@@ -14922,14 +14938,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/gateway-oauth-qualification.md"
+        "docs/codex-app-server/gateway-oauth-qualification.md",
+        "docs/codex-app-server/gateway-success-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:account/gatewayOAuth/cancel",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. That earlier failure profile does not establish successful login or persistence; the subsequent private Secret Service profile supplies selected native login/succeeded/cold-reuse evidence. Rotation remains unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete.",
+        "actual_native_private_secret_service: Exact correlated login {}, public succeeded/readiness, one genuine PKCE exchange, native-created encrypted store and real keyring item persist across an explicit native process restart without reauthorization; primary logout retains this independent provider store. Synthetic issuer/GNOME50 Linux UDS only. Token use/rotation, pending disconnect/multi-owner privacy, other OSes and real services remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -14946,11 +14964,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs",
+          "apps/samgita_codex_driver/test/native_gateway_success_profile.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "account/gatewayOAuth/cancel"
     },
@@ -14958,12 +14978,16 @@
       "capabilities": [],
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-success-qualification.md"
+      ],
       "experimental": false,
       "id": "server_response:account/gatewayOAuth/login",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_private_secret_service: Exact correlated login {}, public succeeded/readiness, one genuine PKCE exchange, native-created encrypted store and real keyring item persist across an explicit native process restart without reauthorization; primary logout retains this independent provider store. Synthetic issuer/GNOME50 Linux UDS only. Token use/rotation, pending disconnect/multi-owner privacy, other OSes and real services remain unqualified."
+      ],
       "prerequisites": [
         "initialized"
       ],
@@ -14971,16 +14995,20 @@
       "schema": "v2/GatewayOAuthLoginResponse.json",
       "schema_sha256": "03a413b9fe9359aeba086dad3a1780fdefaa018b3fc03372f99a37a73b969e1e",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_success_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "account/gatewayOAuth/login"
     },
     {
@@ -14988,14 +15016,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/gateway-oauth-qualification.md"
+        "docs/codex-app-server/gateway-oauth-qualification.md",
+        "docs/codex-app-server/gateway-success-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:account/gatewayOAuth/read",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. Only read/cancel success results are mapped; successful login, succeeded status and OS-keyring reuse/rotation remain unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete."
+        "actual_native_local_synthetic_backend: Five isolated cases cover stable read/login/cancel gates, passive readiness, real pending changed notices, duplicate login, release-before-cancel-ACK immediate retry and native PKCE callback followed by sanitized HTTP400. That earlier failure profile does not establish successful login or persistence; the subsequent private Secret Service profile supplies selected native login/succeeded/cold-reuse evidence. Rotation remains unqualified. Exact no-gateway null status evidence does not qualify sign-in success. Multi-owner WebSocket privacy, disconnect and real-service profiles remain incomplete.",
+        "actual_native_private_secret_service: Exact correlated login {}, public succeeded/readiness, one genuine PKCE exchange, native-created encrypted store and real keyring item persist across an explicit native process restart without reauthorization; primary logout retains this independent provider store. Synthetic issuer/GNOME50 Linux UDS only. Token use/rotation, pending disconnect/multi-owner privacy, other OSes and real services remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -15012,11 +15042,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs"
+          "apps/samgita_codex_driver/test/native_gateway_oauth_profile.exs",
+          "apps/samgita_codex_driver/test/native_gateway_success_profile.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "account/gatewayOAuth/read"
     },
@@ -75990,24 +76022,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/gateway-success-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/GatewayOAuthStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_private_secret_service: Exact correlated login {}, public succeeded/readiness, one genuine PKCE exchange, native-created encrypted store and real keyring item persist across an explicit native process restart without reauthorization; primary logout retains this independent provider store. Synthetic issuer/GNOME50 Linux UDS only. Token use/rotation, pending disconnect/multi-owner privacy, other OSes and real services remain unqualified."
+      ],
       "pointer": "/definitions/GatewayOAuthStatus/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "62b8bf8af3f068dd17fd0c0371a041860b8fa2f9586e7b848fe5705926cc2301",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_gateway_success_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {

@@ -114,6 +114,11 @@ jobs:
       - name: Required pinned native sandbox write and denial
         timeout-minutes: 1
         run: python3 scripts/codex/check_native_sandbox_prerequisites.py
+      - name: Private Secret Service profile tools
+        timeout-minutes: 3
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y dbus gnome-keyring libglib2.0-bin
       - name: Required private-network authentication profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
@@ -154,6 +159,10 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_gateway_oauth_profile.exs --seed 501432
+      - name: Required native Gateway OAuth persistent Secret Service profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_gateway_success_profile.exs --seed 501432
       - name: Required native feedback upload profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver

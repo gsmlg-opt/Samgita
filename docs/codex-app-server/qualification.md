@@ -2070,3 +2070,27 @@ are scoped implemented, with none fully verified. The generated ledger is
 4,989 missing** contracts, **zero verified**. Final aggregate/hosted, full field
 and behavior coverage, A11, legacy reachability and external profiles remain
 incomplete.
+
+## Native Gateway login and private keyring persistence
+
+The [Gateway success profile](gateway-success-qualification.md) passes **1/0**
+at seeds `501432` and `987654`, 5.4/8.7 seconds. The independent Session connects
+directly to stock native WebSocket UDS. A genuine PKCE callback against an owned
+synthetic issuer produces the correlated login result, exactly one public
+`succeeded` notice and passive readiness. Native creates the encrypted store and
+an item in a real private GNOME Secret Service; an explicitly restarted native
+process reuses both without another handoff/token exchange. Primary logout
+retains the independent Gateway store. No model turn or paid action runs.
+
+The fixture's failures and source-backed corrections are retained in the linked
+record: namespace capability dropping, native rendezvous symlink ownership,
+GNOME's own control-directory cleanup and the actual `emittedAtMs` envelope.
+Every original deadline and native assertion remains. AST, namespace, compile,
+format, strict Credo and recorded-PID cleanup pass. CI explicitly selects this
+profile with real D-Bus/GNOME tools; its hosted result remains pending.
+
+One requirement and the exact succeeded enum gain scoped implemented evidence.
+Ledger: **461 implemented / 13 missing / 11 blocked** requirements and
+**1,633 implemented / 4,988 missing** contracts, **zero verified**. Pending
+disconnect/multi-owner privacy, rotation/expiry, external accounts and other OS
+profiles, complete aggregate/hosted checks and A11 remain incomplete.
