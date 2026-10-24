@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+Exact source `67d2c32dd85dc90eec57060a8fe720e769d8851d` now has terminal hosted
+foundation and selected actual-native/platform success: complete default-driver
+partitions **643/0**, all **30 isolated profiles, 205/0**, independent consumers
+and native platform/API/concurrency. The required completeness job still fails;
+both preserved local aggregates retain the GitHub first-page failure, separate
+from passing recovery/restart. Both local halves have terminated: all
+**23 package commands pass**, including
+two **643/0** default runs, two **205/0** isolated-profile runs and three **42/0**
+neutral WebSocket runs. The platform half and combined matrix fail on the retained
+GitHub assertion. See [the checkpoint record](repair-qualification.md#hosted-checkpoint-at-67d2c32)
+for exact results and artifacts. Do not infer full compatibility, A11 or release.
+
 The [command-context and multi-file approval unit](approval-cache-context-qualification.md)
 now adds two actual-native cases, passing with the seventeen prior projection/
 persistence cases at both seeds (**19/0** each). Cwd identity, cold ephemeral

@@ -19,6 +19,20 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The current [hosted checkpoint at 67d2c32](repair-qualification.md#hosted-checkpoint-at-67d2c32)
+passes foundation, both complete default-driver partitions (**643/0** combined),
+all **30 isolated profiles, 205/0**, the independent native consumer and
+native runtime/API/concurrency (**53 core + 8 web / zero failures**).
+The separate required completeness job still fails. Local default-driver seeds
+`501432` and `987654` each pass **643/0**; its package/profile repeat matrix is
+terminal with all **23 package commands passing**, including both **205/0**
+isolated-profile runs and WebSocket seeds `455834`, `501432`, `987654`, **42/0**
+each. Both preserved local root aggregates retain the unchanged GitHub
+first-page failure, while consecutive recovery/restart checks pass. These are
+separate outcomes for exact frozen source, not a full compatibility, A11,
+publication or deployment claim. Historical checkpoints below retain their
+original code scope and limits.
+
 The next seventeen actual-native cases cover
 [filesystem selection/clocks](filesystem-qualification.md#prescribed-timestamps-and-directory-selection),
 [initialization metadata](initialization-qualification.md#response-metadata-and-validation),

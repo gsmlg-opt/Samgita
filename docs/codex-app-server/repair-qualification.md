@@ -6,6 +6,86 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted checkpoint at 67d2c32
+
+Both workflows reached terminal status at exact pushed source
+`67d2c32dd85dc90eec57060a8fe720e769d8851d`.
+[Foundation 40078557857](https://github.com/gsmlg-opt/Samgita/actions/runs/40078557857)
+passed. It includes both populated aggregates (**224 core/0/one excluded +
+128 web/0/five excluded** each), restart/rollback **1/0**, neutral core **32/0**,
+both outside consumers **1/0** each, neutral WebSocket and native wire **42/0**
+each, required strict checks/audits, forced Dialyzer, assets and assembly.
+
+[Conformance 40078574020](https://github.com/gsmlg-opt/Samgita/actions/runs/40078574020)
+is **failed overall**. Its selected actual-binary/platform job passed native
+wire **42/0**, both complete driver partitions (**331/0 + 312/0 = 643/0**),
+the native outside consumer **1/0**, and native runtime/API/concurrency
+**53 core + 8 web / zero failures**. The separate isolated-native job passed
+all **30 required profiles, 205/0**, with no exclusions. Partition 2, the outside
+consumer and platform journey actually ran; they were not inferred from the
+first partition. The ripgrep prerequisite repair is now observed passing.
+
+The independent required evidence job failed correctly: **485 requirements:
+0 verified / 462 implemented / 12 missing / 11 blocked**. Inventory consistency
+also records **6,621 contracts: 0 verified / 2,667 implemented / 3,954 missing**.
+No required gate, original eight-minute partition deadline, assertion,
+authorization boundary or sandbox policy was relaxed. Selected native success
+does not close completeness, A11, unavailable external services/OS profiles or
+the source-proven unreachable legacy contracts.
+
+Terminal metadata, complete raw logs, derived counts, line references and
+SHA256 fingerprints are retained in `/tmp/samgita-hosted-67d2c32-20261024/`.
+Collection used `/tmp/samgita-collect-hosted-67d2c32-20261024.py`, which checked
+both exact heads and terminal states before downloading. This is hosted evidence
+for the pinned native binary with synthetic dependencies where declared, not
+real provider integration, package publication or deployed behavior.
+
+## Frozen local matrix at 67d2c32
+
+The v11 combined runner serializes the preserved-platform and independent-package
+matrices against `67d2c32dd85dc90eec57060a8fe720e769d8851d`. Both halves reached
+terminal status with their executable/configuration/workflow hash guards passing.
+All **23 package commands passed**. The platform half finished all **17 commands**
+and is **failed**, because both populated aggregate runs retain the same GitHub
+first-page assertion failure. The parent reports a failed matrix; it does not
+erase that exit status when the independent package checks pass.
+
+| Independent package check | Actual outcome |
+| --- | --- |
+| Inventory regressions / consistency | **37/0**; 485 requirements, 6,621 contracts, zero verified |
+| Namespace and pinned native sandbox prerequisites | Passed |
+| Complete default driver, seeds 501432 / 987654 | **643/0** each |
+| All 30 explicit isolated profiles, both seeds | **205/0** each |
+| Native / both neutral outside consumers | **1/0** each; neutral core **32/0** |
+| Neutral WebSocket, seeds 455834 / 501432 / 987654 | **42/0** each |
+| Independent native wire | **42/0** |
+| Package compile, format and strict dependency audits | Passed |
+
+| Platform check | Actual outcome |
+| --- | --- |
+| Preserved root aggregates, seeds 501432 / 987654 | Core **224/0/1 excluded**; web **128/1/5 excluded** each |
+| Native runtime/API/concurrency journeys | Core **53/0**, web **8/0** |
+| Consecutive recovery/restart runs, both seeds | Core **4/0**, web **1/0** each |
+| Compile, formatting, strict Credo, forced Dialyzer, dependency audit | Passed |
+| Legacy exclusion, frozen frontend install, assets, production assembly | Passed |
+
+The unchanged assertion is `github_controller_test.exs:56`, in the test declared
+at line 39: the newly created connection is absent from the first default page
+when prior fixtures remain. No GitHub pagination, fixture, assertion or database
+record was changed. Fresh hosted success cannot erase this aggregate failure.
+The database `samgita_redesign_recovery_repair_test` remains populated, with no
+reset, fake mapping, activation bypass, automatic replay or task acceptance.
+The successful production assembly was never started.
+
+Exact commands and raw logs are retained in
+`/tmp/samgita-repair-final-platform-v9-20261024/` and
+`/tmp/samgita-repair-final-packages-v11-20261024/`; the serialized parent is
+`/tmp/samgita-repair-final-combined-v11-20261024.py`, with both exit statuses in
+its adjacent `results.json`. Documentation-only recording does not change this
+tested executable source. Subsequent executable additions require a new final
+matrix. These outcomes do not close A11 or full compatibility. No tag,
+publication or deployment.
+
 ## Frozen independent matrix at 5cd40c9
 
 The explicitly owned v10 runner reached both terminal results at unchanged
