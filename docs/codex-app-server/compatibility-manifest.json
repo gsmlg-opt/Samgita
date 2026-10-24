@@ -87006,71 +87006,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/threadSource",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: thread/started from start/fork matrices; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/threadSource",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "4bfc68de1c7a1fc34f4eba00c0306e3f5b2e152129a59edb97279bec4f47ec63",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSource"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/threadSource/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: thread/started from start/fork matrices; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "pointer": "/definitions/Thread/properties/threadSource/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "186c1e929ceb3118c193027ef1728332690182745ad70bfc7f2f2bd476f6b835",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/threadSource/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: thread/started from start/fork matrices; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "pointer": "/definitions/Thread/properties/threadSource/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -118416,53 +118440,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/AutoReviewRequirements/properties/ignoreRules",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[autoReview] equals requiredOnModels synthetic slug and ignoreRules empty list. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/AutoReviewRequirements/properties/ignoreRules",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "ignoreRules"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/AutoReviewRequirements/properties/requiredOnModels",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[autoReview][requiredOnModels] equals [synthetic-review-only-model]; reload adds a second inert slug. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/AutoReviewRequirements/properties/requiredOnModels",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "requiredOnModels"
     },
     {
@@ -120385,27 +120425,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowedWindowsSandboxImplementations",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[allowedWindowsSandboxImplementations] equals [unelevated]. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowedWindowsSandboxImplementations",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "ae639cbf4c632c7c5840435a4ea8c426bbe75e1247154d8e6acf056dcfb179d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowedWindowsSandboxImplementations"
     },
     {
@@ -120491,27 +120539,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/autoReview",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[autoReview] equals exact two-field selected object; reload and restart preserve changed requiredOnModels. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/autoReview",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "042de821cf4a1312046c27d49ca69e159eac93d731e028fefd31eb996653075e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "autoReview"
     },
     {
@@ -120899,27 +120955,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/enforceResidency",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[enforceResidency] equals us. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/enforceResidency",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "ba6e076593f14780d143c3bae775d68439052e1d706253dde830df258baa12bf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enforceResidency"
     },
     {
@@ -120969,27 +121033,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/featureRequirements",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[featureRequirements] equals apps/plugins/shell_snapshot false map; reload adds recommended_plugins false. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/featureRequirements",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "f76d40d07fdddea9e21baad43bc7a4f53585f308ff1c2201bcbb064fbff85c54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "featureRequirements"
     },
     {
@@ -121278,7 +121350,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md",
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -121286,7 +121359,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_selected_values: Map.has_key? plus nil assertion proves present modelProvider:null.",
-        "Actual native configuration RPC over isolated synthetic local home; zero model requests. Does not qualify managed policy, every key, concurrent writers, hosted services or execution-time enforcement. Local login policy projection only; no real login."
+        "Actual native configuration RPC over isolated synthetic local home; zero model requests. Does not qualify managed policy, every key, concurrent writers, hosted services or execution-time enforcement. Local login policy projection only; no real login.",
+        "actual_native_managed_selector: Exact effective selector, unchanged user bytes/origins, single/batch atomic readonly errors, explicit reload and cold restart. No model execution or full profile qualification."
       ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/modelProvider",
@@ -121301,7 +121375,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_config_test.exs:234-235"
+          "apps/samgita_codex_driver/test/native_config_test.exs:234-235",
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
         ]
       },
       "transport_coverage": [],
@@ -121346,27 +121421,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/models",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[models] equals exact newThread wrapper; reload/restart selected model and effort while config/read retains existing config model. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/models",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b248bd04718843e671df5803b6c3ca7ee05c59b92f89d2f6b0e52ba11b073f41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "models"
     },
     {
@@ -122566,27 +122649,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ModelsRequirements/properties/newThread",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[models][newThread] equals model synthetic-default-model, effort low, serviceTier default. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/ModelsRequirements/properties/newThread",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "65cbfcd4fd59a8920d362cb203072019bcc79bd9e2bdb92e4dba4b6ce50c4c80",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "newThread"
     },
     {
@@ -123072,53 +123163,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NewThreadModelDefaults/properties/model",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: newThread.model equals synthetic-default-model; reload changes to synthetic-next-model. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/NewThreadModelDefaults/properties/model",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NewThreadModelDefaults/properties/modelReasoningEffort",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: newThread.modelReasoningEffort equals low; reload changes to high; unknown string preserved; integer type error returns error then recovers. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/NewThreadModelDefaults/properties/modelReasoningEffort",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b35f6fda6c0f55b2823e86283ae32c907cc47538622b7ace6179046c6f9c93dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelReasoningEffort"
     },
     {
@@ -123168,27 +123275,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/NewThreadModelDefaults/properties/serviceTier",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: newThread.serviceTier equals default. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/NewThreadModelDefaults/properties/serviceTier",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "serviceTier"
     },
     {
@@ -123245,24 +123360,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ResidencyRequirement/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[enforceResidency] equals us, the selected enum member. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "pointer": "/definitions/ResidencyRequirement/enum/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "c9a7cb52dbf9683264b82cfdffcec2538a5c3da5b09a282486fa47244280d190",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -123289,24 +123412,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-model-defaults-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/WindowsSandboxImplementation/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_managed_metadata: requirements[allowedWindowsSandboxImplementations] equals [unelevated], the selected enum member. Selected reported metadata only, not actual model/review/residency/Windows enforcement or complete field/profile qualification."
+      ],
       "pointer": "/definitions/WindowsSandboxImplementation/enum/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "4b2c0dd287bc5c26370e0a6ed0b7193075cbab864d3fa225c481650cfb952692",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_model_defaults_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -163267,71 +163398,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/threadSource",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: fork/reset/cold-resume matrices; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "nullable": true,
       "pointer": "/properties/threadSource",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "2824456d58b6e40c2458326dd0bf3c0ddf7991771853fd5995f8b63391f0ecc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSource"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/threadSource/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: fork/reset/cold-resume matrices; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "pointer": "/properties/threadSource/anyOf/0",
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "186c1e929ceb3118c193027ef1728332690182745ad70bfc7f2f2bd476f6b835",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/threadSource/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: fork/reset/cold-resume matrices; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "pointer": "/properties/threadSource/anyOf/1",
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -188528,24 +188683,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/threadSource/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: native search null projection with saved labels independently verified by read/resume; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "pointer": "/definitions/Thread/properties/threadSource/anyOf/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -193773,71 +193936,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/threadSource",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: start/cold-resume matrices; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "nullable": true,
       "pointer": "/properties/threadSource",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "febce42cd0ebd794e9855730aa880a4e5e133baccbcc9dc0e28a1bba7b333109",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSource"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/threadSource/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: start/cold-resume matrices; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "pointer": "/properties/threadSource/anyOf/0",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "186c1e929ceb3118c193027ef1728332690182745ad70bfc7f2f2bd476f6b835",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/threadSource/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_attribution: start/cold-resume matrices; exact missing/null/string semantics, canonical metadata, cold read/resume and native preview/null projection boundaries. Selected LocalThreadStore/stdio history modes only; no complete-method, other stores/OS/transports or fully verified claim."
+      ],
       "pointer": "/properties/threadSource/anyOf/1",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 462 `implemented`,
-with 2,099 exact field/variant schema contracts implemented; 12 requirements and 4,522 contracts
+with 2,122 exact field/variant schema contracts implemented; 12 requirements and 4,499 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -128,8 +128,14 @@ contracts and five exact idle-settings leaves, preserving canonical ownership
 and excluding same-hash metadata lookalikes. It adds no native test or fully
 verified claim. Hosted `0cb70cc` passes foundation and both selected native
 jobs while the required evidence gate fails; exact counts remain in repair
-qualification. Next: integrate and actually qualify the managed-requirements
-drafts after the frozen package matrix, then continue remaining behavior.
+qualification. The managed-requirements drafts subsequently passed their native
+repeats. The next managed-default and source-attribution units pass the combined
+24-case block at both seeds; they add 23 exact implemented contracts and no
+verified claim. See [model defaults](managed-model-defaults-qualification.md)
+and [thread source](thread-source-qualification.md) for failed draft corrections
+and immutable source boundaries. Next: complete the combined-source matrix and
+continue remaining instruction/history/authorization behavior; prior-source
+hosted success does not certify these new tests or close completeness.
 
 The next four [native units](qualification.md#native-graph-permission-future-settings-and-error-semantics)
 now pass 18 cases at both recorded seeds: real spawned relations/cold graph,

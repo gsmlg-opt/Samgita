@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,099 implemented / 4,522 missing
+11 blocked requirements** and **0 verified / 2,122 implemented / 4,499 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,099 directly exercised
+MCP entries have scoped implementation evidence. These 2,122 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -47,6 +47,16 @@ directly demonstrated contracts gain scoped implemented evidence; no model,
 browser/computer execution, full-method or fully verified claim follows. The
 latest frozen package matrix before these additions passed two **495/0** default
 and two **205/0** profile runs; this new source still needs combined/hosted checks.
+
+The next [managed model-default metadata](managed-model-defaults-qualification.md)
+and [thread attribution](thread-source-qualification.md) units add eleven native
+cases and 23 exact implemented contracts. Their combined 24-case policy/source
+block passes both seeds. Failed draft assumptions, native preview filtering,
+open reasoning strings and loaded-versus-cold source projection remain explicit;
+no runtime, timeout or safety guard changed. Exact prior-source hosted and
+populated-database outcomes are recorded in
+[repair qualification](repair-qualification.md#hosted-checkpoint-at-e4dd2be).
+The final combined source still requires its own aggregate and hosted checks.
 
 Latest method records: [history](thread-history-qualification.md),
 [configuration](configuration-qualification.md), [goals](native-goal-qualification.md),

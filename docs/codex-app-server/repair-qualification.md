@@ -6,6 +6,59 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted checkpoint at e4dd2be
+
+Exact pushed source `e4dd2be02980f09b7f3462626b091f3f40c45f46` completed both
+normal workflows. [Foundation 40061306170](https://github.com/gsmlg-opt/Samgita/actions/runs/40061306170)
+passed both populated-database seeds (**224 core/0/one excluded + 125 web/0/two
+excluded**, each), dedicated restart/rollback **1/0**, neutral core **32/0**,
+both outside consumers **1/0** each, WebSocket **42/0**, native wire **42/0**,
+strict checks/audits, forced Dialyzer, assets and local production assembly.
+
+[Conformance 40061334993](https://github.com/gsmlg-opt/Samgita/actions/runs/40061334993)
+finished **failed overall**. Its selected actual-binary/platform job passed
+native wire **42/0**, both full default-driver partitions (**274/0 + 234/0 =
+508/0**), outside consumer **1/0**, and native platform **53 core + 5 web /
+zero failures**. All **30 explicit profiles, 205/0**, passed in the separate
+isolated-native job. Original eight-minute partition deadlines remain unchanged.
+The required evidence job failed: **485 requirements: 462 implemented / 12
+missing / 11 blocked; 6,621 contracts: 2,099 implemented / 4,522 missing; zero
+verified**. Terminal metadata and full logs:
+`/tmp/samgita-hosted-e4dd2be-20261024/`.
+
+These results include the thirteen managed-policy cases and precede the new
+eleven model-default/attribution cases. They are selected real-binary evidence,
+not complete compatibility, A11 closure, real provider acceptance or a release.
+Later executable test additions need their own combined-source/hosted checks.
+
+## Frozen populated-platform checkpoint at e4dd2be
+
+The v5 platform runner executed all seventeen required checks with a passing
+end-of-run source hash guard. The preserved
+`samgita_redesign_recovery_repair_test` database was neither reset nor trimmed.
+Seed `501432` passed **224 core/0/one excluded + 125 web/0/two excluded**.
+Seed `987654` passed core but failed **one of 125 web tests**:
+`github_controller_test.exs:56` expects a newly created connection on the default
+first page. Retained concurrency fixtures exceed that page; UUID ordering
+determines placement. This pre-existing pagination assertion remains an
+**aggregate failure**. No GitHub behavior/test, pagination limit, fixture record
+or assertion was changed to obtain green results.
+
+Native runtime/API/race cases passed **53 core + 5 web / zero failures**.
+Recovery/activation plus restart passed **4 core + 1 web / zero failures** in
+both consecutive seeds. Genuine unresolved work remains fail-closed. Compile,
+format, strict Credo, legacy tests/scan, forced Dialyzer, strict dependency audit,
+frozen web dependencies, assets and production dependencies/assets/assembly all
+passed. The runner still exits nonzero for the retained aggregate failure.
+Commands, exits, source hashes and complete logs:
+`/tmp/samgita-repair-final-platform-v5-20261024/`.
+The unpublished assembly at
+`/tmp/samgita-repair-final-prod-v5-20261024/rel/samgita` was never started.
+Fresh hosted success does not supersede the preserved local failure. These
+results precede the new attribution/model-default tests; final source needs its
+own complete required matrix. No tag, publication, deployment or live-data
+change occurred.
+
 ## Frozen independent-package checkpoint before managed policy
 
 The v5 runner completed **23 commands / zero failures** with executable,
