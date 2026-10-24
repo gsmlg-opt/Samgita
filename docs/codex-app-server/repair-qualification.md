@@ -6,6 +6,69 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted fixture interpreter prerequisite
+
+[Conformance40131233584](https://github.com/gsmlg-opt/Samgita/actions/runs/40131233584)
+at `16e60c24541e4a4fe37ddba08f5a5299cae2588e` fails the new required-skills
+profile before initialization: `disconnected, uncertain:false`. Authentication,
+executor metadata, timeout and request-ID profiles passed before it; downstream
+profiles are skipped, not accepted. Its separate completeness job also fails.
+[Foundation40131214046](https://github.com/gsmlg-opt/Samgita/actions/runs/40131214046)
+passes at the same source. Selected conformance was still running when this
+repair was prepared; no overall hosted pass is claimed.
+
+The new fixture imports standard-library `tomllib` at module startup. The exact
+failed image is `ubuntu22/20261012.322`; its official
+[software inventory](https://github.com/actions/runner-images/blob/ubuntu22/20261012.322/images/ubuntu/Ubuntu2204-Readme.md)
+lists default Python3.10.12. Neither native job selected another interpreter.
+Running the unchanged fixture with `--help` under an isolated Python3.10.20
+exits1 with `ModuleNotFoundError: No module named 'tomllib'`, before any namespace,
+executor or Codex startup; the identical file under Python3.13.15 exits0. The
+hosted child stderr was deliberately discarded and its interpreter version was
+not logged, so this directly reproduces the missing prerequisite, not a captured
+hosted Python traceback. A final hosted rerun is required to confirm the repair.
+
+Both native jobs now explicitly select Python3.13 and print its version and load
+the fixture with `--help` before fetching/starting Codex. TOML parsing, native
+assertions, deadlines, firewall, isolation and process ownership are unchanged.
+The driver README distinguishes the fixture's Python3.11+ requirement from the
+transport cleanup helper. The actual required-skills profile passes **1/0 at each
+of seeds501432 and987654** after this change, with namespace and import preflight
+and an unchanged targeted workflow/fixture source guard. Evidence:
+`/tmp/samgita-hosted-python-repair-v1-20261025/` and
+`/tmp/samgita-hosted-skills-python-diagnosis-20261025.json`; the official runner
+source response is `/tmp/samgita-hosted-skills-runner-source-20261025.json`.
+These focused passes do not qualify the whole package or repair A11.
+
+### Explicitly interrupted v18 local matrix
+
+The frozen `16e60c2` platform runner completed all17 commands with a matching
+source guard. Runtime/API/native concurrency passes **59 core +11 web/0**;
+both consecutive populated-database recovery/restart repeats pass **4 core +1
+web/0** each. Compile, formatting, strict Credo, forced Dialyzer, strict audit,
+legacy exclusion, frozen frontend install, assets and production assembly pass.
+No assembly was started or published. Aggregate seed501432 retains the GitHub
+first-page assertion failure; seed987654 passes. The pagination test is unchanged,
+and this is not a green aggregate matrix.
+
+The package runner completed six commands: inventory regressions **37/0**,
+inventory consistency, namespace and sandbox prerequisites, driver compilation
+and formatting. Its first full driver seed501432 was deliberately interrupted
+with SIGINT to the verified exclusively owned matrix process group, before
+editing the workflow or integrating further native regressions. Its test count
+is unfinished; the second seed, all49 profiles, consumers, wire and WebSocket
+checks are **not run in v18**. The process group was confirmed empty afterward.
+`interruption.json` records the unchanged source at interruption and completed
+commands. This is partial evidence, never a package-suite pass.
+
+Exact commands/logs remain in
+`/tmp/samgita-repair-final-{combined,platform,packages}-v18-20261025/`.
+The separately executed mandatory `--require-verified` gate exits1. Counts remain
+**462 implemented /12 missing /11 blocked requirements** and **3224 implemented /
+3397 missing contracts, zero verified**. The next fixed-source complete local
+and final-pushed hosted matrix remains required; source-unreachable emitters,
+external/OS success, A11 and release acceptance stay incomplete.
+
 ## Scoped continuation after 636b2ad
 
 The [native hook warning/context differential](hook-lifecycle-qualification.md#warning-versus-model-context)

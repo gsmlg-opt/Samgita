@@ -152,7 +152,12 @@ must enforce those boundaries and destination approval independently.
 ## Verification
 
 Private user/network namespace profiles are explicit tests rather than default
-discovery. On the declared Linux profile with `unshare`/`ip` and the pinned binary:
+discovery. The native qualification fixtures require Python 3.11 or newer for
+standard-library TOML validation. Both native CI jobs explicitly select Python
+3.13 and load the required-skills fixture before starting Codex. The stdio transport's Python
+cleanup helper does not itself require TOML support.
+
+On the declared Linux profile with `unshare`/`ip` and the pinned binary:
 
 ```sh
 mix test test/native_command_lifecycle_profile.exs \

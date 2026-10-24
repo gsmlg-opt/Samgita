@@ -10,6 +10,7 @@ env:
   MIX_ENV: test
   ELIXIR_VERSION: "1.18.5"
   OTP_VERSION: "27.3.4.17"
+  PYTHON_VERSION: "3.13"
   PYTHONDONTWRITEBYTECODE: "1"
 
 jobs:
@@ -55,6 +56,13 @@ jobs:
         with:
           elixir-version: ${{ env.ELIXIR_VERSION }}
           otp-version: ${{ env.OTP_VERSION }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Required native fixture interpreter
+        run: |
+          python3 --version
+          python3 scripts/codex/isolated_environment_skills_fixture.py --help
       - name: Fetch and verify immutable source and executable
         timeout-minutes: 6
         run: python3 scripts/codex/fetch_pin.py
@@ -124,6 +132,13 @@ jobs:
         with:
           elixir-version: ${{ env.ELIXIR_VERSION }}
           otp-version: ${{ env.OTP_VERSION }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Required native fixture interpreter
+        run: |
+          python3 --version
+          python3 scripts/codex/isolated_environment_skills_fixture.py --help
       - name: Fetch and verify immutable source and executable
         timeout-minutes: 6
         run: python3 scripts/codex/fetch_pin.py

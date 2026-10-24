@@ -19,6 +19,16 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [hosted interpreter prerequisite repair](repair-qualification.md#hosted-fixture-interpreter-prerequisite)
+follows an actual required-skills startup failure on pushed16e60c2. Its unchanged
+fixture fails to import under Python3.10 and loads under3.13; both native jobs
+now explicitly select3.13 and report/load the interpreter before native startup.
+The focused actual-native profile passes **1/0 at both fixed seeds**. Hosted
+confirmation remains pending. The v18 platform matrix completed with its
+retained GitHub-page failure; the package matrix was explicitly interrupted
+before source edits and is partial, not passed. Full final-source local/hosted
+checks and the compatibility/security gates below remain required.
+
 The [native hook warning/context differential](hook-lifecycle-qualification.md#warning-versus-model-context)
 and [fourteen direct notification-owner index](notification-owner-supplement-qualification.md)
 add sixteen exact implemented owners, zero verified. The complete21-file native
