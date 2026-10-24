@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,693 implemented / 3,928 missing
+11 blocked requirements** and **0 verified / 2,727 implemented / 3,894 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,693 directly exercised
+MCP entries have scoped implementation evidence. These 2,727 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -19,6 +19,15 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+Thirty-four [retained state/timeline owners](retained-state-projection-owners-qualification.md)
+now index previously passing exact assertions: notification read-state/settings,
+an explicit managed-network null/object differential, native realtime timeline
+primitives and search history mode. Every owning file hash matches the complete
+frozen `67d2c32` matrix and current executable source. No executable, test,
+fixture, timeout or gate changes; no fully verified promotion. This index does
+not qualify unasserted nulls, shared siblings, unreachable search variants,
+whole lifecycle rules or the ongoing new-source final matrix.
+
 Four [file-effect cases](file-change-effects-qualification.md) and three
 [missing/null/empty semantic differentials](default-semantics-qualification.md)
 extend actual-native qualification. Their complete owning block passes **12/0**
@@ -28,14 +37,22 @@ and persisted failed FileChange states and populated move destinations. The
 initial move-summary, deny-glob and resume-checkpoint oracle failures remain
 recorded with source-backed corrections. No deadline, assertion, historical
 record or process-cleanup guarantee was weakened. The new executable source is
-`0629d92` after file unit `264b14c`; its full local/hosted checks are ongoing.
+`0629d92` after file unit `264b14c`; its full local checks are ongoing.
 The earlier terminal checkpoint below remains evidence for its original source.
 Another [thirteen shared setting/order owners](shared-setting-owners-qualification.md)
 index unchanged, previously passing actual-native assertions with recomputed
 physical node and test hashes. No uncalled sibling, omitted default, whole union
 or broad behavior is promoted by that source audit.
 
-The current [hosted checkpoint at 67d2c32](repair-qualification.md#hosted-checkpoint-at-67d2c32)
+The [terminal hosted checkpoint at 3dcf64b](repair-qualification.md#hosted-checkpoint-at-3dcf64b)
+passes foundation, native wire **42/0**, driver partition 1 **340/0** and all
+30 isolated profiles **208/0**. Driver partition 2 has **307 tests / one
+failure** in the MCP fixture's cleanup-marker assertion. Its outside-consumer
+and platform steps were skipped; completeness also fails. The cleanup cause
+remains under investigation. These actual outcomes supersede any inference
+that the new executable combination is fully green.
+
+The prior [hosted checkpoint at 67d2c32](repair-qualification.md#hosted-checkpoint-at-67d2c32)
 passes foundation, both complete default-driver partitions (**643/0** combined),
 all **30 isolated profiles, 205/0**, the independent native consumer and
 native runtime/API/concurrency (**53 core + 8 web / zero failures**).

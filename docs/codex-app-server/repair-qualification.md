@@ -6,6 +6,44 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted checkpoint at 3dcf64b
+
+Both workflows reached terminal state at exact pushed documentation head
+`3dcf64b43d0f4a288bcff0b27af33c9e516177e1`; executable source is unchanged
+from `0629d92cd20fea196de729da3b4fa77747003080`.
+[Foundation 40082783873](https://github.com/gsmlg-opt/Samgita/actions/runs/40082783873)
+passed all required steps, including both populated aggregates (**224 core/0/
+one excluded + 128 web/0/five excluded** each), restart/rollback **1/0**,
+independent packages/consumers, strict checks, forced Dialyzer, audits, assets
+and production assembly. This is not publication or deployed behavior.
+
+[Conformance 40082826118](https://github.com/gsmlg-opt/Samgita/actions/runs/40082826118)
+is **failed overall**. The independent native wire passed **42/0** and driver
+partition 1 passed **340/0**, seed `501432`. Partition 2 ran **307 tests / one
+failure** at the same seed: M7 in `native_mcp_control_lifecycle_test.exs:315`
+fails its setup `on_exit` assertion at line 69 because the fixture journal has
+no `fixture_closed` marker. The reported stack is in cleanup; it does not
+identify a failed stream cancellation assertion or establish a root cause.
+The native outside-consumer and platform steps were skipped after this failure.
+Do not count them as passed or the whole driver as green.
+
+The separate isolated-native job passed all **30 required profiles, 208/0**,
+with no exclusions, including the new missing/null/empty differential cases.
+The required completeness job failed correctly with **485 requirements:
+0 verified / 462 implemented / 12 missing / 11 blocked**. Its original ledger
+has **6,621 contracts: 0 verified / 2,693 implemented / 3,928 missing**. Later
+documentation-only evidence indexing does not change those historical counts.
+No deadline, assertion, sandbox, cleanup or completeness gate was relaxed.
+
+Exact terminal metadata, complete raw logs, derived counts/line anchors and
+SHA256 fingerprints are retained in `/tmp/samgita-hosted-3dcf64b-20261024/`,
+collected by `/tmp/samgita-collect-hosted-3dcf64b-20261024.py`. The collector
+requires both exact heads and terminal statuses before download. The new
+cleanup failure is under investigation; successful prior checkpoints do not
+resolve it. The current local frozen matrix is still running. A11,
+source-unreachable branches, real external/OS success and complete compatibility
+remain incomplete. No tag, release, package publication or deployment follows.
+
 ## Hosted checkpoint at 67d2c32
 
 Both workflows reached terminal status at exact pushed source

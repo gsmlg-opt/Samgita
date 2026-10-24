@@ -683,3 +683,17 @@ unsandboxed retry and full historical byte prefixes. Executable commits are
 `264b14c` and `0629d92`; source is frozen for complete preserved-platform,
 independent-package and final-pushed hosted checks. Remaining broad lifecycle,
 A11, source-unreachable and real external/OS success gates are not closed.
+
+The [retained state/timeline audit](retained-state-projection-owners-qualification.md)
+adds 34 precise existing positive owners, with unchanged file hashes checked
+against all 23 passing commands of the frozen `67d2c32` package matrix.
+The regenerated ledger is **2,727 implemented / 3,894 missing** contracts,
+zero verified; requirements remain **462 implemented / 12 missing / 11 blocked**.
+No runtime/test/configuration change follows from this evidence indexing.
+The `0629d92` final-source local matrix remains in progress. Terminal hosted
+`3dcf64b` passes foundation and all 30 isolated profiles (**208/0**), but driver
+partition 2 fails the MCP fixture cleanup-marker assertion (**307/1**); native
+outside-consumer/platform steps were skipped. Investigate the exact cleanup
+cause with every guardian/assertion/deadline retained before claiming a repair.
+The separate completeness job fails correctly. Source-specific search projection
+limits and reachable-but-untested realtime variants remain explicit.

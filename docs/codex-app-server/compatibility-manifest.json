@@ -75450,53 +75450,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ActivePermissionProfile/properties/extends",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ActivePermissionProfile/properties/extends",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "47dbcd001ebdac0bd4b471e359b8e11d5ddede103a59d5d9850033c4e2b90fb0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "extends"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ActivePermissionProfile/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ActivePermissionProfile/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "da967483227416dfb18cecc148b51fa650a846f3c172c9247b98fb1d0bb05868",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -93601,97 +93617,129 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadReadState/properties/firstUnread",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact native readState/changed payloads equal independently asserted null/threadStart state and nonempty changing CAS revisions in both history modes; stale updates reject and cold reads retain the winner without history mutation. Only null/threadStart; unread turn position, concurrent notification loss, whole union and other deployment profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadReadState/properties/firstUnread",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "46ec9226c13208db38d6eacd6035005bbc3fa0949437bffb43dadd9edb37bd2c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:37-113,119-137"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "firstUnread"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadReadState/properties/firstUnread/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact native readState/changed payloads equal independently asserted null/threadStart state and nonempty changing CAS revisions in both history modes; stale updates reject and cold reads retain the winner without history mutation. Only null/threadStart; unread turn position, concurrent notification loss, whole union and other deployment profiles remain unqualified."
+      ],
       "pointer": "/definitions/ThreadReadState/properties/firstUnread/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "07507507213cf11420c45422d1324856941b335cf1e53e7d897a4728f4fd6be6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:37-113,119-137"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadReadState/properties/firstUnread/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact native readState/changed payloads equal independently asserted null/threadStart state and nonempty changing CAS revisions in both history modes; stale updates reject and cold reads retain the winner without history mutation. Only null/threadStart; unread turn position, concurrent notification loss, whole union and other deployment profiles remain unqualified."
+      ],
       "pointer": "/definitions/ThreadReadState/properties/firstUnread/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:37-113,119-137"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadReadState/properties/revision",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact native readState/changed payloads equal independently asserted null/threadStart state and nonempty changing CAS revisions in both history modes; stale updates reject and cold reads retain the winner without history mutation. Only null/threadStart; unread turn position, concurrent notification loss, whole union and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadReadState/properties/revision",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:37-113,119-137"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "revision"
     },
     {
@@ -94635,49 +94683,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/activePermissionProfile",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadSettings/properties/activePermissionProfile",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "79377481c5b779706f2cd16c81c0c3ac33fc2e86650d0a1a4179f5eb26368af7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "activePermissionProfile"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/activePermissionProfile/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadSettings/properties/activePermissionProfile/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "611917089f5fc7ea790c76f397dfffd649cd3cb78ec289da27e800ea85e02fec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -94713,53 +94777,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/approvalPolicy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSettings/properties/approvalPolicy",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "51bcd333cdd527eeddd4feea1f6b867a294ce2cea3129413ecb086f211516474",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalPolicy"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/approvalsReviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSettings/properties/approvalsReviewer",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "fa34df2c0d32f88ea66072290e2b108c62f88a64a91cf81b81a7a582f05d3812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
@@ -95039,97 +95119,129 @@
     {
       "default": "explicitRequestOnly",
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/multiAgentMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSettings/properties/multiAgentMode",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "584ca34cab40821902c9fb927b99f97a9cf36ddf5879ea30d28c55927feaf7b2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "multiAgentMode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/multiAgentMode/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadSettings/properties/multiAgentMode/allOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "a7440efdb3c76357d6fdd9c7db6cee1bb30d03a363a078e04707538c384963a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/personality",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadSettings/properties/personality",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "05689caea5d5c272a63827debe054ceb59cd06126f5043f8de6a389e942bf893",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "personality"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/personality/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadSettings/properties/personality/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "3d5163f5698fd3d68442457516b0d32472daf7937c975ee3d2626ffd118c163f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -95157,27 +95269,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/sandboxPolicy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact applied settings notifications assert supplied granular policy, user/guardian alias reviewer, friendly/pragmatic saved values, explicitRequestOnly despite deprecated hints, and named audit profile id/extends plus readOnly policy before explicit legacy provenance clearing; no execution occurs. Applied saved metadata only, no approval enforcement, automatic reviewer/delegation or model personality effect; unasserted nullable/default siblings and complete union/profile/deployment acceptance remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSettings/properties/sandboxPolicy",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "49b254667a27407307ddcf4e6d98522ef8932afb37f6325e11a2d8a207395bfb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,305-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sandboxPolicy"
     },
     {
@@ -95809,49 +95929,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadUnreadPosition/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact native readState/changed payloads equal independently asserted null/threadStart state and nonempty changing CAS revisions in both history modes; stale updates reject and cold reads retain the winner without history mutation. Only null/threadStart; unread turn position, concurrent notification loss, whole union and other deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/0/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "9f4e18814d8c2e8402b4a054dee8fa70b82622a63c7b99f93de792945781374e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:37-113,119-137"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadUnreadPosition/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Exact native readState/changed payloads equal independently asserted null/threadStart state and nonempty changing CAS revisions in both history modes; stale updates reject and cold reads retain the winner without history mutation. Only null/threadStart; unread turn position, concurrent notification loss, whole union and other deployment profiles remain unqualified."
+      ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/0/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "cb103084ef05c5361ff47754b77a787639caa51916732e0cc0038a6674da26af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:37-113,119-137"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -123746,24 +123882,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/network/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Deliberately absent managed network projects an explicit Map.fetch!-checked null, three sparse/empty disabled objects project exact independently prescribed maps, and restoration returns null with no thread/socket execution. Disabled managed-network metadata only; no enabled proxy, network effects, whole NetworkRequirements union or platform parity."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/network/anyOf/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_network_requirements_test.exs:94-121,310-331"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -193309,24 +193453,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/ThreadHistoryMode/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Actual search explicitly asserts the supplied paginated history mode with exact owned thread IDs on warm/cold projections. Selected paginated literal only, not all search/source/cursor or deployment behavior."
+      ],
       "pointer": "/definitions/ThreadHistoryMode/enum/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "05a9c875b3f55a61fb171f80795dbee72507075ea63a6a8b3830b9e8618db8bd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs:220,244-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -199596,49 +199748,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (realtimeSessionStarted; T242-246,265-271) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "6e6ef77a980fff8b72763f9742c283119c0e4b452b5fff9b1b434f7600e23f10",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (same exact literal) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "684a94c136e1dc64fa39c5fff77c7014d95a421c5804a356266f95ccd476cece",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -199666,101 +199834,133 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/1/properties/role",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (assistant only; T249,265-271) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/1/properties/role",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "1c909a8023e807ecb6d72b21b09b2666f491e3cfac9607432ad05703b61649e1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "role"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/1/properties/text",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (hello world, not final revision; T227-250,265-271) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/1/properties/text",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "text"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (transcriptSegment; T242-246,265-271) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "96e7747ecb56878320a88fa26723dccb851483a8b73f0ce58d8f4cf11b7db50a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (same exact literal) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "4b122053c97ca57285541cd0fae0c5499f74f45dea6ed7268fab3260ca365368",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -199940,149 +200140,197 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/3/properties/outcome",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (ended only; T251,265-271) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/3/properties/outcome",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "6a78176b7470173267fd102d3591e2424eb25fed8599f08cccff74a117a8d4c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "outcome"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/3/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (realtimeSessionClosed; T242-246,265-271) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/3/properties/type",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "12f9d1616bd0509b77b8e1958b70c1b559fb200731cf996f0a99f74e17a9015e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/3/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (same exact literal) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/3/properties/type/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "4b4f2eca6a33eb2fdeba2fb5d89a039663fdcba5260b661682602f880a3bbcb5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (distinct UUIDv7; T253-260,265-271) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/properties/id",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/properties/realtimeSessionId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (synthetic-history; T220-223,253-258,265-271) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/properties/realtimeSessionId",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "realtimeSessionId"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeSessionOutcome/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (ended; same assertions) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "pointer": "/definitions/ThreadRealtimeSessionOutcome/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "58e05e8d66023d540d23db5ddf55315f3248253a94c754dda9d1508e8b2855f9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -200131,24 +200379,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeTranscriptRole/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (assistant; same assertions) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "pointer": "/definitions/ThreadRealtimeTranscriptRole/enum/1",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "b9f33d63d2896cec87523f3926ae6403081a4f8d1626635fdff5e1edce987a0b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -200411,49 +200667,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (realtime for all three exact returned facts; T265-271,533-537) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "33089987c182ab737e6eb6c743fb5998420ba8c6aeb3f267d27a827a2137aa36",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/retained-state-projection-owners-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_retained_state_owner: Independently asserted native realtime facts (same exact realtime discriminator) are retained exactly by warm/cold/resumed native timeline projections; backend deltas differ from the final revision. Only completed assistant transcript/ended session with supplied synthetic backend inputs; no whole item/union, user/failed/BEM/opening-session or real backend/deployment qualification."
+      ],
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "944ab23e4d2a5558413ded5a277e9ba072a1ace17a2bfa059d9eee86bd07c160",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:215-274,533-537"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
