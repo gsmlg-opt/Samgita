@@ -6315,7 +6315,8 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/native-goal-qualification.md"
+        "docs/codex-app-server/native-goal-qualification.md",
+        "docs/codex-app-server/goal-control-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/goal/clear",
@@ -6415,7 +6416,8 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/native-goal-qualification.md"
+        "docs/codex-app-server/native-goal-qualification.md",
+        "docs/codex-app-server/goal-control-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/goal/set",
@@ -9902,7 +9904,8 @@
           "apps/samgita_codex_driver/test/native_approval_loss_test.exs:418-423",
           "apps/samgita_codex_driver/test/native_approval_loss_test.exs:232-302",
           "apps/samgita_codex_driver/test/native_approval_loss_test.exs:423-470",
-          "apps/samgita_codex_driver/test/native_approval_cold_restart_profile.exs:89-240"
+          "apps/samgita_codex_driver/test/native_approval_cold_restart_profile.exs:89-240",
+          "apps/samgita_codex_driver/test/native_approval_sent_restart_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -10075,7 +10078,8 @@
       "evidence": [
         "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
         "docs/codex-app-server/approval-loss-qualification.md",
-        "docs/codex-app-server/command-replay-cancellation-qualification.md"
+        "docs/codex-app-server/command-replay-cancellation-qualification.md",
+        "docs/codex-app-server/approval-cold-restart-qualification.md"
       ],
       "id": "lifecycle:disconnect-reconnect",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10100,7 +10104,8 @@
           "apps/samgita_codex_driver/test/real_session_test.exs:424",
           "apps/samgita_codex_driver/test/session_test.exs:203",
           "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372",
-          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287",
+          "apps/samgita_codex_driver/test/native_approval_sent_restart_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -12956,7 +12961,8 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/native-goal-qualification.md"
+        "docs/codex-app-server/native-goal-qualification.md",
+        "docs/codex-app-server/goal-control-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:thread/goal/cleared",
@@ -12997,7 +13003,8 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/native-goal-qualification.md"
+        "docs/codex-app-server/native-goal-qualification.md",
+        "docs/codex-app-server/goal-control-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:thread/goal/updated",
@@ -19683,7 +19690,8 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/native-goal-qualification.md"
+        "docs/codex-app-server/native-goal-qualification.md",
+        "docs/codex-app-server/goal-control-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/goal/clear",
@@ -19757,7 +19765,8 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/native-goal-qualification.md"
+        "docs/codex-app-server/native-goal-qualification.md",
+        "docs/codex-app-server/goal-control-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/goal/set",
@@ -98803,24 +98812,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/TurnStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual native turn/completed failed status after one synthetic HTTP429 quota response only; exact target/error/no-retry/history assertions. No ThreadStatus notification alias, real account quota, other transport/backend/OS or full lifecycle promotion."
+      ],
       "pointer": "/definitions/TurnStatus/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_budget_profile.exs:277"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -140200,27 +140217,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-mcp-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/pluginId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected owned local plugin/stdio MCP install, same-thread policy and uninstall/cold absence only; exact independent result/journal assertions. Nonnull pluginId and isError:false do not qualify null/omission, error body, remote/backend/model-mediated/OS variants or full compatibility."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpServerStatus/properties/pluginId",
       "required": false,
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_mcp_profile.exs:78"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pluginId"
     },
     {
@@ -144833,79 +144858,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-mcp-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerToolCallResponse.json#/properties/content",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected owned local plugin/stdio MCP install, same-thread policy and uninstall/cold absence only; exact independent result/journal assertions. Nonnull pluginId and isError:false do not qualify null/omission, error body, remote/backend/model-mediated/OS variants or full compatibility."
+      ],
       "nullable": false,
       "pointer": "/properties/content",
       "required": true,
       "schema": "v2/McpServerToolCallResponse.json",
       "schema_sha256": "8dba76379ee3f1d99828531aed9e483eefabe0ab7b42ce56602f8f69b036fa09",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_mcp_profile.exs:78"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "content"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-mcp-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerToolCallResponse.json#/properties/isError",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected owned local plugin/stdio MCP install, same-thread policy and uninstall/cold absence only; exact independent result/journal assertions. Nonnull pluginId and isError:false do not qualify null/omission, error body, remote/backend/model-mediated/OS variants or full compatibility."
+      ],
       "nullable": true,
       "pointer": "/properties/isError",
       "required": false,
       "schema": "v2/McpServerToolCallResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_mcp_profile.exs:78"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "isError"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-mcp-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/McpServerToolCallResponse.json#/properties/structuredContent",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected owned local plugin/stdio MCP install, same-thread policy and uninstall/cold absence only; exact independent result/journal assertions. Nonnull pluginId and isError:false do not qualify null/omission, error body, remote/backend/model-mediated/OS variants or full compatibility."
+      ],
       "nullable": false,
       "pointer": "/properties/structuredContent",
       "required": false,
       "schema": "v2/McpServerToolCallResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_mcp_profile.exs:78"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "structuredContent"
     },
     {
@@ -148433,24 +148482,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-mcp-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstallResponse.json#/definitions/PluginAuthPolicy/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected owned local plugin/stdio MCP install, same-thread policy and uninstall/cold absence only; exact independent result/journal assertions. Nonnull pluginId and isError:false do not qualify null/omission, error body, remote/backend/model-mediated/OS variants or full compatibility."
+      ],
       "pointer": "/definitions/PluginAuthPolicy/enum/0",
       "schema": "v2/PluginInstallResponse.json",
       "schema_sha256": "141ba4c5d9628221327aa28837db48cf6317bbcaa21d847924fe70e39d1170c7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_mcp_profile.exs:78"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -148520,27 +148577,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-mcp-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstallResponse.json#/properties/authPolicy",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected owned local plugin/stdio MCP install, same-thread policy and uninstall/cold absence only; exact independent result/journal assertions. Nonnull pluginId and isError:false do not qualify null/omission, error body, remote/backend/model-mediated/OS variants or full compatibility."
+      ],
       "nullable": false,
       "pointer": "/properties/authPolicy",
       "required": true,
       "schema": "v2/PluginInstallResponse.json",
       "schema_sha256": "799050818c0ffe92497fd50ecadba0454b98d98297470ce5a4959fb5b0873f1e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_mcp_profile.exs:78"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "authPolicy"
     },
     {
@@ -152885,27 +152950,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plugin-mcp-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginReadResponse.json#/definitions/PluginDetail/properties/mcpServers",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected owned local plugin/stdio MCP install, same-thread policy and uninstall/cold absence only; exact independent result/journal assertions. Nonnull pluginId and isError:false do not qualify null/omission, error body, remote/backend/model-mediated/OS variants or full compatibility."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginDetail/properties/mcpServers",
       "required": true,
       "schema": "v2/PluginReadResponse.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_mcp_profile.exs:78"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcpServers"
     },
     {
@@ -170461,97 +170534,133 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalClearParams.json#/properties/origin",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Optional field and its exercised values only; no authorization grant, invalid-origin validation, concurrent clear, or other physical alias claim.",
+        "Actual native selected origin/null/target behavior only; outgoing RPC bytes are not separately captured; remaining invalid/concurrent/transport/environment variants and full compatibility stay unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/origin",
       "required": false,
       "schema": "v2/ThreadGoalClearParams.json",
       "schema_sha256": "e4a8fd8831697d88909255a027a0bb5fbe466ae3d853ba9cb9e77d6e1aa1f073",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_origin_test.exs:27"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "origin"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadGoalClearParams.json#/properties/origin/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Physical clear-origin non-null pointer only; referenced enum owners are already implemented and are excluded from candidates.",
+        "Actual native selected origin/null/target behavior only; outgoing RPC bytes are not separately captured; remaining invalid/concurrent/transport/environment variants and full compatibility stay unverified."
+      ],
       "pointer": "/properties/origin/anyOf/0",
       "schema": "v2/ThreadGoalClearParams.json",
       "schema_sha256": "a641c857588b6f71ea037cefa2a7b9788eeeebd8fcc165b610ec3f68c56eaa5e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_origin_test.exs:27"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadGoalClearParams.json#/properties/origin/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Only explicit null at the clear-origin pointer; omitted origin is a separate control and supplies no null-branch transfer.",
+        "Actual native selected origin/null/target behavior only; outgoing RPC bytes are not separately captured; remaining invalid/concurrent/transport/environment variants and full compatibility stay unverified."
+      ],
       "pointer": "/properties/origin/anyOf/1",
       "schema": "v2/ThreadGoalClearParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_origin_test.exs:27"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalClearParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected valid target ID only; this test does not assert UUID syntax, invalid/foreign ID rejection, authorization, or concurrent targeting.",
+        "Actual native selected origin/null/target behavior only; outgoing RPC bytes are not separately captured; remaining invalid/concurrent/transport/environment variants and full compatibility stay unverified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadGoalClearParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_origin_test.exs:27"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -170591,27 +170700,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalClearedNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Physical ThreadGoalClearedNotification.threadId only; no automatic transfer to ServerNotification unions/aliases or complete notification lifecycle.",
+        "Actual native selected origin/null/target behavior only; outgoing RPC bytes are not separately captured; remaining invalid/concurrent/transport/environment variants and full compatibility stay unverified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadGoalClearedNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_origin_test.exs:27"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -170779,71 +170897,98 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalSetParams.json#/properties/origin",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Selected set-origin field semantics only; no full union/status lifecycle, invalid origin, Samgita authorization, or sibling alias claim.",
+        "Actual native selected origin/null/target behavior only; outgoing RPC bytes are not separately captured; remaining invalid/concurrent/transport/environment variants and full compatibility stay unverified."
+      ],
       "nullable": true,
       "pointer": "/properties/origin",
       "required": false,
       "schema": "v2/ThreadGoalSetParams.json",
       "schema_sha256": "e4a8fd8831697d88909255a027a0bb5fbe466ae3d853ba9cb9e77d6e1aa1f073",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_origin_test.exs:27"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "origin"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadGoalSetParams.json#/properties/origin/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Physical set-origin non-null pointer only; no inferred promotion of already implemented enum definitions or clear-origin sibling.",
+        "Actual native selected origin/null/target behavior only; outgoing RPC bytes are not separately captured; remaining invalid/concurrent/transport/environment variants and full compatibility stay unverified."
+      ],
       "pointer": "/properties/origin/anyOf/0",
       "schema": "v2/ThreadGoalSetParams.json",
       "schema_sha256": "a641c857588b6f71ea037cefa2a7b9788eeeebd8fcc165b610ec3f68c56eaa5e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_origin_test.exs:27"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadGoalSetParams.json#/properties/origin/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Only explicit null origin at this set pointer; absence control does not establish null and clear-null evidence is independent.",
+        "Actual native selected origin/null/target behavior only; outgoing RPC bytes are not separately captured; remaining invalid/concurrent/transport/environment variants and full compatibility stay unverified."
+      ],
       "pointer": "/properties/origin/anyOf/1",
       "schema": "v2/ThreadGoalSetParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_origin_test.exs:27"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -170912,24 +171057,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/goal-control-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadGoalSetParams.json#/properties/status/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Physical status null alternative on selected paused goals only; no other status/null behavior, omission equivalence transfer or whole status union claim.",
+        "Actual native selected origin/null/target behavior only; outgoing RPC bytes are not separately captured; remaining invalid/concurrent/transport/environment variants and full compatibility stay unverified."
+      ],
       "pointer": "/properties/status/anyOf/1",
       "schema": "v2/ThreadGoalSetParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_origin_test.exs:27"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

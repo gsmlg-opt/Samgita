@@ -222,6 +222,10 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_approval_cold_restart_profile.exs --seed 501432
+      - name: Required native sent-unconfirmed approval hard restart profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_approval_sent_restart_profile.exs --seed 501432
       - name: Required native bundled skills shared-cache profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
@@ -242,6 +246,14 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_goal_budget_profile.exs --seed 501432
+      - name: Required native stock goal tool and independent budget profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_goal_tool_profile.exs --seed 501432
+      - name: Required native plugin MCP policy and uninstall profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_plugin_mcp_profile.exs --seed 501432
       - name: Required native command lifecycle profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver

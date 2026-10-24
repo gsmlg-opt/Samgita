@@ -807,3 +807,17 @@ deterministic red/green regression, complete first-seed MCP suite and second-see
 MCP/process cleanup block, without changing production cleanup. Final combined
 source and hosted repeats remain required. The separate completeness job fails correctly. Source-specific search projection
 limits and reachable-but-untested realtime variants remain explicit.
+
+The next [goal-control](goal-control-qualification.md),
+[plugin-MCP](plugin-mcp-qualification.md) and
+[sent-approval restart](approval-cold-restart-qualification.md#sent-but-unconfirmed-response-across-hard-restart)
+units add six actual-native cases. The complete owning block passes **25/0** at
+both fixed seeds with strict checks and a matching source guard. Seventeen exact
+owners gain scoped implemented evidence; requirements remain **462 implemented /
+12 missing / 11 blocked**, with **zero verified**; contracts are **3,188
+implemented / 3,433 missing**, also zero verified. All45 isolated profiles have
+required explicit hosted steps. Preserve the initial failed-oracle evidence;
+this is no full-compatibility or A11 closure. Continue the remaining native
+default/history differentials, operator-authority time/connection branches and
+driver OTP confidentiality boundary, then freeze the combined source for the
+complete preserved-platform/package/consumer and final-pushed hosted matrix.
