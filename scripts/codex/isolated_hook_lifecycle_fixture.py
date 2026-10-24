@@ -19,7 +19,7 @@ import threading
 
 
 SHA256 = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
-SCENARIOS = ("success", "untrusted", "disabled", "blocked", "failed", "stopped")
+SCENARIOS = ("success", "untrusted", "disabled", "blocked", "failed", "stopped", "warning", "context")
 PROMPT = "Owned synthetic hook lifecycle input"
 HOOK_PROGRAM = r'''import json
 import os
@@ -29,7 +29,7 @@ import sys
 root = Path(sys.argv[1]).resolve(strict=True)
 event, scenario = sys.argv[2:]
 assert event in {"SessionStart", "UserPromptSubmit"}
-assert scenario in {"success", "untrusted", "disabled", "blocked", "failed", "stopped"}
+assert scenario in {"success", "untrusted", "disabled", "blocked", "failed", "stopped", "warning", "context"}
 assert Path.cwd() == root / "workspace"
 proof = json.loads((root / "state.json").read_text())
 assert os.readlink("/proc/self/ns/net") == proof["child"]
@@ -58,6 +58,11 @@ if event == "UserPromptSubmit" and scenario == "failed":
     raise SystemExit(7)
 if event == "UserPromptSubmit" and scenario == "stopped":
     print(json.dumps({"continue": False, "stopReason": "Owned synthetic hook stopped input"}))
+elif event == "UserPromptSubmit" and scenario == "warning":
+    print(json.dumps({"systemMessage": "Owned synthetic hook warning"}))
+elif event == "UserPromptSubmit" and scenario == "context":
+    print(json.dumps({"hookSpecificOutput": {
+        "hookEventName": "UserPromptSubmit", "additionalContext": "Owned synthetic hook context"}}))
 else:
     print("{}")
 '''

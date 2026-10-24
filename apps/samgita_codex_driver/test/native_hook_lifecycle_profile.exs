@@ -118,7 +118,16 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
     Map.put(ctx, :pid, pid)
   end
 
-  for scenario <- ["success", "untrusted", "disabled", "blocked", "failed", "stopped"] do
+  for scenario <- [
+        "success",
+        "untrusted",
+        "disabled",
+        "blocked",
+        "failed",
+        "stopped",
+        "warning",
+        "context"
+      ] do
     @tag hook_scenario: scenario
     test "native fixed #{scenario} hooks preserve lifecycle and trust boundaries", ctx do
       pid = ctx.pid
@@ -207,11 +216,14 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
             "success" => "completed",
             "blocked" => "blocked",
             "failed" => "failed",
-            "stopped" => "stopped"
+            "stopped" => "stopped",
+            "warning" => "completed",
+            "context" => "completed"
           }[ctx.scenario]
 
         assert length(lifecycle(events)) == 4
-        assert_pair(events, hooks, ctx, thread, turn, "sessionStart", "completed")
+        session_run = assert_pair(events, hooks, ctx, thread, turn, "sessionStart", "completed")
+        assert session_run["entries"] == []
         done = assert_pair(events, hooks, ctx, thread, turn, "userPromptSubmit", expected)
         assert done["entries"] == expected_entries(ctx.scenario)
 
@@ -225,6 +237,8 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
 
         expected_calls = if ctx.scenario in ["blocked", "stopped"], do: 0, else: 1
         assert length(read_json(ctx, "requests.json")) == expected_calls
+
+        if ctx.scenario in ["warning", "context"], do: assert_output_effects(ctx, terminal)
       end
 
       assert :ok = Session.close(pid)
@@ -334,6 +348,28 @@ defmodule SamgitaCodexDriver.NativeHookLifecycleProfile do
     do: [%{"kind" => "stop", "text" => "Owned synthetic hook stopped input"}]
 
   defp expected_entries("success"), do: []
+
+  defp expected_entries("warning"),
+    do: [%{"kind" => "warning", "text" => "Owned synthetic hook warning"}]
+
+  defp expected_entries("context"),
+    do: [%{"kind" => "context", "text" => "Owned synthetic hook context"}]
+
+  defp assert_output_effects(ctx, terminal) do
+    assert terminal["turn"]["status"] == "completed"
+    assert [request] = read_json(ctx, "requests.json")
+
+    developer_content =
+      for item <- request["input"],
+          item["role"] == "developer",
+          part <- item["content"],
+          do: part
+
+    context = %{"type" => "input_text", "text" => "Owned synthetic hook context"}
+    expected_count = if ctx.scenario == "context", do: 1, else: 0
+    assert Enum.count(developer_content, &(&1 == context)) == expected_count
+    refute JSON.encode!(request) =~ "Owned synthetic hook warning"
+  end
 
   defp lifecycle(events),
     do: Enum.filter(events, &(&1.wire["method"] in ["hook/started", "hook/completed"]))

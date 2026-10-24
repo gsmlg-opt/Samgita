@@ -10674,7 +10674,8 @@
       "capabilities": [],
       "direction": "server_notification",
       "evidence": [
-        "docs/codex-app-server/rate-limits-qualification.md"
+        "docs/codex-app-server/rate-limits-qualification.md",
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:account/rateLimits/updated",
@@ -82904,112 +82905,152 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/hook-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookOutputEntryKind/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Additional actual-native UserPromptSubmit warning/context differential: fixed owned trusted command output yields the exact independently prescribed completed entry and completed turn; warning text absent from the whole one-request provider payload, while additionalContext appears exactly once as developer input_text. SessionStart exact empty entries, four correlated native notices, immutable trust/namespace/owned sentinels/provider counts/PID cleanup, unchanged bounds and deadlines. Eight-case hook control8/0 and complete21-file owning block127/0 twice with strict checks/source guard. Only this concrete synchronous literal/effect; async/builtin/other hooks/sources/handlers, complete lifecycle/OS/backend/A11 and full verification remain unqualified."
+      ],
       "pointer": "/definitions/HookOutputEntryKind/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "3098b1b8dd83b8f920733a176c78e2f9c8851f3e9a24096a7e824bb737032ea8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookOutputEntryKind/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native synchronous command-hook literal: independent exact completed entries and native lifecycle/thread/turn pairing from fixed exit2/stderr, exit7 or continue:false/stopReason; independent provider/sentinel effects distinguish block/fail/stop. Original six cases retained and rerun with added warning/context in complete21-file native block127/0 twice; strict checks/source guard pass. Only this exact UserPromptSubmit literal/text; no async/builtin/other event/source/handler, whole lifecycle/OS/backend/A11 or fully verified promotion."
+      ],
       "pointer": "/definitions/HookOutputEntryKind/enum/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "d8d05b7afdcee7954162a8539b52680193587fb048450432879979d52c6bcadf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookOutputEntryKind/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native synchronous command-hook literal: independent exact completed entries and native lifecycle/thread/turn pairing from fixed exit2/stderr, exit7 or continue:false/stopReason; independent provider/sentinel effects distinguish block/fail/stop. Original six cases retained and rerun with added warning/context in complete21-file native block127/0 twice; strict checks/source guard pass. Only this exact UserPromptSubmit literal/text; no async/builtin/other event/source/handler, whole lifecycle/OS/backend/A11 or fully verified promotion."
+      ],
       "pointer": "/definitions/HookOutputEntryKind/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "4e9d86cffdaf4a14e0bbf903645a883b3b3dc26910f607a7ccd953354b7d4bee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/hook-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookOutputEntryKind/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Additional actual-native UserPromptSubmit warning/context differential: fixed owned trusted command output yields the exact independently prescribed completed entry and completed turn; warning text absent from the whole one-request provider payload, while additionalContext appears exactly once as developer input_text. SessionStart exact empty entries, four correlated native notices, immutable trust/namespace/owned sentinels/provider counts/PID cleanup, unchanged bounds and deadlines. Eight-case hook control8/0 and complete21-file owning block127/0 twice with strict checks/source guard. Only this concrete synchronous literal/effect; async/builtin/other hooks/sources/handlers, complete lifecycle/OS/backend/A11 and full verification remain unqualified."
+      ],
       "pointer": "/definitions/HookOutputEntryKind/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "9189214417cfb663f6046a5e5bec53486e1cfbf5a5c41119f66fe34ee8281edc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/HookOutputEntryKind/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native synchronous command-hook literal: independent exact completed entries and native lifecycle/thread/turn pairing from fixed exit2/stderr, exit7 or continue:false/stopReason; independent provider/sentinel effects distinguish block/fail/stop. Original six cases retained and rerun with added warning/context in complete21-file native block127/0 twice; strict checks/source guard pass. Only this exact UserPromptSubmit literal/text; no async/builtin/other event/source/handler, whole lifecycle/OS/backend/A11 or fully verified promotion."
+      ],
       "pointer": "/definitions/HookOutputEntryKind/enum/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "ec442f8b717f74f76cd14b2691ad661f4e6244920308b6e9154517f47eb079d8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_hook_lifecycle_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -86412,50 +86453,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/credits/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/credits/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/individualLimit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/individualLimit",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "6e0e2e79aabfde640bce0d6e0d0704a360a0e1e98b4e1be569a7d28489af606e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "individualLimit"
     },
     {
@@ -86482,24 +86539,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/individualLimit/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/individualLimit/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -86579,53 +86644,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/normalModelSlug",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/normalModelSlug",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "9a514f3ce2f3890786b9f408cf7308341b1b9e788f97339c4fe6018a40655bd1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "normalModelSlug"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/planType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/planType",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "d4d34739f8bb04ebc54dfe3cd6654471e47283a11432f8bbe71c8d0876aa6ceb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "planType"
     },
     {
@@ -86652,24 +86733,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/planType/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/planType/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -86744,50 +86833,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/primary/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/primary/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/rateLimitReachedType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/rateLimitReachedType",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "04e22571c7a19c19c7f20b5f3ed36c5460642ba9031e8d6a255b383bdb01a29e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "rateLimitReachedType"
     },
     {
@@ -86814,24 +86919,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/rateLimitReachedType/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/rateLimitReachedType/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -86906,50 +87019,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/secondary/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "pointer": "/definitions/RateLimitSnapshot/properties/secondary/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/notification-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/RateLimitSnapshot/properties/spendControlReached",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Source-attributed actual-native explicit-null owner: independent full empty/sparse/malformed header snapshot constants and strict equality of every native account/rateLimits/updated envelope prove this exact present-null property/alternative. Real pin emits original notices; provider supplies HTTP headers/data only. Fresh-session null preservation, not positive account metadata, sparse-merge clearing, entitlement/enforcement or separate WebSocket producer. Other nonnull/omission/OS/backend/lifecycle/A11 profiles remain incomplete; no alias/whole-surface or fully verified promotion. Existing owning cases rerun in complete21-file native block127/0 twice with strict checks/source guard."
+      ],
       "nullable": true,
       "pointer": "/definitions/RateLimitSnapshot/properties/spendControlReached",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "3be741636466814ba70084f12be64ee61bec63354182bb09eb7e95cadf48031c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_rate_limits_test.exs:13-24,152-185,227-233"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "spendControlReached"
     },
     {

@@ -8,6 +8,18 @@ remain separate gates. No production data, credentials or services are changed.
 
 ## Scoped continuation after 636b2ad
 
+The [native hook warning/context differential](hook-lifecycle-qualification.md#warning-versus-model-context)
+and [fourteen exact notification-owner index](notification-owner-supplement-qualification.md)
+add sixteen implemented contracts, zero verified: **3,224 implemented /
+3,397 missing**. Requirements stay **462 implemented /12 missing /11 blocked**,
+zero verified. The same v6 complete21-file native block passes **127/0 twice**,
+190.3/190.4 seconds; hook-first passes **8/0**. Compile/format/strict Credo and
+source guard pass. Exact commands/hashes are in the v6 authority record below.
+Only independently asserted synchronous hook literals/effects and present-null
+rate-limit fields gain evidence; no positive account, alias or lifecycle
+qualification is inferred. Complete frozen-source local/hosted matrices remain
+required; A11, source-unreachable emitters and external/OS success stay open.
+
 The [successful operator-reply receipt replay unit](native-authority-qualification.md#successful-operator-receipt-replay-after-worker-role-removal)
 passes **17 core +7 web/0 twice**, fixed seeds, on the same retained database.
 An authorized successful REST receipt replay control is followed by management

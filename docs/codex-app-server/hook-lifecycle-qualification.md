@@ -131,6 +131,10 @@ final scoped logs are `/tmp/samgita-hook-lifecycle-*-20261024.log`.
 Only two actual notices and 35 positive run/entry/enum/notification contracts
 gain scoped `implemented` evidence; no entry is fully verified.
 
+The later [notification owner index](notification-owner-supplement-qualification.md)
+adds the exact stop/feedback/error enum literals from these existing independent
+full-entry assertions. It introduces no runtime/test change or verified state.
+
 Async hooks, builtin hooks, other hook events, plugin reload/reconcile, MCP/prompt/
 agent handlers, modified-hash recovery, timeouts, spawn errors, managed policy,
 real project integrations and external/platform success profiles remain
@@ -141,3 +145,46 @@ publication, release or production-readiness claim.
 All owned commands and fixture/native/hook processes completed. Deliberate
 mid-turn assertion-failure cleanup, async behavior and full hosted/aggregate
 qualification are separate from these passing scoped checks.
+
+## Warning versus model context
+
+Two additive fixed UserPromptSubmit cases retain all original six scenarios,
+trust checks, exact hash approval, four native lifecycle notices, source/
+thread/turn/run identity, sentinels, provider counts and owned PID cleanup.
+SessionStart's complete entries are now also required to equal an empty list.
+No command deadline, process bound, sandbox or production behavior changes.
+
+The warning command returns only `systemMessage` with an independently prescribed
+literal. Native completion must contain exactly a warning entry with that text;
+the hook and turn complete and the full one-request provider input must not
+contain that warning. The context command returns only the supported
+`hookSpecificOutput:{hookEventName:UserPromptSubmit,additionalContext:...}`.
+Native completion must contain exactly a context entry with the prescribed text,
+and that same text must appear exactly once as developer `input_text` in the
+single provider request. Neither path blocks inference. The synthetic provider
+returns a fixed assistant response; it never manufactures hook lifecycle notices.
+
+Pinned `hooks/src/schema.rs:87-101,426-450` and
+`engine/output_parser.rs:266-280` define these supported outputs.
+`events/user_prompt_submit.rs:158-179` emits Warning;
+`events/common.rs:37-50` emits Context and adds model context.
+`core/src/context/hook_additional_context.rs:15-33` plus
+`context-fragments/src/fragment.rs:35-53,88-110` preserve developer role/body.
+The existing public hook conversion/emission then supplies actual native notices.
+The two exact primary enum owners are
+`schema:ServerNotification.json#/definitions/HookOutputEntryKind/enum/0`
+(`warning`, SHA256 `3098b1b8dd83b8f920733a176c78e2f9c8851f3e9a24096a7e824bb737032ea8`)
+and `/enum/3` (`context`, SHA256
+`9189214417cfb663f6046a5e5bec53486e1cfbf5a5c41119f66fe34ee8281edc`).
+Aliases, other hook events, asynchronous behavior, live project integration and
+fully verified states are not inferred. Combined actual checks and exact command
+logs are recorded in the repair ledger; final full local/hosted gates stay open.
+
+The full eight-case hook-first control passes **8/0**. The complete21-file
+native owning block passes **127/0 twice**, seeds501432/987654, including the
+unchanged rate-limit and original hook cases. Compile, format, strict Credo433
+files and the executable/config/workflow source guard pass. Exact commands/logs
+are `/tmp/samgita-native-repair-continuation-v6-20261025/`, with hashes in
+[repair qualification](repair-qualification.md#scoped-continuation-after-636b2ad).
+Only warning/context's two exact physical enum owners gain new implemented
+behavior here; the separate three-literal source index changes no test behavior.

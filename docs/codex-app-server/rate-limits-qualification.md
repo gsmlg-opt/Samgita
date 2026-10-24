@@ -145,7 +145,11 @@ The notification entry gains `implemented` evidence, together with exactly
 branches; credit `balance`, `hasCredits`, `unlimited`; window `usedPercent`,
 `windowDurationMins`, `resetsAt`. The test's exact expected maps assert every
 observed rate-limit update. Null-only account fields and null schema branches
-remain missing; no entry is fully verified. Other transport/OS/race/replay,
+remained missing at that checkpoint. The later
+[fourteen-owner source-attribution index](notification-owner-supplement-qualification.md)
+adds eleven exact explicit-null properties/alternatives from the unchanged full
+native-map assertions; positive account variants remain missing and no entry is
+fully verified. Other transport/OS/race/replay,
 WebSocket rate-limit producers, real backend and gateway/user-verification
 profiles remain incomplete.
 

@@ -118,8 +118,15 @@ replay after current worker-role removal or dispatch through the real Session;
 journals/history/native pending state remain. No count/state promotion or
 post-ticket instantaneous revocation claim follows.
 
-Next index the separately qualified native hook warning/context and fourteen
-existing direct notification owners, then freeze executable source for the complete preserved-
+The [native hook warning/context unit](hook-lifecycle-qualification.md#warning-versus-model-context)
+and [fourteen direct notification-owner index](notification-owner-supplement-qualification.md)
+now add sixteen exact owners: **3,224 implemented / 3,397 missing**, zero verified.
+The full21-file native owning block passes **127/0 twice**, fixed seeds; the
+hook-first control passes **8/0**. Compile/format/strict Credo and full source
+guard pass. Requirements stay **462 implemented /12 missing /11 blocked**,
+zero verified. No alias, positive-account value or full-lifecycle promotion.
+
+Next freeze executable source for the complete preserved-
 platform/package/consumer and final-pushed hosted matrix.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.

@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,208 implemented / 3,413 missing
+11 blocked requirements** and **0 verified / 3,224 implemented / 3,397 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,208 directly exercised
+MCP entries have scoped implementation evidence. These 3,224 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,17 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [native hook warning/context differential](hook-lifecycle-qualification.md#warning-versus-model-context)
+and [fourteen direct notification-owner index](notification-owner-supplement-qualification.md)
+add sixteen exact implemented owners, zero verified. The complete21-file native
+owning block passes **127/0 twice**, seeds501432/987654; the hook-first control
+passes **8/0**, with warning-free compilation, formatting, strict Credo and a
+matching source guard. Real native notices and independently expected model
+input distinguish warnings from developer context. Exact nulls qualify only
+present-null behavior, never positive account values. Requirements are unchanged.
+Next is the complete frozen-source local/package/consumer and final-pushed hosted
+matrix; A11, unreachable production emitters and external/OS success remain open.
 
 The [successful operator-reply receipt replay unit](native-authority-qualification.md#successful-operator-receipt-replay-after-worker-role-removal)
 passes **17 core +7 web/0 twice** against the retained database. The actual REST
