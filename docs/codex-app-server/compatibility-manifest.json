@@ -199913,24 +199913,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "c667492ccefdf0fed3b44d62838b0489b43f784e5ff8d264f7498aedfa18e0e6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:319",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -199961,46 +199971,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "b247b8a7921902b81b666f34db3ada20813028522443fdb75116850c40061efc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:319",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/1",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "fae0f8e5dc0e879ea8cc4f44b5ae03f620d66fe9a914876f06f56edc433e4a1d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:322",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -200031,72 +200061,102 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "643b198eed4c6d023a86fcf47ce862a0c51786c0de246d01f8ccd1f75f14612f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:322",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/2",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "b28a2ad76680978fa3ffaea62e72512e0a40c74f11c2ec452dcf804e927d26e1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:325",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/index",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/index",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:325",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "index"
     },
     {
@@ -200127,24 +200187,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/type/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "d535e1f6835d009ca37b70557ac39f121b682f4a463a1647bb1183487f14f4bc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:325",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -200389,35 +200459,49 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "909a0262be904c3c9fb47aa5ab26e334580c6ae754b950530c321e969bc49778",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/item_id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "native_wire_name": "itemId",
       "nullable": false,
       "output_semantics": "source/realtime-output-semantics.json",
@@ -200425,53 +200509,73 @@
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "item_id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/presentation",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/presentation",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "332c1e79cf9570ec29b882e8a4678049331d00a9d8e15b39bafc2c4ed6de3480",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "presentation"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/turn_id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "native_wire_name": "turnId",
       "nullable": false,
       "output_semantics": "source/realtime-output-semantics.json",
@@ -200479,64 +200583,90 @@
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "turn_id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "dfdabc5f11c9f0147426356d466d5243e9a696efb93f623e3c13b5e3d9222feb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_owner: exact selected WholeItem dynamic-tool, InlineMarkdown and unfenced InlineVisualization index 0/1 facts, correlated backing native items/turn/session, stream/final deduplication and complete warm/cold timeline payloads with causal order. Only this named schema owner; no equal-hash transfer, all producer/parser conditions, rendered visualization, live backend/account or other deployment-profile acceptance. Official export snake-case reference names retain the pinned native camelCase correction."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/type/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "7e9983023987a2f99d57c27ca099c74bfa8ab3b7edcda6667933373ec8912083",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {

@@ -41,6 +41,15 @@ accept a Task. Secrets use existing external references. The separate
 application Plugs and raw LiveView parameters; neither controller entry nor
 at-rest encryption establishes confidentiality for real credentials.
 
+Selected realtime presentation qualification now composes a synthetic Responses
+provider and realtime WebSocket peer around the unchanged native process. The
+[BEM profile](realtime-bem-qualification.md) checks dynamic-tool/assistant
+producers, native turn/session/backing-item references and complete persisted
+history. Its fixture is test-only; the driver creates no model, renderer or
+privileged realtime integration. A promotion is a native history fact and
+cannot confer Task acceptance or external-effect ownership. This evidence does
+not qualify every producer, real backend or rendered visualization.
+
 ## Session contract
 
 Initialization, including experimental opt-in, follows the pinned upstream

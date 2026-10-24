@@ -35,8 +35,10 @@ evidence, **9/0** complete MCP cases and **29/0** MCP/process cleanup cases.
 The subsequent [queue/managed unit](queue-managed-state-qualification.md) passes
 **11/0** at both seeds and adds 46 precise owners. Five
 [read-state/realtime cases](read-state-realtime-history-qualification.md) pass
-**15/0** in the complete owning block at both seeds, adding nine further owners:
-**2,782 implemented / 3,839 missing**, zero verified contracts. Requirements remain **462 implemented /
+**15/0** in the complete owning block at both seeds, adding nine further owners.
+The [BEM unit](realtime-bem-qualification.md) passes **3/0** at both seeds and
+adds 13 owners plus the 31st required hosted profile. Current totals are
+**2,795 implemented / 3,826 missing**, zero verified contracts. Requirements remain **462 implemented /
 12 missing / 11 blocked**. Final combined-source/hosted checks and remaining
 reachable variants are next; A11, source-unreachable and external/OS requirements
 stay incomplete. Do not infer full compatibility or release.

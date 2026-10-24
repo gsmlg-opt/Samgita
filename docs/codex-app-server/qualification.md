@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,782 implemented / 3,839 missing
+11 blocked requirements** and **0 verified / 2,795 implemented / 3,826 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,782 directly exercised
+MCP entries have scoped implementation evidence. These 2,795 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -30,6 +30,12 @@ add nine exact owners, with **15/0** in the complete owning block at both seeds.
 They assert earliest unread turn and CAS persistence, user/failed cold history,
 active opening-session pagination and opt-in recording-only transcript tails.
 Four update-success turn alternatives retain their source-proven missing status.
+
+The separate [BEM profile](realtime-bem-qualification.md) passes **3/0** at both
+seeds, qualifying all three selected presentation branches through real native
+producers, backing-item correlation, deduplication and complete cold history.
+It adds 13 exact owners and becomes the 31st required isolated hosted profile.
+Real rendering, other producers and final combined/hosted checks remain open.
 
 Thirty-four [retained state/timeline owners](retained-state-projection-owners-qualification.md)
 now index previously passing exact assertions: notification read-state/settings,
