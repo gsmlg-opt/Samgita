@@ -39,6 +39,12 @@ replay preserves the original envelope; explicit interruption retires it before
 the next resume, with zero approval replies or command effects. The native
 in-memory callback store does not imply cold-process restoration.
 
+The [skills cwd-configuration case](skills-cwd-config-qualification.md) passes
+both seeds for ordered/duplicate per-cwd errors, cache reuse, cold persistence
+and repair without forceReload. The failed project-provider trigger was corrected
+from the pin's credential-destination deny-list, without weakening its policy.
+Only supplemental evidence is added; no full compatibility claim follows.
+
 2026-10-23: inspected live `main` at
 `4fe354f2ce916aa32517c361a171b8878bf6ca84`. Only the user goal/plan inputs were
 untracked before this work; preserve them. Read both inputs in full, AGENTS.md,

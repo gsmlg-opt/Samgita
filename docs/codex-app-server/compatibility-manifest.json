@@ -5590,14 +5590,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/skills-lifecycle-qualification.md"
+        "docs/codex-app-server/skills-lifecycle-qualification.md",
+        "docs/codex-app-server/skills-cwd-config-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:skills/list",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified.",
+        "Additional actual-native skills/list per-cwd configuration isolation: eight ordered duplicate requests across six trusted roots; exact invalid Agent-limit cwd/path/message/empty skills without leaking into healthy siblings, ordinary/forced cache paths, cold native restart persistence and exact repair recovery without forceReload. No model or task; no watcher/concurrent-writer, all configuration/remote/OS/service/A11 or verified claim. Earlier limitations describe their owning checkpoint scopes."
       ],
       "params": {
         "$ref": "#/definitions/SkillsListParams"
@@ -5628,7 +5630,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_skills_cwd_config_test.exs:64-143"
         ]
       },
       "transport_coverage": [
@@ -19121,14 +19124,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/skills-lifecycle-qualification.md"
+        "docs/codex-app-server/skills-lifecycle-qualification.md",
+        "docs/codex-app-server/skills-cwd-config-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:skills/list",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified.",
+        "Additional actual-native skills/list per-cwd configuration isolation: eight ordered duplicate requests across six trusted roots; exact invalid Agent-limit cwd/path/message/empty skills without leaking into healthy siblings, ordinary/forced cache paths, cold native restart persistence and exact repair recovery without forceReload. No model or task; no watcher/concurrent-writer, all configuration/remote/OS/service/A11 or verified claim. Earlier limitations describe their owning checkpoint scopes."
       ],
       "prerequisites": [
         "initialized"
@@ -19145,7 +19150,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_skills_cwd_config_test.exs:64-143"
         ]
       },
       "transport_coverage": [
@@ -162103,14 +162109,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/skills-lifecycle-qualification.md"
+        "docs/codex-app-server/skills-lifecycle-qualification.md",
+        "docs/codex-app-server/skills-cwd-config-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillErrorInfo/properties/message",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified.",
+        "Additional actual-native skills/list per-cwd configuration isolation: eight ordered duplicate requests across six trusted roots; exact invalid Agent-limit cwd/path/message/empty skills without leaking into healthy siblings, ordinary/forced cache paths, cold native restart persistence and exact repair recovery without forceReload. No model or task; no watcher/concurrent-writer, all configuration/remote/OS/service/A11 or verified claim. Earlier limitations describe their owning checkpoint scopes."
       ],
       "nullable": false,
       "pointer": "/definitions/SkillErrorInfo/properties/message",
@@ -162125,7 +162133,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_skills_cwd_config_test.exs:64-143"
         ]
       },
       "transport_coverage": [
@@ -162137,14 +162146,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/skills-lifecycle-qualification.md"
+        "docs/codex-app-server/skills-lifecycle-qualification.md",
+        "docs/codex-app-server/skills-cwd-config-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillErrorInfo/properties/path",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified.",
+        "Additional actual-native skills/list per-cwd configuration isolation: eight ordered duplicate requests across six trusted roots; exact invalid Agent-limit cwd/path/message/empty skills without leaking into healthy siblings, ordinary/forced cache paths, cold native restart persistence and exact repair recovery without forceReload. No model or task; no watcher/concurrent-writer, all configuration/remote/OS/service/A11 or verified claim. Earlier limitations describe their owning checkpoint scopes."
       ],
       "nullable": false,
       "pointer": "/definitions/SkillErrorInfo/properties/path",
@@ -162159,7 +162170,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_skills_cwd_config_test.exs:64-143"
         ]
       },
       "transport_coverage": [
@@ -162873,14 +162885,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/skills-lifecycle-qualification.md"
+        "docs/codex-app-server/skills-lifecycle-qualification.md",
+        "docs/codex-app-server/skills-cwd-config-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillsListEntry/properties/cwd",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified.",
+        "Additional actual-native skills/list per-cwd configuration isolation: eight ordered duplicate requests across six trusted roots; exact invalid Agent-limit cwd/path/message/empty skills without leaking into healthy siblings, ordinary/forced cache paths, cold native restart persistence and exact repair recovery without forceReload. No model or task; no watcher/concurrent-writer, all configuration/remote/OS/service/A11 or verified claim. Earlier limitations describe their owning checkpoint scopes."
       ],
       "nullable": false,
       "pointer": "/definitions/SkillsListEntry/properties/cwd",
@@ -162895,7 +162909,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_skills_cwd_config_test.exs:64-143"
         ]
       },
       "transport_coverage": [
@@ -162907,14 +162922,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/skills-lifecycle-qualification.md"
+        "docs/codex-app-server/skills-lifecycle-qualification.md",
+        "docs/codex-app-server/skills-cwd-config-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillsListEntry/properties/errors",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified.",
+        "Additional actual-native skills/list per-cwd configuration isolation: eight ordered duplicate requests across six trusted roots; exact invalid Agent-limit cwd/path/message/empty skills without leaking into healthy siblings, ordinary/forced cache paths, cold native restart persistence and exact repair recovery without forceReload. No model or task; no watcher/concurrent-writer, all configuration/remote/OS/service/A11 or verified claim. Earlier limitations describe their owning checkpoint scopes."
       ],
       "nullable": false,
       "pointer": "/definitions/SkillsListEntry/properties/errors",
@@ -162929,7 +162946,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_skills_cwd_config_test.exs:64-143"
         ]
       },
       "transport_coverage": [
@@ -162941,14 +162959,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/skills-lifecycle-qualification.md"
+        "docs/codex-app-server/skills-lifecycle-qualification.md",
+        "docs/codex-app-server/skills-cwd-config-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillsListEntry/properties/skills",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified.",
+        "Additional actual-native skills/list per-cwd configuration isolation: eight ordered duplicate requests across six trusted roots; exact invalid Agent-limit cwd/path/message/empty skills without leaking into healthy siblings, ordinary/forced cache paths, cold native restart persistence and exact repair recovery without forceReload. No model or task; no watcher/concurrent-writer, all configuration/remote/OS/service/A11 or verified claim. Earlier limitations describe their owning checkpoint scopes."
       ],
       "nullable": false,
       "pointer": "/definitions/SkillsListEntry/properties/skills",
@@ -162963,7 +162983,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_skills_cwd_config_test.exs:64-143"
         ]
       },
       "transport_coverage": [
@@ -162975,14 +162996,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/skills-lifecycle-qualification.md"
+        "docs/codex-app-server/skills-lifecycle-qualification.md",
+        "docs/codex-app-server/skills-cwd-config-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/SkillsListResponse.json#/properties/data",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified."
+        "Eight actual-native Linux stdio cases cover ordered local discovery/errors, canonical durable selectors, independently serialized edits, process-only roots, installed local plugin refresh, execution-filesystem boundaries and stable/malformed requests. Remote roots/plugins, complete dependency/interface and selector-null variants, cross-process writes, watcher timing and external deployment success remain unqualified.",
+        "Additional actual-native skills/list per-cwd configuration isolation: eight ordered duplicate requests across six trusted roots; exact invalid Agent-limit cwd/path/message/empty skills without leaking into healthy siblings, ordinary/forced cache paths, cold native restart persistence and exact repair recovery without forceReload. No model or task; no watcher/concurrent-writer, all configuration/remote/OS/service/A11 or verified claim. Earlier limitations describe their owning checkpoint scopes."
       ],
       "nullable": false,
       "pointer": "/properties/data",
@@ -162997,7 +163020,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_skills_cwd_config_test.exs:64-143"
         ]
       },
       "transport_coverage": [
