@@ -25,6 +25,27 @@ and parsed credentials on an unauthorized request through the real Endpoint.
 parameters while asserting safe application logs and metric projections. Passing
 these exposure tests remains evidence that A11 fails, not acceptance.
 
+The 2026-10-24 source-only recheck at `fb72c557` confirms the same limitation
+and identifies additional independent emitters. Phoenix `socket.ex:517-530`
+emits connection `params`/`connect_info`; `channel/server.ex:316-335` emits
+ordinary channel parameters/socket. LiveComponent event spans at LiveView
+`channel.ex:857-861,903-907` likewise carry parameters. These are applicable
+source surfaces, not newly executed canary results, and do not imply every
+LiveView message traverses ordinary Channel.Server. Plug.Telemetry, Phoenix
+router dispatch and render-error metadata also retain connections/errors.
+
+The supported Bandit option list (`bandit.ex:270-310`) has logging controls but
+no metadata projection hook. LiveView lifecycle hooks execute inside the span
+after start and cannot replace its outer original parameters. Telemetry 1.4.2
+`telemetry.erl:192-218,349-386` supplies the same immutable metadata to each
+handler and ignores return values; it offers no subscriber veto/redaction.
+ThousandIsland 1.6.0's supported transport interface controls socket I/O, not
+later decoded framework events. No supported complete closure was found at
+these retained pins. Twenty-two local source hashes, six matching lock/package
+versions and anchors were checked in
+`/tmp/samgita-a11-final-boundary-review-20261024/source-evidence.json`.
+This bounded recheck adds no implementation, runtime result or upstream contact.
+
 ## Secret-bearing paths
 
 | Entry | Boundary and evidence |
@@ -70,8 +91,10 @@ silently change the accepted confidentiality contract.
 
 To retain current external protocols, the server stack needs a **supported
 pre-emission metadata projection mechanism** covering Bandit request headers,
-targets/buffers and exception snapshots; Plug/Phoenix connection/error metadata;
-LiveView parameters/socket metadata; and response proof/ticket bodies. No such
+targets/buffers and retained exception snapshots; Plug/Phoenix connection/error
+metadata; decoded Socket/Channel/LiveView/LiveComponent parameters and socket
+metadata; and response proof/ticket bodies. Direct structured error logs need
+the same source control independently of telemetry. No such
 complete supported mechanism is established in the pinned dependencies. A
 Bandit-only fix does not address LiveView's separate emission path. Do not patch
 private framework state or present post-emission filtering as this mechanism.

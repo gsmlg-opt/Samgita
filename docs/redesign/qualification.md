@@ -19,16 +19,17 @@ failure remains unresolved. See the [listener investigation](../codex-app-server
 Selected native protocol scenarios, synthetic backend success, hosted foundation,
 full compatibility and production confidentiality remain separate gates.
 
-The subsequent Codex source/test checkpoint `d63dcddae49c0c7c7b5565482134d4282275a86c`
-has separate [current qualification](../codex-app-server/qualification.md).
-Its local root tests, driver/consumer, static checks, assets and assembly passed,
-but repeat restart on the retained scratch database failed activation before
-driver startup with `unmapped_or_unresolved_tasks`. That failure remains visible,
-and no existing fixture, mapping or data was changed to bypass it. In addition,
-the retained `plug_crypto 2.2.0` dependency now fails security audit for
-CVE-2026-105963. That advisory, A11 and incomplete Codex behavioral evidence remain
-open; the historical passing audit below does not qualify the current dependency
-advisory state. No dependency repair, release or deployment is claimed here.
+The earlier Codex source/test checkpoint `d63dcddae49c0c7c7b5565482134d4282275a86c`
+has separate [qualification](../codex-app-server/qualification.md). Its local
+root tests, driver/consumer, static checks, assets and assembly passed, but repeat
+restart failed activation with `unmapped_or_unresolved_tasks`, and its retained
+`plug_crypto 2.2.0` failed security audit for CVE-2026-105963. Those historical
+failures and fail-closed unresolved records remain evidence. The current repair
+record above supersedes the dependency/owned-fixture status; it does not bypass
+activation, erase data or establish A11/full compatibility. The latest populated
+local aggregate instead fails an unchanged GitHub test's first-page assumption,
+while separate recovery and hosted checks pass. No release or deployment is
+certified.
 
 ## Reliability repair qualification
 

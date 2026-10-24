@@ -6,6 +6,63 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted checkpoint at fb72c55
+
+Exact pushed source `fb72c5571a8bb56e4c97c8b8170f17349d51c851` completed both
+normal workflows. [Foundation 40053085514](https://github.com/gsmlg-opt/Samgita/actions/runs/40053085514)
+passed its retained aggregate checks, both populated-database seeds (**224 core
+and 125 web**, zero failures each), restart/rollback, independent packages and
+consumers, audits, static checks, assets and local release assembly. Its hosted
+database is not the long-lived local recovery database; this does not supersede
+the local pagination failure below.
+
+[Conformance 40053092658](https://github.com/gsmlg-opt/Samgita/actions/runs/40053092658)
+finished **failed overall**. Its selected actual-binary/platform job passed
+native wire **42/0**, default driver **457/0**, outside consumer **1/0**, and
+platform **53 core + 5 web / zero failures**. The separate isolated-native job
+passed all **30 explicitly selected profiles, 205 tests / zero failures**,
+including real private namespaces, native sandbox write/denial and private
+Secret Service prerequisites. Synthetic model/service dependencies do not
+qualify actual external provider accounts or other OS profiles.
+
+The independent full-compatibility evidence job failed its unchanged required
+gate: **485 requirements (462 implemented, 12 missing, 11 blocked)** and
+**6,621 contracts (1,678 implemented, 4,943 missing)**, with **zero verified**.
+The gate remains required and no expected-failure or continue-on-error wrapper
+was added. The three job outcomes are separate; neither passing job establishes
+full compatibility, A11 or production readiness. Downloaded terminal metadata,
+complete logs and per-step test counts are retained in
+`/tmp/samgita-hosted-fb72c55-20261024/`. Local, tracking and live remote refs
+converged at this source. No tag, publication, deployment or live credential
+change occurred. Subsequent executable changes require their own qualification.
+
+## Frozen independent-package matrix
+
+The complete serial package matrix passed with **23 commands / zero failures**.
+Its 1,370 executable/configuration/workflow source hashes were frozen at
+`a42bd98856b90b2e0538a330b86673026cc9410b`; `fb72c55` and the documentation
+updates differ only outside that source set. The end-of-run hash guard passed.
+
+| Check | Actual result |
+| --- | --- |
+| Inventory regressions/consistency; namespace/native sandbox prerequisites | Passed |
+| Driver compile/format, default seeds `728846`, `987654` | 457/0 each, 369.6/366.0s |
+| All 30 explicit native profiles together, seeds `501432`, `987654` | 205/0 each, 432.5/452.3s |
+| Native outside consumer | 1/0; no Repo/Phoenix/umbrella dependency |
+| Neutral core suite and two outside consumers | 32/0, 1/0, 1/0 |
+| Neutral WebSocket compile/format and seeds `455834`, `501432`, `987654` | 42/0 each; original bounds/assertions/deadlines retained |
+| Native wire compile/format/tests | 42/0 |
+| Driver, WebSocket and native wire Hex audits | Passed; root audit passed in the platform matrix |
+
+The command list, source hashes, every exit and complete logs are in
+`/tmp/samgita-repair-final-packages-v3-20261024/`; runner:
+`/tmp/samgita-repair-final-packages-v3-20261024.py`. It uses verified Devenv,
+`MIX_ENV=test`, the hash-checked native binary and explicit private D-Bus/GNOME
+tool paths, with no competing local Mix/native validation. This completes this
+package checkpoint only. The local populated umbrella failure, A11, unavailable
+native paths, external/OS profiles and full evidence gate remain incomplete.
+New native test units follow this frozen matrix and need their own results.
+
 ## Latest populated-database aggregate checkpoint
 
 At `53ec89b95f6577e8cf328a22f1f77d9548384042`, the final-source platform
