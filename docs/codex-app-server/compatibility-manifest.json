@@ -74616,24 +74616,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/http-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_provider_http_errors: Exact native 429/quota/flex/503/500/403 terminal and sampling-retry maps, statuses, messages, identities, HTTP journal/counts and explicit next-turn recovery. No external quota/auth enforcement or retry-advice profile; not driver mutation replay."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "7b4b0ebf6f6b5c83a1f365e79708d16167afc0696f74ce57eeb2ac777940039c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-356"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -74668,24 +74676,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/http-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_provider_http_errors: Exact native 429/quota/flex/503/500/403 terminal and sampling-retry maps, statuses, messages, identities, HTTP journal/counts and explicit next-turn recovery. No external quota/auth enforcement or retry-advice profile; not driver mutation replay."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "bb9c9ca58f9516ee5d236217d83cdf07f42681c885a4930d9b3f7197983c9f14",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-356"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -74786,98 +74802,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/http-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/9",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_provider_http_errors: Exact native 429/quota/flex/503/500/403 terminal and sampling-retry maps, statuses, messages, identities, HTTP journal/counts and explicit next-turn recovery. No external quota/auth enforcement or retry-advice profile; not driver mutation replay."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/9",
       "schema": "ServerNotification.json",
       "schema_sha256": "563a36217598845a7d4a6be692f38812a1fe57bacb32ff847eec3e75500fc295",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-356"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/http-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_provider_http_errors: Exact native 429/quota/flex/503/500/403 terminal and sampling-retry maps, statuses, messages, identities, HTTP journal/counts and explicit next-turn recovery. No external quota/auth enforcement or retry-advice profile; not driver mutation replay."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "f1962078edb8d49af00cc63ca4823b2e78913a8842218ca8d57807d92b238ab0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-356"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/http-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/1/properties/httpConnectionFailed",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_provider_http_errors: Exact native 429/quota/flex/503/500/403 terminal and sampling-retry maps, statuses, messages, identities, HTTP journal/counts and explicit next-turn recovery. No external quota/auth enforcement or retry-advice profile; not driver mutation replay."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/1/properties/httpConnectionFailed",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f7fe0f7ca94a0021307ea7b0a112c4fa3ac3f0b2942b78679ac8f67f32d75643",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-356"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "httpConnectionFailed"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/http-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/1/properties/httpConnectionFailed/properties/httpStatusCode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_provider_http_errors: Exact native 429/quota/flex/503/500/403 terminal and sampling-retry maps, statuses, messages, identities, HTTP journal/counts and explicit next-turn recovery. No external quota/auth enforcement or retry-advice profile; not driver mutation replay."
+      ],
       "nullable": true,
       "pointer": "/definitions/CodexErrorInfo/anyOf/1/properties/httpConnectionFailed/properties/httpStatusCode",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-356"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "httpStatusCode"
     },
     {
@@ -75054,76 +75102,100 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/http-error-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_provider_http_errors: Exact native 429/quota/flex/503/500/403 terminal and sampling-retry maps, statuses, messages, identities, HTTP journal/counts and explicit next-turn recovery. No external quota/auth enforcement or retry-advice profile; not driver mutation replay."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "49d6f49bf27ef0bba78cd5cab474481eb16068b30fa6fa89c19f9316c1472390",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-356"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/http-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/4/properties/responseTooManyFailedAttempts",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_provider_http_errors: Exact native 429/quota/flex/503/500/403 terminal and sampling-retry maps, statuses, messages, identities, HTTP journal/counts and explicit next-turn recovery. No external quota/auth enforcement or retry-advice profile; not driver mutation replay."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/4/properties/responseTooManyFailedAttempts",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f7fe0f7ca94a0021307ea7b0a112c4fa3ac3f0b2942b78679ac8f67f32d75643",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-356"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "responseTooManyFailedAttempts"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/http-error-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/4/properties/responseTooManyFailedAttempts/properties/httpStatusCode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_provider_http_errors: Exact native 429/quota/flex/503/500/403 terminal and sampling-retry maps, statuses, messages, identities, HTTP journal/counts and explicit next-turn recovery. No external quota/auth enforcement or retry-advice profile; not driver mutation replay."
+      ],
       "nullable": true,
       "pointer": "/definitions/CodexErrorInfo/anyOf/4/properties/responseTooManyFailedAttempts/properties/httpStatusCode",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:220-356"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "httpStatusCode"
     },
     {
@@ -164320,75 +164392,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/DynamicToolCallOutputContentItem/oneOf/0/properties/text",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolCallOutputContentItem/oneOf/0/properties/text",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "text"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/DynamicToolCallOutputContentItem/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolCallOutputContentItem/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bd2183bea24992a2a758223ec9147ddfb4aec245218a83bea67b27561b70d2f1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/DynamicToolCallOutputContentItem/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "pointer": "/definitions/DynamicToolCallOutputContentItem/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "84d85de03723bb75fe184f2c57f6601834d04b002d6ed5d30823fb3026c40cae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -164607,46 +164703,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/DynamicToolCallStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "pointer": "/definitions/DynamicToolCallStatus/enum/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/DynamicToolCallStatus/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "pointer": "/definitions/DynamicToolCallStatus/enum/2",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -170879,283 +170991,371 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/arguments",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/arguments",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "arguments"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/contentItems",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/contentItems",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bafb22932d81f5eb9cd5f760cbb92a75adfb9330ad6eab2e5c87b41de1e5a018",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "contentItems"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/durationMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/durationMs",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "6fb14a04f45623c14cfaf73be297d8be1d8074ff15ab1453c8e09729f5a2f0b3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "durationMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/id",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/namespace",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/namespace",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "namespace"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/status",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "fcce4e05657bc806b278ecff1f9c2190ad8beef72dc3fbbc595212a3c756a657",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/success",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/success",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "success"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/tool",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/tool",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tool"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "a778804b3946a4a436c057858dc1c1aa9e021aed6cdd60dcfa4675a302bee891",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/9/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/9/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "76ead18cd03b5a98fda399aa267ef35904fbb1c4439a5d64138196b6d3a4a1a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItemEntry/properties/completedAtMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItemEntry/properties/completedAtMs",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "347cedef6caf881a9d1e49e12baaaffdf3b0ec7984df3ab75e7fa74173447354",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "completedAtMs"
     },
     {
@@ -171187,53 +171387,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItemEntry/properties/startedAtMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItemEntry/properties/startedAtMs",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "645952a08f6e98d8d2d3f6696f5b59c7babd0009dd8906036d3e99c60de9f37b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "startedAtMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/persisted-tool-items-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItemEntry/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_persisted_dynamic_tools: Exact completed/failed maps, content and native timestamps survive canonical selectors, bounded item pages and different cold native PID; no extra inference. Null namespace only; no persisted inProgress/other item branch or full transport/OS profile qualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItemEntry/properties/turnId",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "d5cacf75bffae85ab86051b9d99b25aa5af62e519938c408361538fdf923714e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_tool_items_test.exs:65-230"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turnId"
     },
     {

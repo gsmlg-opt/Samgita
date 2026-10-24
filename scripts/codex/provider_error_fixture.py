@@ -11,7 +11,15 @@ import isolated_user_shell_fixture as shared
 from model_fixture import ModelFixture
 
 
-SCENARIOS = ("rate-recovered", "rate-exhausted", "overload-terminal")
+HTTP_CASES = {
+    "http-429-plain": (429, "owned_http_rate", "Owned HTTP rate limit.", 1),
+    "http-429-quota": (429, "insufficient_quota", "Owned HTTP quota.", 1),
+    "http-429-flex": (429, "flex_unavailable", "Owned HTTP flex capacity.", 1),
+    "http-503-overload": (503, "server_is_overloaded", "Owned HTTP overload.", 1),
+    "http-500-internal": (500, "owned_http_internal", "Owned HTTP internal failure.", 2),
+    "http-403-forbidden": (403, "owned_http_forbidden", "Owned HTTP forbidden.", 2),
+}
+SCENARIOS = ("rate-recovered", "rate-exhausted", "overload-terminal") + tuple(HTTP_CASES)
 RATE_MESSAGE = "Owned provider rate limit."
 
 
@@ -24,7 +32,8 @@ class ProviderErrors(ModelFixture):
                    if item.get("role") == "user" for part in item.get("content", [])
                    if isinstance(part, dict)
                    and part.get("text", "").startswith("synthetic:provider-error:")]
-        initial_count = 1 if self.scenario == "overload-terminal" else 2
+        initial_count = (HTTP_CASES[self.scenario][3] if self.scenario in HTTP_CASES else
+                         1 if self.scenario == "overload-terminal" else 2)
         is_initial = index <= initial_count and markers == [initial]
         is_followup = index == initial_count + 1 and markers == [initial, followup]
         if not (is_initial or is_followup) or handler.headers.get("Authorization") is not None:
@@ -33,6 +42,24 @@ class ProviderErrors(ModelFixture):
                 "error": "unexpected provider error request or authentication",
             })
             raise AssertionError("unexpected provider error request")
+
+        if self.scenario in HTTP_CASES:
+            status, code, message, _ = HTTP_CASES[self.scenario]
+            # Record the actual HTTP layer separately from successful SSE output.
+            path = root / "http-responses.json"
+            records = json.loads(path.read_text()) if path.exists() else []
+            records.append({"index": index, "status": status if is_initial else 200,
+                            "url": self.url + "/v1/responses"})
+            shared.write_json(path, records)
+            if is_initial:
+                body = json.dumps({"error": {"code": code, "message": message}}).encode()
+                # Deliberately no Retry-After or retry advice, auth or tracking ID.
+                handler.send_response(status)
+                handler.send_header("Content-Type", "application/json")
+                handler.send_header("Content-Length", str(len(body)))
+                handler.end_headers()
+                handler.wfile.write(body)
+                return
 
         identity = f"owned-provider-error-{self.scenario}-{index}"
         events = [{"type": "response.created", "response": {"id": identity}}]

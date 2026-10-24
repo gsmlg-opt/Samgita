@@ -217,6 +217,146 @@ defmodule SamgitaCodexDriver.NativeProviderErrorsTest do
     end
   end
 
+  for {scenario, status, info, message, attempts} <- [
+        {"http-429-plain", 429, %{"responseTooManyFailedAttempts" => %{"httpStatusCode" => 429}},
+         "exceeded retry limit, last status: 429 Too Many Requests", 1},
+        {"http-429-quota", 429, "usageLimitExceeded",
+         "Quota exceeded. Check your plan and billing details.", 1},
+        {"http-429-flex", 429, "flexUnavailable", "Flex capacity unavailable.", 1},
+        {"http-503-overload", 503, "serverOverloaded", @overload_message, 1},
+        {"http-500-internal", 500, "internalServerError",
+         "We’re currently experiencing high demand, which may cause temporary errors.", 2},
+        {"http-403-forbidden", 403, %{"httpConnectionFailed" => %{"httpStatusCode" => 403}}, nil,
+         2}
+      ] do
+    @tag scenario: scenario
+    @http_status status
+    @http_info info
+    @http_message message
+    @http_attempts attempts
+    test "#{scenario} classifies actual HTTP status and recovers only on an explicit next turn",
+         ctx do
+      {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
+
+      on_exit(fn ->
+        if Process.alive?(pid) do
+          try do
+            assert :ok = Session.close(pid)
+          catch
+            :exit, {:noproc, _} -> :ok
+          end
+        end
+      end)
+
+      assert {:ok, %{"result" => %{"platformOs" => "linux"}}} =
+               Session.initialize(
+                 pid,
+                 %{"name" => "owned_provider_http_errors", "version" => "0.1.0"},
+                 %{"experimentalApi" => false}
+               )
+
+      thread =
+        call(pid, "thread/start", %{
+          "cwd" => ctx.workspace,
+          "model" => "mock-model",
+          "modelProvider" => "fixture",
+          "sandbox" => "read-only",
+          "approvalPolicy" => "on-request"
+        })["thread"]["id"]
+
+      drain(pid)
+      assert read_json(ctx, "requests.json") == []
+      marker = "synthetic:provider-error:" <> ctx.scenario
+      turn = turn(pid, thread, marker)
+      events = collect(pid, thread, turn)
+      errors = notices(events, "error")
+
+      assert Enum.map(errors, & &1["willRetry"]) ==
+               if(@http_attempts == 2, do: [true, false], else: [false])
+
+      assert Enum.all?(errors, &(&1["threadId"] == thread and &1["turnId"] == turn))
+
+      assert [%{"threadId" => ^thread, "turn" => %{"id" => ^turn}}] =
+               notices(events, "turn/started")
+
+      assert Enum.all?(
+               Enum.filter(events, &(&1.wire["method"] == "error")),
+               &(&1.kind == :notification)
+             )
+
+      initial_requests = read_json(ctx, "requests.json")
+      assert length(initial_requests) == @http_attempts
+      assert Enum.all?(initial_requests, &(&1["input"] == hd(initial_requests)["input"]))
+      responses = read_json(ctx, "http-responses.json")
+      assert Enum.map(responses, & &1["status"]) == List.duplicate(@http_status, @http_attempts)
+      assert Enum.map(responses, & &1["index"]) == Enum.to_list(1..@http_attempts)
+      [url] = responses |> Enum.map(& &1["url"]) |> Enum.uniq()
+      assert String.starts_with?(url, "http://127.0.0.1:")
+      assert String.ends_with?(url, "/v1/responses")
+
+      message =
+        @http_message || "unexpected status 403 Forbidden: Owned HTTP forbidden., url: " <> url
+
+      for retry <- Enum.filter(errors, & &1["willRetry"]) do
+        # InternalServerError intentionally has no retained status; UnexpectedStatus has 403.
+        retry_status = if @http_status == 403, do: 403, else: nil
+
+        assert retry["error"] == %{
+                 "message" => "Reconnecting... 1/1",
+                 "codexErrorInfo" => %{
+                   "responseStreamDisconnected" => %{"httpStatusCode" => retry_status}
+                 },
+                 "additionalDetails" => message,
+                 "misalignment" => nil
+               }
+      end
+
+      terminal = List.last(errors)["error"]
+
+      assert terminal == %{
+               "message" => message,
+               "codexErrorInfo" => @http_info,
+               "additionalDetails" => nil,
+               "misalignment" => nil
+             }
+
+      completed = completed(events, thread, turn)
+      assert completed["turn"]["status"] == "failed"
+      assert Map.fetch!(completed["turn"], "error") == terminal
+
+      refute Enum.any?(
+               notices(events, "item/completed"),
+               &(&1["item"]["type"] == "agentMessage")
+             )
+
+      assert notices(events, "item/agentMessage/delta") == []
+      assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+      assert Session.uncertain_operations(pid) == []
+
+      # Native sampling retries above are bounded; the driver never replays turn/start.
+      next_turn = turn(pid, thread, marker <> ":explicit-next-turn")
+      refute next_turn == turn
+      next_events = collect(pid, thread, next_turn)
+      assert notices(next_events, "error") == []
+
+      assert [%{"threadId" => ^thread, "turn" => %{"id" => ^next_turn}}] =
+               notices(next_events, "turn/started")
+
+      next_completed = completed(next_events, thread, next_turn)
+      assert next_completed["turn"]["status"] == "completed"
+      assert Map.fetch!(next_completed["turn"], "error") == nil
+      assert_answer(next_events, thread, next_turn)
+      assert length(read_json(ctx, "requests.json")) == @http_attempts + 1
+
+      assert Enum.map(read_json(ctx, "http-responses.json"), & &1["status"]) ==
+               List.duplicate(@http_status, @http_attempts) ++ [200]
+
+      refute File.exists?(Path.join(ctx.root, "unexpected-inference.json"))
+      assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+      assert Session.uncertain_operations(pid) == []
+    end
+  end
+
   defp assert_answer(events, thread, turn) do
     assert Enum.count(notices(events, "item/completed"), fn p ->
              p["threadId"] == thread and p["turnId"] == turn and
