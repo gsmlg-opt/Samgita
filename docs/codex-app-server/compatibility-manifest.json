@@ -74638,24 +74638,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/provider-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_sampling_errors: Actual HTTP200 Responses SSE rate failure retries once with responseStreamDisconnected/null status and original details; recovered sampling completes without a terminal error, exhausted rate sampling fails with rateLimitExceeded, and overload without retry advice fails immediately with serverOverloaded. Terminal TurnError matches the notification; only explicit caller next turn recovers, with exact input/provider counts and clean Session state. Stock native process in an owned loopback-only namespace via UDS; fixture emits model SSE only. No HTTP429, real provider rate limit, full error family, reconnect/platform/OS or A11 qualification."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "aa4534c31803c5c819178fa6113533d5e0784fe556451e39c4398c3e9c55114c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -74682,24 +74690,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/provider-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/5",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_sampling_errors: Actual HTTP200 Responses SSE rate failure retries once with responseStreamDisconnected/null status and original details; recovered sampling completes without a terminal error, exhausted rate sampling fails with rateLimitExceeded, and overload without retry advice fails immediately with serverOverloaded. Terminal TurnError matches the notification; only explicit caller next turn recovers, with exact input/provider counts and clean Session state. Stock native process in an owned loopback-only namespace via UDS; fixture emits model SSE only. No HTTP429, real provider rate limit, full error family, reconnect/platform/OS or A11 qualification."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/5",
       "schema": "ServerNotification.json",
       "schema_sha256": "0dc9c759e0f93f7504eaa42d43cf800e839bd72ed8b52e5d6a9be6447936b31b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -74940,76 +74956,100 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/provider-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_sampling_errors: Actual HTTP200 Responses SSE rate failure retries once with responseStreamDisconnected/null status and original details; recovered sampling completes without a terminal error, exhausted rate sampling fails with rateLimitExceeded, and overload without retry advice fails immediately with serverOverloaded. Terminal TurnError matches the notification; only explicit caller next turn recovers, with exact input/provider counts and clean Session state. Stock native process in an owned loopback-only namespace via UDS; fixture emits model SSE only. No HTTP429, real provider rate limit, full error family, reconnect/platform/OS or A11 qualification."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "49bbe80d2d313c11bd843ac654b9bd6eabcf1fcc661d90da9e2189be5244d9d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/provider-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/3/properties/responseStreamDisconnected",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_sampling_errors: Actual HTTP200 Responses SSE rate failure retries once with responseStreamDisconnected/null status and original details; recovered sampling completes without a terminal error, exhausted rate sampling fails with rateLimitExceeded, and overload without retry advice fails immediately with serverOverloaded. Terminal TurnError matches the notification; only explicit caller next turn recovers, with exact input/provider counts and clean Session state. Stock native process in an owned loopback-only namespace via UDS; fixture emits model SSE only. No HTTP429, real provider rate limit, full error family, reconnect/platform/OS or A11 qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/CodexErrorInfo/anyOf/3/properties/responseStreamDisconnected",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f7fe0f7ca94a0021307ea7b0a112c4fa3ac3f0b2942b78679ac8f67f32d75643",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "responseStreamDisconnected"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/provider-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/3/properties/responseStreamDisconnected/properties/httpStatusCode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_sampling_errors: Actual HTTP200 Responses SSE rate failure retries once with responseStreamDisconnected/null status and original details; recovered sampling completes without a terminal error, exhausted rate sampling fails with rateLimitExceeded, and overload without retry advice fails immediately with serverOverloaded. Terminal TurnError matches the notification; only explicit caller next turn recovers, with exact input/provider counts and clean Session state. Stock native process in an owned loopback-only namespace via UDS; fixture emits model SSE only. No HTTP429, real provider rate limit, full error family, reconnect/platform/OS or A11 qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/CodexErrorInfo/anyOf/3/properties/responseStreamDisconnected/properties/httpStatusCode",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b99378e5bfe8ccc5af87b171b65ea725149e27dae782eccf7b2110c85b8645cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "httpStatusCode"
     },
     {
@@ -93648,27 +93688,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/provider-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/TurnError/properties/additionalDetails",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_sampling_errors: Actual HTTP200 Responses SSE rate failure retries once with responseStreamDisconnected/null status and original details; recovered sampling completes without a terminal error, exhausted rate sampling fails with rateLimitExceeded, and overload without retry advice fails immediately with serverOverloaded. Terminal TurnError matches the notification; only explicit caller next turn recovers, with exact input/provider counts and clean Session state. Stock native process in an owned loopback-only namespace via UDS; fixture emits model SSE only. No HTTP429, real provider rate limit, full error family, reconnect/platform/OS or A11 qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/TurnError/properties/additionalDetails",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "67f0689e1c8ccd3216aeecbb51d53b4c1317267308d341e1b8af082aae3310af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs:138-227"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "additionalDetails"
     },
     {
