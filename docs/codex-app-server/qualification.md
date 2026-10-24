@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,122 implemented / 4,499 missing
+11 blocked requirements** and **0 verified / 2,132 implemented / 4,489 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,122 directly exercised
+MCP entries have scoped implementation evidence. These 2,132 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -65,6 +65,15 @@ passes both seeds on the preserved database. Exact repeated-rejection snapshots,
 pending native interaction and unresolved durable effects remain intact. This
 adds lifecycle evidence without promoting the broad authorization requirement;
 post-ticket revocation and complete API/race/profile acceptance stay incomplete.
+
+The [history cursor](history-cursor-qualification.md) and
+[top-level instruction](thread-instructions-qualification.md) units add twenty
+actual-native cases, **5/0** and **15/0** at both seeds, and ten exact implemented
+fields. They preserve original event-derived IDs/payloads, opaque cursor replay,
+parent/child histories and source-specific instruction presence semantics.
+The ordinary thread-list reverse-cursor defect remains missing. These additions
+require the final combined-source package/platform/hosted matrix; no broad
+lifecycle or verified status changes.
 
 Latest method records: [history](thread-history-qualification.md),
 [configuration](configuration-qualification.md), [goals](native-goal-qualification.md),

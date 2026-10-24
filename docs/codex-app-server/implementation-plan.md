@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 462 `implemented`,
-with 2,122 exact field/variant schema contracts implemented; 12 requirements and 4,499 contracts
+with 2,132 exact field/variant schema contracts implemented; 12 requirements and 4,489 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -140,6 +140,13 @@ The following [actual-native authorization unit](native-authority-qualification.
 now passes its four-case owning module at both seeds on the retained database.
 It closes the selected evidence gap between native approval emission and
 current platform authority rejection without a broad lifecycle promotion.
+The next [history cursor](history-cursor-qualification.md) and
+[instruction override](thread-instructions-qualification.md) units pass all
+twenty actual-native cases at both seeds, adding ten exact owning fields only.
+Next: freeze executable/configuration/workflow source, run the complete required
+local and hosted matrices on that combined source, then continue remaining
+reachable fields and lifecycle profiles. No ordinary timestamp-cursor repair,
+external success, A11 or full-compatible promotion is implied.
 
 The next four [native units](qualification.md#native-graph-permission-future-settings-and-error-semantics)
 now pass 18 cases at both recorded seeds: real spawned relations/cold graph,

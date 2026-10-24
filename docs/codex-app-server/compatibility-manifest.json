@@ -162846,27 +162846,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-instructions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/baseInstructions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_instruction_overrides: Nonempty/empty/null/omitted typed values across start, cold resume and fork before the first persisted user turn; exact provider developer-role base/content, unchanged config and parent/child histories, native and local malformed-type rejection. Populated-history nonempty replacement prepends the effective base while retaining original generic developer history. Selected legacy LocalThreadStore/Linux/stdio/synthetic Responses behavior only; hot resume, compaction and other profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/baseInstructions",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_instructions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "baseInstructions"
     },
     {
@@ -162984,27 +162992,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-instructions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/developerInstructions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_instruction_overrides: Nonempty/empty/null/omitted typed values across start, cold resume and fork before the first persisted user turn; exact provider developer-role base/content, unchanged config and parent/child histories, native and local malformed-type rejection. Populated-history nonempty replacement prepends the effective base while retaining original generic developer history. Selected legacy LocalThreadStore/Linux/stdio/synthetic Responses behavior only; hot resume, compaction and other profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/developerInstructions",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_instructions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "developerInstructions"
     },
     {
@@ -165118,27 +165134,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-cursor-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadItemsListResponse.json#/properties/backwardsCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_history_cursors: Six exact original user/assistant event entries across three turns; reverse cursors from every page include first anchor and enumerate complete prefix in either direction; exact cold replay. Selected completed LocalThreadStore histories only. Ordinary created-at thread-list reverse defect, concurrency, rollback/compaction, remote stores, other OS/transports and complete-method qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/backwardsCursor",
       "required": false,
       "schema": "v2/ThreadItemsListResponse.json",
       "schema_sha256": "7caa42563d9b333caaedcd8eff809aa0eb9e2c8c31ed1d27da073b163efe92f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "backwardsCursor"
     },
     {
@@ -165178,27 +165202,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-cursor-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadItemsListResponse.json#/properties/nextCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_history_cursors: Exact original event-derived entries in both directions, bounded complete pages exclude preceding next anchor and end in null; cold replay and malformed/thread/scope rejection preserve state/model counts. Selected completed LocalThreadStore histories only. Ordinary created-at thread-list reverse defect, concurrency, rollback/compaction, remote stores, other OS/transports and complete-method qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ThreadItemsListResponse.json",
       "schema_sha256": "1a3f6922e8cfdfef944c216c6d7ccd34cc5402593ced9eb260183116debc07f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
@@ -184131,27 +184163,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-instructions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/baseInstructions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_instruction_overrides: Nonempty/empty/null/omitted typed values across start, cold resume and fork before the first persisted user turn; exact provider developer-role base/content, unchanged config and parent/child histories, native and local malformed-type rejection. Populated-history nonempty replacement prepends the effective base while retaining original generic developer history. Selected legacy LocalThreadStore/Linux/stdio/synthetic Responses behavior only; hot resume, compaction and other profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/baseInstructions",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_instructions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "baseInstructions"
     },
     {
@@ -184209,27 +184249,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-instructions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/developerInstructions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_instruction_overrides: Nonempty/empty/null/omitted typed values across start, cold resume and fork before the first persisted user turn; exact provider developer-role base/content, unchanged config and parent/child histories, native and local malformed-type rejection. Populated-history nonempty replacement prepends the effective base while retaining original generic developer history. Selected legacy LocalThreadStore/Linux/stdio/synthetic Responses behavior only; hot resume, compaction and other profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/developerInstructions",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_instructions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "developerInstructions"
     },
     {
@@ -193015,27 +193063,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-instructions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/baseInstructions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_instruction_overrides: Nonempty/empty/null/omitted typed values across start, cold resume and fork before the first persisted user turn; exact provider developer-role base/content, unchanged config and parent/child histories, native and local malformed-type rejection. Populated-history nonempty replacement prepends the effective base while retaining original generic developer history. Selected legacy LocalThreadStore/Linux/stdio/synthetic Responses behavior only; hot resume, compaction and other profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/baseInstructions",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_instructions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "baseInstructions"
     },
     {
@@ -193138,27 +193194,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-instructions-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/developerInstructions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_instruction_overrides: Nonempty/empty/null/omitted typed values across start, cold resume and fork before the first persisted user turn; exact provider developer-role base/content, unchanged config and parent/child histories, native and local malformed-type rejection. Populated-history nonempty replacement prepends the effective base while retaining original generic developer history. Selected legacy LocalThreadStore/Linux/stdio/synthetic Responses behavior only; hot resume, compaction and other profiles remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/developerInstructions",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_instructions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "developerInstructions"
     },
     {
@@ -196923,27 +196987,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-cursor-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadTurnsListResponse.json#/properties/backwardsCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_history_cursors: Both original directions, every issuing page reverses with the first anchor included and exactly the complete preceding prefix, using opaque native strings unchanged; cold replay returns exact pages. Selected completed LocalThreadStore histories only. Ordinary created-at thread-list reverse defect, concurrency, rollback/compaction, remote stores, other OS/transports and complete-method qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/backwardsCursor",
       "required": false,
       "schema": "v2/ThreadTurnsListResponse.json",
       "schema_sha256": "31d0b69c2f106cd41bfe9a56ae00a046551e590e1ea252465c7ab0ff30a550dc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "backwardsCursor"
     },
     {
@@ -196982,27 +197054,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/history-cursor-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadTurnsListResponse.json#/properties/nextCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_history_cursors: Three completed turn IDs and original content in both directions with limit two, no repeated next anchor, exact terminal null, same native cursors after cold restart; malformed/foreign/cross-scope rejection as supported. Selected completed LocalThreadStore histories only. Ordinary created-at thread-list reverse defect, concurrency, rollback/compaction, remote stores, other OS/transports and complete-method qualification remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ThreadTurnsListResponse.json",
       "schema_sha256": "394de5297092a110fb468dd6c10b7ba74314c47eb4738fe355a36b5729a13985",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_history_cursor_semantics_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
