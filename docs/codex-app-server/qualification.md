@@ -37,6 +37,16 @@ in the [review](review-delivery-qualification.md#supplemental-owner-index) and
 legacy method requirements remain blocked; no synthetic test proves their real
 emission, and no requirement or contract becomes fully verified.
 
+Two [interaction deadline/control cases](interaction-deadline-qualification.md)
+pass in the complete **12/0** approval-loss/cancellation block at both fixed
+seeds, with compile/format/strict Credo and a matching source guard. Only the new
+expiry case uses its explicit two-second interaction deadline. Exact native
+resolution, one forwarded error, no physical execution and stale late acceptance
+are checked against an independent explicit-acceptance control. Live failed
+command and absent durable command are asserted separately according to pinned
+source. Existing deadlines and guardians remain. No legacy `TimedOut`, fully
+verified lifecycle or count promotion follows; final-source checks remain pending.
+
 Eight [review delivery cases](review-delivery-qualification.md) pass at both
 fixed seeds with warning-free compilation, format, strict Credo and a matching
 source guard. The actual binary handles legacy detached and omitted/null/inline

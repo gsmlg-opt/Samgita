@@ -30,10 +30,13 @@ The old GitHub-page failure is retained, with no cause or repair inferred from
 this pass. An evidence-only index adds five native review and 52 synthetic legacy
 owners: **3,020 implemented / 3,601 missing** contracts, zero verified. Requirements
 remain **462 implemented / 12 missing / 11 blocked**, zero verified; all four
-legacy requirements remain blocked. Next: apply and qualify the source-audited
-native interaction-deadline, V1/V3 control and review-target patches, then repeat
-the complete final-source local/hosted matrix. These drafts have no acceptance
-credit. A11, source-unreachable emitters and external/OS profiles remain open.
+legacy requirements remain blocked. The
+[native interaction deadline/control unit](interaction-deadline-qualification.md)
+now passes the full owning block **12/0** at both fixed seeds with strict checks
+and a matching source guard; lifecycle state/counts remain unchanged. Next:
+apply and qualify the source-audited V1/V3 control and review-target patches,
+then repeat the complete final-source local/hosted matrix. Those drafts have no
+acceptance credit. A11, source-unreachable emitters and external/OS profiles remain open.
 
 ## Earlier scoped units
 

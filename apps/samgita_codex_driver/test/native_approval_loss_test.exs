@@ -85,6 +85,7 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
 
     {:ok, pid} =
       Session.start_link(
+        interaction_timeout_ms: tags[:interaction_timeout_ms] || 60_000,
         transport:
           {ApprovalLossTransport,
            [url: "ws://127.0.0.1:#{port}/app-server", token: token, control: control]}
@@ -228,6 +229,78 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
     end
   end
 
+  @tag scenario: "command", interaction_timeout_ms: 2_000
+  test "native pending command fails closed when the configured interaction deadline expires",
+       ctx do
+    {thread, turn, approval, _events} = pending(ctx)
+    assert replies(ctx) == []
+
+    events =
+      collect(ctx.pid, [], fn events ->
+        wire_events = Enum.filter(events, &Map.has_key?(&1, :wire))
+        refute Enum.any?(events, &(&1.kind == :server_request))
+
+        Enum.any?(events, &(&1.kind == :interaction_expired and &1.handle == approval.handle)) and
+          not is_nil(notification(wire_events, "turn/completed", &(&1["turn"]["id"] == turn))) and
+          not is_nil(
+            notification(wire_events, "serverRequest/resolved", fn params ->
+              params["threadId"] == thread and params["requestId"] == approval.wire["id"]
+            end)
+          )
+      end)
+
+    assert [expired] = Enum.filter(events, &(&1.kind == :interaction_expired))
+    assert expired.handle == approval.handle
+    wire_events = Enum.filter(events, &Map.has_key?(&1, :wire))
+
+    assert %{"threadId" => ^thread, "turn" => %{"id" => ^turn, "status" => "completed"}} =
+             notification(wire_events, "turn/completed", &(&1["turn"]["id"] == turn))
+
+    assert %{"threadId" => ^thread, "requestId" => request_id} =
+             notification(wire_events, "serverRequest/resolved", &(&1["threadId"] == thread))
+
+    assert request_id == approval.wire["id"]
+    assert_deadline_failure(ctx, wire_events, thread, turn)
+
+    assert_only_reply(ctx, approval, %{
+      "error" => %{"code" => -32_000, "message" => "Client interaction deadline expired"}
+    })
+
+    before_late_reply = replies(ctx)
+
+    assert {:error, %Error{code: :stale_interaction}} =
+             Session.respond(ctx.pid, approval.handle, {:ok, %{"decision" => "accept"}})
+
+    assert replies(ctx) == before_late_reply
+    assert_effect_absent(ctx)
+    refute File.exists?(Path.join([ctx.fixture.codex_home, "rules", "default.rules"]))
+    assert length(ModelFixture.requests(ctx.fixture)) == 2
+    assert Session.interaction_outcomes(ctx.pid) == []
+    assert Session.uncertain_operations(ctx.pid) == []
+    assert %{pending: 0, interactions: 0, uncertain: 0} = Session.status(ctx.pid)
+    assert_without_reconnect(ctx)
+    assert_borrowed_owner(ctx)
+  end
+
+  @tag scenario: "command"
+  test "explicit command acceptance remains an independent physical control for deadline denial",
+       ctx do
+    {thread, turn, approval, _events} = pending(ctx)
+    assert_effect_absent(ctx)
+    respond(ctx, approval)
+    finish(ctx, thread, turn, approval.wire["id"])
+    assert_effect(ctx)
+    assert_history(ctx, thread, turn)
+    assert_only_reply(ctx, approval, %{"result" => %{"decision" => "accept"}})
+    before_late_reply = replies(ctx)
+    assert_stale(ctx.pid, approval)
+    assert replies(ctx) == before_late_reply
+    assert_effect(ctx)
+    assert Session.uncertain_operations(ctx.pid) == []
+    assert_without_reconnect(ctx)
+    assert_borrowed_owner(ctx)
+  end
+
   defp pending(ctx) do
     thread = thread(ctx, ctx.pid)
 
@@ -345,6 +418,54 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
     end
 
     assert %{pending: 0, interactions: 0, uncertain: 0} = Session.status(ctx.pid)
+  end
+
+  defp assert_deadline_failure(ctx, events, thread, turn) do
+    assert [item] =
+             for(
+               event <- events,
+               event.wire["method"] == "item/completed",
+               event.wire["params"]["threadId"] == thread,
+               event.wire["params"]["turnId"] == turn,
+               event.wire["params"]["item"]["type"] == "commandExecution",
+               do: event.wire["params"]["item"]
+             )
+
+    assert item["id"] == "approval-loss-1"
+    assert item["cwd"] == ctx.fixture.workspace
+    assert OptionParser.split(item["command"]) == command_argv(ctx)
+    assert item["status"] == "failed"
+    assert item["exitCode"] == nil and item["aggregatedOutput"] == nil
+    assert item["processId"] == nil and item["durationMs"] == nil
+    refute Enum.any?(events, &(&1.wire["method"] == "item/commandExecution/outputDelta"))
+
+    history =
+      call(ctx.pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"][
+        "turns"
+      ]
+
+    assert [%{"id" => ^turn, "status" => "completed"} = stored] = history
+    # The pre-launch failed item is emitted by the app-server; core never
+    # executes or persists ExecCommandBegin/End for this rejected command.
+    assert Enum.filter(stored["items"], &(&1["type"] == "commandExecution")) == []
+  end
+
+  defp assert_only_reply(ctx, approval, payload) do
+    wire = Map.put(payload, "id", approval.wire["id"])
+    assert {:ok, encoded} = SamgitaProtocolCodex.Wire.encode(wire)
+    digest = :crypto.hash(:sha256, encoded)
+    request_id = approval.wire["id"]
+    generation = approval.handle.generation
+
+    assert [%{id: ^request_id, digest: ^digest, disposition: :forwarded, generation: ^generation}] =
+             replies(ctx)
+  end
+
+  defp assert_without_reconnect(ctx) do
+    methods = Agent.get(ctx.control, &Enum.map(&1.outbound, fn entry -> entry.method end))
+    assert Enum.count(methods, &(&1 == "turn/start")) == 1
+    refute Enum.any?(methods, &(&1 == "thread/resume"))
+    assert Agent.get(ctx.control, & &1.opens) == 1
   end
 
   defp arm(ctx, approval, mode),
