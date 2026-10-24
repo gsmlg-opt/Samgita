@@ -91989,7 +91989,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:383-416"
         ]
       },
       "transport_coverage": [
@@ -92041,7 +92041,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:383-416"
         ]
       },
       "transport_coverage": [
@@ -92109,7 +92109,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:383-416"
         ]
       },
       "transport_coverage": [
@@ -92161,7 +92161,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:383-416"
         ]
       },
       "transport_coverage": [
@@ -92195,7 +92195,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:383-416"
         ]
       },
       "transport_coverage": [
@@ -92247,7 +92247,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:383-416"
         ]
       },
       "transport_coverage": [
@@ -92281,7 +92281,7 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:356-376"
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:383-416"
         ]
       },
       "transport_coverage": [
@@ -177878,50 +177878,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_queued_assistant: Exact independent supplied assistant identity/text and all four explicit-null metadata keys; real positive notification timestamps, user-before-assistant ordering and exact paginated selective read warm/cold, no extra inference. Legacy selective read remains unsupported. Non-null values, omission/defaults, other items, external/OS and full acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "3e6c15df67cbaa7bdc5d2e7a50e6aca4d9c66ec363fbe6abd2c4d67e9d256dd5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:242"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2/properties/delivery",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_queued_assistant: Exact independent supplied assistant identity/text and all four explicit-null metadata keys; real positive notification timestamps, user-before-assistant ordering and exact paginated selective read warm/cold, no extra inference. Legacy selective read remains unsupported. Non-null values, omission/defaults, other items, external/OS and full acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/delivery",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "d8745268a11a88e61e4efbe5f8b6bc3e968bcf06acc8592c5a795dcf7bd5c3f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:242"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "delivery"
     },
     {
@@ -177948,24 +177964,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2/properties/delivery/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_queued_assistant: Exact independent supplied assistant identity/text and all four explicit-null metadata keys; real positive notification timestamps, user-before-assistant ordering and exact paginated selective read warm/cold, no extra inference. Legacy selective read remains unsupported. Non-null values, omission/defaults, other items, external/OS and full acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/delivery/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:242"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -178005,27 +178029,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2/properties/memoryCitation",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_queued_assistant: Exact independent supplied assistant identity/text and all four explicit-null metadata keys; real positive notification timestamps, user-before-assistant ordering and exact paginated selective read warm/cold, no extra inference. Legacy selective read remains unsupported. Non-null values, omission/defaults, other items, external/OS and full acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/memoryCitation",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "9d1505dc2cc978b127f8e6161f10210e73e57a599d170be38998fafbdf9e1d54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:242"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "memoryCitation"
     },
     {
@@ -178052,50 +178084,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2/properties/memoryCitation/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_queued_assistant: Exact independent supplied assistant identity/text and all four explicit-null metadata keys; real positive notification timestamps, user-before-assistant ordering and exact paginated selective read warm/cold, no extra inference. Legacy selective read remains unsupported. Non-null values, omission/defaults, other items, external/OS and full acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/memoryCitation/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:242"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2/properties/phase",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_queued_assistant: Exact independent supplied assistant identity/text and all four explicit-null metadata keys; real positive notification timestamps, user-before-assistant ordering and exact paginated selective read warm/cold, no extra inference. Legacy selective read remains unsupported. Non-null values, omission/defaults, other items, external/OS and full acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/phase",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "73a53c28e395caaf58d851413f635bfcc864694564df2ba3cdeefdda74ca501a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:242"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "phase"
     },
     {
@@ -178122,50 +178170,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2/properties/phase/anyOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_queued_assistant: Exact independent supplied assistant identity/text and all four explicit-null metadata keys; real positive notification timestamps, user-before-assistant ordering and exact paginated selective read warm/cold, no extra inference. Legacy selective read remains unsupported. Non-null values, omission/defaults, other items, external/OS and full acceptance remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/phase/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:242"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2/properties/questions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_selected_queued_assistant: Exact independent supplied assistant identity/text and all four explicit-null metadata keys; real positive notification timestamps, user-before-assistant ordering and exact paginated selective read warm/cold, no extra inference. Legacy selective read remains unsupported. Non-null values, omission/defaults, other items, external/OS and full acceptance remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/2/properties/questions",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "f90b62cbc6367751539161c7e08783472391a74f0583d81c0288c53ad4f9ccf1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:242"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "questions"
     },
     {

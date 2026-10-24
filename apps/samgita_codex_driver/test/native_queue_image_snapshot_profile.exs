@@ -255,7 +255,10 @@ defmodule SamgitaCodexDriver.NativeQueueImageSnapshotProfileTest do
 
     {turn, expected_item, started, finished} = assert_user_item(execution, id, saved)
 
-    expected_assistant = assert_assistant_item(execution, id, turn)
+    {expected_assistant, assistant_started, assistant_finished} =
+      assert_assistant_item(execution, id, turn)
+
+    assert assistant_started >= finished
     {stored_item, stored_assistant} = stored_items(ctx, expected_item, expected_assistant)
     [original] = baseline
     assert [^original, persisted] = turns(pid, id)
@@ -273,6 +276,25 @@ defmodule SamgitaCodexDriver.NativeQueueImageSnapshotProfileTest do
     query = %{"threadId" => id, "turnId" => turn, "itemIds" => [stored_item["id"]]}
     assert_selected_history(ctx, pid, query, entry)
 
+    assistant_selection =
+      if ctx.scenario == "update" do
+        assistant_query = %{
+          "threadId" => id,
+          "turnId" => turn,
+          "itemIds" => [expected_assistant["id"]]
+        }
+
+        assistant_entry = %{
+          "turnId" => turn,
+          "item" => expected_assistant,
+          "startedAtMs" => assistant_started,
+          "completedAtMs" => assistant_finished
+        }
+
+        assert_selected_history(ctx, pid, assistant_query, assistant_entry)
+        {assistant_query, assistant_entry}
+      end
+
     assert call(pid, "thread/queue/list", %{"threadId" => id}) == %{
              "data" => [],
              "nextCursor" => nil
@@ -284,6 +306,11 @@ defmodule SamgitaCodexDriver.NativeQueueImageSnapshotProfileTest do
     cold = restart(ctx, pid)
     assert turns(cold, id) == history
     assert_selected_history(ctx, cold, query, entry)
+
+    if assistant_selection do
+      {assistant_query, assistant_entry} = assistant_selection
+      assert_selected_history(ctx, cold, assistant_query, assistant_entry)
+    end
 
     assert call(cold, "thread/queue/list", %{"threadId" => id}) == %{
              "data" => [],
@@ -354,17 +381,21 @@ defmodule SamgitaCodexDriver.NativeQueueImageSnapshotProfileTest do
   end
 
   defp assert_assistant_item(execution, id, turn) do
-    assert [assistant] =
+    assert [began] =
+             Enum.filter(
+               notices(execution, "item/started"),
+               &(&1["item"]["type"] == "agentMessage")
+             )
+
+    assert [ended] =
              Enum.filter(
                notices(execution, "item/completed"),
                &(&1["item"]["type"] == "agentMessage")
              )
 
-    assert assistant["threadId"] == id and assistant["turnId"] == turn
-
     expected_assistant = %{
       "type" => "agentMessage",
-      "id" => assistant["item"]["id"],
+      "id" => "owned-queue-image-2",
       "text" => @answer,
       "delivery" => nil,
       "memoryCitation" => nil,
@@ -372,8 +403,16 @@ defmodule SamgitaCodexDriver.NativeQueueImageSnapshotProfileTest do
       "questions" => nil
     }
 
-    assert assistant["item"] == expected_assistant
-    expected_assistant
+    for item <- [began, ended] do
+      assert item["threadId"] == id and item["turnId"] == turn
+      assert item["item"] == expected_assistant
+    end
+
+    started = Map.fetch!(began, "startedAtMs")
+    finished = Map.fetch!(ended, "completedAtMs")
+    assert is_integer(started) and started > 0
+    assert is_integer(finished) and finished >= started
+    {expected_assistant, started, finished}
   end
 
   defp assert_provider_snapshot(ctx, id, turn, saved, bytes, dimensions) do

@@ -32,6 +32,39 @@ are checked with the original turn unchanged. A second postcompletion restart
 must retain full history and the empty queue without another model request.
 Every owned native/controller/namespace process must be confirmed reaped.
 
+## Independently expected selected assistant after restart
+
+A subsequent additive assertion specifies the model-supplied assistant ID
+`owned-queue-image-2` and fixed text independently, then compares complete native
+started/completed maps with present null delivery/memoryCitation/phase/questions.
+Both actual notification timestamps must be positive integers and completion
+must follow start. The accepted user item completes before this assistant starts.
+In paginated mode the selected assistant entry, including both exact times,
+must match warm and after another owned cold restart. Legacy selective reads
+retain their unsupported error and sequential stored IDs; no legacy timestamp
+is invented. Original PNG, full-history, queue, no-reexecution and cleanup
+assertions remain intact.
+
+The new complete owning profile passes **2/0** within **14/0** at both fixed
+seeds in `/tmp/samgita-native-sleep-queue-plugin-v2-20261024/`, with compile,
+format, root strict Credo and matching executable-source guard. `results.json`
+SHA256 is
+`afbde503a2f8efdb71d2a668ad3c34ecfeeea21068f01c89cb026bd85c5bc4fc`.
+The earlier three-case runner fails only the separate sleep notification oracle;
+both queue cases pass there too. This run supersedes the profile hash below;
+the original hashes/counts remain historical evidence, not final-source proof.
+
+Exactly eight still-missing owners under
+`schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/2` gain
+scoped implemented evidence: the complete selected AgentMessage alternative,
+properties delivery/memoryCitation/phase and their null branches, plus questions
+present null. Each physical subtree hash was independently recomputed. This
+selective-response evidence is distinct from the seven previously indexed
+ServerNotification owners. Their test anchors move to383–416; their states
+are unchanged. Non-null values, omissions/defaults, other item alternatives,
+external providers and full verification remain unqualified. Required hosted
+and final-source aggregate checks remain separate gates.
+
 ## Native legacy behavior and retained initial failures
 
 The first two runners stopped at strict Credo before native execution. Splitting
