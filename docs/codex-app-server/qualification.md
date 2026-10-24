@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,069 implemented / 3,552 missing
+11 blocked requirements** and **0 verified / 3,084 implemented / 3,537 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,069 directly exercised
+MCP entries have scoped implementation evidence. These 3,084 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -26,8 +26,8 @@ platform/API/concurrency. Mandatory completeness fails. The separate frozen
 local v15 matrix remains running; it reproduces the unchanged populated-database
 GitHub first-page assertion while both recovery/restart repeats pass. No reset,
 guard bypass or claimed GitHub repair follows. A
-[source-only index](native-owner-supplement-qualification.md) adds 22 exact
-notification/config/selective-history owners from existing assertions; no new
+[source-only index](native-owner-supplement-qualification.md) adds 37 exact
+notification/config/selective-history/goal owners from existing assertions; no new
 execution, fully verified promotion or retroactive hosted count follows.
 
 The earlier [frozen local checkpoint at 7a5de5e](repair-qualification.md#frozen-local-matrix-at-7a5de5e)

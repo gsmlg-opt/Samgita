@@ -37922,46 +37922,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadGoalMutationOrigin/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native explicit user/automatic goal mutation origin with independently prescribed ordered user-provenance messages versus absent automatic/missing/null objectives in actual model request input, including cold writes. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "pointer": "/definitions/ThreadGoalMutationOrigin/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9a7d469ee31c85617b47990418cdcf535c45728d90c73d4195d16cf3ec1d2b41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:139-207"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadGoalMutationOrigin/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native explicit user/automatic goal mutation origin with independently prescribed ordered user-provenance messages versus absent automatic/missing/null objectives in actual model request input, including cold writes. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "pointer": "/definitions/ThreadGoalMutationOrigin/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "02d6a372ec4fd1904416d693d3fd321c313fae85ae802197ebaeb58b0c9ace28",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:139-207"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -37988,112 +38004,152 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadGoalStatus/enum/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native explicit inactive goal-status mutation with independent status/objective/zero-usage assertions and committed readback; no automatically started execution or computed budget/usage enforcement. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "pointer": "/definitions/ThreadGoalStatus/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "d5e0e062a5c99f513196c5ed6e0c0f46b0d8bfad0dc4acceffd25c870b17f81e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-77"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadGoalStatus/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native explicit inactive goal-status mutation with independent status/objective/zero-usage assertions and committed readback; no automatically started execution or computed budget/usage enforcement. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "pointer": "/definitions/ThreadGoalStatus/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "e7cc57978171b5f55b85b8cc446c307dcc9c2a7d7412387d6bd98ee31c06e094",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-77"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadGoalStatus/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native explicit inactive goal-status mutation with independent status/objective/zero-usage assertions and committed readback; no automatically started execution or computed budget/usage enforcement. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "pointer": "/definitions/ThreadGoalStatus/enum/3",
       "schema": "ClientRequest.json",
       "schema_sha256": "f5116ceaa32640d76ff20f962d659a6f7b492be6a76c7b6f5d53638011726ec0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-77"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadGoalStatus/enum/4",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native explicit inactive goal-status mutation with independent status/objective/zero-usage assertions and committed readback; no automatically started execution or computed budget/usage enforcement. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "pointer": "/definitions/ThreadGoalStatus/enum/4",
       "schema": "ClientRequest.json",
       "schema_sha256": "22e1ffef1e175572ecbd9f3b120e4bdb59b179e302984576ff4a046961daedb6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-77"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadGoalStatus/enum/5",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native explicit inactive goal-status mutation with independent status/objective/zero-usage assertions and committed readback; no automatically started execution or computed budget/usage enforcement. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "pointer": "/definitions/ThreadGoalStatus/enum/5",
       "schema": "ClientRequest.json",
       "schema_sha256": "b4a80c61a1f8c6101403f9f26edc545babd033d6ea52f4cc918a4d8a75d394a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-77"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -89128,183 +89184,239 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadGoal/properties/createdAt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native first paused goal update notification only: independent objective/status/thread/positive-createdAt/budget-100/zero-usage assertions feed exact notification equality. Later status, null, omission, nonzero usage and complete timestamp semantics unqualified. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadGoal/properties/createdAt",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-54,215-222"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "createdAt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadGoal/properties/objective",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native first paused goal update notification only: independent objective/status/thread/positive-createdAt/budget-100/zero-usage assertions feed exact notification equality. Later status, null, omission, nonzero usage and complete timestamp semantics unqualified. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadGoal/properties/objective",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-54,215-222"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "objective"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadGoal/properties/status",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native first paused goal update notification only: independent objective/status/thread/positive-createdAt/budget-100/zero-usage assertions feed exact notification equality. Later status, null, omission, nonzero usage and complete timestamp semantics unqualified. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadGoal/properties/status",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "4b936118a7ae58693b8e8780f7f4b92ce4983e01bc63caf23fc1810802467bb6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-54,215-222"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadGoal/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native first paused goal update notification only: independent objective/status/thread/positive-createdAt/budget-100/zero-usage assertions feed exact notification equality. Later status, null, omission, nonzero usage and complete timestamp semantics unqualified. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadGoal/properties/threadId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-54,215-222"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadGoal/properties/timeUsedSeconds",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native first paused goal update notification only: independent objective/status/thread/positive-createdAt/budget-100/zero-usage assertions feed exact notification equality. Later status, null, omission, nonzero usage and complete timestamp semantics unqualified. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadGoal/properties/timeUsedSeconds",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-54,215-222"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "timeUsedSeconds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadGoal/properties/tokenBudget",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native first paused goal update notification only: independent objective/status/thread/positive-createdAt/budget-100/zero-usage assertions feed exact notification equality. Later status, null, omission, nonzero usage and complete timestamp semantics unqualified. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadGoal/properties/tokenBudget",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-54,215-222"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tokenBudget"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadGoal/properties/tokensUsed",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native first paused goal update notification only: independent objective/status/thread/positive-createdAt/budget-100/zero-usage assertions feed exact notification equality. Later status, null, omission, nonzero usage and complete timestamp semantics unqualified. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadGoal/properties/tokensUsed",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:44-54,215-222"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tokensUsed"
     },
     {
@@ -169850,27 +169962,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-owner-supplement-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadGoalClearResponse.json#/properties/cleared",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Native owning clear response compares exact true then false on repeated clear; goal response null-key presence not inferred from bracket access. Exact physical owner only, Linux musl/stdin-stdout; unchanged native_goal_test in hosted 0bc98a3 default driver and both frozen-v15 665/0 driver seeds. No full entry, alias, other transport/OS, external model or complete compatibility qualification."
+      ],
       "nullable": false,
       "pointer": "/properties/cleared",
       "required": true,
       "schema": "v2/ThreadGoalClearResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_goal_test.exs:70-75"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cleared"
     },
     {

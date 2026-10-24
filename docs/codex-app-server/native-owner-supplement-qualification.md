@@ -1,6 +1,6 @@
 # Supplemental native property and variant index
 
-This source-only index binds **22 previously missing physical owners** to existing
+This source-only index binds **37 previously missing physical owners** to existing
 actual-native assertions. It changes no runtime, fixture, deadline, transport or
 test. Every row becomes scoped **implemented**, never fully verified. Target:
 `rust-v0.163.0`, source `83086188ae0614bd882818ff1aa23f3194962012`, Linux musl
@@ -114,7 +114,43 @@ timestamp accuracy remain unqualified. Review profiles use `thread/turns/list`,
 so contribute **zero** owners for this selective response. No assistant owner is
 inferred from their full-history comparisons.
 
+## Native goals: fifteen selected owners
+
+The unchanged `native_goal_test.exs` has actual-native default-driver evidence at
+hosted `0bc98a3` (**665/0**) and both local frozen v15 default-driver seeds
+(**665/0** each). The profile, TurnFixture, Session and schema validator hashes
+match v15's source snapshot. The immutable binary SHA256 above was rechecked.
+This documentation-only index adds no test or runtime behavior. The two local
+isolated-profile runs and remaining package checks are still running at this
+index checkpoint, and the separate second populated aggregate retains its
+GitHub first-page assertion failure.
+
+| Physical owner prefix | Selected suffixes and native oracle |
+| --- | --- |
+| `schema:ClientRequest.json#/definitions/ThreadGoalStatus/enum/` | `1` through `5`: explicit paused, blocked, usageLimited, budgetLimited and complete mutations, independent status/objective/zero-usage assertions and committed readback; no turn or model request |
+| `schema:ClientRequest.json#/definitions/ThreadGoalMutationOrigin/enum/` | `0`, `1`: user and automatic origins; exact user instruction order versus absent automatic/missing/null objectives in captured model input, including cold writes before runtime load |
+| `schema:ServerNotification.json#/definitions/ThreadGoal/properties/` | `createdAt`, `objective`, `status`, `threadId`, `timeUsedSeconds`, `tokenBudget`, `tokensUsed`: independently asserted first paused goal values, then exact first native update-notification equality |
+| `schema:v2/ThreadGoalClearResponse.json#/properties/` | `cleared`: exact whole response true on clear, false on repeat |
+
+The outbound status assertions are at62–68; user/automatic provenance is at
+139–207, with exact downstream input assertions at191–205. First-goal values at
+44–51 feed the exact owning notification check at54 and215–222. Clear responses
+are checked at70–75. Ordinary schema validation remains enabled; these are the
+physical ClientRequest and ServerNotification owners, with no evidence copied
+to response aliases or sibling definitions. All exact subtree hashes were
+independently recomputed from their vendored experimental schema nodes.
+
+Only selected literal/field behavior gains scoped implemented evidence. Setting
+usageLimited/budgetLimited does not prove computed limits; native goal complete
+does not accept a Samgita Task. No active continuation, nonzero accounting,
+budget enforcement, other notification statuses, outer goal-null presence,
+omission/default branch, whole goal map or other transport/OS profile is
+qualified. In particular the existing `updatedAt >= createdAt` term comparison
+does not independently assert an integer timestamp, and bracket access to
+`goal` cannot distinguish absent from present null; those owners stay missing.
+See the [owning goal qualification](native-goal-qualification.md).
+
 Regenerated ledger: **485 requirements: 0 verified / 462 implemented / 12 missing /
-11 blocked; 6,621 contracts: 0 verified / 3,069 implemented / 3,552 missing**.
+11 blocked; 6,621 contracts: 0 verified / 3,084 implemented / 3,537 missing**.
 Complete compatibility, A11, source-unreachable emitters and external/OS success
 remain incomplete. No package publication, release, migration or deployment.

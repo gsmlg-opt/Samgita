@@ -33,8 +33,8 @@ Interaction deadlines, V1/V3 controls, Git review targets, hard pending-approval
 cold restart, System-skill shared cache and queued PNG snapshots now have scoped
 native two-seed evidence and required hosted execution steps. Their source-backed
 oracle corrections and initial failures remain in the linked qualification
-records. A [source-only 22-owner index](native-owner-supplement-qualification.md)
-brings contracts to **3,069 implemented / 3,552 missing**, zero verified.
+records. A [source-only 37-owner index](native-owner-supplement-qualification.md)
+brings contracts to **3,084 implemented / 3,537 missing**, zero verified.
 Requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified;
 all four legacy requirements remain blocked.
 

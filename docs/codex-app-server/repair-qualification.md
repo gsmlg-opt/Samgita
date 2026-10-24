@@ -28,8 +28,11 @@ shared cache, queued PNG snapshots and V1/V3 realtime controls.
 Completeness passes **37 inventory regressions** and consistency, then fails
 `--require-verified`: **485 requirements: 0 verified / 462 implemented / 12 missing /
 11 blocked; 6,621 contracts: 0 verified / 3,047 implemented / 3,574 missing**.
-The subsequent [22-owner source index](native-owner-supplement-qualification.md)
-does not retroactively change this run or turn any entry fully verified.
+The subsequent [source index](native-owner-supplement-qualification.md) first
+adds 22 notification/configuration/selective-history owners, then fifteen native
+goal owners. Neither unit retroactively changes this run or turns an entry fully
+verified. The current contracts total **3,084 implemented / 3,537 missing**;
+the exact hosted completeness outcome above remains unchanged.
 
 The read-only collector
 `/tmp/samgita-collect-hosted-0bc98a3-20261024.py` asserts exact heads and terminal
