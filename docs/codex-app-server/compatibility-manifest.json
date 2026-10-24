@@ -83964,24 +83964,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/PatchApplyStatus/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Live file inProgress before explicit response, with unchanged files and absent item/turn completion; not inferred from command status.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "pointer": "/definitions/PatchApplyStatus/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e1ef5dedbf5de070e6cf2f148e2d5691ff863f44d4e18533ec8b925e30e244f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multifile_approval_test.exs:58-107,134-184,204-211"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -84093,49 +84102,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Live prescribed add kind in accepted first patch and declined mixed patch, exact changes and real file effects.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/PatchChangeKind/oneOf/0/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "cde0d3af01f94ccacd132746f0dcf3385686034c8a777d6b62b6d1f1312cd2cd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multifile_approval_test.exs:58-107,134-184,204-211"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit live add literal in accepted and declined prescribed changes; no delete/rename branch.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/0/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "0df9fd3f3f1ce543e5c1d5e5fdadd153ee6b75e9c9d5e1b1ebffa368e15301d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multifile_approval_test.exs:58-107,134-184,204-211"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -91660,27 +91687,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/6/properties/command",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Live command parses to independently prescribed owned sh/-c/fixed printf argv across accepted/cached/declined/cold cases. No byte-exact quoting or persisted/live source inference.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/6/properties/command",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "583cfc1f91b0ab7a07b6894a1c9aeedf2696d934bc066950342ae75d0cabe08f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_cache_context_test.exs:76-119,165-179,267"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "command"
     },
     {
@@ -92151,27 +92187,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/7/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Live file started/completed item IDs exactly match three prescribed model call IDs and original approval association.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/7/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multifile_approval_test.exs:58-107,134-184,204-211"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -101165,75 +101210,105 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/42/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual serverRequest/resolved method filtered before original callback/thread association.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/42/properties/method",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "6c9bd09285fee1fb452c132ad85dd45c85e74fb33289e3f79510ddc0ad090ec8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_approval_duplicate_replies_test.exs:224-238,326-327",
+          "apps/samgita_codex_driver/test/native_multifile_approval_test.exs:186-191"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/42/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit serverRequest/resolved literal on actual native resolution.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "pointer": "/oneOf/42/properties/method/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "9df6c32765a8b23730a9a63e9c5e96b164f46ff80740f4427914a42583cf92c8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_approval_duplicate_replies_test.exs:224-238,326-327",
+          "apps/samgita_codex_driver/test/native_multifile_approval_test.exs:186-191"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/oneOf/42/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected params map carries original thread and approval request IDs; singleton resolution list. Map-pattern association does not claim an exact envelope key set.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/oneOf/42/properties/params",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "16dd0e213f53be645704ae624f0e92d1486d884950e421fa404e288c6d65f30d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_approval_duplicate_replies_test.exs:224-238,326-327",
+          "apps/samgita_codex_driver/test/native_multifile_approval_test.exs:186-191"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -162215,24 +162290,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/dependencies/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Nonnull complete prescribed dependencies object: ordered rich tools and exact reload/filter/cold stable objects. No explicit-null or sibling schema inference.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "pointer": "/definitions/SkillMetadata/properties/dependencies/anyOf/0",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "4ba63492f5f2e1617d4b6964a0203f6873082d97650ffc3177e650b0c4c44373",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skill_metadata_test.exs:74-86,103-123,153-174,211-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -162361,24 +162445,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/approval-skill-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillMetadata/properties/interface/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Nonnull full eight-member prescribed interface object across rich/reload/filter/cold stable reads; null members do not imply null outer object.",
+        "Selected committed actual-native assertions only; no whole envelope/item/union, shared-type sibling, all decision/transport/OS/backend or fully verified promotion."
+      ],
       "pointer": "/definitions/SkillMetadata/properties/interface/anyOf/0",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "a992a71523ec54115015141f5cb264119941ba781832cc78c0f84fa83b8ead18",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skill_metadata_test.exs:74-86,103-123,153-174,211-265"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
