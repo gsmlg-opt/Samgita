@@ -91911,27 +91911,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSettings/properties/cwd",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
@@ -92099,27 +92107,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/modelProvider",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadSettings/properties/modelProvider",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProvider"
     },
     {
@@ -92305,49 +92321,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/summary",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadSettings/properties/summary",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "de121fa6d5785ee520d33e058602d65221991fc6b71769074621e1945a8c3016",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "summary"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadSettings/properties/summary/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadSettings/properties/summary/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "1b53e765f5a08c3aeaf2d1c4d6662bfbe58b1c323363acdb57a53e2e0baa5a66",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -188867,27 +188899,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cwd",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "4f1914ab0da3ac88d5fcb7bf762b19fc916464ecf1090bab1ff218e2fc06e492",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
@@ -188996,50 +189036,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/effort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "pointer": "/properties/effort/anyOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/model",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "0f8fbdf53d77020d6e9a3f13be32fb2aa8c86eb8b1c5b0a7e7db8d4c455508bb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
@@ -189317,71 +189373,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/summary",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/summary",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "1f8a1e3e92cc7e57b890abd4f5c4562561bea57f4e2f9c6b7be7fc93ad28297f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "summary"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/summary/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "pointer": "/properties/summary/anyOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "1b53e765f5a08c3aeaf2d1c4d6662bfbe58b1c323363acdb57a53e2e0baa5a66",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-future-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/summary/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_future_thread_settings: Real fixed dynamic tool holds A/low/concise at original cwd while combined standalone thread settings queues B/high/detailed/new cwd. Exact applied snapshot is the barrier; omitted/null patches preserve future defaults. Active continuation retains A and original environment, explicit next turn captures B and new cwd/root. Malformed native wire/unknown target errors preserve tool/defaults. Three provider-only model requests per case. Selected Linux/stdio/local roots only; cold persistence, semantic asynchronous rejection, concurrent changes, other setting/OS/transport/provider profiles and A11 remain unqualified."
+      ],
       "pointer": "/properties/summary/anyOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:64-106,178-204,225-298"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
