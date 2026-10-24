@@ -45,7 +45,7 @@ emits the live item. Core
 [`approvals.rs:425`](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/approvals.rs#L425)
 and [`orchestrator.rs:206`](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/orchestrator.rs#L206)
 reject before launch, so the history reconstruction's
-[`ExecCommandBegin/End`](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/thread_history.rs#L371)
+[`ExecCommandBegin/End`](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/thread_history.rs#L371)
 events do not exist. The test asserts that absence rather than inventing a
 persisted failed command.
 

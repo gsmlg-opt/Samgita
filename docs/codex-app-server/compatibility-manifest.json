@@ -36325,290 +36325,386 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "pointer": "/definitions/ReviewTarget/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "435c3d189e27cfba0b76ee27eb52f17868b621f923c8e594bdb907c42e17add0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewTarget/oneOf/0/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "fb4209cd5aae78bae12e885bb9596c40c02dada0c81f413144c1c2ea891db414",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "pointer": "/definitions/ReviewTarget/oneOf/0/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b247d24934fd374fb0c0fad631988fd6b775980f1fd163034e4564ecff2d0d7e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "pointer": "/definitions/ReviewTarget/oneOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "2fe236ee18d5fe3bc200bf982216b7d5bf5ea4f07c127b8da828d5fb640596b4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/1/properties/branch",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewTarget/oneOf/1/properties/branch",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "branch"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewTarget/oneOf/1/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "4bc869d9a9e6995260912cbf993d4d01cd7eef7d04b78de2f3bbcfe2b0c86cb4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "pointer": "/definitions/ReviewTarget/oneOf/1/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "b2526eabd16ac703b3df75ca7f469a3322cb119f73803ac1fd9784a9379ebf01",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "pointer": "/definitions/ReviewTarget/oneOf/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "3e64cedbde0ab6ad2292500a220dcfe4a0d9cbfa5b5f260c55949253a53b3786",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/2/properties/sha",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewTarget/oneOf/2/properties/sha",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "sha"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/2/properties/title",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "nullable": true,
       "pointer": "/definitions/ReviewTarget/oneOf/2/properties/title",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "e004979bc3859cbe386bfd45e690a27b035f8f4ca07c6fb6274d5402e1f1f062",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "title"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/2/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "nullable": false,
       "pointer": "/definitions/ReviewTarget/oneOf/2/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "e508cbba77421050a07fa7d6f77010340181c3082bdd5ab4bcc11727892999a1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/review-targets-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ReviewTarget/oneOf/2/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_model: Exact selected target literal/field, independent immediate hint and full core prompt, original live marker IDs, complete warm/cold parent/delegate history and unchanged private Git graph. Six positive uncommitted/base/commit-title forms, blank branch/SHA errors,8/0 both seeds. Cold native projection changes only delegate status to interrupted. Fixed no-tool output proves routing/lifecycle, not diff inspection or review quality. Uncommitted/commit only render prompts; supplied SHA not validated; other modes/backends/OS/A11 and fully verified acceptance remain incomplete. No sibling/alias propagation."
+      ],
       "pointer": "/definitions/ReviewTarget/oneOf/2/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "6241e623d8392371b92cab04a3ce672d945b75852052810abe15d6f04ac6fca8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_review_targets_profile.exs:104-148,193-248,344-386"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/uds"
+      ],
       "wire_name": "enum"
     },
     {

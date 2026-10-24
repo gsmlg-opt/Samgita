@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,021 implemented / 3,600 missing
+11 blocked requirements** and **0 verified / 3,033 implemented / 3,588 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,021 directly exercised
+MCP entries have scoped implementation evidence. These 3,033 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -54,6 +54,15 @@ chunking, with native transcript/audio results. The retained initial three
 failures are traced to pinned configuration-prompt precedence; only new fixtures
 clear that override. One direct property owner gains scoped implemented evidence;
 real media/backend, other variants, A11 and full acceptance remain incomplete.
+
+Eight [Git review-target cases](review-targets-qualification.md) pass at both
+fixed seeds with strict checks and a matching source guard. Exact target/prompt
+normalization, blank-field errors, untouched divergent Git state and full
+parent/delegate histories are asserted. The two retained failed runners led to
+source-backed history-oracle corrections: two turns, native empty-thread error,
+and the cold delegate's single status normalization. Twelve direct physical
+owners gain scoped implemented evidence. Fixed model output establishes no diff
+inspection or review quality; hosted and full acceptance remain separate gates.
 
 Eight [review delivery cases](review-delivery-qualification.md) pass at both
 fixed seeds with warning-free compilation, format, strict Credo and a matching

@@ -37,9 +37,14 @@ and a matching source guard; lifecycle state/counts remain unchanged. The
 [V1/V3 control unit](realtime-controls-qualification.md) also passes **11/0**
 twice, with exact physical-frame barriers and a source-backed fixture correction.
 One direct property owner brings current contracts to **3,021 implemented /
-3,600 missing**, zero verified. Apply and qualify the source-audited review-target
-patch next, then repeat the complete final-source local/hosted matrix. That draft
-has no acceptance credit. A11, source-unreachable emitters and external/OS profiles remain open.
+3,600 missing**, zero verified. The
+[review-target unit](review-targets-qualification.md) now passes **8/0** twice,
+with exact complete parent/delegate history and source-backed oracle corrections.
+Twelve direct owners bring contracts to **3,033 implemented / 3,588 missing**,
+zero verified; requirements remain unchanged. Next qualify owned native death
+during unanswered approval and System-skill shared-cache behavior, then repeat
+the complete final-source local/hosted matrix. Their drafts have no acceptance
+credit. A11, source-unreachable emitters and external/OS profiles remain open.
 
 ## Earlier scoped units
 

@@ -214,6 +214,10 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_review_delivery_profile.exs --seed 501432
+      - name: Required native Git review targets and complete history profile
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_review_targets_profile.exs --seed 501432
       - name: Required native command lifecycle profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
