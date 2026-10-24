@@ -53,12 +53,35 @@ adds scoped evidence from unchanged native assertions: **3171 implemented /
 3450 missing** contracts, zero verified. It does not retroactively change the
 frozen/hosted manifest or qualify all fields behind the selected wrappers.
 
-Next implement source-backed native goal quota/tool/origin and plugin-MCP
-profiles, plus sent-unconfirmed approval hard restart. Run focused owning blocks,
-then freeze the final source for the complete local/hosted matrix. Preserve
-actual populated-database failures. Continue remaining behavior work; A11, source-unreachable
-emitters and external/OS success remain incomplete. No scoped green checkpoint
-completes the full goal.
+The subsequent [goal quota/tool/origin](goal-control-qualification.md),
+[plugin-MCP](plugin-mcp-qualification.md) and
+[sent-unconfirmed approval restart](approval-cold-restart-qualification.md#sent-but-unconfirmed-response-across-hard-restart)
+owning block passes **25/0 twice**. Seventeen exact owners bring contracts to
+**3,188 implemented / 3,433 missing**, zero verified; requirements are unchanged.
+All45 isolated native profiles have required explicit hosted steps.
+
+The [operator time/connection cases](operator-authority-qualification.md#remaining-time-and-connection-predispatch-branches)
+pass **17 core + 6 web/0 twice** against the same retained database. The next
+[fork/history-presence](default-semantics-qualification.md#fork-path-normalization-and-optional-resume-history)
+and [OTP diagnostic](session-confidentiality-qualification.md) owning block passes
+**52/0 twice**, with strict checks/source guards and initial failures preserved.
+No status/count promotions follow. Explicit rawDebug remains an exposure outside
+the callback; A11 is unchanged.
+
+The subsequent [successful supplied-history import](default-semantics-qualification.md#successful-supplied-history-import)
+and [stdio startup error repair](stdio-startup-confidentiality-qualification.md)
+pass **54/0 twice** in the complete owning block, with strict checks and an
+unchanged source guard. Exactly one direct history owner brings contracts to
+**3,189 implemented / 3,432 missing**, zero verified. The observed stdio defect
+was a returned stack with arguments/environment; Logger exposure was not
+reproduced. A11 remains blocked.
+
+Next implement the source-backed sessionStartSource omitted/null/startup/clear
+differential with actual provider metadata, then freeze executable source for
+the complete preserved-platform/package/consumer and final-pushed hosted matrix.
+Preserve actual populated-database failures. Continue remaining behavior work;
+A11, source-unreachable emitters and external/OS success remain incomplete.
+No scoped green checkpoint completes the full goal.
 
 ## Earlier scoped units
 

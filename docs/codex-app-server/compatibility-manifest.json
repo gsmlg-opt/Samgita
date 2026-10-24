@@ -192735,27 +192735,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/default-semantics-qualification.md#successful-supplied-history-import"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/history",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_supplied_history: One exact user Message imports an independent paginated thread despite a cold existing source ID and nonexistent owned path. Disabled local/native gates, loaded replacement rejection, metadata/item/checkpoint ordinals, native item ID, exact effective settings, explicit provider input/history-initialization metadata and cold durability/source preservation are asserted. Other ResponseItem variants, multi-item histories, transport/OS profiles and broad default/lifecycle rules remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/history",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "70bd0fc0812b3e6c30af5619b7a08d9fadd26ec46114a57f0de9fed8703ca6f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs:511-699"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "history"
     },
     {

@@ -1,7 +1,9 @@
 # Operator-reply authority regressions
 
-Eleven context cases pass at both seeds `501432` and `987654`, 0.5 seconds per
-run, on the retained populated `samgita_redesign_recovery_repair_test` database.
+The original eleven context cases pass at both seeds `501432` and `987654`,
+0.5 seconds per run, on the retained populated
+`samgita_redesign_recovery_repair_test` database. Six more context and two actual
+native time-authority cases are qualified in the final section below.
 Warnings-as-errors compilation, formatting and scoped strict Credo pass. No
 database was reset and no implementation defect is claimed or repaired.
 

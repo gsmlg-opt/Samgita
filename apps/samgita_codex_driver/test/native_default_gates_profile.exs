@@ -508,6 +508,195 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     end
   end
 
+  test "supplied history imports one independent durable thread before an explicit turn", ctx do
+    {creator, _} = client(ctx, true)
+    source_id = start(creator, ctx, %{"historyMode" => "legacy"})["thread"]["id"]
+    source_name = "Owned populated supplied-history source"
+
+    assert call(creator, "thread/name/set", %{
+             "threadId" => source_id,
+             "name" => source_name
+           }) == %{}
+
+    source_turn = start_turn(creator, source_id, 910, %{})
+    assert_default_completion(finish(creator, source_turn), source_id, source_turn)
+    source_query = %{"threadId" => source_id, "includeTurns" => true}
+    source_path = call(creator, "thread/read", source_query)["thread"]["path"]
+    assert :ok = Session.close(creator)
+    restart_owned_native(ctx)
+    source_bytes = File.read!(source_path)
+    {pid, journal} = client(ctx, true)
+    assert call(pid, "thread/loaded/list", %{})["data"] == []
+    source = call(pid, "thread/read", source_query)["thread"]
+    assert source["id"] == source_id
+    assert source["name"] == source_name
+    assert source["historyMode"] == "legacy"
+    assert source["status"] == %{"type" => "notLoaded"}
+    assert [source_history] = source["turns"]
+    assert_default_text_turn(source_history, source_turn, 910)
+    assert [source_request] = read(ctx, "requests.json")
+    source_requests = [source_request]
+    assert File.read!(source_path) == source_bytes
+
+    text = "Owned supplied history λ"
+
+    message = %{
+      "type" => "message",
+      "role" => "user",
+      "content" => [%{"type" => "input_text", "text" => text}]
+    }
+
+    missing_path = Path.join(ctx.root, "owned-never-existing-history-source.jsonl")
+    refute File.exists?(missing_path)
+
+    request =
+      params(ctx, %{"threadId" => source_id, "path" => missing_path, "history" => [message]})
+
+    # Omit path here so only the nonempty history capability gate can reject it.
+    {disabled, disabled_journal} = client(ctx, false)
+    disabled_request = Map.delete(request, "path")
+    rollouts = Path.wildcard(Path.join(ctx.root, "codex/sessions/**/*.jsonl"))
+
+    assert {:error, %Error{code: :experimental_api_required}} =
+             Session.request(disabled, "thread/resume", disabled_request)
+
+    assert count(disabled_journal, "thread/resume") == 0
+
+    assert wire_error(disabled, "thread/resume", disabled_request) == %{
+             "code" => -32_600,
+             "message" => "thread/resume.history requires experimentalApi capability"
+           }
+
+    assert last_params(disabled_journal, "thread/resume") == disabled_request
+    assert call(disabled, "thread/loaded/list", %{})["data"] == []
+    assert Path.wildcard(Path.join(ctx.root, "codex/sessions/**/*.jsonl")) == rollouts
+    assert call(disabled, "thread/read", source_query)["thread"] == source
+    assert File.read!(source_path) == source_bytes
+    assert_no_import_work(ctx, disabled, source_requests)
+    assert :ok = Session.close(disabled)
+
+    response = call(pid, "thread/resume", request)
+    assert count(journal, "thread/resume") == 1
+    assert last_params(journal, "thread/resume") == request
+    imported = Map.fetch!(response, "thread")
+    id = Map.fetch!(imported, "id")
+    path = Map.fetch!(imported, "path")
+    assert is_binary(id) and id != "" and id != source_id
+    assert path != source_path
+    assert String.starts_with?(path, Path.join(ctx.root, "codex/sessions/"))
+    assert File.regular?(path)
+    assert Map.fetch!(imported, "preview") == text
+    assert Map.fetch!(imported, "status") == %{"type" => "idle"}
+    assert Map.fetch!(imported, "ephemeral") == false
+    assert Map.fetch!(imported, "historyMode") == "paginated"
+    assert Map.fetch!(imported, "turns") == []
+
+    for field <- ~w(name projectId parentThreadId forkedFromId),
+        do: assert(Map.fetch!(imported, field) == nil)
+
+    assert_default_session_settings(ctx, response, "low")
+    assert call(pid, "thread/loaded/list", %{})["data"] == [id]
+    assert_no_import_work(ctx, pid, source_requests)
+
+    await(
+      fn ->
+        bytes = File.read!(path)
+        String.ends_with?(bytes, "\n") and length(String.split(bytes, "\n", trim: true)) == 3
+      end,
+      "supplied history and effective settings flush"
+    )
+
+    imported_prefix = File.read!(path)
+    [meta, item, _checkpoint] = rollout_records(imported_prefix)
+    assert meta["type"] == "session_meta"
+    assert Map.fetch!(meta, "ordinal") == 0
+    assert meta["payload"]["id"] == id
+    assert meta["payload"]["session_id"] == id
+    assert meta["payload"]["cwd"] == ctx.workspace
+    assert meta["payload"]["history_mode"] == "paginated"
+
+    for field <- ~w(forked_from_id forked_from_ordinal_exclusive parent_thread_id),
+        do: refute(Map.has_key?(meta["payload"], field))
+
+    item_id = item["payload"]["id"]
+    assert is_binary(item_id) and item_id != ""
+
+    assert Map.delete(item, "timestamp") == %{
+             "ordinal" => 1,
+             "type" => "response_item",
+             "payload" => Map.put(message, "id", item_id)
+           }
+
+    prefix = imported_prefix |> String.split("\n", trim: true) |> Enum.take(2)
+    assert_resume_rollout(ctx, path, Enum.join(prefix, "\n") <> "\n", id, 1, "low", 2)
+    assert call(pid, "thread/read", source_query)["thread"] == source
+    assert File.read!(source_path) == source_bytes
+    refute File.exists?(missing_path)
+
+    replacement = request |> Map.delete("path") |> Map.put("threadId", id)
+    current_rollouts = Path.wildcard(Path.join(ctx.root, "codex/sessions/**/*.jsonl"))
+
+    assert wire_error(pid, "thread/resume", replacement) == %{
+             "code" => -32_600,
+             "message" => "cannot resume thread #{id} with history while it is already running"
+           }
+
+    assert last_params(journal, "thread/resume") == replacement
+    assert count(journal, "thread/resume") == 2
+    assert call(pid, "thread/loaded/list", %{})["data"] == [id]
+    assert Path.wildcard(Path.join(ctx.root, "codex/sessions/**/*.jsonl")) == current_rollouts
+    assert File.read!(path) == imported_prefix
+    assert_no_import_work(ctx, pid, source_requests)
+
+    turn = start_turn(pid, id, 911, %{})
+    assert last_params(journal, "turn/start") == turn_params(id, 911, %{})
+    assert count(journal, "turn/start") == 1
+    assert_default_completion(finish(pid, turn), id, turn)
+    assert [^source_request, imported_request] = read(ctx, "requests.json")
+
+    user_texts =
+      for input <- imported_request["input"],
+          input["role"] == "user",
+          content <- input["content"],
+          content["type"] == "input_text",
+          do: content["text"]
+
+    assert Enum.count(user_texts, &(&1 == text)) == 1
+    assert Enum.count(user_texts, &(&1 == "synthetic:defaults:911")) == 1
+    refute Enum.any?(user_texts, &String.contains?(&1, "synthetic:defaults:910"))
+
+    assert %{
+             "thread_id" => ^id,
+             "turn_id" => ^turn,
+             "history_initialization" => "supplied_history"
+           } = JSON.decode!(imported_request["client_metadata"]["x-codex-turn-metadata"])
+
+    assert :ok = Session.close(pid)
+    restart_owned_native(ctx)
+    durable = File.read!(path)
+    assert String.starts_with?(durable, imported_prefix)
+    assert String.ends_with?(durable, "\n")
+    assert Enum.filter(rollout_records(durable), &(&1["payload"]["id"] == item_id)) == [item]
+    {cold, cold_journal} = client(ctx, true)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    saved = call(cold, "thread/read", %{"threadId" => id, "includeTurns" => true})["thread"]
+    assert saved["id"] == id
+    assert saved["path"] == path
+    # Stored preview follows canonical user events, unlike the import response snapshot.
+    assert saved["preview"] == "synthetic:defaults:911"
+    assert saved["status"] == %{"type" => "notLoaded"}
+    # Plain imported ResponseItems have no UI turn boundary; the explicit turn does.
+    assert [saved_turn] = saved["turns"]
+    assert_default_text_turn(saved_turn, turn, 911)
+    assert call(cold, "thread/read", source_query)["thread"] == source
+    assert File.read!(source_path) == source_bytes
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert count(cold_journal, "thread/resume") == 0
+    assert count(cold_journal, "turn/start") == 0
+    assert_no_import_work(ctx, cold, [source_request, imported_request])
+    refute File.exists?(missing_path)
+  end
+
   test "cold resume normalizes an empty path before experimental negotiation", ctx do
     {creator, _} = client(ctx, true)
     thread = start(creator, ctx, %{"historyMode" => "legacy"})["thread"]
@@ -711,6 +900,62 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     end
   end
 
+  defp assert_default_completion(events, thread, turn) do
+    assert Enum.any?(events, fn event ->
+             event.wire["method"] == "turn/completed" and
+               event.wire["params"]["threadId"] == thread and
+               event.wire["params"]["turn"]["id"] == turn and
+               event.wire["params"]["turn"]["status"] == "completed"
+           end)
+
+    assert Enum.any?(events, fn event ->
+             event.wire["method"] == "item/completed" and
+               event.wire["params"]["threadId"] == thread and
+               event.wire["params"]["turnId"] == turn and
+               event.wire["params"]["item"]["type"] == "agentMessage" and
+               event.wire["params"]["item"]["text"] == "Owned default response"
+           end)
+  end
+
+  defp assert_default_text_turn(turn, id, marker) do
+    assert turn["id"] == id
+    assert turn["status"] == "completed"
+    assert Enum.map(turn["items"], & &1["type"]) == ["userMessage", "agentMessage"]
+    [user, assistant] = turn["items"]
+
+    assert user["content"] == [
+             %{
+               "type" => "text",
+               "text" => "synthetic:defaults:#{marker}",
+               "text_elements" => []
+             }
+           ]
+
+    assert assistant["text"] == "Owned default response"
+  end
+
+  defp assert_no_import_work(ctx, pid, requests) do
+    assert read(ctx, "requests.json") == requests
+
+    assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
+             Session.status(pid)
+
+    assert {:ok, events} = Session.drain(pid)
+    refute Enum.any?(events, &(&1.kind == :server_request))
+
+    refute Enum.any?(events, fn event ->
+             event.wire["method"] in [
+               "turn/started",
+               "turn/completed",
+               "item/started",
+               "item/completed"
+             ]
+           end)
+  end
+
+  defp rollout_records(bytes),
+    do: bytes |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
+
   defp assert_default_session_settings(ctx, response, reasoning_effort) do
     for {field, expected} <- %{
           "model" => "mock-model",
@@ -793,7 +1038,15 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     for os_pid <- previous["native_pids"], do: refute(File.exists?("/proc/#{os_pid}"))
   end
 
-  defp assert_resume_rollout(ctx, path, prefix, id, expected_count, reasoning_effort \\ nil) do
+  defp assert_resume_rollout(
+         ctx,
+         path,
+         prefix,
+         id,
+         expected_count,
+         reasoning_effort \\ nil,
+         first_ordinal \\ nil
+       ) do
     bytes = File.read!(path)
     assert byte_size(bytes) >= byte_size(prefix)
     assert binary_part(bytes, 0, byte_size(prefix)) == prefix
@@ -849,8 +1102,13 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
         put_in(expected, ["payload", "thread_settings", "reasoning_effort"], reasoning_effort)
       end
 
-    for record <- records do
-      assert Map.delete(record, "timestamp") == expected
+    for {record, index} <- Enum.with_index(records) do
+      expected_record =
+        if is_nil(first_ordinal),
+          do: expected,
+          else: Map.put(expected, "ordinal", first_ordinal + index)
+
+      assert Map.delete(record, "timestamp") == expected_record
       assert {:ok, _timestamp, 0} = DateTime.from_iso8601(Map.fetch!(record, "timestamp"))
     end
   end

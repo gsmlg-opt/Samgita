@@ -84,7 +84,8 @@ only the independently expected settings checkpoint. Empty history is an active
 experimental value: absent/false rejects at both local and native gates; true
 reaches exact native `history must not be empty` (-32600). Those failures leave
 loaded IDs, rollout files and provider requests unchanged. Empty rejection does
-not establish successful nonempty history import; that contract stays missing.
+not establish successful nonempty history import; that contract stayed missing
+at this checkpoint. The subsequent import case is qualified below.
 
 Pinned source anchors are `v2/thread.rs:354-374,548-584`,
 `serde_helpers.rs:23-40`, `message_processor.rs:965-983`, and
@@ -122,3 +123,62 @@ Sol repair rounds. Original log hashes are
 (v1) and `4eb585f60d3bc8d31627634f66ec8fa91f9db69af84eb5bfdae0022a92f97144`
 (v2). No production, fixture or schema change occurs. No manifest count or broad
 lifecycle status changes; full-source local/hosted qualification remains required.
+
+## Successful supplied-history import
+
+One further actual-native case uses the official successful-history reference
+`app-server/tests/suite/v2/thread_resume.rs:6163-6249` at the same immutable pin.
+It creates and names a populated legacy source S, completes fixed turn910, then
+stops/reaps the owned native process. S is cold before import. Its full projected
+history, identity/name and every rollout byte must remain unchanged throughout.
+
+The import request supplies S's ID, an explicitly nonexistent owned path and one
+exact user Message, `Owned supplied history λ`. With experimental negotiation
+disabled, nonempty history rejects locally without a send and natively with the
+exact gate error, without work or storage changes. Enabled history takes
+precedence over ID/path, creating independent T with a new ID/path, idle state,
+paginated storage, no inherited name/project/ancestry and independently expected
+effective settings. Exactly three flushed records are required: metadata ordinal0,
+the complete imported ResponseItem ordinal1 with a nonempty native-generated ID,
+and the complete settings checkpoint ordinal2. Only a separately validated UTC
+timestamp is omitted from equality. Import itself makes no provider request.
+
+Supplying replacement history to loaded T rejects with the exact native error,
+preserving its files, loaded IDs and no-work controls. Only an explicit turn911
+executes. Its actual local provider input contains the imported text exactly
+once, contains the explicit turn once and excludes S's turn910 marker. Native
+request metadata requires `history_initialization: supplied_history`. A second
+owned cold restart preserves the complete imported prefix and exact native item
+ID, T's explicit completed turn and all of S. Exactly two provider requests exist,
+with no automatic resume/turn. The cold paginated UI history has one explicit
+turn; the raw ResponseItem is proved durably outside that UI projection.
+
+The first combined run reached **54 tests / 1 failure**: the expected imported
+wrapper omitted `ordinal:1`. Pinned `rollout/src/ordinal.rs:23-50` and
+`recorder.rs:1908-1930,1988-2012` establish metadata0/item1/checkpoint2. The repair
+adds those exact expected ordinals, retaining full equality. Source audit also
+corrected the later cold preview oracle: immediate resume derives preview from
+raw supplied history (`thread_processor.rs:5033-5042`), while durable metadata
+ignores raw ResponseItems and seeds preview from the first canonical user item
+(`thread-store/src/thread_metadata_sync.rs:298-307,341-367`). Thus immediate
+preview is exactly imported text; cold preview is exactly
+`synthetic:defaults:911`. No history, provider-input, identity, cleanup, no-work
+assertion or deadline is removed. The failure and first repair are retained in
+`/tmp/samgita-native-history-stdio-v1-20261025/` and
+`/tmp/samgita-native-supplied-history-repair1-20261025.md`. Failed results/source
+SHA256 are `6a2ac62921fb75f6cbdd7621893655ae5e803d68e6d9a8a18091b995bf607269` /
+`7b14c4ec2f4d8fb049b2377cfbf042b7985d9cc4862ac90efde4fa6ab9811b85`.
+
+The complete five-file owning block, including the independent
+[stdio startup regression](stdio-startup-confidentiality-qualification.md), passes
+**54/0** at seeds501432/987654, 32.1/32.2 seconds. Warning-free compile/tests,
+formatting, root strict Credo and unchanged executable-source snapshots pass.
+Exact commands/logs remain in `/tmp/samgita-native-history-stdio-v2-20261025/`;
+results SHA256 `3b6627ff784a70877295af7ec2bf081612ec54baa3e5fdf368ade711216db0e5`,
+source SHA256 `e57074a14793dd6a009c2918d931d4751c6f3541eb692f74ffae01a97c8f498f`.
+
+Exactly `ThreadResumeParams.history` gains a scoped implemented physical owner.
+Other ResponseItem variants, multi-item histories, transport/OS combinations and
+the broad default/lifecycle rules remain unqualified; no full or verified
+promotion follows. Final-source complete local/hosted checks, A11 and the full
+goal remain incomplete.
