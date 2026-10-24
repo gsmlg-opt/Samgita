@@ -7499,14 +7499,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/realtime/appendText",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio/V2 WebSocket-backend behavior with an owned synthetic peer; other versions/transports, nullable/default variants, delegation, handoffs and real backend success remain unqualified."
+        "Earlier V2-only evidence is extended by the scoped SDP/V1/V3 profile; unexercised nullable/default variants, delegation, handoffs and real provider/media success remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/ThreadRealtimeAppendTextParams"
@@ -7537,7 +7539,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -7603,14 +7606,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/realtime/start",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio/V2 WebSocket-backend behavior with an owned synthetic peer; other versions/transports, nullable/default variants, delegation, handoffs and real backend success remain unqualified."
+        "Earlier V2-only evidence is extended by the scoped SDP/V1/V3 profile; unexercised nullable/default variants, delegation, handoffs and real provider/media success remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/ThreadRealtimeStartParams"
@@ -7641,7 +7646,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -7655,14 +7661,16 @@
       ],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "id": "client_request:thread/realtime/stop",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio/V2 WebSocket-backend behavior with an owned synthetic peer; other versions/transports, nullable/default variants, delegation, handoffs and real backend success remain unqualified."
+        "Earlier V2-only evidence is extended by the scoped SDP/V1/V3 profile; unexercised nullable/default variants, delegation, handoffs and real provider/media success remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/ThreadRealtimeStopParams"
@@ -7693,7 +7701,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -13321,12 +13330,16 @@
         "experimentalApi"
       ],
       "direction": "server_notification",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
       "experimental": true,
       "id": "server_notification:thread/realtime/sdp",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
       "params": {
         "$ref": "#/definitions/ThreadRealtimeSdpNotification"
       },
@@ -13343,16 +13356,20 @@
         "source_line": 2060,
         "variant": "ThreadRealtimeSdp"
       },
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "thread/realtime/sdp"
     },
     {
@@ -20222,14 +20239,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:thread/realtime/appendText",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio/V2 WebSocket-backend behavior with an owned synthetic peer; other versions/transports, nullable/default variants, delegation, handoffs and real backend success remain unqualified."
+        "Earlier V2-only evidence is extended by the scoped SDP/V1/V3 profile; unexercised nullable/default variants, delegation, handoffs and real provider/media success remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -20246,7 +20265,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -20300,14 +20320,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:thread/realtime/start",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio/V2 WebSocket-backend behavior with an owned synthetic peer; other versions/transports, nullable/default variants, delegation, handoffs and real backend success remain unqualified."
+        "Earlier V2-only evidence is extended by the scoped SDP/V1/V3 profile; unexercised nullable/default variants, delegation, handoffs and real provider/media success remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -20324,7 +20346,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -20339,14 +20362,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "id": "server_response:thread/realtime/stop",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native Linux stdio/V2 WebSocket-backend behavior with an owned synthetic peer; other versions/transports, nullable/default variants, delegation, handoffs and real backend success remain unqualified."
+        "Earlier V2-only evidence is extended by the scoped SDP/V1/V3 profile; unexercised nullable/default variants, delegation, handoffs and real provider/media success remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -20363,7 +20388,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
       "transport_coverage": [
@@ -29147,24 +29173,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/RealtimeConversationVersion/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
       "pointer": "/definitions/RealtimeConversationVersion/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "17860995ca253954adcde4bc02188e505396df45a193f832d0a88a61e39bc777",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -29191,24 +29225,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/RealtimeConversationVersion/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
       "pointer": "/definitions/RealtimeConversationVersion/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "6139fcc80d661d626e049a1f235ce34926de5d9d943e8a3f88ffc8b355a556c8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -176258,53 +176300,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeSdpNotification.json#/properties/sdp",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/sdp",
       "required": true,
       "schema": "v2/ThreadRealtimeSdpNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sdp"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeSdpNotification.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadRealtimeSdpNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
@@ -176376,18 +176434,20 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/RealtimeConversationVersion/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "pointer": "/definitions/RealtimeConversationVersion/enum/0",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "17860995ca253954adcde4bc02188e505396df45a193f832d0a88a61e39bc777",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -176395,10 +176455,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -176425,24 +176488,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/RealtimeConversationVersion/enum/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
       "pointer": "/definitions/RealtimeConversationVersion/enum/2",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "6139fcc80d661d626e049a1f235ce34926de5d9d943e8a3f88ffc8b355a556c8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -176509,21 +176580,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeInitialItem/properties/role",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeInitialItem/properties/role",
       "required": true,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "f5eac75b756af13d5003a07b53121cbb6108390e9e563f62171f61c698da10cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -176531,31 +176604,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "role"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeInitialItem/properties/text",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeInitialItem/properties/text",
       "required": true,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -176563,10 +176641,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "text"
     },
     {
@@ -176665,115 +176746,19 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "f41ae30024aa6f74db7992910b076f7d2c1a70fa3ffaab87dbc6378fe3ce5bbd",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "oneOf"
-    },
-    {
-      "default": null,
-      "direction": "schema_field",
-      "evidence": [],
-      "experimental": true,
-      "has_default": false,
-      "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/sdp",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "nullable": false,
-      "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/sdp",
-      "required": true,
-      "schema": "v2/ThreadRealtimeStartParams.json",
-      "schema_sha256": "28d99795345447d095fb128611b3a8bd43846bc9dae2f08a62beec404990949b",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "sdp"
-    },
-    {
-      "default": null,
-      "direction": "schema_field",
-      "evidence": [],
-      "experimental": true,
-      "has_default": false,
-      "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "nullable": false,
-      "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type",
-      "required": true,
-      "schema": "v2/ThreadRealtimeStartParams.json",
-      "schema_sha256": "68ca2b499057ff289c3ac17611a2772d61e179e9b41e10faf43e7c43fa45155a",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "type"
-    },
-    {
-      "direction": "schema_variant",
-      "evidence": [],
-      "experimental": true,
-      "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
-      "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type/enum/0",
-      "schema": "v2/ThreadRealtimeStartParams.json",
-      "schema_sha256": "3c54162f6076d5a9329e8ef32e6fff4f5b5af71c1167a09c0b6faa0618a3890f",
-      "state": "missing",
-      "tests": {
-        "planned": [
-          "schema-contract",
-          "deterministic-fault",
-          "real-pinned-binary"
-        ],
-        "verified": []
-      },
-      "transport_coverage": [],
-      "wire_name": "enum"
-    },
-    {
-      "direction": "schema_variant",
-      "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
-      ],
-      "experimental": true,
-      "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
-      ],
-      "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/2",
-      "schema": "v2/ThreadRealtimeStartParams.json",
-      "schema_sha256": "321616f07930c9c94f003addbd3eb3550b0850b2462eb0104ed85975d849e47f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -176781,31 +176766,166 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
+      "experimental": true,
+      "has_default": false,
+      "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/sdp",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
+      "nullable": false,
+      "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/sdp",
+      "required": true,
+      "schema": "v2/ThreadRealtimeStartParams.json",
+      "schema_sha256": "28d99795345447d095fb128611b3a8bd43846bc9dae2f08a62beec404990949b",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "sdp"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
+      "experimental": true,
+      "has_default": false,
+      "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
+      "nullable": false,
+      "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type",
+      "required": true,
+      "schema": "v2/ThreadRealtimeStartParams.json",
+      "schema_sha256": "68ca2b499057ff289c3ac17611a2772d61e179e9b41e10faf43e7c43fa45155a",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "type"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
+      "experimental": true,
+      "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type/enum/0",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
+      "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/1/properties/type/enum/0",
+      "schema": "v2/ThreadRealtimeStartParams.json",
+      "schema_sha256": "3c54162f6076d5a9329e8ef32e6fff4f5b5af71c1167a09c0b6faa0618a3890f",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "enum"
+    },
+    {
+      "direction": "schema_variant",
+      "evidence": [
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
+      ],
+      "experimental": true,
+      "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/2",
+      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "limitations": [
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
+      ],
+      "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/2",
+      "schema": "v2/ThreadRealtimeStartParams.json",
+      "schema_sha256": "321616f07930c9c94f003addbd3eb3550b0850b2462eb0104ed85975d849e47f",
+      "state": "implemented",
+      "tests": {
+        "planned": [
+          "schema-contract",
+          "deterministic-fault",
+          "real-pinned-binary"
+        ],
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
+        ]
+      },
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
+      "wire_name": "oneOf"
+    },
+    {
+      "default": null,
+      "direction": "schema_field",
+      "evidence": [
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/callId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/callId",
       "required": true,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "24d091fbf29516ce34ad3f1b54ebf2a84e8a474c2bae1109114c0d7fe3c55a9b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -176813,31 +176933,36 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "callId"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "3f6f0e88f1102d22a0db69047b58fd42d4f33abb37d0799df8240bb7b5bb7fb2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -176845,27 +176970,32 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "pointer": "/definitions/ThreadRealtimeStartTransport/oneOf/2/properties/type/enum/0",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "a7eed88cc53db222a1d5d2db23a868dbe0f584ba69c75eb4a48c5163bdf90e45",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -176873,10 +177003,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -177175,21 +177308,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/initialItems",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/initialItems",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "f732ec6c7f3546e52b1fe833af1611eeb84aa0e332fa7519a3278b5ce55bd4ea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -177197,10 +177332,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "initialItems"
     },
     {
@@ -177545,21 +177683,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/version",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/version",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "1b2cb7bfcf24cb6cd72368c15ebcc9a0d806f08e787b8d40c4b3d3b312ba6157",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -177567,27 +177707,32 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "version"
     },
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-sdp-qualification.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/version/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier rejection-only evidence is extended by the directly asserted positive control paths below; unexercised backend/media variants remain unqualified.",
+        "actual_native_local_synthetic_backend: Eight isolated cases exercise real V1/V3 WebSocket, WebRTC multipart SDP and existing-call control, omitted-version V1 fallback, authenticated native sideband text/transcript/audio, exact session updates and requested stop. All app-server messages are native; no ICE/media engine or model turn exists. Only 19 positive fields/variants are mapped. Real provider/media, backend-api JSON call creation, other initial roles/handoff flags, reconnect and deployment profiles remain unqualified."
       ],
       "pointer": "/properties/version/anyOf/0",
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "f338d06080b3717f6a13c1b5365fc5374e83428a3282a4d39458013211780531",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -177595,10 +177740,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

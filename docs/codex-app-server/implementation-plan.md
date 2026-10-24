@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 progress, deprecated file-change output, three prediction entries and
 `thread/compacted` are `blocked` by exact source-proven unavailable success
 paths: ten required entries, with no scope waiver. Selected native
-method/notification entries now total 450 `implemented`, with 1,242 exact
-field/variant schema contracts implemented; 25 requirements and 5,379 contracts
+method/notification entries now total 451 `implemented`, with 1,261 exact
+field/variant schema contracts implemented; 24 requirements and 5,360 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -433,6 +433,14 @@ selection routing, no initial-state replay and explicit recovery without new
 work add two notification entries and six exact contracts. The zero-turn
 history error remains an asserted upstream limit. Active work, app-server
 restart, external executors and other deployment profiles remain incomplete.
+
+The [realtime SDP/V1/V3 profile](realtime-sdp-qualification.md) now passes eight
+native cases at both seeds. Native multipart call creation and authenticated
+sideband control add one notification and nineteen directly asserted contracts.
+WebRTC/existing-call omitted versions select V1 despite configured V2. This
+does not qualify actual media, backend-api call creation, real providers or the
+remaining initial-role/handoff/reconnect variants. Continue platform gates,
+operator authority and network-approval variants before final-source checks.
 
 ## Known boundaries
 

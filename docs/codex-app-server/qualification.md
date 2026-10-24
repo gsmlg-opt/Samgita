@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 450 implemented / 25 missing /
-10 blocked requirements** and **0 verified / 1,242 implemented / 5,379 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 451 implemented / 24 missing /
+10 blocked requirements** and **0 verified / 1,261 implemented / 5,360 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,242 directly exercised
+MCP entries have scoped implementation evidence. These 1,261 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -57,6 +57,14 @@ explicit recovery and no work replay. Two entries and six exact fields gain
 evidence. Zero-turn history remains explicitly unsupported and external
 executors/active work/restart variants remain incomplete.
 
+The [SDP/V1/V3 realtime profile](realtime-sdp-qualification.md) passes eight
+actual-binary cases at both seeds. It exercises native multipart SDP creation,
+authenticated sideband attachment, text/transcript/audio control and requested
+stop, including the V1 default for WebRTC/existing calls. One notification and
+nineteen exact contracts gain scoped evidence. There is no media engine, real
+provider or model turn; ICE/DTLS/SRTP, handoff and backend-api call creation remain
+unqualified. No requirement is promoted to fully verified.
+
 Additional method records: [queues](queue-lifecycle-qualification.md),
 [commands](command-lifecycle-qualification.md),
 [user shell](user-shell-qualification.md),
@@ -68,7 +76,8 @@ Additional method records: [queues](queue-lifecycle-qualification.md),
 
 The [realtime V2 lifecycle](realtime-lifecycle-qualification.md) adds actual native
 startup/input/transcript/audio/closure behavior with an owned backend WebSocket
-peer. Other realtime versions and backend/transport profiles remain incomplete.
+peer. The separate SDP profile extends V1/V3 control evidence; remaining
+backend/media/transport profiles remain incomplete.
 
 ## Delivered source and immutable reference
 
