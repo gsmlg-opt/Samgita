@@ -10278,12 +10278,14 @@
     {
       "direction": "lifecycle_rule",
       "evidence": [
-        "docs/codex-app-server/operator-authority-qualification.md"
+        "docs/codex-app-server/operator-authority-qualification.md",
+        "docs/codex-app-server/native-authority-qualification.md"
       ],
       "id": "lifecycle:samgita-authorization",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Eleven synthetic context-input cases reject repeated operator replies after owning credential, membership, Task/session/connection authority or driver registration invalidation, preserving exact domain/journal snapshots. No native process runs and no ticket exists beforehand. This does not prove native emission, all API/race branches or instantaneous revocation of already issued dispatch tickets; broad lifecycle qualification remains missing."
+        "Eleven synthetic context-input cases reject repeated operator replies after owning credential, membership, Task/session/connection authority or driver registration invalidation, preserving exact domain/journal snapshots. No native process runs and no ticket exists beforehand. This does not prove native emission, all API/race branches or instantaneous revocation of already issued dispatch tickets; broad lifecycle qualification remains missing.",
+        "actual_native_with_postgresql_predispatch_authority: Three added cases journal a genuine pending command approval, revoke owning membership or advance management fence before repeated operator replies, and replace worker with observer after reply preparation but before repeated dispatch. Exact journal/domain/receipt/job snapshots remain unchanged, native interaction/provider counts stay pending/one, and owned shutdown preserves unresolved durable effects. No post-ticket instantaneous revocation, complete API/race/profile or A11 claim; broad lifecycle remains missing."
       ],
       "required_behavior": "native operation access respects project membership, task fences and separately authorized human interactions",
       "schema_sha256": "ab837160c4317eb699721ffa7d4683a8da3ea3e8b0c1bc0d0e48cecef3e446b6",
@@ -10296,7 +10298,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita/test/samgita/codex_runtime_operator_authority_test.exs"
+          "apps/samgita/test/samgita/codex_runtime_operator_authority_test.exs",
+          "apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs"
         ]
       },
       "transport_coverage": [],

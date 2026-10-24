@@ -58,6 +58,14 @@ populated-database outcomes are recorded in
 [repair qualification](repair-qualification.md#hosted-checkpoint-at-e4dd2be).
 The final combined source still requires its own aggregate and hosted checks.
 
+Three additional [real-native platform authority cases](native-authority-qualification.md)
+join an actual pending Codex approval to current membership, management-fence
+and predispatch worker-role rejection. The owning four-case integration module
+passes both seeds on the preserved database. Exact repeated-rejection snapshots,
+pending native interaction and unresolved durable effects remain intact. This
+adds lifecycle evidence without promoting the broad authorization requirement;
+post-ticket revocation and complete API/race/profile acceptance stay incomplete.
+
 Latest method records: [history](thread-history-qualification.md),
 [configuration](configuration-qualification.md), [goals](native-goal-qualification.md),
 [local account state](account-qualification.md), [direct MCP](mcp-direct-qualification.md),

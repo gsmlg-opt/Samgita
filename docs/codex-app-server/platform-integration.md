@@ -39,6 +39,13 @@ the Repo-dependent bridge lives in `apps/samgita`, outside those packages.
 
 ## Intent, ticket and settlement
 
+The [real-native authority cases](native-authority-qualification.md) demonstrate
+membership/fence revocation before reply preparation and worker-role revocation
+before dispatch. Rejected repeats preserve the journal and leave native work
+unresolved. They do not establish instantaneous revocation of a ticket already
+committed before network I/O; connection instance, generation and deadline
+guards remain a separate boundary.
+
 The sending Agent chooses the native action. Samgita validates and records it:
 
 1. **Prepare:** persist a native request or client notification with a command UUID, current lease proof,

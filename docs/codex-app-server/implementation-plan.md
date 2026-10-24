@@ -136,6 +136,10 @@ and [thread source](thread-source-qualification.md) for failed draft corrections
 and immutable source boundaries. Next: complete the combined-source matrix and
 continue remaining instruction/history/authorization behavior; prior-source
 hosted success does not certify these new tests or close completeness.
+The following [actual-native authorization unit](native-authority-qualification.md)
+now passes its four-case owning module at both seeds on the retained database.
+It closes the selected evidence gap between native approval emission and
+current platform authority rejection without a broad lifecycle promotion.
 
 The next four [native units](qualification.md#native-graph-permission-future-settings-and-error-semantics)
 now pass 18 cases at both recorded seeds: real spawned relations/cold graph,
