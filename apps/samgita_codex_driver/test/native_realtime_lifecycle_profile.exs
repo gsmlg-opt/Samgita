@@ -273,6 +273,360 @@ defmodule SamgitaCodexDriver.NativeRealtimeLifecycleProfileTest do
     assert_idle(ctx, cold)
   end
 
+  test "user delta facts and failed closure survive a distinct cold native timeline read", ctx do
+    pid = start(ctx)
+    thread = TurnFixture.thread(ctx, pid, %{"historyMode" => "paginated"})
+    session_id = "synthetic-user-failed-history"
+
+    begin_realtime(pid, thread, %{
+      "outputModality" => "text",
+      "realtimeSessionId" => session_id,
+      "flushTranscriptTailOnSessionEnd" => false
+    })
+
+    started = wait_event(pid, "thread/realtime/started")
+    wait_frame(ctx, 1, "session.update")
+
+    control(ctx, "emit", 1, [
+      %{"type" => "conversation.item.input_audio_transcription.delta", "delta" => "owned user "},
+      %{"type" => "conversation.item.input_audio_transcription.delta", "delta" => "delta λ"},
+      %{
+        "type" => "conversation.item.input_audio_transcription.completed",
+        "transcript" => "owned final revision differs"
+      }
+    ])
+
+    transcript = wait_event(pid, "thread/realtime/transcript/done")
+
+    assert notification(transcript, "thread/realtime/transcript/done") == %{
+             "threadId" => thread,
+             "role" => "user",
+             "text" => "owned final revision differs"
+           }
+
+    control(ctx, "emit", 1, [
+      %{"type" => "error", "error" => %{"message" => "Owned failed-history fault"}}
+    ])
+
+    failed = wait_event(pid, "thread/realtime/closed")
+
+    assert notification(failed, "thread/realtime/error") == %{
+             "threadId" => thread,
+             "message" => "Owned failed-history fault"
+           }
+
+    assert notification(failed, "thread/realtime/closed") == %{
+             "threadId" => thread,
+             "reason" => "error"
+           }
+
+    events = wait_realtime_items(pid, 3, started ++ transcript ++ failed)
+
+    expected =
+      assert_realtime_facts(events, thread, session_id, [
+        %{"type" => "realtimeSessionStarted"},
+        %{"type" => "transcriptSegment", "role" => "user", "text" => "owned user delta λ"},
+        %{"type" => "realtimeSessionClosed", "outcome" => "failed"}
+      ])
+
+    [_, segment, _] = expected
+
+    assert for(
+             event <- events,
+             event.wire["method"] == "thread/realtime/item/transcript/delta",
+             do: event.wire["params"]
+           ) == [
+             %{"threadId" => thread, "itemId" => segment["id"], "delta" => "owned user "},
+             %{"threadId" => thread, "itemId" => segment["id"], "delta" => "delta λ"}
+           ]
+
+    warm = assert_complete_realtime_timeline(pid, thread, expected)
+
+    await(fn ->
+      Enum.any?(journal(ctx), &(&1["event"] == "peer_closed" and &1["connection"] == 1))
+    end)
+
+    assert_realtime_idle(ctx, pid)
+    cold = restart_realtime_native(ctx, pid)
+    assert call(cold, "thread/timeline/list", %{"threadId" => thread, "limit" => 100}) == warm
+    assert_complete_realtime_timeline(cold, thread, expected)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    barrier(ctx)
+    assert length(handshakes(ctx)) == 1
+    assert File.ls!(ctx.fixture.workspace) == []
+    assert_realtime_idle(ctx, cold)
+  end
+
+  test "active timeline pages report the session at each opening boundary and retain cold cursors",
+       ctx do
+    pid = start(ctx)
+    thread = TurnFixture.thread(ctx, pid, %{"historyMode" => "paginated"})
+    session_id = "synthetic-active-page-history"
+
+    begin_realtime(pid, thread, %{
+      "outputModality" => "text",
+      "realtimeSessionId" => session_id,
+      "flushTranscriptTailOnSessionEnd" => false
+    })
+
+    started = wait_event(pid, "thread/realtime/started")
+    wait_frame(ctx, 1, "session.update")
+
+    active_events =
+      Enum.reduce(
+        Enum.with_index(["owned first segment", "owned second segment"], 1),
+        started,
+        fn {text, index}, events ->
+          control(ctx, "emit", 1, [
+            %{"type" => "response.output_text.delta", "delta" => text},
+            %{"type" => "response.output_text.done", "text" => text}
+          ])
+
+          batch = wait_event(pid, "thread/realtime/transcript/done")
+          assert notification(batch, "thread/realtime/transcript/done")["text"] == text
+          wait_realtime_items(pid, index + 1, events ++ batch)
+        end
+      )
+
+    expected =
+      assert_realtime_facts(active_events, thread, session_id, [
+        %{"type" => "realtimeSessionStarted"},
+        %{"type" => "transcriptSegment", "role" => "assistant", "text" => "owned first segment"},
+        %{"type" => "transcriptSegment", "role" => "assistant", "text" => "owned second segment"}
+      ])
+
+    full = assert_complete_realtime_timeline(pid, thread, expected)
+    [start_entry, first_entry, second_entry] = full["data"]
+    newest = call(pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 1})
+    assert newest["data"] == [second_entry]
+    assert newest["activeRealtimeSessionAtPageStart"] == session_id
+    first_cursor = newest["nextCursor"]
+    assert is_binary(first_cursor) and byte_size(first_cursor) > 0
+    middle_query = %{"threadId" => thread, "limit" => 1, "cursor" => first_cursor}
+    middle = call(pid, "thread/timeline/list", middle_query)
+    assert middle["data"] == [first_entry]
+    assert middle["activeRealtimeSessionAtPageStart"] == session_id
+    second_cursor = middle["nextCursor"]
+    assert is_binary(second_cursor) and byte_size(second_cursor) > 0
+    refute first_cursor == second_cursor
+    oldest_query = %{"threadId" => thread, "limit" => 1, "cursor" => second_cursor}
+    oldest = call(pid, "thread/timeline/list", oldest_query)
+
+    assert oldest == %{
+             "data" => [start_entry],
+             "activeRealtimeSessionAtPageStart" => nil,
+             "nextCursor" => nil
+           }
+
+    closing = stop(pid, thread)
+    completed_events = wait_realtime_items(pid, 4, active_events ++ closing)
+
+    all_expected =
+      assert_realtime_facts(completed_events, thread, session_id, [
+        %{"type" => "realtimeSessionStarted"},
+        %{"type" => "transcriptSegment", "role" => "assistant", "text" => "owned first segment"},
+        %{"type" => "transcriptSegment", "role" => "assistant", "text" => "owned second segment"},
+        %{"type" => "realtimeSessionClosed", "outcome" => "ended"}
+      ])
+
+    assert Enum.take(all_expected, 3) == expected
+    closed_full = assert_complete_realtime_timeline(pid, thread, all_expected)
+    assert Enum.take(closed_full["data"], 3) == full["data"]
+    closed_page = call(pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 1})
+    assert closed_page["data"] == [List.last(closed_full["data"])]
+    assert closed_page["activeRealtimeSessionAtPageStart"] == session_id
+    closed_cursor = closed_page["nextCursor"]
+    assert is_binary(closed_cursor) and byte_size(closed_cursor) > 0
+    newest_query = %{"threadId" => thread, "limit" => 1, "cursor" => closed_cursor}
+    assert call(pid, "thread/timeline/list", newest_query) == newest
+
+    await(fn ->
+      Enum.any?(journal(ctx), &(&1["event"] == "peer_closed" and &1["connection"] == 1))
+    end)
+
+    assert_realtime_idle(ctx, pid)
+    cold = restart_realtime_native(ctx, pid)
+
+    for {query, snapshot} <- [
+          {%{"threadId" => thread, "limit" => 100}, closed_full},
+          {%{"threadId" => thread, "limit" => 1}, closed_page},
+          {newest_query, newest},
+          {middle_query, middle},
+          {oldest_query, oldest}
+        ] do
+      assert call(cold, "thread/timeline/list", query) == snapshot
+    end
+
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    barrier(ctx)
+    assert length(handshakes(ctx)) == 1
+    assert File.ls!(ctx.fixture.workspace) == []
+    assert_realtime_idle(ctx, cold)
+  end
+
+  test "opt-in terminal transcript records complete ordinary history without inference", ctx do
+    pid = start(ctx)
+    thread = TurnFixture.thread(ctx, pid, %{"historyMode" => "paginated"})
+    session_id = "synthetic-explicit-tail-history"
+
+    begin_realtime(pid, thread, %{
+      "outputModality" => "text",
+      "realtimeSessionId" => session_id,
+      "flushTranscriptTailOnSessionEnd" => true
+    })
+
+    started = wait_event(pid, "thread/realtime/started")
+    wait_frame(ctx, 1, "session.update")
+
+    control(ctx, "emit", 1, [
+      %{
+        "type" => "conversation.item.input_audio_transcription.delta",
+        "delta" => "owned delta λ"
+      },
+      %{
+        "type" => "conversation.item.input_audio_transcription.completed",
+        "transcript" => "owned tail <final>& λ"
+      }
+    ])
+
+    transcript = wait_event(pid, "thread/realtime/transcript/done")
+
+    assert notification(transcript, "thread/realtime/transcript/done") == %{
+             "threadId" => thread,
+             "role" => "user",
+             "text" => "owned tail <final>& λ"
+           }
+
+    before_stop = System.system_time(:second)
+    closing = stop(pid, thread)
+    after_stop = System.system_time(:second)
+    events = started ++ transcript ++ closing
+    realtime = items(events, "thread/realtime/item/completed")
+    assert [session_fact, segment, close_fact] = realtime
+
+    assert session_fact == %{
+             "id" => session_fact["id"],
+             "realtimeSessionId" => session_id,
+             "type" => "realtimeSessionStarted"
+           }
+
+    assert segment == %{
+             "id" => segment["id"],
+             "realtimeSessionId" => session_id,
+             "type" => "transcriptSegment",
+             "role" => "user",
+             "text" => "owned delta λ"
+           }
+
+    assert close_fact == %{
+             "id" => close_fact["id"],
+             "realtimeSessionId" => session_id,
+             "type" => "realtimeSessionClosed",
+             "outcome" => "ended"
+           }
+
+    expected_text =
+      "<realtime_delegation>\n" <>
+        "  <source>transcript_tail_flush</source>\n" <>
+        "  <input>The user just ended their realtime session. Here is the remaining handoff/transcript tail. " <>
+        "You probably do not have to do anything; acknowledge the handoff unless the transcript itself asks for something.</input>\n" <>
+        "  <transcript_delta>user: owned tail &lt;final&gt;&amp; λ</transcript_delta>\n" <>
+        "</realtime_delegation>"
+
+    warm = call(pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 100})
+
+    assert %{
+             "data" => [start_row, segment_row, turn_start, user_row, _turn_end, close_row],
+             "nextCursor" => nil,
+             "activeRealtimeSessionAtPageStart" => nil
+           } = warm
+
+    turn_id = turn_start["turnId"]
+    user_id = user_row["item"]["id"]
+    timestamp = turn_start["startedAt"]
+    assert is_integer(timestamp) and timestamp >= before_stop and timestamp <= after_stop
+
+    ids = Enum.map(realtime, & &1["id"]) ++ [turn_id, user_id]
+    assert length(Enum.uniq(ids)) == 5
+
+    for id <- ids do
+      assert id =~ ~r/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+    end
+
+    expected_user = %{
+      "id" => user_id,
+      "clientId" => nil,
+      "type" => "userMessage",
+      "content" => [%{"type" => "text", "text" => expected_text, "text_elements" => []}]
+    }
+
+    expected_rows = [
+      %{"type" => "realtime", "item" => session_fact},
+      %{"type" => "realtime", "item" => segment},
+      %{"type" => "turnStarted", "turnId" => turn_id, "startedAt" => timestamp},
+      %{"type" => "item", "turnId" => turn_id, "item" => expected_user},
+      %{
+        "type" => "turnCompleted",
+        "turnId" => turn_id,
+        "status" => "completed",
+        "error" => nil,
+        "startedAt" => timestamp,
+        "completedAt" => timestamp,
+        "durationMs" => 0
+      },
+      %{"type" => "realtime", "item" => close_fact}
+    ]
+
+    for {actual, expected} <- Enum.zip(warm["data"], expected_rows) do
+      assert Map.delete(actual, "position") == expected
+      assert is_integer(actual["position"]) and actual["position"] >= 0
+    end
+
+    positions = Enum.map(warm["data"], & &1["position"])
+    assert positions == Enum.sort(positions)
+    assert start_row["item"] == session_fact and segment_row["item"] == segment
+    assert close_row["item"] == close_fact
+
+    # A recording-only turn is durable history, never a newly advertised running task.
+    refute Enum.any?(events, &(&1.kind == :server_request))
+
+    refute Enum.any?(
+             events,
+             &(&1.wire["method"] in [
+                 "turn/started",
+                 "turn/completed",
+                 "item/started",
+                 "item/completed"
+               ])
+           )
+
+    assert_idle(ctx, pid)
+    assert %{interactions: 0, gap: nil} = Session.status(pid)
+    assert Session.uncertain_operations(pid) == []
+    instance = Session.status(pid).instance_id
+    native_process = call(pid, "server/diagnostics", %{})["process"]["id"]
+    %{transport: Stdio, connection: connection} = :sys.get_state(pid)
+    monitor = Process.monitor(pid)
+    assert :ok = StdioSessionFixture.close(pid, connection)
+    assert_receive {:DOWN, ^monitor, :process, ^pid, _}, 5_000
+    assert Port.info(connection.port) == nil
+    assert :atomics.get(connection.owner.completion, 1) == 1
+    cold = start(ctx)
+    assert Session.status(cold).instance_id != instance
+    %{connection: cold_connection} = :sys.get_state(cold)
+    assert cold_connection.port != connection.port
+    refute call(cold, "server/diagnostics", %{})["process"]["id"] == native_process
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert call(cold, "thread/timeline/list", %{"threadId" => thread, "limit" => 100}) == warm
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    barrier(ctx)
+    assert length(handshakes(ctx)) == 1
+    assert File.ls!(ctx.fixture.workspace) == []
+    assert_idle(ctx, cold)
+    assert %{interactions: 0, gap: nil} = Session.status(cold)
+    assert Session.uncertain_operations(cold) == []
+  end
+
   test "replacement closes the prior identity and requested stop leaves subsequent startup usable",
        ctx do
     pid = start(ctx)
@@ -535,6 +889,103 @@ defmodule SamgitaCodexDriver.NativeRealtimeLifecycleProfileTest do
           call(pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 100})["data"],
         entry["type"] == "realtime",
         do: entry["item"]
+  end
+
+  defp assert_realtime_facts(events, thread, session_id, contents) do
+    completed = items(events, "thread/realtime/item/completed")
+    assert length(completed) == length(contents)
+    assert length(Enum.uniq_by(completed, & &1["id"])) == length(contents)
+
+    expected =
+      for {actual, content} <- Enum.zip(completed, contents) do
+        assert actual["id"] =~
+                 ~r/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+
+        fact = Map.merge(content, %{"id" => actual["id"], "realtimeSessionId" => session_id})
+        assert actual == fact
+        fact
+      end
+
+    assert for(
+             event <- events,
+             event.wire["method"] == "thread/realtime/item/completed",
+             do: event.wire["params"]
+           ) ==
+             Enum.map(expected, &%{"threadId" => thread, "item" => &1})
+
+    refute Enum.any?(events, &(&1.kind == :server_request))
+    expected
+  end
+
+  defp assert_complete_realtime_timeline(pid, thread, expected) do
+    page = call(pid, "thread/timeline/list", %{"threadId" => thread, "limit" => 100})
+
+    assert Map.keys(page) |> Enum.sort() == [
+             "activeRealtimeSessionAtPageStart",
+             "data",
+             "nextCursor"
+           ]
+
+    assert page["activeRealtimeSessionAtPageStart"] == nil
+    assert page["nextCursor"] == nil
+    assert Enum.map(page["data"], & &1["item"]) == expected
+
+    for entry <- page["data"] do
+      assert Map.keys(entry) |> Enum.sort() == ["item", "position", "type"]
+      assert entry["type"] == "realtime"
+      assert is_integer(entry["position"]) and entry["position"] >= 0
+    end
+
+    positions = Enum.map(page["data"], & &1["position"])
+    assert positions == Enum.sort(Enum.uniq(positions))
+    page
+  end
+
+  defp wait_realtime_items(pid, count, events, deadline \\ nil) do
+    deadline = deadline || System.monotonic_time(:millisecond) + 10_000
+    assert {:ok, batch} = Session.drain(pid)
+    events = events ++ batch
+
+    if length(items(events, "thread/realtime/item/completed")) >= count do
+      events
+    else
+      assert System.monotonic_time(:millisecond) < deadline, "Realtime canonical item deadline"
+
+      receive do
+        {:codex_driver, ^pid, :events_available} -> :ok
+        {:codex_driver, ^pid, {:gap, _}} -> flunk("Unexpected realtime event gap")
+      after
+        20 -> :ok
+      end
+
+      wait_realtime_items(pid, count, events, deadline)
+    end
+  end
+
+  defp restart_realtime_native(ctx, pid) do
+    instance = Session.status(pid).instance_id
+    native_process = call(pid, "server/diagnostics", %{})["process"]["id"]
+    %{transport: Stdio, connection: connection} = :sys.get_state(pid)
+    monitor = Process.monitor(pid)
+    assert :ok = StdioSessionFixture.close(pid, connection)
+    assert_receive {:DOWN, ^monitor, :process, ^pid, _}, 5_000
+    assert Port.info(connection.port) == nil
+    assert :atomics.get(connection.owner.completion, 1) == 1
+    cold = start(ctx)
+    assert Session.status(cold).instance_id != instance
+    %{connection: cold_connection} = :sys.get_state(cold)
+    assert cold_connection.port != connection.port
+    refute call(cold, "server/diagnostics", %{})["process"]["id"] == native_process
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    cold
+  end
+
+  defp assert_realtime_idle(ctx, pid) do
+    assert_idle(ctx, pid)
+    assert %{interactions: 0, gap: nil} = Session.status(pid)
+    assert Session.uncertain_operations(pid) == []
+    assert {:ok, events} = Session.drain(pid)
+    refute Enum.any?(events, &(&1.kind == :server_request))
   end
 
   defp remove_auth(ctx) do

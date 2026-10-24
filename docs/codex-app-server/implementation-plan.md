@@ -33,8 +33,10 @@ steps. See [the checkpoint record](repair-qualification.md#frozen-local-matrix-a
 Commit `1715d1c` repairs fixture shutdown ordering with deterministic red/green
 evidence, **9/0** complete MCP cases and **29/0** MCP/process cleanup cases.
 The subsequent [queue/managed unit](queue-managed-state-qualification.md) passes
-**11/0** at both seeds and adds 46 precise owners: **2,773 implemented / 3,848
-missing**, zero verified contracts. Requirements remain **462 implemented /
+**11/0** at both seeds and adds 46 precise owners. Five
+[read-state/realtime cases](read-state-realtime-history-qualification.md) pass
+**15/0** in the complete owning block at both seeds, adding nine further owners:
+**2,782 implemented / 3,839 missing**, zero verified contracts. Requirements remain **462 implemented /
 12 missing / 11 blocked**. Final combined-source/hosted checks and remaining
 reachable variants are next; A11, source-unreachable and external/OS requirements
 stay incomplete. Do not infer full compatibility or release.

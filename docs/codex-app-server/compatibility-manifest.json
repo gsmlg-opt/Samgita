@@ -95992,98 +95992,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadUnreadPosition/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_realtime_owner: Exact newly delivered turn-position notification equals read/list state with independently correlated native turn ID; earliest position survives later attention, fresh acknowledgement advances it, stale CAS conflicts preserve winner and cold reads do not replay. Only eligible completed assistant turns in two history modes over stdio; no update-success Turn alternative, policy exclusions, duplicate Core publication, full lifecycle or other profiles."
+      ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "450f44996f5d23f8381d6cea049ad7c43cf9d0a424eed9d0ba8988f0183b4718",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:113-234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_realtime_owner: Exact newly delivered turn-position notification equals read/list state with independently correlated native turn ID; earliest position survives later attention, fresh acknowledgement advances it, stale CAS conflicts preserve winner and cold reads do not replay. Only eligible completed assistant turns in two history modes over stdio; no update-success Turn alternative, policy exclusions, duplicate Core publication, full lifecycle or other profiles."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/turnId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:113-234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turnId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_realtime_owner: Exact newly delivered turn-position notification equals read/list state with independently correlated native turn ID; earliest position survives later attention, fresh acknowledgement advances it, stale CAS conflicts preserve winner and cold reads do not replay. Only eligible completed assistant turns in two history modes over stdio; no update-success Turn alternative, policy exclusions, duplicate Core publication, full lifecycle or other profiles."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "0445f419575b06899f4ec0111da4471375d889d88f98293fef99970a17f77761",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:113-234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_realtime_owner: Exact newly delivered turn-position notification equals read/list state with independently correlated native turn ID; earliest position survives later attention, fresh acknowledgement advances it, stale CAS conflicts preserve winner and cold reads do not replay. Only eligible completed assistant turns in two history modes over stdio; no update-success Turn alternative, policy exclusions, duplicate Core publication, full lifecycle or other profiles."
+      ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "51b5af118ab00bb2dfda4c21a2646056568d783a77f21293c41670d634c6d86c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:113-234"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -184309,11 +184341,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred."
+      ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1",
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "450f44996f5d23f8381d6cea049ad7c43cf9d0a424eed9d0ba8988f0183b4718",
@@ -184332,12 +184368,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/turnId",
       "required": true,
@@ -184358,12 +184398,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/type",
       "required": true,
@@ -184383,11 +184427,15 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred."
+      ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadReadStateUpdateResponse.json",
       "schema_sha256": "51b5af118ab00bb2dfda4c21a2646056568d783a77f21293c41670d634c6d86c",
@@ -187655,27 +187703,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/flushTranscriptTailOnSessionEnd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_realtime_owner: Explicit true records exactly six unfiltered ordinary/realtime rows: revised XML-escaped final tail in one user item, completed zero-duration recording turn, distinct cold persistence and zero inference; adjacent new cases explicitly use false. No running-turn tail association, empty-tail suppression, truncation/persistence-failure or live backend/profile acceptance."
+      ],
       "nullable": true,
       "pointer": "/properties/flushTranscriptTailOnSessionEnd",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "b8570cb9335921011f26b771700fb8c4940e4ea9f1498421b4045553eeed68c7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:467-629"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "flushTranscriptTailOnSessionEnd"
     },
     {
@@ -200703,46 +200759,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeSessionOutcome/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_realtime_owner: Explicit synthetic backend error creates a failed native closure retained in exact warm/cold complete history. Selected synthetic backend native realtime facts only; no whole item/union, BEM, live media, interleaved execution or other transport/platform profile."
+      ],
       "pointer": "/definitions/ThreadRealtimeSessionOutcome/enum/1",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:276-465,894-990"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeTranscriptRole/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_realtime_owner: Exact user delta fact and deliberately differing final transcript persist through failed closure and cold full timeline. Selected synthetic backend native realtime facts only; no whole item/union, BEM, live media, interleaved execution or other transport/platform profile."
+      ],
       "pointer": "/definitions/ThreadRealtimeTranscriptRole/enum/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "9a7d469ee31c85617b47990418cdcf535c45728d90c73d4195d16cf3ec1d2b41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:276-465,894-990"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -201009,27 +201081,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/1/properties/position",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_realtime_owner: Nonnegative integer positions in strict native order stay unchanged across full and paginated cold history. Selected synthetic backend native realtime facts only; no whole item/union, BEM, live media, interleaved execution or other transport/platform profile."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/1/properties/position",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "99f0708952f29c21a861010182d5171b9a4f5d30e408f018254be26a8cc20ec4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:276-465,894-990"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "position"
     },
     {
@@ -201639,27 +201719,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/properties/activeRealtimeSessionAtPageStart",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_realtime_owner: Known session at the opening boundary before segment/close pages, null before actual session-start; opaque continuation pages remain exact after closure and cold restart. Selected synthetic backend native realtime facts only; no whole item/union, BEM, live media, interleaved execution or other transport/platform profile."
+      ],
       "nullable": true,
       "pointer": "/properties/activeRealtimeSessionAtPageStart",
       "required": false,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs:276-465,894-990"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "activeRealtimeSessionAtPageStart"
     },
     {
