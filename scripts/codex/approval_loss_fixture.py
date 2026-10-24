@@ -2,7 +2,9 @@
 """Fixed local model responses for real native approval loss/replay tests.
 
 The backend never handles app-server protocol traffic. Native Codex emits the
-approvals, applies the only permitted patch, and reports native completion.
+approvals, applies the only permitted patch or exact fixed owned command, and
+reports native completion. The command appends an execution marker itself;
+the provider never writes that effect or creates app-server frames.
 """
 import argparse
 import json
@@ -13,11 +15,25 @@ from model_fixture import ModelFixture
 
 class ApprovalLossFixture(ModelFixture):
     def item(self, index):
-        total = 2 if self.scenario == "file" else 3
-        if self.scenario not in {"file", "permission"} or not 1 <= index <= total:
+        total = 3 if self.scenario == "permission" else 2
+        if self.scenario not in {"file", "permission", "command"} or not 1 <= index <= total:
             raise ValueError("Unexpected approval loss fixture inference")
         if index == total:
             return ModelFixture.item(self, 2)
+        if self.scenario == "command":
+            return {
+                "type": "function_call", "name": "exec_command",
+                "call_id": "approval-loss-1",
+                "arguments": json.dumps({
+                    "cmd": ("echo 'owned recovered command' >> loss-command.txt; "
+                            "printf samgita_loss_command"),
+                    "workdir": self.workspace,
+                    "shell": str(Path(self.workspace).parent / "bin" / "sh"),
+                    "login": False, "tty": False,
+                    "sandbox_permissions": "require_escalated",
+                    "justification": "Synthetic approval loss owned workspace only",
+                }),
+            }
         if self.scenario == "permission" and index == 1:
             return {
                 "type": "function_call", "name": "request_permissions",
@@ -48,7 +64,7 @@ class ApprovalLossFixture(ModelFixture):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--scenario", choices=["file", "permission"], required=True)
+    parser.add_argument("--scenario", choices=["file", "permission", "command"], required=True)
     parser.add_argument("--workspace", required=True)
     parser.add_argument("--codex-home", required=True)
     parser.add_argument("--requests-file", required=True)

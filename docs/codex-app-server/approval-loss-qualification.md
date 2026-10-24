@@ -1,5 +1,11 @@
 # Native approval replay and ambiguous response loss
 
+The later [command loss unit](command-approval-loss-qualification.md) adds three
+actual-native command paths without changing the original file/permission
+oracles or deadlines. The full owning block passes10/0 at both seeds; the
+six-case results below describe their earlier source checkpoint. The broad
+approval lifecycle remains incomplete.
+
 Six tests against stock Codex `rust-v0.163.0` pass at seeds `501432` and
 `987654`, **6/0** each, 8.6 seconds each. Source commit:
 `83086188ae0614bd882818ff1aa23f3194962012`; binary SHA256:

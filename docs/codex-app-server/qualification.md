@@ -36,10 +36,21 @@ and a matching source guard. Complete prescribed maps distinguish absent,
 empty/default and explicit policy levels without conflating metadata with
 effective connector authorization. Exactly42 canonical output owners gain scoped
 implemented evidence; no global enum, alias or fully verified promotion follows.
-The next command-approval loss cases and complete final-source matrix remain
-pending. The review commit's foundation run
+The complete final-source matrix remains pending. The review commit's foundation run
 [40091765250](https://github.com/gsmlg-opt/Samgita/actions/runs/40091765250)
 passed; foundation alone is not native-profile or complete compatibility proof.
+
+Three [command approval loss cases](command-approval-loss-qualification.md)
+pass in the full **10/0** owning block at both fixed seeds, with strict checks
+and a matching source guard. Stable actual-native callback replay, dropped
+replies and suppressed completion notices retain uncertainty and require explicit
+recovery. Exact private-shell argv, single append, stdout and durable history
+prove selected outcomes without claiming exactly-once execution. The initial
+three display-oracle failures and bounded fixture correction remain recorded.
+Only supplemental lifecycle evidence is added; counts and missing lifecycle
+status remain unchanged. Freeze this executable source for complete local and
+hosted qualification. A11, source-unreachable emitters and external/OS success
+remain incomplete.
 
 Seven [command and explicit-null cases](native-command-null-boundaries-qualification.md)
 pass in the complete **31/0** owning block at both fixed seeds, with strict checks

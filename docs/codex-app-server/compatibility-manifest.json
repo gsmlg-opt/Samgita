@@ -9843,7 +9843,8 @@
         "docs/codex-app-server/approval-validation-qualification.md",
         "docs/codex-app-server/approval-cache-context-qualification.md",
         "docs/codex-app-server/permission-effects-qualification.md",
-        "docs/codex-app-server/command-replay-cancellation-qualification.md"
+        "docs/codex-app-server/command-replay-cancellation-qualification.md",
+        "docs/codex-app-server/command-approval-loss-qualification.md"
       ],
       "id": "lifecycle:approval-decisions",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -9860,7 +9861,8 @@
         "Additional actual-native command cache context: exact fixed private-shell argv in cwd A reuses session approval, cwd B prompts anew and is declined; confirmed native restart/cold resume prompts for A again. Exact stdout/exit/effects/provider counts and all turn IDs asserted; ordinary declined pre-launch commands are live items but absent from durable command history. No persisted amendment, pending cold restoration, all key/environment/transport/OS or fully verified claim. Earlier limitations describe their owning checkpoint scopes.",
         "Additional actual-native ALL-key patch cache: accepted A plus fresh B requires one callback correlated to both prescribed native item changes; decline preserves A bytes/B absence, later A-only update reuses original cache. Exact physical bytes/provider continuations/history; no generic patch atomicity or all cache/permission/loss/deployment qualification. Earlier limitations describe their owning checkpoint scopes.",
         "Additional actual-native denied-directory effects: omitted requested deny is retained during explicit turn-grant intersection; permitted sibling patch has exact real bytes without file approval, denied directory child prompts before effects and explicit decline preserves bytes. Exact native item/callback association, normalized grant/provider counts/resolution/history and owned cleanup. Only this directory/child and positive control; no exact-file/glob enforcement, symlink/hardlink, full lifecycle/environment/OS/backend/A11 or verified promotion. Older records retain their own scoped limits.",
-        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits."
+        "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits.",
+        "Additional actual-native command reply-loss qualification: unanswered warm callback replay, reply dropped before native receipt and actual resolved/completed notifications suppressed after forwarded reply. Exact native wire/time/ID under a new local handle, stale rejection, explicit response/recovery only, fixed private-shell argv/cwd, exactly one owned append line, stdout/exit0 and original live/durable command item/provider counts. No automatic response/turn replay; old uncertainty remains until explicit evidence-based acknowledgement. Full owning block10/0 both seeds, including original file/permission and command cancellation oracles with unchanged deadlines/guardians. This is deterministic client-transport fault injection, not observed TCP loss or a general exactly-once guarantee. Cold pending restoration, all decision/profile/OS/backend variants, unreachable legacy emitters, A11 and fully verified acceptance remain incomplete."
       ],
       "required_behavior": "preserve every decision variant and edits; require explicit authorized handler",
       "schema_sha256": "b0c99e763de6cb504aee7aadd4177c897fe5cb9065748cf7fe5e988558d1ae5e",
@@ -9887,7 +9889,13 @@
           "apps/samgita_codex_driver/test/native_command_cache_context_test.exs:76-215,226-259",
           "apps/samgita_codex_driver/test/native_multifile_approval_test.exs:53-202,207-253",
           "apps/samgita_codex_driver/test/native_permission_effects_test.exs:70-240,255-291",
-          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287"
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs:115-287",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:116-224",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:240-265",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:333-344",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:374-381",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:394-415",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:418-423"
         ]
       },
       "transport_coverage": [

@@ -10,6 +10,7 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/approval_loss_fixture.py", __DIR__)
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @command "echo 'owned recovered command' >> loss-command.txt; printf samgita_loss_command"
 
   setup tags do
     binary = System.get_env("CODEX_BINARY")
@@ -102,12 +103,17 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
       pid: pid,
       owner: owner,
       control: control,
-      kind: if(tags.scenario == "file", do: "fileChange", else: "permissions"),
-      total: if(tags.scenario == "file", do: 2, else: 3)
+      kind:
+        case tags.scenario do
+          "file" -> "fileChange"
+          "permission" -> "permissions"
+          "command" -> "commandExecution"
+        end,
+      total: if(tags.scenario == "permission", do: 3, else: 2)
     }
   end
 
-  for scenario <- ["file", "permission"] do
+  for scenario <- ["file", "permission", "command"] do
     @tag scenario: scenario
     test "pending #{scenario} approval replays only after explicit warm resume with a fresh handle",
          ctx do
@@ -238,14 +244,25 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
     assert params["itemId"] == "approval-loss-1"
     assert is_integer(params["startedAtMs"]) and params["startedAtMs"] > 0
 
-    if ctx.kind == "fileChange" do
-      assert Map.fetch(params, "reason") == {:ok, nil}
-      assert Map.fetch(params, "grantRoot") == {:ok, nil}
-    else
-      assert Map.fetch(params, "environmentId") == {:ok, "local"}
-      assert params["cwd"] == ctx.fixture.workspace
-      assert params["reason"] == "Synthetic approval loss owned workspace only"
-      assert params["permissions"]["fileSystem"]["write"] == [ctx.fixture.workspace]
+    case ctx.kind do
+      "fileChange" ->
+        assert Map.fetch(params, "reason") == {:ok, nil}
+        assert Map.fetch(params, "grantRoot") == {:ok, nil}
+
+      "commandExecution" ->
+        assert params["kind"] == "command"
+        assert params["cwd"] == ctx.fixture.workspace
+        assert params["reason"] == "Synthetic approval loss owned workspace only"
+        assert OptionParser.split(params["command"]) == command_argv(ctx)
+        assert params["proposedExecpolicyAmendment"] == [Path.join(ctx.fixture.bin, "sh")]
+        assert params["networkApprovalContext"] == nil
+        assert params["proposedNetworkPolicyAmendments"] == nil
+
+      "permissions" ->
+        assert Map.fetch(params, "environmentId") == {:ok, "local"}
+        assert params["cwd"] == ctx.fixture.workspace
+        assert params["reason"] == "Synthetic approval loss owned workspace only"
+        assert params["permissions"]["fileSystem"]["write"] == [ctx.fixture.workspace]
     end
 
     assert_effect_absent(ctx)
@@ -283,7 +300,7 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
 
   defp respond(ctx, approval) do
     result =
-      if ctx.kind == "fileChange",
+      if ctx.kind != "permissions",
         do: %{"decision" => "accept"},
         else: %{
           "permissions" => %{"fileSystem" => %{"write" => [ctx.fixture.workspace]}},
@@ -313,6 +330,20 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
     assert %{"threadId" => ^thread, "requestId" => ^request_id} =
              notification(events, "serverRequest/resolved", &(&1["requestId"] == request_id))
 
+    if ctx.kind == "commandExecution" do
+      assert [item] =
+               for(
+                 event <- events,
+                 event.wire["method"] == "item/completed",
+                 event.wire["params"]["threadId"] == thread,
+                 event.wire["params"]["turnId"] == turn,
+                 event.wire["params"]["item"]["type"] == "commandExecution",
+                 do: event.wire["params"]["item"]
+               )
+
+      assert_command(ctx, item)
+    end
+
     assert %{pending: 0, interactions: 0, uncertain: 0} = Session.status(ctx.pid)
   end
 
@@ -340,6 +371,16 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
 
   defp assert_effect_absent(ctx), do: assert(File.ls!(ctx.fixture.workspace) == [])
 
+  defp assert_effect(%{kind: "commandExecution"} = ctx) do
+    assert File.ls!(ctx.fixture.workspace) == ["loss-command.txt"]
+
+    assert File.read!(Path.join(ctx.fixture.workspace, "loss-command.txt")) ==
+             "owned recovered command\n"
+
+    assert length(ModelFixture.requests(ctx.fixture)) == ctx.total
+    refute File.exists?(Path.join([ctx.fixture.codex_home, "rules", "default.rules"]))
+  end
+
   defp assert_effect(ctx) do
     assert File.ls!(ctx.fixture.workspace) == ["loss-approved.txt"]
 
@@ -357,6 +398,21 @@ defmodule SamgitaCodexDriver.NativeApprovalLossTest do
       ]
 
     assert [%{"id" => ^turn, "status" => "completed"}] = history
+
+    if ctx.kind == "commandExecution" do
+      assert [item] = Enum.filter(hd(history)["items"], &(&1["type"] == "commandExecution"))
+      assert_command(ctx, item)
+    end
+  end
+
+  defp command_argv(ctx), do: [Path.join(ctx.fixture.bin, "sh"), "-c", @command]
+
+  defp assert_command(ctx, item) do
+    assert item["id"] == "approval-loss-1"
+    assert item["cwd"] == ctx.fixture.workspace
+    assert OptionParser.split(item["command"]) == command_argv(ctx)
+    assert item["status"] == "completed" and item["exitCode"] == 0
+    assert item["aggregatedOutput"] == "samgita_loss_command"
   end
 
   defp assert_no_execution_replay(ctx) do
