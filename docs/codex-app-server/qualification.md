@@ -22,10 +22,12 @@ release readiness remain incomplete.
 The [hosted checkpoint at 0bc98a3](repair-qualification.md#hosted-checkpoint-at-0bc98a3)
 passes foundation and both native execution jobs: **665/0** default driver,
 **253/0** across 39 explicit isolated profiles, outside consumer and fenced
-platform/API/concurrency. Mandatory completeness fails. The separate frozen
-local v15 matrix remains running; it reproduces the unchanged populated-database
-GitHub first-page assertion while both recovery/restart repeats pass. No reset,
-guard bypass or claimed GitHub repair follows. A
+platform/API/concurrency. Mandatory completeness fails. The separate
+[terminal v15 local matrix](repair-qualification.md#frozen-local-matrix-at-0bc98a3)
+passes all 23 package commands and runs all 17 platform commands, retaining the
+unchanged populated-database GitHub first-page assertion while both
+recovery/restart repeats pass. Both source guards match. No reset, guard bypass
+or claimed GitHub repair follows. A
 [source-only index](native-owner-supplement-qualification.md) adds 37 exact
 notification/config/selective-history/goal owners from existing assertions; no new
 execution, fully verified promotion or retroactive hosted count follows.

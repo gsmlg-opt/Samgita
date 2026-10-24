@@ -105,8 +105,8 @@ test hashes and Git head `063cf65`, rather than a full dependency snapshot; it
 cannot alone prove that all dependencies were clean during that run. The later
 hosted `0bc98a3` complete default driver passes **366/0 + 299/0 = 665/0**, with
 the unchanged owning tests and dependencies checked out at the exact commit.
-Current source also passes the local first full-driver seed **665/0**; the
-ongoing v15 repeat is not certified complete by this document.
+Current source also passes both local full-driver seeds **665/0** in the
+[terminal v15 matrix](repair-qualification.md#frozen-local-matrix-at-0bc98a3).
 
 Only these checked fields and fixed object alternatives gain evidence. Whole
 command/MCP alternatives, other enum values, unchecked nullable properties and
@@ -120,10 +120,10 @@ The unchanged `native_goal_test.exs` has actual-native default-driver evidence a
 hosted `0bc98a3` (**665/0**) and both local frozen v15 default-driver seeds
 (**665/0** each). The profile, TurnFixture, Session and schema validator hashes
 match v15's source snapshot. The immutable binary SHA256 above was rechecked.
-This documentation-only index adds no test or runtime behavior. The two local
-isolated-profile runs and remaining package checks are still running at this
-index checkpoint, and the separate second populated aggregate retains its
-GitHub first-page assertion failure.
+This documentation-only index adds no test or runtime behavior. Both local
+isolated-profile runs subsequently pass **253/0** and all 23 package commands
+pass. The separate second populated aggregate retains its GitHub first-page
+assertion failure; the complete combined matrix remains failed.
 
 | Physical owner prefix | Selected suffixes and native oracle |
 | --- | --- |

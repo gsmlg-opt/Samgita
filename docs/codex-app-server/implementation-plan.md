@@ -24,10 +24,11 @@ one owner. Existing reliability fixes and historical records are preserved.
 The [hosted 0bc98a3 checkpoint](repair-qualification.md#hosted-checkpoint-at-0bc98a3)
 is terminal: foundation and both native execution jobs pass, including **665/0**
 default driver and **253/0** across 39 required isolated profiles. Mandatory
-completeness fails. The earlier v14 local matrix passed all 17+23 commands; the
-current frozen v15 matrix remains running and reproduces the unchanged GitHub
-first-page assertion in its second populated aggregate. Both recovery/restart
-repeats pass without reset or guard bypass. No unrelated GitHub repair is claimed.
+completeness fails. The [terminal v15 local matrix](repair-qualification.md#frozen-local-matrix-at-0bc98a3)
+passes all 23 package commands and runs all 17 platform commands, reproducing the
+unchanged GitHub first-page assertion in its second populated aggregate. Both
+recovery/restart repeats pass without reset or guard bypass. Both source guards
+match. No unrelated GitHub repair is claimed.
 
 Interaction deadlines, V1/V3 controls, Git review targets, hard pending-approval
 cold restart, System-skill shared cache and queued PNG snapshots now have scoped
@@ -38,8 +39,7 @@ brings contracts to **3,084 implemented / 3,537 missing**, zero verified.
 Requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified;
 all four legacy requirements remain blocked.
 
-Next finish the frozen local matrix and preserve its actual failure; then qualify
-the owned private-/etc Admin-skill draft, stock system-clock sleep/steer/cold
+Next qualify the owned private-/etc Admin-skill draft, stock system-clock sleep/steer/cold
 history draft and selected queued-assistant history proposal. These unexecuted
 drafts receive no acceptance credit. New executable changes require complete
 final-source local/hosted checks. A11, source-unreachable emitters and external/OS

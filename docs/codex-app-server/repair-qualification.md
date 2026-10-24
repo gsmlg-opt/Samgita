@@ -6,6 +6,52 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Frozen local matrix at 0bc98a3
+
+The v15 combined runner is terminal against executable source
+`0bc98a34686ecda75acf3d03f9ef6e013d6a476b`. All **23 package commands** pass;
+all **17 platform commands** run, with one populated-root aggregate failure.
+The combined runner exits one. Both executable/configuration/workflow source
+guards match all 1,459 recorded files. Documentation-only owner indexes during
+the run do not change its executable inputs or retroactively change the earlier
+inventory command's counts.
+
+| Independent check | Actual terminal result |
+| --- | --- |
+| Complete default driver, seeds 501432 / 987654 | **665/0** each |
+| All 39 isolated native profiles, both seeds | **253/0** each |
+| Neutral WebSocket, seeds 455834 / 501432 / 987654 | **42/0** each |
+| Native wire and neutral core | **42/0**, **32/0** |
+| Native and both neutral outside consumers | **1/0** each |
+| Inventory regressions/consistency, namespace/sandbox prerequisites, package compile/format/audits | Passed |
+
+| Preserved platform check | Actual terminal result |
+| --- | --- |
+| Populated root seed501432 | Core **224/0/1 excluded**, web **128/0/5 excluded** |
+| Populated root seed987654 | Core **224/0/1 excluded**, web **128/1/5 excluded** |
+| Native runtime/API/concurrency | Core **53/0**, web **8/0** |
+| Both consecutive recovery/restart repeats | Core **4/0**, web **1/0** each |
+| Compile, format, strict Credo, forced Dialyzer, audit, legacy exclusion | Passed |
+| Frozen frontend install, assets and production assembly | Passed; assembly never started |
+
+The one failure is unchanged `github_controller_test.exs:56`: the connection
+created in that test is absent from the first returned page in the preserved
+populated database. No pagination, assertion, GitHub source or existing row is
+changed. The database remains `samgita_redesign_recovery_repair_test`, with no
+reset, task deletion, fake mapping or activation-guard bypass. Both restart
+repeats pass after those populated suites. This does not repair the unrelated
+aggregate failure or certify the older Fake Agent listener-rebind behavior.
+
+Exact commands, counts and logs remain in
+`/tmp/samgita-repair-final-{combined,platform,packages}-v15-20261024/`.
+Platform `results.json` SHA256 is
+`a6c9995514bc0c39860106a3878e91c04e1c3a8a389bcc79550fbe0da9849e89`;
+package `results.json` SHA256 is
+`beadcd30e7344dfc894ab562522db9a9d617e043aeed4666eb82d9aa1b6412ed`.
+New executable profiles require another complete final-source local and hosted
+qualification. Full compatibility, A11, source-unreachable emitters and
+external/OS success remain incomplete. No publication, tag or deployment.
+
 ## Hosted checkpoint at 0bc98a3
 
 Both workflows are terminal at exact pushed commit
@@ -42,12 +88,12 @@ states. Full logs, per-step counts/anchors and metadata are retained in
 conformance log SHA256 is
 `1eab1a2b8cffafdaf21bbc9725b92f36d10f2a62cd01c9371a9c3bf7f551624e`.
 
-The independent frozen local v15 matrix is still running when this hosted record
-is added. Its second populated aggregate reproduces the unchanged GitHub
-first-page assertion at `github_controller_test.exs:56`; both recovery/restart
-repeats pass without resetting the database. Hosted fresh-run success does not
-repair or erase that local failure. The complete local terminal result remains
-required. Full compatibility, A11, unreachable emitters and external/OS success
+The independent frozen local v15 matrix subsequently finishes with all package
+commands passing and its second populated aggregate reproducing the unchanged
+GitHub first-page assertion at `github_controller_test.exs:56`; both
+recovery/restart repeats pass without resetting the database. Hosted fresh-run
+success does not repair or erase that local failure. Full compatibility, A11,
+unreachable emitters and external/OS success
 remain incomplete; no tag, publication, production migration or deployment.
 
 ## Frozen local matrix at 7a5de5e
