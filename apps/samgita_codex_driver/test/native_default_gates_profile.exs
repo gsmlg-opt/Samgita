@@ -128,7 +128,7 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     assert proof["parent_user_namespace"] == ctx.parent_userns
     assert proof["interfaces"] == ["lo"]
     refute proof["default_route"] or proof["ipv6_default_route"]
-    ctx
+    Map.put(ctx, :owner, owner)
   end
 
   test "primitive experimental booleans default false, reject null, and gate true", ctx do
@@ -287,6 +287,313 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     end
 
     assert length(read(ctx, "requests.json")) == 6
+  end
+
+  test "cold resume normalizes an empty path before experimental negotiation", ctx do
+    {creator, _} = client(ctx, true)
+    thread = start(creator, ctx, %{"historyMode" => "legacy"})["thread"]
+    id = thread["id"]
+    name = "Owned empty-path resume"
+    assert call(creator, "thread/name/set", %{"threadId" => id, "name" => name}) == %{}
+    saved = call(creator, "thread/read", %{"threadId" => id, "includeTurns" => true})["thread"]
+    assert saved["id"] == id
+    assert saved["name"] == name
+    assert saved["historyMode"] == "legacy"
+    assert saved["turns"] == []
+    assert File.regular?(saved["path"])
+    assert :ok = Session.close(creator)
+    restart_owned_native(ctx)
+    rollout = File.read!(saved["path"])
+    assert [meta] = rollout |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
+    assert meta["type"] == "session_meta"
+    assert meta["payload"]["id"] == id
+    assert meta["payload"]["history_mode"] == "legacy"
+    assert String.ends_with?(rollout, "\n")
+
+    cases =
+      for negotiation <- [:absent, false],
+          extra <- [%{}, %{"path" => nil}, %{"path" => ""}],
+          do: {negotiation, extra}
+
+    for {{negotiation, extra}, resume_count} <- Enum.with_index(cases, 1) do
+      previous_rollout = File.read!(saved["path"])
+      {pid, journal} = client(ctx, negotiation)
+      assert call(pid, "thread/loaded/list", %{})["data"] == []
+      assert {:ok, _} = Session.drain(pid)
+      active = %{"threadId" => id, "path" => saved["path"]}
+      before = count(journal, "thread/resume")
+
+      assert {:error, %Error{code: :experimental_api_required}} =
+               Session.request(pid, "thread/resume", active)
+
+      assert count(journal, "thread/resume") == before
+
+      assert wire_error(pid, "thread/resume", active) == %{
+               "code" => -32_600,
+               "message" => "thread/resume.path requires experimentalApi capability"
+             }
+
+      assert last_params(journal, "thread/resume") == active
+      assert call(pid, "thread/loaded/list", %{})["data"] == []
+      assert {:ok, rejected_events} = Session.drain(pid)
+
+      refute Enum.any?(
+               rejected_events,
+               &(&1.wire["method"] in ["thread/started", "turn/started"])
+             )
+
+      assert_resume_rollout(ctx, saved["path"], rollout, id, resume_count - 1)
+      assert File.read!(saved["path"]) == previous_rollout
+
+      request = Map.merge(%{"threadId" => id}, extra)
+      resumed = call(pid, "thread/resume", request)["thread"]
+      assert last_params(journal, "thread/resume") == request
+
+      assert Map.has_key?(last_params(journal, "thread/resume"), "path") ==
+               Map.has_key?(extra, "path")
+
+      assert resumed["id"] == id
+      assert resumed["name"] == name
+      assert resumed["path"] == saved["path"]
+      assert resumed["historyMode"] == "legacy"
+      assert resumed["turns"] == []
+      assert {:ok, resume_events} = Session.drain(pid)
+      refute Enum.any?(resume_events, &(&1.kind == :server_request))
+
+      refute Enum.any?(resume_events, fn event ->
+               event.wire["method"] in [
+                 "turn/started",
+                 "turn/completed",
+                 "item/started",
+                 "item/completed"
+               ]
+             end)
+
+      assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
+               Session.status(pid)
+
+      assert :ok = Session.close(pid)
+
+      # SessionConfigured can precede the resume checkpoint. Wait for its full
+      # newline-delimited record before stopping the owned writer, then reread.
+      await(
+        fn ->
+          bytes = File.read!(saved["path"])
+
+          String.starts_with?(bytes, rollout) and String.ends_with?(bytes, "\n") and
+            length(String.split(bytes, "\n", trim: true)) == resume_count + 1
+        end,
+        "cold resume settings checkpoint"
+      )
+
+      restart_owned_native(ctx)
+      assert_resume_rollout(ctx, saved["path"], rollout, id, resume_count)
+      durable = File.read!(saved["path"])
+      assert binary_part(durable, 0, byte_size(previous_rollout)) == previous_rollout
+      assert read(ctx, "requests.json") == []
+    end
+  end
+
+  test "environment null inherits the local default while an empty list selects none", ctx do
+    local = [
+      %{
+        "environmentId" => "local",
+        "cwd" => ctx.workspace,
+        "runtimeWorkspaceRoots" => [ctx.workspace]
+      }
+    ]
+
+    for negotiation <- [:absent, false, true] do
+      {pid, journal} = client(ctx, negotiation)
+
+      for extra <- [%{}, %{"environments" => nil}] do
+        thread = start(pid, ctx, extra)["thread"]
+        assert Map.fetch!(thread, "environments") == local
+        assert thread["turns"] == []
+        assert last_params(journal, "thread/start") == params(ctx, extra)
+
+        assert Map.has_key?(last_params(journal, "thread/start"), "environments") ==
+                 Map.has_key?(extra, "environments")
+
+        loaded = call(pid, "thread/read", %{"threadId" => thread["id"], "includeTurns" => false})
+        assert Map.fetch!(loaded["thread"], "environments") == local
+      end
+
+      if negotiation == true do
+        extra = %{"environments" => []}
+        thread = start(pid, ctx, extra)["thread"]
+        assert Map.fetch!(thread, "environments") == []
+        assert thread["turns"] == []
+        assert last_params(journal, "thread/start") == params(ctx, extra)
+        loaded = call(pid, "thread/read", %{"threadId" => thread["id"], "includeTurns" => false})
+        assert Map.fetch!(loaded["thread"], "environments") == []
+      else
+        reject_gate(pid, ctx, journal, "environments", [])
+        assert last_params(journal, "thread/start") == params(ctx, %{"environments" => []})
+      end
+
+      assert :ok = Session.close(pid)
+      assert read(ctx, "requests.json") == []
+    end
+  end
+
+  test "omitted section lists all while explicit null lists only unsectioned threads", ctx do
+    {pid, journal} = client(ctx, true)
+    unsectioned = start(pid, ctx)["thread"]["id"]
+    selected = start(pid, ctx)["thread"]["id"]
+    refute unsectioned == selected
+
+    for {id, marker} <- [{unsectioned, 701}, {selected, 702}] do
+      turn = start_turn(pid, id, marker, %{})
+      finish(pid, turn)
+      assert last_params(journal, "turn/start") == turn_params(id, marker, %{})
+
+      assert call(pid, "thread/name/set", %{
+               "threadId" => id,
+               "name" => "Owned section #{marker}"
+             }) == %{}
+    end
+
+    section = call(pid, "threadSection/create", %{"name" => "Owned semantic section"})["section"]
+    assert is_binary(section["id"]) and section["id"] != ""
+    assert section["name"] == "Owned semantic section"
+
+    assert call(pid, "thread/section/move", %{
+             "threadId" => selected,
+             "sectionId" => section["id"]
+           }) == %{}
+
+    assert_section_filter_variants(pid, journal, ctx, unsectioned, selected, section)
+
+    paths =
+      for id <- [unsectioned, selected] do
+        thread = call(pid, "thread/read", %{"threadId" => id, "includeTurns" => false})["thread"]
+        assert thread["preview"] != ""
+        assert File.regular?(thread["path"])
+        thread["path"]
+      end
+
+    assert length(read(ctx, "requests.json")) == 2
+    requests = read(ctx, "requests.json")
+    assert :ok = Session.close(pid)
+    rollouts = Map.new(paths, &{&1, File.read!(&1)})
+    restart_owned_native(ctx)
+
+    for negotiation <- [:absent, false] do
+      {cold, cold_journal} = client(ctx, negotiation)
+      assert call(cold, "thread/loaded/list", %{})["data"] == []
+      assert_section_filter_variants(cold, cold_journal, ctx, unsectioned, selected, section)
+      assert call(cold, "thread/loaded/list", %{})["data"] == []
+      sections = call(cold, "threadSection/list", %{"limit" => 100})["data"]
+      assert Enum.find(sections, &(&1["id"] == section["id"])) == section
+      assert :ok = Session.close(cold)
+      assert read(ctx, "requests.json") == requests
+      for {path, bytes} <- rollouts, do: assert(File.read!(path) == bytes)
+    end
+  end
+
+  defp assert_section_filter_variants(pid, journal, ctx, unsectioned, selected, section) do
+    base = %{
+      "limit" => 10,
+      "cwd" => ctx.workspace,
+      "modelProviders" => ["fixture"],
+      "sortKey" => "created_at"
+    }
+
+    for {extra, expected} <- [
+          {%{}, [unsectioned, selected]},
+          {%{"sectionId" => nil}, [unsectioned]},
+          {%{"sectionId" => section["id"]}, [selected]}
+        ] do
+      query = Map.merge(base, extra)
+      result = call(pid, "thread/list", query)
+      assert last_params(journal, "thread/list") == query
+
+      assert Map.has_key?(last_params(journal, "thread/list"), "sectionId") ==
+               Map.has_key?(extra, "sectionId")
+
+      assert Enum.sort(Enum.map(result["data"], & &1["id"])) == Enum.sort(expected)
+      assert Map.fetch!(result, "nextCursor") == nil
+
+      for thread <- result["data"], do: assert_section_projection(thread, selected, section)
+    end
+  end
+
+  defp assert_section_projection(thread, selected, section) do
+    expected_section = if thread["id"] == selected, do: section, else: nil
+    assert Map.fetch!(thread, "section") == expected_section
+    assert is_binary(thread["preview"]) and thread["preview"] != ""
+  end
+
+  defp restart_owned_native(ctx) do
+    previous = read(ctx, "state.json")
+    generation = previous["generation"] + 1
+    assert {:ok, _} = Stdio.send(ctx.owner, JSON.encode!(%{"restart" => true}))
+
+    await(
+      fn ->
+        state = read(ctx, "state.json")
+        state["ready"] and state["generation"] == generation
+      end,
+      "explicit owned native restart"
+    )
+
+    for os_pid <- previous["native_pids"], do: refute(File.exists?("/proc/#{os_pid}"))
+  end
+
+  defp assert_resume_rollout(ctx, path, prefix, id, expected_count) do
+    bytes = File.read!(path)
+    assert byte_size(bytes) >= byte_size(prefix)
+    assert binary_part(bytes, 0, byte_size(prefix)) == prefix
+    assert String.ends_with?(bytes, "\n")
+    suffix = binary_part(bytes, byte_size(prefix), byte_size(bytes) - byte_size(prefix))
+    records = suffix |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
+    assert length(records) == expected_count
+
+    expected = %{
+      "type" => "event_msg",
+      "payload" => %{
+        "type" => "thread_settings_applied",
+        "thread_id" => id,
+        "thread_settings" => %{
+          "model" => "mock-model",
+          "model_provider_id" => "fixture",
+          "service_tier" => "flex",
+          "approval_policy" => "on-request",
+          "approvals_reviewer" => "user",
+          "permission_profile" => %{
+            "type" => "managed",
+            "file_system" => %{
+              "type" => "restricted",
+              "entries" => [
+                %{
+                  "path" => %{"type" => "special", "value" => %{"kind" => "root"}},
+                  "access" => "read"
+                }
+              ]
+            },
+            "network" => "restricted"
+          },
+          "cwd" => ctx.workspace,
+          "runtime_workspace_roots" => [ctx.workspace],
+          "reasoning_summary" => "concise",
+          "collaboration_mode" => %{
+            "mode" => "default",
+            "settings" => %{
+              "model" => "mock-model",
+              "reasoning_effort" => nil,
+              "developer_instructions" => nil
+            }
+          },
+          "disabled_plugin_ids" => []
+        }
+      }
+    }
+
+    for record <- records do
+      assert Map.delete(record, "timestamp") == expected
+      assert {:ok, _timestamp, 0} = DateTime.from_iso8601(Map.fetch!(record, "timestamp"))
+    end
   end
 
   defp client(ctx, negotiation) do
