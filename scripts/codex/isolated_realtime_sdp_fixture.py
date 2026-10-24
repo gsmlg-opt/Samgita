@@ -23,6 +23,7 @@ import subprocess
 import sys
 import threading
 import time
+import traceback
 
 
 SHA256 = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
@@ -37,6 +38,7 @@ INITIAL = [{"role": "developer", "text": "Synthetic realtime initial context"}]
 MAX_WIRE = 262_144
 SCENARIOS = [f"{kind}-{version}" for kind in ["websocket", "webrtc", "existing"]
              for version in ["v1", "v3"]] + ["webrtc-default", "existing-default"]
+SCENARIOS += ["websocket-v1-ingress", "websocket-v3-controls", "websocket-v3-utf8"]
 ALLOWED = {"initialize", "initialized", "thread/start", "thread/realtime/start",
            "thread/realtime/appendText", "thread/realtime/stop"}
 
@@ -95,7 +97,12 @@ def read_frame(stream):
 class Fixture:
     def __init__(self, args, proof):
         self.args, self.lock = args, threading.RLock()
-        self.kind, requested = args.scenario.split("-")
+        self.kind, requested, *extension = args.scenario.split("-")
+        self.extension = extension[0] if extension else None
+        self.session_id = ("owned-" + args.scenario.removeprefix("websocket-") if self.extension
+                           else "owned-realtime-" + args.scenario)
+        self.prompt = "Owned realtime controls prompt" if self.extension else PROMPT
+        self.input_count = 0
         self.version = "v1" if requested == "default" else requested
         self.explicit_version = requested != "default"
         self.journal = {"namespace": proof, "events": []}
@@ -155,7 +162,7 @@ class Fixture:
                 assert self.headers.get("ChatGPT-Account-ID") is None
                 assert self.headers.get("OpenAI-Alpha") == (
                     "quicksilver=v1" if fixture.version == "v1" else "quicksilver=v2")
-                assert self.headers.get("x-session-id") == "owned-realtime-" + args.scenario
+                assert self.headers.get("x-session-id") == fixture.session_id
 
             def do_POST(self):
                 try:
@@ -237,6 +244,11 @@ class Fixture:
                         elif message["type"] == "session.close":
                             # Stock V3 may close the session before dropping its socket.
                             assert fixture.version == "v3"
+                        elif fixture.extension:
+                            if fixture.accept_extension_frame(message):
+                                for event in fixture.extension_output():
+                                    self.send_json(event)
+                                fixture.record("peer_exchange", version=fixture.version)
                         else:
                             assert message == fixture.expected_append()
                             fixture.append_count += 1
@@ -246,14 +258,15 @@ class Fixture:
                     if not fixture.closing.is_set():
                         fixture.record("ws_peer_end", error_type=type(error).__name__)
                 except Exception as error:
-                    fixture.record("fixture_error", stage="websocket", error_type=type(error).__name__)
+                    fixture.record("fixture_error", stage="websocket", error_type=type(error).__name__,
+                                   error_line=traceback.extract_tb(error.__traceback__)[-1].lineno)
                 finally:
                     self.close_connection = True
                     fixture.record("ws_worker_closed")
 
             def send_session_ready(self):
                 self.send_json({"type": "session.updated" if fixture.version == "v1" else "session.started",
-                                "session": {"id": "owned-peer-session", "instructions": PROMPT}})
+                                "session": {"id": "owned-peer-session", "instructions": fixture.prompt}})
                 fixture.record("peer_ready")
 
             def send_transcript(self):
@@ -282,7 +295,104 @@ class Fixture:
             self.journal["events"].append({"event": event, **fields})
             write_json(self.args.root / "journal.json", self.journal)
 
+    def extension_session(self):
+        if self.version == "v1":
+            return {"type": "quicksilver", "instructions": self.prompt,
+                    "audio": {"input": {"format": {"type": "audio/pcm", "rate": 24000}},
+                              "output": {"voice": "cove"}}}
+        session = {"instructions": self.prompt, "audio": {"output": {"voice": "cove"}},
+                   "delegation": {"type": "client"}}
+        if self.extension == "controls":
+            session["delegation"]["ack_filler"] = False
+            session["initial_items"] = [
+                {"type": "message", "role": "user",
+                 "content": [{"type": "input_text", "text": "Owned initial user"}]},
+                {"type": "message", "role": "assistant",
+                 "content": [{"type": "output_text", "text": "Owned initial assistant"}]}]
+        return session
+
+    def extension_start(self):
+        params = {"threadId": self.thread_id, "transport": {"type": "websocket"},
+                  "version": self.version, "outputModality": "audio",
+                  "includeStartupContext": False, "prompt": self.prompt,
+                  "voice": "cove", "realtimeSessionId": self.session_id}
+        if self.extension == "controls":
+            params["delegationAckFiller"] = False
+            params["initialItems"] = [
+                {"role": "user", "text": "Owned initial user"},
+                {"role": "assistant", "text": "Owned initial assistant"}]
+        return params
+
+    def extension_inputs(self):
+        if self.extension == "utf8":
+            return [("thread/realtime/appendText", {
+                "threadId": self.thread_id, "role": "assistant",
+                "text": "a" * 499 + "λ" + "b" * 499})]
+        data, item_id = (("AQACAA==", "owned-v1-input") if self.extension == "ingress"
+                         else ("BQAGAA==", "owned-v3-input"))
+        inputs = [("thread/realtime/appendAudio", {
+            "threadId": self.thread_id, "audio": {
+                "data": data, "sampleRate": 24000, "numChannels": 1,
+                "samplesPerChannel": 2, "itemId": item_id}})]
+        if self.extension == "ingress":
+            inputs += [
+                ("thread/realtime/appendText", {
+                    "threadId": self.thread_id, "role": "assistant",
+                    "text": "Owned V1 assistant text"}),
+                ("thread/realtime/appendText", {
+                    "threadId": self.thread_id, "role": "developer",
+                    "text": "Owned V1 developer text"})]
+        return inputs
+
+    def extension_frames(self):
+        if self.extension == "controls":
+            return [{"type": "input_audio.append", "audio": "BQAGAA=="}]
+        if self.extension == "utf8":
+            return [{"type": "session.context.append",
+                     "content": [{"type": "input_text", "text": text}]}
+                    for text in ["a" * 499, "λ" + "b" * 498, "b"]]
+        return [
+            {"type": "input_audio_buffer.append", "audio": "AQACAA=="},
+            {"type": "conversation.item.create", "item": {
+                "type": "message", "role": "assistant",
+                "content": [{"type": "output_text", "text": "Owned V1 assistant text"}]}},
+            {"type": "conversation.item.create", "item": {
+                "type": "message", "role": "developer",
+                "content": [{"type": "input_text", "text": "Owned V1 developer text"}]}}]
+
+    def accept_extension_frame(self, message):
+        expected = self.extension_frames()
+        assert self.append_count < len(expected)
+        assert message == expected[self.append_count]
+        self.append_count += 1
+        self.record("extension_frame", index=self.append_count)
+        return self.append_count == len(expected)
+
+    def extension_output(self):
+        if self.extension == "ingress":
+            return [
+                {"type": "conversation.output_transcript.delta",
+                 "delta": "Owned V1 assistant reply"},
+                {"type": "response.output_audio_transcript.done",
+                 "transcript": "Owned V1 assistant reply"},
+                {"type": "conversation.output_audio.delta", "delta": "AwAEAA==",
+                 "sample_rate": 24000, "channels": 1, "samples_per_channel": 2}]
+        if self.extension == "controls":
+            return [
+                {"type": "input_transcript.added",
+                 "item": {"text": "Owned V3 ingress transcript"}},
+                {"type": "turn.done", "turn": {
+                    "role": "user", "transcript": "Owned V3 ingress transcript"}}]
+        return [
+            {"type": "output_transcript.added",
+             "item": {"text": "Owned V3 assistant reply λ"}},
+            {"type": "turn.done", "turn": {
+                "role": "assistant", "transcript": "Owned V3 assistant reply λ"}}]
+
     def expected_session(self, model=False):
+        if self.extension:
+            assert not model
+            return self.extension_session()
         if self.version == "v1":
             session = {"type": "quicksilver", "instructions": PROMPT,
                        "audio": {"input": {"format": {"type": "audio/pcm", "rate": 24000}},
@@ -309,6 +419,8 @@ class Fixture:
         return {"type": "session.context.append", "content": [{"type": "input_text", "text": TEXT}]}
 
     def expected_start(self):
+        if self.extension:
+            return self.extension_start()
         transport = {"type": "websocket"} if self.kind == "websocket" else (
             {"type": "webrtc", "sdp": OFFER} if self.kind == "webrtc" else
             {"type": "existingCall", "callId": CALL_ID})
@@ -324,7 +436,8 @@ class Fixture:
 
     def native_input(self, value):
         method, params = value.get("method"), value.get("params")
-        assert method in ALLOWED
+        assert method in ALLOWED or (method == "thread/realtime/appendAudio"
+                                     and self.extension in {"ingress", "controls"})
         if method == "initialize":
             assert params["capabilities"] == {"experimentalApi": True}
         elif method == "initialized":
@@ -335,10 +448,18 @@ class Fixture:
             self.thread_request = value["id"]
         elif method == "thread/realtime/start":
             assert self.thread_id and params == self.expected_start()
+        elif self.extension and method in {"thread/realtime/appendAudio", "thread/realtime/appendText"}:
+            expected = self.extension_inputs()
+            assert self.input_count < len(expected)
+            assert (method, params) == expected[self.input_count]
+            self.input_count += 1
         elif method == "thread/realtime/appendText":
             assert params == {"threadId": self.thread_id, "role": "user", "text": TEXT}
         else:
             assert params == {"threadId": self.thread_id}
+            if self.extension:
+                assert self.input_count == len(self.extension_inputs())
+                assert self.append_count == len(self.extension_frames())
         self.record("native_input", method=method, id=value.get("id"))
 
     def native_output(self, value):
@@ -349,6 +470,8 @@ class Fixture:
 
 def configure(args, fixture):
     endpoint = f"http://127.0.0.1:{fixture.server.server_port}"
+    # A nonblank config prompt overrides even an explicit request at this pin.
+    backend_prompt = "" if fixture.extension else PROMPT
     (args.root / "codex/config.toml").write_text(f'''model = "mock-model"
 model_provider = "fixture"
 approval_policy = "never"
@@ -358,7 +481,7 @@ cli_auth_credentials_store = "file"
 mcp_oauth_credentials_store = "file"
 experimental_realtime_ws_base_url = "{endpoint}/v1"
 experimental_realtime_webrtc_call_base_url = "{endpoint}/v1"
-experimental_realtime_ws_backend_prompt = "{PROMPT}"
+experimental_realtime_ws_backend_prompt = "{backend_prompt}"
 experimental_realtime_ws_startup_context = "Unused synthetic startup context"
 experimental_realtime_ws_model = "owned-synthetic-realtime"
 [realtime]

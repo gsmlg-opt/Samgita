@@ -51,7 +51,11 @@ defmodule SamgitaCodexDriver.NativeRealtimeSdpProfile do
         assert events(ctx, "native_closed") != []
       end
 
-      File.rm_rf!(root)
+      if File.exists?(Path.join(root, "journal.json")) and events(ctx, "fixture_error") != [] do
+        IO.puts(:stderr, "Owned realtime failure evidence retained: #{root}")
+      else
+        File.rm_rf!(root)
+      end
     end)
 
     ctx
@@ -71,6 +75,214 @@ defmodule SamgitaCodexDriver.NativeRealtimeSdpProfile do
     test "stock native #{scenario} starts exchanges dependency events and stops", ctx do
       exercise(ctx)
     end
+  end
+
+  for {scenario, version} <- [
+        {"websocket-v1-ingress", "v1"},
+        {"websocket-v3-controls", "v3"},
+        {"websocket-v3-utf8", "v3"}
+      ] do
+    @tag scenario: scenario, realtime_version: version, transport_kind: "websocket"
+    test "stock native #{scenario} exchanges distinct audio startup or UTF8 controls", ctx do
+      exercise_extension(ctx)
+    end
+  end
+
+  defp exercise_extension(ctx) do
+    pid = start(ctx)
+
+    assert File.read!(Path.join(ctx.root, "codex/config.toml")) =~
+             "experimental_realtime_ws_backend_prompt = \"\""
+
+    thread =
+      call(pid, "thread/start", %{"cwd" => Path.join(ctx.root, "workspace")})["thread"]["id"]
+
+    assert is_binary(thread)
+    assert call(pid, "thread/realtime/start", extension_start_params(ctx, thread)) == %{}
+    started = collect(pid, &(notices(&1, "thread/realtime/started") != []))
+    wait(fn -> length(events(ctx, "peer_ready")) == 1 end)
+
+    expected =
+      Enum.reduce(extension_steps(ctx, thread), [], fn {method, params, frames}, previous ->
+        assert call(pid, method, params) == %{}
+        expected = previous ++ frames
+        wait(fn -> length(events(ctx, "extension_frame")) == length(expected) end)
+        assert extension_frames(ctx) == expected
+        expected
+      end)
+
+    exchanged =
+      collect(pid, fn current ->
+        notices(current, "thread/realtime/transcript/done") != [] and
+          (ctx.version != "v1" or notices(current, "thread/realtime/outputAudio/delta") != [])
+      end)
+
+    wait(fn -> length(events(ctx, "peer_exchange")) == 1 end)
+    assert call(pid, "thread/realtime/stop", %{"threadId" => thread}) == %{}
+    closed = collect(pid, &(notices(&1, "thread/realtime/closed") != []), [], 500, true)
+    assert extension_frames(ctx) == expected
+    assert_extension_notices(ctx, thread, started ++ exchanged ++ closed)
+    assert_dependency(ctx)
+    finish(ctx, pid)
+  end
+
+  defp extension_start_params(ctx, thread) do
+    params = %{
+      "threadId" => thread,
+      "transport" => %{"type" => "websocket"},
+      "version" => ctx.version,
+      "outputModality" => "audio",
+      "includeStartupContext" => false,
+      "prompt" => "Owned realtime controls prompt",
+      "voice" => "cove",
+      "realtimeSessionId" => extension_session_id(ctx)
+    }
+
+    if ctx.scenario == "websocket-v3-controls" do
+      Map.merge(params, %{
+        "delegationAckFiller" => false,
+        "initialItems" => [
+          %{"role" => "user", "text" => "Owned initial user"},
+          %{"role" => "assistant", "text" => "Owned initial assistant"}
+        ]
+      })
+    else
+      params
+    end
+  end
+
+  defp extension_session_id(ctx) do
+    "websocket-" <> suffix = ctx.scenario
+    "owned-" <> suffix
+  end
+
+  defp extension_steps(%{scenario: "websocket-v1-ingress"}, thread) do
+    audio =
+      {"thread/realtime/appendAudio",
+       %{
+         "threadId" => thread,
+         "audio" => %{
+           "data" => "AQACAA==",
+           "sampleRate" => 24_000,
+           "numChannels" => 1,
+           "samplesPerChannel" => 2,
+           "itemId" => "owned-v1-input"
+         }
+       }, [%{"type" => "input_audio_buffer.append", "audio" => "AQACAA=="}]}
+
+    text =
+      for {role, type, value} <- [
+            {"assistant", "output_text", "Owned V1 assistant text"},
+            {"developer", "input_text", "Owned V1 developer text"}
+          ] do
+        {"thread/realtime/appendText", %{"threadId" => thread, "role" => role, "text" => value},
+         [
+           %{
+             "type" => "conversation.item.create",
+             "item" => %{
+               "type" => "message",
+               "role" => role,
+               "content" => [%{"type" => type, "text" => value}]
+             }
+           }
+         ]}
+      end
+
+    [audio | text]
+  end
+
+  defp extension_steps(%{scenario: "websocket-v3-controls"}, thread) do
+    [
+      {"thread/realtime/appendAudio",
+       %{
+         "threadId" => thread,
+         "audio" => %{
+           "data" => "BQAGAA==",
+           "sampleRate" => 24_000,
+           "numChannels" => 1,
+           "samplesPerChannel" => 2,
+           "itemId" => "owned-v3-input"
+         }
+       }, [%{"type" => "input_audio.append", "audio" => "BQAGAA=="}]}
+    ]
+  end
+
+  defp extension_steps(%{scenario: "websocket-v3-utf8"}, thread) do
+    text = String.duplicate("a", 499) <> "λ" <> String.duplicate("b", 499)
+    chunks = [String.duplicate("a", 499), "λ" <> String.duplicate("b", 498), "b"]
+    assert byte_size(text) == 1_000
+    assert Enum.map(chunks, &byte_size/1) == [499, 500, 1]
+    assert Enum.join(chunks) == text
+
+    frames =
+      for chunk <- chunks do
+        %{
+          "type" => "session.context.append",
+          "content" => [%{"type" => "input_text", "text" => chunk}]
+        }
+      end
+
+    [
+      {"thread/realtime/appendText",
+       %{"threadId" => thread, "role" => "assistant", "text" => text}, frames}
+    ]
+  end
+
+  defp extension_frames(ctx) do
+    events(ctx, "native_frame")
+    |> Enum.map(& &1["message"])
+    |> Enum.reject(&(&1["type"] in ["session.update", "session.close"]))
+  end
+
+  defp assert_extension_notices(ctx, thread, received) do
+    assert notices(received, "thread/realtime/started") == [
+             %{
+               "threadId" => thread,
+               "realtimeSessionId" => extension_session_id(ctx),
+               "version" => ctx.version
+             }
+           ]
+
+    assert notices(received, "thread/realtime/sdp") == []
+
+    assert notices(received, "thread/realtime/closed") == [
+             %{"threadId" => thread, "reason" => "requested"}
+           ]
+
+    {role, transcript} =
+      case ctx.scenario do
+        "websocket-v1-ingress" -> {"assistant", "Owned V1 assistant reply"}
+        "websocket-v3-controls" -> {"user", "Owned V3 ingress transcript"}
+        "websocket-v3-utf8" -> {"assistant", "Owned V3 assistant reply λ"}
+      end
+
+    assert notices(received, "thread/realtime/transcript/delta") == [
+             %{"threadId" => thread, "role" => role, "delta" => transcript}
+           ]
+
+    assert notices(received, "thread/realtime/transcript/done") == [
+             %{"threadId" => thread, "role" => role, "text" => transcript}
+           ]
+
+    expected_audio =
+      if ctx.version == "v1" do
+        [
+          %{
+            "threadId" => thread,
+            "audio" => %{
+              "data" => "AwAEAA==",
+              "sampleRate" => 24_000,
+              "numChannels" => 1,
+              "samplesPerChannel" => 2,
+              "itemId" => nil
+            }
+          }
+        ]
+      else
+        []
+      end
+
+    assert notices(received, "thread/realtime/outputAudio/delta") == expected_audio
   end
 
   defp exercise(ctx) do
@@ -312,7 +524,10 @@ defmodule SamgitaCodexDriver.NativeRealtimeSdpProfile do
 
     for event <- current do
       refute event.kind == :server_request
-      refute event.wire["method"] in ["turn/started", "thread/realtime/error", "error"]
+
+      refute event.wire["method"] in ["turn/started", "thread/realtime/error", "error"],
+             "Unexpected owned realtime event: #{inspect(event.wire)}"
+
       unless allow_closed, do: refute(event.wire["method"] == "thread/realtime/closed")
     end
 

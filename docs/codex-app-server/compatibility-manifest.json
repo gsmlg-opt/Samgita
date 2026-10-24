@@ -186764,7 +186764,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/realtime-lifecycle-qualification.md"
+        "docs/codex-app-server/realtime-lifecycle-qualification.md",
+        "docs/codex-app-server/realtime-controls-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
@@ -189954,14 +189955,15 @@
       "id": "schema:v2/ThreadRealtimeStartParams.json#/properties/delegationAckFiller",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Only native rejection of unsupported settings is exercised; the enabled backend success path remains missing."
+        "Earlier unsupported-settings rejection is supplemented by this scoped positive native case; no verified promotion.",
+        "actual_native_local_synthetic_backend: Explicit false reaches the genuine V3 dependency session.update as ack_filler:false with ordered initial user/assistant items; strict independent frame comparison plus audio/transcript exchange and requested stop. Test100-124,141-147; fixture305-323. Full11/0 both seeds. True/null/other versions and actual backend filler/handoff/media/OS/A11 acceptance remain unqualified; no alias or whole-method credit."
       ],
       "nullable": true,
       "pointer": "/properties/delegationAckFiller",
       "required": false,
       "schema": "v2/ThreadRealtimeStartParams.json",
       "schema_sha256": "39de3cca8efa66a41d560ebd64d533b52c7d92b7228e93f04c868c3daa2d1bdb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -189969,10 +189971,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs"
+          "apps/samgita_codex_driver/test/native_realtime_lifecycle_profile.exs",
+          "apps/samgita_codex_driver/test/native_realtime_sdp_profile.exs:100-124,141-147"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "delegationAckFiller"
     },
     {

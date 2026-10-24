@@ -33,10 +33,13 @@ remain **462 implemented / 12 missing / 11 blocked**, zero verified; all four
 legacy requirements remain blocked. The
 [native interaction deadline/control unit](interaction-deadline-qualification.md)
 now passes the full owning block **12/0** at both fixed seeds with strict checks
-and a matching source guard; lifecycle state/counts remain unchanged. Next:
-apply and qualify the source-audited V1/V3 control and review-target patches,
-then repeat the complete final-source local/hosted matrix. Those drafts have no
-acceptance credit. A11, source-unreachable emitters and external/OS profiles remain open.
+and a matching source guard; lifecycle state/counts remain unchanged. The
+[V1/V3 control unit](realtime-controls-qualification.md) also passes **11/0**
+twice, with exact physical-frame barriers and a source-backed fixture correction.
+One direct property owner brings current contracts to **3,021 implemented /
+3,600 missing**, zero verified. Apply and qualify the source-audited review-target
+patch next, then repeat the complete final-source local/hosted matrix. That draft
+has no acceptance credit. A11, source-unreachable emitters and external/OS profiles remain open.
 
 ## Earlier scoped units
 

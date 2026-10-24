@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,020 implemented / 3,601 missing
+11 blocked requirements** and **0 verified / 3,021 implemented / 3,600 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,020 directly exercised
+MCP entries have scoped implementation evidence. These 3,021 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -46,6 +46,14 @@ are checked against an independent explicit-acceptance control. Live failed
 command and absent durable command are asserted separately according to pinned
 source. Existing deadlines and guardians remain. No legacy `TimedOut`, fully
 verified lifecycle or count promotion follows; final-source checks remain pending.
+
+Three [V1/V3 realtime controls](realtime-controls-qualification.md) pass in the
+full **11/0** profile at both fixed seeds. Exact dependency frames qualify audio,
+role-specific text, explicit false startup control and UTF-8 499/500/1-byte
+chunking, with native transcript/audio results. The retained initial three
+failures are traced to pinned configuration-prompt precedence; only new fixtures
+clear that override. One direct property owner gains scoped implemented evidence;
+real media/backend, other variants, A11 and full acceptance remain incomplete.
 
 Eight [review delivery cases](review-delivery-qualification.md) pass at both
 fixed seeds with warning-free compilation, format, strict Credo and a matching
