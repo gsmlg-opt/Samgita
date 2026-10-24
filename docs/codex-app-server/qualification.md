@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
-Status: **incomplete**. The regenerated manifest records **0 verified / 460 implemented / 14 missing /
-11 blocked requirements** and **0 verified / 1,297 implemented / 5,324 missing
+Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
+11 blocked requirements** and **0 verified / 1,659 implemented / 4,962 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,297 directly exercised
+MCP entries have scoped implementation evidence. These 1,659 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -39,9 +39,10 @@ The [Gateway OAuth profile](gateway-oauth-qualification.md) passes five real
 native cases at both recorded seeds: passive readiness, gates, pending login,
 cancellation with immediate retry, and actual PKCE callback/token-exchange
 failure. Six entries and fifteen exact field/variant contracts gain scoped
-implementation evidence. Successful login and `succeeded` readiness still
-require an isolated OS keyring and remain incomplete; error-only results are
-not successful sign-in acceptance.
+implementation evidence. Its later [private Secret Service success profile](gateway-success-qualification.md)
+adds actual successful login and `succeeded` readiness with an isolated OS
+keyring; external-account and remaining lifetime profiles stay incomplete.
+The earlier failure-only profile cannot supply that success evidence.
 
 The [Bedrock recovery profile](bedrock-recovery-qualification.md) passes both
 native cases at both seeds: real SigV4 signing, OLD401, an owned fixed refresh
@@ -2112,3 +2113,34 @@ Ledger: **461 implemented / 13 missing / 11 blocked** requirements and
 **1,635 implemented / 4,986 missing** contracts, **zero verified**. Full approval
 lifecycle, loss/replay, remaining field/environment/OS/service profiles, A11 and
 final aggregate/hosted checks remain incomplete.
+
+## Native permission, history and approval-loss boundaries
+
+Four further units use the same immutable real Codex executable and add
+**22 cases**. Each passes at both seeds `501432` and `987654`:
+
+| Unit | Results | Actual native behavior and limits |
+| --- | --- | --- |
+| [Permission lifetime](permission-lifetime-qualification.md) | 5/0, 6.4/6.5s | Turn versus session write authority, different-thread isolation, cold permission-cache loss with retained files/history, exact interrupted callback and next-turn rejection; local environment and strictAutoReview:false only |
+| [Resume pages](resume-page-qualification.md) | 5/0, 7.4/6.9s | Eight explicit parameter variants, independent exact content/order/count assertions, legacy versus paginated hydration, inclusive/exclusive cursors, cold persistence and native gate/errors; three completed assistant-only turns |
+| [Fork/revert boundaries](fork-boundary-qualification.md) | 6/0, 12.7s twice | Non-latest boundaries in both history modes, persistent empty child, child/parent divergence and cold history; paginated revert and a separate legacy-source ephemeral:true child; no active-turn or paginated ephemeral:true qualification |
+| [Approval loss](approval-loss-qualification.md) | 6/0, 8.6s twice | File/permission warm callback replay, dropped outbound reply, suppressed genuine completion notices, exact effects/history and explicit uncertainty reconciliation; deterministic client-boundary faults, no claim of observed TCP packet loss or cold callback recovery |
+
+AST/JSON checks, namespace preflight, compile, format and scoped strict Credo
+pass. The support transport receives its own format/Credo check. The approval
+loss test's first run failed four cases because its Boolean predicate received
+`nil`; explicit presence checks and exact request-ID resolution corrected that
+test error without weakening deadlines, effects or no-retry assertions. No
+production driver or cleanup behavior changes in these units. The default
+native suite discovers all four files; final package/hosted results must use
+their final source rather than the earlier 432-test checkpoint.
+
+The [latest populated-database aggregate checkpoint](repair-qualification.md#latest-populated-database-aggregate-checkpoint)
+retains both full-suite failures caused by the unchanged GitHub first-page
+assumption. Separate native platform **53 + 5** tests and consecutive recovery/
+restart **4 + 1** tests at both seeds pass without reset, data deletion or
+activation bypass. Strict checks, audit, assets and local production assembly
+pass, while the aggregate remains failed. The two-Agent native journey supplies
+scoped execution/review/acceptance separation evidence. None of these results
+closes A11, upstream-unreachable legacy paths, external/OS success profiles or
+the full compatibility gate. No release/tag/publication/deployment occurred.

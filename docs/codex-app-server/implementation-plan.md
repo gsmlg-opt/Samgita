@@ -35,8 +35,8 @@ manifest now inventories 485 message/result/envelope/lifecycle requirements plus
 progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
-waiver. Selected native method/notification entries now total 461 `implemented`,
-with 1,635 exact field/variant schema contracts implemented; 13 requirements and 4,986 contracts
+waiver. Selected native method/notification entries now total 462 `implemented`,
+with 1,659 exact field/variant schema contracts implemented; 12 requirements and 4,962 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -488,7 +488,8 @@ lifecycle rules remain missing; selected presence gates do not complete them.
 
 ## Known boundaries
 
-- Full compatibility is unproven; existing 13 adapter tests exercise a subset.
+- Full compatibility is unproven; the retained convenience adapter and selected
+  native driver suites cannot qualify all pinned field/behavior variants.
 - A11 raw LiveView credential telemetry remains a platform confidentiality blocker.
 - No real-service/account credential acceptance has run. Do not manufacture access
   or count unavailable profiles as enabled success.
@@ -501,3 +502,20 @@ lifecycle rules remain missing; selected presence gates do not complete them.
   twelve native profiles passed, but hosted platform tests did not run.
 - No branches/worktrees, sibling edits, production migrations, live credentials,
   live projects or deployments are authorized.
+
+## Current repair continuation
+
+Four [permission/history/approval-loss units](qualification.md#native-permission-history-and-approval-loss-boundaries)
+add 22 real-native tests, each passing both recorded seeds. Twenty-four exact
+missing fields gain scoped implemented evidence; the two-Agent native platform
+journey adds task-acceptance separation. No row is verified and the broad
+approval/default/authorization lifecycle rules remain missing. Read the linked
+unit records for initial test failures, source anchors and deployment limits.
+
+The [populated-database aggregate](repair-qualification.md#latest-populated-database-aggregate-checkpoint)
+fails both seeds at the unchanged GitHub API first-page assertion. Preserve that
+failure without out-of-scope repairs, reset or gate suppression. Native platform,
+consecutive recovery/restart, strict checks, audit, assets and local assembly
+pass separately. Continue the independent remaining method/field evidence and
+final package/hosted checks. A11, upstream-unreachable paths and external/OS
+success profiles remain incomplete; no release or deployment is authorized.

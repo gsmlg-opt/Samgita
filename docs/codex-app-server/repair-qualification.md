@@ -6,6 +6,67 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Latest populated-database aggregate checkpoint
+
+At `53ec89b95f6577e8cf328a22f1f77d9548384042`, the final-source platform
+runner retained `samgita_redesign_recovery_repair_test` without reset, row
+deletion, changed mappings or relaxed activation. Compilation, full format and
+strict Credo passed. Both full umbrella seeds, `501432` and `987654`, reported
+**224 core tests / zero failures / one excluded** and **125 web tests / one
+failure / two excluded**. Dedicated e2e cases are run separately below.
+
+The failure is the unchanged GitHub connection-management test at
+`apps/samgita_web/test/samgita_web/controllers/github_controller_test.exs:56`:
+it requires a just-created connection to appear in the default first page.
+Retained independent-transaction concurrency fixtures now exceed that page.
+`Samgita.GitHub.connections/2` orders UUIDs and applies the requested bounded
+limit/offset, so the new UUID need not occur there. Both runs show retained
+concurrency connections in the response. This is a separate pre-existing
+pagination assumption, not a recurrence of the repaired activation guard or a
+driver failure. No GitHub source/test was changed, page enlarged, fixture deleted,
+aggregate assertion skipped or gate converted to success. The aggregate remains
+**failed** and prevents a passing-release claim.
+
+Independent checks continued with every exit recorded, while retaining the
+failure. Native runtime/API/concurrency checks passed **53 core + 5 web tests**,
+including the two differently named ordinary Agents and execution/review/
+acceptance separation. Consecutive recovery/restart seeds each passed
+**4 core + 1 web tests** on the same populated database. Legacy scanner tests
+and exact runtime scan, forced Dialyzer, strict Hex audit, frozen web dependency
+installation, assets, production dependencies/assets and local production
+assembly all passed. No assembled service was started, tagged or published.
+
+Commands are the repository checks plus:
+
+```sh
+mix test --seed 501432
+mix test --seed 987654
+mix test apps/samgita/test/samgita/runtime_registration_test.exs \
+  apps/samgita/test/samgita/codex_runtime_test.exs \
+  apps/samgita/test/samgita/codex_runtime_notification_test.exs \
+  apps/samgita/test/samgita/codex_runtime_tool_retirement_test.exs \
+  apps/samgita/test/samgita/codex_runtime_race_test.exs \
+  apps/samgita/test/samgita/codex_runtime_operator_authority_test.exs \
+  apps/samgita_web/test/samgita_web/controllers/codex_runtime_controller_test.exs \
+  apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs \
+  --include e2e --include real_codex --seed 501432
+mix test apps/samgita/test/samgita/recovery_activation_test.exs \
+  apps/samgita_web/test/samgita_web/integration/restart_reconcile_test.exs \
+  --include e2e --seed 501432
+# Repeat the recovery command with --seed 987654.
+```
+
+Verified Devenv supplies Elixir/OTP; `MIX_ENV=test`,
+`PGHOST=/tmp/samgita-p3-pg/socket`, `POSTGRES_PORT=55443`, `POSTGRES_USER=gao`,
+the named database override and hash-pinned `CODEX_BINARY` select only isolated
+synthetic resources. Source hashes, commands, exits and logs are in
+`/tmp/samgita-repair-final-platform-v3-20261024/` and
+`/tmp/samgita-repair-final-platform-v3-remaining-20261024/`. Both source guards
+passed. Production assembly uses a separate
+`/tmp/samgita-repair-final-prod-v3-20261024` build path and synthetic configuration.
+Later source additions require corresponding final validation; this is a
+checkpoint, not completion of the full compatibility goal or A11.
+
 The later [A11 ingress boundary assessment](a11-ingress-boundary.md) inventories
 browser, API, Agent, GitHub and proof/ticket paths. A browser envelope alone cannot
 close the accepted raw-metadata contract; supported pre-emission instrumentation

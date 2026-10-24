@@ -6259,14 +6259,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/fork",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/ThreadForkParams"
@@ -6297,7 +6299,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-329,366-474"
         ]
       },
       "transport_coverage": [
@@ -7300,7 +7303,10 @@
         "Selected real-binary Linux/stdio persistence at 73258c5: UTF-8 text_elements, clientId and one completed turn survive owned-process restart; apps/samgita_codex_driver/test/turn_input_test.exs",
         "Scope and residual requirements: docs/codex-app-server/turn-input-qualification.md",
         "docs/codex-app-server/core-thread-turn-qualification.md",
-        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/read",
@@ -7308,7 +7314,10 @@
       "legacy": false,
       "limitations": [
         "Selected actual-native behavior: Persisted turns/content and no reexecution after restart. Full history/readState/platform matrix incomplete.",
-        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification."
+        "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified.",
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
       ],
       "params": {
         "$ref": "#/definitions/ThreadReadParams"
@@ -7341,11 +7350,15 @@
         "verified": [
           "apps/samgita_codex_driver/test/turn_input_test.exs",
           "apps/samgita_codex_driver/test/method_families_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-197,199-242,260-300",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-329,366-474",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "thread/read"
     },
@@ -7730,16 +7743,22 @@
         "Scope and residual requirements: docs/codex-app-server/turn-input-qualification.md",
         "docs/codex-app-server/core-thread-turn-qualification.md",
         "docs/codex-app-server/thread-event-lifecycle-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/resume-page-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/resume",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native behavior: Explicit cold resume recovers identity and history without provider request. Path/history/setting overrides and paginated resume fields missing.",
+        "Selected actual-native behavior: Explicit cold resume recovers identity and history without provider request. Path/history/setting overrides remain unqualified; selected paginated resume fields have separate scoped resume-page evidence.",
         "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
       ],
       "params": {
         "$ref": "#/definitions/ThreadResumeParams"
@@ -7772,11 +7791,15 @@
         "verified": [
           "apps/samgita_codex_driver/test/turn_input_test.exs",
           "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-197,199-242,260-300",
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-223",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "thread/resume"
     },
@@ -7785,7 +7808,8 @@
       "direction": "client_request",
       "evidence": [
         "docs/codex-app-server/thread-history-qualification.md",
-        "docs/codex-app-server/thread-revert-qualification.md"
+        "docs/codex-app-server/thread-revert-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/revert",
@@ -7793,7 +7817,8 @@
       "legacy": false,
       "limitations": [
         "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
-        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/ThreadRevertParams"
@@ -7825,7 +7850,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-329,366-474"
         ]
       },
       "transport_coverage": [
@@ -8566,7 +8592,8 @@
       "evidence": [
         "docs/codex-app-server/deferred-mcp-qualification.md",
         "docs/codex-app-server/core-thread-turn-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:turn/interrupt",
@@ -8575,7 +8602,8 @@
       "limitations": [
         "Deferred MCP discovery, namespaced invocation, structured content/error association, capability/disabled-tool gates and explicit interruption have selected real-binary evidence with an owned synthetic provider/MCP peer. Full turn/item/status variants, live Apps, external MCP/HTTP/OAuth, concurrency, cold replay and other transport/OS profiles remain unqualified.",
         "Selected actual-native behavior: ACK then native interrupted completion and pending interaction retirement. Selected pending tool/input cases only; not success/retry authorization.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "params": {
         "$ref": "#/definitions/TurnInterruptParams"
@@ -8608,7 +8636,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/deferred_mcp_test.exs",
           "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:144-197,272-300,326-351"
         ]
       },
       "transport_coverage": [
@@ -9407,7 +9436,8 @@
       "evidence": [
         "docs/codex-app-server/approval-qualification.md",
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:item/fileChange/requestApproval",
@@ -9415,7 +9445,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Exact owned patch is absent before decision and applied only on accept/session accept; decline/cancel preserve target; explicit error declines. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
       ],
       "prerequisites": [
         "initialized"
@@ -9434,11 +9465,13 @@
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "item/fileChange/requestApproval"
     },
@@ -9448,7 +9481,9 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/approval-qualification.md",
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "id": "client_response:item/permissions/requestApproval",
@@ -9456,7 +9491,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Requested write directory remains exact; granted turn permissions reach model output, omitted scope defaults to turn; excess paths/network are intersected; strict session auto-review and reply errors fail closed. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "No actual filesystem/network command executes after grant; selected native permission profile transformation only. Session scope sent but exact durable session behavior unasserted."
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
       ],
       "prerequisites": [
         "initialized"
@@ -9474,11 +9510,14 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+          "apps/samgita_codex_driver/test/server_interactions_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-197,199-242,260-300",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "item/permissions/requestApproval"
     },
@@ -9761,7 +9800,9 @@
         "docs/codex-app-server/interaction-evidence-qualification.md",
         "docs/codex-app-server/network-amendment-qualification.md",
         "docs/codex-app-server/approval-edits-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "id": "lifecycle:approval-decisions",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -9771,7 +9812,9 @@
         "actual_native_managed_proxy: Both typed persistent allow/deny amendments execute on stock native HTTP proxy, preserve exact rules, and avoid another prompt on same-host repetition; cross-context decisions, loss/restart and complete approval lifecycle remain unqualified.",
         "Expanded actual native HTTP decisions at171-369: one-shot/session, equivalent-host edit, mismatched allow vs deny cache, explicit error, decline and interruption preserve exact effects/rules/warnings/provider counts. Remaining cross-context, loss/restart, protocol/OS and full lifecycle profiles stay unqualified.",
         "actual_native_edited_prefix: Exact narrower/unrelated safe prefixes persist with current execution but distinct later prompting; empty prefix warns before file creation while current approval still executes. Subsequent original commands explicitly decline; stale handles/history/effects asserted. No broad prefix, legacy runtime or full lifecycle qualification.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
       ],
       "required_behavior": "preserve every decision variant and edits; require explicit authorized handler",
       "schema_sha256": "b0c99e763de6cb504aee7aadd4177c897fe5cb9065748cf7fe5e988558d1ae5e",
@@ -9789,11 +9832,14 @@
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
           "apps/samgita_codex_driver/test/native_network_amendment_profile.exs",
           "apps/samgita_codex_driver/test/native_approval_edits_test.exs:46-130,157-175,226-282",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-197,199-242,260-300",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "approval-decisions"
     },
@@ -9958,14 +10004,16 @@
     {
       "direction": "lifecycle_rule",
       "evidence": [
-        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md"
+        "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "id": "lifecycle:disconnect-reconnect",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_reconnect_local_synthetic_backend: Borrowed native WebSocket reconnect requires fresh initialize; explicit resume retains one turn and exactly one provider request434-442.",
         "scripted_peer_fault: Dropped mutation returns uncertainty; pending cleared; reconnect never replays; old ID rejected and explicit reconciliation only.",
-        "Actual native case reconnects after completed execution; in-flight disconnect ambiguity uses scripted peer. No upstream deduplication or replay cursor guarantee."
+        "Earlier completed-turn native reconnect and scripted-peer ambiguity are supplemented by selected actual native file/permission callback loss cases. No upstream deduplication or replay cursor guarantee.",
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
       ],
       "required_behavior": "new connection initializes separately; no fabricated replay or upstream deduplication guarantees",
       "schema_sha256": "10c97a79f947489227cef9b60bf9e6dab1c44aece1679f59d42f88c73a6744ce",
@@ -9979,10 +10027,13 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/real_session_test.exs:424",
-          "apps/samgita_codex_driver/test/session_test.exs:203"
+          "apps/samgita_codex_driver/test/session_test.exs:203",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/websocket-capability-token"
+      ],
       "wire_name": "disconnect-reconnect"
     },
     {
@@ -10312,36 +10363,48 @@
     },
     {
       "direction": "lifecycle_rule",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/platform-integration.md",
+        "docs/codex-app-server/qualification.md"
+      ],
       "id": "lifecycle:task-acceptance-separation",
-      "implementation_module": "SamgitaCodexDriver.Session",
-      "limitations": [],
+      "implementation_module": "Samgita.CodexRuntime",
+      "limitations": [
+        "actual_native_platform_acceptance_boundary: Ordinary and Synapsis-named registered Agents complete a pinned native command turn while the Task remains in_progress; explicit proof-bearing Attempt reporting submits awaiting_review and operator review plus acceptance alone produce accepted. Core tests hold reporting for live turns and notification gaps until explicit cessation evidence. Selected Linux/stdio synthetic-model fixture only; full authorization lifecycle, external services, A11 and deployment remain unqualified."
+      ],
       "required_behavior": "Codex execution completion does not accept a Samgita task",
       "schema_sha256": "3582fba1b8da81243e935bc7b4dcf6ac1a247149715f0545eface8ebe317eab4",
       "schema_version": "0.163.0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs:18-170",
+          "apps/samgita/test/samgita/codex_runtime_test.exs:502-557"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "task-acceptance-separation"
     },
     {
       "direction": "lifecycle_rule",
       "evidence": [
         "docs/codex-app-server/tool-interactions-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "id": "lifecycle:turn-interrupt",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "required_behavior": "turn/interrupt is explicit application cancellation; transport closure is not proof of turn cancellation",
       "schema_sha256": "44e67d703636a2583b77ba0434b19db11505d554b46431bd9259facbffbf1af9",
@@ -10356,7 +10419,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs",
           "apps/samgita_codex_driver/test/session_tool_retirement_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:144-197,272-300,326-351"
         ]
       },
       "transport_coverage": [
@@ -12425,7 +12489,9 @@
       "direction": "server_notification",
       "evidence": [
         "docs/codex-app-server/tool-interactions-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "id": "server_notification:serverRequest/resolved",
@@ -12433,7 +12499,9 @@
       "legacy": false,
       "limitations": [
         "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
       ],
       "params": {
         "$ref": "#/definitions/ServerRequestResolvedNotification"
@@ -12457,12 +12525,15 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs",
           "apps/samgita_codex_driver/test/session_tool_retirement_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:144-197,272-300,326-351",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
         ]
       },
       "transport_coverage": [
         "linux-x86_64-musl/unix-socket",
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "serverRequest/resolved"
     },
@@ -14585,7 +14656,8 @@
       "evidence": [
         "docs/codex-app-server/approval-qualification.md",
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "id": "server_request:item/fileChange/requestApproval",
@@ -14593,7 +14665,8 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Exact owned patch is absent before decision and applied only on accept/session accept; decline/cancel preserve target; explicit error declines. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
       ],
       "params": {
         "$ref": "#/definitions/FileChangeRequestApprovalParams"
@@ -14626,11 +14699,13 @@
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "item/fileChange/requestApproval"
     },
@@ -14639,7 +14714,9 @@
       "direction": "server_request",
       "evidence": [
         "docs/codex-app-server/approval-qualification.md",
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "id": "server_request:item/permissions/requestApproval",
@@ -14647,7 +14724,9 @@
       "legacy": false,
       "limitations": [
         "Positive selected behavior: Requested write directory remains exact; granted turn permissions reach model output, omitted scope defaults to turn; excess paths/network are intersected; strict session auto-review and reply errors fail closed. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "No actual filesystem/network command executes after grant; selected native permission profile transformation only. Session scope sent but exact durable session behavior unasserted."
+        "No actual filesystem/network command executes after grant; selected native permission profile transformation only. Session scope sent but exact durable session behavior unasserted.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing."
       ],
       "params": {
         "$ref": "#/definitions/PermissionsRequestApprovalParams"
@@ -14679,11 +14758,14 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+          "apps/samgita_codex_driver/test/server_interactions_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-197,199-242,260-300",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:109-221,224-372"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "item/permissions/requestApproval"
     },
@@ -19465,14 +19547,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/thread-history-qualification.md"
+        "docs/codex-app-server/thread-history-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/fork",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "legacy": false,
       "limitations": [
-        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified."
+        "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -19489,7 +19573,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-329,366-474"
         ]
       },
       "transport_coverage": [
@@ -20572,7 +20657,8 @@
         "Other response variants remain unqualified; docs/codex-app-server/turn-input-qualification.md",
         "docs/codex-app-server/core-thread-turn-qualification.md",
         "docs/codex-app-server/thread-event-lifecycle-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/resume-page-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/resume",
@@ -20581,7 +20667,8 @@
       "limitations": [
         "Selected actual-native behavior: Explicit cold resume recovers identity and history without provider request. Path/history/setting overrides and paginated resume fields missing.",
         "Selected actual-native Linux stdio lifecycle with provider-only synthetic SSE: exact Unicode deltas/identity/order, direct timing/usage, thread notices, configured zero-delay eviction and cold non-replay. Concurrent service connections, other transports/platforms, remaining nullable/enum variants and external backends remain unqualified. No task acceptance or A11 qualification.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
       ],
       "prerequisites": [
         "initialized"
@@ -20600,7 +20687,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/turn_input_test.exs",
           "apps/samgita_codex_driver/test/native_thread_event_lifecycle_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-223"
         ]
       },
       "transport_coverage": [
@@ -20614,7 +20702,8 @@
       "error_schema": "JSONRPCError.json",
       "evidence": [
         "docs/codex-app-server/thread-history-qualification.md",
-        "docs/codex-app-server/thread-revert-qualification.md"
+        "docs/codex-app-server/thread-revert-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/revert",
@@ -20622,7 +20711,8 @@
       "legacy": false,
       "limitations": [
         "Selected persisted search, ordinary timeline, pagination, archive/fork/revert and cold-restart behavior; realtime/audio entries, every parameter/item variant and other deployment profiles remain unqualified.",
-        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -20640,7 +20730,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/thread_search_timeline_test.exs",
-          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-329,366-474"
         ]
       },
       "transport_coverage": [
@@ -38458,167 +38549,223 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "b1626d5137f6aade7e8daa0f2226ee9b359b6cba0442d679e4903f7d13c75fea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemsView"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "pointer": "/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "02c5ea88241aa847cf8106554fcb224d082c8903bd0544eec44fca2ea268514c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "pointer": "/definitions/ThreadResumeInitialTurnsPageParams/properties/itemsView/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadResumeInitialTurnsPageParams/properties/limit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadResumeInitialTurnsPageParams/properties/limit",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "0ffdf9e753bd2e45348716d5e36a12880673a6ac9e62a78d4e03eb399f40cdd4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "limit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadResumeInitialTurnsPageParams/properties/sortDirection",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadResumeInitialTurnsPageParams/properties/sortDirection",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "ba23b6e5cc5d4cfce61407923f5e5d1d685ef641d427da2ee21fd6bd04f132bc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sortDirection"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadResumeInitialTurnsPageParams/properties/sortDirection/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "pointer": "/definitions/ThreadResumeInitialTurnsPageParams/properties/sortDirection/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "717896737b1de96f75fe158f9f977ceada63f1874ffbe7ec49cea2294a4d3f3c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadResumeInitialTurnsPageParams/properties/sortDirection/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "pointer": "/definitions/ThreadResumeInitialTurnsPageParams/properties/sortDirection/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -66729,14 +66876,18 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FileChangeRequestApprovalParams.json#/properties/grantRoot",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_native_file_approval_explicit_null: Map.fetch at215-216 requires this key be present with null during real patch approvals; omitted and nonnull branches, retry escalation and nonnull grant-root semantics remain unqualified. No complete field/lifecycle claim."
+        "actual_native_file_approval_explicit_null: Map.fetch at215-216 requires this key be present with null during real patch approvals; omitted and nonnull branches, retry escalation and nonnull grant-root semantics remain unqualified. No complete field/lifecycle claim.",
+        "actual_native_permission_lifetime: Later file callbacks preserve explicit null reason/grantRoot and exact owned patch path. Nonnull branches remain unqualified; pinned ordinary grantRoot producers pass None.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": true,
       "pointer": "/properties/grantRoot",
@@ -66751,11 +66902,14 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:244-251",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "grantRoot"
     },
@@ -66764,7 +66918,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -66772,7 +66927,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Positive selected behavior: Native exact patch interaction identifiers and positive timestamp. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/itemId",
@@ -66789,11 +66945,13 @@
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "itemId"
     },
@@ -66801,14 +66959,18 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FileChangeRequestApprovalParams.json#/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_native_file_approval_explicit_null: Map.fetch at215-216 requires this key be present with null during real patch approvals; omitted and nonnull branches, retry escalation and nonnull grant-root semantics remain unqualified. No complete field/lifecycle claim."
+        "actual_native_file_approval_explicit_null: Map.fetch at215-216 requires this key be present with null during real patch approvals; omitted and nonnull branches, retry escalation and nonnull grant-root semantics remain unqualified. No complete field/lifecycle claim.",
+        "actual_native_permission_lifetime: Later file callbacks preserve explicit null reason/grantRoot and exact owned patch path. Nonnull branches remain unqualified; pinned ordinary grantRoot producers pass None.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": true,
       "pointer": "/properties/reason",
@@ -66823,11 +66985,14 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:244-251",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "reason"
     },
@@ -66836,7 +67001,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -66844,7 +67010,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Positive selected behavior: Native exact patch interaction identifiers and positive timestamp. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/startedAtMs",
@@ -66861,11 +67028,13 @@
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "startedAtMs"
     },
@@ -66874,7 +67043,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -66882,7 +67052,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Positive selected behavior: Native exact patch interaction identifiers and positive timestamp. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
@@ -66899,11 +67070,13 @@
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "threadId"
     },
@@ -66912,7 +67085,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -66920,7 +67094,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Positive selected behavior: Native exact patch interaction identifiers and positive timestamp. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:140-175 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:128-145 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/turnId",
@@ -66937,11 +67112,13 @@
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "turnId"
     },
@@ -71537,14 +71714,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/definitions/RequestPermissionProfile/properties/fileSystem",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "nullable": true,
       "pointer": "/definitions/RequestPermissionProfile/properties/fileSystem",
@@ -71560,7 +71739,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283"
         ]
       },
       "transport_coverage": [
@@ -71571,13 +71751,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/definitions/RequestPermissionProfile/properties/fileSystem/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "pointer": "/definitions/RequestPermissionProfile/properties/fileSystem/anyOf/0",
       "schema": "PermissionsRequestApprovalParams.json",
@@ -71591,7 +71773,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283"
         ]
       },
       "transport_coverage": [
@@ -71695,14 +71878,18 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/properties/cwd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/cwd",
@@ -71718,52 +71905,71 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:PermissionsRequestApprovalParams.json#/properties/environmentId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
+      ],
       "nullable": true,
       "pointer": "/properties/environmentId",
       "required": false,
       "schema": "PermissionsRequestApprovalParams.json",
       "schema_sha256": "67f0689e1c8ccd3216aeecbb51d53b4c1317267308d341e1b8af082aae3310af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
+      ],
       "wire_name": "environmentId"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/properties/itemId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/itemId",
@@ -71779,11 +71985,14 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "itemId"
     },
@@ -71791,14 +72000,18 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/properties/permissions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/permissions",
@@ -71814,11 +72027,14 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "permissions"
     },
@@ -71826,14 +72042,18 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/properties/reason",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": true,
       "pointer": "/properties/reason",
@@ -71849,11 +72069,14 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "reason"
     },
@@ -71861,14 +72084,18 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/properties/startedAtMs",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/startedAtMs",
@@ -71884,11 +72111,14 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "startedAtMs"
     },
@@ -71896,14 +72126,18 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
@@ -71919,11 +72153,14 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "threadId"
     },
@@ -71931,14 +72168,18 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalParams.json#/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact native request identity, positive timestamp, reason/cwd and owned write directory. Assertions: apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-213 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:217-228 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-337 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
       ],
       "nullable": false,
       "pointer": "/properties/turnId",
@@ -71954,11 +72195,14 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:235-242,272-283",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "turnId"
     },
@@ -71966,14 +72210,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/definitions/GrantedPermissionProfile/properties/fileSystem",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "nullable": true,
       "pointer": "/definitions/GrantedPermissionProfile/properties/fileSystem",
@@ -71988,7 +72234,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270"
         ]
       },
       "transport_coverage": [
@@ -71999,13 +72246,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/definitions/GrantedPermissionProfile/properties/fileSystem/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "pointer": "/definitions/GrantedPermissionProfile/properties/fileSystem/anyOf/0",
       "schema": "PermissionsRequestApprovalResponse.json",
@@ -72018,7 +72267,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270"
         ]
       },
       "transport_coverage": [
@@ -72121,13 +72371,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/definitions/PermissionGrantScope/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "pointer": "/definitions/PermissionGrantScope/enum/0",
       "schema": "PermissionsRequestApprovalResponse.json",
@@ -72140,7 +72392,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270"
         ]
       },
       "transport_coverage": [
@@ -72151,18 +72404,20 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/definitions/PermissionGrantScope/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Boundary/partial evidence only; retain missing: Strict auto-review/session branch has fail-closed or weak string-only grant evidence, no successful scoped session authorization proof. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:190-213 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Earlier strict-auto-review rejection and string-only evidence did not establish session authority; the separately scoped lifetime fixture proves actual session authorization with strictAutoReview false.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "pointer": "/definitions/PermissionGrantScope/enum/1",
       "schema": "PermissionsRequestApprovalResponse.json",
       "schema_sha256": "314b412875bb70067330501a4ab2010c1e78db1b287da6ed3b41eb16c218fc8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -72171,24 +72426,29 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+          "apps/samgita_codex_driver/test/server_interactions_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:67-141,199-232,260-270"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/properties/permissions",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "nullable": false,
       "pointer": "/properties/permissions",
@@ -72203,7 +72463,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270"
         ]
       },
       "transport_coverage": [
@@ -72215,14 +72476,16 @@
       "default": "turn",
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "has_default": true,
       "id": "schema:PermissionsRequestApprovalResponse.json#/properties/scope",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "nullable": false,
       "pointer": "/properties/scope",
@@ -72237,7 +72500,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270"
         ]
       },
       "transport_coverage": [
@@ -72248,13 +72512,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/interaction-evidence-qualification.md"
+        "docs/codex-app-server/interaction-evidence-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "id": "schema:PermissionsRequestApprovalResponse.json#/properties/scope/allOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete."
+        "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
       ],
       "pointer": "/properties/scope/allOf/0",
       "schema": "PermissionsRequestApprovalResponse.json",
@@ -72267,7 +72533,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs"
+          "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270"
         ]
       },
       "transport_coverage": [
@@ -155826,7 +156093,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/tool-interactions-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -155834,7 +156102,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_with_deterministic_transport_fault: Suppression records actual native request-resolution identity; unsuppressed terminal collection matches the exact original request and thread. A sent response stays uncertain without explicit reconciliation acknowledgement; no generic response receipt is invented."
       ],
       "nullable": false,
       "pointer": "/properties/requestId",
@@ -155851,12 +156120,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs",
           "apps/samgita_codex_driver/test/session_tool_retirement_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:173-221,295-316"
         ]
       },
       "transport_coverage": [
         "linux-x86_64-musl/unix-socket",
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "requestId"
     },
@@ -155865,7 +156136,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/tool-interactions-qualification.md",
-        "docs/codex-app-server/approval-lifetime-qualification.md"
+        "docs/codex-app-server/approval-lifetime-qualification.md",
+        "docs/codex-app-server/approval-loss-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -155873,7 +156145,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Eight actual-native isolated Linux UDS cases plus five scripted retirement cases cover selected user-input modes/answers/errors, dynamic namespace/JSON/text/image/audio/results, no-fetch rejection, interruption and explicit resume replay. Dynamic terminal evidence retires only unanswered handles and never acknowledges sent_unconfirmed responses. Async input, complete registration/deferred-tool variants, other backends/transports and external success remain unqualified.",
-        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified."
+        "actual_native_file_approval_lifetime: Exact same-path session cache vs one-shot re-prompt, distinct-path decline, confirmed owned native restart/cold resume with history/cache separation, and explicit pending file/command interruption with exact request resolution and stale replies; new null-only reason/grantRoot assertions at215-216. Selected stdio/Linux/synthetic-model behavior only; nonnull fields, permissions, loss/replay and full lifecycle remain unqualified.",
+        "actual_native_with_deterministic_transport_fault: Suppression records actual native request-resolution identity; unsuppressed terminal collection matches the exact original request and thread. A sent response stays uncertain without explicit reconciliation acknowledgement; no generic response receipt is invented."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
@@ -155890,12 +156163,14 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs",
           "apps/samgita_codex_driver/test/session_tool_retirement_test.exs",
-          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265"
+          "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:106-194,231-265",
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:173-221,295-316"
         ]
       },
       "transport_coverage": [
         "linux-x86_64-musl/unix-socket",
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/websocket-capability-token"
       ],
       "wire_name": "threadId"
     },
@@ -159590,27 +159865,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-boundary-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/beforeTurnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/beforeTurnId",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "f49ecec4764ae58d826fccd0e7aa52a676352e9337b423f762a968b4e6f9b885",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-147,366-413,444-474"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "beforeTurnId"
     },
     {
@@ -159720,53 +160003,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-boundary-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/ephemeral",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/ephemeral",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-104,152-234,366-386,415-474"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "ephemeral"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-boundary-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/excludeTurns",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/excludeTurns",
       "required": false,
       "schema": "v2/ThreadForkParams.json",
       "schema_sha256": "0995260d82428e4c300c36a5cfed174b499c862405ac0bdb82462dfa0d7e347b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-147,366-413,444-474"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "excludeTurns"
     },
     {
@@ -159799,7 +160098,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -159807,7 +160107,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_selected_values: Explicit lastTurnId equals the current sole prefix turn; child inherits prefix and stays isolated from later parent/child divergence.",
-        "Fork at current sole prefix turn only; this fixture does not prove choosing a non-latest boundary. No other fork configuration fields promoted."
+        "Earlier sole-prefix-turn evidence is supplemented by separately scoped non-latest fork-boundary native cases.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/lastTurnId",
@@ -159822,10 +160123,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:237-258"
+          "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:237-258",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-147,366-413,444-474"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "lastTurnId"
     },
     {
@@ -180604,27 +180908,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/excludeTurns",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/properties/excludeTurns",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "e10c8a2233c77c2accc86d088412546aa64d7876fb489d9c53e5f173ca684d7c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "excludeTurns"
     },
     {
@@ -180656,71 +180968,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadResumeParams.json#/properties/initialTurnsPage",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/initialTurnsPage",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "80814f81844f44696ee2203abc0e82456b128d58e6e07e0e1dc2b3e01825c597",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "initialTurnsPage"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadResumeParams.json#/properties/initialTurnsPage/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "pointer": "/properties/initialTurnsPage/anyOf/0",
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "e4620bdcc662dc881a200f05875a9687ca1f6fc1b6aa5183aa33be760d904962",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadResumeParams.json#/properties/initialTurnsPage/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "pointer": "/properties/initialTurnsPage/anyOf/1",
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -181059,79 +181395,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/definitions/TurnsPage/properties/backwardsCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/TurnsPage/properties/backwardsCursor",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72,123-179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "backwardsCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/definitions/TurnsPage/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/TurnsPage/properties/data",
       "required": true,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "8579509811f1cf61533e1dfd00d5c81831a33017754e9063c25940b55148194a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72,123-179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadResumeResponse.json#/definitions/TurnsPage/properties/nextCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/TurnsPage/properties/nextCursor",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72,123-179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
@@ -181403,71 +181763,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/initialTurnsPage",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/initialTurnsPage",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "61bba3fbfabc1a9c2a8a0e704c79f001d0e416a49478ecd0ae63ddb8c679b023",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "initialTurnsPage"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/initialTurnsPage/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "pointer": "/properties/initialTurnsPage/anyOf/0",
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "8413e884022d2a539e09359a0b3263c51d418b2614a6cd92e019fb32657a6777",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/initialTurnsPage/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "pointer": "/properties/initialTurnsPage/anyOf/1",
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-121,181-223"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -181499,27 +181883,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/itemsBackwardsCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/itemsBackwardsCursor",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "48ef8f06d6d6f10c05e954bae1b97cc6dc6614b26a2c1575a638ee7b678698e2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72,123-179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemsBackwardsCursor"
     },
     {
@@ -181829,41 +182221,51 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/resume-page-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/turnsBackwardsCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_resume_pages: Native legacy/paginated three-turn text histories assert omitted/null/empty page selection, asc/desc and all three itemsView values, partial and zero-to-one limits, independent inline exclusion, exact content/key presence and opaque cursor hydration preserved across owned cold restart without inference. Malformed-wire and stable-negotiation rejection are separate assertions. Rich-tool filtering, clamp/empty-cursor branches, active/error histories, external storage, other OS/services and A11 remain unqualified; no full default/negotiation lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/turnsBackwardsCursor",
       "required": false,
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "e8d7c75aae58880d05ff71a010441334e4f2e6c0c56de64f2866540c1cfb948e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_resume_page_fields_test.exs:27-72,123-179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turnsBackwardsCursor"
     },
     {
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-revert-qualification.md"
+        "docs/codex-app-server/thread-revert-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertParams.json#/properties/beforeTurnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/beforeTurnId",
@@ -181878,7 +182280,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:237-329,409-413,444-474"
         ]
       },
       "transport_coverage": [
@@ -181890,14 +182293,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-revert-qualification.md"
+        "docs/codex-app-server/thread-revert-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
@@ -181912,7 +182317,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:237-329,409-413,444-474"
         ]
       },
       "transport_coverage": [
@@ -181924,14 +182330,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-revert-qualification.md"
+        "docs/codex-app-server/thread-revert-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertResponse.json#/properties/itemsBackwardsCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/itemsBackwardsCursor",
@@ -181946,7 +182354,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:237-329,409-413,444-474"
         ]
       },
       "transport_coverage": [
@@ -181958,14 +182367,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-revert-qualification.md"
+        "docs/codex-app-server/thread-revert-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertResponse.json#/properties/thread",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/thread",
@@ -181980,7 +182391,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:237-329,409-413,444-474"
         ]
       },
       "transport_coverage": [
@@ -182022,14 +182434,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-revert-qualification.md"
+        "docs/codex-app-server/thread-revert-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadRevertResponse.json#/properties/turnsBackwardsCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs."
+        "actual_native_local_synthetic_backend: Three native cases cover two text turns, invalid/ephemeral/legacy rejection, actual reverted notice, opaque cursor hydration and persisted retained prefix after owned restart. Ambiguous post-commit disconnect, active-turn interruption, concurrency/reload failures, other field variants and deployment profiles remain unqualified. No workspace files roll back and no automatic mutation retry occurs.",
+        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
       ],
       "nullable": true,
       "pointer": "/properties/turnsBackwardsCursor",
@@ -182044,7 +182458,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs"
+          "apps/samgita_codex_driver/test/native_thread_revert_profile.exs",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:237-329,409-413,444-474"
         ]
       },
       "transport_coverage": [
