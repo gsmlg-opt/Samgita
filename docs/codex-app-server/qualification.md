@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,189 implemented / 3,432 missing
+11 blocked requirements** and **0 verified / 3,190 implemented / 3,431 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,189 directly exercised
+MCP entries have scoped implementation evidence. These 3,190 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -35,6 +35,13 @@ matching source guard. Exact native ordinals and differing immediate/cold previe
 oracles are source-backed; the initial failure remains recorded. Exactly one
 history property owner becomes implemented, zero verified. Complete final-source
 local/hosted matrices and the remaining full goal still require evidence.
+
+The further [session-start-source differential](default-semantics-qualification.md#session-start-source-and-actual-request-provenance)
+passes the complete **55/0** owning block at both fixed seeds, with strict checks
+and an unchanged source guard. Exact actual HTTP provenance distinguishes
+new/cleared while earlier roots/history/bytes remain unchanged. One physical
+owner gains implemented status; hooks, general defaults and verified states do
+not. Final-source full matrices and the remaining goal stay incomplete.
 
 Six further actual-native cases add [goal provenance/quota/stock tools](goal-control-qualification.md),
 [same-thread plugin MCP policy and uninstall](plugin-mcp-qualification.md), and

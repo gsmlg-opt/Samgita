@@ -202695,27 +202695,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/default-semantics-qualification.md#session-start-source-and-actual-request-provenance"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/sessionStartSource",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_start_source: Omitted/null/startup/clear retain exact wire presence under false experimental negotiation. Four independently owned roots execute only after four explicit turns; actual provider request provenance is new/new/new/cleared with native thread/turn IDs. Prior full histories and rollout bytes remain unchanged through clear, with exact fixed user/assistant content and provider counts. Hooks are disabled, so Startup/Clear hook effects, cold-resume provenance, other profiles and broad default/lifecycle semantics remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/sessionStartSource",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "d05d53e5e1531c8392cff80c62d94c5a56c3a8a632ae44cfa69e120ec0598eea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs:848-959"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "sessionStartSource"
     },
     {

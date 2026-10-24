@@ -76,9 +76,14 @@ unchanged source guard. Exactly one direct history owner brings contracts to
 was a returned stack with arguments/environment; Logger exposure was not
 reproduced. A11 remains blocked.
 
-Next implement the source-backed sessionStartSource omitted/null/startup/clear
-differential with actual provider metadata, then freeze executable source for
-the complete preserved-platform/package/consumer and final-pushed hosted matrix.
+The further [sessionStartSource differential](default-semantics-qualification.md#session-start-source-and-actual-request-provenance)
+passes **55/0 twice** with strict checks/source guard and no repair. One direct
+owner brings contracts to **3,190 implemented / 3,431 missing**, zero verified;
+Startup/Clear hook effects stay unqualified.
+
+Next implement the separately source-audited deferred goal-fork profile using
+public cold goal setup and bounded local inference, then freeze executable source
+for the complete preserved-platform/package/consumer and final-pushed hosted matrix.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.
 No scoped green checkpoint completes the full goal.

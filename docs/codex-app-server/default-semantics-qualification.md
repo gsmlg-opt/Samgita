@@ -182,3 +182,44 @@ Other ResponseItem variants, multi-item histories, transport/OS combinations and
 the broad default/lifecycle rules remain unqualified; no full or verified
 promotion follows. Final-source complete local/hosted checks, A11 and the full
 goal remain incomplete.
+
+## Session start source and actual request provenance
+
+One further native case covers omitted, null, `startup` and `clear` on a single
+connection initialized with `experimentalApi:false`. This field is stable,
+optional/nullable, with no schema default. Pinned
+`app-server-protocol/src/protocol/v2/thread.rs:45-53,117-121` and
+`app-server/src/request_processors/thread_processor.rs:1500-1523` map omitted/
+null/startup to New, clear to Cleared. Neither branch selects or deletes another
+thread. `history/src/initialization.rs:14-32` supplies runtime request provenance;
+`core/src/responses_metadata.rs:330-366` and `core/src/client.rs:1071-1086` carry
+it into the actual Responses HTTP body.
+
+The test preserves full outbound maps and independently checks missing versus
+present `sessionStartSource`. Four distinct idle paginated roots have prescribed
+settings, unique owned IDs/paths and no ancestry. No start may invoke inference,
+turn/item execution or an interaction. Exactly four subsequent explicit fixed
+turns920..923 complete with native-correlated IDs and fixed assistant content.
+Their actual provider metadata must be `new/new/new/cleared`; each request must
+contain its own user marker once and none of the other markers. Full earlier
+thread projections and every rollout byte remain unchanged through the clear
+case and at the final check. No automatic resume occurs. Materialization is
+checked after each explicit turn/read; a fresh root need not have a rollout
+file before its first turn.
+
+The complete five-file owning block passes **55/0 twice**, seeds501432/987654,
+42.1/55.1 seconds, with warning-free compile/tests, formatting, root strict Credo
+(429 source files) and a matching executable-source guard. The exact command is
+the five-file block in [stdio qualification](stdio-startup-confidentiality-qualification.md#executed-qualification),
+rerun after adding this case. Logs/commands are retained in
+`/tmp/samgita-native-start-source-v1-20261025/`; results SHA256
+`f5587a5332291a3f85e3a0d21a92b79f10ea74d57a0d1486bb03ae6001d9c744`,
+source SHA256 `2a4821daaa144251469fd983df9cdf8d8b2dfbcea4d569203a6469449ef193e0`.
+No repair, guard/deadline or shared-fixture change was needed.
+
+Exactly the `ThreadStartParams.sessionStartSource` physical owner gains scoped
+implemented evidence. This is runtime request provenance, not a persisted source
+field guarantee after cold resume. Hooks remain disabled in this profile, so
+Startup/Clear hook execution and side effects remain unqualified. No alias,
+general default/lifecycle or fully verified promotion follows. Full final-source
+local/hosted checks, A11, other profiles and the overall goal remain incomplete.

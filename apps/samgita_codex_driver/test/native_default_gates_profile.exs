@@ -845,6 +845,119 @@ defmodule SamgitaCodexDriver.NativeDefaultGatesProfile do
     end
   end
 
+  test "session start source defaults to new while clear marks only its new runtime", ctx do
+    {pid, journal} = client(ctx, false)
+
+    cases = [
+      {%{}, false, "new", 920},
+      {%{"sessionStartSource" => nil}, true, "new", 921},
+      {%{"sessionStartSource" => "startup"}, true, "new", 922},
+      {%{"sessionStartSource" => "clear"}, true, "cleared", 923}
+    ]
+
+    {snapshots, requests} =
+      Enum.reduce(cases, {[], []}, fn {extra, present, initialization, marker},
+                                      {previous, requests} ->
+        response = start(pid, ctx, extra)
+        assert last_params(journal, "thread/start") == params(ctx, extra)
+
+        assert Map.has_key?(last_params(journal, "thread/start"), "sessionStartSource") ==
+                 present
+
+        thread = Map.fetch!(response, "thread")
+        id = Map.fetch!(thread, "id")
+        path = Map.fetch!(thread, "path")
+        assert is_binary(id) and id != ""
+        assert is_binary(path) and path != ""
+        assert String.starts_with?(path, Path.join(ctx.root, "codex/sessions/"))
+        refute Enum.any?(previous, &(&1.id == id or &1.path == path))
+        assert Map.fetch!(thread, "status") == %{"type" => "idle"}
+        assert Map.fetch!(thread, "ephemeral") == false
+        assert Map.fetch!(thread, "historyMode") == "paginated"
+        assert Map.fetch!(thread, "turns") == []
+
+        for field <- ~w(name projectId parentThreadId forkedFromId),
+            do: assert(Map.fetch!(thread, field) == nil)
+
+        assert_default_session_settings(ctx, response, "low")
+
+        assert Enum.sort(call(pid, "thread/loaded/list", %{})["data"]) ==
+                 Enum.sort([id | Enum.map(previous, & &1.id)])
+
+        # Clear starts a separate root; it cannot erase the previously completed roots.
+        for saved <- previous do
+          assert call(pid, "thread/read", %{
+                   "threadId" => saved.id,
+                   "includeTurns" => true
+                 })["thread"] == saved.thread
+
+          assert File.read!(saved.path) == saved.bytes
+        end
+
+        assert_no_import_work(ctx, pid, requests)
+        turn = start_turn(pid, id, marker, %{})
+        assert last_params(journal, "turn/start") == turn_params(id, marker, %{})
+        assert_default_completion(finish(pid, turn), id, turn)
+        actual_requests = read(ctx, "requests.json")
+        assert length(actual_requests) == length(requests) + 1
+        assert Enum.take(actual_requests, length(requests)) == requests
+        request = List.last(actual_requests)
+
+        user_texts =
+          for input <- request["input"],
+              input["role"] == "user",
+              content <- input["content"],
+              content["type"] == "input_text",
+              do: content["text"]
+
+        assert Enum.count(user_texts, &(&1 == "synthetic:defaults:#{marker}")) == 1
+
+        for other <- 920..923, other != marker do
+          refute Enum.any?(user_texts, &String.contains?(&1, "synthetic:defaults:#{other}"))
+        end
+
+        assert %{
+                 "thread_id" => ^id,
+                 "turn_id" => ^turn,
+                 "history_initialization" => ^initialization
+               } = JSON.decode!(request["client_metadata"]["x-codex-turn-metadata"])
+
+        saved = call(pid, "thread/read", %{"threadId" => id, "includeTurns" => true})["thread"]
+        assert saved["id"] == id
+        assert saved["path"] == path
+        assert saved["preview"] == "synthetic:defaults:#{marker}"
+        assert [saved_turn] = saved["turns"]
+        assert_default_text_turn(saved_turn, turn, marker)
+        assert File.regular?(path)
+        bytes = File.read!(path)
+        assert String.ends_with?(bytes, "\n")
+        assert_no_import_work(ctx, pid, actual_requests)
+        snapshot = %{id: id, path: path, thread: saved, bytes: bytes}
+        {previous ++ [snapshot], actual_requests}
+      end)
+
+    assert length(snapshots) == 4
+    assert length(requests) == 4
+    assert count(journal, "thread/start") == 4
+    assert count(journal, "turn/start") == 4
+    assert count(journal, "thread/resume") == 0
+
+    assert Enum.sort(call(pid, "thread/loaded/list", %{})["data"]) ==
+             Enum.sort(Enum.map(snapshots, & &1.id))
+
+    for saved <- snapshots do
+      assert call(pid, "thread/read", %{
+               "threadId" => saved.id,
+               "includeTurns" => true
+             })["thread"] == saved.thread
+
+      assert File.read!(saved.path) == saved.bytes
+    end
+
+    assert_no_import_work(ctx, pid, requests)
+    assert :ok = Session.close(pid)
+  end
+
   test "omitted section lists all while explicit null lists only unsectioned threads", ctx do
     {pid, journal} = client(ctx, true)
     unsectioned = start(pid, ctx)["thread"]["id"]
