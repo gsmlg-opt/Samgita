@@ -8,6 +8,20 @@ remain separate gates. No production data, credentials or services are changed.
 
 ## Scoped continuation after 636b2ad
 
+The [granular/default and unsupported strict-session permission unit](permission-lifetime-qualification.md#granular-policy-and-unsupported-session-strictness)
+passes **30/0 twice**, seeds501432/987654, in the complete seven-file owning
+block; the lifetime file alone passes **9/0**. The same block proves
+[positive elapsed goal inheritance](goal-fork-qualification.md#positive-elapsed-usage-through-public-goal-reads)
+using the existing no-work interval, with no added delay/provider request.
+Compile, format, root strict Credo and executable/config/workflow guard pass.
+Exact commands/logs are
+`/tmp/samgita-native-repair-continuation-permission-policy-v1-20261025/`;
+results SHA256 `32bdbc75cc9c9262f99a7c2ca257a1048a1c2e0c69582e4b862674755e02304d`,
+source SHA256 `423c23cd7d6df3c4c07c06e1eb6bbbed6150ae5f3e197848bd38df297a9f76d8`.
+One exact bool/default owner becomes implemented: **3,206 implemented /
+3,415 missing**, zero verified. Requirements are unchanged; approval/default
+lifecycle stays missing. Complete final-source matrices remain required.
+
 The next v3 extension passes the full sixteen-file owning block **92/0 twice**,
 seeds501432/987654. It adds [exact native upgrade request-ID and reconnect](environment-owners-qualification.md#exact-original-upgrade-request-id-through-reconnect),
 and [no-source-goal, per-fork config and public stopped-state inheritance](goal-fork-qualification.md#source-absence-per-fork-config-and-stopped-goal-states).

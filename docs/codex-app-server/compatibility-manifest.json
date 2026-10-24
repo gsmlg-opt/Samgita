@@ -9527,7 +9527,8 @@
         "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
         "actual_native_with_deterministic_transport_fault: File/permission callbacks survive borrowed reconnect and replay the exact original wire envelope only after explicit warm resume, with fresh local handle/generation. One reply dropped before peer receipt and actual resolution/completion notifications suppressed after a forwarded reply each preserve uncertainty, exact effects/history/provider counts, stale-handle rejection and no automatic response/turn retry. This is client transport fault injection, not observed TCP packet loss. No generic approval-response status/deduplication guarantee; cold callbacks, other interaction kinds, TLS/UDS/proxy/external networks/services, other OS and A11 remain unqualified. Broad approval lifecycle stays missing.",
         "Selected actual-native invalid-reply preservation and barrier-released competing replies: one local settlement, stale rejection, separate native resolution/effects/history. Selected nested permission response conversion/intersection; no shared command-request owner or exactly-once external execution claim. Broad approval lifecycle, legacy emitters and other deployment profiles remain incomplete.",
-        "Additional actual-native denied-directory effects: omitted requested deny is retained during explicit turn-grant intersection; permitted sibling patch has exact real bytes without file approval, denied directory child prompts before effects and explicit decline preserves bytes. Exact native item/callback association, normalized grant/provider counts/resolution/history and owned cleanup. Only this directory/child and positive control; no exact-file/glob enforcement, symlink/hardlink, full lifecycle/environment/OS/backend/A11 or verified promotion. Older records retain their own scoped limits."
+        "Additional actual-native denied-directory effects: omitted requested deny is retained during explicit turn-grant intersection; permitted sibling patch has exact real bytes without file approval, denied directory child prompts before effects and explicit decline preserves bytes. Exact native item/callback association, normalized grant/provider counts/resolution/history and owned cleanup. Only this directory/child and positive control; no exact-file/glob enforcement, symlink/hardlink, full lifecycle/environment/OS/backend/A11 or verified promotion. Older records retain their own scoped limits.",
+        "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion."
       ],
       "prerequisites": [
         "initialized"
@@ -9551,7 +9552,8 @@
           "apps/samgita_codex_driver/test/native_approval_validation_test.exs",
           "apps/samgita_codex_driver/test/native_approval_duplicate_replies_test.exs",
           "apps/samgita_codex_driver/test/native_permission_nested_test.exs",
-          "apps/samgita_codex_driver/test/native_permission_effects_test.exs:70-240,255-291"
+          "apps/samgita_codex_driver/test/native_permission_effects_test.exs:70-240,255-291",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462"
         ]
       },
       "transport_coverage": [
@@ -9868,7 +9870,8 @@
         "Additional actual-native command replay cancellation: real borrowed WebSocket replacement replays nothing until explicit warm resume; original wire request/time/ID replay under a fresh handle, then explicit turn interruption retires callback before another reconnect/resume. Exact native resolution/interrupted history, zero outgoing approval replies, one provider call, no command output/effects/rules and owned cleanup. No cold-process pending restoration, physical packet-loss/exactly-once guarantee, unexercised approval response or full lifecycle/OS/service/A11 qualification. Earlier records retain their scoped limits.",
         "Additional actual-native command reply-loss qualification: unanswered warm callback replay, reply dropped before native receipt and actual resolved/completed notifications suppressed after forwarded reply. Exact native wire/time/ID under a new local handle, stale rejection, explicit response/recovery only, fixed private-shell argv/cwd, exactly one owned append line, stdout/exit0 and original live/durable command item/provider counts. No automatic response/turn replay; old uncertainty remains until explicit evidence-based acknowledgement. Full owning block10/0 both seeds, including original file/permission and command cancellation oracles with unchanged deadlines/guardians. This is deterministic client-transport fault injection, not observed TCP loss or a general exactly-once guarantee. Cold pending restoration, all decision/profile/OS/backend variants, unreachable legacy emitters, A11 and fully verified acceptance remain incomplete.",
         "Additional actual-native v2 command deadline: only the expiry Session configures 2000ms; all retained/control deadlines and guardians remain. Genuine native callback expires with exactly one forwarded -32000 client error, matching resolution/completed turn, stale late acceptance and failed live command with no output/exit/process/duration or physical effect/policy. Durable history contains no command because rejection precedes core ExecCommandBegin/End. Independent explicit acceptance proves exact single append/stdout/exit/argv and live/durable success. One turn, no reconnect/resume/retry, two provider calls, no pending/uncertainty; full owning block12/0 both seeds. This is not a legacy TimedOut emitter or full lifecycle/OS/backend/A11 acceptance; missing state and counts stay unchanged.",
-        "Additional actual-native unanswered-approval hard restart: owned checked-live native SIGKILL/reap, persisted original input, cold read/resume projects interrupted without completion time/duration or inference/callback/effects. Fresh explicit turn reuses native numeric ID under different instance/opaque handle; repeated old handle cannot settle it. Explicit new-handle accept alone creates one exact private-shell append/stdout/exit/live command; paginated persists command and legacy omits it per native policy. Both modes2/0 at both seeds, owned cleanup and original deadlines retained. Initial shell discovery and legacy-history fixture assumptions corrected with pinned source and failures retained. Not sent-unconfirmed crash recovery, callback restoration, exactly-once guarantee, all interaction/OS/backend/transport/A11 or full lifecycle qualification; missing status unchanged."
+        "Additional actual-native unanswered-approval hard restart: owned checked-live native SIGKILL/reap, persisted original input, cold read/resume projects interrupted without completion time/duration or inference/callback/effects. Fresh explicit turn reuses native numeric ID under different instance/opaque handle; repeated old handle cannot settle it. Explicit new-handle accept alone creates one exact private-shell append/stdout/exit/live command; paginated persists command and legacy omits it per native policy. Both modes2/0 at both seeds, owned cleanup and original deadlines retained. Initial shell discovery and legacy-history fixture assumptions corrected with pinned source and failures retained. Not sent-unconfirmed crash recovery, callback restoration, exactly-once guarantee, all interaction/OS/backend/transport/A11 or full lifecycle qualification; missing status unchanged.",
+        "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion."
       ],
       "required_behavior": "preserve every decision variant and edits; require explicit authorized handler",
       "schema_sha256": "b0c99e763de6cb504aee7aadd4177c897fe5cb9065748cf7fe5e988558d1ae5e",
@@ -9905,7 +9908,8 @@
           "apps/samgita_codex_driver/test/native_approval_loss_test.exs:232-302",
           "apps/samgita_codex_driver/test/native_approval_loss_test.exs:423-470",
           "apps/samgita_codex_driver/test/native_approval_cold_restart_profile.exs:89-240",
-          "apps/samgita_codex_driver/test/native_approval_sent_restart_profile.exs"
+          "apps/samgita_codex_driver/test/native_approval_sent_restart_profile.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462"
         ]
       },
       "transport_coverage": [
@@ -10248,7 +10252,8 @@
       "direction": "lifecycle_rule",
       "evidence": [
         "docs/codex-app-server/auth-envelope-lifecycle-qualification.md",
-        "docs/codex-app-server/default-gates-qualification.md"
+        "docs/codex-app-server/default-gates-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "id": "lifecycle:missing-null-default",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -10258,7 +10263,8 @@
         "local_codec_exact_value: Exact object/null trace preservation62-63; known-field type rejection66-68.",
         "scripted_peer_exact_value: Absent/null/scalar/nested notification envelopes emitted exactly25.",
         "Selected codec/notification maps do not qualify source-specific defaults across all methods.",
-        "actual_native_local_synthetic_backend: Five differential cases cover selected primitive bool vs optional false/empty/null gates, exact outbound presence, service-tier double-option normalization, LocalThreadStore paginated defaults including ephemeral threads, and turn null vs empty-map admission with no rejected dispatch. Nine new positive contracts only; this is not exhaustive negotiation/default, model fallback/raw-output/tool success, other stores/transports/backends or full lifecycle qualification."
+        "actual_native_local_synthetic_backend: Five differential cases cover selected primitive bool vs optional false/empty/null gates, exact outbound presence, service-tier double-option normalization, LocalThreadStore paginated defaults including ephemeral threads, and turn null vs empty-map admission with no rejected dispatch. Nine new positive contracts only; this is not exhaustive negotiation/default, model fallback/raw-output/tool success, other stores/transports/backends or full lifecycle qualification.",
+        "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion."
       ],
       "required_behavior": "retain absent versus null versus explicit values; apply no undocumented driver defaults",
       "schema_sha256": "050381955e3a76bb19f7cb266f6f931c72dcbf0aa02b73afdd7781f5f6e77568",
@@ -10275,11 +10281,13 @@
           "apps/samgita_protocol_codex/test/wire_test.exs:32",
           "apps/samgita_protocol_codex/test/wire_test.exs:54",
           "apps/samgita_codex_driver/test/native_notification_test.exs:7",
-          "apps/samgita_codex_driver/test/native_default_gates_profile.exs"
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "missing-null-default"
     },
@@ -24112,27 +24120,35 @@
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/permission-lifetime-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ClientRequest.json#/definitions/AskForApproval/oneOf/1/properties/granular/properties/request_permissions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular/properties/request_permissions",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "request_permissions"
     },
     {
@@ -76332,7 +76348,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion."
       ],
       "nullable": false,
       "pointer": "/properties/permissions",
@@ -76348,7 +76365,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270"
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462"
         ]
       },
       "transport_coverage": [
@@ -76369,7 +76387,8 @@
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
         "Positive selected behavior: Exact grant survives model-visible transformation; omitted scope defaults to turn. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:148-188 (default-native-suite); apps/samgita_codex_driver/test/approval_decision_variants_test.exs:313-329 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim."
+        "actual_native_permission_lifetime: Actual owned patches prove turn-grant expiry, same-thread session carry-over, no cross-thread inheritance or cold-process restoration, and explicit pending interruption without continuation. Only local environment and explicit strictAutoReview false; network/deny/glob grants, strict true, remote environments, remaining policy/race/OS/service profiles and A11 remain unqualified. No full approval lifecycle claim.",
+        "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion."
       ],
       "nullable": false,
       "pointer": "/properties/scope",
@@ -76385,7 +76404,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
-          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270"
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:46-141,199-232,260-270",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462"
         ]
       },
       "transport_coverage": [
@@ -76431,7 +76451,8 @@
       "direction": "schema_field",
       "evidence": [
         "docs/codex-app-server/interaction-evidence-qualification.md",
-        "docs/codex-app-server/permission-variants-qualification.md"
+        "docs/codex-app-server/permission-variants-qualification.md",
+        "docs/codex-app-server/permission-lifetime-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
@@ -76439,7 +76460,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Boundary/partial evidence only; retain missing: Strict auto-review/session branch has fail-closed or weak string-only grant evidence, no successful scoped session authorization proof. Assertions: apps/samgita_codex_driver/test/approval_decision_variants_test.exs:190-213 (default-native-suite); apps/samgita_codex_driver/test/server_interactions_test.exs:247-289 (default-native-suite). Scoped existing actual-native assertions, not full behavior/decision/field/transport qualification. Unasserted variants, live/backend profiles and A11 remain incomplete.",
-        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing."
+        "actual_native_permission_variants: Exact legacy read and canonical read/write/deny/path/glob/depth conversion/intersection, network true/false/null/omission and requested/granted mismatch, empty-grant patch rejection, and nonempty turn strict true/allow/deny versus false control with actual safe printf effects, correlated Guardian notices and exact model counts. Provider supplies model/Guardian data only. Network/deny/glob tests do not qualify OS enforcement. Local Linux/stdio only; other authority/policy/race/loss/remote/OS/provider profiles and A11 remain unqualified; broad approval lifecycle stays missing.",
+        "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion."
       ],
       "nullable": true,
       "pointer": "/properties/strictAutoReview",
@@ -76456,7 +76478,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/approval_decision_variants_test.exs",
           "apps/samgita_codex_driver/test/server_interactions_test.exs",
-          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:225-298,347-375"
+          "apps/samgita_codex_driver/test/native_permission_variants_test.exs:225-298,347-375",
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462"
         ]
       },
       "transport_coverage": [
@@ -169428,7 +169451,7 @@
       "id": "schema:v2/ThreadForkParams.json#/properties/deferGoalContinuation",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_deferred_goal_fork: Public cold goal setup, exact omitted/false/no-inheritance and null/disabled/ephemeral gates; enabled true preserves source goal/history/bytes and defers through native restart/resume. Explicit net9 then automatic net12 ends budgetLimited21/20 with exact native/provider records. Three historical2/1/0-turn prefix forks copy current21 snapshot, survive existing cold restart and zero-turn stopped resume without work. No-source-goal and effective per-fork goals-disabled children remain nil through existing cold restarts; public complete/paused/blocked/usageLimited source snapshots copy exact21-token/history state to four distinct children. Positive elapsed time, stopped-child cold recovery, concurrent active flush races and other transport/OS/service profiles unqualified."
+        "actual_native_deferred_goal_fork: Public cold goal setup, exact omitted/false/no-inheritance and null/disabled/ephemeral gates; enabled true preserves source goal/history/bytes and defers through native restart/resume. Explicit net9 then automatic net12 ends budgetLimited21/20 with exact native/provider records. Three historical2/1/0-turn prefix forks copy current21 snapshot, survive existing cold restart and zero-turn stopped resume without work. No-source-goal and effective per-fork goals-disabled children remain nil through existing cold restarts; public complete/paused/blocked/usageLimited source snapshots copy exact21-token/history state to four distinct children. Existing one-second no-work interval now proves positive persisted elapsed usage through exact final/prefix/cold/stopped-state snapshots, without extra delay or dispatch. Stopped-child cold recovery, concurrent active flush races and other transport/OS/service profiles remain unqualified."
       ],
       "nullable": false,
       "pointer": "/properties/deferGoalContinuation",
@@ -169443,7 +169466,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_goal_fork_profile.exs:133-512"
+          "apps/samgita_codex_driver/test/native_goal_fork_profile.exs:133-512",
+          "apps/samgita_codex_driver/test/native_goal_fork_profile.exs:355-361"
         ]
       },
       "transport_coverage": [

@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,205 implemented / 3,416 missing
+11 blocked requirements** and **0 verified / 3,206 implemented / 3,415 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,205 directly exercised
+MCP entries have scoped implementation evidence. These 3,206 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,15 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [granular permission and session-strict differential](permission-lifetime-qualification.md#granular-policy-and-unsupported-session-strictness)
+passes **30/0 twice** in its complete seven-file owning block. It also executes
+the [positive elapsed goal-usage assertion](goal-fork-qualification.md#positive-elapsed-usage-through-public-goal-reads)
+without another wait or request. Compile, format, root strict Credo and the source
+guard pass. One physical bool/default property becomes implemented; existing
+reply/goal owners gain stronger evidence. Broad approval/default requirements
+remain missing and no state becomes verified. Final-source complete local/hosted
+matrices, remaining reachable behavior and external prerequisites stay required.
 
 The latest [scoped continuation](repair-qualification.md#scoped-continuation-after-636b2ad)
 passes the full **92/0** owning block at both fixed seeds, with warning-free

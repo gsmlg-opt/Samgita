@@ -196,6 +196,272 @@ defmodule SamgitaCodexDriver.NativePermissionLifetimeTest do
     assert_stale(pid, current)
   end
 
+  for variant <- ~w(omitted false true) do
+    @granular_variant variant
+    @tag scenario: "permission_pending"
+    test "granular request_permissions #{@granular_variant} controls native grant authority",
+         ctx do
+      pid = start(ctx)
+
+      policy = %{
+        "sandbox_approval" => true,
+        "rules" => true,
+        "mcp_elicitations" => true,
+        "skill_approval" => false
+      }
+
+      policy =
+        if @granular_variant == "omitted",
+          do: policy,
+          else: Map.put(policy, "request_permissions", @granular_variant == "true")
+
+      response =
+        call(pid, "thread/start", %{
+          "model" => "mock-model",
+          "modelProvider" => "fixture",
+          "cwd" => ctx.fixture.workspace,
+          "sandbox" => "read-only",
+          "approvalPolicy" => %{"granular" => policy},
+          "ephemeral" => false
+        })
+
+      thread = response["thread"]["id"]
+      allowed = @granular_variant == "true"
+
+      assert response["approvalPolicy"] == %{
+               "granular" => Map.put(policy, "request_permissions", allowed)
+             }
+
+      expected =
+        permission_file(ctx, "permission-lifetime-2", "granted-now.txt", "owned turn grant\n")
+
+      {turn, approval, events} =
+        if allowed do
+          {turn, approval, events} =
+            pending(ctx, pid, thread, "permissions", "permission-lifetime-1", 1)
+
+          assert_permission(ctx, approval)
+
+          assert :ok =
+                   Session.respond(
+                     pid,
+                     approval.handle,
+                     {:ok,
+                      %{
+                        "permissions" => %{"fileSystem" => %{"write" => [ctx.fixture.workspace]}},
+                        "scope" => "turn",
+                        "strictAutoReview" => false
+                      }}
+                   )
+
+          {turn, approval, events}
+        else
+          turn = start_turn(pid, thread)
+          {approval, events} = await_permission_patch(ctx, pid, thread, turn, [], expected, 1)
+          decline(pid, approval)
+          {turn, approval, events}
+        end
+
+      events = finish(pid, thread, turn, events)
+      events = settle_permission_handles(pid, thread, events, [approval])
+      assert Enum.count(events, &(&1.kind == :server_request)) == 1
+      assert length(ModelFixture.requests(ctx.fixture)) == 3
+      status = if allowed, do: "completed", else: "declined"
+      expected = Map.put(expected, "status", status)
+      assert item(events, "fileChange") == expected
+
+      assert permission_output(ctx) == %{
+               "permissions" => %{
+                 "network" => nil,
+                 "file_system" =>
+                   if(allowed, do: %{"write" => [ctx.fixture.workspace]}, else: nil)
+               },
+               "scope" => "turn"
+             }
+
+      if allowed do
+        assert_files(ctx, false)
+        assert File.lstat!(Path.join(ctx.fixture.workspace, "granted-now.txt")).type == :regular
+      else
+        assert File.ls!(ctx.fixture.workspace) == []
+      end
+
+      assert_permission_file_history(pid, thread, [{turn, expected}])
+      assert_no_permission_review(ctx, events)
+      assert_idle_without_rules(ctx, pid)
+      assert_stale(pid, approval)
+    end
+  end
+
+  test "session strict auto review response grants neither same-turn nor later-turn write authority",
+       ctx do
+    pid = start(ctx)
+    thread = thread(ctx, pid)
+
+    {first, permission, events} =
+      pending(ctx, pid, thread, "permissions", "permission-lifetime-1", 1)
+
+    assert_permission(ctx, permission)
+
+    assert :ok =
+             Session.respond(
+               pid,
+               permission.handle,
+               {:ok,
+                %{
+                  "permissions" => %{"fileSystem" => %{"write" => [ctx.fixture.workspace]}},
+                  "scope" => "session",
+                  "strictAutoReview" => true
+                }}
+             )
+
+    expected_first =
+      permission_file(ctx, "permission-lifetime-2", "granted-now.txt", "owned turn grant\n")
+
+    {first_patch, events} =
+      await_permission_patch(ctx, pid, thread, first, events, expected_first, 2)
+
+    assert_stale(pid, permission)
+    decline(pid, first_patch)
+    events = finish(pid, thread, first, events)
+    events = settle_permission_handles(pid, thread, events, [permission, first_patch])
+    expected_first = Map.put(expected_first, "status", "declined")
+    assert item(events, "fileChange") == expected_first
+
+    # Native semantics normalize this valid reply to an empty turn grant, not an RPC error.
+    assert permission_output(ctx) == %{
+             "permissions" => %{"network" => nil, "file_system" => nil},
+             "scope" => "turn"
+           }
+
+    assert length(ModelFixture.requests(ctx.fixture)) == 3
+    assert File.ls!(ctx.fixture.workspace) == []
+    assert_no_permission_review(ctx, events)
+    assert_idle_without_rules(ctx, pid)
+    assert_stale(pid, first_patch)
+
+    # Only this explicit new turn probes the rejected session grant's later authority.
+    second = start_turn(pid, thread)
+
+    expected_second =
+      permission_file(ctx, "permission-lifetime-4", "granted-later.txt", "owned session grant\n")
+
+    {second_patch, events} =
+      await_permission_patch(ctx, pid, thread, second, [], expected_second, 1)
+
+    assert length(ModelFixture.requests(ctx.fixture)) == 4
+    assert_stale(pid, permission)
+    assert_stale(pid, first_patch)
+    decline(pid, second_patch)
+    events = finish(pid, thread, second, events)
+    events = settle_permission_handles(pid, thread, events, [second_patch])
+    expected_second = Map.put(expected_second, "status", "declined")
+    assert item(events, "fileChange") == expected_second
+    assert length(ModelFixture.requests(ctx.fixture)) == 5
+    assert File.ls!(ctx.fixture.workspace) == []
+
+    assert_permission_file_history(pid, thread, [
+      {first, expected_first},
+      {second, expected_second}
+    ])
+
+    assert_no_permission_review(ctx, events)
+    assert_idle_without_rules(ctx, pid)
+    assert_stale(pid, second_patch)
+  end
+
+  defp permission_file(ctx, call_id, filename, contents) do
+    %{
+      "id" => call_id,
+      "type" => "fileChange",
+      "status" => "inProgress",
+      "changes" => [
+        %{
+          "path" => Path.join(ctx.fixture.workspace, filename),
+          "kind" => %{"type" => "add"},
+          "diff" => contents
+        }
+      ]
+    }
+  end
+
+  defp await_permission_patch(ctx, pid, thread, turn, events, expected, count) do
+    events =
+      collect(pid, events, fn all ->
+        assert Enum.count(all, &(&1.kind == :server_request)) <= count
+
+        Enum.count(all, &(&1.kind == :server_request)) == count and
+          notification(all, "item/started", &(&1["item"] == expected)) != nil
+      end)
+
+    approval = events |> Enum.filter(&(&1.kind == :server_request)) |> List.last()
+    assert approval.wire["method"] == "item/fileChange/requestApproval"
+    params = approval.wire["params"]
+    assert params["threadId"] == thread and params["turnId"] == turn
+    assert params["itemId"] == expected["id"]
+    assert is_integer(params["startedAtMs"]) and params["startedAtMs"] > 0
+    assert File.ls!(ctx.fixture.workspace) == []
+    assert %{phase: :ready, pending: 0, interactions: 1, uncertain: 0} = Session.status(pid)
+    {approval, events}
+  end
+
+  defp settle_permission_handles(pid, thread, events, approvals) do
+    events =
+      collect(pid, events, fn all ->
+        assert Enum.count(all, &(&1.kind == :server_request)) == length(approvals)
+
+        Enum.all?(approvals, fn approval ->
+          notification(all, "serverRequest/resolved", &(&1["requestId"] == approval.wire["id"]))
+        end)
+      end)
+
+    for approval <- approvals do
+      request_id = approval.wire["id"]
+
+      assert [%{"threadId" => ^thread, "requestId" => ^request_id}] =
+               for(
+                 event <- events,
+                 event.wire["method"] == "serverRequest/resolved",
+                 event.wire["params"]["requestId"] == request_id,
+                 do: event.wire["params"]
+               )
+
+      assert [outcome] =
+               Enum.filter(Session.interaction_outcomes(pid), &(&1.handle == approval.handle))
+
+      assert outcome.status == :resolution_observed
+    end
+
+    assert Session.uncertain_operations(pid) == []
+    events
+  end
+
+  defp assert_permission_file_history(pid, thread, expected) do
+    records =
+      call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]["turns"]
+
+    assert Enum.map(records, & &1["id"]) == Enum.map(expected, &elem(&1, 0))
+
+    for {record, {turn, file}} <- Enum.zip(records, expected) do
+      assert record["id"] == turn and record["status"] == "completed"
+      assert Enum.filter(record["items"], &(&1["type"] == "fileChange")) == [file]
+    end
+  end
+
+  defp assert_no_permission_review(ctx, events) do
+    refute Enum.any?(events, fn event ->
+             event.wire["method"] in [
+               "item/autoApprovalReview/started",
+               "item/autoApprovalReview/completed",
+               "error"
+             ]
+           end)
+
+    refute Enum.any?(ModelFixture.requests(ctx.fixture), fn request ->
+             get_in(request, ["client_metadata", "x-openai-subagent"]) == "guardian"
+           end)
+  end
+
   defp grant_first_turn(ctx, pid, thread, scope) do
     {turn, approval, events} =
       pending(ctx, pid, thread, "permissions", "permission-lifetime-1", 1)

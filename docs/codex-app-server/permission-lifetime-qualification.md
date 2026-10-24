@@ -3,7 +3,7 @@
 Stock Codex `rust-v0.163.0`, source
 `83086188ae0614bd882818ff1aa23f3194962012`, binary SHA256
 `399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215`,
-passes **5 tests / zero failures** at seeds `501432` and `987654`, 6.4/6.5 seconds.
+originally passed **5 tests / zero failures** at seeds `501432` and `987654`, 6.4/6.5 seconds.
 The independent Session talks to the actual native process. The fixed loopback
 Responses fixture supplies model data only; it never emits app-server frames.
 
@@ -30,6 +30,52 @@ explicit `strictAutoReview: false`; the complete model-visible result is compare
 with its actual scope and root. Success is actual native patch application, not
 an echoed approval value. No command, paid provider or running Samgita is needed.
 Production cleanup and all original deadlines remain unchanged.
+
+## Granular policy and unsupported session strictness
+
+Four further real-native cases reuse the unchanged bounded provider fixture.
+Three vary only granular `request_permissions`: omitted, false and true. Other
+granular flags remain fixed. Omitted/false normalize to false and return exact
+empty turn permissions without an approval callback. The prescribed patch then
+requires a genuine file-change callback; explicit decline leaves an empty
+workspace. True produces a correlated permission callback first; an explicit
+turn write grant permits that same patch without a file approval, with exact
+independently prescribed bytes and regular-file type. Completion/callbacks
+provide the absence barriers; there is no inference from a short quiet wait.
+
+The fourth case sends a schema-valid nonempty write grant with `scope:session`
+and `strictAutoReview:true`. Native semantics normalize it to empty turn
+permissions, not a JSON-RPC validation error. The same-turn patch therefore
+requires file approval. After decline, a separately and explicitly started later
+turn also requires approval; declining again leaves every file absent. No
+Guardian request, auto-review notice, policy file or uncertain operation appears.
+This complements the retained positive session/false and separate turn/true cases.
+
+Every callback has exact thread/turn/item/request correlation, positive native
+timestamp, observed resolution/outcome and stale handle. Model-visible permission
+outputs, request counts, complete file items and relevant cold-readable history
+are asserted. The three-response and five-response provider caps, deadlines,
+owned-process cleanup and source fixture remain unchanged. A completed native
+turn still does not accept a Samgita Task.
+
+The exact upstream branches are
+[granular default/admission](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/session/mod.rs#L3055-L3099)
+and [session/strict normalization](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/bespoke_event_handling.rs#L1889-L1917).
+The [independent core check](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/session/mod.rs#L3348-L3400)
+returns before storing that unsupported grant. Source precedents alone are not
+native acceptance; the cases above actually run the immutable executable.
+
+The complete seven-file permissions/goal owning block passes **30/0 twice**,
+seeds501432/987654; the standalone lifetime file passes **9/0**. The same block
+also qualifies the new positive-time goal assertion. Warning-free compile/tests,
+format, root strict Credo (433 files) and the executable/config/workflow source
+guard pass. Exact commands/logs are
+`/tmp/samgita-native-repair-continuation-permission-policy-v1-20261025/`;
+results SHA256 `32bdbc75cc9c9262f99a7c2ca257a1048a1c2e0c69582e4b862674755e02304d`,
+source SHA256 `423c23cd7d6df3c4c07c06e1eb6bbbed6150ae5f3e197848bd38df297a9f76d8`.
+One exact granular bool/default physical owner becomes implemented; broad
+approval/default requirements remain missing, with no verified-state promotion.
+Complete final-source local/hosted qualification and remaining profiles stay open.
 
 ## Immutable source
 
@@ -74,6 +120,6 @@ AST, namespace prerequisite and scoped strict Credo also pass. Logs:
 `/tmp/samgita-permission-lifetime-initial-*-20261024.log`. The default conformance
 driver suite includes this file. Only `PermissionGrantScope/enum/1` and the actual
 local environmentId newly gain scoped implemented evidence. No row is verified;
-the broad approval lifecycle remains missing. Strict auto-review true, remote
+the broad approval lifecycle remains missing. Other strict auto-review branches, remote
 environments, network/deny/glob grants, remaining policy/race/loss/OS/service
 profiles and A11 remain incomplete. No publication or deployment is claimed.

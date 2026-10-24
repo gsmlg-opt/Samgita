@@ -161,3 +161,28 @@ guard. Commands/logs are `/tmp/samgita-native-repair-continuation-v3-20261025/`.
 This strengthens the existing deferral owner without a count or verified-state
 promotion. Positive elapsed-time control, active-source concurrent flush, newly
 stopped-child cold recovery and other deployment profiles remain unqualified.
+
+## Positive elapsed usage through public goal reads
+
+The final goal now explicitly requires `timeUsedSeconds >= 1`, in addition to
+nondecreasing usage. The existing one-second no-work observation after restoring
+the deferred active goal already supplies this elapsed interval; no extra sleep,
+hold, request, deadline or provider dispatch is introduced. Public final/prefix/
+cold/stopped-state goal snapshots preserve that exact positive elapsed value.
+No SQLite row or runtime clock is modified.
+
+Pinned `ext/goal/src/runtime.rs:412-454` restores accounting before returning for
+deferral. `accounting.rs:91-111,313-329,662-667` preserves the same goal's clock
+across explicit turn start; `404-432,643-645` calculates whole elapsed seconds.
+`extension.rs:347-354` awaits persistence at turn stop, before
+`core/src/tasks/mod.rs:850-866` emits turn completion. Public goal get only reads
+persisted state. The source audit is
+`/tmp/samgita-goal-positive-time-source-audit-20261025.md`; it is not itself the
+executable evidence.
+
+The complete permissions/goal owning block passes **30/0 twice**, fixed seeds,
+with compile, format, strict Credo and a matching source guard. Commands/logs are
+`/tmp/samgita-native-repair-continuation-permission-policy-v1-20261025/`.
+This supplies the previously missing positive-time control for this exact owned
+Linux/UDS journey. General timing accuracy, concurrent active-source flush,
+new stopped-child cold recovery and other deployment profiles remain open.

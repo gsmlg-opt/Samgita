@@ -97,8 +97,15 @@ contracts to **3,205 implemented / 3,416 missing**, zero verified. All48 isolate
 profiles have required hosted steps. Initial failures and scope limits remain
 recorded. Required-skills and positive elapsed-time inheritance remain unqualified.
 
-Next complete the source-audited required-skills native differential and meaningful
-positive-time assertion, then freeze executable source for the complete preserved-
+The [granular/default and unsupported strict-session permission unit](permission-lifetime-qualification.md#granular-policy-and-unsupported-session-strictness)
+passes its complete seven-file owning block **30/0 twice**, including the
+[positive elapsed goal assertion](goal-fork-qualification.md#positive-elapsed-usage-through-public-goal-reads).
+Compile/format/strict Credo and source guard pass. One physical bool owner brings
+contracts to **3,206 implemented / 3,415 missing**, zero verified; requirements
+stay unchanged. Existing reply/goal owners gain evidence without a state change.
+
+Next complete the source-audited required-skills native differential, then freeze
+executable source for the complete preserved-
 platform/package/consumer and final-pushed hosted matrix.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.

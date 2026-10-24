@@ -355,6 +355,9 @@ defmodule SamgitaCodexDriver.NativeGoalForkProfileTest do
     final = goal(resumed, target)
     assert_goal(final, target, "budgetLimited", 21, initial["createdAt"], timing)
     assert final["timeUsedSeconds"] >= active["timeUsedSeconds"]
+    # Restored active-goal accounting includes the existing one-second quiet
+    # observation before the explicit turn; completion persists that usage.
+    assert final["timeUsedSeconds"] >= 1
 
     assert Enum.any?(
              notices(execution, "thread/goal/updated"),
