@@ -183473,183 +183473,239 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueAddParams.json#/properties/clientUserMessageId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/clientUserMessageId",
       "required": true,
       "schema": "v2/ThreadQueueAddParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "clientUserMessageId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueAddParams.json#/properties/input",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/input",
       "required": true,
       "schema": "v2/ThreadQueueAddParams.json",
       "schema_sha256": "8c8fc835c75f7e4ebc23ff608b4bbc16b9b8f5e53b7920bf1214b94060b6b9d6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "input"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueAddParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadQueueAddParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueAddResponse.json#/definitions/QueuedSubmission/properties/clientUserMessageId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/QueuedSubmission/properties/clientUserMessageId",
       "required": true,
       "schema": "v2/ThreadQueueAddResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "clientUserMessageId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueAddResponse.json#/definitions/QueuedSubmission/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/QueuedSubmission/properties/id",
       "required": true,
       "schema": "v2/ThreadQueueAddResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueAddResponse.json#/definitions/QueuedSubmission/properties/input",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/QueuedSubmission/properties/input",
       "required": true,
       "schema": "v2/ThreadQueueAddResponse.json",
       "schema_sha256": "8c8fc835c75f7e4ebc23ff608b4bbc16b9b8f5e53b7920bf1214b94060b6b9d6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "input"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueAddResponse.json#/properties/queuedSubmission",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/queuedSubmission",
       "required": true,
       "schema": "v2/ThreadQueueAddResponse.json",
       "schema_sha256": "992684d78a77bf55d5f0acceefe83859c96f86e3fc1f0d8961445e3b39cb65cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "queuedSubmission"
     },
     {
@@ -183845,53 +183901,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueListResponse.json#/properties/data",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/ThreadQueueListResponse.json",
       "schema_sha256": "dca883e77c56b5d7ee49c977646f64fed2c84dfec6e3b3a19eeed37d007c8940",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueListResponse.json#/properties/nextCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ThreadQueueListResponse.json",
       "schema_sha256": "173521127e141413b55987c2ee4d6562467a4969ff7d5ebda137ce1b5b0e9a87",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "nextCursor"
     },
     {
@@ -185821,105 +185893,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueUpdateParams.json#/properties/input",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/input",
       "required": true,
       "schema": "v2/ThreadQueueUpdateParams.json",
       "schema_sha256": "8c8fc835c75f7e4ebc23ff608b4bbc16b9b8f5e53b7920bf1214b94060b6b9d6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "input"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueUpdateParams.json#/properties/queuedSubmissionId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/queuedSubmissionId",
       "required": true,
       "schema": "v2/ThreadQueueUpdateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "queuedSubmissionId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueUpdateParams.json#/properties/threadId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/threadId",
       "required": true,
       "schema": "v2/ThreadQueueUpdateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/queue-image-snapshot-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadQueueUpdateResponse.json#/properties/queuedSubmission",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_owned_png_queue_snapshot: Full accepted add/update/list maps preserve stable queue/client/thread identity and exact normalized text/original-detail inline PNG bytes. Accepted A survives source overwrite/delete and cold unloaded read; replacement B survives missing-file rejected update and cold dispatch. Explicit resume automatically dispatches saved noninterrupted queue; exact raw model body SHA, image CRC/pixels/bytes, native queue-trigger/turn/client IDs, one queued execution, full two-turn warm/cold history and empty queue asserted. Legacy prescribes sequential stored item3/4 and exact selected-item unsupported error; paginated preserves exact live IDs/timestamps and positive item read.2/0 both seeds, original deadlines/owned guardians retained. Only this physical selected field, no nested/sibling alias, whole union, queue/start call, audio, concurrency/crash atomicity, live model interpretation, other OS/backend/A11 or verified/full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/queuedSubmission",
       "required": true,
       "schema": "v2/ThreadQueueUpdateResponse.json",
       "schema_sha256": "992684d78a77bf55d5f0acceefe83859c96f86e3fc1f0d8961445e3b39cb65cb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_queue_image_snapshot_profile.exs:99-179,219-240,242-406,452-491"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "queuedSubmission"
     },
     {

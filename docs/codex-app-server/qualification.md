@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,033 implemented / 3,588 missing
+11 blocked requirements** and **0 verified / 3,047 implemented / 3,574 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,033 directly exercised
+MCP entries have scoped implementation evidence. These 3,047 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -63,6 +63,17 @@ source-backed history-oracle corrections: two turns, native empty-thread error,
 and the cold delegate's single status normalization. Twelve direct physical
 owners gain scoped implemented evidence. Fixed model output establishes no diff
 inspection or review quality; hosted and full acceptance remain separate gates.
+
+The [hard pending-approval restart](approval-cold-restart-qualification.md),
+[System-skill shared cache](system-skills-qualification.md) and
+[queued image snapshots](queue-image-snapshot-qualification.md) add five
+actual-native cases, all passing both fixed seeds with strict checks/source
+guards. Cold recovery cannot restore approval authority, bundle disable cannot
+destroy another process's cache, and queued PNG snapshots survive source loss,
+rejected updates and cold dispatch. Source-backed legacy history differences and
+initial failures remain recorded. Fourteen direct owners become implemented;
+no requirement becomes verified. Their explicit hosted steps bring the isolated
+profile count to39. Final combined-source and hosted checks remain pending.
 
 Eight [review delivery cases](review-delivery-qualification.md) pass at both
 fixed seeds with warning-free compilation, format, strict Credo and a matching
