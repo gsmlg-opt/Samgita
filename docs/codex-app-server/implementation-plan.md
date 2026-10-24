@@ -668,3 +668,18 @@ provisions it without weakening the fixture. Continue remaining native approval
 context/effect/loss coverage and final-source full local/hosted qualification.
 All current [A11](a11-ingress-boundary.md), upstream-unreachable, external/OS and
 aggregate gates retain their actual incomplete status.
+
+The next [file-effect](file-change-effects-qualification.md) and
+[default-semantics](default-semantics-qualification.md) units add seven native
+cases, with **12/0** in the full owning block at both seeds. Live/direct-store
+delete, failed status, populated move destination and normalized resume path
+add thirteen precise implemented contracts. With
+[thirteen retained shared owners](shared-setting-owners-qualification.md), the
+ledger is **2,693 implemented / 3,928 missing**, zero verified.
+The requirement ledger remains **462 implemented /
+12 missing / 11 blocked**. Source-backed corrections retain the initial failing
+oracles and now require exact native effects/checkpoints, explicit decline of
+unsandboxed retry and full historical byte prefixes. Executable commits are
+`264b14c` and `0629d92`; source is frozen for complete preserved-platform,
+independent-package and final-pushed hosted checks. Remaining broad lifecycle,
+A11, source-unreachable and real external/OS success gates are not closed.

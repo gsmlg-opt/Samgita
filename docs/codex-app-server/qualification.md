@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,667 implemented / 3,954 missing
+11 blocked requirements** and **0 verified / 2,693 implemented / 3,928 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,667 directly exercised
+MCP entries have scoped implementation evidence. These 2,693 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,22 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+Four [file-effect cases](file-change-effects-qualification.md) and three
+[missing/null/empty semantic differentials](default-semantics-qualification.md)
+extend actual-native qualification. Their complete owning block passes **12/0**
+at both fixed seeds, with strict checks and before/after source hashes. Thirteen
+precise contracts gain scoped implementation evidence, including distinct live
+and persisted failed FileChange states and populated move destinations. The
+initial move-summary, deny-glob and resume-checkpoint oracle failures remain
+recorded with source-backed corrections. No deadline, assertion, historical
+record or process-cleanup guarantee was weakened. The new executable source is
+`0629d92` after file unit `264b14c`; its full local/hosted checks are ongoing.
+The earlier terminal checkpoint below remains evidence for its original source.
+Another [thirteen shared setting/order owners](shared-setting-owners-qualification.md)
+index unchanged, previously passing actual-native assertions with recomputed
+physical node and test hashes. No uncalled sibling, omitted default, whole union
+or broad behavior is promoted by that source audit.
 
 The current [hosted checkpoint at 67d2c32](repair-qualification.md#hosted-checkpoint-at-67d2c32)
 passes foundation, both complete default-driver partitions (**643/0** combined),

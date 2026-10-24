@@ -23618,24 +23618,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ApprovalsReviewer/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: A; F:222 supplies `user` after alias input produced auto_review; F:228 and 499-500 require returned `user`. Physical schema line84. Saved reviewer selection only; no human approval callback behavior."
+      ],
       "pointer": "/definitions/ApprovalsReviewer/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "9a7d469ee31c85617b47990418cdcf535c45728d90c73d4195d16cf3ec1d2b41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -23662,24 +23670,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ApprovalsReviewer/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: A; F:184 supplies `guardian_subagent`; F:190 and 499-500 require normalized native `auto_review`. Schema line86. Legacy alias normalization only; no auto-review execution or canonical auto_review input coverage."
+      ],
       "pointer": "/definitions/ApprovalsReviewer/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "e05150473ebd02364b5193284e19084431e8fcf4956c7f94a8049cf8ca8da33d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -23750,24 +23766,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/AskForApproval/oneOf/0/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: B; R:128 supplies `never`; R:139 and 302-305 require returned `never`. Schema line173. Cold-resume setting selection only; no command-approval enforcement."
+      ],
       "pointer": "/definitions/AskForApproval/oneOf/0/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "19de9176fc8d9b77dd06632cb199b412ba06bce03c96f8093dbedc1638bf42e9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_resume_settings_test.exs:119-150,285-325"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -23821,27 +23845,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/AskForApproval/oneOf/1/properties/granular/properties/mcp_elicitations",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: A; F:165 supplies false; F:169-175 preserves that explicit map into expectation, F:189 and 499-500 compare exact returned approvalPolicy. Schema182-184. Explicit false saved within required granular triple; no elicitation request/routing and no true branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular/properties/mcp_elicitations",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcp_elicitations"
     },
     {
@@ -23873,53 +23905,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/AskForApproval/oneOf/1/properties/granular/properties/rules",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: A; F:164 supplies false; F:169-175/189/499-500 require exact returned approvalPolicy. Schema189-191. Explicit false saved within triple; no rules-prompt routing or true branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular/properties/rules",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rules"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/AskForApproval/oneOf/1/properties/granular/properties/sandbox_approval",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: A; F:163 supplies false; F:169-175/189/499-500 require exact returned approvalPolicy. Schema192-194. Explicit false saved within triple; no sandbox escalation or true branch."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular/properties/sandbox_approval",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sandbox_approval"
     },
     {
@@ -29071,46 +29119,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/Personality/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: A; F:185 supplies friendly; F:191 and 499-500 require returned friendly. Schema2663. Deprecated setting retention only; native schema says friendly no longer selects a style."
+      ],
       "pointer": "/definitions/Personality/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "533ffb2b7767e5c71fc8690cd54e7c7319daad5adfea0140b38b46798f6ee171",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/Personality/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: A; F:223 explicitly changes to pragmatic; F:229 and 499-500 require returned pragmatic. Schema2664. Deprecated setting retention/change only; no instruction/style effect."
+      ],
       "pointer": "/definitions/Personality/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "a10a55abc7398e646ec1488e3ea9ac42d0bf39516862ef799012117f699330b9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -31124,24 +31188,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ReasoningSummary/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: A; F:224 explicitly changes detailed to auto; F:230 and 499-500 require returned auto. Schema3539. Idle saved auto value only; no provider reasoning summary output claim."
+      ],
       "pointer": "/definitions/ReasoningSummary/oneOf/0/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "e29286b1c27e643bc7559b984d22570fa470515902de9f5034e20c811c10213a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-238,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -36461,24 +36533,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/SandboxMode/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: D; P:172/241 supplies workspace-write in thread/start; P:200-211 independently requires native completed file change and exact file contents/listing. Schema4721. One successful regular-file write under selected mode; no mode-comparison or isolation claim."
+      ],
       "pointer": "/definitions/SandboxMode/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "c92671e8072874166a3244ad1fab16f8b584ea076997ac473c3a13c00ae118e3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs:167-220,222-282,305-318"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -36624,49 +36704,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/SandboxPolicy/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: C; F:457 explicitly supplies type readOnly; F:460-466 and 499-500 require policy readOnly and cleared active profile. Schema4750-4756. Exact selected discriminator; no omitted networkAccess input coverage or enforcement."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/1/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "8296d2b5784b9a03d0cd5fb9b24c2d4e5fc96f91dad8391b790a56d60e2ed65a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:408-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/SandboxPolicy/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: C; same explicit discriminator and independent applied snapshot as #10. Schema4752. Exact readOnly enum only; do not promote containing union or sibling variants."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/1/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "4d5e7784c791c792262d58cf731661a4048b47d1bcf527928ad714c9e587cffc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:408-469,479-535"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -39128,24 +39224,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/shared-setting-owners-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSortKey/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_existing_shared_setting_owner: E; O:446 explicitly supplies section_position; O:122/128/157 require exact native order before moves, after moves and cold reopen. Schema7078. Selected positive ordering only; no pagination/ties/other sort mode behavior."
+      ],
       "pointer": "/definitions/ThreadSortKey/enum/3",
       "schema": "ClientRequest.json",
       "schema_sha256": "1fd4fbf9d67652d730b3da2eff285915408ffabf147f0cf4a9d7e53f99e34994",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs:112-163,414-448"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -68775,16 +68879,18 @@
       "evidence": [
         "docs/codex-app-server/approval-lifetime-qualification.md",
         "docs/codex-app-server/permission-lifetime-qualification.md",
-        "docs/codex-app-server/approval-loss-qualification.md"
+        "docs/codex-app-server/approval-loss-qualification.md",
+        "docs/codex-app-server/file-change-effects-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FileChangeRequestApprovalParams.json#/properties/grantRoot",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_file_approval_explicit_null: Map.fetch at215-216 requires this key be present with null during real patch approvals; omitted and nonnull branches, retry escalation and nonnull grant-root semantics remain unqualified. No complete field/lifecycle claim.",
         "actual_native_permission_lifetime: Later file callbacks preserve explicit null reason/grantRoot and exact owned patch path. Nonnull branches remain unqualified; pinned ordinary grantRoot producers pass None.",
-        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim.",
+        "actual_native_file_or_default_differential: Exact callback map requires present grantRoot null. Both pinned production callers pass None; populated TUI testapproval is local UI injection, not app-server success. Populated grantRoot remains unverified."
       ],
       "nullable": true,
       "pointer": "/properties/grantRoot",
@@ -68801,7 +68907,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
           "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:244-251",
-          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280",
+          "apps/samgita_codex_driver/test/native_file_approval_reason_test.exs:108-163"
         ]
       },
       "transport_coverage": [
@@ -68858,16 +68965,18 @@
       "evidence": [
         "docs/codex-app-server/approval-lifetime-qualification.md",
         "docs/codex-app-server/permission-lifetime-qualification.md",
-        "docs/codex-app-server/approval-loss-qualification.md"
+        "docs/codex-app-server/approval-loss-qualification.md",
+        "docs/codex-app-server/file-change-effects-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FileChangeRequestApprovalParams.json#/properties/reason",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "actual_native_file_approval_explicit_null: Map.fetch at215-216 requires this key be present with null during real patch approvals; omitted and nonnull branches, retry escalation and nonnull grant-root semantics remain unqualified. No complete field/lifecycle claim.",
         "actual_native_permission_lifetime: Later file callbacks preserve explicit null reason/grantRoot and exact owned patch path. Nonnull branches remain unqualified; pinned ordinary grantRoot producers pass None.",
-        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim."
+        "actual_native_with_deterministic_transport_fault: Explicit warm resume returns the complete original callback envelope unchanged, including ID, parameters and timestamp, under a fresh generation/handle. Exact selected local permission or explicit-null file fields are asserted; nonnull file reason/grantRoot and other environments remain unqualified. No cold callback or transport-independent loss claim.",
+        "actual_native_file_or_default_differential: A real owned write succeeds before chmod0444; a later same-file native failure yields the exact nonnull retry reason, explicitly declined with preserved bytes/mode/canary and resolved/stale handle checks. This qualifies reason propagation, not sandbox security."
       ],
       "nullable": true,
       "pointer": "/properties/reason",
@@ -68884,7 +68993,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/native_approval_lifetime_test.exs:48-145,197-228",
           "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:244-251",
-          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280"
+          "apps/samgita_codex_driver/test/native_approval_loss_test.exs:224-280",
+          "apps/samgita_codex_driver/test/native_file_approval_reason_test.exs:59-166"
         ]
       },
       "transport_coverage": [
@@ -84026,24 +84136,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/PatchApplyStatus/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact independently prescribed native live file-change item has failed status after an exact owned target is externally removed while approval is pending. Native exit 1, unchanged original diff, no retry and complete previous history are asserted. No OS/general failure extrapolation."
+      ],
       "pointer": "/definitions/PatchApplyStatus/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:147-270,307-361"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -84167,72 +84285,96 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact independently prescribed native live file-change item has exact delete kind for an explicitly declined then accepted owned delete. Original deleted bytes and unrelated canary are checked; other change variants are not inferred."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "c57a718eb2f94f50f49452fc79e4d7f9c0710f947f75a8e227b4e70baccd06ae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-101,273-340"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact independently prescribed native live file-change item has exact delete kind for an explicitly declined then accepted owned delete. Original deleted bytes and unrelated canary are checked; other change variants are not inferred."
+      ],
       "nullable": false,
       "pointer": "/definitions/PatchChangeKind/oneOf/1/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "0fbe560858034a51aa489fe29a31e8cc217cc8473fdc70c5c72e1a0c3a33ecae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-101,273-340"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact independently prescribed native live file-change item has exact delete kind for an explicitly declined then accepted owned delete. Original deleted bytes and unrelated canary are checked; other change variants are not inferred."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/1/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "fc2c1b002031ef30f07794be21c7ca32ffeb0d66cee691de2ecddbf4700fc720",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-101,273-340"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -84270,22 +84412,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/output-notice-qualification.md"
+        "docs/codex-app-server/output-notice-qualification.md",
+        "docs/codex-app-server/file-change-effects-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/PatchChangeKind/oneOf/2/properties/move_path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
-        "Limited null evidence only; no populated field promotion: Exact final update kind has move_path null. No populated rename target evidence."
+        "actual_native_file_or_default_differential: Exact independently prescribed native live file-change item has a populated absolute move destination distinct from the source; filesystem source removal and destination bytes prove the effect. Supplements the earlier null-only update evidence."
       ],
       "nullable": true,
       "pointer": "/definitions/PatchChangeKind/oneOf/2/properties/move_path",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -84293,10 +84436,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-101,273-340"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "move_path"
     },
     {
@@ -171828,68 +171974,92 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchApplyStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact hot/cold direct native persisted file-change item has completed status for the prescribed explicit decision; complete history and filesystem effects are independently asserted. No in-progress store or other item variant claim."
+      ],
       "pointer": "/definitions/PatchApplyStatus/enum/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-140,342-361"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchApplyStatus/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact hot and distinct-process cold direct stored item plus full history has failed status after an exact owned target is externally removed while approval is pending. Native exit 1, unchanged original diff, no retry and complete previous history are asserted. No OS/general failure extrapolation."
+      ],
       "pointer": "/definitions/PatchApplyStatus/enum/2",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:147-270,307-361"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchApplyStatus/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact hot/cold direct native persisted file-change item has declined status for the prescribed explicit decision; complete history and filesystem effects are independently asserted. No in-progress store or other item variant claim."
+      ],
       "pointer": "/definitions/PatchApplyStatus/enum/3",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "c32caad8748084e2608fc48151c4c2f01180f8b76a45e67768f3a25ff3adb378",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-140,342-361"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -171982,72 +172152,96 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchChangeKind/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact hot and distinct-process cold direct stored item plus full history has exact delete kind for an explicitly declined then accepted owned delete. Original deleted bytes and unrelated canary are checked; other change variants are not inferred."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "c57a718eb2f94f50f49452fc79e4d7f9c0710f947f75a8e227b4e70baccd06ae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-140,273-361"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchChangeKind/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact hot and distinct-process cold direct stored item plus full history has exact delete kind for an explicitly declined then accepted owned delete. Original deleted bytes and unrelated canary are checked; other change variants are not inferred."
+      ],
       "nullable": false,
       "pointer": "/definitions/PatchChangeKind/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "0fbe560858034a51aa489fe29a31e8cc217cc8473fdc70c5c72e1a0c3a33ecae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-140,273-361"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/file-change-effects-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchChangeKind/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Exact hot and distinct-process cold direct stored item plus full history has exact delete kind for an explicitly declined then accepted owned delete. Original deleted bytes and unrelated canary are checked; other change variants are not inferred."
+      ],
       "pointer": "/definitions/PatchChangeKind/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "fc2c1b002031ef30f07794be21c7ca32ffeb0d66cee691de2ecddbf4700fc720",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-140,273-361"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -172085,22 +172279,23 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/output-notice-qualification.md"
+        "docs/codex-app-server/output-notice-qualification.md",
+        "docs/codex-app-server/file-change-effects-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/PatchChangeKind/oneOf/2/properties/move_path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
-        "Limited null evidence only; no populated field promotion: Exact final update kind has move_path null. No populated rename target evidence."
+        "actual_native_file_or_default_differential: Exact hot and distinct-process cold direct stored item plus full history has a populated absolute move destination distinct from the source; filesystem source removal and destination bytes prove the effect. Supplements the earlier null-only update evidence."
       ],
       "nullable": true,
       "pointer": "/definitions/PatchChangeKind/oneOf/2/properties/move_path",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
@@ -172108,10 +172303,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_file_move_delete_test.exs:55-140,273-361"
         ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "move_path"
     },
     {
@@ -179329,14 +179527,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/core-thread-turn-qualification.md"
+        "docs/codex-app-server/core-thread-turn-qualification.md",
+        "docs/codex-app-server/default-semantics-qualification.md"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/sectionId",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected actual-native evidence: Assigned section selection returns owned thread, removal reads nil. Full list filter combination/pagination missing."
+        "Selected actual-native evidence: Assigned section selection returns owned thread, removal reads nil. Full list filter combination/pagination missing.",
+        "actual_native_file_or_default_differential: Omitted/null/concrete section filters return independently prescribed two/one/one thread IDs and exact section projections, repeated after native restart without loading/resume. Existing rollout bytes and exactly two original provider requests remain unchanged. No general pagination claim."
       ],
       "nullable": true,
       "pointer": "/properties/sectionId",
@@ -179351,11 +179551,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/additional_method_families_test.exs"
+          "apps/samgita_codex_driver/test/additional_method_families_test.exs",
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs:440-527"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "sectionId"
     },
@@ -188408,27 +188610,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/default-semantics-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadResumeParams.json#/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_file_or_default_differential: Actual cold resumes preserve omitted/null/empty-string journal params and select the original thread under absent/false negotiation. Nonempty owned paths are rejected without loading or appending; each successful resume appends one exact settings checkpoint after confirmed owned-writer shutdown. Enabled nonempty-path success and other profiles are not inferred."
+      ],
       "nullable": true,
       "pointer": "/properties/path",
       "required": false,
       "schema": "v2/ThreadResumeParams.json",
       "schema_sha256": "30d72675a427f54e2c80536347feb33d86a5432d6be966fa5d99d0c5e19c561e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs:292-395,529-609"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "path"
     },
     {
@@ -197482,14 +197692,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/thread-environment-qualification.md"
+        "docs/codex-app-server/thread-environment-qualification.md",
+        "docs/codex-app-server/default-semantics-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/environments",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
+      "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified."
+        "actual_native_local_synthetic_executor: Three isolated cases use the real authenticated exec-server and metadata-only proxy to assert selected-thread connected/disconnected routing, no initial replay, explicit metadata recovery without add/work replay, stopped-executor status/error, owned roots and disabled/unknown selection gates. Zero-turn includeTurns is explicitly unsupported; metadata reads do not prove history. Other paths, active work, restart/replay, executor replacement and deployment profiles remain unqualified.",
+        "actual_native_file_or_default_differential: Exact journal distinguishes omission/null/default local selection from enabled empty selection; loaded native response independently checks cwd/roots or empty list. Disabled [] rejects locally and upstream, with no model requests. No cold environment or tool-execution inference."
       ],
       "nullable": true,
       "pointer": "/properties/environments",
@@ -197504,11 +197716,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs"
+          "apps/samgita_codex_driver/test/native_thread_environment_profile.exs",
+          "apps/samgita_codex_driver/test/native_default_gates_profile.exs:397-438"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/stdio"
+        "linux-x86_64-musl/stdio",
+        "linux-x86_64-musl/unix-socket"
       ],
       "wire_name": "environments"
     },

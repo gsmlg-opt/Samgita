@@ -158,3 +158,29 @@ unavailable/error reasons, Windows ready/update states, `cwd` and warning fields
 are not inferred. No entry becomes fully verified.
 No full compatibility, A11 closure, publication or production readiness follows
 from this bounded profile.
+
+## User-verification prerequisite recheck
+
+A source-only recheck at `086d5c5` found no safe additional stock-Linux success
+path. The immutable
+[production provider factory](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/user-verification/src/lib.rs#L61-L90)
+selects UnsupportedProvider outside macOS. The
+[service gate](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/user_verification.rs#L46-L108)
+rejects Linux enroll/delete/verify before creating a native worker even with
+cached synthetic account-user identity. Rust test-support providers are injected
+in tests; they are not a production binary configuration. Existing actual-native
+Linux errors and malformed-challenge tests already cover these reachable paths.
+No duplicate negative test or success promotion is added by this recheck.
+
+The real macOS profile also needs explicitly owned OS resources, not just a
+scratch CODEX_HOME. The
+[key namespace](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/user-verification/src/key_namespace.rs#L15-L19)
+uses a fixed Keychain service prefix plus the account-user hash. Production
+creation/reuse/deletion operates on DataProtectionKeychain/Secure Enclave P-256
+items with unlocked-device/biometric policy; verification requires real
+LocalAuthentication signing. Acceptance must independently verify the signature
+against enrollment SPKI and challenge, then exercise ownership/cancellation and
+account-change races. Enrollment/deletion concern local keys, not backend
+registration/revocation. No such OS/account resource or operation was authorized
+or used here. All six enroll/delete/verify request/result success entries remain
+missing; unavailable prerequisites are not a passing platform profile.
