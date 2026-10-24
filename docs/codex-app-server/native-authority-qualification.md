@@ -155,6 +155,58 @@ The tested platform source boundaries are `commands.ex:131-182` (ordered locks),
 can occur at the cancelled Attempt before the numeric fence check; this is
 aggregate-authority evidence, not an isolated numeric-fence branch.
 
+## Invalid handle after ticket commit and revocation before settlement
+
+Two additive genuine-native cases run only in the existing allowlisted authority
+scratch DB. Both preserve every previously retained domain, journal, audit,
+receipt and job record. Original fixtures remain ephemeral by default; only the
+new history-dependent case explicitly requests a persistent paginated thread.
+
+The first changes only the opaque reference of the genuine pending command
+handle, retaining its real ID/generation. `Driver.execute` commits its one-use
+ticket, then the real Session rejects the full-handle mismatch without consuming
+the original interaction. The durable operation advances prepared to uncertain
+(version+2), the event reply_prepared to uncertain, with exactly the prescribed
+two audit events and one settlement receipt. All Task/Attempt/authority/link/job
+state stays unchanged, the provider remains at one request and no native outcome
+or continuation occurs. Repeated dispatch with the current version and genuine
+handle rejects `dispatch_not_repeatable`; repeated forged direct responses are
+stale. Local Session rejection is certain; the conservative durable bridge state
+is uncertain and never authorizes replay. Checked shutdown preserves that state.
+
+The second exercises the supported direct programmatic sequence. A committed
+ticket supplies exact instance/generation/deadline guards for an explicitly
+authorized genuine approval. Native request resolution, exit0 command output
+`samgita_fixture`, completed turn, complete persisted command history and exactly
+two provider requests establish remote completion. These original notifications
+are deliberately drained without inventing journal acceptance. The existing
+membership API then changes the owner to enabled observer. Settlement using the
+legitimate token/version rejects `forbidden` twice with the same command ID and
+once with a fresh ID. No settlement receipt/audit appears; the exact durable
+snapshot retains the in_flight operation, reply_prepared event, unresolved running
+Attempt and in_progress Task. Original native outcomes/history/provider requests
+remain unchanged through rejection and owned shutdown. Remote completion does
+not confer current permission, review or Task acceptance.
+
+The initial second-case run failed at native includeTurns: pinned
+`thread_processor.rs:3131-3134` rejects that operation on ephemeral threads.
+Only this new case now opts into persistent paginated history; default fixtures,
+guards, history assertions and deadlines remain. Initial3/1 evidence is retained
+in `/tmp/samgita-native-stop-cwd-authority-v2-20261025/`.
+
+The corrected complete authority profile passes3/0 at both501432/987654. Existing
+authority/race/native integration passes21 core+7 web/0 twice in the distinct
+retained recovery DB, followed by4 core+1 web/0 recovery/restart twice. Compile,
+format, strict Credo435 files and final executable source guard pass. Exact
+commands/logs are `/tmp/samgita-native-stop-cwd-authority-v3-20261025/`;
+results SHA256 `c192952cc1f8706223eaf6a87c15ae76d979be9e850d984254ec6544ddaca72a`,
+source SHA256 `3a17732e622d8780745de1d80c09017d5495ed7356212fab729da2523b37b21e`.
+The two native suites before the fixture correction pass61/0 twice; only the
+two web fixture/profile paths differ between those snapshots. Final combined
+qualification remains required. Neither case claims instantaneous post-ticket
+revocation, a concurrent settlement race, remote idempotency, every interaction/
+deployment profile or A11/full compatibility. Broad authorization remains missing.
+
 Initial v1 failed **before tests** because the local cluster's `template1` is
 SQL_ASCII and Mix requested UTF8. The explicitly named absent scratch DB was
 created using `TEMPLATE template0 ENCODING 'UTF8'`; no existing database was reset

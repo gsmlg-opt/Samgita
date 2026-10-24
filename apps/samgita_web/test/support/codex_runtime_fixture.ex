@@ -29,7 +29,7 @@ defmodule SamgitaWeb.CodexRuntimeFixture do
   alias SamgitaCodexDriver.Transport.Stdio
 
   @doc false
-  def pending_authority_fixture do
+  def pending_authority_fixture(options \\ []) do
     binary = System.fetch_env!("CODEX_BINARY")
 
     assert Base.encode16(:crypto.hash(:sha256, File.read!(binary)), case: :lower) ==
@@ -80,16 +80,29 @@ defmodule SamgitaWeb.CodexRuntimeFixture do
       "capabilities" => %{"experimentalApi" => true}
     })
 
+    persistence =
+      if Keyword.get(options, :persistent, false),
+        do: %{"ephemeral" => false, "historyMode" => "paginated"},
+        else: %{}
+
     thread =
-      invoke(ctx, pid, "thread/start", %{
-        "model" => "mock-model",
-        "modelProvider" => "fixture",
-        "cwd" => fixture.workspace,
-        "sandbox" => "read-only",
-        "approvalPolicy" => "on-request",
-        "ephemeral" => true,
-        "config" => %{"web_search" => "disabled"}
-      })["thread"]["id"]
+      invoke(
+        ctx,
+        pid,
+        "thread/start",
+        Map.merge(
+          %{
+            "model" => "mock-model",
+            "modelProvider" => "fixture",
+            "cwd" => fixture.workspace,
+            "sandbox" => "read-only",
+            "approvalPolicy" => "on-request",
+            "ephemeral" => true,
+            "config" => %{"web_search" => "disabled"}
+          },
+          persistence
+        )
+      )["thread"]["id"]
 
     turn =
       invoke(ctx, pid, "turn/start", %{
