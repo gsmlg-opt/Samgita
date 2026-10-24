@@ -78,3 +78,48 @@ Only supplemental `lifecycle:approval-decisions` evidence is added; it stays
 interaction kinds/transports/OS/backends, full lifecycle acceptance, unreachable
 legacy emitters and A11 remain incomplete. No automatic retry, deadline change,
 real credential, paid task, publication, production migration or deployment.
+
+## Sent-but-unconfirmed response across hard restart
+
+The separate `native_approval_sent_restart_profile.exs` adds two actual-native
+cases using the same immutable pin. Its checked-owned controller SIGKILLs and
+reaps the native process after a response was locally sent. The Session remains
+alive and explicitly reconnects to a distinct restarted process. There are two
+deterministic client-boundary faults, without synthetic app-server envelopes:
+
+| Branch | Before crash | After explicit cold reconnect |
+| --- | --- | --- |
+| Reply dropped before native receipt | Exactly one local reply/digest, zero command effects; real approval remains unanswered | Original handle/digest stays uncertain; stale replies reject; no callback or execution replay; interrupted history supplies no completion proof |
+| Reply forwarded once; genuine native resolution/completion notices withheld | Exactly one append, exact argv/cwd/stdout/exit, real completed paginated command and terminal rollout checkpoint | Exact completed command/history survives; uncertainty persists until the caller explicitly acknowledges it after checking evidence; no response, turn or command replay |
+
+The fixed synthetic command and peer are isolated in the owned network
+namespace. No auth file, rule, realtime request, external effect or extra model
+call occurs. Native PID, generation, original opaque handle, response digest,
+single reply, provider counts, full history and exact owned-process cleanup are
+asserted independently. A successful transport send is not durable confirmation,
+and the driver does not infer exactly-once execution from its local command ID.
+
+V3 stopped at strict Credo before runtime; alias ordering and extracted exact
+predicate/cleanup helpers corrected only static structure. V4 then ran25 cases
+with one failure: the forwarded branch's raw-checkpoint predicate never matched.
+Its retained rollout at `/tmp/samgita-sent-cold-rTtvhR4K7rRD/` already contains
+the correct completed command at line12 and terminal at line19. The only mismatch
+was cwd representation: persistence uses a `file:///...` URI while the public
+app-server item uses a bare path. Pinned
+[`items.rs:264`](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/protocol/src/items.rs#L264)
+declares PathUri; its
+[`serializer`](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/utils/path-uri/src/lib.rs#L689)
+preserves the file URL. A one-line raw-persistence expected-value correction
+keeps the API path assertion and every deadline/effect/cleanup invariant.
+
+The final [eight-file block](goal-control-qualification.md#executed-qualification)
+passes **25/0 twice**, including both new cases, with warning-free compile,
+format, strict Credo and a matching executable-source guard. Final test SHA256:
+`eabe6233003b5dfff27d10d18bb98ad365c1a74af43ec8ba2115088316968eb2`;
+fixture SHA256:
+`4eac6a20c815d251dc2276d59afbc2748f68a06241ce43686ec22eaaa2437bb4`.
+A required explicit hosted step is added. This strengthens the still-missing
+approval lifecycle requirement without promoting it or claiming a genuine
+network packet-loss experiment. Other interactions/transports, active partial
+effects, upstream-unreachable legacy requests, A11 and external profiles remain
+incomplete. No publication, migration or deployment follows.
