@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,921 implemented / 3,700 missing
+11 blocked requirements** and **0 verified / 2,963 implemented / 3,658 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,921 directly exercised
+MCP entries have scoped implementation evidence. These 2,963 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -29,6 +29,17 @@ assertions remain. Three precise delivery owners and twelve
 [retained realtime method discriminators](envelope-fields-qualification.md)
 gain scoped implemented evidence, with zero verified promotions. Final-source
 aggregate, package and hosted checks remain separate requirements.
+
+Four [app-policy configuration cases](config-apps-projections-qualification.md)
+pass **4/0** at both fixed seeds, with warning-free compile, format, strict Credo
+and a matching source guard. Complete prescribed maps distinguish absent,
+empty/default and explicit policy levels without conflating metadata with
+effective connector authorization. Exactly42 canonical output owners gain scoped
+implemented evidence; no global enum, alias or fully verified promotion follows.
+The next command-approval loss cases and complete final-source matrix remain
+pending. The review commit's foundation run
+[40091765250](https://github.com/gsmlg-opt/Samgita/actions/runs/40091765250)
+passed; foundation alone is not native-profile or complete compatibility proof.
 
 Seven [command and explicit-null cases](native-command-null-boundaries-qualification.md)
 pass in the complete **31/0** owning block at both fixed seeds, with strict checks

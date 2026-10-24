@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+Four [app-policy config projection cases](config-apps-projections-qualification.md)
+pass both fixed seeds with strict checks and a matching source guard. Forty-two
+precise output owners bring the ledger to **2,963 implemented / 3,658 missing**
+contracts, zero verified. Requirements remain **462 implemented / 12 missing /
+11 blocked**, zero verified. Preserve the metadata/enforcement boundary.
+Next: command approval reply/notification loss, then freeze complete executable
+source for preserved-database, independent-package and hosted qualification.
+The full goal, A11, source-unreachable emitters and external/OS acceptance remain
+incomplete; no release or deployment.
+
 The [review delivery unit](review-delivery-qualification.md) adds eight
 actual-native cases, passing both fixed seeds with compile/format/strict Credo
 and a matching source guard. Exact legacy marker persistence and full warm/cold

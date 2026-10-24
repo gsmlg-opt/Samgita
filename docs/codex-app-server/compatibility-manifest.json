@@ -114985,551 +114985,804 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/approvals_reviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native null and selected \"user\" metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/approvals_reviewer, /result/config/apps/owned_alpha/approvals_reviewer"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppConfig/properties/approvals_reviewer",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "57182e178afd2519d8a0205b64449c94532f39d7d50eac024e8f57a4b1fdd057",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:46",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:168"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvals_reviewer"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/approvals_reviewer/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native null and selected \"user\" metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_alpha/approvals_reviewer"
+      ],
       "pointer": "/definitions/AppConfig/properties/approvals_reviewer/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "fa34df2c0d32f88ea66072290e2b108c62f88a64a91cf81b81a7a582f05d3812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:168"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/approvals_reviewer/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native null and selected \"user\" metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/approvals_reviewer"
+      ],
       "pointer": "/definitions/AppConfig/properties/approvals_reviewer/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:46",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/default_tools_approval_mode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native null and selected \"prompt\" metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/default_tools_approval_mode, /result/config/apps/owned_alpha/default_tools_approval_mode"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppConfig/properties/default_tools_approval_mode",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "35dfc5abb7d97d4ba9de38eb450e822069299edf0e0e955a0a4fab38d07dc514",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:49",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:171"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "default_tools_approval_mode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/default_tools_approval_mode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native null and selected \"prompt\" metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_alpha/default_tools_approval_mode"
+      ],
       "pointer": "/definitions/AppConfig/properties/default_tools_approval_mode/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "0ba0a66231001c0b003b0eb42ecb3aabbbcc53b610f21d9dd578ac2336c53416",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:171"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/default_tools_approval_mode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native null and selected \"prompt\" metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/default_tools_approval_mode"
+      ],
       "pointer": "/definitions/AppConfig/properties/default_tools_approval_mode/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:49",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/default_tools_enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native null and selected false metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/default_tools_enabled, /result/config/apps/owned_alpha/default_tools_enabled"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppConfig/properties/default_tools_enabled",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:50",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:172"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "default_tools_enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/destructive_enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native null and selected false metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/destructive_enabled, /result/config/apps/owned_alpha/destructive_enabled"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppConfig/properties/destructive_enabled",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:47",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:169"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "destructive_enabled"
     },
     {
       "default": true,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native true and selected false metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/enabled, /result/config/apps/owned_alpha/enabled"
+      ],
       "nullable": false,
       "pointer": "/definitions/AppConfig/properties/enabled",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "a6ba34cd39bf30c536aa469ca27c82979943d5c12a2f9053a5ed127ac57f1082",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:44",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:166"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/links",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit null, empty object and selected independently prescribed flattened typed maps only. No arbitrary tool/account key or service behavior coverage. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/links, /result/config/apps/owned_nested/links, /result/config/apps/owned_containers/links, /result/config/apps/owned_alpha/links"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppConfig/properties/links",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "327162de2b867f3f68730eac088988fcde057cdd911c1c78dc29f039f17b78d3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:52",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:118-123",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:125",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:174-179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "links"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/links/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit null, empty object and selected independently prescribed flattened typed maps only. No arbitrary tool/account key or service behavior coverage. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_nested/links, /result/config/apps/owned_containers/links, /result/config/apps/owned_alpha/links"
+      ],
       "pointer": "/definitions/AppConfig/properties/links/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "58ddbc7734846cb1821a7f05fa41405b1b6a621891ec56cc93a405274d4bc993",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:118-123",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:125",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:174-179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/links/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit null, empty object and selected independently prescribed flattened typed maps only. No arbitrary tool/account key or service behavior coverage. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/links"
+      ],
       "pointer": "/definitions/AppConfig/properties/links/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:52",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/omit_tools_from",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Absent/null, selected deferred omission list and empty clear list only. No global ToolExposureSurface enum promotion or actual tool exposure claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/omit_tools_from, /result/config/apps/owned_alpha/omit_tools_from, /result/config/apps/owned_control/omit_tools_from"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppConfig/properties/omit_tools_from",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "555439c996373512649971577085ae1cc919463083eb9a736ca36024efaa7d1e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:45",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:167",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:181"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "omit_tools_from"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/open_world_enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Only native null and selected true metadata at these app identities. The result is not inheritance-expanded or effective connector authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/open_world_enabled, /result/config/apps/owned_alpha/open_world_enabled"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppConfig/properties/open_world_enabled",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:48",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:170"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "open_world_enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/tools",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit null, empty object and selected independently prescribed flattened typed maps only. No arbitrary tool/account key or service behavior coverage. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/tools, /result/config/apps/owned_nested/tools, /result/config/apps/owned_containers/tools, /result/config/apps/owned_alpha/tools"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppConfig/properties/tools",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "07064f9d306d15b00c89d05ca7b46a4c20ceace7c0ded077318cb91500560c49",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:51",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:117",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:125",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:173"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tools"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/tools/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit null, empty object and selected independently prescribed flattened typed maps only. No arbitrary tool/account key or service behavior coverage. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_nested/tools, /result/config/apps/owned_containers/tools, /result/config/apps/owned_alpha/tools"
+      ],
       "pointer": "/definitions/AppConfig/properties/tools/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "f0eb3117cb2ba6fae255abaf6d7ae5550ffce0e6fbf879073b8d6b6b9b816be4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:117",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:125",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:173"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppConfig/properties/tools/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit null, empty object and selected independently prescribed flattened typed maps only. No arbitrary tool/account key or service behavior coverage. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_empty/tools"
+      ],
       "pointer": "/definitions/AppConfig/properties/tools/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:51",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:114"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppLinkConfig/properties/approvals_reviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and auto_review metadata at one synthetic account only; no service identity, reviewer invocation or effective authorization claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_nested/links/link_work/approvals_reviewer, /result/config/apps/owned_alpha/links/link_work/approvals_reviewer"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppLinkConfig/properties/approvals_reviewer",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "57182e178afd2519d8a0205b64449c94532f39d7d50eac024e8f57a4b1fdd057",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:120",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:176"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvals_reviewer"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppLinkConfig/properties/approvals_reviewer/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and auto_review metadata at one synthetic account only; no service identity, reviewer invocation or effective authorization claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_alpha/links/link_work/approvals_reviewer"
+      ],
       "pointer": "/definitions/AppLinkConfig/properties/approvals_reviewer/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "fa34df2c0d32f88ea66072290e2b108c62f88a64a91cf81b81a7a582f05d3812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:176"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppLinkConfig/properties/approvals_reviewer/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and auto_review metadata at one synthetic account only; no service identity, reviewer invocation or effective authorization claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_nested/links/link_work/approvals_reviewer"
+      ],
       "pointer": "/definitions/AppLinkConfig/properties/approvals_reviewer/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:120"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppLinkConfig/properties/default_tools_approval_mode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and writes metadata at one synthetic account only; no service identity, reviewer invocation or effective authorization claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_nested/links/link_work/default_tools_approval_mode, /result/config/apps/owned_alpha/links/link_work/default_tools_approval_mode"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppLinkConfig/properties/default_tools_approval_mode",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "35dfc5abb7d97d4ba9de38eb450e822069299edf0e0e955a0a4fab38d07dc514",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:121",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:177"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "default_tools_approval_mode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppLinkConfig/properties/default_tools_approval_mode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and writes metadata at one synthetic account only; no service identity, reviewer invocation or effective authorization claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_alpha/links/link_work/default_tools_approval_mode"
+      ],
       "pointer": "/definitions/AppLinkConfig/properties/default_tools_approval_mode/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "0ba0a66231001c0b003b0eb42ecb3aabbbcc53b610f21d9dd578ac2336c53416",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:177"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppLinkConfig/properties/default_tools_approval_mode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and writes metadata at one synthetic account only; no service identity, reviewer invocation or effective authorization claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_nested/links/link_work/default_tools_approval_mode"
+      ],
       "pointer": "/definitions/AppLinkConfig/properties/default_tools_approval_mode/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:121"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -115623,385 +115876,547 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppToolConfig/properties/approval_mode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and approve metadata only; global approval enum and actual tool approval enforcement excluded. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_nested/tools/repos~1list/approval_mode, /result/config/apps/owned_alpha/tools/repos~1list/approval_mode"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppToolConfig/properties/approval_mode",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "35dfc5abb7d97d4ba9de38eb450e822069299edf0e0e955a0a4fab38d07dc514",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:117",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:173"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approval_mode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppToolConfig/properties/approval_mode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and approve metadata only; global approval enum and actual tool approval enforcement excluded. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_alpha/tools/repos~1list/approval_mode"
+      ],
       "pointer": "/definitions/AppToolConfig/properties/approval_mode/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "0ba0a66231001c0b003b0eb42ecb3aabbbcc53b610f21d9dd578ac2336c53416",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:173"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppToolConfig/properties/approval_mode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and approve metadata only; global approval enum and actual tool approval enforcement excluded. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_nested/tools/repos~1list/approval_mode"
+      ],
       "pointer": "/definitions/AppToolConfig/properties/approval_mode/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:117"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppToolConfig/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected null and true tool metadata only; no false tool setting or actual tool enablement claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/owned_nested/tools/repos~1list/enabled, /result/config/apps/owned_alpha/tools/repos~1list/enabled"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppToolConfig/properties/enabled",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:117",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:173"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsConfig/properties/_default",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Present null and exact default/explicit object; no inherited connector effect. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default, /result/config/apps/_default, /result/config/apps/_default"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppsConfig/properties/_default",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "309457b95057b2cfb9b7969749499ea80f9331aa19c511a82027128c267196c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:90",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:107-113",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:158-164"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_default"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsConfig/properties/_default/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Present null and exact default/explicit object; no inherited connector effect. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default, /result/config/apps/_default"
+      ],
       "pointer": "/definitions/AppsConfig/properties/_default/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "93d3a5d59ef8c3a749897fcb6d5c967c73302dac1791df9d11b3a49c278b0abf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:107-113",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:158-164"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsConfig/properties/_default/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Present null and exact default/explicit object; no inherited connector effect. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default"
+      ],
       "pointer": "/definitions/AppsConfig/properties/_default/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:90"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsDefaultConfig/properties/approvals_reviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit native null and selected \"auto_review\" metadata only; no global enum or actual reviewer/approval behavior. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default/approvals_reviewer, /result/config/apps/_default/approvals_reviewer"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppsDefaultConfig/properties/approvals_reviewer",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "57182e178afd2519d8a0205b64449c94532f39d7d50eac024e8f57a4b1fdd057",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:109",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:160"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvals_reviewer"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsDefaultConfig/properties/approvals_reviewer/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit native null and selected \"auto_review\" metadata only; no global enum or actual reviewer/approval behavior. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default/approvals_reviewer"
+      ],
       "pointer": "/definitions/AppsDefaultConfig/properties/approvals_reviewer/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "fa34df2c0d32f88ea66072290e2b108c62f88a64a91cf81b81a7a582f05d3812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:160"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsDefaultConfig/properties/approvals_reviewer/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit native null and selected \"auto_review\" metadata only; no global enum or actual reviewer/approval behavior. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default/approvals_reviewer"
+      ],
       "pointer": "/definitions/AppsDefaultConfig/properties/approvals_reviewer/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:109"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsDefaultConfig/properties/default_tools_approval_mode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit native null and selected \"writes\" metadata only; no global enum or actual reviewer/approval behavior. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default/default_tools_approval_mode, /result/config/apps/_default/default_tools_approval_mode"
+      ],
       "nullable": true,
       "pointer": "/definitions/AppsDefaultConfig/properties/default_tools_approval_mode",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "35dfc5abb7d97d4ba9de38eb450e822069299edf0e0e955a0a4fab38d07dc514",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:112",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:163"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "default_tools_approval_mode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsDefaultConfig/properties/default_tools_approval_mode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit native null and selected \"writes\" metadata only; no global enum or actual reviewer/approval behavior. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default/default_tools_approval_mode"
+      ],
       "pointer": "/definitions/AppsDefaultConfig/properties/default_tools_approval_mode/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "0ba0a66231001c0b003b0eb42ecb3aabbbcc53b610f21d9dd578ac2336c53416",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:163"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsDefaultConfig/properties/default_tools_approval_mode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Explicit native null and selected \"writes\" metadata only; no global enum or actual reviewer/approval behavior. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default/default_tools_approval_mode"
+      ],
       "pointer": "/definitions/AppsDefaultConfig/properties/default_tools_approval_mode/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:112"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": true,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsDefaultConfig/properties/destructive_enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected native parsed true default and explicit false only; no execution enablement claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default/destructive_enabled, /result/config/apps/_default/destructive_enabled"
+      ],
       "nullable": false,
       "pointer": "/definitions/AppsDefaultConfig/properties/destructive_enabled",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "a6ba34cd39bf30c536aa469ca27c82979943d5c12a2f9053a5ed127ac57f1082",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:110",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:161"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "destructive_enabled"
     },
     {
       "default": true,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsDefaultConfig/properties/enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected native parsed true default and explicit false only; no execution enablement claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default/enabled, /result/config/apps/_default/enabled"
+      ],
       "nullable": false,
       "pointer": "/definitions/AppsDefaultConfig/properties/enabled",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "a6ba34cd39bf30c536aa469ca27c82979943d5c12a2f9053a5ed127ac57f1082",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:108",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:159"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enabled"
     },
     {
       "default": true,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/AppsDefaultConfig/properties/open_world_enabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Selected native parsed true default and explicit false only; no execution enablement claim. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps/_default/open_world_enabled, /result/config/apps/_default/open_world_enabled"
+      ],
       "nullable": false,
       "pointer": "/definitions/AppsDefaultConfig/properties/open_world_enabled",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "a6ba34cd39bf30c536aa469ca27c82979943d5c12a2f9053a5ed127ac57f1082",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:111",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:162"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "open_world_enabled"
     },
     {
@@ -117391,71 +117806,100 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/apps",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Absent, empty, nested-empty and explicit policy projections only; not all Config fields or effective authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps, /result/config/apps, /result/config/apps, /result/config/apps"
+      ],
       "nullable": true,
       "pointer": "/definitions/Config/properties/apps",
       "required": false,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "6d802f5098c5f5ed42674ee7c1f96411f7086e42d3fb76e0e6d5784eb549aa6d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:86",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:90",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "apps"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/apps/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Absent, empty, nested-empty and explicit policy projections only; not all Config fields or effective authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps, /result/config/apps, /result/config/apps"
+      ],
       "pointer": "/definitions/Config/properties/apps/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "32b990966b679b504a0a0a55a323df1835bda9a135d0ed701ac6d0a29494cc36",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:90",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:106-126",
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:157-182"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-apps-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/apps/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Actual-native selected app-policy output: Absent, empty, nested-empty and explicit policy projections only; not all Config fields or effective authorization. Complete prescribed map equality and required key fetches; input config/requirements bytes unchanged, no thread/turn/interaction and confirmed owned cleanup. Four cases pass both owning seeds. Only this canonical ConfigReadResponse owner, no global enum, schema alias, layer/origin, effective app/tool/reviewer enforcement, other OS/transport/live/A11 or fully verified claim. Direct output pointers: /result/config/apps"
+      ],
       "pointer": "/definitions/Config/properties/apps/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_apps_projections_test.exs:86"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
