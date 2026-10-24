@@ -146,6 +146,156 @@ defmodule SamgitaCodexDriver.NativeThreadForkSettingsTest do
     end
   end
 
+  test "standalone fork sandbox selects readonly without changing parent or sibling", ctx do
+    pid = TurnFixture.start(ctx)
+    readonly = %{"type" => "readOnly", "networkAccess" => false}
+    named_profile = %{"id" => ":read-only", "extends" => nil}
+    parent_settings = Map.put(defaults(ctx), "activePermissionProfile", named_profile)
+
+    # Keep every source at read-only authority. A named parent profile makes an
+    # ignored sandbox override observable: the selected child must report nil.
+    {source, source_bytes} =
+      parent(ctx, pid, "paginated", "Owned standalone sandbox fork", %{
+        "sandbox" => nil,
+        "permissions" => ":read-only"
+      })
+
+    source_id = Map.fetch!(source, "id")
+    resumed_source = call(pid, "thread/resume", %{"threadId" => source_id})
+    assert_settings(resumed_source, Map.put(parent_settings, "sandbox", readonly))
+    assert_parent(pid, source, source_bytes)
+    assert_no_dispatch(ctx, pid)
+
+    inherited =
+      for {extra, presence} <- [{%{}, :error}, {%{"sandbox" => nil}, {:ok, nil}}] do
+        assert Map.fetch(extra, "sandbox") === presence
+        refute Map.has_key?(extra, "permissions")
+        response = fork_child(ctx, pid, source, source_bytes, extra)
+        assert_settings(response, Map.put(parent_settings, "sandbox", readonly))
+        saved = read(pid, Map.fetch!(response["thread"], "id"))
+        {saved, File.read!(Map.fetch!(saved, "path"))}
+      end
+
+    inherited_ids = Enum.map(inherited, fn {saved, _bytes} -> Map.fetch!(saved, "id") end)
+    before_rejection = MapSet.new([source_id | inherited_ids])
+    assert loaded(pid) == before_rejection
+
+    for {value, reason} <- [
+          {17, "invalid type: integer `17`"},
+          {"not-a-sandbox", "unknown variant `not-a-sandbox`"}
+        ] do
+      params = %{"threadId" => source_id, "sandbox" => value}
+      refute Map.has_key?(params, "permissions")
+
+      assert {:error, %Error{code: :schema_violation}} =
+               Session.request(pid, "thread/fork", params)
+
+      assert %{"code" => -32_600, "message" => message} =
+               upstream_error(pid, "thread/fork", params, validation: :wire)
+
+      assert String.starts_with?(message, "Invalid request: ")
+      assert message =~ reason
+      assert loaded(pid) == before_rejection
+      assert_parent(pid, source, source_bytes)
+
+      for {saved, bytes} <- inherited do
+        assert_parent(pid, saved, bytes)
+      end
+
+      assert_no_dispatch(ctx, pid)
+    end
+
+    sibling_settings =
+      Map.merge(parent_settings, %{"cwd" => ctx.next_cwd, "approvalPolicy" => "never"})
+
+    sibling =
+      fork_child(ctx, pid, source, source_bytes, %{
+        "cwd" => ctx.next_cwd,
+        "approvalPolicy" => "never"
+      })
+
+    assert_settings(sibling, Map.put(sibling_settings, "sandbox", readonly))
+    sibling_id = Map.fetch!(sibling["thread"], "id")
+    saved_sibling = read(pid, sibling_id)
+    sibling_bytes = File.read!(Map.fetch!(saved_sibling, "path"))
+
+    override = %{"sandbox" => "read-only"}
+    refute Map.has_key?(override, "permissions")
+    selected = fork_child(ctx, pid, source, source_bytes, override)
+    assert_settings(selected, Map.put(defaults(ctx), "sandbox", readonly))
+    selected_id = Map.fetch!(selected["thread"], "id")
+    refute selected_id == sibling_id
+    expected_loaded = MapSet.new([source_id, sibling_id, selected_id] ++ inherited_ids)
+    assert loaded(pid) == expected_loaded
+
+    for {id, expected} <- [
+          {source_id, parent_settings},
+          {sibling_id, sibling_settings},
+          {selected_id, defaults(ctx)}
+        ] do
+      response = call(pid, "thread/resume", %{"threadId" => id})
+      assert_settings(response, Map.put(expected, "sandbox", readonly))
+    end
+
+    assert_parent(pid, source, source_bytes)
+    assert_parent(pid, saved_sibling, sibling_bytes)
+    assert_no_dispatch(ctx, pid)
+    workspace_before = File.ls!(ctx.fixture.workspace) |> Enum.sort()
+    sibling_workspace_before = File.ls!(ctx.next_cwd) |> Enum.sort()
+
+    # A normal assistant-only turn is permitted under the effective sandbox.
+    # There is no turn sandbox/profile override and no tool approval shortcut.
+    text = "Owned standalone sandbox permitted assistant turn: λ🙂"
+    turn = TurnFixture.start_turn(pid, selected_id, [%{"type" => "text", "text" => text}])
+    events = TurnFixture.finish_turn(pid, selected_id, turn)
+
+    assert [request] = ModelFixture.requests(ctx.fixture)
+    assert request["model"] == "mock-model"
+
+    assert Enum.any?(request["input"], fn item ->
+             item["role"] == "user" and
+               %{"type" => "input_text", "text" => text} in Map.get(item, "content", [])
+           end)
+
+    assert %{
+             "threadId" => ^selected_id,
+             "turnId" => ^turn,
+             "item" => %{
+               "type" => "agentMessage",
+               "text" => "Deterministic local fixture answer"
+             }
+           } =
+             TurnFixture.notification(
+               events,
+               "item/completed",
+               &(&1["item"]["type"] == "agentMessage")
+             )
+
+    refute Enum.any?(events, &(&1.kind == :server_request or &1.wire["method"] == "error"))
+
+    # Read the loaded effective settings again, independently of the earlier
+    # fork responses. The completed child turn must not change either source.
+    for {id, expected} <- [
+          {source_id, parent_settings},
+          {sibling_id, sibling_settings},
+          {selected_id, defaults(ctx)}
+        ] do
+      response = call(pid, "thread/resume", %{"threadId" => id})
+      assert_settings(response, Map.put(expected, "sandbox", readonly))
+    end
+
+    assert_parent(pid, source, source_bytes)
+    assert_parent(pid, saved_sibling, sibling_bytes)
+    assert loaded(pid) == expected_loaded
+    assert ModelFixture.requests(ctx.fixture) == [request]
+    assert File.ls!(ctx.fixture.workspace) |> Enum.sort() == workspace_before
+    assert File.ls!(ctx.next_cwd) |> Enum.sort() == sibling_workspace_before
+    assert Session.interaction_outcomes(pid) == []
+    assert Session.uncertain_operations(pid) == []
+    assert %{phase: :ready, pending: 0, uncertain: 0, interactions: 0} = Session.status(pid)
+    assert :ok = Session.close(pid)
+  end
+
   test "cold path-selected forks identify the actual source and leave the parent unloaded", ctx do
     for mode <- ["legacy", "paginated"] do
       {pid, parent, bytes} = cold_parent(ctx, mode, "Owned path fork #{mode}")
@@ -226,8 +376,8 @@ defmodule SamgitaCodexDriver.NativeThreadForkSettingsTest do
     assert :ok = Session.close(pid)
   end
 
-  defp parent(ctx, pid, mode, name) do
-    id = TurnFixture.thread(ctx, pid, %{"historyMode" => mode})
+  defp parent(ctx, pid, mode, name, extra \\ %{}) do
+    id = TurnFixture.thread(ctx, pid, Map.merge(%{"historyMode" => mode}, extra))
     assert call(pid, "thread/name/set", %{"threadId" => id, "name" => name}) == %{}
     parent = read(pid, id)
     assert Map.fetch!(parent, "id") == id
