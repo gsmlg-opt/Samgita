@@ -54,3 +54,48 @@ before network I/O; remaining post-ticket instance/generation/deadline checks do
 not imply synchronous database revocation across that interval. The broad
 `lifecycle:samgita-authorization` stays missing. No production code, credential,
 deployment or external repository changes are made.
+
+## Successful operator receipt replay after worker-role removal
+
+An additive actual-native case now uses the existing REST operator boundary,
+synthetic API key and the same real pending command approval. Its first reply
+returns201 and creates exactly one prepared response plus a successful command
+receipt. An identical authorized replay returns the exact original projection
+without changing domain/journal state. This positive control distinguishes
+replaying a successful receipt from repeatedly rejecting a new command.
+
+The existing membership API then changes only the enabled membership to observer,
+using the current Project version. Twice resubmitting the original successful
+reply command returns the complete409 `ownership_lost` error, before old receipt
+replay or stale event-version validation. Both explicit `Driver.execute` calls
+return exact `forbidden`; no dispatch token is minted and the response remains
+prepared. No membership permission is inferred from advertised capabilities.
+
+After each rejected action, full snapshots of Project, Agent, credential,
+connection, execution session, Task/Attempt, membership and every selected native
+binding/event/operation/link/audit record remain exact. The original successful
+receipt, global receipt/job counts and full provider requests are preserved. The
+same real Session retains one interaction, no pending client requests or local
+uncertainty, and one provider request; no resolution/completion or Task review/
+acceptance occurs. Checked-owned shutdown leaves the durable effect unresolved.
+No test clears history or marks that pending command completed.
+
+`Commands.run` authorizes before receipt lookup under the existing ordered locks;
+`CodexRuntime.Authorization` checks current owning membership for operator replies.
+`Driver.execute` acquires a ticket before native transmission. This case qualifies
+revocation **before** that ticket; it adds no instantaneous revocation guarantee
+after a ticket has committed. It is sequential native/API evidence, not a new
+independent-backend concurrent race. The broad authorization requirement remains
+missing. Exact combined validation is recorded in the repair ledger.
+
+The complete two-file authority owning block passes **17 core +7 web/0 twice**,
+seeds501432/987654, on the same retained database. Root/driver warning-free
+compile, formatting and root strict Credo433 files pass. The surrounding
+21-file native block also passes **127/0 twice**, including eight genuine hook
+cases and the retained rate-limit, permission, goal, environment and process
+regressions. The executable/config/workflow source guard matches. Commands/logs
+are `/tmp/samgita-native-repair-continuation-v6-20261025/`; results SHA256
+`35a9a2fa9de9df3839b92464f1d396488b2341a3c6a5439b1b9347fb19e94e28`,
+source SHA256 `472fffa65eca4866ca6df9319aa149b2339c69348febdcd21c2b6e7590f07b5f`.
+Full final-source matrices, hosted checks and remaining deployment/authorization
+profiles are separate required gates; no requirement state changes here.

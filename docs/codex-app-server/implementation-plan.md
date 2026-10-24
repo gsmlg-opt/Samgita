@@ -111,8 +111,15 @@ contracts to **3,208 implemented / 3,413 missing**, zero verified. Initial
 firewall rejections and supported per-thread fixture corrections remain
 documented. All49 profiles have explicit required hosted steps.
 
-Next qualify successful operator-reply receipt replay after worker-authority
-removal, then freeze executable source for the complete preserved-
+The [successful operator-reply receipt replay](native-authority-qualification.md#successful-operator-receipt-replay-after-worker-role-removal)
+unit passes **17 core +7 web/0 twice** on the retained database, with strict
+checks and an unchanged source guard. The same successful REST command cannot
+replay after current worker-role removal or dispatch through the real Session;
+journals/history/native pending state remain. No count/state promotion or
+post-ticket instantaneous revocation claim follows.
+
+Next index the separately qualified native hook warning/context and fourteen
+existing direct notification owners, then freeze executable source for the complete preserved-
 platform/package/consumer and final-pushed hosted matrix.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.

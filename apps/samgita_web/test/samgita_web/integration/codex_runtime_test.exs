@@ -6,6 +6,8 @@ end
 
 defmodule SamgitaWeb.CodexRuntimeIntegrationTest do
   use Samgita.DataCase, async: false
+  import Phoenix.ConnTest
+  import Plug.Conn, only: [put_req_header: 3]
   import Samgita.DomainFixtures
   alias Samgita.{Agents, Attempts, CodexRuntime, Error, Principal, Projects, Tasks}
   alias Samgita.CodexRuntime.Driver
@@ -24,6 +26,7 @@ defmodule SamgitaWeb.CodexRuntimeIntegrationTest do
 
   alias SamgitaCodexDriver.{ModelFixture, Session}
   alias SamgitaCodexDriver.Transport.Stdio
+  @endpoint SamgitaWeb.Endpoint
   @moduletag :e2e
   @moduletag timeout: 90_000
 
@@ -250,6 +253,108 @@ defmodule SamgitaWeb.CodexRuntimeIntegrationTest do
     assert CodexRuntime.unresolved_effects?(ctx.attempt["id"])
   end
 
+  test "successful native approval receipt replay requires current operator authority through REST" do
+    previous = Application.fetch_env(:samgita, :api_keys)
+    key = "native-receipt-operator-" <> Ecto.UUID.generate()
+    Application.put_env(:samgita, :api_keys, [key])
+
+    on_exit(fn ->
+      case previous do
+        {:ok, value} -> Application.put_env(:samgita, :api_keys, value)
+        :error -> Application.delete_env(:samgita, :api_keys)
+      end
+    end)
+
+    {ctx, pid, fixture, event, recorded} = pending_authority_fixture()
+    <<a::16, b::16, c::16, d::16>> = <<System.unique_integer([:positive, :monotonic])::64>>
+    conn = %{build_conn() | remote_ip: {0x2001, 0xDB8, 0, 0, a, b, c, d}}
+
+    conn =
+      conn |> put_req_header("accept", "application/json") |> put_req_header("x-api-key", key)
+
+    path =
+      "/api/projects/#{ctx.project["id"]}/codex-runtimes/#{ctx.runtime["id"]}/events/#{recorded["id"]}/reply"
+
+    reply = approval_reply(event, recorded)
+    response = post(conn, path, reply)
+    assert %{"data" => decision} = json_response(response, 201)
+    receipt = Repo.get_by!(CommandReceipt, principal: "operator", command_id: reply["command_id"])
+    assert receipt.operation == "native_runtime.reply"
+    assert receipt.result == decision
+    prepared = authority_snapshot(ctx)
+
+    assert post(conn, path, reply) |> json_response(201) == %{"data" => decision}
+    assert authority_snapshot(ctx) == prepared
+    assert Repo.get!(CommandReceipt, receipt.id) == receipt
+    assert_native_pending(ctx, pid, fixture, event)
+
+    assert {:ok, project} = Projects.get(Principal.operator(), ctx.project["id"])
+
+    membership =
+      post(
+        conn,
+        "/api/projects/#{ctx.project["id"]}/members",
+        command(%{
+          "expected_version" => project["version"],
+          "agent_id" => ctx.agent["id"],
+          "roles" => ["observer"],
+          "enabled" => true
+        })
+      )
+      |> json_response(200)
+
+    assert membership["data"]["roles"] == ["observer"]
+    assert membership["data"]["enabled"]
+    before = authority_snapshot(ctx)
+    assert before.task == prepared.task
+    assert before.attempt == prepared.attempt
+    assert before.task.state == "in_progress"
+    assert before.attempt.state == "running"
+    assert before.event.state == "reply_prepared"
+    operation = Repo.get!(NativeRuntimeOperation, decision["id"])
+    assert operation.state == "prepared"
+    assert operation.version == decision["version"]
+    assert operation.dispatch_token_digest == nil
+    assert operation.dispatch_expires_at == nil
+    provider_requests = ModelFixture.requests(fixture)
+    error = Error.new(:ownership_lost)
+
+    for _submission <- 1..2 do
+      assert post(conn, path, reply) |> json_response(409) == %{
+               "errors" => %{
+                 "code" => Atom.to_string(error.code),
+                 "detail" => error.message,
+                 "fields" => error.details
+               }
+             }
+
+      assert authority_snapshot(ctx) == before
+      assert Repo.get!(CommandReceipt, receipt.id) == receipt
+      assert ModelFixture.requests(fixture) == provider_requests
+      assert_native_pending(ctx, pid, fixture, event)
+
+      assert Driver.execute(
+               pid,
+               ctx.principal,
+               ctx.project["id"],
+               ctx.runtime["id"],
+               decision["id"],
+               %{"expected_version" => decision["version"], "proof" => ctx.proof},
+               interaction_handle: event.handle
+             ) == {:error, Error.new(:forbidden)}
+
+      assert authority_snapshot(ctx) == before
+      assert Repo.get!(CommandReceipt, receipt.id) == receipt
+      assert ModelFixture.requests(fixture) == provider_requests
+      assert_native_pending(ctx, pid, fixture, event)
+    end
+
+    assert :ok = Session.close(pid)
+    assert authority_snapshot(ctx) == before
+    assert Repo.get!(CommandReceipt, receipt.id) == receipt
+    assert CodexRuntime.unresolved_effects?(ctx.attempt["id"])
+  end
+
   defp pending_authority_fixture do
     binary = System.fetch_env!("CODEX_BINARY")
 
@@ -439,6 +544,11 @@ defmodule SamgitaWeb.CodexRuntimeIntegrationTest do
 
   defp authority_snapshot(ctx) do
     %{
+      project: Repo.get!(Samgita.Domain.Project, ctx.project["id"]),
+      agent: Repo.get!(Samgita.Domain.Agent, ctx.agent["id"]),
+      credential: Repo.get!(Samgita.Domain.AgentCredential, ctx.principal.credential_id),
+      connection: Repo.get!(Samgita.Domain.AgentConnection, ctx.principal.connection_id),
+      session: Repo.get!(Samgita.Domain.ExecutionSession, ctx.attempt["session_id"]),
       task: Repo.get!(Task, ctx.task["id"]),
       attempt: Repo.get!(TaskAttempt, ctx.attempt["id"]),
       runtime: Repo.get!(NativeRuntimeBinding, ctx.runtime["id"]),

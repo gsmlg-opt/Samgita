@@ -8,6 +8,20 @@ remain separate gates. No production data, credentials or services are changed.
 
 ## Scoped continuation after 636b2ad
 
+The [successful operator-reply receipt replay unit](native-authority-qualification.md#successful-operator-receipt-replay-after-worker-role-removal)
+passes **17 core +7 web/0 twice**, fixed seeds, on the same retained database.
+An authorized successful REST receipt replay control is followed by management
+API worker-role removal; repeated original reply commands and explicit real
+Driver sends reject with exact errors while journals/native pending effects
+remain unchanged. No DB reset, history cleanup or guard bypass occurs. Root/
+driver compile, format, strict Credo433 files and the executable/config/workflow
+guard pass. The combined21-file native block passes **127/0 twice**.
+Exact commands/logs are `/tmp/samgita-native-repair-continuation-v6-20261025/`;
+results SHA256 `35a9a2fa9de9df3839b92464f1d396488b2341a3c6a5439b1b9347fb19e94e28`,
+source SHA256 `472fffa65eca4866ca6df9319aa149b2339c69348febdcd21c2b6e7590f07b5f`.
+This strengthens the still-missing authorization lifecycle, with no count or
+fully verified promotion. Full final-source local/hosted matrices remain open.
+
 The [required-skills native differential](environment-skills-qualification.md)
 passes the complete nineteen-file owning block **113/0 twice**, seeds501432/
 987654 (168.4/171.8 seconds). Skills-first and timeout-first controls each pass

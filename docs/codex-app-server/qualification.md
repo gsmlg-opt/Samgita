@@ -19,6 +19,15 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [successful operator-reply receipt replay unit](native-authority-qualification.md#successful-operator-receipt-replay-after-worker-role-removal)
+passes **17 core +7 web/0 twice** against the retained database. The actual REST
+positive replay control precedes membership API revocation; the same successful
+command then rejects before receipt replay, and real native dispatch stays
+blocked with the original interaction/effect unresolved. Compile/format/strict
+Credo and source guard pass. This is selected sequential API/native evidence,
+not a new concurrent race or post-ticket instantaneous revocation guarantee;
+the broad authorization requirement remains missing and counts do not change.
+
 The [required-skills native differential](environment-skills-qualification.md)
 passes the combined nineteen-file block **113/0 twice**, with compile, format,
 strict Credo and a matching source guard. A real executor discovers the inert

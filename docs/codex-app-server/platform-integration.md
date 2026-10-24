@@ -265,10 +265,13 @@ The immutable target remains official `rust-v0.163.0`, source
 export supplement is locally derived and preserves official JSON bytes. The
 regenerated [manifest](compatibility-manifest.json) and
 [qualification ledger](qualification.md) contain the current requirement,
-field/variant and progress totals; none is fully verified. Four blocked
-entries retain the legacy approval emitter prerequisite documented in the source
-audit; the fifth retains the MCP item-progress emitter prerequisite in
-[direct MCP qualification](mcp-direct-qualification.md). Selected
+field/variant and progress totals; none is fully verified. Eleven requirements
+remain source-blocked: four legacy approval directions, three prediction
+directions and four unavailable notification emitters. The exact immutable
+producer audits remain in [legacy approvals](legacy-approval-qualification.md),
+[direct MCP](mcp-direct-qualification.md) and
+[platform gates](platform-gates-qualification.md); retained declarations or
+scripted peers cannot supply actual emission evidence. Selected
 local tests cover nine of eleven interaction
 families; neither their presence nor generated schemas verifies all variants.
 The isolated native [authentication](isolated-auth.md) and

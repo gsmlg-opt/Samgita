@@ -10370,7 +10370,8 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Eleven synthetic context-input cases reject repeated operator replies after owning credential, membership, Task/session/connection authority or driver registration invalidation, preserving exact domain/journal snapshots. No native process runs and no ticket exists beforehand. This does not prove native emission, all API/race branches or instantaneous revocation of already issued dispatch tickets; broad lifecycle qualification remains missing.",
-        "actual_native_with_postgresql_predispatch_authority: Three added cases journal a genuine pending command approval, revoke owning membership or advance management fence before repeated operator replies, and replace worker with observer after reply preparation but before repeated dispatch. Exact journal/domain/receipt/job snapshots remain unchanged, native interaction/provider counts stay pending/one, and owned shutdown preserves unresolved durable effects. No post-ticket instantaneous revocation, complete API/race/profile or A11 claim; broad lifecycle remains missing."
+        "actual_native_with_postgresql_predispatch_authority: Three added cases journal a genuine pending command approval, revoke owning membership or advance management fence before repeated operator replies, and replace worker with observer after reply preparation but before repeated dispatch. Exact journal/domain/receipt/job snapshots remain unchanged, native interaction/provider counts stay pending/one, and owned shutdown preserves unresolved durable effects. No post-ticket instantaneous revocation, complete API/race/profile or A11 claim; broad lifecycle remains missing.",
+        "Additional actual-native successful operator receipt replay: first REST reply and identical authorized replay produce the same prepared response/receipt without sending; existing membership API changes enabled worker to observer. Twice replaying the original successful command returns exact ownership_lost before receipt/version replay; explicit real Driver.execute rejects forbidden before ticket/send. Full selected Agent/Project/credential/connection/session/Task/Attempt/native/audit/receipt/job/provider snapshots and original pending native interaction remain, including after checked-owned shutdown; no history deletion or acceptance. Two-file owning block17 core+7 web/0 twice, compile/format/strict Credo/source guard pass. Sequential API/native only; independent-backend revocation-wins race, post-ticket instantaneous revocation, complete authorization/OS/backend/A11 remain unqualified. Missing state unchanged."
       ],
       "required_behavior": "native operation access respects project membership, task fences and separately authorized human interactions",
       "schema_sha256": "ab837160c4317eb699721ffa7d4683a8da3ea3e8b0c1bc0d0e48cecef3e446b6",
@@ -10384,7 +10385,8 @@
         ],
         "verified": [
           "apps/samgita/test/samgita/codex_runtime_operator_authority_test.exs",
-          "apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs"
+          "apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs",
+          "apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs:256-356"
         ]
       },
       "transport_coverage": [],
