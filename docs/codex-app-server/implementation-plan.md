@@ -21,15 +21,23 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
-The [image-view/fork continuation](image-view-fork-qualification.md) now passes
+The [fork lifecycle continuation](fork-boundary-qualification.md#paginated-ephemeral-active-and-prediction-continuation)
+passes its complete seven-file native block **43/0 twice**, fixed seeds, with
+compile/format/strict Credo and a matching source guard. Paginated ephemeral,
+active callback and prediction inheritance cases deepen five existing owners;
+counts and all broader incomplete gates remain unchanged. Source-backed first
+oracle failures remain recorded. Next complete independent search/ranking
+oracles, then freeze source for the complete local and pushed hosted matrices.
+
+The [image-view/fork continuation](image-view-fork-qualification.md) passes
 its complete six-file native owning block **36/0 twice**, fixed seeds, with
 warning-free compilation, format, strict Credo438 files and matching source
 guard. Twelve precise owners, after the prior127-owner
 [cold/process/config unit](cold-items-process-config-qualification.md), bring
 contracts to **3395 implemented /3226 missing**, zero verified. Requirements
 stay **462 implemented /12 missing /11 blocked**, zero verified. Source-backed
-oracle corrections retain their first failures. Next qualify paginated ephemeral,
-active-turn and prediction fork behavior, then freeze final source for the complete
+oracle corrections retain their first failures. The later fork block above adds
+the selected ephemeral/active/prediction depth before the complete
 preserved-platform, packages/consumers and exact-head hosted matrix. All broader
 blocked gates stay incomplete; no release/publication/deployment follows from
 a scoped pass.

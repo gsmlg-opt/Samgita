@@ -234,6 +234,109 @@ defmodule SamgitaCodexDriver.NativeForkBoundaryFieldsTest do
     assert_no_replay(ctx, cold, 6)
   end
 
+  test "paginated ephemeral fork requires excluded hydration and keeps only its live prefix",
+       ctx do
+    pid = start(ctx)
+    parent = TurnFixture.thread(ctx, pid, %{"historyMode" => "paginated"})
+    [first, second, third] = original = complete_many(ctx, pid, parent, Enum.take(@texts, 3))
+    source = call(pid, "thread/read", %{"threadId" => parent, "includeTurns" => true})["thread"]
+    source_bytes = File.read!(source["path"])
+    loaded_before = call(pid, "thread/loaded/list", %{})["data"]
+
+    for extra <- [%{}, %{"excludeTurns" => false}] do
+      assert upstream_error(
+               pid,
+               "thread/fork",
+               Map.merge(%{"threadId" => parent, "ephemeral" => true}, extra)
+             ) ==
+               invalid("ephemeral paginated thread/fork requires `excludeTurns: true`")
+
+      assert call(pid, "thread/loaded/list", %{})["data"] == loaded_before
+      assert File.read!(source["path"]) == source_bytes
+      assert_history(pid, parent, original)
+      assert_no_replay(ctx, pid, 3)
+    end
+
+    child_thread =
+      fork(pid, parent, %{
+        "beforeTurnId" => third.id,
+        "excludeTurns" => true,
+        "ephemeral" => true
+      })
+
+    child = child_thread["id"]
+    assert is_binary(child) and byte_size(child) > 0
+    refute child == parent
+    assert child_thread["forkedFromId"] == parent
+    assert Map.fetch!(child_thread, "ephemeral") == true
+    assert Map.fetch!(child_thread, "path") == nil
+    assert child_thread["turns"] == []
+    assert File.read!(source["path"]) == source_bytes
+    assert_history(pid, parent, original)
+    assert_no_child_rollout(ctx, child)
+    assert_no_replay(ctx, pid, 3)
+
+    assert upstream_error(pid, "thread/read", %{"threadId" => child, "includeTurns" => true}) ==
+             invalid("ephemeral threads do not support includeTurns")
+
+    assert upstream_error(pid, "thread/turns/list", %{"threadId" => child}) ==
+             invalid("ephemeral threads do not support thread/turns/list")
+
+    metadata = call(pid, "thread/read", %{"threadId" => child, "includeTurns" => false})["thread"]
+    assert metadata["id"] == child and metadata["ephemeral"] == true
+    assert Map.fetch!(metadata, "path") == nil
+    assert metadata["turns"] == []
+    listed = call(pid, "thread/list", %{"limit" => 100})["data"]
+    assert Enum.any?(listed, &(&1["id"] == parent))
+    refute Enum.any?(listed, &(&1["id"] == child))
+    assert_no_replay(ctx, pid, 3)
+
+    child_first = complete_live_only(pid, child, "Owned paginated ephemeral continuation E1 λ")
+    assert_provider_prefix(ctx, [first.text, second.text, child_first.text], [third.text])
+    assert_history(pid, parent, original)
+    assert File.read!(source["path"]) == source_bytes
+    assert_no_child_rollout(ctx, child)
+    assert_no_replay(ctx, pid, 4)
+
+    parent_new = complete(ctx, pid, parent, "Owned paginated persistent divergence P4")
+    child_second = complete_live_only(pid, child, "Owned paginated ephemeral continuation E2 🙂")
+
+    assert_provider_prefix(
+      ctx,
+      [first.text, second.text, child_first.text, child_second.text],
+      [third.text, parent_new.text]
+    )
+
+    assert_history(pid, parent, original ++ [parent_new])
+    assert_no_child_rollout(ctx, child)
+    assert_no_replay(ctx, pid, 6)
+    process = call(pid, "server/diagnostics", %{})["process"]["id"]
+    assert :ok = Session.close(pid)
+
+    cold = start(ctx)
+    refute call(cold, "server/diagnostics", %{})["process"]["id"] == process
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+
+    for include_turns <- [false, true] do
+      assert upstream_error(cold, "thread/read", %{
+               "threadId" => child,
+               "includeTurns" => include_turns
+             }) == invalid("thread not loaded: #{child}")
+    end
+
+    assert upstream_error(cold, "thread/resume", %{"threadId" => child, "excludeTurns" => true}) ==
+             invalid("no rollout found for thread id #{child}")
+
+    listed = call(cold, "thread/list", %{"limit" => 100})["data"]
+    assert Enum.any?(listed, &(&1["id"] == parent))
+    refute Enum.any?(listed, &(&1["id"] == child))
+    assert_history(cold, parent, original ++ [parent_new])
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert_no_child_rollout(ctx, child)
+    assert_no_replay(ctx, cold, 6)
+    assert :ok = Session.close(cold)
+  end
+
   test "non-latest paginated revert changes the parent while its existing child retains independent history",
        ctx do
     pid = start(ctx)

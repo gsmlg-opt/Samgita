@@ -19,6 +19,15 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [fork lifecycle continuation](fork-boundary-qualification.md#paginated-ephemeral-active-and-prediction-continuation)
+passes the complete seven-file native block **43/0 at both fixed seeds**, with
+compile/format/strict Credo438 files and a matching source guard. It adds actual
+paginated ephemeral behavior, an active original callback across fork rejection/
+exclusive boundary, and legacy/paginated prediction instruction/tool inheritance.
+Five existing owners gain depth with no count/verified change. Exact source
+explains the preserved failed draft oracles; no fabricated emitter or weaker
+deadline is used. Complete final-source matrices and all broader gates remain.
+
 The [image-view/fork continuation](image-view-fork-qualification.md) passes the
 complete six-file native block **36/0 twice**, with compile, format, strict
 Credo438 files and a matching source guard. It adds actual imageView live/warm/

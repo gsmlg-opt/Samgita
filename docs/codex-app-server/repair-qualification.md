@@ -6,6 +6,19 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Fork lifecycle continuation
+
+The [owning record](fork-boundary-qualification.md#paginated-ephemeral-active-and-prediction-continuation)
+passes its complete seven-file block43/0 at both fixed seeds, with strict checks
+and a matching1,490-file source guard. Paginated ephemeral fork, active callback
+boundaries and prediction instruction/tool inheritance deepen five existing
+properties without a state/count promotion. Original active durable-item,
+dynamic-tool schema and invented response-field failures remain documented with
+their pinned source corrections. Requirements remain462 implemented/12 missing/
+11 blocked, contracts3395 implemented/3226 missing, zero verified. Complete
+combined-source local and exact-source hosted qualification remain required;
+A11, upstream-unreachable/external/OS and all broader gates stay incomplete.
+
 ## Image-view and sandbox continuation
 
 The [owning record](image-view-fork-qualification.md) adds a real native image

@@ -170459,7 +170459,8 @@
       "id": "schema:v2/ThreadForkParams.json#/properties/beforeTurnId",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
+        "Original checkpoint scope, superseded for the selected branches by the later fork lifecycle evidence: actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified.",
+        "Additional actual-native fork lifecycle depth: paginated ephemeral requires excludeTurns:true, retains the exclusive prefix for exactly two real child continuations and has explicit cold absence; a pending dynamic callback rejects inclusive lastTurnId while exclusive beforeTurnId produces an empty persistent idle child, then only an explicit success:false response settles the original with exact live/durable distinction. Legacy/paginated prediction children inherit independently expected instructions and function schema with separate parent/sibling histories. Complete seven-file native block43/0 both fixed seeds, strict checks/source guard pass. Only selected Linux/stdio/local histories; competing mutations, storage/retention, complete tool combinations, nonnull reasoning/tier/cache equivalence, other transports/OS/services and A11 remain unqualified. No blocked separate prediction API or verified promotion."
       ],
       "nullable": true,
       "pointer": "/properties/beforeTurnId",
@@ -170474,7 +170475,9 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-147,366-413,444-474"
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-147,366-413,444-474",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:237-338",
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:509-802"
         ]
       },
       "transport_coverage": [
@@ -170630,7 +170633,8 @@
       "id": "schema:v2/ThreadForkParams.json#/properties/ephemeral",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
+        "Original checkpoint scope, superseded for the selected branches by the later fork lifecycle evidence: actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified.",
+        "Additional actual-native fork lifecycle depth: paginated ephemeral requires excludeTurns:true, retains the exclusive prefix for exactly two real child continuations and has explicit cold absence; a pending dynamic callback rejects inclusive lastTurnId while exclusive beforeTurnId produces an empty persistent idle child, then only an explicit success:false response settles the original with exact live/durable distinction. Legacy/paginated prediction children inherit independently expected instructions and function schema with separate parent/sibling histories. Complete seven-file native block43/0 both fixed seeds, strict checks/source guard pass. Only selected Linux/stdio/local histories; competing mutations, storage/retention, complete tool combinations, nonnull reasoning/tier/cache equivalence, other transports/OS/services and A11 remain unqualified. No blocked separate prediction API or verified promotion."
       ],
       "nullable": false,
       "pointer": "/properties/ephemeral",
@@ -170645,7 +170649,10 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-104,152-234,366-386,415-474"
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-104,152-234,366-386,415-474",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:237-338",
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:509-802",
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs:155-312,347-514"
         ]
       },
       "transport_coverage": [
@@ -170664,7 +170671,8 @@
       "id": "schema:v2/ThreadForkParams.json#/properties/excludeTurns",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
+        "Original checkpoint scope, superseded for the selected branches by the later fork lifecycle evidence: actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified.",
+        "Additional actual-native fork lifecycle depth: paginated ephemeral requires excludeTurns:true, retains the exclusive prefix for exactly two real child continuations and has explicit cold absence; a pending dynamic callback rejects inclusive lastTurnId while exclusive beforeTurnId produces an empty persistent idle child, then only an explicit success:false response settles the original with exact live/durable distinction. Legacy/paginated prediction children inherit independently expected instructions and function schema with separate parent/sibling histories. Complete seven-file native block43/0 both fixed seeds, strict checks/source guard pass. Only selected Linux/stdio/local histories; competing mutations, storage/retention, complete tool combinations, nonnull reasoning/tier/cache equivalence, other transports/OS/services and A11 remain unqualified. No blocked separate prediction API or verified promotion."
       ],
       "nullable": false,
       "pointer": "/properties/excludeTurns",
@@ -170679,7 +170687,10 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-147,366-413,444-474"
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-147,366-413,444-474",
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:237-338",
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:509-802",
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs:155-312,347-514"
         ]
       },
       "transport_coverage": [
@@ -170691,14 +170702,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/project-thread-input-fields-qualification.md"
+        "docs/codex-app-server/project-thread-input-fields-qualification.md",
+        "docs/codex-app-server/fork-boundary-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadForkParams.json#/properties/experimentalPredictionMode",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "actual_native_linux_stdio_bounded: Native rejects missing ephemeral prerequisite without changing parent, then explicit ephemeral prediction-mode fork inherits nonempty disabled-plugin list unlike ordinary fork, with null child path and unchanged parent. Does not qualify separate blocked prediction APIs. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion."
+        "actual_native_linux_stdio_bounded: Native rejects missing ephemeral prerequisite without changing parent, then explicit ephemeral prediction-mode fork inherits nonempty disabled-plugin list unlike ordinary fork, with null child path and unchanged parent. Does not qualify separate blocked prediction APIs. Only this exact owning contract is indexed; no nested, alias, method, full deployment or verified promotion.",
+        "Additional actual-native fork lifecycle depth: paginated ephemeral requires excludeTurns:true, retains the exclusive prefix for exactly two real child continuations and has explicit cold absence; a pending dynamic callback rejects inclusive lastTurnId while exclusive beforeTurnId produces an empty persistent idle child, then only an explicit success:false response settles the original with exact live/durable distinction. Legacy/paginated prediction children inherit independently expected instructions and function schema with separate parent/sibling histories. Complete seven-file native block43/0 both fixed seeds, strict checks/source guard pass. Only selected Linux/stdio/local histories; competing mutations, storage/retention, complete tool combinations, nonnull reasoning/tier/cache equivalence, other transports/OS/services and A11 remain unqualified. No blocked separate prediction API or verified promotion."
       ],
       "nullable": false,
       "pointer": "/properties/experimentalPredictionMode",
@@ -170713,7 +170726,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs:118-150"
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs:118-150",
+          "apps/samgita_codex_driver/test/native_thread_response_metadata_test.exs:155-312,347-514"
         ]
       },
       "transport_coverage": [
@@ -170735,7 +170749,8 @@
       "limitations": [
         "actual_native_selected_values: Explicit lastTurnId equals the current sole prefix turn; child inherits prefix and stays isolated from later parent/child divergence.",
         "Earlier sole-prefix-turn evidence is supplemented by separately scoped non-latest fork-boundary native cases.",
-        "actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified."
+        "Original checkpoint scope, superseded for the selected branches by the later fork lifecycle evidence: actual_native_fork_boundaries: Legacy/paginated completed non-latest histories assert exclusive beforeTurnId, inclusive lastTurnId, first-turn empty prefix, omitted/null latest default, exact canonical turns/items/text, invalid/unrelated/mutually-exclusive rejection, independent divergence and owned cold persistence without replay. excludeTurns changes inline hydration only. Explicit ephemeral false is durable; true is qualified only for a legacy-source pathless live child, exact continuations and cold read/resume absence. Paginated revert preserves its existing child and exposes hydrated opaque cursors. Active/incomplete histories, races, tools, paginated ephemeral true, remote storage, retention, other OS/services and A11 remain unqualified.",
+        "Additional actual-native fork lifecycle depth: paginated ephemeral requires excludeTurns:true, retains the exclusive prefix for exactly two real child continuations and has explicit cold absence; a pending dynamic callback rejects inclusive lastTurnId while exclusive beforeTurnId produces an empty persistent idle child, then only an explicit success:false response settles the original with exact live/durable distinction. Legacy/paginated prediction children inherit independently expected instructions and function schema with separate parent/sibling histories. Complete seven-file native block43/0 both fixed seeds, strict checks/source guard pass. Only selected Linux/stdio/local histories; competing mutations, storage/retention, complete tool combinations, nonnull reasoning/tier/cache equivalence, other transports/OS/services and A11 remain unqualified. No blocked separate prediction API or verified promotion."
       ],
       "nullable": true,
       "pointer": "/properties/lastTurnId",
@@ -170751,7 +170766,8 @@
         ],
         "verified": [
           "apps/samgita_codex_driver/test/thread_search_timeline_test.exs:237-258",
-          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-147,366-413,444-474"
+          "apps/samgita_codex_driver/test/native_fork_boundary_fields_test.exs:33-147,366-413,444-474",
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:509-802"
         ]
       },
       "transport_coverage": [

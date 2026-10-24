@@ -506,6 +506,303 @@ defmodule SamgitaCodexDriver.NativeThreadFutureSettingsTest do
     finish_idle(ctx, pid)
   end
 
+  test "paginated active turn rejects inclusive fork while exclusive child leaves the exact callback pending",
+       ctx do
+    sentinel = Path.join(ctx.fixture.workspace, "owned-active-fork-canary.txt")
+    canary = "OWNED_ACTIVE_FORK_UNCHANGED\n"
+    File.write!(sentinel, canary, [:exclusive])
+    {pid, id, turn, tool, events} = active(ctx, %{"historyMode" => "paginated"})
+    assert [first] = ModelFixture.requests(ctx.fixture)
+    assert Session.interaction_outcomes(pid) == []
+    loaded = call(pid, "thread/loaded/list", %{})
+    assert loaded["data"] == [id]
+
+    # prepare_fork persists the live writer before selecting a boundary. The
+    # actual callback, rather than a fabricated rollout, keeps this turn active.
+    assert upstream_error(
+             pid,
+             "thread/fork",
+             %{
+               "threadId" => id,
+               "lastTurnId" => turn,
+               "ephemeral" => false,
+               "excludeTurns" => true
+             },
+             []
+           ) == %{
+             "code" => -32_600,
+             "message" => "lastTurnId '#{turn}' identifies an in-progress turn"
+           }
+
+    assert call(pid, "thread/loaded/list", %{}) === loaded
+    assert_pending(ctx, pid, id, turn, tool)
+    assert ModelFixture.requests(ctx.fixture) === [first]
+    assert Session.interaction_outcomes(pid) == []
+
+    forked =
+      call(pid, "thread/fork", %{
+        "threadId" => id,
+        "beforeTurnId" => turn,
+        "ephemeral" => false,
+        "excludeTurns" => true
+      })
+
+    child = forked["thread"]
+    child_id = child["id"]
+    assert is_binary(child_id) and child_id != id
+    assert child["forkedFromId"] == id
+    assert child["historyMode"] == "paginated"
+    assert child["ephemeral"] == false
+    assert child["status"] == %{"type" => "idle"}
+    assert child["turns"] == []
+    assert forked["model"] == @model_a
+    assert forked["modelProvider"] == "fixture"
+    assert forked["cwd"] == ctx.fixture.workspace
+    assert is_binary(child["path"]) and Path.type(child["path"]) == :absolute
+
+    assert String.starts_with?(
+             Path.expand(child["path"]),
+             Path.expand(ctx.fixture.codex_home) <> "/"
+           )
+
+    assert File.regular?(child["path"])
+    assert Enum.sort(call(pid, "thread/loaded/list", %{})["data"]) == Enum.sort([id, child_id])
+    events = await_active_fork_started(pid, child, events, deadline())
+    assert_pending(ctx, pid, id, turn, tool)
+    assert_empty_active_fork(pid, child_id, turn)
+    assert_pending(ctx, pid, id, turn, tool)
+    assert ModelFixture.requests(ctx.fixture) === [first]
+    assert Session.interaction_outcomes(pid) == []
+
+    assert [%{"id" => ^turn, "status" => "inProgress", "items" => pending_items}] =
+             call(pid, "thread/read", %{"threadId" => id, "includeTurns" => true})["thread"][
+               "turns"
+             ]
+
+    expected_waiting = %{
+      "type" => "dynamicToolCall",
+      "id" => "fixture-call-1",
+      "namespace" => nil,
+      "tool" => "fixture_lookup",
+      "arguments" => %{"key" => "synthetic"},
+      "status" => "inProgress",
+      "contentItems" => nil,
+      "success" => nil,
+      "durationMs" => nil
+    }
+
+    # ItemStarted is transient in the pin; assert its full live payload instead
+    # of inventing an in-progress paginated-history row.
+    events = drain(pid, events)
+
+    assert [started] =
+             for(
+               event <- events,
+               event.wire["method"] == "item/started",
+               event.wire["params"]["item"]["type"] == "dynamicToolCall",
+               do: event.wire["params"]
+             )
+
+    started_at_ms = Map.fetch!(started, "startedAtMs")
+    assert is_integer(started_at_ms) and started_at_ms > 0
+    assert started_at_ms <= System.system_time(:millisecond)
+
+    assert started === %{
+             "threadId" => id,
+             "turnId" => turn,
+             "item" => expected_waiting,
+             "startedAtMs" => started_at_ms
+           }
+
+    refute Enum.any?(events, fn event ->
+             event.wire["method"] == "item/completed" and
+               event.wire["params"]["item"]["type"] == "dynamicToolCall"
+           end)
+
+    assert [user_completed] =
+             for(
+               event <- events,
+               event.wire["method"] == "item/completed",
+               event.wire["params"]["item"]["type"] == "userMessage",
+               do: event.wire["params"]
+             )
+
+    assert user_completed["threadId"] == id and user_completed["turnId"] == turn
+    user_id = Map.fetch!(user_completed["item"], "id")
+
+    assert Regex.match?(
+             ~r/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
+             user_id
+           )
+
+    expected_user = %{
+      "type" => "userMessage",
+      "id" => user_id,
+      "clientId" => nil,
+      "content" => [
+        %{
+          "type" => "text",
+          "text" => "Initial synthetic future-settings input",
+          "text_elements" => []
+        }
+      ]
+    }
+
+    assert user_completed["item"] === expected_user
+    # Canonical ItemCompleted(userMessage) is durable already. The pending
+    # dynamic start and raw function_call do not project into paginated items.
+    assert pending_items === [expected_user]
+
+    assert call(pid, "thread/items/read", %{
+             "threadId" => id,
+             "turnId" => turn,
+             "itemIds" => ["fixture-call-1"]
+           }) === %{"data" => []}
+
+    assert [^tool] = Enum.filter(events, &(&1.kind == :server_request))
+    refute notification(events, "turn/completed")
+    assert_pending(ctx, pid, id, turn, tool)
+    assert File.ls!(ctx.fixture.workspace) == ["owned-active-fork-canary.txt"]
+    assert File.read!(sentinel) === canary
+
+    # Explicitly decline this exact still-pending original callback. No lookup
+    # implementation or child turn runs, and no approval receives an answer.
+    declined = "Owned lookup declined after active-boundary fork; no action performed"
+
+    assert :ok =
+             Session.respond(pid, tool.handle, {
+               :ok,
+               %{
+                 "success" => false,
+                 "contentItems" => [%{"type" => "inputText", "text" => declined}]
+               }
+             })
+
+    events = events ++ finish_turn(pid, id, turn)
+    assert [^tool] = Enum.filter(events, &(&1.kind == :server_request))
+
+    for method <- ["turn/started", "turn/completed"] do
+      assert [params] =
+               for(event <- events, event.wire["method"] == method, do: event.wire["params"])
+
+      assert params["threadId"] == id and params["turn"]["id"] == turn
+    end
+
+    assert [completed] =
+             for(
+               event <- events,
+               event.wire["method"] == "item/completed",
+               event.wire["params"]["item"]["type"] == "dynamicToolCall",
+               do: event.wire["params"]
+             )
+
+    assert completed["threadId"] == id and completed["turnId"] == turn
+    duration = completed["item"]["durationMs"]
+    assert is_integer(duration) and duration >= 0
+
+    expected_declined =
+      Map.merge(expected_waiting, %{
+        "status" => "failed",
+        "contentItems" => [%{"type" => "inputText", "text" => declined}],
+        "success" => false,
+        "durationMs" => duration
+      })
+
+    assert completed["item"] === expected_declined
+    assert [^first, continued] = requests = ModelFixture.requests(ctx.fixture)
+    assert_initial(continued)
+    assert environment_texts(continued) === environment_texts(first)
+    assert [call] = Enum.filter(continued["input"], &(&1["type"] == "function_call"))
+    assert call["call_id"] == "fixture-call-1" and call["name"] == "fixture_lookup"
+    assert JSON.decode!(call["arguments"]) === %{"key" => "synthetic"}
+    assert [output] = Enum.filter(continued["input"], &(&1["type"] == "function_call_output"))
+    assert output["call_id"] == "fixture-call-1" and output["output"] === declined
+
+    assert [%{"id" => ^turn, "status" => "completed", "items" => items}] =
+             call(pid, "thread/read", %{"threadId" => id, "includeTurns" => true})["thread"][
+               "turns"
+             ]
+
+    assert Enum.map(items, & &1["type"]) == ["userMessage", "dynamicToolCall", "agentMessage"]
+    assert hd(items) === expected_user
+    assert Enum.find(items, &(&1["type"] == "dynamicToolCall")) === expected_declined
+    assert List.last(items)["text"] == "Deterministic local fixture answer"
+    assert_empty_active_fork(pid, child_id, turn)
+    assert ModelFixture.requests(ctx.fixture) === requests
+    events = drain(pid, events)
+
+    # The child may emit thread/started and status metadata, but no child
+    # turn/item lifecycle or callback is permitted by these history-only calls.
+    assert [^tool] = Enum.filter(events, &(&1.kind == :server_request))
+
+    for event <- events,
+        method = event.wire["method"] || "",
+        String.starts_with?(method, "turn/") or String.starts_with?(method, "item/") do
+      assert event.wire["params"]["threadId"] == id
+    end
+
+    assert [outcome] = Session.interaction_outcomes(pid)
+    assert outcome.handle === tool.handle and outcome.thread_id == id
+    assert outcome.method == "item/tool/call"
+    assert outcome.status in [:sent_unconfirmed, :resolution_observed]
+    # Matching native failed item plus provider output is the evidence before
+    # acknowledging this local delivery record; a transport send alone is not.
+    assert :ok = Session.acknowledge_interaction_outcome(pid, tool.handle)
+    assert Session.interaction_outcomes(pid) == []
+    assert Session.uncertain_operations(pid) == []
+    assert_idle(pid)
+    assert File.ls!(ctx.fixture.workspace) == ["owned-active-fork-canary.txt"]
+    assert File.read!(sentinel) === canary
+    %{connection: connection} = :sys.get_state(pid)
+    monitor = Process.monitor(pid)
+    assert :ok = StdioSessionFixture.close(pid, connection)
+    assert_receive {:DOWN, ^monitor, :process, ^pid, _}, 5_000
+    assert ModelFixture.requests(ctx.fixture) === requests
+    assert File.read!(sentinel) === canary
+  end
+
+  defp await_active_fork_started(pid, child, events, until) do
+    events = drain(pid, events)
+    assert [tool] = Enum.filter(events, &(&1.kind == :server_request))
+    assert tool.wire["params"]["threadId"] == child["forkedFromId"]
+    refute notification(events, "turn/completed")
+
+    matches =
+      Enum.filter(events, fn event ->
+        event.wire["method"] == "thread/started" and
+          event.wire["params"]["thread"]["id"] == child["id"]
+      end)
+
+    case matches do
+      [event] ->
+        assert event.wire["params"] === %{"thread" => child}
+        events
+
+      [] ->
+        wait(pid, until, fn -> await_active_fork_started(pid, child, events, until) end)
+
+      _ ->
+        flunk("Duplicate native active-boundary fork notification")
+    end
+  end
+
+  defp assert_empty_active_fork(pid, child, excluded_turn) do
+    thread = call(pid, "thread/read", %{"threadId" => child, "includeTurns" => true})["thread"]
+    assert thread["id"] == child and thread["historyMode"] == "paginated"
+    assert thread["status"] == %{"type" => "idle"}
+    assert thread["turns"] == []
+    empty = %{"data" => [], "nextCursor" => nil, "backwardsCursor" => nil}
+
+    assert call(pid, "thread/turns/list", %{"threadId" => child, "itemsView" => "full"}) === empty
+    assert call(pid, "thread/items/list", %{"threadId" => child}) === empty
+
+    assert call(pid, "thread/items/read", %{
+             "threadId" => child,
+             "turnId" => excluded_turn,
+             "itemIds" => ["fixture-call-1"]
+           }) === %{"data" => []}
+  end
+
   defp idle_thread(ctx) do
     pid = start(ctx)
     id = thread(ctx, pid, %{"model" => @model_a})
@@ -573,9 +870,9 @@ defmodule SamgitaCodexDriver.NativeThreadFutureSettingsTest do
     assert :ok = Session.close(pid)
   end
 
-  defp active(ctx) do
+  defp active(ctx, extra \\ %{}) do
     pid = start(ctx)
-    id = thread(ctx, pid, %{"model" => @model_a, "dynamicTools" => [@lookup]})
+    id = thread(ctx, pid, Map.merge(%{"model" => @model_a, "dynamicTools" => [@lookup]}, extra))
     turn = start_turn(pid, id, text("Initial synthetic future-settings input"))
     {tool, events} = await_tool(pid, [], deadline())
     assert_pending(ctx, pid, id, turn, tool)

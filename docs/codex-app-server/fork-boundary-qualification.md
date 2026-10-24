@@ -78,5 +78,73 @@ Namespace and scoped strict Credo pass. Logs:
 scoped implemented evidence; six existing fields gain non-latest boundary
 evidence. No row is verified. Active/incomplete turns, concurrent mutations,
 tool history, storage failures/retention, paginated ephemeral:true, other
-transports/OSes, real providers and A11 remain unqualified. The default native CI
+transports/OSes, real providers and A11 remain unqualified at that checkpoint. The default native CI
 suite includes this file; publication and deployment remain separate gates.
+
+## Paginated ephemeral, active and prediction continuation
+
+The later complete seven-file native owning block passes **43/0 twice**, seeds
+501432 and 987654, 81.1/80.2 seconds. Root and standalone driver warnings-as-errors
+compile, format, namespace preflight and strict Credo438 files pass. The
+manifest-inclusive 1,490-file source guard matches at terminal before subsequent
+evidence edits. The real binary and immutable source pins above are unchanged.
+
+- Paginated ephemeral fork rejects omitted/false excludeTurns without changing
+  the source. Explicit true with before-third returns a pathless live child;
+  durable hydration APIs reject. Two real child continuations retain only the
+  exclusive prefix and exclude later parent divergence. Exactly six provider
+  requests, absent child rollout/list entry, cold read/resume failures and intact
+  parent durable history distinguish live state from fabricated persistence.
+- A genuine pending dynamic callback holds a paginated turn active. Inclusive
+  lastTurnId rejects without allocating a child; exclusive beforeTurnId creates
+  an empty persistent idle child and leaves the original callback pending. Exact
+  live start, completed user history and absent pending dynamic history are
+  asserted separately. Only an explicit success:false reply settles the original
+  callback; its failed item and model-visible output are exact. No child turn,
+  tool implementation, workspace change or automatic reply occurs.
+- Legacy and paginated experimentalPredictionMode forks actually continue with
+  inherited base/developer/collaboration instructions and dynamic function
+  schema. Five independent provider requests distinguish child, parent and
+  separately configured sibling histories. Pathless child absence after confirmed
+  shutdown, source/sibling rollout bytes and exact request counts are checked.
+  ThreadForkResponse has no collaborationMode field; real child model input
+  proves inheritance. This does not qualify the separate blocked prediction API.
+
+Pinned source explains the first failed oracles rather than relaxing them:
+`rollout/src/policy.rs:132,142,171-172,212,228-282` persists ItemCompleted, not
+transient ItemStarted; `app-server-protocol/src/protocol/thread_history_projection.rs:22-33,78-101`
+projects canonical paginated items. The initial active case failed once because
+it expected a durable pending dynamic item. Its exact live start, callback,
+completed failure and user content remain fully checked after correction.
+The initial prediction draft failed twice before startup because it omitted the
+required dynamic function type. Adding type:function follows the pinned schema;
+the next complete block failed twice on an invented collaborationMode response
+field. `app-server-protocol/src/protocol/v2/thread.rs:641-674` and
+`thread_processor.rs:5673-5697` omit that field, while
+`core/src/thread_manager.rs:1485-1513` inherits live settings. The corrected tests
+check absence and the independently expected actual provider instructions/tools.
+No timeout, skip, assertion removal, fabricated rollout or native emitter is used.
+
+Upstream `app-server/tests/suite/v2/thread_fork.rs:2353-2442,2715-2844` separately
+exercises paginated ephemeral and prediction inheritance. Source-only drafts and
+failed logs remain under `/tmp/samgita-native-active-turn-fork-v1-20261025/`,
+`/tmp/samgita-native-prediction-fork-inheritance-v1-20261025/` and
+`/tmp/samgita-native-cold-process-queue-v10-fork-lifecycles-attempt1-20261025/`.
+
+The terminal runner is
+`/tmp/samgita-native-cold-process-queue-v11-fork-lifecycles-attempt2-20261025.py`;
+its same-named directory retains exact commands, logs, source and results.
+`/tmp/samgita-native-fork-lifecycles-v11-terminal-20261025.json` has SHA256
+`666274aed7cfaa722e07ab44eb67c6a7d3a5552c2b477e2e19b40250e9d114cb`.
+From the standalone driver, both fixed seeds run:
+
+```sh
+mix test test/native_image_view_items_test.exs test/native_thread_fork_settings_test.exs test/image_preparation_test.exs test/native_fork_boundary_fields_test.exs test/native_thread_resume_settings_test.exs test/native_thread_future_settings_test.exs test/native_thread_response_metadata_test.exs --warnings-as-errors --seed 501432
+```
+
+Five already implemented ThreadForkParams properties gain bounded behavioral
+depth; no new count or verified promotion follows. Concurrent competing fork
+mutations, storage failures/retention, complete tool-history combinations,
+nonnull reasoning/tier inheritance, cache-hit/full provider-envelope equivalence,
+remote stores, other transports/OSes, external services and A11 remain
+unqualified. Complete final-source local/hosted qualification remains required.
