@@ -165597,24 +165597,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/admin-skills-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsListResponse.json#/definitions/SkillScope/enum/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_private_admin_root: Stock Admin discovery through owned read-only /etc bind in private user/mount/net namespaces; exact sole metadata, reload and cold restart, source bytes/hash, no System cache or inference. Only admin literal in this physical skills/list response; not skill execution, precedence, rendering, remote/OS success or full acceptance."
+      ],
       "pointer": "/definitions/SkillScope/enum/3",
       "schema": "v2/SkillsListResponse.json",
       "schema_sha256": "d22a3bd3ccf802db8efbb8f15404a3fb74f53fdfca7f6c2e99a71c62bc06820e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_admin_skills_profile.exs:115"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
