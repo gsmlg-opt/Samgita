@@ -36,7 +36,7 @@ progress, deprecated file-change output, three prediction entries and
 `thread/compacted` and `windows/worldWritableWarning` are `blocked` by exact
 source-proven unavailable success paths: eleven required entries, with no scope
 waiver. Selected native method/notification entries now total 462 `implemented`,
-with 1,659 exact field/variant schema contracts implemented; 12 requirements and 4,962 contracts
+with 1,678 exact field/variant schema contracts implemented; 12 requirements and 4,943 contracts
 remain `missing`. None is fully verified.
 Required entry-specific
 behavior evidence and qualification are still needed. Generic transport and
@@ -519,3 +519,12 @@ consecutive recovery/restart, strict checks, audit, assets and local assembly
 pass separately. Continue the independent remaining method/field evidence and
 final package/hosted checks. A11, upstream-unreachable paths and external/OS
 success profiles remain incomplete; no release or deployment is authorized.
+
+The next [ordinary-list unit](thread-list-fields-qualification.md) adds three
+native cases and nineteen precise contracts. Both seeds and scoped static checks
+pass. Its initial failed reverse-anchor assertion exposes an immutable upstream
+created_at precision defect; a read-only timestamp oracle qualifies only the
+actual observed response, and the positive backwardsCursor contract stays
+missing. No driver/native-state workaround is applied. The full isolated package
+matrix now runs against this frozen source; source-only ancestry and permission
+variant investigation can continue independently without altering that snapshot.

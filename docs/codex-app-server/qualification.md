@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 1,659 implemented / 4,962 missing
+11 blocked requirements** and **0 verified / 1,678 implemented / 4,943 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,659 directly exercised
+MCP entries have scoped implementation evidence. These 1,678 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -2144,3 +2144,24 @@ pass, while the aggregate remains failed. The two-Agent native journey supplies
 scoped execution/review/acceptance separation evidence. None of these results
 closes A11, upstream-unreachable legacy paths, external/OS success profiles or
 the full compatibility gate. No release/tag/publication/deployment occurred.
+
+## Ordinary thread-list fields and actual native cursor defect
+
+Three [ordinary-list cases](thread-list-fields-qualification.md) pass **3/0**
+at both seeds, 5.7 seconds each. Exact native-created histories prove cwd,
+provider/source/literal-name filtering, null/default values, exclusions before
+limit, actual forward pagination and cold opaque continuation without inference.
+Nineteen precise contracts gain scoped implemented evidence. Ledger:
+**462 implemented / 12 missing / 11 blocked** requirements and
+**1,678 implemented / 4,943 missing** contracts, **zero verified**.
+
+The first native run failed its reverse anchor assertion, **1/3**, 4.6 seconds.
+Exact source and a read-only owned-SQLite timestamp oracle establish a pinned
+upstream precision defect: created_at milliseconds become whole seconds before
+the ordinary reverse helper applies its1ms offset. The final test compares the
+complete native reverse response against actual stored timestamps and preserves
+that discrepancy as a diagnostic. It does not restore or qualify the advertised
+anchor guarantee. The positive backwardsCursor contract stays missing. No native
+database write, upstream change, driver cursor rewrite, retry or deadline change
+is introduced. Full aggregate/package/hosted and external/A11 gates remain
+separate and incomplete.

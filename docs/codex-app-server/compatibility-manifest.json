@@ -6669,14 +6669,16 @@
       "capabilities": [],
       "direction": "client_request",
       "evidence": [
-        "docs/codex-app-server/core-thread-turn-qualification.md"
+        "docs/codex-app-server/core-thread-turn-qualification.md",
+        "docs/codex-app-server/thread-list-fields-qualification.md"
       ],
       "experimental": false,
       "id": "client_request:thread/list",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native behavior: Archived/default visibility, project/section selection and read-state map. Cursor/limit/sort/search/source/provider/ancestor filters not behavior-qualified. cwd only constructed against one workspace."
+        "Selected actual-native behavior: Archived/default visibility, project/section selection and read-state map. The separately scoped thread-list-fields qualification adds ordinary local filters and forward created_at pagination; ancestry and reverse-anchor behavior remain unqualified.",
+        "actual_native_thread_list_fields: Exact cwd/provider/source/literal-title filters, bounded exclusions before limit, null/default branches, forward created_at pages and owned cold persistence preserve native identities and make no extra model requests. Malformed inputs preserve persisted results. Reverse-cursor output is an explicit failing-contract diagnostic, not positive compatibility evidence. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
       ],
       "params": {
         "$ref": "#/definitions/ThreadListParams"
@@ -6709,7 +6711,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/method_families_test.exs",
           "apps/samgita_codex_driver/test/native_projects_test.exs",
-          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:25-201,203-324"
         ]
       },
       "transport_coverage": [
@@ -19853,14 +19856,16 @@
       "direction": "server_response",
       "error_schema": "JSONRPCError.json",
       "evidence": [
-        "docs/codex-app-server/core-thread-turn-qualification.md"
+        "docs/codex-app-server/core-thread-turn-qualification.md",
+        "docs/codex-app-server/thread-list-fields-qualification.md"
       ],
       "experimental": false,
       "id": "server_response:thread/list",
       "implementation_module": "SamgitaCodexDriver.Session",
       "legacy": false,
       "limitations": [
-        "Selected actual-native behavior: Archived/default visibility, project/section selection and read-state map. Cursor/limit/sort/search/source/provider/ancestor filters not behavior-qualified. cwd only constructed against one workspace."
+        "Selected actual-native behavior: Archived/default visibility, project/section selection and read-state map. The separately scoped thread-list-fields qualification adds ordinary local filters and forward created_at pagination; ancestry and reverse-anchor behavior remain unqualified.",
+        "actual_native_thread_list_fields: Exact cwd/provider/source/literal-title filters, bounded exclusions before limit, null/default branches, forward created_at pages and owned cold persistence preserve native identities and make no extra model requests. Malformed inputs preserve persisted results. Reverse-cursor output is an explicit failing-contract diagnostic, not positive compatibility evidence. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
       ],
       "prerequisites": [
         "initialized"
@@ -19879,7 +19884,8 @@
         "verified": [
           "apps/samgita_codex_driver/test/method_families_test.exs",
           "apps/samgita_codex_driver/test/native_projects_test.exs",
-          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_organization_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:25-201,203-324"
         ]
       },
       "transport_coverage": [
@@ -37763,46 +37769,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadListCwdFilter/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Exact scalar/relative/dot and multi-directory array cwd selection, duplicate array entries, empty/nonmatching cwd and explicit null preserve asserted native identity sets. Native malformed scalar/array element errors preserve persisted results. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadListCwdFilter/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:25-75,181-196,241-246"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadListCwdFilter/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Exact scalar/relative/dot and multi-directory array cwd selection, duplicate array entries, empty/nonmatching cwd and explicit null preserve asserted native identity sets. Native malformed scalar/array element errors preserve persisted results. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadListCwdFilter/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:25-75,181-196,241-246"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -38895,24 +38917,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadSortKey/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Explicit created_at and null sortKey plus omitted/null/asc/desc sortDirection produce exact timestamp-and-UUID order independently checked against read-only owned millisecond timestamps. Display createdAt equals stored milliseconds divided by1000; malformed keys/directions reject. Only the created_at enum is qualified; no other sort-key behavior. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "pointer": "/definitions/ThreadSortKey/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "f72b9d50beef799d41aaf408c10da1b76dfd07c472fdc68896f3ec3e7a75018a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:77-118,181-196,241-246,276-300"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -171988,175 +172018,231 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/cursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Omitted/null input and exact native forward continuation in both created_at directions preserve complete identity order with terminal null nextCursor. Owned cold restart preserves durable continuation rows/cursors without loading or executing threads; malformed cursor rejects. Reverse cursor anchor behavior remains missing. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "8c4f3653fe1a44eb8a01affe5e4eb2cbe3b209bfa6c0e62c2e15dfbb450d0142",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:96-118,146-170,258-268"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Exact scalar/relative/dot and multi-directory array cwd selection, duplicate array entries, empty/nonmatching cwd and explicit null preserve asserted native identity sets. Native malformed scalar/array element errors preserve persisted results. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cwd",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "6912a7a68807b12daf1b80c58532a62793e93c570d59f5120fdcbdad04d070a9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:25-75,181-196,241-246"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadListParams.json#/properties/cwd/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Exact scalar/relative/dot and multi-directory array cwd selection, duplicate array entries, empty/nonmatching cwd and explicit null preserve asserted native identity sets. Native malformed scalar/array element errors preserve persisted results. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "pointer": "/properties/cwd/anyOf/0",
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "2270c24b894fb87c47293dd5ad7b53ae4e73cecc76e7454382d354d3f46232f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:25-75,181-196,241-246"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadListParams.json#/properties/cwd/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Exact scalar/relative/dot and multi-directory array cwd selection, duplicate array entries, empty/nonmatching cwd and explicit null preserve asserted native identity sets. Native malformed scalar/array element errors preserve persisted results. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "pointer": "/properties/cwd/anyOf/1",
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:25-75,181-196,241-246"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/excludedThreadIds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Exclusions precede limit and fill both retained rows; all excluded gives empty. Null/empty/missing IDs, uppercase canonical UUID and exactly100 duplicate entries are asserted;101 entries and malformed UUIDs reject explicitly. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/excludedThreadIds",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "b68fa462d1b10844fb7935dbf2de9e32ca978c466cf7aaae052b51b9a510f60e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:121-144,169-179"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "excludedThreadIds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/limit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Explicit100, two-row forward pages, zero clamped to one and explicit null default produce exact owned results; exclusions do not consume the two-row limit. Negative and uint32-overflow wire values reject. No maximum-clamp or100-row population qualification. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "2594574e766f25b15bbbb6fb159981988a898bcfa643978d4820c8404be48b3c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:99-118,121-126,181-196,241-246"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "limit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/modelProviders",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Omitted/null/empty and configured fixture provider filters return all owned histories; a nonmatching provider returns empty. Every native row reports fixture and malformed provider element rejects. No second positive provider population. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/modelProviders",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "ed37251c867bdfc2bb45372532a39ed2807c19dc790bfcd041da3108ed5809d3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:31-45,55-75,181-196"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelProviders"
     },
     {
@@ -172248,27 +172334,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/searchTerm",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Omitted/null/empty search leaves owned histories visible; exact persisted titles prove literal percent/underscore, Unicode and case-sensitive matching, combined with cwd. Setup transcript text deliberately lacks those title markers. No full transcript search claim. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/searchTerm",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "9915d8a92a9ae47a62ead4d6ced4cf0537e13b173e94036346c88bc9b18c37b7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:31-45,58-75,203-237"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "searchTerm"
     },
     {
@@ -172308,167 +172402,223 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/sortDirection",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Explicit created_at and null sortKey plus omitted/null/asc/desc sortDirection produce exact timestamp-and-UUID order independently checked against read-only owned millisecond timestamps. Display createdAt equals stored milliseconds divided by1000; malformed keys/directions reject. Only the created_at enum is qualified; no other sort-key behavior. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/sortDirection",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "8f113c46db3eefa9955e3b3f8c7f3ff9c81ffb82011ad460f2490e2e5490c060",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:77-118,181-196,241-246,276-300"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sortDirection"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadListParams.json#/properties/sortDirection/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Explicit created_at and null sortKey plus omitted/null/asc/desc sortDirection produce exact timestamp-and-UUID order independently checked against read-only owned millisecond timestamps. Display createdAt equals stored milliseconds divided by1000; malformed keys/directions reject. Only the created_at enum is qualified; no other sort-key behavior. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "pointer": "/properties/sortDirection/anyOf/0",
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "717896737b1de96f75fe158f9f977ceada63f1874ffbe7ec49cea2294a4d3f3c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:77-118,181-196,241-246,276-300"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadListParams.json#/properties/sortDirection/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Explicit created_at and null sortKey plus omitted/null/asc/desc sortDirection produce exact timestamp-and-UUID order independently checked against read-only owned millisecond timestamps. Display createdAt equals stored milliseconds divided by1000; malformed keys/directions reject. Only the created_at enum is qualified; no other sort-key behavior. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "pointer": "/properties/sortDirection/anyOf/1",
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:77-118,181-196,241-246,276-300"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/sortKey",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Explicit created_at and null sortKey plus omitted/null/asc/desc sortDirection produce exact timestamp-and-UUID order independently checked against read-only owned millisecond timestamps. Display createdAt equals stored milliseconds divided by1000; malformed keys/directions reject. Only the created_at enum is qualified; no other sort-key behavior. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/sortKey",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "04707e30423203c839a5de7dcf6ae23c4705a0b076db0eb92d081bbfd969808d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:77-118,181-196,241-246,276-300"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sortKey"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadListParams.json#/properties/sortKey/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Explicit created_at and null sortKey plus omitted/null/asc/desc sortDirection produce exact timestamp-and-UUID order independently checked against read-only owned millisecond timestamps. Display createdAt equals stored milliseconds divided by1000; malformed keys/directions reject. Only the created_at enum is qualified; no other sort-key behavior. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "pointer": "/properties/sortKey/anyOf/0",
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "d28c4f731f735d7f51e3a556a98d2351fadf9b4fedefad9ed48bf9833cba244b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:77-118,181-196,241-246,276-300"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadListParams.json#/properties/sortKey/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Explicit created_at and null sortKey plus omitted/null/asc/desc sortDirection produce exact timestamp-and-UUID order independently checked against read-only owned millisecond timestamps. Display createdAt equals stored milliseconds divided by1000; malformed keys/directions reject. Only the created_at enum is qualified; no other sort-key behavior. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "pointer": "/properties/sortKey/anyOf/1",
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:77-118,181-196,241-246,276-300"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListParams.json#/properties/sourceKinds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Omitted/null/empty source filters and positive vscode or mixed exec+vscode return owned native vscode histories; exec-only filters them out and an unknown enum rejects. No actual exec-source emission qualification. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/sourceKinds",
       "required": false,
       "schema": "v2/ThreadListParams.json",
       "schema_sha256": "cb15841e2b670050b8e988c9681e85d79ebb144ab23146b994f0602316f997ef",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:31-45,56-75,181-196"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sourceKinds"
     },
     {
@@ -172500,12 +172650,16 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListResponse.json#/properties/backwardsCursor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Boundary/diagnostic evidence only; retain missing: Initial seed501432 failed the reverse-prefix anchor assertion (original test114; /tmp/samgita-thread-list-initial-501432-20261024.log). Immutable rollout/src/recorder.rs:2170 serializes created_at_ms with SecondsFormat::Secs; thread-store/src/local/helpers.rs:130-142 reparses that truncated value; thread_processor.rs:5902-5930 offsets it by +/-1ms before the opposite strict timestamp query. The current passing diagnostic reads only owned state_5.sqlite timestamps via mode=ro/query_only, asserts exact generated cursor milliseconds and the complete resulting reverse IDs independently. This records native precision loss; it does not establish anchor inclusion or qualify positive backwardsCursor behavior. Null/empty output and restart cursor equality are partial evidence only. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/backwardsCursor",
       "required": false,
@@ -172518,9 +172672,13 @@
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:77-118,146-161,276-324"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "backwardsCursor"
     },
     {
@@ -172560,27 +172718,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-list-fields-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadListResponse.json#/properties/nextCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_list_fields: Omitted/null input and exact native forward continuation in both created_at directions preserve complete identity order with terminal null nextCursor. Owned cold restart preserves durable continuation rows/cursors without loading or executing threads; malformed cursor rejects. Reverse cursor anchor behavior remains missing. Selected native Linux/stdio, four local paginated text histories and provider-only synthetic model fixture. Reverse created_at cursor anchor behavior is not qualified. Other sort keys, concurrency/data changes, scan/repair contrast, real multi-provider/source populations, ancestry, other transports/OS/services and A11 remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ThreadListResponse.json",
       "schema_sha256": "1a3f6922e8cfdfef944c216c6d7ccd34cc5402593ced9eb260183116debc07f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_list_fields_test.exs:96-118,146-170,258-268"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
