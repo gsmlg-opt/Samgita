@@ -70391,53 +70391,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-titled-enum-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationConstOption/properties/const",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native MCP 2025/2026 titled single-select Form: exact ordered const/title/default/schema, held callback, explicit selected constant, peer response and marker, provider output and native persisted lifecycle. No arbitrary-answer validation, other enum/null branches, external service or full-method qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpElicitationConstOption/properties/const",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_titled_enum_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "const"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-titled-enum-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationConstOption/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native MCP 2025/2026 titled single-select Form: exact ordered const/title/default/schema, held callback, explicit selected constant, peer response and marker, provider output and native persisted lifecycle. No arbitrary-answer validation, other enum/null branches, external service or full-method qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpElicitationConstOption/properties/title",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_titled_enum_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
@@ -71240,24 +71256,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-titled-enum-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationSingleSelectEnumSchema/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native MCP 2025/2026 titled single-select Form: exact ordered const/title/default/schema, held callback, explicit selected constant, peer response and marker, provider output and native persisted lifecycle. No arbitrary-answer validation, other enum/null branches, external service or full-method qualification."
+      ],
       "pointer": "/definitions/McpElicitationSingleSelectEnumSchema/anyOf/1",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "af78ff408200facd949ef5aec51d89c63cf4190c74118fe667e43bc0aaf0ad08",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_titled_enum_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -71879,131 +71903,171 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-titled-enum-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/default",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native MCP 2025/2026 titled single-select Form: exact ordered const/title/default/schema, held callback, explicit selected constant, peer response and marker, provider output and native persisted lifecycle. No arbitrary-answer validation, other enum/null branches, external service or full-method qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/default",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_titled_enum_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "default"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-titled-enum-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native MCP 2025/2026 titled single-select Form: exact ordered const/title/default/schema, held callback, explicit selected constant, peer response and marker, provider output and native persisted lifecycle. No arbitrary-answer validation, other enum/null branches, external service or full-method qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/description",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_titled_enum_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-titled-enum-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/oneOf",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native MCP 2025/2026 titled single-select Form: exact ordered const/title/default/schema, held callback, explicit selected constant, peer response and marker, provider output and native persisted lifecycle. No arbitrary-answer validation, other enum/null branches, external service or full-method qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/oneOf",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "2cd27980a4dfbc83804e15e7dafde4e2a871b9ed55337066d134e08bbf0168b4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_titled_enum_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-titled-enum-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native MCP 2025/2026 titled single-select Form: exact ordered const/title/default/schema, held callback, explicit selected constant, peer response and marker, provider output and native persisted lifecycle. No arbitrary-answer validation, other enum/null branches, external service or full-method qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/title",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_titled_enum_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-titled-enum-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected actual-native MCP 2025/2026 titled single-select Form: exact ordered const/title/default/schema, held callback, explicit selected constant, peer response and marker, provider output and native persisted lifecycle. No arbitrary-answer validation, other enum/null branches, external service or full-method qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpElicitationTitledSingleSelectEnumSchema/properties/type",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "05c5844d4a8897e4af5e0b64ef517a0c529f63feca2a0929f5a25180efcb3adb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_titled_enum_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {

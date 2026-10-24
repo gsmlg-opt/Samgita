@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,212 implemented / 4,409 missing
+11 blocked requirements** and **0 verified / 2,220 implemented / 4,401 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,212 directly exercised
+MCP entries have scoped implementation evidence. These 2,220 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -39,6 +39,12 @@ pass **3/0** at both seeds. Five exact owning contracts now distinguish persiste
 user edits from effective CLI values, with an independent version oracle, null
 metadata/deletion, batch ordering and cold restart. The initial exact-empty-list
 draft failure remains recorded. No whole-method or verified promotion follows.
+
+Two [native MCP titled-select cases](mcp-titled-enum-qualification.md) add eight
+exact contracts. With existing scalar Form cases, both seeds pass **4/0**.
+Native schema, explicit selected constant, peer effect, provider output and
+history are joined without a scripted app-server. The initial observation-file
+fixture failure is recorded; no deadline or semantic assertion changed.
 
 The latest bounded units add 20 native cases and 111 exact contracts:
 [persisted dynamic tools](persisted-tool-items-qualification.md),
