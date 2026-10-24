@@ -1,0 +1,10 @@
+[
+  {"name":"omitted nested defaults","params":{},"direction":"desc","view":"summary","count":3},
+  {"name":"explicit nested nulls","params":{"limit":null,"sortDirection":null,"itemsView":null},"direction":"desc","view":"summary","count":3},
+  {"name":"ascending full prefix","params":{"limit":2,"sortDirection":"asc","itemsView":"full"},"direction":"asc","view":"full","count":2},
+  {"name":"descending full suffix","params":{"limit":2,"sortDirection":"desc","itemsView":"full"},"direction":"desc","view":"full","count":2},
+  {"name":"ascending unloaded prefix","params":{"limit":2,"sortDirection":"asc","itemsView":"notLoaded"},"direction":"asc","view":"notLoaded","count":2},
+  {"name":"descending unloaded suffix","params":{"limit":1,"sortDirection":"desc","itemsView":"notLoaded"},"direction":"desc","view":"notLoaded","count":1},
+  {"name":"explicit summary suffix","params":{"limit":2,"sortDirection":"desc","itemsView":"summary"},"direction":"desc","view":"summary","count":2},
+  {"name":"zero limit clamps to one","params":{"limit":0,"sortDirection":"desc","itemsView":"full"},"direction":"desc","view":"full","count":1}
+]
