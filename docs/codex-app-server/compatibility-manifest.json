@@ -68860,127 +68860,167 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationBooleanSchema/properties/default",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationBooleanSchema/properties/default",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "355815181a415ef7fffb17add2cd540eb596dfb13193fbaefcce9b50053e5b48",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "default"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationBooleanSchema/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationBooleanSchema/properties/description",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationBooleanSchema/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationBooleanSchema/properties/title",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationBooleanSchema/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpElicitationBooleanSchema/properties/type",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "677b6111b30478518cdcfc0e38551952721ee9bfefa0cfca115219969e635ab4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationBooleanType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "pointer": "/definitions/McpElicitationBooleanType/enum/0",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "f2c4f1c9cc38fa3c0e5de8b84c394f9900f29dd4e5abe3f6fdfbd1aeeb45c47b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -69304,223 +69344,295 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationNumberSchema/properties/default",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationNumberSchema/properties/default",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "34993fc9dda2f9fc8bf9053ede359d444c24f015df09769d6f12e6fa978d31ac",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "default"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationNumberSchema/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationNumberSchema/properties/description",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationNumberSchema/properties/maximum",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationNumberSchema/properties/maximum",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "34993fc9dda2f9fc8bf9053ede359d444c24f015df09769d6f12e6fa978d31ac",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "maximum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationNumberSchema/properties/minimum",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationNumberSchema/properties/minimum",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "34993fc9dda2f9fc8bf9053ede359d444c24f015df09769d6f12e6fa978d31ac",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "minimum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationNumberSchema/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationNumberSchema/properties/title",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationNumberSchema/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpElicitationNumberSchema/properties/type",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "01959c2cb1598c8301eb92f0e7e68edf484cadf7c5b84e155880421f668a4f82",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationNumberType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "pointer": "/definitions/McpElicitationNumberType/enum/0",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "407abbdd495d1614b621538270224edb777256a1d86941b12f1492afd3f5726e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationNumberType/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "pointer": "/definitions/McpElicitationNumberType/enum/1",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "a9ef79765cbcb0e19137755b1e8dd1d3caa7b62930c0c23cda56be3d317ead82",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationObjectType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "pointer": "/definitions/McpElicitationObjectType/enum/0",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "fdef9925044994da47813be619a43c5dab379132bcad18aac4076ce180f59b34",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -69640,79 +69752,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationSchema/properties/properties",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpElicitationSchema/properties/properties",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "bbb6f3dbbd177524c0448a7d00d07d9b6170bb41971e95f7613cbad96a7d7f07",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "properties"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationSchema/properties/required",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationSchema/properties/required",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "required"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationSchema/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpElicitationSchema/properties/type",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "a4ecbf41fb305ba86ffd740bae74dd8f649d62710e5076251aa92ac8205247b2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
@@ -69761,24 +69897,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringFormat/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "pointer": "/definitions/McpElicitationStringFormat/enum/0",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "49bf8451f61d3b418967929fae12678fb1e28d0d67311cac6828c9217990537f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -69850,79 +69994,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringSchema/properties/default",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationStringSchema/properties/default",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "default"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringSchema/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationStringSchema/properties/description",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringSchema/properties/format",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationStringSchema/properties/format",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "d1fe7827a33b23e9c39c1aeedd944a7dc1173f5d8046ced4efa68fa47ff050d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "format"
     },
     {
@@ -69972,127 +70140,167 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringSchema/properties/maxLength",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationStringSchema/properties/maxLength",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "80c78c2078367c04c0ef237db981a743ed785ac504a7837582217736021b046e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "maxLength"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringSchema/properties/minLength",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationStringSchema/properties/minLength",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "80c78c2078367c04c0ef237db981a743ed785ac504a7837582217736021b046e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "minLength"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringSchema/properties/title",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/McpElicitationStringSchema/properties/title",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "title"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringSchema/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/McpElicitationStringSchema/properties/type",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "05c5844d4a8897e4af5e0b64ef517a0c529f63feca2a0929f5a25180efcb3adb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/definitions/McpElicitationStringType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "pointer": "/definitions/McpElicitationStringType/enum/0",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "26780c0786555af6ce2c6186a361947b7e84083f05281bcc36cc2f1975605ab2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -70996,53 +71204,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/1/properties/_meta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/_meta",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_meta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/1/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/message",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
@@ -71114,27 +71338,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/1/properties/requestedSchema",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/requestedSchema",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "8886aeba647e7a89ef5b5b294eb910994fcc0aeb2ff9cad2bef6edad5dffc34f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "requestedSchema"
     },
     {
@@ -71458,153 +71690,201 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/4/properties/_meta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_url: Both MCP versions and explicit accept/decline/cancel preserve exact URL metadata/elicitation identity; peer sees native empty-object accept fallback vs omitted decline/cancel content. Zero owned loopback URL visits and exact provider/decision counts; no login, browser, external auth or aggregate variant claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/_meta",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_url_elicitation_test.exs:37-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_meta"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/4/properties/elicitationId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_url: Both MCP versions and explicit accept/decline/cancel preserve exact URL metadata/elicitation identity; peer sees native empty-object accept fallback vs omitted decline/cancel content. Zero owned loopback URL visits and exact provider/decision counts; no login, browser, external auth or aggregate variant claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/elicitationId",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_url_elicitation_test.exs:37-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "elicitationId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/4/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_url: Both MCP versions and explicit accept/decline/cancel preserve exact URL metadata/elicitation identity; peer sees native empty-object accept fallback vs omitted decline/cancel content. Zero owned loopback URL visits and exact provider/decision counts; no login, browser, external auth or aggregate variant claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/message",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_url_elicitation_test.exs:37-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "message"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/4/properties/mode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_url: Both MCP versions and explicit accept/decline/cancel preserve exact URL metadata/elicitation identity; peer sees native empty-object accept fallback vs omitted decline/cancel content. Zero owned loopback URL visits and exact provider/decision counts; no login, browser, external auth or aggregate variant claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/mode",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "196469b2634e173ef496b1648cc9dcc8c2a21b2b3a74102373b40b22c6bd773f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_url_elicitation_test.exs:37-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/4/properties/mode/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_url: Both MCP versions and explicit accept/decline/cancel preserve exact URL metadata/elicitation identity; peer sees native empty-object accept fallback vs omitted decline/cancel content. Zero owned loopback URL visits and exact provider/decision counts; no login, browser, external auth or aggregate variant claim."
+      ],
       "pointer": "/oneOf/4/properties/mode/enum/0",
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "34bcdebaad4640742c8bc207d65d1781456586383c11fc1ff02611cead128e9d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_url_elicitation_test.exs:37-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/oneOf/4/properties/url",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_url: Both MCP versions and explicit accept/decline/cancel preserve exact URL metadata/elicitation identity; peer sees native empty-object accept fallback vs omitted decline/cancel content. Zero owned loopback URL visits and exact provider/decision counts; no login, browser, external auth or aggregate variant claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/url",
       "required": true,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_url_elicitation_test.exs:37-158"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "url"
     },
     {
@@ -71680,27 +71960,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestParams.json#/properties/turnId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": true,
       "pointer": "/properties/turnId",
       "required": false,
       "schema": "McpServerElicitationRequestParams.json",
       "schema_sha256": "ad2aeadb11ad286be1b9b95910114ff2029fe8bf3f1d2454af5237c8a61fd59e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "turnId"
     },
     {
@@ -71799,27 +72087,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-schema-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:McpServerElicitationRequestResponse.json#/properties/_meta",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_mcp_scalar_form: Both MCP versions preserve selected scalar bounds/defaults/form metadata, active nonnull turnId and explicit response metadata at actual peer/model output. Legal integer MCP input only; no float-valued integer acceptance, malformed-answer, other format/URL/auth or full profile claim."
+      ],
       "nullable": false,
       "pointer": "/properties/_meta",
       "required": false,
       "schema": "McpServerElicitationRequestResponse.json",
       "schema_sha256": "d84d2703a65bb1e0d809f2ee5470720d70604ec32082b9d79a77463f8bb1b789",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+        "apps/samgita_codex_driver/test/native_mcp_form_fields_test.exs:45-145,167-205"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "_meta"
     },
     {
@@ -187880,24 +188176,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/ApprovalsReviewer/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/ApprovalsReviewer/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "9a7d469ee31c85617b47990418cdcf535c45728d90c73d4195d16cf3ec1d2b41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -187924,46 +188228,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/ApprovalsReviewer/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/ApprovalsReviewer/enum/2",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "e05150473ebd02364b5193284e19084431e8fcf4956c7f94a8049cf8ca8da33d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/AskForApproval/oneOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "2188a86822f2be60c9189c521bf8173100193da56da269f3e7766c33e39a0095",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -187990,24 +188310,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/0/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/AskForApproval/oneOf/0/enum/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "db82418b651e56c3e2e29028819724105f48736ca7ac2bb239854f9402955951",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -188034,254 +188362,334 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/AskForApproval/oneOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "2aaac1e314b8363fdd0b9531b4b8264d4fbeee573b0595922c24f15a1af26ab1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/1/properties/granular",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "3e3449bee2b0cb00bc8c87fe43539dc80c5c015693c67f246b56b57f6c0fe9b7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "granular"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/1/properties/granular/properties/mcp_elicitations",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular/properties/mcp_elicitations",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mcp_elicitations"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/1/properties/granular/properties/request_permissions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular/properties/request_permissions",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "request_permissions"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/1/properties/granular/properties/rules",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular/properties/rules",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rules"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/1/properties/granular/properties/sandbox_approval",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular/properties/sandbox_approval",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sandbox_approval"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/1/properties/granular/properties/skill_approval",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/AskForApproval/oneOf/1/properties/granular/properties/skill_approval",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "skill_approval"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/CollaborationMode/properties/mode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/CollaborationMode/properties/mode",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "210174156a6f746be72894268b1060a800e012c0c6510647f3306df3744fafa7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:241-328"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "mode"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/CollaborationMode/properties/settings",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/CollaborationMode/properties/settings",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f2bcd57ee88c55738e6963056eaa1b9c6213465c25e5f5ceb879175fe41db640",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:241-328"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "settings"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/MultiAgentMode/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/MultiAgentMode/oneOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "62ff422438477f3c53e37e390b7b55f0a752b8af07bc1c68aa6e42507f45273b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -188308,72 +188716,96 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/MultiAgentMode/oneOf/0/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/MultiAgentMode/oneOf/0/enum/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "c66c800df5dbce5cf537d23f0a6afc2ce5396486a77fa9640e6e7fc49ce2d67c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/MultiAgentMode/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/MultiAgentMode/oneOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "60e2eb020616ce3c9a11e85c2eae1fcf869ee6ace6bcb4c20d1ed789b67c5d50",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/MultiAgentMode/oneOf/1/properties/custom",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/MultiAgentMode/oneOf/1/properties/custom",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "custom"
     },
     {
@@ -188444,46 +188876,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/Personality/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/Personality/enum/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "533ffb2b7767e5c71fc8690cd54e7c7319daad5adfea0140b38b46798f6ee171",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/Personality/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/Personality/enum/2",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "a10a55abc7398e646ec1488e3ea9ac42d0bf39516862ef799012117f699330b9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -188690,98 +189138,130 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "08a04563f20ab2f520e729cf3bfc4a313e1174e498c021b9cff691ff8eb2b49c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:408-470"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/1/properties/networkAccess",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/1/properties/networkAccess",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:408-470"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "networkAccess"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "8296d2b5784b9a03d0cd5fb9b24c2d4e5fc96f91dad8391b790a56d60e2ed65a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:408-470"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "4d5e7784c791c792262d58cf731661a4048b47d1bcf527928ad714c9e587cffc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:408-470"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -189079,333 +189559,445 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/Settings/properties/developer_instructions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/Settings/properties/developer_instructions",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:241-328"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "developer_instructions"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/Settings/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/Settings/properties/model",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:241-328"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/Settings/properties/reasoning_effort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/Settings/properties/reasoning_effort",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b35f6fda6c0f55b2823e86283ae32c907cc47538622b7ace6179046c6f9c93dd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:241-328"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoning_effort"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/Settings/properties/reasoning_effort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/Settings/properties/reasoning_effort/anyOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:241-328"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/Settings/properties/reasoning_effort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/definitions/Settings/properties/reasoning_effort/anyOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:241-328"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/approvalPolicy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalPolicy",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "012c37f3803135950f8c672713cc9bc4b70b153533b86a107e3c0667d1e4a565",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalPolicy"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/approvalPolicy/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/approvalPolicy/anyOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "51bcd333cdd527eeddd4feea1f6b867a294ce2cea3129413ecb086f211516474",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/approvalPolicy/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/approvalPolicy/anyOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/approvalsReviewer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/approvalsReviewer",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "ebbb48c51911795bcf6fb84e1de7da6e4a5c18c5c76386ed51eac1ca67f48e73",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "approvalsReviewer"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/approvalsReviewer/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/approvalsReviewer/anyOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "fa34df2c0d32f88ea66072290e2b108c62f88a64a91cf81b81a7a582f05d3812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/approvalsReviewer/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/approvalsReviewer/anyOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/collaborationMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/collaborationMode",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "28da91e0889253d68989c3f1551b70416b39d2b2789bc8fd96543a1c2be20c67",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:241-328"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "collaborationMode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/collaborationMode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/collaborationMode/anyOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "77f16da68e4435e4e9e38e7616ea2798bd2cdfe789903f2a46e7f9d9670ffa1b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:241-328"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/collaborationMode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/collaborationMode/anyOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -189613,237 +190205,317 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/multiAgentMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/multiAgentMode",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "76125a91d923db29df69a6cb60ee2c7e3ce395b76cf0602d9d38cdd6bdc960a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "multiAgentMode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/multiAgentMode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/multiAgentMode/anyOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "a7440efdb3c76357d6fdd9c7db6cee1bb30d03a363a078e04707538c384963a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/multiAgentMode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/multiAgentMode/anyOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/permissions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/permissions",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "6b270b83a403def5a54e31951ec2b37caed8c6d1c77d8b1ba8a105b94de93a87",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:408-470"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "permissions"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/personality",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/personality",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b6fc45519160b3fc3f0a0893c1e509c43dfe8c90535a2a4446dc2fdc5430d924",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "personality"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/personality/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/personality/anyOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "3d5163f5698fd3d68442457516b0d32472daf7937c975ee3d2626ffd118c163f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:157-240"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/personality/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/personality/anyOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/sandboxPolicy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "nullable": true,
       "pointer": "/properties/sandboxPolicy",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "7e87e637ce189954bf7262a19741d7b097a2ea8ef139f34549933fa160086bb9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:408-470"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sandboxPolicy"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/sandboxPolicy/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/sandboxPolicy/anyOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "49b254667a27407307ddcf4e6d98522ef8932afb37f6325e11a2d8a207395bfb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:408-470"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/idle-settings-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/properties/sandboxPolicy/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_idle_settings: Selected approval/reviewer/personality, collaboration precedence/builtin nulls, ignored multiAgent modes/root nulls, and read-only profile/provenance are asserted through distinct applied snapshots, exact rejections and zero inference/interactions. Saved settings only; no automatic-review, prose, delegation, other sandbox, OS or full lifecycle claim."
+      ],
       "pointer": "/properties/sandboxPolicy/anyOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs:329-407"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

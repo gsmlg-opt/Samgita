@@ -1,0 +1,294 @@
+defmodule SamgitaCodexDriver.NativeMcpFormFieldsTest do
+  use ExUnit.Case, async: false
+
+  alias SamgitaCodexDriver.{ModelFixture, Session, TurnFixture}
+  alias SamgitaProtocolCodex.Error
+
+  @moduletag :real_codex
+  @moduletag timeout: 60_000
+  @script Path.expand("../../../scripts/codex/mcp_form_fields_fixture.py", __DIR__)
+  @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+  @meta %{"fixture/request" => %{"marker" => "scalar-fields"}}
+  @reply %{
+    "action" => "accept",
+    "content" => %{
+      "confirmed" => true,
+      "count" => 4,
+      "ratio" => 1.25,
+      "email" => "synthetic@example.invalid"
+    },
+    "_meta" => %{"fixture/response" => %{"marker" => "accepted"}}
+  }
+
+  setup do
+    binary = System.get_env("CODEX_BINARY")
+
+    assert is_binary(binary) and File.regular?(binary),
+           "BLOCKED_ENV: pinned CODEX_BINARY required"
+
+    assert Base.encode16(:crypto.hash(:sha256, File.read!(binary)), case: :lower) == @binary_sha
+
+    root =
+      Path.join(
+        System.tmp_dir!(),
+        "samgita-mcp-form-fields-#{Base.url_encode64(:crypto.strong_rand_bytes(12), padding: false)}"
+      )
+
+    File.mkdir!(root)
+    on_exit(fn -> File.rm_rf!(root) end)
+    %{binary: binary, root: root}
+  end
+
+  for {profile, protocol} <- [{"legacy", "2025-06-18"}, {"modern", "2026-07-28"}] do
+    @profile profile
+    @protocol protocol
+    test "native #{@profile} Form projects scalar fields and returns explicit metadata",
+         context do
+      fixture = fixture(Path.join(context.root, @profile), @profile)
+      ctx = %{binary: context.binary, fixture: fixture}
+      pid = TurnFixture.start(ctx)
+
+      try do
+        thread = TurnFixture.thread(ctx, pid, %{"ephemeral" => true})
+        assert ModelFixture.requests(fixture) == []
+        assert effects(fixture) == []
+
+        turn =
+          TurnFixture.start_turn(pid, thread, [
+            %{"type" => "text", "text" => "Synthetic scalar form only"},
+            %{"type" => "mention", "name" => "Fixture", "path" => "mcp://fixture"}
+          ])
+
+        {request, events} = pending(pid, turn, [], now() + 15_000)
+        assert request.handle.id == request.wire["id"]
+
+        assert request.wire["params"] === %{
+                 "threadId" => thread,
+                 "turnId" => turn,
+                 "serverName" => "fixture",
+                 "mode" => "form",
+                 "message" => "Synthetic scalar form only",
+                 "_meta" => @meta,
+                 "requestedSchema" => schema()
+               }
+
+        # Holding an actual request proves the nonempty form was not autoapproved.
+        events = hold(pid, fixture, turn, events, now() + 150)
+        assert :ok = Session.respond(pid, request.handle, {:ok, @reply})
+        events = finish(pid, turn, events, now() + 15_000)
+
+        assert %{"threadId" => ^thread, "turn" => %{"id" => ^turn, "status" => "completed"}} =
+                 TurnFixture.notification(events, "turn/completed", &(&1["turn"]["id"] == turn))
+
+        assert [^request] = Enum.filter(events, &(&1.kind == :server_request))
+        assert effects(fixture) == [%{"effect" => "accepted-form-marker"}]
+        assert Session.status(pid).interactions == 0
+
+        rows = journal(fixture)
+        [elicitation] = messages(rows, "out", "elicitation/create")
+        assert elicitation["id"] == "synthetic-scalar-form"
+        assert elicitation["params"]["_meta"] === @meta
+        assert elicitation["params"]["requestedSchema"]["properties"]["count"]["default"] === 3
+
+        [received] =
+          for %{"direction" => "in", "message" => message} <- rows,
+              message["id"] == "synthetic-scalar-form",
+              do: message
+
+        assert received["result"] === @reply
+        refute Map.has_key?(received, "error")
+        [call] = messages(rows, "in", "tools/call")
+        assert %{"name" => "confirm", "arguments" => %{}} = call["params"]
+        assert_protocol(rows, @protocol)
+
+        [first, last] = ModelFixture.requests(fixture)
+        namespace = Enum.find(first["tools"], &(&1["name"] == "mcp__fixture"))
+        assert namespace
+        assert Enum.any?(namespace["tools"], &(&1["name"] == "confirm"))
+
+        [output] =
+          Enum.filter(
+            last["input"],
+            &(&1["type"] == "function_call_output" and &1["call_id"] == "interaction-call-1")
+          )
+
+        assert [%{"type" => "input_text"}, %{"type" => "input_text", "text" => text}] =
+                 output["output"]
+
+        assert JSON.decode!(text) === received
+
+        for method <- ["item/started", "item/completed"] do
+          params =
+            TurnFixture.notification(events, method, fn params ->
+              params["threadId"] == thread and params["turnId"] == turn and
+                params["item"]["type"] == "mcpToolCall"
+            end)
+
+          assert params
+
+          assert %{"server" => "fixture", "tool" => "confirm", "arguments" => %{}} =
+                   params["item"]
+
+          assert params["item"]["status"] ==
+                   if(method == "item/started", do: "inProgress", else: "completed")
+        end
+
+        assert {:error, %Error{code: :stale_interaction}} =
+                 Session.respond(pid, request.handle, {:ok, @reply})
+
+        assert length(ModelFixture.requests(fixture)) == 2
+        assert effects(fixture) == [%{"effect" => "accepted-form-marker"}]
+        assert File.ls!(fixture.workspace) == []
+        assert :ok = Session.close(pid)
+      after
+        if Process.alive?(pid), do: assert(:ok = Session.close(pid))
+      end
+
+      assert :ok = ModelFixture.close(fixture)
+    end
+  end
+
+  defp fixture(root, profile) do
+    previous = System.get_env("CODEX_MODEL_FIXTURE_SCRIPT")
+    System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", @script)
+
+    try do
+      fixture = ModelFixture.start(root, profile)
+      File.write!(fixture.requests, "[]")
+      on_exit(fn -> assert :ok = ModelFixture.close(fixture) end)
+      fixture
+    after
+      if previous,
+        do: System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", previous),
+        else: System.delete_env("CODEX_MODEL_FIXTURE_SCRIPT")
+    end
+  end
+
+  defp schema do
+    %{
+      "type" => "object",
+      "properties" => %{
+        "confirmed" => %{
+          "type" => "boolean",
+          "title" => "Ready",
+          "description" => "Synthetic flag",
+          "default" => false
+        },
+        "count" => %{
+          "type" => "integer",
+          "title" => "Count",
+          "description" => "Synthetic integer",
+          "minimum" => 1,
+          "maximum" => 9,
+          "default" => 3
+        },
+        "ratio" => %{
+          "type" => "number",
+          "title" => "Ratio",
+          "description" => "Synthetic fraction",
+          "minimum" => 0.25,
+          "maximum" => 1.75,
+          "default" => 0.5
+        },
+        "email" => %{
+          "type" => "string",
+          "title" => "Email",
+          "description" => "Synthetic address",
+          "minLength" => 3,
+          "maxLength" => 64,
+          "format" => "email",
+          "default" => "fixture@example.invalid"
+        }
+      },
+      "required" => ["confirmed", "count", "ratio", "email"]
+    }
+  end
+
+  defp pending(pid, turn, events, deadline) do
+    assert {:ok, incoming} = Session.drain(pid)
+    events = events ++ incoming
+
+    case Enum.filter(events, &(&1.kind == :server_request)) do
+      [event] ->
+        assert event.wire["method"] == "mcpServer/elicitation/request"
+        {event, events}
+
+      [] ->
+        refute TurnFixture.notification(events, "turn/completed", &(&1["turn"]["id"] == turn))
+        continue(pid, deadline)
+        pending(pid, turn, events, deadline)
+
+      other ->
+        flunk("Unexpected native requests: #{inspect(other)}")
+    end
+  end
+
+  defp hold(pid, fixture, turn, events, deadline) do
+    assert {:ok, incoming} = Session.drain(pid)
+    events = events ++ incoming
+    assert length(Enum.filter(events, &(&1.kind == :server_request))) == 1
+    assert Session.status(pid).interactions == 1
+    assert length(ModelFixture.requests(fixture)) == 1
+    assert effects(fixture) == []
+    refute TurnFixture.notification(events, "turn/completed", &(&1["turn"]["id"] == turn))
+
+    if now() >= deadline do
+      events
+    else
+      continue(pid, deadline + 1_000)
+      hold(pid, fixture, turn, events, deadline)
+    end
+  end
+
+  defp finish(pid, turn, events, deadline) do
+    assert {:ok, incoming} = Session.drain(pid)
+    events = events ++ incoming
+
+    if TurnFixture.notification(events, "turn/completed", &(&1["turn"]["id"] == turn)) do
+      events
+    else
+      continue(pid, deadline)
+      finish(pid, turn, events, deadline)
+    end
+  end
+
+  defp continue(pid, deadline) do
+    assert now() < deadline, "Native Form deadline"
+    assert Session.status(pid).phase == :ready
+
+    receive do
+      {:codex_driver, ^pid, :events_available} -> :ok
+    after
+      10 -> :ok
+    end
+  end
+
+  defp journal(fixture) do
+    case File.read(Path.join(fixture.codex_home, "mcp-form-fields.jsonl")) do
+      {:ok, text} -> text |> String.split("\n", trim: true) |> Enum.map(&JSON.decode!/1)
+      {:error, :enoent} -> []
+    end
+  end
+
+  defp messages(rows, direction, method) do
+    for %{"direction" => ^direction, "message" => message} <- rows,
+        message["method"] == method,
+        do: message
+  end
+
+  defp effects(fixture), do: Enum.filter(journal(fixture), &Map.has_key?(&1, "effect"))
+
+  defp assert_protocol(rows, "2025-06-18") do
+    [message] = messages(rows, "in", "initialize")
+    assert message["params"]["protocolVersion"] == "2025-06-18"
+    assert messages(rows, "in", "server/discover") == []
+  end
+
+  defp assert_protocol(rows, "2026-07-28") do
+    [message] = messages(rows, "in", "server/discover")
+    assert message["params"]["_meta"]["io.modelcontextprotocol/protocolVersion"] == "2026-07-28"
+    assert messages(rows, "in", "initialize") == []
+  end
+
+  defp now, do: System.monotonic_time(:millisecond)
+end

@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 1,772 implemented / 4,849 missing
+11 blocked requirements** and **0 verified / 1,883 implemented / 4,738 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 1,772 directly exercised
+MCP entries have scoped implementation evidence. These 1,883 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,15 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The latest bounded units add 20 native cases and 111 exact contracts:
+[persisted dynamic tools](persisted-tool-items-qualification.md),
+[actual HTTP errors](http-error-qualification.md),
+[MCP scalar Form/URL decisions](mcp-schema-qualification.md) and
+[idle thread settings](idle-settings-qualification.md). All five owning modules
+pass **25/0** at seeds `501432` and `987654`. Two failing draft expectations
+remain recorded; no timeout, assertion or runtime security boundary was relaxed.
+Full default/profile, populated-database and hosted checks remain separate gates.
 
 Latest method records: [history](thread-history-qualification.md),
 [configuration](configuration-qualification.md), [goals](native-goal-qualification.md),

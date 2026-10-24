@@ -6,6 +6,33 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted checkpoint at 570a6f0
+
+Exact pushed source `570a6f04639c730b94a10c6ea735c912c5d06fc9` finished both
+normal workflows. [Foundation 40056135170](https://github.com/gsmlg-opt/Samgita/actions/runs/40056135170)
+passed both populated-database seeds (**224 core / zero failures / one excluded**,
+**125 web / zero failures / two excluded**, each), dedicated restart/rollback
+**1/0**, neutral core **32/0**, both outside consumers **1/0** each, WebSocket
+**42/0**, native wire **42/0**, static checks, strict audits, assets and local
+production assembly. Its isolated hosted database does not supersede the
+retained local first-page pagination failure below.
+
+[Conformance 40056232904](https://github.com/gsmlg-opt/Samgita/actions/runs/40056232904)
+finished **failed overall**. The selected actual-binary/platform job passed
+native wire **42/0**, default driver **475/0**, outside consumer **1/0**, and
+platform **53 core + 5 web / zero failures**. Its independent isolated-native job
+passed all **30 explicit profiles, 205/0**. The separate required evidence gate
+failed unchanged: **485 requirements: 462 implemented / 12 missing / 11 blocked**,
+**6,621 contracts: 1,741 implemented / 4,880 missing**, **zero verified**.
+The later envelope-only indexing in `fdfbe68` is not included in these hosted
+counts. Passing selected native jobs cannot satisfy completeness or A11.
+
+Terminal workflow metadata, full logs and per-step counts are retained in
+`/tmp/samgita-hosted-570a6f0-20261024/`. Local, tracking and live remote refs
+were checked equal at this source before the next documentation commit. There
+was no tag, package publication, deployment or live credential change. Later
+executable additions still require final combined-source and hosted checks.
+
 ## Hosted checkpoint at fb72c55
 
 Exact pushed source `fb72c5571a8bb56e4c97c8b8170f17349d51c851` completed both
@@ -36,7 +63,33 @@ complete logs and per-step test counts are retained in
 converged at this source. No tag, publication, deployment or live credential
 change occurred. Subsequent executable changes require their own qualification.
 
-## Frozen independent-package matrix
+## Later package checkpoint and environment correction
+
+The frozen v4 package runner used executable hashes from `570a6f0` (the later
+`fdfbe68` edits only documentation/manifest). Inventory regressions **37/0**,
+consistency, private-namespace/native-sandbox prerequisites, driver compilation
+and formatting passed. Default driver seeds `728846` and `987654` each passed
+**475/0**, 409.7/410.0s. All 30 profiles at seed `501432` ended **205 tests /
+one failure**, 451.3s: the runner omitted the private keyring tool environment,
+so `native_gateway_success_profile.exs:27` failed its explicit
+`GNOME_KEYRING_DAEMON executable required` prerequisite before fixture startup.
+The runner stopped at that failure; remaining commands did not run. Its source
+hash guard was checked unchanged before integrating new test units.
+
+The environment correction supplies existing absolute Nix tool paths through
+GNOME_KEYRING_DAEMON, DBUS_DAEMON and GDBUS. No test, timeout, assertion or
+production source changed for this correction. The explicit native Gateway
+profile then passed **1/0**, 6.0s (6.54s command wall time), including private
+OS Secret Service, cold native persistence and primary logout. This focused
+pass does not replace the still-required final complete profile combination.
+The original failed run remains in
+`/tmp/samgita-repair-final-packages-v4-20261024/`; corrected tool values,
+commands and logs are in `/tmp/samgita-native-followup-units-20261024/`.
+Twenty additional native cases subsequently pass their five-module **25/0**
+block twice; the linked per-unit records retain their failed drafts and scope.
+The final aggregate/hosted gates must use that delivered source.
+
+## Earlier frozen independent-package matrix
 
 The complete serial package matrix passed with **23 commands / zero failures**.
 Its 1,370 executable/configuration/workflow source hashes were frozen at
