@@ -137,9 +137,16 @@ profile passes both seeds. Hosted confirmation/final-source matrices remain
 required. V18 local packages were explicitly interrupted before source edits;
 its completed platform matrix retains the GitHub-page failure.
 
-Next finish the dedicated scratch-DB native authority-race profile without
-polluting the preserved recovery database, then freeze executable source for
-the complete preserved-platform/package/consumer and final-pushed hosted matrix.
+The [dedicated scratch-DB authority-race profile](native-authority-qualification.md#management-wins-dispatch-with-independent-postgresql-transactions)
+now passes **1/0 twice**, with a real three-backend lock dependency, exact legal
+management delta, rejected native dispatch and retained unresolved evidence.
+Existing authority/race/integration **21 core +7 web/0 twice** and recovery/restart
+**4 core +1 web/0 twice** pass in the distinct preserved DB, with strict checks
+and an unchanged source guard. The initial template-encoding prerequisite and
+explicit UTF8 scratch provisioning remain recorded. No state/count promotion.
+
+Next freeze executable source for the complete preserved-platform, dedicated
+authority-profile, package/consumer and final-pushed hosted matrix.
 Preserve actual populated-database failures. Continue remaining behavior work;
 A11, source-unreachable emitters and external/OS success remain incomplete.
 No scoped green checkpoint completes the full goal.

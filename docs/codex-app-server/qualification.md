@@ -19,6 +19,15 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [native authority concurrency profile](native-authority-qualification.md#management-wins-dispatch-with-independent-postgresql-transactions)
+passes **1/0 twice** with three verified PostgreSQL backends and an observed
+management/dispatch lock dependency. Its separate scratch DB preserves unresolved
+history while the original retained DB passes existing authority/race/integration
+**21 core +7 web/0 twice** and recovery/restart **4 core +1 web/0 twice**.
+Compile/format/strict Credo and source guard pass. No ticket/send occurs after
+management wins, and no post-ticket instantaneous revocation is claimed. The
+dedicated two-seed hosted step is mandatory; counts/verified states do not change.
+
 The [selective persisted reasoning/Plan unit](output-notice-qualification.md#selective-persisted-reasoning-and-plan-items)
 passes its complete eight-file owning block **25/0 twice**, fixed seeds, plus
 warning-free compilation, formatting, strict Credo and an unchanged source guard.

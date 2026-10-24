@@ -99,3 +99,80 @@ are `/tmp/samgita-native-repair-continuation-v6-20261025/`; results SHA256
 source SHA256 `472fffa65eca4866ca6df9319aa149b2339c69348febdcd21c2b6e7590f07b5f`.
 Full final-source matrices, hosted checks and remaining deployment/authorization
 profiles are separate required gates; no requirement state changes here.
+
+## Management-wins dispatch with independent PostgreSQL transactions
+
+The explicit `codex_runtime_authority_profile.exs` now qualifies one pre-ticket
+ordering with a genuine native pending approval. It runs **only** against
+`samgita_redesign_codex_authority_repair_test` locally or
+`samgita_redesign_codex_authority_ci_test` in CI, and checks `current_database()`
+at each checkout. It rejects the shared recovery database before creating its
+fixture. The profile intentionally retains unresolved native history and does
+not match default `*_test.exs` discovery; its dedicated two-seed CI step is
+required. Omission of that step is not acceptance.
+
+The test first prepares an authorized response without sending it. Management A
+then performs the legal `in_progress -> blocked -> open` commands inside an outer
+transaction, retaining normal ordered locks. Dispatch B calls the actual
+`CodexRuntime.dispatch` on another connection. A third observer must find A in
+`pg_blocking_pids(B)` before A can commit. All three distinct PostgreSQL backend
+PIDs and exact database name are recorded after this positive observation. A
+sleep or process-ready message cannot satisfy that barrier.
+
+After the management commit, B must return exact `ownership_lost`. A repeated
+dispatch and explicit real `Driver.execute` must return the same error. No ticket,
+token, deadline, send, receipt replay, response consumption, Task review or Task
+acceptance is inferred. This tests **management before ticket issuance**; a
+ticket-first execution is outside this case and instantaneous database revocation
+after a committed ticket is still not promised.
+
+The legal management delta is exact: Task open/version+2/held/fence+1; Attempt
+cancelled/version+1/terminal timestamp while effects stay unresolved; Project
+event sequence+3; two successful command receipts; two task-transition and one
+attempt-closed audit events with exact command IDs/sequences. Other selected
+Agent/credential/membership/connection/session and native records, original reply
+receipt, native pending interaction, provider request and job counts stay exact.
+Checked-owned shutdown preserves the unresolved journal. On consecutive runs,
+every previously retained Project/Agent/credential/connection/session/membership/
+Task/Attempt/native/audit/receipt/job record remains byte-equivalent as its Ecto
+struct. No deletion, false effect resolution, queue reset or authority bypass is
+used.
+
+This isolation is necessary: `Platform.unresolved_state?/0` correctly rejects
+activation when any Task is held or any Attempt is unresolved. Leaving this
+fixture in the shared recovery DB would poison later global activation tests.
+The seven existing fixture/helper bodies moved unchanged into test-only
+`SamgitaWeb.CodexRuntimeFixture`; existing integration cases import them. Their
+guarded ModelFixture load defines test modules and starts no provider/process.
+No production interface, authority rule, lock order or shared configuration
+changes. Workers and native resources have bounded owner-specific cleanup;
+their durable unresolved evidence stays in the separate scratch DB.
+
+The tested platform source boundaries are `commands.ex:131-182` (ordered locks),
+`tasks.ex:121-130,171-246,567-587` (owning Agents and management fence),
+`codex_runtime.ex:158-195` (reauthorize before ticket) and
+`codex_runtime/authorization.ex:34-48,64-81` (current owning aggregate). Rejection
+can occur at the cancelled Attempt before the numeric fence check; this is
+aggregate-authority evidence, not an isolated numeric-fence branch.
+
+Initial v1 failed **before tests** because the local cluster's `template1` is
+SQL_ASCII and Mix requested UTF8. The explicitly named absent scratch DB was
+created using `TEMPLATE template0 ENCODING 'UTF8'`; no existing database was reset
+or changed. Its additive migrations then ran through the normal test alias.
+The hosted PostgreSQL service has its own default UTF8 template; no product
+configuration workaround is introduced. Initial diagnostics remain in
+`/tmp/samgita-native-authority-lock-v1-20261025/`.
+
+After provisioning, the new profile passes **1/0 at each seed501432/987654** on
+the same retained scratch DB. The complete existing authority/race/integration
+owning block passes **21 core +7 web/0 twice** on the separate preserved recovery
+DB, followed by **4 core +1 web/0 twice** for recovery/restart. Compile, formatting,
+strict Credo435 files and the executable/config/workflow source guard pass.
+Exact commands/database selection/logs are
+`/tmp/samgita-native-authority-lock-v2-20261025/`;
+results SHA256 `3469c545a4242990066f56251474e9c9402a2994f14b5641331c43cd94bd3c07`,
+source SHA256 `109df93b98e453039768346c53b807187b0777d32f2d32e4a0ecfbb0b0cbf839`.
+
+This strengthens the still-missing `lifecycle:samgita-authorization`; counts and
+verified states do not change. Full API/race/interaction/transport/OS/backend,
+final-source matrices, A11 and publication gates remain separate requirements.

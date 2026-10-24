@@ -6,6 +6,29 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Isolated native authority concurrency continuation
+
+The [management-wins profile](native-authority-qualification.md#management-wins-dispatch-with-independent-postgresql-transactions)
+passes **1/0 twice** on the same dedicated scratch DB, with three independently
+verified backend PIDs and an actual `pg_blocking_pids` barrier. Legal management
+commands commit cancellation/fencing before a waiting real-approval response
+dispatch; original and repeated dispatch plus real Driver execution reject
+`ownership_lost`, without a ticket/send. Existing records, pending native
+interaction and unresolved effects remain. The new database is exact-allowlisted
+and distinct from the preserved recovery DB; no fabricated resolution, cleanup
+or guard bypass is used. Seven test-only fixture bodies are extracted unchanged.
+
+The initial profile command failed before tests on the local SQL_ASCII template;
+the absent named scratch database was explicitly created UTF8 from template0.
+The linked record preserves that prerequisite failure and exact provisioning.
+Existing authority/race/integration checks pass **21 core +7 web/0 twice**, then
+recovery/restart **4 core +1 web/0 twice**, in the original retained database.
+Compile/format/strict Credo435 files and source guard pass. Commands/hashes are in
+`/tmp/samgita-native-authority-lock-v2-20261025/` and the linked record. Counts
+remain **462 implemented /12 missing /11 blocked requirements**, **3235
+implemented /3386 missing contracts, zero verified**. Full authorization,
+final-source local/hosted matrices, A11 and external/OS success remain incomplete.
+
 ## Persisted output continuation
 
 The [selective reasoning/Plan unit](output-notice-qualification.md#selective-persisted-reasoning-and-plan-items)

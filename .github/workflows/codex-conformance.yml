@@ -117,6 +117,15 @@ jobs:
         run: |
           mix compile --warnings-as-errors
           mix test apps/samgita/test/samgita/runtime_registration_test.exs apps/samgita/test/samgita/codex_runtime_test.exs apps/samgita/test/samgita/codex_runtime_notification_test.exs apps/samgita/test/samgita/codex_runtime_tool_retirement_test.exs apps/samgita/test/samgita/codex_runtime_race_test.exs apps/samgita/test/samgita/codex_runtime_operator_authority_test.exs apps/samgita_web/test/samgita_web/controllers/codex_runtime_controller_test.exs apps/samgita_web/test/samgita_web/integration/codex_runtime_test.exs --include e2e --include real_codex
+      - name: Required isolated native Task-fencing concurrency profile
+        timeout-minutes: 8
+        env:
+          # This profile retains genuine unresolved native history. It must not
+          # populate the database used by global activation/restart rehearsals.
+          SAMGITA_TEST_DATABASE: samgita_redesign_codex_authority_ci_test
+        run: |
+          mix test apps/samgita_web/test/samgita_web/integration/codex_runtime_authority_profile.exs --include e2e --include real_codex --warnings-as-errors --seed 501432
+          mix test apps/samgita_web/test/samgita_web/integration/codex_runtime_authority_profile.exs --include e2e --include real_codex --warnings-as-errors --seed 987654
 
   isolated-auth:
     name: Isolated native authentication, executors and metadata

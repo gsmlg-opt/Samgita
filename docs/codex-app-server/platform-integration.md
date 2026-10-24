@@ -46,6 +46,12 @@ unresolved. They do not establish instantaneous revocation of a ticket already
 committed before network I/O; connection instance, generation and deadline
 guards remain a separate boundary.
 
+The required [independent-transaction authority profile](native-authority-qualification.md#management-wins-dispatch-with-independent-postgresql-transactions)
+uses a separate scratch database so retained genuinely pending native effects
+cannot contaminate global activation/restart checks. It observes the actual
+PostgreSQL blocker before allowing management to commit, then requires rejected
+dispatch with no ticket/send. This qualifies that pre-ticket ordering only.
+
 The sending Agent chooses the native action. Samgita validates and records it:
 
 1. **Prepare:** persist a native request or client notification with a command UUID, current lease proof,
