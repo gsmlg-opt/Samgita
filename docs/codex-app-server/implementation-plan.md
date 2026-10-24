@@ -38,7 +38,7 @@ The subsequent [queue/managed unit](queue-managed-state-qualification.md) passes
 **15/0** in the complete owning block at both seeds, adding nine further owners.
 The [BEM unit](realtime-bem-qualification.md) passes **3/0** at both seeds and
 adds 13 owners plus the 31st required hosted profile. Current totals are
-**2,821 implemented / 3,800 missing**, zero verified contracts. Requirements remain **462 implemented /
+**2,840 implemented / 3,781 missing**, zero verified contracts. Requirements remain **462 implemented /
 12 missing / 11 blocked**. Hosted `5c22159` now passes foundation, both complete
 driver partitions (**653/0**), all 31 isolated profiles (**214/0**), the native
 outside consumer and platform journeys. Its completeness job still fails;
@@ -54,7 +54,14 @@ stay incomplete. Do not infer full compatibility or release.
 A documentation-only owner audit adds 19 BEM notification/presentation and seven
 read-state operation/notification contracts from exact existing native assertions
 and unchanged passing logs. No new runtime or test is claimed; unasserted outer
-nulls and source-unreachable update-success alternatives remain missing.
+nulls and source-unreachable update-success alternatives remain missing at that
+historical checkpoint. The following
+[command/null unit](native-command-null-boundaries-qualification.md) passes
+**31/0** in its complete owning block at both seeds, adding nineteen precise
+owners including a supported empty-ephemeral outer read-state null. Remaining
+unasserted nulls and unreachable alternatives retain missing status. The separate
+image failure fixture's first failed attempt and bounded profile correction are
+retained; selected successes do not close final combination or completeness.
 
 The [command-context and multi-file approval unit](approval-cache-context-qualification.md)
 now adds two actual-native cases, passing with the seventeen prior projection/

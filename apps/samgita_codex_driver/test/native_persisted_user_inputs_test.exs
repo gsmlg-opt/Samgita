@@ -53,18 +53,21 @@ defmodule SamgitaCodexDriver.NativePersistedUserInputsTest do
     ctx
   end
 
-  for {source, inline, expected_inline, local_detail} <- [
+  for {source, inline, expected_inline, local_detail, expected_local_detail} <- [
         {:url, %{"type" => "image", "url" => @image, "detail" => "auto"},
-         %{"type" => "input_image", "image_url" => @image, "detail" => "auto"}, "high"},
+         %{"type" => "input_image", "image_url" => @image, "detail" => "auto"}, "high", "high"},
         {:file_id,
          %{"type" => "image", "fileId" => "file-owned-persisted-163", "detail" => "low"},
          %{"type" => "input_image", "file_id" => "file-owned-persisted-163", "detail" => "low"},
-         "original"}
+         "original", "original"},
+        {:null_detail, %{"type" => "image", "url" => @image, "detail" => nil},
+         %{"type" => "input_image", "image_url" => @image, "detail" => "high"}, nil, "high"}
       ] do
     @source source
     @inline inline
     @expected_inline expected_inline
     @local_detail local_detail
+    @expected_local_detail expected_local_detail
     test "native persisted #{@source} image and typed inputs retain exact content after cold start",
          ctx do
       source = @source
@@ -111,6 +114,7 @@ defmodule SamgitaCodexDriver.NativePersistedUserInputsTest do
       client_id = "owned-persisted-client-#{label}"
       turn = TurnFixture.start_turn(pid, id, input, %{"clientUserMessageId" => client_id})
       events = TurnFixture.finish_turn(pid, id, turn)
+      refute Enum.any?(events, &(&1.kind == :server_request))
       began = user_event(events, "item/started")
       ended = user_event(events, "item/completed")
       item_id = Map.fetch!(ended["item"], "id")
@@ -155,7 +159,11 @@ defmodule SamgitaCodexDriver.NativePersistedUserInputsTest do
 
       assert Enum.filter(content, &(&1["type"] == "input_image")) == [
                @expected_inline,
-               %{"type" => "input_image", "image_url" => @image, "detail" => local_detail}
+               %{
+                 "type" => "input_image",
+                 "image_url" => @image,
+                 "detail" => @expected_local_detail
+               }
              ]
 
       assert Enum.filter(content, &(&1["type"] == "input_audio")) == [

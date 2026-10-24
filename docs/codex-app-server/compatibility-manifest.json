@@ -113397,157 +113397,208 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/command",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Independently prescribed argv selects owned Python fixture mode; inspect returns exact exit7/stderr and JSON, pipe/PTY modes emit prescribed bytes, and future large/binary/timeout modes have exact mode-specific oracles. Marker proves an actual owned child ran and was reaped. Both native repeats now pass. Existing positive; new cases strengthen only selected programs. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/command",
       "required": true,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "21420667fddcb4b4706cf77a9bb5b42fa91959f0cb3c0578d9a20bac01919f01",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:159-193",
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:208-248",
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:278-424",
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:719-735"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "command"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Explicit owned subdirectory is independently expected in native program JSON; script records actual getcwd and marker verifies owned workspace boundary. No reliance on returned request echo. Both native repeats now pass. Explicit absolute cwd only; omitted/null/relative cwd defaults are not independently qualified. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/cwd",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "011e0f67df3ded10c907f5642ef362d33e38406c87ba6cd68148f498b71e09f0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:159-186"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/disableOutputCap",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: New large fixture emits known O/E streams beyond1MiB. Omitted flag returns exactly1MiB per stream; true returns1MiB+13/+29 with independently computed known-content hashes, exit0 and no streamed deltas. Both native repeats now pass. Requires successful new native case; previous occurrence only tested conflicting parameters. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/disableOutputCap",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "f695c3911fb94a443dd1e383fec59f4faa1945b530b1deebb2e0de7fb5a17f16",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:278-306"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "disableOutputCap"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/disableTimeout",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: New request explicitly nulls helper timeoutMs and sends disableTimeout true. Owned script's monotonic surviving line must be>=10100ms; task is still pending after crossing native10s default, then explicit owner EOF yields native exit0 and child reaping. Both native repeats now pass. Requires successful new native case; no clock-precision or unlimited-duration guarantee; previous occurrence only conflict rejection. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/disableTimeout",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "14c839e506ee234e87da53e97d974327cf42790314fca74c0dcd1da4864e15ce",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:376-424"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "disableTimeout"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/env",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Allowlisted server starts with KEEP=server-value and DROP=remove-me. Request sets KEEP=request-value and DROP=null; actual child JSON must show request-value and missing DROP (None/null). Both native repeats now pass. Selected environment override/unset only; env:null and protected/non-inheritable key matrix not asserted. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/env",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "3ef2f8fd6dfd653edfdae521aef7c4b04f23052f5b4b294b3a652e11485e3848",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:159-186"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "env"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/outputBytesCap",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Old explicit3 cap yields stdout abc and stderr uvw, exactly one capReached delta per stream, active child until EOF and empty streamed final. New0 yields two exact empty capReached notifications; new3 yields exact raw byte prefixes splitting UTF8 and invalid UTF8, proving byte rather than character truncation. Both native repeats now pass. Old positive available; new zero/binary boundaries pending; no null-cap input claim. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/outputBytesCap",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "95b83ec0bae1c7cbde5e3acaac9c44cba07efab00d7f783c2b888f5ad32c00d6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:250-374"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "outputBytesCap"
     },
     {
@@ -113579,75 +113630,102 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/processId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Client-supplied ID correlates streamed events and write/resize/terminate controls to exact child; duplicate active ID cannot create another marker. Same ID on another connection is independent; foreign control rejects; reconnect stops only prior connection child without replay while shared server remains. Both native repeats now pass. Selected nonempty supplied IDs plus omitted buffered mode; explicit null/empty ID semantics unasserted. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/processId",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "2b7e159955f5faa1ad8b68b7ee6c704c0e6672d5e092c85c3bf1f36f73e2b647",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:208-248",
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:473-641"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "processId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/sandboxPolicy",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Every positive params request explicitly supplies {type:dangerFullAccess}; actual owned command succeeds with independently checked program effects and child marker in a private namespace. Source processor selects this non-null policy path. Both native repeats now pass. Acceptance of selected explicit policy only. Configured default is also danger-full-access, so no policy override precedence or native sandbox-enforcement proof; no entire shared union. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/sandboxPolicy",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "74556421c61486f89e8629a2b8e023c444597e7d8918c89e63df1f499c69969e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:159-186",
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:719-735"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "sandboxPolicy"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/CommandExecParams.json#/properties/sandboxPolicy/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Direct request uses the non-null SandboxPolicy reference with exactly selected dangerFullAccess value, accepted on actual execution. Marker and independently prescribed command outputs confirm executed effect; source maps policy.to_core to permissions. Both native repeats now pass. Only selected non-null reference acceptance. Config matches supplied policy; no override/enforcement claim and no referenced union or other branch promotion. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "pointer": "/properties/sandboxPolicy/anyOf/0",
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "49b254667a27407307ddcf4e6d98522ef8932afb37f6325e11a2d8a207395bfb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:159-186",
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:719-735"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -113675,49 +113753,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/size",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Initial request {rows:24,cols:80} with tty true reaches child TIOCGWINSZ and must print before:24 80. This is an OS terminal observation independent of request echo; actual tty marker is true. Both native repeats now pass. Only selected non-null initial dimensions; later resize is another method and does not qualify null initial size. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/size",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "ca2bbf98c6426c055333a454b2dfce1b9de97dffded95dbd15461b5f7577cd58",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:426-445"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "size"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/CommandExecParams.json#/properties/size/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Exact non-null CommandExecTerminalSize reference request must produce independently observed initial OS terminal dimensions24x80 before any resize. Both native repeats now pass. Selected non-null size reference only; no null or all boundary values inferred. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "pointer": "/properties/size/anyOf/0",
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "7a543cd0178d378f3a66274a466dbfb241b1ccc22c3ce3a43e57772403a9700f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:426-445"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -113745,105 +113839,140 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/streamStdin",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Explicit true enables two binary writes: first leaves command active; second EOF releases child and exact stdout/stderr echo includes NUL/FF bytes and tail. Native final is exit0 with no duplicated streamed output; late write rejects. Both native repeats now pass. Selected pipe stdin streaming/EOF; PTY implied behavior remains separately scoped. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/streamStdin",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "3ccb938c182d752a90f1007a9a140901fe889177127aac2bedd8890567c2bd7f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:208-248",
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:308-424"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "streamStdin"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/streamStdoutStderr",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Explicit true emits exact correlated stdout/stderr deltas while command task remains pending; after EOF final stdout/stderr are empty. Independent caps and new zero/binary byte oracles preserve separate stream identity. Both native repeats now pass. Selected explicit streaming and omitted buffered profile; no every-chunk boundary guarantee. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/streamStdoutStderr",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "8aeea55843dc29f0a0f56eddf791be1b999f73c28b92db7d2dccf3ab56559383",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:208-248",
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:250-374"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "streamStdoutStderr"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/timeoutMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Explicit native500ms timeout on a child blocked in signal.pause returns exact native exit124, no buffered output, reaps child and leaves no uncertain driver operation. New explicit null plus disableTimeout permits survival past10s default and owner-controlled EOF exit0. Both native repeats now pass. 500ms selected expiration tested without a timing-accuracy claim; null is only jointly tested with disableTimeout true, not default-timeout null alone. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": true,
       "pointer": "/properties/timeoutMs",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "ee0ea4e6a57508899c2493c0dfc56a3e933f9ec8b8cb4a5bb50d1ec50e3bda20",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:376-424",
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:529-541"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "timeoutMs"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CommandExecParams.json#/properties/tty",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_command_parameter: Request tty true omits both stream flags yet child sees stdin/stdout TTY, reports exact initial24x80, merges stderr into stdout, accepts resize to45x132 and interactive input, then returns exit0 with empty streamed final. Both native repeats now pass. Selected Linux PTY semantics only; no platform-wide terminal, null or arbitrary dimension coverage. No whole shared union, enforcement/override, unasserted null, other OS or full lifecycle promotion."
+      ],
       "nullable": false,
       "pointer": "/properties/tty",
       "required": false,
       "schema": "v2/CommandExecParams.json",
       "schema_sha256": "c8d25b994a5d23685a0fd9aefc94b53b42fa993deea418337072b36dce2c201b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_lifecycle_profile.exs:426-471"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "tty"
     },
     {
@@ -162719,24 +162848,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/SkillsConfigWriteParams.json#/properties/path/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_explicit_null: Explicit path:null plus trimmed name persists one override across a distinct cold process; repeated writes and unrelated source/config bytes have independent oracles. Zero model work. No equal-hash transfer, uncalled method, shared sibling or full lifecycle promotion."
+      ],
       "pointer": "/properties/path/anyOf/1",
       "schema": "v2/SkillsConfigWriteParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_skills_lifecycle_test.exs:121-173"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -178358,24 +178495,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/UserInput/oneOf/1/properties/detail/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_explicit_null: Actual inline image detail:null survives complete native user content and directly read warm/cold stored item; provider separately normalizes to high. Only this physical inline-image detail owner. No equal-hash transfer, uncalled method, shared sibling or full lifecycle promotion."
+      ],
       "pointer": "/definitions/UserInput/oneOf/1/properties/detail/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_user_inputs_test.exs:56-64",
+          "apps/samgita_codex_driver/test/native_persisted_user_inputs_test.exs:113-167",
+          "apps/samgita_codex_driver/test/native_persisted_user_inputs_test.exs:179-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -178538,24 +178685,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/UserInput/oneOf/2/properties/detail/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_explicit_null: Actual local image detail:null survives complete native user content and directly read warm/cold stored item; provider separately normalizes to high. Only this physical local-image detail owner. No equal-hash transfer, uncalled method, shared sibling or full lifecycle promotion."
+      ],
       "pointer": "/definitions/UserInput/oneOf/2/properties/detail/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_persisted_user_inputs_test.exs:56-64",
+          "apps/samgita_codex_driver/test/native_persisted_user_inputs_test.exs:90-100",
+          "apps/samgita_codex_driver/test/native_persisted_user_inputs_test.exs:113-167",
+          "apps/samgita_codex_driver/test/native_persisted_user_inputs_test.exs:179-202"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -183912,24 +184070,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-command-null-boundaries-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadResponse.json#/properties/readState/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_explicit_null: Successful metadata-only read of public owned ephemeral thread requires fetch! outer readState:null, exact pathless empty-thread projection, native rejection fences and unchanged healthy durable receipt/history control. No damaged/disabled store or ephemeral cold-persistence claim. No equal-hash transfer, uncalled method, shared sibling or full lifecycle promotion."
+      ],
       "pointer": "/properties/readState/anyOf/1",
       "schema": "v2/ThreadReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:194-260"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

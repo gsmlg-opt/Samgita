@@ -118,6 +118,60 @@ defmodule SamgitaCodexDriver.NativeSkillsLifecycleTest do
     assert_idle(ctx, pid)
   end
 
+  test "explicit null path selects a name and persists only that override across restart", ctx do
+    assert Base.encode16(:crypto.hash(:sha256, File.read!(ctx.binary)), case: :lower) ==
+             "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
+
+    path = user_skill(ctx, "explicit-null-path")
+    unrelated = user_skill(ctx, "explicit-null-unrelated")
+    sources = Enum.map([path, unrelated], &{&1, File.read!(&1)})
+    config = config_path(ctx)
+    original = File.read!(config)
+    selector = %{"path" => nil, "name" => "  explicit-null-path  "}
+    pid = start(ctx)
+    entry = list(pid, nil, true)
+    assert_skill(entry, "explicit-null-path", path, true, "user")
+    assert_skill(entry, "explicit-null-unrelated", unrelated, true, "user")
+
+    assert write(pid, selector, false) == %{"effectiveEnabled" => false}
+    disabled_config = File.read!(config)
+    assert disabled_config =~ "name = \"explicit-null-path\""
+    refute disabled_config =~ path
+    assert length(Regex.scan(~r/\[\[skills\.config\]\]/, disabled_config)) == 1
+    entry = list(pid, nil, true)
+    assert_skill(entry, "explicit-null-path", path, false, "user")
+    assert_skill(entry, "explicit-null-unrelated", unrelated, true, "user")
+    assert write(pid, selector, false) == %{"effectiveEnabled" => false}
+    assert File.read!(config) == disabled_config
+    for {source, bytes} <- sources, do: assert(File.read!(source) == bytes)
+    assert_idle(ctx, pid)
+    assert %{interactions: 0} = Session.status(pid)
+    assert call(pid, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil}
+    assert {:ok, events} = Session.drain(pid)
+    refute Enum.any?(events, &(&1.kind == :server_request))
+    process_id = call(pid, "server/diagnostics", %{})["process"]["id"]
+    assert :ok = Session.close(pid)
+
+    cold = start(ctx)
+    refute call(cold, "server/diagnostics", %{})["process"]["id"] == process_id
+    entry = list(cold, nil, true)
+    assert_skill(entry, "explicit-null-path", path, false, "user")
+    assert_skill(entry, "explicit-null-unrelated", unrelated, true, "user")
+    assert File.read!(config) == disabled_config
+    assert write(cold, selector, true) == %{"effectiveEnabled" => true}
+    entry = list(cold, nil, true)
+    assert_skill(entry, "explicit-null-path", path, true, "user")
+    assert_skill(entry, "explicit-null-unrelated", unrelated, true, "user")
+    assert File.read!(config) == original
+    for {source, bytes} <- sources, do: assert(File.read!(source) == bytes)
+    assert_idle(ctx, cold)
+    assert %{interactions: 0} = Session.status(cold)
+    assert call(cold, "thread/loaded/list", %{}) == %{"data" => [], "nextCursor" => nil}
+    assert {:ok, events} = Session.drain(cold)
+    refute Enum.any?(events, &(&1.kind == :server_request))
+    assert :ok = Session.close(cold)
+  end
+
   test "concurrent independent configuration writes retain both serialized durable edits", ctx do
     paths = for name <- ["concurrent-first", "concurrent-second"], do: user_skill(ctx, name)
     original = File.read!(config_path(ctx))

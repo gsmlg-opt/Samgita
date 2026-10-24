@@ -191,6 +191,75 @@ defmodule SamgitaCodexDriver.NativeReadStateFieldsTest do
     end
   end
 
+  test "owned ephemeral metadata read exposes outer null with a healthy durable control", ctx do
+    pid = TurnFixture.start(ctx)
+    control_id = TurnFixture.thread(ctx, pid)
+
+    assert call(pid, "thread/name/set", %{
+             "threadId" => control_id,
+             "name" => "Owned durable control for unavailable read state"
+           }) == %{}
+
+    control = call(pid, "thread/read", %{"threadId" => control_id, "includeTurns" => false})
+    control_state = state(control, nil)
+    control_thread = Map.fetch!(control, "thread")
+    history_path = Map.fetch!(control_thread, "path")
+    history_bytes = File.read!(history_path)
+
+    assert Map.take(control_thread, ~w(id ephemeral path turns)) == %{
+             "id" => control_id,
+             "ephemeral" => false,
+             "path" => history_path,
+             "turns" => []
+           }
+
+    id = TurnFixture.thread(ctx, pid, %{"ephemeral" => true})
+    refute id == control_id
+    baseline = call(pid, "thread/read", %{"threadId" => id, "includeTurns" => false})
+    assert MapSet.new(Map.keys(baseline)) == MapSet.new(["readState", "thread"])
+    assert Map.fetch!(baseline, "readState") == nil
+    expected = %{"id" => id, "ephemeral" => true, "path" => nil, "turns" => []}
+    assert Map.take(Map.fetch!(baseline, "thread"), ~w(id ephemeral path turns)) == expected
+
+    assert upstream_error(pid, "thread/read", %{
+             "threadId" => id,
+             "includeTurns" => true
+           }) == %{
+             "code" => -32_600,
+             "message" => "ephemeral threads do not support includeTurns"
+           }
+
+    assert upstream_error(
+             pid,
+             "thread/readState/update",
+             params(id, "owned-ephemeral-unavailable-revision", "read")
+           ) == %{"code" => -32_600, "message" => "thread read state unavailable"}
+
+    after_rejections = call(pid, "thread/read", %{"threadId" => id, "includeTurns" => false})
+    assert Map.fetch!(after_rejections, "readState") == nil
+
+    # Loaded ephemeral metadata has fresh timestamps; only this stable owned
+    # projection is prescribed across reads, rather than whole-thread equality.
+    assert Map.take(Map.fetch!(after_rejections, "thread"), ~w(id ephemeral path turns)) ==
+             expected
+
+    control_after = call(pid, "thread/read", %{"threadId" => control_id, "includeTurns" => false})
+    assert state(control_after, nil) == control_state
+
+    assert Map.take(Map.fetch!(control_after, "thread"), ~w(id ephemeral path turns)) ==
+             Map.take(control_thread, ~w(id ephemeral path turns))
+
+    assert File.read!(history_path) == history_bytes
+    loaded = call(pid, "thread/loaded/list", %{})
+    assert MapSet.new(Map.fetch!(loaded, "data")) == MapSet.new([control_id, id])
+    assert Map.fetch!(loaded, "nextCursor") == nil
+    assert_idle(ctx, pid)
+    connection = :sys.get_state(pid).connection
+    assert :ok = Session.close(pid)
+    assert Port.info(connection.port) == nil
+    assert :atomics.get(connection.owner.completion, 1) == 1
+  end
+
   defp attention_turn(pid, id, text) do
     turn = TurnFixture.start_turn(pid, id, [%{"type" => "text", "text" => text}])
     {turn, TurnFixture.finish_turn(pid, id, turn)}

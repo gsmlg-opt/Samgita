@@ -8,7 +8,7 @@ defmodule SamgitaCodexDriver.NativeCommandLifecycleProfile do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @command_script ~S"""
-  import fcntl, ipaddress, json, os, signal, socket, struct, subprocess, sys, termios
+  import fcntl, ipaddress, json, os, select, signal, socket, struct, subprocess, sys, termios, time
   from pathlib import Path
 
   mode, marker, route_program, parent_netns = sys.argv[1:]
@@ -36,6 +36,20 @@ defmodule SamgitaCodexDriver.NativeCommandLifecycleProfile do
   elif mode == 'cap':
       print('abcdefghij', end='', flush=True)
       print('uvwxyz0123', end='', file=sys.stderr, flush=True)
+      sys.stdin.buffer.read()
+  elif mode == 'large':
+      sys.stdout.buffer.write(b'O' * (1024 * 1024 + 13)); sys.stdout.buffer.flush()
+      sys.stderr.buffer.write(b'E' * (1024 * 1024 + 29)); sys.stderr.buffer.flush()
+  elif mode == 'byte-cap':
+      sys.stdout.buffer.write(b'A\xe4\xb8\xad\x00\xffZ'); sys.stdout.buffer.flush()
+      sys.stderr.buffer.write(b'B\xf0\x9f\x98\x80\x00\xfeY'); sys.stderr.buffer.flush()
+      sys.stdin.buffer.read()
+  elif mode == 'past-default':
+      print('ready', flush=True)
+      started = time.monotonic()
+      readable, _, _ = select.select([sys.stdin], [], [], 10.1)
+      assert not readable, 'stdin released before the native default timeout boundary'
+      print('survived:' + str(int((time.monotonic() - started) * 1000)), flush=True)
       sys.stdin.buffer.read()
   elif mode == 'wait':
       print('ready', flush=True)
@@ -258,6 +272,154 @@ defmodule SamgitaCodexDriver.NativeCommandLifecycleProfile do
     assert final(task, request_id) == %{"exitCode" => 0, "stdout" => "", "stderr" => ""}
     assert_gone(ctx, "capped")
     assert_no_command_output(pid)
+    assert :ok = Session.close(pid)
+  end
+
+  test "buffered output disables the native per-stream default cap only when explicitly requested",
+       ctx do
+    pid = client(ctx)
+    cap = 1_048_576
+
+    for {name, options, stdout_size, stderr_size} <- [
+          {"large-default", %{}, cap, cap},
+          {"large-full", %{"disableOutputCap" => true}, cap + 13, cap + 29}
+        ] do
+      result = call(pid, "command/exec", params(ctx, "large", name, options))
+      assert Map.keys(result) |> Enum.sort() == ["exitCode", "stderr", "stdout"]
+      assert result["exitCode"] == 0
+      assert byte_size(result["stdout"]) == stdout_size
+      assert byte_size(result["stderr"]) == stderr_size
+
+      assert :crypto.hash(:sha256, result["stdout"]) ==
+               :crypto.hash(:sha256, String.duplicate("O", stdout_size))
+
+      assert :crypto.hash(:sha256, result["stderr"]) ==
+               :crypto.hash(:sha256, String.duplicate("E", stderr_size))
+
+      assert_marker(ctx, name)
+      assert_gone(ctx, name)
+      assert_no_command_output(pid)
+    end
+
+    assert Session.uncertain_operations(pid) == []
+    assert :ok = Session.close(pid)
+  end
+
+  test "zero stream cap still emits one empty explicit cap notification per nonempty stream",
+       ctx do
+    pid = client(ctx)
+
+    {task, request_id} =
+      exec_async(pid, ctx, "cap", "zero-cap", %{
+        "streamStdin" => true,
+        "streamStdoutStderr" => true,
+        "outputBytesCap" => 0
+      })
+
+    events =
+      output_until(pid, "zero-cap", fn events ->
+        Enum.sort(Enum.map(deltas(events, "zero-cap"), & &1["stream"])) ==
+          ["stderr", "stdout"]
+      end)
+
+    assert Enum.all?(deltas(events, "zero-cap"), fn delta ->
+             delta == %{
+               "processId" => "zero-cap",
+               "stream" => delta["stream"],
+               "deltaBase64" => "",
+               "capReached" => true
+             }
+           end)
+
+    assert_marker(ctx, "zero-cap")
+    assert Task.yield(task, 0) == nil
+    assert write(pid, "zero-cap", nil, true) == %{}
+    assert final(task, request_id) == %{"exitCode" => 0, "stdout" => "", "stderr" => ""}
+    assert_gone(ctx, "zero-cap")
+    assert_no_command_output(pid)
+    assert Session.uncertain_operations(pid) == []
+    assert :ok = Session.close(pid)
+  end
+
+  test "stream byte caps preserve exact base64 prefixes even when they split UTF-8", ctx do
+    pid = client(ctx)
+
+    {task, request_id} =
+      exec_async(pid, ctx, "byte-cap", "binary-cap", %{
+        "streamStdin" => true,
+        "streamStdoutStderr" => true,
+        "outputBytesCap" => 3
+      })
+
+    events =
+      output_until(pid, "binary-cap", fn events ->
+        output(events, "stdout") == <<?A, 0xE4, 0xB8>> and
+          output(events, "stderr") == <<?B, 0xF0, 0x9F>>
+      end)
+
+    assert Enum.sort(Enum.map(deltas(events, "binary-cap"), & &1["stream"])) ==
+             ["stderr", "stdout"]
+
+    assert Enum.all?(deltas(events, "binary-cap"), & &1["capReached"])
+    refute String.valid?(output(events, "stdout"))
+    refute String.valid?(output(events, "stderr"))
+    assert_marker(ctx, "binary-cap")
+    assert Task.yield(task, 0) == nil
+    assert write(pid, "binary-cap", nil, true) == %{}
+    assert final(task, request_id) == %{"exitCode" => 0, "stdout" => "", "stderr" => ""}
+    assert_gone(ctx, "binary-cap")
+    assert_no_command_output(pid)
+    assert Session.uncertain_operations(pid) == []
+    assert :ok = Session.close(pid)
+  end
+
+  test "explicit disableTimeout survives the native ten-second default until owner EOF", ctx do
+    pid = client(ctx)
+    request_id = "past-default-request"
+
+    task =
+      Task.async(fn ->
+        Session.request(
+          pid,
+          "command/exec",
+          params(ctx, "past-default", "past-default", %{
+            "processId" => "past-default",
+            "streamStdin" => true,
+            "streamStdoutStderr" => true,
+            "timeoutMs" => nil,
+            "disableTimeout" => true
+          }),
+          id: request_id,
+          timeout_ms: 15_000
+        )
+      end)
+
+    events = output_until(pid, "past-default", &(output(&1, "stdout") == "ready\n"))
+    assert_marker(ctx, "past-default")
+    assert Task.yield(task, 0) == nil
+
+    events =
+      events_until(
+        pid,
+        &(output(&1, "stdout") =~ "survived:"),
+        events,
+        now() + 12_000
+      )
+
+    assert [elapsed] =
+             Regex.run(~r/\Aready\nsurvived:(\d+)\n\z/, output(events, "stdout"),
+               capture: :all_but_first
+             )
+
+    assert String.to_integer(elapsed) >= 10_100
+    assert output(events, "stderr") == ""
+    assert Enum.all?(deltas(events, "past-default"), &(&1["capReached"] == false))
+    assert Task.yield(task, 0) == nil
+    assert write(pid, "past-default", nil, true) == %{}
+    assert final(task, request_id) == %{"exitCode" => 0, "stdout" => "", "stderr" => ""}
+    assert_gone(ctx, "past-default")
+    assert_no_command_output(pid)
+    assert Session.uncertain_operations(pid) == []
     assert :ok = Session.close(pid)
   end
 
