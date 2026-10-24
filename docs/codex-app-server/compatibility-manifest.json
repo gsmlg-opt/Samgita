@@ -93744,238 +93744,328 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact wholeItem presentation. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "c667492ccefdf0fed3b44d62838b0489b43f784e5ff8d264f7498aedfa18e0e6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:319-320",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact wholeItem presentation. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/0/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "26fa183041cb1805b5c43cdb366c065525b65bd44af98a429ab06e225409aa5c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:319-320",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact wholeItem presentation. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/0/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "b247b8a7921902b81b666f34db3ada20813028522443fdb75116850c40061efc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:319-320",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact inlineMarkdown presentation. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "fae0f8e5dc0e879ea8cc4f44b5ae03f620d66fe9a914876f06f56edc433e4a1d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:322-323",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact inlineMarkdown presentation. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/1/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "f7f53ecd49569b488c6482e942c8598bd7441e5705241bb3804b1e3b40fee3f7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:322-323",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact inlineMarkdown presentation. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/1/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "643b198eed4c6d023a86fcf47ce862a0c51786c0de246d01f8ccd1f75f14612f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:322-323",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact inlineVisualization presentation with exactly indexes 0 and 1; fenced directives excluded. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "b28a2ad76680978fa3ffaea62e72512e0a40c74f11c2ec452dcf804e927d26e1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:325-329",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/index",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact inlineVisualization presentation with exactly indexes 0 and 1; fenced directives excluded. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/index",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:325-329",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "index"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact inlineVisualization presentation with exactly indexes 0 and 1; fenced directives excluded. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "8297b13cb7a938a23af062552c68795ae7dbda781324680df8e42833b35efc49",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:325-329",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: The actual thread/realtime/item/completed notification carries exact inlineVisualization presentation with exactly indexes 0 and 1; fenced directives excluded. All three branches arise from pinned native producers; notification equality checks the exact dictionary, not merely successful parsing. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "d535e1f6835d009ca37b70557ac39f121b682f4a463a1647bb1183487f14f4bc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:325-329",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -94172,35 +94262,49 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: Exact completed-notification params are filtered by method and equal independently prescribed threadId and every native item. Promotion turnId equals explicit turn/start result; itemId equals independently checked dynamic-tool or assistant backing item. Fresh IDs and exact promotion counts prevent borrowing timeline-only evidence. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "909a0262be904c3c9fb47aa5ab26e334580c6ae754b950530c321e969bc49778",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309-355",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:114-128",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:245-305"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/item_id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: Exact completed-notification params are filtered by method and equal independently prescribed threadId and every native item. Promotion turnId equals explicit turn/start result; itemId equals independently checked dynamic-tool or assistant backing item. Fresh IDs and exact promotion counts prevent borrowing timeline-only evidence. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "native_wire_name": "itemId",
       "nullable": false,
       "output_semantics": "source/realtime-output-semantics.json",
@@ -94208,53 +94312,73 @@
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309-355",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:114-128",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:245-305"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "item_id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/presentation",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: Exact completed-notification params are filtered by method and equal independently prescribed threadId and every native item. Promotion turnId equals explicit turn/start result; itemId equals independently checked dynamic-tool or assistant backing item. Fresh IDs and exact promotion counts prevent borrowing timeline-only evidence. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/presentation",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "332c1e79cf9570ec29b882e8a4678049331d00a9d8e15b39bafc2c4ed6de3480",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309-355",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:114-128",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:245-305"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "presentation"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/turn_id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: Exact completed-notification params are filtered by method and equal independently prescribed threadId and every native item. Promotion turnId equals explicit turn/start result; itemId equals independently checked dynamic-tool or assistant backing item. Fresh IDs and exact promotion counts prevent borrowing timeline-only evidence. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "native_wire_name": "turnId",
       "nullable": false,
       "output_semantics": "source/realtime-output-semantics.json",
@@ -94262,64 +94386,90 @@
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309-355",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:114-128",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:245-305"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "turn_id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: Exact completed-notification params are filtered by method and equal independently prescribed threadId and every native item. Promotion turnId equals explicit turn/start result; itemId equals independently checked dynamic-tool or assistant backing item. Fresh IDs and exact promotion counts prevent borrowing timeline-only evidence. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "dfdabc5f11c9f0147426356d466d5243e9a696efb93f623e3c13b5e3d9222feb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309-355",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:114-128",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:245-305"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadRealtimeItem/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: Exact completed-notification params are filtered by method and equal independently prescribed threadId and every native item. Promotion turnId equals explicit turn/start result; itemId equals independently checked dynamic-tool or assistant backing item. Fresh IDs and exact promotion counts prevent borrowing timeline-only evidence. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "pointer": "/definitions/ThreadRealtimeItem/oneOf/2/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "7e9983023987a2f99d57c27ca099c74bfa8ab3b7edcda6667933373ec8912083",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:309-355",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:114-128",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:245-305"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -95906,24 +96056,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadUnreadPosition/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_state_physical_owner: Exact actual thread/readState/changed notifications are an ordered two-element sequence for the owned thread. The first receipt equals the successful explicit unread mark already independently constrained to firstUnread exactly {type: threadStart} with only firstUnread/revision keys; the second equals the explicit read acknowledgement. This qualifies only the missing threadStart object branch, not its implemented children or the entire ThreadUnreadPosition union. Selected explicit read/unread operations on eligible local durable user threads in legacy and paginated history over stdio. No invalid-input matrix, unavailable database/state, policy exclusions, duplicate Core publication, remote/platform profile or successful update Turn-position alternative. Already indexed response-position/null/threadStart child owners gain no new count."
+      ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "f1af194902be6cae5c130e799e1fe08f07a7a4b140fdaaa391848a3bf5b5fd8d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:40-70",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:239-251"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -183877,142 +184036,214 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateParams.json#/definitions/ThreadReadStateOperation/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_state_physical_owner: Exact native thread/readState/update request uses operation {type: read}; successful acknowledgement independently expects firstUnread null, a distinct nonempty revision, exact read-state-only result and exact changed notification. Stale read requests preserve the exact independently expected unread winner; warm/cold read and list retain the turn winner without replay. Selected explicit read/unread operations on eligible local durable user threads in legacy and paginated history over stdio. No invalid-input matrix, unavailable database/state, policy exclusions, duplicate Core publication, remote/platform profile or successful update Turn-position alternative. Already indexed response-position/null/threadStart child owners gain no new count."
+      ],
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/0",
       "schema": "v2/ThreadReadStateUpdateParams.json",
       "schema_sha256": "006117b6f0afcfbe645bb8780f14c44bbf134a1e1dc703614b12966be5a6d577",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:48-70",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:94-106",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:141-148",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:180-189",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:236-263"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateParams.json#/definitions/ThreadReadStateOperation/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_state_physical_owner: Exact native thread/readState/update request uses operation {type: read}; successful acknowledgement independently expects firstUnread null, a distinct nonempty revision, exact read-state-only result and exact changed notification. Stale read requests preserve the exact independently expected unread winner; warm/cold read and list retain the turn winner without replay. Selected explicit read/unread operations on eligible local durable user threads in legacy and paginated history over stdio. No invalid-input matrix, unavailable database/state, policy exclusions, duplicate Core publication, remote/platform profile or successful update Turn-position alternative. Already indexed response-position/null/threadStart child owners gain no new count."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateParams.json",
       "schema_sha256": "359dc02de8ed1bb70dc7803e09fc8580020ec4aab05e699d1a52edddd3e3d6ed",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:48-70",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:94-106",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:141-148",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:180-189",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:236-263"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateParams.json#/definitions/ThreadReadStateOperation/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_state_physical_owner: Exact native thread/readState/update request uses operation {type: read}; successful acknowledgement independently expects firstUnread null, a distinct nonempty revision, exact read-state-only result and exact changed notification. Stale read requests preserve the exact independently expected unread winner; warm/cold read and list retain the turn winner without replay. Selected explicit read/unread operations on eligible local durable user threads in legacy and paginated history over stdio. No invalid-input matrix, unavailable database/state, policy exclusions, duplicate Core publication, remote/platform profile or successful update Turn-position alternative. Already indexed response-position/null/threadStart child owners gain no new count."
+      ],
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadReadStateUpdateParams.json",
       "schema_sha256": "04a362f6eb2c541562bb7e89cdfaa3412f33332c198b77477a254c572d1b8d97",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:48-70",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:94-106",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:141-148",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:180-189",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:236-263"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateParams.json#/definitions/ThreadReadStateOperation/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_state_physical_owner: Exact native thread/readState/update request uses operation {type: unread}; successful explicit marks independently expect firstUnread {type: threadStart}, a distinct nonempty revision, exact read-state-only result and exact changed notification. Stale unread requests preserve the exact read or native-turn winner, including cold-process rejection; fresh explicit cold action is separate from replay. Selected explicit read/unread operations on eligible local durable user threads in legacy and paginated history over stdio. No invalid-input matrix, unavailable database/state, policy exclusions, duplicate Core publication, remote/platform profile or successful update Turn-position alternative. Already indexed response-position/null/threadStart child owners gain no new count."
+      ],
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/1",
       "schema": "v2/ThreadReadStateUpdateParams.json",
       "schema_sha256": "d2dc0a38efc38e85c238dee0a7f8415d12f0e09fa7a1d555b34af6222f054559",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:40-70",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:94-106",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:141-145",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:180-189",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:236-263"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateParams.json#/definitions/ThreadReadStateOperation/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_state_physical_owner: Exact native thread/readState/update request uses operation {type: unread}; successful explicit marks independently expect firstUnread {type: threadStart}, a distinct nonempty revision, exact read-state-only result and exact changed notification. Stale unread requests preserve the exact read or native-turn winner, including cold-process rejection; fresh explicit cold action is separate from replay. Selected explicit read/unread operations on eligible local durable user threads in legacy and paginated history over stdio. No invalid-input matrix, unavailable database/state, policy exclusions, duplicate Core publication, remote/platform profile or successful update Turn-position alternative. Already indexed response-position/null/threadStart child owners gain no new count."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ThreadReadStateUpdateParams.json",
       "schema_sha256": "15ff2d234a1c8286f02c23242a2262f203b722f2760c3686ee776fa9cdcd8e1d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:40-70",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:94-106",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:141-145",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:180-189",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:236-263"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateParams.json#/definitions/ThreadReadStateOperation/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_read_state_physical_owner: Exact native thread/readState/update request uses operation {type: unread}; successful explicit marks independently expect firstUnread {type: threadStart}, a distinct nonempty revision, exact read-state-only result and exact changed notification. Stale unread requests preserve the exact read or native-turn winner, including cold-process rejection; fresh explicit cold action is separate from replay. Selected explicit read/unread operations on eligible local durable user threads in legacy and paginated history over stdio. No invalid-input matrix, unavailable database/state, policy exclusions, duplicate Core publication, remote/platform profile or successful update Turn-position alternative. Already indexed response-position/null/threadStart child owners gain no new count."
+      ],
       "pointer": "/definitions/ThreadReadStateOperation/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadReadStateUpdateParams.json",
       "schema_sha256": "5ed0acec26d3434c28f016a675efa5b430c908fc086e41e86cb9e80bec77a600",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:40-70",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:94-106",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:141-145",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:180-189",
+          "apps/samgita_codex_driver/test/native_read_state_fields_test.exs:236-263"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -199946,27 +200177,38 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: Separate physical discriminator-property wrapper for wholeItem; warm unfiltered timeline item equals the independently prescribed native promotion, and cold unloaded restart read equals the same complete payload. This wrapper was omitted from prior13 named timeline entries. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "26fa183041cb1805b5c43cdb366c065525b65bd44af98a429ab06e225409aa5c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:319-320",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358-396",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:233-236"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
@@ -200036,27 +200278,38 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: Separate physical discriminator-property wrapper for inlineMarkdown; warm unfiltered timeline item equals the independently prescribed native promotion, and cold unloaded restart read equals the same complete payload. This wrapper was omitted from prior13 named timeline entries. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "f7f53ecd49569b488c6482e942c8598bd7441e5705241bb3804b1e3b40fee3f7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:322-323",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358-396",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:233-236"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {
@@ -200162,27 +200415,38 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/realtime-bem-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_bem_physical_owner: Separate physical discriminator-property wrapper for inlineVisualization; warm unfiltered timeline item equals the independently prescribed native promotion, and cold unloaded restart read equals the same complete payload. This wrapper was omitted from prior13 named timeline entries. Selected stock-native dynamic-tool/assistant-directive BEM producers only; no image, subagent, MCP producer, renderer, external account, other OS or exhaustive boundary qualification. Canonical snake-case BEM references retain the separately pinned native camelCase correction. No equal-hash transfer or fully verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadRealtimeBemItemPresentation/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "8297b13cb7a938a23af062552c68795ae7dbda781324680df8e42833b35efc49",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:325-329",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:332-355",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:358-396",
+          "apps/samgita_codex_driver/test/native_realtime_bem_profile.exs:233-236"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "type"
     },
     {

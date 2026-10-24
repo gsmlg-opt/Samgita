@@ -80,3 +80,27 @@ publication, policy exclusions, real media/backends and other deployment
 profiles gain no acceptance from these cases. Final combined-source/hosted
 checks, complete compatibility and A11 remain incomplete. No release,
 publication, external integration or deployment follows.
+
+## Remaining direct operation owners
+
+A subsequent source-only audit indexes **seven additional physical owners**
+against the same unchanged test hash and two terminal **15/0** logs. Six are the
+read/unread operation branch, `type` and enum nodes in
+`v2/ThreadReadStateUpdateParams.json`. Requests at `236-263`, explicit success
+and conflict assertions at `48-70,94-106,141-148,180-189` establish those exact
+operations with independently constrained receipts, revisions and native effects.
+The seventh is the distinct notification `threadStart` object branch: the test
+prescribes that object at `48-50,239-246` and requires the exact ordered native
+`thread/readState/changed` parameters at `63-70`. Already indexed children,
+nulls and response owners receive no new count.
+
+The outer `ThreadReadResponse.readState:null` is unasserted and remains missing;
+it differs from the exercised inner `firstUnread:null`. The four successful
+update-response turn alternatives remain missing for the immutable-source reason
+above. No fabricated read/list-local definitions or same-hash transfer is used.
+Candidate hashes and exact evidence are in
+`/tmp/samgita-remaining-read-state-contracts-20261024.json`, SHA256
+`2a1427820337442b942e51547fd8d8ac6461f9ffb5d3a2626a4fe845049a5ce5`, and
+`/tmp/samgita-remaining-read-state-owner-audit-20261024.md`. This index adds no
+runtime change, execution or fully verified promotion. Final-source matrices
+and all remaining acceptance gates still apply.

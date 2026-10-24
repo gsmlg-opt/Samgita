@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 2,795 implemented / 3,826 missing
+11 blocked requirements** and **0 verified / 2,821 implemented / 3,800 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 2,795 directly exercised
+MCP entries have scoped implementation evidence. These 2,821 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -36,6 +36,13 @@ seeds, qualifying all three selected presentation branches through real native
 producers, backing-item correlation, deduplication and complete cold history.
 It adds 13 exact owners and becomes the 31st required isolated hosted profile.
 Real rendering, other producers and final combined/hosted checks remain open.
+
+Source-only follow-up indexing adds **26** directly asserted physical owners:
+[19 notification/presentation nodes](realtime-bem-qualification.md#physical-notification-owners)
+and [seven read-state operation/notification nodes](read-state-realtime-history-qualification.md#remaining-direct-operation-owners).
+The tests and existing seed logs are unchanged. Unasserted nulls, unreachable
+success alternatives, same-hash siblings and whole lifecycle claims remain
+incomplete; no contract is promoted to fully verified.
 
 Thirty-four [retained state/timeline owners](retained-state-projection-owners-qualification.md)
 now index previously passing exact assertions: notification read-state/settings,

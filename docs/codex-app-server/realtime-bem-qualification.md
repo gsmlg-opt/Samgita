@@ -83,3 +83,25 @@ visualization behavior remain separate obligations. Equal schema hashes do not
 transfer evidence to notification/shared owners. Real backend/account, other
 OS/transport profiles, A11 and the complete goal remain incomplete. No package,
 tag, release or deployment is produced.
+
+## Physical notification owners
+
+A subsequent source-only audit indexes **19 additional physical owners** from
+these unchanged, already executed tests: 16 `ServerNotification` BEM/presentation
+owners and three timeline presentation `type` wrappers. `assert_promotions` at
+`native_realtime_bem_profile.exs:309-355` explicitly filters the actual completed
+notification method and compares its entire parameters with the prescribed
+thread, turn, backing item, session and presentation. Those method-specific
+assertions own the notification definitions independently of timeline equality
+at `358-396` and cold equality at `233-236`. Equal node hashes supply no evidence
+transfer. Started-notification/standalone duplicates, whole unrelated unions and
+the prior 13 timeline owners receive no new count.
+
+Canonical hashes, exact assertion ranges, unchanged test hashes and both terminal
+seed-log fingerprints are in
+`/tmp/samgita-realtime-physical-owner-audit-20261024.json`, SHA256
+`aff6641cd12ed8fa717bef98acfb91766fcb4894e2bdeb1bce6304c1c753ce63`.
+The official snake-case BEM owners retain the existing pinned native camelCase
+correction. The already indexed transcript-tail flag is not recounted. This
+index adds no executable change, test run or fully verified contract; all producer,
+deployment and confidentiality limitations above remain.
