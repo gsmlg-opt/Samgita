@@ -102,6 +102,223 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
     assert_idle(cold)
   end
 
+  test "installed local marketplace metadata retains exact identity and display interface after restart",
+       ctx do
+    display_name = "Owned Marketplace λ"
+    manifest = ctx.marketplace |> File.read!() |> JSON.decode!()
+    manifest = Map.put(manifest, "interface", %{"displayName" => display_name})
+    manifest_bytes = JSON.encode!(manifest)
+    File.write!(ctx.marketplace, manifest_bytes)
+
+    expected = %{
+      "marketplaces" => [
+        %{
+          "name" => @market,
+          "path" => ctx.marketplace,
+          "interface" => %{"displayName" => display_name},
+          "plugins" => [
+            %{
+              "id" => @id,
+              "remotePluginId" => nil,
+              "version" => nil,
+              "localVersion" => nil,
+              "name" => @plugin,
+              "shareContext" => nil,
+              "source" => %{"type" => "local", "path" => Path.join(ctx.workspace, @plugin)},
+              "installed" => true,
+              "installedAt" => nil,
+              "enabled" => true,
+              "installPolicy" => "AVAILABLE",
+              "installPolicySource" => nil,
+              "mustShowInstallationInterstitial" => nil,
+              "authPolicy" => "ON_INSTALL",
+              "availability" => "AVAILABLE",
+              "disabledReason" => nil,
+              "eligiblePlanTypes" => nil,
+              "interface" => nil,
+              "keywords" => ["synthetic-#{@plugin}-keyword"]
+            }
+          ]
+        }
+      ],
+      "marketplaceLoadErrors" => []
+    }
+
+    pid = start(ctx)
+
+    assert call(pid, "plugin/installed", %{"cwds" => [ctx.workspace]}) === %{
+             "marketplaces" => [],
+             "marketplaceLoadErrors" => []
+           }
+
+    install(pid, ctx)
+
+    # This is local installed-catalog metadata, not plugin execution or policy enforcement.
+    assert call(pid, "plugin/installed", %{"cwds" => [ctx.workspace]}) === expected
+    assert File.read!(ctx.marketplace) === manifest_bytes
+    assert_idle(pid)
+    native = call(pid, "server/diagnostics", %{})["process"]["id"]
+    %{connection: connection} = :sys.get_state(pid)
+    assert :ok = StdioSessionFixture.close(pid, connection)
+    await_process_exit(native)
+
+    cold = start(ctx)
+    cold_native = call(cold, "server/diagnostics", %{})["process"]["id"]
+    refute cold_native == native
+    assert call(cold, "plugin/installed", %{"cwds" => [ctx.workspace]}) === expected
+    assert File.read!(ctx.marketplace) === manifest_bytes
+    assert_idle(cold)
+    %{connection: cold_connection} = :sys.get_state(cold)
+    assert :ok = StdioSessionFixture.close(cold, cold_connection)
+    await_process_exit(cold_native)
+  end
+
+  test "installed local plugin interface keeps exact rich metadata and owned assets after restart",
+       ctx do
+    plugin_root = Path.join(ctx.workspace, @plugin)
+    assets = Path.join(plugin_root, "assets")
+    File.mkdir_p!(assets)
+
+    png =
+      <<137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 1, 0, 0, 0, 1, 8,
+        2, 0, 0, 0, 144, 119, 83, 222, 0, 0, 0, 12, 73, 68, 65, 84, 120, 156, 99, 96, 96, 96, 0,
+        0, 0, 4, 0, 1, 246, 23, 56, 85, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130>>
+
+    composer = Path.join(assets, "composer.png")
+    logo = Path.join(assets, "logo.png")
+    screenshot = Path.join(assets, "screen.png")
+    asset_paths = [composer, logo, screenshot]
+    for path <- asset_paths, do: File.write!(path, png)
+
+    manifest_path = Path.join(plugin_root, ".codex-plugin/plugin.json")
+    manifest = manifest_path |> File.read!() |> JSON.decode!()
+
+    manifest =
+      Map.put(manifest, "interface", %{
+        "displayName" => "Owned Local Plugin λ",
+        "shortDescription" => "Owned short metadata λ",
+        "longDescription" => "Owned long metadata; no execution.",
+        "developerName" => "Owned Fixture",
+        "category" => "Owned Tools",
+        "capabilities" => ["metadata-only", "fixture"],
+        "websiteUrl" => "https://plugin.example.invalid/",
+        "privacyPolicyUrl" => "https://plugin.example.invalid/privacy",
+        "termsOfServiceUrl" => "https://plugin.example.invalid/terms",
+        "defaultPrompt" => ["  Inspect \n owned   plugin ", "Review synthetic metadata λ"],
+        "brandColor" => "#123ABC",
+        "composerIcon" => "./assets/composer.png",
+        "logo" => "./assets/logo.png",
+        "screenshots" => ["./assets/screen.png"]
+      })
+
+    manifest_bytes = JSON.encode!(manifest)
+    File.write!(manifest_path, manifest_bytes)
+    marketplace_bytes = File.read!(ctx.marketplace)
+    auth_path = Path.join(ctx.root, "codex/auth.json")
+
+    assert_sources = fn ->
+      assert File.lstat!(manifest_path).type == :regular
+      assert File.read!(manifest_path) === manifest_bytes
+      assert File.read!(ctx.marketplace) === marketplace_bytes
+      assert Enum.sort(File.ls!(assets)) == ["composer.png", "logo.png", "screen.png"]
+
+      for path <- asset_paths do
+        assert File.lstat!(path).type == :regular
+        assert File.read!(path) === png
+      end
+
+      refute File.exists?(auth_path)
+    end
+
+    expected_interface = %{
+      "displayName" => "Owned Local Plugin λ",
+      "shortDescription" => "Owned short metadata λ",
+      "longDescription" => "Owned long metadata; no execution.",
+      "developerName" => "Owned Fixture",
+      "category" => "Owned Tools",
+      "capabilities" => ["metadata-only", "fixture"],
+      "websiteUrl" => "https://plugin.example.invalid/",
+      "privacyPolicyUrl" => "https://plugin.example.invalid/privacy",
+      "termsOfServiceUrl" => "https://plugin.example.invalid/terms",
+      "defaultPrompt" => ["Inspect owned plugin", "Review synthetic metadata λ"],
+      "brandColor" => "#123ABC",
+      "composerIcon" => composer,
+      "composerIconUrl" => nil,
+      "logo" => logo,
+      "logoDark" => nil,
+      "logoUrl" => nil,
+      "logoUrlDark" => nil,
+      "screenshots" => [screenshot],
+      "screenshotUrls" => []
+    }
+
+    expected_summary = %{
+      "id" => @id,
+      "remotePluginId" => nil,
+      "version" => nil,
+      "localVersion" => nil,
+      "name" => @plugin,
+      "shareContext" => nil,
+      "source" => %{"type" => "local", "path" => plugin_root},
+      "installed" => true,
+      "installedAt" => nil,
+      "enabled" => true,
+      "installPolicy" => "AVAILABLE",
+      "installPolicySource" => nil,
+      "mustShowInstallationInterstitial" => nil,
+      "authPolicy" => "ON_INSTALL",
+      "availability" => "AVAILABLE",
+      "disabledReason" => nil,
+      "eligiblePlanTypes" => nil,
+      "interface" => expected_interface,
+      "keywords" => ["synthetic-#{@plugin}-keyword"]
+    }
+
+    expected = %{
+      "marketplaces" => [
+        %{
+          "name" => @market,
+          "path" => ctx.marketplace,
+          "interface" => nil,
+          "plugins" => [expected_summary]
+        }
+      ],
+      "marketplaceLoadErrors" => []
+    }
+
+    assert_sources.()
+    pid = start(ctx)
+
+    assert call(pid, "plugin/installed", %{"cwds" => [ctx.workspace]}) === %{
+             "marketplaces" => [],
+             "marketplaceLoadErrors" => []
+           }
+
+    install(pid, ctx)
+
+    # Informational local metadata does not authorize or execute plugin capabilities.
+    assert call(pid, "plugin/installed", %{"cwds" => [ctx.workspace]}) === expected
+    assert call(pid, "plugin/read", params(ctx))["plugin"]["summary"] === expected_summary
+    assert_sources.()
+    assert_idle(pid)
+    native = call(pid, "server/diagnostics", %{})["process"]["id"]
+    %{connection: connection} = :sys.get_state(pid)
+    assert :ok = StdioSessionFixture.close(pid, connection)
+    await_process_exit(native)
+
+    cold = start(ctx)
+    cold_native = call(cold, "server/diagnostics", %{})["process"]["id"]
+    refute cold_native == native
+    assert call(cold, "plugin/installed", %{"cwds" => [ctx.workspace]}) === expected
+    assert call(cold, "plugin/read", params(ctx))["plugin"]["summary"] === expected_summary
+    assert_sources.()
+    assert_idle(cold)
+    %{connection: cold_connection} = :sys.get_state(cold)
+    assert :ok = StdioSessionFixture.close(cold, cold_connection)
+    await_process_exit(cold_native)
+    assert_sources.()
+  end
+
   test "uninstall removes installed runtime skills while retaining owned source and cold state",
        ctx do
     pid = start(ctx)

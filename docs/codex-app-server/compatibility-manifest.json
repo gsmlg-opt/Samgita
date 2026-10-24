@@ -148251,27 +148251,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/MarketplaceInterface/properties/displayName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/MarketplaceInterface/properties/displayName",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "displayName"
     },
     {
@@ -148624,127 +148632,167 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/brandColor",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/brandColor",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "brandColor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/capabilities",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginInterface/properties/capabilities",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "capabilities"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/category",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/category",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "category"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/composerIcon",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/composerIcon",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "ba197c7606e647bb43da30bb1ee05136df6f510aab9b24ac3a66284743d214c6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "composerIcon"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/composerIcon/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "pointer": "/definitions/PluginInterface/properties/composerIcon/anyOf/0",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -148798,53 +148846,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/defaultPrompt",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/defaultPrompt",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "31f5476dc0c6ed6d30aba36a924bbe2aa0259dde31964da487f24bdef1e1dfa6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "defaultPrompt"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/developerName",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/developerName",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "developerName"
     },
     {
@@ -148885,49 +148949,65 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/logo",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/logo",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "f6a0e7778aa9344aeaaa59c55cdfc37acd7cbaa7fab8ba6ee6bfc998ceb331d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "logo"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/logo/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "pointer": "/definitions/PluginInterface/properties/logo/anyOf/0",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -149077,53 +149157,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/longDescription",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/longDescription",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "longDescription"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/privacyPolicyUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/privacyPolicyUrl",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "privacyPolicyUrl"
     },
     {
@@ -149155,153 +149251,201 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/screenshots",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginInterface/properties/screenshots",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "8917a5e2d73e1e667831d7ab51b5507b9b15cb54c1dec56e74a417ad1c714a9c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "screenshots"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/shortDescription",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/shortDescription",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "shortDescription"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/termsOfServiceUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/termsOfServiceUrl",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "termsOfServiceUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginInterface/properties/websiteUrl",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginInterface/properties/websiteUrl",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "websiteUrl"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginMarketplaceEntry/properties/interface",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginMarketplaceEntry/properties/interface",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "0fc425ee0abeba8575110d7827b01e8cb537b0a3bc720c4d13a5a4f5b3452369",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "interface"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginMarketplaceEntry/properties/interface/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "pointer": "/definitions/PluginMarketplaceEntry/properties/interface/anyOf/0",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "9fb5855e57cdf4f959cad241308f6ae0ffbdfb255c5630a15b794050dad0d536",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -149329,75 +149473,99 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginMarketplaceEntry/properties/name",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": false,
       "pointer": "/definitions/PluginMarketplaceEntry/properties/name",
       "required": true,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginMarketplaceEntry/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "nullable": true,
       "pointer": "/definitions/PluginMarketplaceEntry/properties/path",
       "required": false,
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "5244a1c57f3c0fe37ad3fb503a8b6571ba19a19b92d3e415b75032d29dfcca11",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "path"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/local-plugin-metadata-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/PluginInstalledResponse.json#/definitions/PluginMarketplaceEntry/properties/path/anyOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "actual_native_local_installed_metadata: Complete independently prescribed installed marketplace/plugin maps and rich19-field interface warm/cold; exact owned PNG bytes, local metadata only, no auth or inference. Exact physical owners only; not Git/remote source, remote credentials, plugin execution or policy enforcement, rendering, other OS or full acceptance."
+      ],
       "pointer": "/definitions/PluginMarketplaceEntry/properties/path/anyOf/0",
       "schema": "v2/PluginInstalledResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plugin_lifecycle_profile.exs:105"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
