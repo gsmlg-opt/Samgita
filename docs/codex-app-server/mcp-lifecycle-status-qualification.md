@@ -161,3 +161,124 @@ their separate physical `ServerNotification.json` owners. No alias, arbitrary JS
 requirement or contract becomes fully verified. Final integrated local/hosted
 matrices remain separate and required. No package publication, deployment,
 production migration or other repository change occurs.
+
+## Revoked OAuth access and explicit reauthentication
+
+M15 completes native OAuth/PKCE and lets Codex write its credential file. The
+owned dependency then revokes only acceptance of that access token. A cold native
+restart preserves the file and sends the revoked token, receiving actual HTTP401
+`invalid_token`. Valid discovery stays available and this synthetic credential
+has no refresh token. Exact native startup notices are `starting,failed` with
+`reauthenticationRequired` and the pinned recovery guidance.
+
+Repeated selected status reads must preserve authenticationRequired/notLoggedIn,
+physical null metadata, empty inventories, credential digest and exact request/
+token/callback counts. There is no silent token exchange or execution. A second
+explicit native PKCE login issues a new token; Codex replaces the credential file
+itself and publishes `starting,ready`. Tests never write, restore, edit or delete
+that credential file. Normal refresh, real external OAuth/keyrings/issuer changes
+and other deployment profiles remain unqualified.
+
+## Boolean-only legacy form opt-in without a turn
+
+M16 initializes with only `mcpServerOpenaiFormElicitation:true`; it omits the newer
+extensions list. An owned stdio MCP peer emits legacy `openai/form` during an
+explicit out-of-turn direct tool call. Real Codex emits the correlated elicitation
+request. The consumer explicitly accepts the prescribed form; the peer observes
+the exact decision, and the real native tool result and request resolution retain
+their IDs and content. No model request, turn or item execution is manufactured.
+
+The initial peer rejected native `resources/list`. Pinned full-status discovery
+also queries resources and resource templates, regardless of a tools-only catalog;
+only those two empty inventory handlers were added, with exact request/response
+counts. Unknown methods still fail the fixture. The initial failure and repair
+are retained in `/tmp/samgita-v94-m16-*`.
+
+Two successive history oracles were incorrect. The live metadata read succeeds
+with physical empty turns, paginated history and `ephemeral:false`. No user turn
+has materialized a thread metadata row in the owned native SQLite store, even
+though its state database exists. Thus `includeTurns:true` follows paginated
+`list_turns`, whose missing-thread validation returns `Unsupported`; the exact
+native result is **-32601, `list_turns is not supported yet`**. It does not take
+the separate -32600 unmaterialized-thread path. Diagnostic public reads and
+read-only inspection of this synthetic SQLite store establish the distinction;
+no metadata or history is fabricated to make a query succeed.
+
+Immutable producers are [paginated thread read](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L3125-L3187),
+[Unsupported error mapping](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L3334-L3375)
+and [missing metadata validation](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/thread-store/src/local/thread_history/read.rs#L203-L231).
+Preserved failed runs are in `/tmp/samgita-v98-mcp-full-repair-checks/`,
+`/tmp/samgita-v101-mcp-qualification-repair1/` and
+`/tmp/samgita-v105-m16-recovery/`. The exact negative result is an observed pin
+boundary, not successful persisted-history qualification.
+
+A subsequently reached cleanup assertion found the peer as a zombie owned by
+the still-live Stdio subreaper after graceful fixture close. That close deliberately
+keeps the outer controller/guardian available, as described in
+[shutdown ownership](mcp-cleanup-order-qualification.md). Explicit checked close
+of this test's owned outer Stdio connection precedes the unchanged peer-disappearance
+wait. The diagnostic proves its guardian PID, zombie parent, completion flag and
+closed-port state; the original observation bound stays unchanged. No production
+guardian, grace period or process cleanup behavior is changed.
+
+## Explicit OAuth registration selection
+
+M17 forces `dcr` despite advertised CIMD support and requires actual dynamic
+registration followed by native PKCE. M18 uses three fresh isolated native roots:
+omitted/default auto and explicit `auto` select CIMD under matching metadata;
+explicit auto falls back to DCR when CIMD is not advertised. M19 explicitly selects
+`cimd`, then separately rejects missing advertisement and missing public `none`
+token authentication before registration, token exchange, credential creation or
+callback completion. Failed preflight does not silently fall back.
+
+The issuer-bound success profiles require the exact public client ID
+`https://chatgpt.com/oauth/codex/client.json`, no registration request under CIMD,
+and native ephemeral loopback redirect/PKCE. The native client selects that URL as
+its identity; it does not fetch the document. An owned local OAuth dependency can
+prove selection and request semantics, not real IAM recognition, document validity
+or external authorization. Native-written credential digests, selected connection
+status and bounded callback-listener cleanup are checked independently.
+
+Immutable selection sources are [request mapping](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/mcp_processor.rs#L293-L327),
+[registration strategy and client identity](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/rmcp-client/src/oauth_client_registration.rs#L37-L139)
+and [callback selection](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/rmcp-client/src/oauth_callback.rs#L52-L101).
+Exact source/archive hashes and unqualified alternatives are in
+`/tmp/samgita-v91-oauth-selector-audit.json` and the v99 candidate handoff.
+
+The first v101 static run found three overly complex/nested test helpers.
+Splitting only those helpers preserves every test body and assertion; compile,
+format and strict Credo then pass. These source checks alone do not qualify the
+nineteen-case runtime. Final integrated runs and precise owner mappings are
+recorded separately below when executed. No A11, legacy-emitter, real external
+service or full-compatibility gate is closed by these fixtures.
+
+## Integrated nineteen-case qualification
+
+The complete candidate file passes **19/0 twice**, seeds501432/987654, after the
+exact history and outer-sub­reaper ordering corrections. Format, compile and
+strict Credo pass. Both unsuccessful recovery rounds and diagnosis remain in
+`/tmp/samgita-v105-m16-recovery/handoff.json`; final results SHA256
+`89c92a8013d3d1055c07687351289f4ddb101b28096f9538af94e731b826ea8d`.
+Production shutdown code is unchanged.
+
+After integration with the final callback repair, the full nineteen-case file
+and existing one-case native Apps origin profile pass **20/0 twice**, 49.7/50.0
+seconds. Root/driver compile and format, strict Credo, 38 tooling regressions,
+inventory consistency and the five-file source guard pass. Commands/logs are
+`/tmp/samgita-v106-integrated-mcp-checks/`; results/source SHA256 are
+`653a6956fbc339fe017e1efc7fb01b83a6f5549b769a9106d515b8f8cdc206d0` /
+`5a396fdf8fde9fa7896c3b413686f964741eb3a3e887a1aa2c4d4a7cc574151d`.
+
+Five exact physical owners gain scoped implemented evidence:
+
+| Physical owner | Actual native evidence |
+| --- | --- |
+| ClientRequest InitializeCapabilities.mcpServerOpenaiFormElicitation | M16 boolean-only true opt-in |
+| ClientRequest McpServerOauthClientRegistration enum0/1/2 | M18 auto, M19 cimd, M17 dcr |
+| ServerNotification McpServerStartupFailureReason enum0 | M15 reauthenticationRequired |
+
+Contracts become **4,476 implemented / 2,086 missing / 59 blocked**;
+requirements remain **462 implemented / 12 missing / 11 blocked**. Both verified
+totals remain zero. No sibling schema, arbitrary domain or broader negotiation
+state is inferred. Full final-source local and exact-pushed hosted qualification
+and all remaining native/external/A11 gates remain required.

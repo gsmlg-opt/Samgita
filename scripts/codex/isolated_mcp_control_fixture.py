@@ -31,12 +31,18 @@ from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_ope
 BINARY_SHA256 = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
 ACCESS = "synthetic-owned-apps-access"
 OAUTH_ACCESS = "synthetic-owned-mcp-oauth-access"
+OAUTH_RECOVERY_ACCESS = "synthetic-owned-mcp-oauth-recovered-access"
 ACCOUNT = "isolated-auth-account"
 CLIENT = "owned-mcp-client"
 EVENT_PATH = "/api/codex/ps/mcp"
 CALLBACK_PATH = "/callback/owned-mcp"
 OAUTH_MISSING_METADATA = "/oauth/.well-known/owned-missing-authorization-server"
-PROFILES = {"status", "oauth", "events"}
+DCR_CLIENT = "owned-dcr-client"
+CIMD_CLIENT = "https://chatgpt.com/oauth/codex/client.json"
+OAUTH_SELECTOR_PROFILES = {"oauth-cimd", "oauth-auto-fallback",
+                           "oauth-cimd-no-advertisement", "oauth-cimd-no-none"}
+UNCONFIGURED_OAUTH_PROFILES = {"oauth-dcr"} | OAUTH_SELECTOR_PROFILES
+PROFILES = {"status", "oauth", "events", "form-bool"} | UNCONFIGURED_OAUTH_PROFILES
 MCP_PATHS = {"/inventory/a", "/inventory/a-failed", "/inventory/a-held", "/inventory/a-v2",
              "/inventory/b", "/inventory/b-v2", "/oauth/mcp", EVENT_PATH}
 INVENTORY_STARTUP_ERROR = "owned-inventory-initialize-rejected"
@@ -98,6 +104,11 @@ class Fixture:
         self.native, self.native_pids, self.generation = None, [], 1
         self.inventory_health = None
         self.oauth_discovery = "valid"
+        self.oauth_access_revoked, self.oauth_recovery_issued = False, False
+        self.registration = None
+        self.oauth_client_id = (DCR_CLIENT if profile in {"oauth-dcr", "oauth-auto-fallback"}
+                                else CIMD_CLIENT if profile in OAUTH_SELECTOR_PROFILES else CLIENT)
+        self.callback_path = "/callback" if profile in UNCONFIGURED_OAUTH_PROFILES else CALLBACK_PATH
         self.initialize_held = threading.Event()
         self.initialize_release = threading.Event()
         self.initialize_finished = threading.Event()
@@ -149,7 +160,7 @@ class Fixture:
                                        response_written=written)
                 elif path in AUTH_METADATA:
                     fixture.record("oauth_metadata", path=path)
-                    self.reply(200, {"issuer": fixture.oauth_url,
+                    metadata = {"issuer": fixture.oauth_url,
                         "authorization_endpoint": fixture.endpoint + "/oauth/authorize",
                         "token_endpoint": fixture.endpoint + "/oauth/token",
                         "authorization_response_iss_parameter_supported": True,
@@ -157,7 +168,20 @@ class Fixture:
                         "grant_types_supported": ["authorization_code"],
                         "code_challenge_methods_supported": ["S256"],
                         "token_endpoint_auth_methods_supported": ["none"],
-                        "scopes_supported": ["read:owned", "inspect:owned"]})
+                        "scopes_supported": ["read:owned", "inspect:owned"]}
+                    if fixture.profile == "oauth-dcr":
+                        metadata.update({"registration_endpoint": fixture.endpoint + "/oauth/register",
+                                         "client_id_metadata_document_supported": True})
+                        fixture.record("oauth_dcr_metadata", cimd_advertised=True, dcr_advertised=True)
+                    elif fixture.profile in OAUTH_SELECTOR_PROFILES:
+                        cimd = fixture.profile not in {"oauth-auto-fallback", "oauth-cimd-no-advertisement"}
+                        public_none = fixture.profile != "oauth-cimd-no-none"
+                        metadata.update({"registration_endpoint": fixture.endpoint + "/oauth/register",
+                                         "client_id_metadata_document_supported": cimd,
+                                         "token_endpoint_auth_methods_supported": ["none"] if public_none else ["private_key_jwt"]})
+                        fixture.record("oauth_selector_metadata", cimd_advertised=cimd,
+                                       public_none=public_none, dcr_advertised=True)
+                    self.reply(200, metadata)
                 elif fixture.profile == "events" and path in APPS_RESOURCE_METADATA:
                     # The pin deliberately treats loopback Apps as ordinary OAuth.
                     # Its resource has a distinct URL from the existing OAuth peer.
@@ -205,7 +229,9 @@ class Fixture:
                     self.reply(413, {})
                     return
                 body = self.rfile.read(size)
-                if path == "/oauth/token":
+                if path == "/oauth/register":
+                    self.register(body)
+                elif path == "/oauth/token":
                     self.token(body)
                 elif path in MCP_PATHS:
                     self.mcp(path, json.loads(body))
@@ -213,41 +239,83 @@ class Fixture:
                     fixture.record("forbidden_http", method="POST", path=path)
                     self.reply(404, {"error": "no inference or command route"})
 
+            def register(self, body):
+                assert fixture.profile in {"oauth-dcr", "oauth-auto-fallback"} and fixture.registration is None
+                assert self.headers.get("Authorization") is None
+                assert self.headers.get("Content-Type", "").split(";")[0] == "application/json"
+                request = json.loads(body)
+                assert isinstance(request.get("redirect_uris"), list) and len(request["redirect_uris"]) == 1
+                redirect = urlparse(request["redirect_uris"][0])
+                assert redirect.scheme == "http" and redirect.hostname == "127.0.0.1"
+                assert redirect.port and redirect.path == "/callback"
+                assert not redirect.username and not redirect.password and not redirect.query and not redirect.fragment
+                assert request == {"client_name": "Codex", "redirect_uris": [redirect.geturl()],
+                    "grant_types": ["authorization_code", "refresh_token"], "token_endpoint_auth_method": "none",
+                    "response_types": ["code"], "scope": "read:owned inspect:owned", "application_type": "native"}
+                fixture.registration = request
+                fixture.record("client_registered", client_id=DCR_CLIENT, request=request)
+                self.reply(201, {"client_id": DCR_CLIENT, "client_name": "Codex",
+                                 "redirect_uris": request["redirect_uris"]})
+
             def token(self, body):
                 values = parse_qs(body.decode(), strict_parsing=True)
                 with fixture.lock:
                     auth = fixture.authorization
                     assert auth is not None, "token exchange without owned callback"
                     assert values.get("grant_type") == ["authorization_code"]
-                    assert values.get("client_id") == [CLIENT]
+                    assert values.get("client_id") == [fixture.oauth_client_id]
+                    if fixture.profile in OAUTH_SELECTOR_PROFILES:
+                        assert "client_secret" not in values and self.headers.get("Authorization") is None
+                        if fixture.profile == "oauth-auto-fallback":
+                            assert fixture.registration is not None and fixture.oauth_client_id == DCR_CLIENT
+                        else:
+                            assert fixture.registration is None and fixture.oauth_client_id == CIMD_CLIENT
+                        fixture.record("selector_token_verified", client_id=fixture.oauth_client_id,
+                                       no_client_secret=True, no_authorization=True)
                     assert values.get("code") == ["owned-code"]
                     assert values.get("redirect_uri") == [auth["redirect_uri"]]
                     verifier = values["code_verifier"][0]
                     challenge = base64.urlsafe_b64encode(hashlib.sha256(verifier.encode()).digest()).decode().rstrip("=")
                     assert challenge == auth["code_challenge"]
+                    access_generation = 2 if fixture.oauth_access_revoked else 1
+                    access_token = OAUTH_RECOVERY_ACCESS if access_generation == 2 else OAUTH_ACCESS
+                    if access_generation == 2:
+                        fixture.oauth_recovery_issued = True
                     fixture.record("token_exchange", client_verified=True, redirect_verified=True,
-                                   pkce_verified=True, accepted=True)
-                self.reply(200, {"access_token": OAUTH_ACCESS, "token_type": "Bearer",
+                                   pkce_verified=True, accepted=True, access_generation=access_generation)
+                self.reply(200, {"access_token": access_token, "token_type": "Bearer",
                                  "scope": "read:owned inspect:owned"})
 
             def mcp(self, path, message):
                 method, identity = message.get("method"), message.get("id")
-                oauth_bearer = self.headers.get("Authorization") == "Bearer " + OAUTH_ACCESS
+                with fixture.lock:
+                    initial_bearer = self.headers.get("Authorization") == "Bearer " + OAUTH_ACCESS
+                    recovery_bearer = self.headers.get("Authorization") == "Bearer " + OAUTH_RECOVERY_ACCESS
+                    revoked_bearer = initial_bearer and fixture.oauth_access_revoked
+                    oauth_bearer = ((initial_bearer and not fixture.oauth_access_revoked) or
+                                    (recovery_bearer and fixture.oauth_recovery_issued))
+                    access_generation = 1 if initial_bearer else 2 if recovery_bearer else None
                 apps_bearer = self.headers.get("Authorization") == "Bearer " + ACCESS
                 inventory_bearer = self.headers.get("Authorization") == "Bearer synthetic-owned-inventory"
                 fixture.record("mcp", path=path, method=method, id=identity,
                     params=message.get("params"), session=self.headers.get("Mcp-Session-Id"),
-                    oauth_bearer_verified=oauth_bearer, apps_bearer_verified=apps_bearer,
+                    oauth_bearer_verified=oauth_bearer, oauth_access_generation=access_generation,
+                    apps_bearer_verified=apps_bearer,
                     inventory_bearer_verified=inventory_bearer,
                     account_verified=self.headers.get("ChatGPT-Account-ID") == ACCOUNT)
                 if path == "/oauth/mcp" and not oauth_bearer:
                     with fixture.lock:
+                        challenge = 'Bearer ' + ('error="invalid_token", ' if revoked_bearer else '')
                         written = self.reply(401, {"error": "synthetic OAuth required"}, {
-                            "WWW-Authenticate": 'Bearer resource_metadata="' + fixture.endpoint +
+                            "WWW-Authenticate": challenge + 'resource_metadata="' + fixture.endpoint +
                             '/.well-known/oauth-protected-resource/oauth/mcp"'})
                         fixture.record("oauth_unauthenticated_response", path=path, method=method,
                             request_id=identity, status=401, challenge_present=True,
                             response_written=written)
+                        if revoked_bearer:
+                            fixture.record("oauth_revoked_access_response", path=path, method=method,
+                                request_id=identity, access_generation=1, status=401,
+                                challenge_present=True, response_written=written)
                     return
                 if path == EVENT_PATH:
                     # Native intentionally withholds ambient ChatGPT auth from
@@ -505,14 +573,24 @@ url = "{self.endpoint}/inventory/{path}?secret=owned-query-canary"
 {disabled}startup_timeout_sec = 5
 http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
 '''
-        elif self.profile == "oauth":
+        elif self.profile in ({"oauth"} | UNCONFIGURED_OAUTH_PROFILES):
             config += f'''[mcp_servers.oauth]
 url = "{self.oauth_url}"
 startup_timeout_sec = 5
-[mcp_servers.oauth.oauth]
+'''
+            if self.profile == "oauth":
+                config += f'''[mcp_servers.oauth.oauth]
 client_id = "{CLIENT}"
 callback_url = "http://127.0.0.1{CALLBACK_PATH}"
 '''
+        elif self.profile == "form-bool":
+            journal = self.root / "form-peer.jsonl"
+            if not journal.exists():
+                journal.touch(exist_ok=False)
+            args = [str(Path(__file__).resolve()), "--form-peer", str(journal)]
+            config += ("[mcp_servers.form]\ncommand = " + json.dumps(sys.executable)
+                       + "\nargs = " + json.dumps(args)
+                       + "\nstartup_timeout_sec = 5\ntool_timeout_sec = 10\n")
         elif self.profile == "events":
             config += f'''[mcp_servers.inventory]
 url = "{self.endpoint}/inventory/a"
@@ -576,12 +654,15 @@ http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
         assert parsed.path == "/oauth/authorize" and not parsed.fragment
         query = parse_qs(parsed.query, strict_parsing=True)
         assert all(len(values) == 1 for values in query.values())
-        assert query["client_id"] == [CLIENT] and query["response_type"] == ["code"]
+        assert query["client_id"] == [self.oauth_client_id] and query["response_type"] == ["code"]
         assert query["code_challenge_method"] == ["S256"]
         redirect = urlparse(query["redirect_uri"][0])
         assert redirect.scheme == "http" and redirect.hostname == "127.0.0.1"
-        assert redirect.port and redirect.path == CALLBACK_PATH
+        assert redirect.port and redirect.path == self.callback_path
         assert not redirect.username and not redirect.password and not redirect.query and not redirect.fragment
+        if self.profile in {"oauth-dcr", "oauth-auto-fallback"}:
+            assert self.registration is not None
+            assert self.registration["redirect_uris"] == [query["redirect_uri"][0]]
         self.authorization = {key: values[0] for key, values in query.items()}
         self.callback = (redirect.hostname, redirect.port)
         values = {"code": "owned-code", "state": query["state"][0], "iss": self.oauth_url}
@@ -658,6 +739,18 @@ http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
             assert self.profile == "status"
             (self.root / "codex/config.toml").write_text("[owned invalid config\n")
             self.record("config_malformed")
+        elif operation == "oauth-revoke-access":
+            assert self.profile == "oauth"
+            with self.lock:
+                assert not self.oauth_access_revoked and not self.oauth_recovery_issued
+                assert any(event["event"] == "mcp" and event.get("path") == "/oauth/mcp"
+                           and event.get("method") == "initialize"
+                           and event.get("oauth_bearer_verified") is True
+                           and event.get("oauth_access_generation") == 1
+                           for event in self.journal["events"]), "prime owned OAuth natively before revocation"
+                self.oauth_access_revoked = True
+                self.record("oauth_access_revoked", access_generation=1)
+            result = {"revoked_generation": 1}
         elif operation == "oauth-discovery":
             assert self.profile == "oauth"
             assert message["variant"] in {"valid", "missing-metadata"}
@@ -666,8 +759,17 @@ http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
                 self.record("oauth_discovery_changed", variant=self.oauth_discovery)
             result = {"variant": self.oauth_discovery}
         elif operation == "callback":
-            assert self.profile == "oauth"
+            assert self.profile in ({"oauth"} | UNCONFIGURED_OAUTH_PROFILES)
             result = self.complete_callback(message["url"], message["variant"])
+        elif operation == "selector-listeners":
+            assert self.profile in OAUTH_SELECTOR_PROFILES
+            ports = []
+            for table in ["/proc/net/tcp", "/proc/net/tcp6"]:
+                for row in Path(table).read_text().splitlines()[1:]:
+                    fields = row.split()
+                    if fields[3] == "0A":
+                        ports.append(int(fields[1].rsplit(":", 1)[1], 16))
+            result = {"listening_ports": sorted(ports)}
         elif operation == "probe-callback":
             assert self.callback is not None
             try:
@@ -735,7 +837,77 @@ http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
         self.closed = True
 
 
+def form_peer(journal):
+    """One inert tool; native emits all app-server messages, never this peer."""
+    journal = Path(journal).resolve()
+    assert journal.name == "form-peer.jsonl" and journal.parent.is_dir()
+    pending, calls = None, 0
+
+    def record(row):
+        with journal.open("a", encoding="utf-8") as target:
+            target.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+    def send(message):
+        message = {"jsonrpc": "2.0", **message}
+        record({"direction": "out", "message": message})
+        print(json.dumps(message), flush=True)
+
+    def result(identity, value):
+        send({"id": identity, "result": value})
+
+    record({"peer_started": os.getpid()})
+    try:
+        for line in sys.stdin:
+            assert len(line.encode()) <= 65_536, "oversized owned form input"
+            message = json.loads(line)
+            record({"direction": "in", "message": message})
+            method, identity = message.get("method"), message.get("id")
+            if method == "initialize":
+                assert message["params"]["protocolVersion"] == "2025-06-18"
+                assert message["params"]["capabilities"]["extensions"] == {"openai/form": {}}
+                result(identity, {"protocolVersion": "2025-06-18", "capabilities": {"tools": {}},
+                    "serverInfo": {"name": "owned-bool-form", "version": "1.0.0"}})
+            elif method == "notifications/initialized":
+                assert identity is None
+            elif method == "tools/list":
+                result(identity, {"tools": [{"name": "confirm", "description": "Owned bool translation form",
+                    "inputSchema": {"type": "object", "properties": {}},
+                    "annotations": {"readOnlyHint": True, "destructiveHint": False}}]})
+            elif method == "resources/list":
+                result(identity, {"resources": []})
+            elif method == "resources/templates/list":
+                result(identity, {"resourceTemplates": []})
+            elif method == "tools/call":
+                calls += 1
+                assert calls == 1 and pending is None
+                assert message["params"]["name"] == "confirm" and message["params"]["arguments"] == {}
+                pending = identity
+                send({"id": "owned-bool-form", "method": "openai/form", "params": {
+                    "message": "Owned bool translation form", "_meta": {"fixture/request": "bool-translation"},
+                    "requestedSchema": {"type": "object", "properties": {
+                        "labels": {"type": "array", "items": {"type": "string"}}},
+                        "required": ["labels"], "additionalProperties": False}}})
+            elif identity == "owned-bool-form":
+                assert pending is not None and "error" not in message
+                assert message["result"] == {"action": "accept", "content": {"labels": ["owned-λ"]},
+                    "_meta": {"fixture/response": "explicit-owned-decision"}}
+                record({"decision_observed": "accept"})
+                result(pending, {"content": [{"type": "text", "text": "Owned explicit form decision observed"}],
+                                 "isError": False})
+                pending = None
+            elif method == "ping":
+                result(identity, {})
+            else:
+                record({"forbidden_form": True, "method": method})
+                raise AssertionError("unapproved owned form method")
+    finally:
+        record({"peer_closed": True})
+
+
 def main():
+    if len(sys.argv) == 3 and sys.argv[1] == "--form-peer":
+        form_peer(sys.argv[2])
+        return
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
     parser.add_argument("--codex", required=True, type=Path)

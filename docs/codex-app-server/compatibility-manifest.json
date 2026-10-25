@@ -28310,27 +28310,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/InitializeCapabilities/properties/mcpServerOpenaiFormElicitation",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M16 actual native boolean-only true opt-in with extensions omitted: genuine out-of-turn openai/form is explicitly accepted with exact original native request identity, tool result and resolution; no inference or turn/item execution. Exact negative no-turn history and checked fixture/subreaper cleanup remain asserted. False/omitted and broader negotiation/deployment variants are not inferred.",
+        "Exact physical owner only; no sibling/alias or fully verified promotion. Stock immutable rust-v0.163.0 with explicitly owned synthetic MCP/OAuth dependencies in a private loopback-only namespace. Complete final local/hosted matrices, remaining external/backend/OS success and A11 are separate gates."
+      ],
       "nullable": false,
       "pointer": "/definitions/InitializeCapabilities/properties/mcpServerOpenaiFormElicitation",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "4b432f71efb836bda43f52ddd833868e32a3ec98de480aee08e2cd05ad2bde51",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "mcpServerOpenaiFormElicitation"
     },
     {
@@ -28919,68 +28928,95 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/McpServerOauthClientRegistration/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M18 explicit auto and omitted/default auto select the exact issuer-bound public CIMD URL identity with zero registration; a separate fresh explicit-auto profile falls back to actual dynamic registration when CIMD is absent. All complete native PKCE with native-written credentials and bounded callback-listener cleanup. No external document/IAM recognition is inferred.",
+        "Exact physical owner only; no sibling/alias or fully verified promotion. Stock immutable rust-v0.163.0 with explicitly owned synthetic MCP/OAuth dependencies in a private loopback-only namespace. Complete final local/hosted matrices, remaining external/backend/OS success and A11 are separate gates."
+      ],
       "pointer": "/definitions/McpServerOauthClientRegistration/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "e29286b1c27e643bc7559b984d22570fa470515902de9f5034e20c811c10213a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/McpServerOauthClientRegistration/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M19 explicit cimd completes native PKCE using the exact public URL client ID with zero registration; missing CIMD advertisement and missing public none token authentication each return the exact native preflight error without fallback, token exchange, callback completion or credential creation. Public identity selection is not external IAM/document qualification.",
+        "Exact physical owner only; no sibling/alias or fully verified promotion. Stock immutable rust-v0.163.0 with explicitly owned synthetic MCP/OAuth dependencies in a private loopback-only namespace. Complete final local/hosted matrices, remaining external/backend/OS success and A11 are separate gates."
+      ],
       "pointer": "/definitions/McpServerOauthClientRegistration/enum/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "54d2d9c3991d5188df40224dd0d6f5a1fe41285d589f44b8ab42a22d3ccbf148",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/McpServerOauthClientRegistration/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M17 explicit dcr overrides advertised CIMD support: actual dynamic registration request/body and issued client identity precede native PKCE/token exchange, native-written credential storage and connected status. No externally configured/secret/real authorization service or other platform is qualified.",
+        "Exact physical owner only; no sibling/alias or fully verified promotion. Stock immutable rust-v0.163.0 with explicitly owned synthetic MCP/OAuth dependencies in a private loopback-only namespace. Complete final local/hosted matrices, remaining external/backend/OS success and A11 are separate gates."
+      ],
       "pointer": "/definitions/McpServerOauthClientRegistration/enum/2",
       "schema": "ClientRequest.json",
       "schema_sha256": "f194354498bf3a69966946e301203e2ae87d1fb6074043f8a18b44c5f43f056e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -90086,24 +90122,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/McpServerStartupFailureReason/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M15 native-written OAuth credentials survive confirmed cold restart; the dependency revokes access acceptance only, producing actual401 invalid_token and exact starting/failed reauthenticationRequired notices. Repeated status preserves credential digest/counts with no silent refresh. Only explicit second native PKCE replaces credentials and recovers. Normal refresh/issuer changes/external OAuth/keyrings remain unqualified.",
+        "Exact physical owner only; no sibling/alias or fully verified promotion. Stock immutable rust-v0.163.0 with explicitly owned synthetic MCP/OAuth dependencies in a private loopback-only namespace. Complete final local/hosted matrices, remaining external/backend/OS success and A11 are separate gates."
+      ],
       "pointer": "/definitions/McpServerStartupFailureReason/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "5363c6caa5e630677229d453a075492b1050d1c3157abe47768c0983cd17fedf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
