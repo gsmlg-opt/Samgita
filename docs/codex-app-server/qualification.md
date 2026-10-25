@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [terminal hosted v59 checkpoint](repair-qualification.md#hosted-v59-checkpoint-at-e52bb72)
+qualifies exact pushed `e52bb72`: foundation succeeds; both native execution
+jobs succeed with **744 driver tests**, all **52 isolated profiles / 304 tests**,
+outside consumer, platform and authority **4/0 twice**. Complete evidence fails.
+The [terminal local v59 matrix](repair-qualification.md#terminal-frozen-v59-local-matrix)
+completes all42 required commands; the second populated GitHub first-page
+assertion and full evidence gate fail. A11, unreachable emitters, real
+external/backend/OS success and full compatibility remain incomplete.
+No release, publication, production migration or deployment occurs.
+
 The [rich catalog](mcp-catalog-qualification.md) and
 [custom-base precedence](default-gates-qualification.md#custom-base-instructions-override-personality-stripping)
 continuation passes the complete six-file native block **37/0 twice**, strict

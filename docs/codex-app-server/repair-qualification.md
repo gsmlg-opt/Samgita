@@ -6,6 +6,79 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Terminal frozen v59 local matrix
+
+At `e52bb724c85a4d2cd73a9adef2a6ce2f66afe4ec`, all **19 platform + 23 package
+commands** finish; the complete executable/manifest guards match **1,507 files**.
+The required complete-evidence command also executes and fails with exit1.
+No unrun command is counted and no failure is wrapped as success.
+
+| Check | Result |
+| --- | --- |
+| Complete driver, seeds501432/987654 | **744/0 twice** |
+| All52 isolated profiles, both seeds | **304/0 twice**, zero exclusions |
+| Native wire | **42/0** |
+| Neutral WebSocket, seeds455834/501432/987654 | **42/0 each** |
+| Outside native consumer / neutral consumers | **1/0** / **32+1+1/0** |
+| First populated root repeat | **230 core+131 web/0**, existing1+8 exclusions |
+| Second populated root repeat | **230 core/0;131 web/1**, existing1+8 exclusions |
+| Runtime/platform native | **59 core+11 web/0** |
+| Dedicated native authority | **4/0 twice**, preserved authority database |
+| Recovery/restart | **4 core+1 web/0 twice**, preserved recovery database |
+| Compile/format/Credo/Dialyzer, tooling, strict audits, assets, local assembly | Passed |
+| Required complete compatibility evidence | **Failed** |
+
+The second populated failure is the unchanged
+`GitHubControllerTest` first-page membership assertion at
+`apps/samgita_web/test/samgita_web/controllers/github_controller_test.exs:56`.
+Its created connection need not belong to the first page after earlier suites
+populate the retained database. The first repeat passes; this outcome is not
+rewritten as a pass and no unrelated GitHub pagination repair, database reset,
+history deletion or gate weakening is introduced.
+
+Terminal report: `/tmp/samgita-repair-final-v59-terminal-20261025.json`, SHA256
+`3e13d38d84f8f7e74033c8ddfea9612e2489960dee3ad2679444d1a98efce0f1`.
+Local assembly SHA256
+`177d71620ba76dac25901162973d48903395fdceb1522baf7caae4820b4cb5ad`;
+it is neither published nor deployed. The hosted outcomes below are separate.
+These results qualify this frozen source only; subsequent native candidates
+require final integrated qualification. A11, full evidence, unreachable
+emitters and real external/backend/OS success remain incomplete. No release.
+
+## Hosted v59 checkpoint at e52bb72
+
+Exact pushed `e52bb724c85a4d2cd73a9adef2a6ce2f66afe4ec` completes
+[Foundation 40177155387](https://github.com/gsmlg-opt/Samgita/actions/runs/40177155387)
+successfully. Both populated repeats pass **230 core + 131 web**, with the
+existing **1 core / 8 web exclusions**. Neutral outside consumers and required
+static/audit/assets/assembly checks pass. This does not repair the retained local
+GitHub first-page assumption or qualify A11.
+
+[Conformance 40177182865](https://github.com/gsmlg-opt/Samgita/actions/runs/40177182865)
+is terminal **failure** because the required complete evidence gate fails. Both
+execution jobs succeed at their existing deadlines:
+
+| Required job | Terminal evidence |
+| --- | --- |
+| Selected actual-binary/platform | Wire **42/0**; four complete driver partitions **206 + 169 + 204 + 165 = 744/0**; outside native consumer **1/0**; platform **59 core + 11 web/0**; authority **4/0 twice** |
+| All 52 isolated native profiles | **304/0**, zero exclusions, every required explicit step successful, including the new rich catalog and complete 21-case defaults profile |
+| Full compatibility evidence | **Failure**, zero fully verified entries/contracts |
+
+The driver suite includes scripted lifecycle tests as well as actual-binary
+cases. Stock Codex using synthetic local dependencies does not qualify real
+external credentials, every backend or OS. CI assembly is not publication or
+deployment. No tag, release workflow, production migration or service deployment.
+
+Terminal metadata `/tmp/samgita-v59-hosted-terminal-20261025.json`, SHA256
+`cc0d0047d50bee13b9dcd2b7e15877a0ad3201927a23b46aa45b8229f39231f3`.
+Per-job steps/counts/log hashes:
+`/tmp/samgita-v59-hosted-logs-20261025/report.json`, SHA256
+`94deb680dbb2e7996b8ed7a17fb97079956b1e619a7a93d548cd93db18c7bad6`.
+Contracts remain **4,463 implemented / 2,099 missing / 59 blocked**; requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. Full local
+v59 qualification was still running at this hosted checkpoint and is recorded
+separately above after completion. Later candidates need their own evidence.
+
 ## Integrated rich catalogs and custom instruction precedence
 
 Reviewed implementation units are `4895586` (queued approval expiry), `aa5f9be`

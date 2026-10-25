@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [terminal hosted v59 checkpoint](repair-qualification.md#hosted-v59-checkpoint-at-e52bb72)
+passes foundation and both execution jobs at exact pushed `e52bb72`: driver
+**744/0**, all **52 profiles / 304 tests / 0 failures**, outside consumer,
+platform and authority **4/0 twice**. The [terminal local matrix](repair-qualification.md#terminal-frozen-v59-local-matrix)
+also completes all **19 platform + 23 package commands**, with both driver744/0
+and all52-profile304/0 repeats. The retained second populated GitHub first-page
+assertion and full evidence gate fail. Source-only candidates require their own
+native/static qualification and final integrated matrix. Every broader incomplete
+gate remains required; no release.
+
 The [rich catalog](mcp-catalog-qualification.md) and
 [custom-base precedence](default-gates-qualification.md#custom-base-instructions-override-personality-stripping)
 continuation passes all six owning files **37/0 twice**, root/driver compile and
