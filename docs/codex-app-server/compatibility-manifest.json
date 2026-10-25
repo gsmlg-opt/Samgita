@@ -128242,24 +128242,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-override-metadata-qualification.md#default-and-origin-discriminators"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_reasoning_effort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "The explicitly absent ordinary reasoning-effort setting produces a present null in warm and cold ConfigReadResponse.config, independent of provider defaults.",
+        "Selected ordinary desktop configuration on the pinned native Linux stdio profile only. No provider execution/default resolution, whole ConfigLayerSource alternative, other source kind, metadata alias, whole method, other OS/transport or full compatibility promotion."
+      ],
       "pointer": "/definitions/Config/properties/model_reasoning_effort/anyOf/1",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -129919,49 +129928,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-override-metadata-qualification.md#default-and-origin-discriminators"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/6/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "The actual ordinary desktop origin has independently prescribed name.type=sessionFlags; expected CLI-layer version and persisted user fallback are retained.",
+        "Selected ordinary desktop configuration on the pinned native Linux stdio profile only. No provider execution/default resolution, whole ConfigLayerSource alternative, other source kind, metadata alias, whole method, other OS/transport or full compatibility promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/ConfigLayerSource/oneOf/6/properties/type",
       "required": true,
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "c897aa2ca886fd79d77a1bd230bd14bcb8b4b74a901783495db0508dfedd1db7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/config-override-metadata-qualification.md#default-and-origin-discriminators"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/ConfigLayerSource/oneOf/6/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "The exact sessionFlags discriminator literal is asserted on the actual origins-map entry, not inferred from ConfigWriteResponse or layers aliases.",
+        "Selected ordinary desktop configuration on the pinned native Linux stdio profile only. No provider execution/default resolution, whole ConfigLayerSource alternative, other source kind, metadata alias, whole method, other OS/transport or full compatibility promotion."
+      ],
       "pointer": "/definitions/ConfigLayerSource/oneOf/6/properties/type/enum/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "e41c4939ef4cb91fec536c0ebe555b0ceefddb1ac75c19eac24ed36bec06298a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_override_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

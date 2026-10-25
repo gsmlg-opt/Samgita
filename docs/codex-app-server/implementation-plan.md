@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [config default/origin unit](config-override-metadata-qualification.md#default-and-origin-discriminators)
+passes its complete owning file **3/0 twice**, compile/format, strict Credo and
+255-source guard. Three exact owners bring contracts to **4,739 implemented /
+1,823 missing / 59 blocked**, unchanged requirements and zero verified.
+Existing desktop persistence/precedence/version/idle behavior remains. Final
+combined functional checks remain required after the next bounded unit:
+qualify native search's legacy mode literal 6173 and actual section appearance
+null 6179 while moving/reordering/unassigning owned memberships and cold-reading
+their persisted projections, with no extra inference. Keep all prohibited/
+broad/hosted, full-goal, A11, source-unreachable and external/release gates open.
+
+## Earlier checkpoints
+
 The [timeline terminal-error unit](timeline-error-values-qualification.md)
 passes the final twenty-eight-file **51/0 twice** matrix, compile/format,
 strict Credo, outside consumer **1/0**, five Python AST checks and the 255-source
@@ -33,8 +46,6 @@ sessionFlags origin type/literal owners 3612/3613 in the existing desktop
 metadata journey; do not infer other source variants or provider defaults.
 Prohibited/broad/hosted, full-goal, A11, source-unreachable, external/release
 gates remain incomplete.
-
-## Earlier checkpoints
 
 The [context-window catalog unit](thread-event-lifecycle-qualification.md#context-window-catalog-qualification)
 passes the final twenty-eight-file **50/0 twice** matrix, compile/format,

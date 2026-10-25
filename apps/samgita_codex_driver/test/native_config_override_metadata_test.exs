@@ -54,6 +54,7 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
 
     current = call(pid, "config/read", %{})
     assert get_in(current, ["config", "desktop", "appearanceTheme"]) == "dark"
+    assert Map.fetch!(Map.fetch!(current, "config"), "model_reasoning_effort") === nil
     version = "sha256:" <> Base.encode16(:crypto.hash(:sha256, @session_json), case: :lower)
 
     assert Map.fetch!(Map.fetch!(current, "origins"), "desktop.appearanceTheme") === %{
@@ -71,6 +72,7 @@ defmodule SamgitaCodexDriver.NativeConfigOverrideMetadataTest do
 
     cold = call(restarted, "config/read", %{})
     assert get_in(cold, ["config", "desktop", "appearanceTheme"]) == "light"
+    assert Map.fetch!(Map.fetch!(cold, "config"), "model_reasoning_effort") === nil
 
     assert get_in(cold, ["origins", "desktop.appearanceTheme", "name"]) === %{
              "type" => "user",

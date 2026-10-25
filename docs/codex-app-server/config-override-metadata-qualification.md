@@ -1,5 +1,56 @@
 # Native displaced configuration writes
 
+## Default and origin discriminators
+
+This continuation qualifies exactly canonical **3554/3612/3613** on immutable
+rust-v0.163.0: ConfigReadResponse.config.model_reasoning_effort's null branch,
+and the actual origin's ConfigLayerSource sessionFlags type field/literal.
+Two Map.fetch! assertions require a present null in the existing warm/cold
+reads. The owned root, CLI and catalog prescribe no reasoning effort; this is
+unresolved configuration output, not a claim about effective provider defaults.
+The unchanged complete warm origins[desktop.appearanceTheme] equality requires
+literal sessionFlags and the independently hashed CLI version. Persisted light,
+effective warm dark and the cold exact user-file origin remain independent
+effect checks. No RPC, fixture, inference or runtime/shared-helper change is
+introduced; fixed yolo launch settings and all existing assertions remain.
+
+The pinned
+[read](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/config_manager_service.rs#L118)
+deserializes effective TOML into API Config. Its
+[optional effort](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/config.rs#L303)
+has no skip rule and serializes absent configuration as null.
+[Layer conversion](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/config_layer.rs#L28)
+maps the actual SessionFlags source; the tagged camelCase enum produces the
+asserted literal. Four complete producer/config files match archive SHA256
+e57f1d4f914c71c3532a12d5c14f740909fca4e7e041fa1b3db71618c88e5567;
+the three exact nodes and response export match inventory/provenance. Independent
+read-only review finds no actionable issue or broader evidence owner.
+
+Base commit: 28553ec. Focused v286 runs the complete owning three-case file at
+seeds 501432/987654, **3/0 twice**, in **2.609/2.622** command seconds. Scoped
+format, warning-free compile, strict Credo on 479 files and the **255-source**
+guard pass. All six commands complete; no check fails. Commands/environment/
+logs are in `/tmp/samgita-v286-config-origin-functional/functional/`.
+Results/source SHA256:
+15e180bc14ccc0054b9664169f2f12f373b58bc407f12283bee233c6f8327608 /
+5a542e30ef56a8fda5546432860b80773362a4e77859c0f6cd685d91a1f1f625.
+Adjacent source-evidence.json SHA256:
+584c539625a2cabd3dd7708698a3e456a9a545396525a083bc5acbbc80427f2c.
+manifest-binding.json records the three original/current owners and owning
+test SHA256 997837bc9da59b4beb661556d3b0bffdc52180d4bd29ad522765f5d9c8bc3174.
+
+Inventory --check passes. Contracts become **4,739 implemented / 1,823 missing /
+59 blocked**; requirements remain **462 implemented / 12 missing / 11 blocked**,
+zero verified. Strict completeness still exits **1**. Only these exact null/
+discriminator owners gain scoped evidence; the whole source variant, aliases,
+other source kinds, provider-default resolution and full methods remain
+unqualified. The [51/0 twice matrix](timeline-error-values-qualification.md)
+precedes these two added assertions; a final combined functional matrix remains
+required. Its outside-consumer and syntax results are retained earlier evidence,
+not new runs for this continuation. Prohibited security/permission tests,
+audits/broad/hosted gates, A11, source-unreachable and external/platform success,
+full compatibility and release remain incomplete. No publication or deployment.
+
 ## Origin-version continuation
 
 Exact owner **3580**, ConfigReadResponse#/definitions/ConfigLayerMetadata/

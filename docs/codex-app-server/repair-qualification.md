@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [config default/origin continuation](config-override-metadata-qualification.md#default-and-origin-discriminators)
+passes the owning file **3/0 twice**, strict/static checks and 255-source guard;
+artifacts are in `/tmp/samgita-v286-config-origin-functional/`. Three exact
+owners bring contracts to **4,739 implemented / 1,823 missing / 59 blocked**,
+unchanged requirements and zero verified. Two present-null assertions preserve
+all prior desktop effects; actual origin discrimination uses its existing
+independent complete-map oracle. The final combined functional matrix remains
+required after the next bounded unit. No check fails; all prohibited/broader/
+hosted, A11 and full-goal gates remain incomplete.
+
 The [native timeline terminal-error continuation](timeline-error-values-qualification.md)
 passes twenty-eight reviewed files **51/0 twice**, strict/static checks, outside
 consumer **1/0**, five Python AST checks and the 255-source guard; artifacts are

@@ -10,6 +10,9 @@ passes 51 ordinary real-binary cases at each of two seeds, static checks and an
 outside consumer, including independent raw/API error formats, explicit recovery
 and cold no-load history/timeline persistence; it does not rerun the broad
 suites or hosted workflows below.
+The following [config continuation](../codex-app-server/config-override-metadata-qualification.md#default-and-origin-discriminators)
+passes its owning file 3/0 at both seeds plus static checks; final combined
+functional checks remain required after its two added null assertions.
 Yolo is owned-fixture setup, with no permission assertions. All unrun gates,
 A11, real-provider acceptance and full compatibility remain incomplete; no
 release is authorized by these local results.

@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [config default/origin continuation](config-override-metadata-qualification.md#default-and-origin-discriminators)
+passes its owning file **3/0 twice**, compile/format, strict Credo and the
+255-source guard. Three exact null/discriminator owners bring contracts to
+**4,739 implemented / 1,823 missing / 59 blocked**, unchanged requirements and
+zero verified. Existing desktop persistence/precedence/version/idle effects
+remain; no RPC or inference is added. The following combined matrix precedes
+two new assertions and must run again on final integrated source. All
+prohibited/broader/hosted, full-goal, A11, source-unreachable/external and release
+gates remain incomplete.
+
 The [timeline terminal-error unit](timeline-error-values-qualification.md)
 passes twenty-eight reviewed files **51/0 twice**, compile/format, strict Credo,
 outside consumer **1/0**, five Python AST checks and the 255-source guard.
