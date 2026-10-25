@@ -199639,8 +199639,7 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md",
-        "docs/codex-app-server/search-ranking-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
@@ -200291,7 +200290,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/field-evidence-qualification.md"
+        "docs/codex-app-server/field-evidence-qualification.md",
+        "docs/codex-app-server/search-ranking-qualification.md"
       ],
       "experimental": true,
       "has_default": false,
