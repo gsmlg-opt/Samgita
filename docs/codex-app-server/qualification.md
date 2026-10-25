@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 4,185 implemented / 2,436 missing
+11 blocked requirements** and **0 verified / 4,234 implemented / 2,387 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 4,185 directly exercised
+MCP entries have scoped implementation evidence. These 4,234 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,14 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [settings/search continuation](settings-search-qualification.md) passes all
+six owning files, 41/0 twice, strict checks and matching source/binary guards.
+The source-backed warm-environment oracle correction and first failed run remain
+recorded. Forty-nine exact owners gain implemented evidence; settings snapshots
+and null/default search behavior do not qualify runtime permissions or defective
+cursor continuation. Continue remaining behavior and the complete final-source
+local/hosted matrix; all broader gates remain incomplete.
 
 The [explicit native correlation block](native-correlation-qualification.md)
 passes all eight owning files, 54/0 twice at the fixed seeds, strict checks and

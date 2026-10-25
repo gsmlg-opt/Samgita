@@ -216,6 +216,42 @@ defmodule SamgitaCodexDriver.NativeSearchProjectionsTest do
     assert :ok = Session.close(verify)
   end
 
+  test "explicit null search sort fields retain independent default created order across cold reads",
+       ctx do
+    pid = start(ctx)
+    first = complete(ctx, pid, "default-first")
+    second = complete(ctx, pid, "default-second")
+    saved = [first, second]
+    timestamps = search_timestamps(ctx)
+    assert MapSet.new(Map.keys(timestamps)) == MapSet.new([first.id, second.id])
+    expected = timestamp_order(timestamps, "created_at", "desc")
+    snippets = %{first.id => first.text, second.id => second.text}
+
+    verify = fn current ->
+      for optional <- [
+            %{},
+            %{"sortKey" => nil},
+            %{"sortDirection" => nil},
+            %{"sortKey" => nil, "sortDirection" => nil}
+          ] do
+        params = Map.merge(%{"searchTerm" => @needle, "limit" => 100}, optional)
+        response = call(current, "thread/search", params)
+        assert_timestamp_page(response, expected, snippets, timestamps)
+        assert Map.fetch!(response, "nextCursor") == nil
+      end
+    end
+
+    verify.(pid)
+    assert_no_execution(ctx, pid, saved)
+    assert :ok = Session.close(pid)
+    cold = start(ctx)
+    assert_unloaded(cold)
+    verify.(cold)
+    assert_unloaded(cold)
+    assert_no_execution(ctx, cold, saved)
+    assert :ok = Session.close(cold)
+  end
+
   test "search timestamp projections preserve sort order and expose created cursor precision loss",
        ctx do
     pid = start(ctx)
@@ -560,6 +596,28 @@ defmodule SamgitaCodexDriver.NativeSearchProjectionsTest do
       assert Map.fetch!(thread, "ephemeral") == false
       assert Map.fetch!(thread, "modelProvider") == "fixture"
       assert Map.fetch!(thread, "sessionId") == id
+      assert Map.fetch!(thread, "preview") == source.text
+      assert Map.fetch!(thread, "cliVersion") == "0.163.0"
+      assert Map.fetch!(thread, "model") == "mock-model"
+
+      expected_environments =
+        if status == "idle" do
+          [
+            %{
+              "cwd" => ctx.fixture.workspace,
+              "environmentId" => "local",
+              "runtimeWorkspaceRoots" => [ctx.fixture.workspace]
+            }
+          ]
+        end
+
+      assert Map.fetch!(thread, "environments") == expected_environments
+
+      for field <-
+            ~w(agentNickname agentRole canAcceptDirectInput daybreakEnabled extra forkedFromId gitInfo parentThreadId reasoningEffort) do
+        assert Map.fetch!(thread, field) == nil
+      end
+
       assert Map.fetch!(thread, "status") == %{"type" => status}
       # Search returns metadata, while full native reads retain the real turn.
       assert Map.fetch!(thread, "turns") == []

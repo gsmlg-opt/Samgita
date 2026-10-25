@@ -204550,46 +204550,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSearchSortKey/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/ThreadSearchSortKey/enum/0",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "f72b9d50beef799d41aaf408c10da1b76dfd07c472fdc68896f3ec3e7a75018a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/definitions/ThreadSearchSortKey/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/ThreadSearchSortKey/enum/1",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "5c285192d29fb9166e755cedf513320a12119ca743028918b183131c6bef6efd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -205044,24 +205064,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/properties/sortDirection/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/properties/sortDirection/anyOf/1",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -205128,24 +205158,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchParams.json#/properties/sortKey/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/properties/sortKey/anyOf/1",
       "schema": "v2/ThreadSearchParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -205862,105 +205902,145 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/agentNickname",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/agentNickname",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "031b4aeef5fca5225d3e4fd2ac8a7578b2315094a3f1ea715414bdb3f571c8e2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agentNickname"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/agentRole",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/agentRole",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "bcb2e14ace0dcb9c58e008c0aed3c066fea33807b3e73f7851cf365664c35b31",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agentRole"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/canAcceptDirectInput",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/canAcceptDirectInput",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "c36eb2709e68404f8bd2ff49306dfd49367003a82e9b0e230b15140ddfc9991e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "canAcceptDirectInput"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/cliVersion",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/cliVersion",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "e139608b3734485778a0782ce1920aea977d4584429267b4a9cc8f29c03c933e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cliVersion"
     },
     {
@@ -206031,76 +206111,106 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/cwd/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/Thread/properties/cwd/allOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/daybreakEnabled",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/daybreakEnabled",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "e6126e236cd682f3e2c66a41d391a04d805c1a1db413555c9f37b1d9ab5a18e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "daybreakEnabled"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/environments",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/environments",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "eb818655725112c45dc6537bd5cc4909e14d48ac1e489746e68fbe14a2f3713b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environments"
     },
     {
@@ -206138,27 +206248,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/extra",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/extra",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "055911a6e5dbc43a92b9ebb1a7b96c4d552255f35696d407b710de67bbbe797e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "extra"
     },
     {
@@ -206185,76 +206305,106 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/extra/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/Thread/properties/extra/anyOf/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/forkedFromId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/forkedFromId",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "ca49a7f6c879733e2f5837bf4530560c4ce167652317583d3ee6bba81412a4bb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "forkedFromId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/gitInfo",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/gitInfo",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b49ab934d16b24d8affa7ed8019241a73407c357759c2cd9246b867c8bbd0f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "gitInfo"
     },
     {
@@ -206281,24 +206431,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/gitInfo/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/Thread/properties/gitInfo/anyOf/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -206335,24 +206495,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/historyMode/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/Thread/properties/historyMode/allOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "83cae1d20fe617b0b3765b0c23465359e2657af8795a99cf1ef78ab547eedb2e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -206391,27 +206561,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/model",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "3f221e031fc5ed89fbd7339b88773c46fd63acf0d18c2cd6433981e606ca3d9b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
@@ -206507,27 +206687,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/parentThreadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/parentThreadId",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "501109fd6040d8fd2281a6b1c52d28c4c218dde5af4e08a3b09756fd69693812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "parentThreadId"
     },
     {
@@ -206565,27 +206755,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/preview",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/Thread/properties/preview",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "0bbe3abe79c437e144bf85b97dfc77b141d8090462d22b316cb6c51cb9667855",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "preview"
     },
     {
@@ -206623,27 +206823,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/reasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/reasoningEffort",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "51b0167cdd1450382f363a20ade8c6b02b6eb8939fa848069e87383f2aa20146",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoningEffort"
     },
     {
@@ -206670,24 +206880,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/reasoningEffort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/Thread/properties/reasoningEffort/anyOf/1",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -206972,50 +207192,70 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/status/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/Thread/properties/status/allOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "bcfae40aa3e6cbf0a4a6746f1f0ae09abe8e68c8eaaa987f76d920711053dc89",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/threadSource",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/threadSource",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "4bfc68de1c7a1fc34f4eba00c0306e3f5b2e152129a59edb97279bec4f47ec63",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_source_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadSource"
     },
     {
@@ -208687,24 +208927,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/ApprovalsReviewer/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/ApprovalsReviewer/enum/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "1838dd740c887e0c4b9535a171fa6b9635cfb571dbd0a68e1a366fc2b5b9ba67",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -208769,24 +209019,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/AskForApproval/oneOf/0/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "880ae7aec6758d06a12695a026a1627eecdaa5508bff45f133e68db34e6ba951",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -208821,24 +209081,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/AskForApproval/oneOf/0/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/AskForApproval/oneOf/0/enum/2",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "19de9176fc8d9b77dd06632cb199b412ba06bce03c96f8093dbedc1638bf42e9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -209175,24 +209445,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/MultiAgentMode/oneOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/MultiAgentMode/oneOf/0/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "0229ffaf15cae75be6b592891859be5b48251a4d59f651acfe32b56d2b25cb63",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -209291,68 +209571,98 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/NetworkAccess/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/NetworkAccess/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "8ff1f32fd2b922cc1dd9138bdc9a650febbf9421f1014ac480a30b951ba63b87",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/NetworkAccess/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/NetworkAccess/enum/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "2f6d91e1c710dde210d022f2cddcb44985df2ff9b851c03194ba2e69737cf49f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/Personality/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/Personality/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b9ca9244fa4639a7ad1b0be4d9ffbf905e7ddea75162e98611b5f0f6f1e168a8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -209417,24 +209727,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/ReasoningSummary/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/ReasoningSummary/oneOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "2e1f1029fbb03b0d4a82466d602080d87e43ab69948968b7cd3b1c2709b659b2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -209529,116 +209849,166 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/ReasoningSummary/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/ReasoningSummary/oneOf/1",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "d910db3cd8e90cbd05e2d64f2b23f85537e6c87d3f5c97d76ea6c81e6378779b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/ReasoningSummary/oneOf/1/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/ReasoningSummary/oneOf/1/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "b9ca9244fa4639a7ad1b0be4d9ffbf905e7ddea75162e98611b5f0f6f1e168a8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "12d2ff632703eef2141785d25f5412147f1619a29742eddc3b8517613df1678d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "78dee259f8c9cad59a80c39836964ad7241f6ac53643635ea06e38de3c7305c8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "ab743f8ecc6953971dbc09429589e2743765ae378e022db1af9d2ff7059127e9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -209771,294 +210141,414 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/2",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f3a451a4f46756a1ece205173fb43c60019e9107ad0fb3428e0eca810071bed5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": "restricted",
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/2/properties/networkAccess",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/2/properties/networkAccess",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "4971d330421a9f7e836fdc6dd530cf652f690c3b2a366d743d15771950456ead",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "networkAccess"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/2/properties/networkAccess/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/2/properties/networkAccess/allOf/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f31aeafb7ea93188f400fab31b37a795a4d60dfceed4e61483cb21b2776c0400",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f039143726ac8c85256f7697a9cd52013a13f62b47b789f9f77a19ab1e0739c8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/2/properties/type/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "8d0353abda87c20664bfdc0d86638e4f949d6c9772c580ea7c966213a18a8c21",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/3",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "87fed270d1b2d17d54c31b14d64ea3c3647123719065d1b9acc4101858117143",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/3/properties/excludeSlashTmp",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/3/properties/excludeSlashTmp",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "excludeSlashTmp"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/3/properties/excludeTmpdirEnvVar",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/3/properties/excludeTmpdirEnvVar",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "excludeTmpdirEnvVar"
     },
     {
       "default": false,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/3/properties/networkAccess",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/3/properties/networkAccess",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "f8b6dd8128e8bfe00ccd241c79f7e07f6f4b263941c95e50adce038c50a6fea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "networkAccess"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/3/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/3/properties/type",
       "required": true,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "c21a38e8c1b766ac2c0a4b96ef04ebfcdda6b0d52eea6accfb26ef80fc56caca",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/3/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "pointer": "/definitions/SandboxPolicy/oneOf/3/properties/type/enum/0",
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "da6c5867cd39e7be55cf7451ae83ad1005a638e3cf648440d6945c64e4319d4f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/settings-search-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSettingsUpdateParams.json#/definitions/SandboxPolicy/oneOf/3/properties/writableRoots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Explicit thread-setting input has an independently prescribed applied snapshot; no turn starts, provider request or interaction occurs. The detailed-summary arm separately has a future-provider reasoning oracle. Sandbox snapshots establish serialization/settings persistence only, not OS/network enforcement or automatic-review routing.",
+        "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+      ],
       "nullable": false,
       "pointer": "/definitions/SandboxPolicy/oneOf/3/properties/writableRoots",
       "required": false,
       "schema": "v2/ThreadSettingsUpdateParams.json",
       "schema_sha256": "bea9df28f525b87f895f5085b64377a40b46fea904b8d70ef268d0580356f877",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_future_settings_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "writableRoots"
     },
     {

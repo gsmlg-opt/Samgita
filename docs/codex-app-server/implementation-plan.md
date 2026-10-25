@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [settings/search continuation](settings-search-qualification.md) passes the
+complete six-file block **41/0 twice**, strict checks and matching source/binary
+guards after the preserved source-backed warm-environment oracle correction.
+Forty-nine precise owners bring contracts to **4,234 implemented / 2,387 missing**,
+zero verified; requirements remain 462 implemented/12 missing/11 blocked.
+Continue remaining actual-native behavior and complete final-source qualification;
+active reviewer routing, cursor defects and every broader incomplete gate remain.
+
 The [explicit native correlation block](native-correlation-qualification.md)
 passes all eight owning files **54/0 twice**, strict checks and matching
 1,495-file/binary guards. Sixty exact request-envelope owners bring contracts to

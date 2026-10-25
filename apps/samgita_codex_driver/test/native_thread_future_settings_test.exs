@@ -443,6 +443,108 @@ defmodule SamgitaCodexDriver.NativeThreadFutureSettingsTest do
   end
 
   @tag scenario: "assistant"
+  test "idle explicit settings literals preserve exact values without execution", ctx do
+    {pid, id} = idle_thread(ctx)
+
+    settings =
+      idle_update(
+        ctx,
+        pid,
+        id,
+        %{
+          "approvalPolicy" => "untrusted",
+          "approvalsReviewer" => "auto_review",
+          "personality" => "none",
+          "multiAgentMode" => "explicitRequestOnly",
+          "summary" => "none"
+        },
+        %{
+          "approvalPolicy" => "untrusted",
+          "approvalsReviewer" => "auto_review",
+          "personality" => "none",
+          "multiAgentMode" => "explicitRequestOnly",
+          "summary" => "none"
+        }
+      )
+
+    changed =
+      idle_update(ctx, pid, id, %{"approvalPolicy" => "never", "summary" => "auto"}, %{
+        "approvalPolicy" => "never",
+        "approvalsReviewer" => "auto_review",
+        "personality" => "none",
+        "multiAgentMode" => "explicitRequestOnly",
+        "summary" => "auto"
+      })
+
+    assert Map.drop(changed, ["approvalPolicy", "summary"]) ==
+             Map.drop(settings, ["approvalPolicy", "summary"])
+
+    finish_idle(ctx, pid)
+  end
+
+  @tag scenario: "assistant"
+  test "idle explicit sandbox variants retain exact policy and clear named profile provenance",
+       ctx do
+    config = Path.join(ctx.fixture.codex_home, "config.toml")
+    File.write!(config, "\n[permissions.audit]\nextends = ':read-only'\n", [:append])
+    {pid, id} = idle_thread(ctx)
+
+    idle_update(ctx, pid, id, %{"permissions" => "audit", "summary" => "detailed"}, %{
+      "summary" => "detailed",
+      "activePermissionProfile" => %{"id" => "audit", "extends" => ":read-only"},
+      "sandboxPolicy" => %{"type" => "readOnly", "networkAccess" => false}
+    })
+
+    # Each policy and applied marker is prescribed before observing native output.
+    # No turn starts and no filesystem/network enforcement claim follows.
+    cases = [
+      {%{"type" => "dangerFullAccess"}, "auto", %{"type" => "dangerFullAccess"}},
+      {%{"type" => "externalSandbox", "networkAccess" => "restricted"}, "detailed",
+       %{"type" => "externalSandbox", "networkAccess" => "restricted"}},
+      {%{"type" => "externalSandbox", "networkAccess" => "enabled"}, "auto",
+       %{"type" => "externalSandbox", "networkAccess" => "enabled"}},
+      {%{
+         "type" => "workspaceWrite",
+         "writableRoots" => [ctx.next_cwd],
+         "networkAccess" => true,
+         "excludeTmpdirEnvVar" => true,
+         "excludeSlashTmp" => true
+       }, "detailed",
+       %{
+         "type" => "workspaceWrite",
+         "writableRoots" => [ctx.next_cwd],
+         "networkAccess" => true,
+         "excludeTmpdirEnvVar" => true,
+         "excludeSlashTmp" => true
+       }},
+      {%{
+         "type" => "workspaceWrite",
+         "writableRoots" => [],
+         "networkAccess" => false,
+         "excludeTmpdirEnvVar" => false,
+         "excludeSlashTmp" => false
+       }, "auto",
+       %{
+         "type" => "workspaceWrite",
+         "writableRoots" => [],
+         "networkAccess" => false,
+         "excludeTmpdirEnvVar" => false,
+         "excludeSlashTmp" => false
+       }}
+    ]
+
+    for {input, marker, expected} <- cases do
+      idle_update(ctx, pid, id, %{"sandboxPolicy" => input, "summary" => marker}, %{
+        "summary" => marker,
+        "activePermissionProfile" => nil,
+        "sandboxPolicy" => expected
+      })
+    end
+
+    finish_idle(ctx, pid)
+  end
+
+  @tag scenario: "assistant"
   test "idle named read only permissions and legacy sandbox preserve errors and profile provenance",
        ctx do
     config = Path.join(ctx.fixture.codex_home, "config.toml")
