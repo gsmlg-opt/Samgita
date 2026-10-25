@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [history/budget/account-plan block](history-budget-plans-qualification.md)
+adds four native cases; all32 owning cases pass at both fixed seeds, with strict
+checks and matching1495-file/binary guards. Fifty-two precise owners bring
+contracts to3591 implemented/3030 missing, zero verified; requirements stay
+462 implemented/12 missing/11 blocked. Continue remaining reachable typed-history
+and other behavior, then the complete final-source local/hosted matrix. A11,
+unreachable emitters, external/OS success and retained aggregate failures remain.
+
 The [terminal-error/managed-metadata block](managed-errors-qualification.md)
 adds14 actual-native cases; all49 owning cases pass at both fixed seeds.
 The PathUri oracle and numeric-separator failures remain documented; strict

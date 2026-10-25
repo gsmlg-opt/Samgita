@@ -5,6 +5,7 @@ Only the pinned executable produces app-server messages. The one permitted POST
 is a bounded read-only thread-usage query; mutations and model calls are denied.
 """
 import argparse
+import base64
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import ipaddress
 import json
@@ -22,8 +23,14 @@ from isolated_apps_fixture import ACCOUNT_ID, ACCESS_TOKEN, Fixture as MetadataF
 
 ALLOWED_METHODS = {
     "initialize", "initialized", "account/rateLimits/read", "account/usage/read",
-    "account/workspaceMessages/read", "thread/loaded/list",
+    "account/workspaceMessages/read", "account/read", "thread/loaded/list",
 }
+PLAN_CASES = (
+    "free", "go", "plus", "pro", "prolite", "promax", "team",
+    "self_serve_business_prolite", "self_serve_business_usage_based", "business", "ent26",
+    "enterprise_cbp_automation", "enterprise_cbp_usage_based", "enterprise", "edu",
+    "edu_plus", "edu_pro", "future_metadata_plan", "omit_plan_claim",
+)
 THREAD_ID = "019fc8ab-1fb2-7000-8000-000000000123"
 READ_PATHS = {
     "/backend-api/wham/usage": "rates",
@@ -87,9 +94,12 @@ def initial_state():
 
 
 class Fixture(MetadataFixture):
-    def __init__(self, root, scenario, namespace):
+    def __init__(self, root, scenario, namespace, plan_case="pro"):
         self.root = root
         self.scenario = scenario
+        assert plan_case in PLAN_CASES, "unapproved synthetic plan case"
+        assert scenario == "chatgpt" or plan_case == "pro", "plan case requires synthetic ChatGPT auth"
+        self.plan_case = plan_case
         self.product_sku = "codex"
         self.lock = threading.Lock()
         self.journal = {"namespace": namespace, "events": []}
@@ -198,6 +208,26 @@ class Fixture(MetadataFixture):
         config.write_text(config.read_text().replace("apps = true", "apps = false"))
         if self.scenario == "no_auth":
             (self.root / "codex/auth.json").unlink()
+        elif self.scenario == "chatgpt" and self.plan_case != "pro":
+            # Only vary the local, deliberately unsigned synthetic metadata token.
+            # Preserve the shared fixture's default behavior and all identity/canary fields.
+            auth_path = self.root / "codex/auth.json"
+            auth = json.loads(auth_path.read_text())
+            header, payload, signature = auth["tokens"]["id_token"].split(".")
+            assert signature == "c3ludGhldGlj"
+            claims = json.loads(base64.urlsafe_b64decode(payload + "=" * (-len(payload) % 4)))
+            assert claims["email"] == "isolated-auth@synthetic.invalid"
+            identity = claims["https://api.openai.com/auth"]
+            assert identity["chatgpt_account_id"] == ACCOUNT_ID
+            assert identity["chatgpt_user_id"] == "isolated-auth-user"
+            if self.plan_case == "omit_plan_claim":
+                identity.pop("chatgpt_plan_type")
+            else:
+                identity["chatgpt_plan_type"] = self.plan_case
+            encoded = base64.urlsafe_b64encode(json.dumps(claims).encode()).decode().rstrip("=")
+            auth["tokens"]["id_token"] = ".".join([header, encoded, signature])
+            auth_path.write_text(json.dumps(auth))
+            auth_path.chmod(0o600)
         (self.root / "account-state.json").write_text(json.dumps(initial_state()))
         return environment
 
@@ -213,7 +243,8 @@ def isolated(args):
     assert all(not row.get("prefsrc") or ipaddress.ip_address(row["prefsrc"]).is_loopback
                for row in routes)
     fixture = Fixture(Path(args.root), args.scenario, {
-        "parent": args.parent_netns, "child": child, "interfaces": ["lo"], "default_route": False})
+        "parent": args.parent_netns, "child": child, "interfaces": ["lo"], "default_route": False},
+        plan_case=args.plan_case)
     native = None
     reader = None
     stopping = False
@@ -246,6 +277,8 @@ def isolated(args):
         for line in sys.stdin:
             wire = json.loads(line)
             assert wire.get("method") in ALLOWED_METHODS, "forbidden fixture operation"
+            if wire["method"] == "account/read":
+                assert wire.get("params") == {"refreshToken": False}, "refresh is forbidden"
             fixture.record("native_input", method=wire["method"])
             native.stdin.write(line)
             native.stdin.flush()
@@ -273,6 +306,7 @@ def main():
     parser.add_argument("--codex", required=True)
     parser.add_argument("--root", required=True)
     parser.add_argument("--scenario", required=True, choices=["chatgpt", "no_auth", "api_key"])
+    parser.add_argument("--plan-case", choices=PLAN_CASES, default="pro")
     parser.add_argument("--inside", action="store_true")
     parser.add_argument("--parent-netns")
     args = parser.parse_args()

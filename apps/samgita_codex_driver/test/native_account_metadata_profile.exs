@@ -10,6 +10,7 @@ defmodule SamgitaCodexDriver.NativeAccountMetadataProfile do
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/isolated_account_metadata_fixture.py", __DIR__)
   @thread_id "019fc8ab-1fb2-7000-8000-000000000123"
+  @plan_binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
 
   setup tags do
     binary = System.get_env("CODEX_BINARY")
@@ -333,6 +334,191 @@ defmodule SamgitaCodexDriver.NativeAccountMetadataProfile do
     assert_auth_gate(ctx, "chatgpt authentication required")
   end
 
+  test "native startup account snapshots preserve each known synthetic plan SKU", ctx do
+    assert_plan_binary(ctx)
+
+    for {claim, expected} <- [
+          {"free", "free"},
+          {"go", "go"},
+          {"plus", "plus"},
+          {"pro", "pro"},
+          {"prolite", "prolite"},
+          {"promax", "promax"},
+          {"team", "team"},
+          {"self_serve_business_prolite", "self_serve_business_prolite"},
+          {"self_serve_business_usage_based", "self_serve_business_usage_based"},
+          {"business", "business"},
+          {"ent26", "ent26"},
+          {"enterprise_cbp_automation", "enterprise_cbp_automation"},
+          {"enterprise_cbp_usage_based", "enterprise_cbp_usage_based"},
+          {"enterprise", "enterprise"},
+          {"edu", "edu"},
+          {"edu_plus", "edu_plus"},
+          {"edu_pro", "edu_pro"}
+        ] do
+      assert_plan_snapshot(ctx, claim, expected)
+    end
+  end
+
+  test "future and absent synthetic token plans emit unknown account metadata", ctx do
+    assert_plan_binary(ctx)
+    assert_plan_snapshot(ctx, "future_metadata_plan", "unknown")
+    assert_plan_snapshot(ctx, "omit_plan_claim", "unknown")
+  end
+
+  defp assert_plan_binary(ctx) do
+    assert Base.encode16(:crypto.hash(:sha256, File.read!(ctx.binary)), case: :lower) ==
+             @plan_binary_sha
+  end
+
+  defp assert_plan_snapshot(ctx, claim, expected) do
+    root = Path.join(ctx.root, "plan-#{claim}")
+    File.mkdir!(root)
+
+    owned = %{
+      ctx
+      | root: root,
+        journal: Path.join(root, "isolated-account-metadata-journal.json")
+    }
+
+    pid = start(owned, claim)
+    auth_path = Path.join(root, "codex/auth.json")
+    config_path = Path.join(root, "codex/config.toml")
+    auth_digest = :crypto.hash(:sha256, File.read!(auth_path))
+    config_bytes = File.read!(config_path)
+    assert_synthetic_plan(auth_path, claim)
+
+    received = account_snapshot(pid, System.monotonic_time(:millisecond) + 10_000)
+    expected_update = %{"authMode" => "chatgpt", "planType" => expected}
+    assert_account_updates(received, expected_update)
+
+    expected_account = %{
+      "account" => %{
+        "type" => "chatgpt",
+        "email" => "isolated-auth@synthetic.invalid",
+        "planType" => expected
+      },
+      "requiresOpenaiAuth" => true,
+      "workspaceRouting" => %{
+        "chatgptAccountId" => "isolated-auth-account",
+        "backendOrigin" => "https://synthetic.invalid",
+        "accountRoutingOverride" => "NO_CONSTRAINT"
+      }
+    }
+
+    for _ <- 1..2 do
+      assert call(pid, "account/read", %{"refreshToken" => false}) === expected_account
+      assert :crypto.hash(:sha256, File.read!(auth_path)) === auth_digest
+      assert File.read!(config_path) === config_bytes
+      assert_synthetic_plan(auth_path, claim)
+    end
+
+    assert {:ok, later} = Session.drain(pid)
+    assert_account_updates(received ++ later, expected_update)
+    assert Session.status(pid).phase == :ready
+    assert Session.status(pid).pending == 0
+    assert Session.status(pid).interactions == 0
+    assert Session.uncertain_operations(pid) === []
+    assert resource(owned, "rates")["body"]["plan_type"] === "pro"
+    assert Enum.filter(events(owned), &(&1["event"] == "read")) === []
+    finish(owned, pid)
+
+    assert :crypto.hash(:sha256, File.read!(auth_path)) === auth_digest
+    assert File.read!(config_path) === config_bytes
+    assert_synthetic_plan(auth_path, claim)
+
+    inputs = for event <- events(owned), event["event"] == "native_input", do: event["method"]
+    assert Enum.count(inputs, &(&1 == "account/read")) == 2
+
+    assert Enum.all?(
+             inputs,
+             &(&1 in ["initialize", "initialized", "account/read", "thread/loaded/list"])
+           )
+
+    metadata_paths =
+      for event <- events(owned), event["event"] == "startup_metadata", do: event["path"]
+
+    assert "/backend-api/wham/accounts/check" in metadata_paths
+
+    assert Enum.all?(
+             metadata_paths,
+             &(&1 in [
+                 "/backend-api/wham/config/bundle",
+                 "/backend-api/wham/accounts/check",
+                 "/backend-api/wham/settings/user"
+               ])
+           )
+  end
+
+  defp assert_synthetic_plan(path, claim) do
+    assert Bitwise.band(File.stat!(path).mode, 0o777) == 0o600
+    auth = path |> File.read!() |> JSON.decode!()
+    assert auth["auth_mode"] === "chatgpt"
+    assert auth["OPENAI_API_KEY"] === nil
+    assert auth["tokens"]["account_id"] === "isolated-auth-account"
+    token = auth["tokens"]["id_token"]
+    assert is_binary(token) and byte_size(token) <= 4096
+    assert [header, payload, "c3ludGhldGlj"] = String.split(token, ".")
+
+    assert header |> Base.url_decode64!(padding: false) |> JSON.decode!() === %{
+             "alg" => "none",
+             "typ" => "JWT"
+           }
+
+    claims = payload |> Base.url_decode64!(padding: false) |> JSON.decode!()
+    assert Enum.sort(Map.keys(claims)) === ["email", "exp", "https://api.openai.com/auth"]
+    assert claims["email"] === "isolated-auth@synthetic.invalid"
+    assert is_integer(claims["exp"])
+    now = System.system_time(:second)
+    assert claims["exp"] > now and claims["exp"] <= now + 3600
+
+    identity = %{
+      "chatgpt_account_id" => "isolated-auth-account",
+      "chatgpt_user_id" => "isolated-auth-user"
+    }
+
+    expected =
+      if claim == "omit_plan_claim",
+        do: identity,
+        else: Map.put(identity, "chatgpt_plan_type", claim)
+
+    assert Map.fetch!(claims, "https://api.openai.com/auth") === expected
+  end
+
+  defp account_snapshot(pid, deadline, received \\ []) do
+    assert {:ok, current} = Session.drain(pid)
+    received = received ++ current
+
+    if Enum.any?(received, &(&1.wire["method"] == "account/updated")) do
+      received
+    else
+      assert System.monotonic_time(:millisecond) < deadline, "native account snapshot deadline"
+      assert Session.status(pid).phase == :ready
+
+      receive do
+        {:codex_driver, ^pid, :events_available} -> :ok
+        {:codex_driver, ^pid, {:gap, _}} -> flunk("unexpected native account snapshot gap")
+      after
+        10 -> :ok
+      end
+
+      account_snapshot(pid, deadline, received)
+    end
+  end
+
+  defp assert_account_updates(received, expected) do
+    updates = Enum.filter(received, &(&1.wire["method"] == "account/updated"))
+    assert updates != []
+
+    for event <- updates do
+      assert event.wire["method"] === "account/updated"
+      assert Map.fetch!(event.wire, "params") === expected
+    end
+
+    refute Enum.any?(received, &(&1.kind == :server_request))
+    refute Enum.any?(received, &(&1.wire["method"] == "turn/started"))
+  end
+
   defp assert_auth_gate(ctx, prefix) do
     pid = start(ctx)
 
@@ -349,22 +535,17 @@ defmodule SamgitaCodexDriver.NativeAccountMetadataProfile do
     finish(ctx, pid)
   end
 
-  defp start(ctx) do
+  defp start(ctx, plan_case \\ nil) do
+    args = [@script, "--codex", ctx.binary, "--root", ctx.root, "--scenario", ctx.scenario]
+    args = if plan_case, do: args ++ ["--plan-case", plan_case], else: args
+
     {:ok, pid} =
       Session.start_link(
         transport:
           {Stdio,
            [
              executable: System.find_executable("python3"),
-             args: [
-               @script,
-               "--codex",
-               ctx.binary,
-               "--root",
-               ctx.root,
-               "--scenario",
-               ctx.scenario
-             ],
+             args: args,
              env: %{"CODEX_HOME" => Path.join(ctx.root, "codex")}
            ]}
       )

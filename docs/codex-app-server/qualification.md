@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,399 implemented / 3,222 missing
+11 blocked requirements** and **0 verified / 3,591 implemented / 3,030 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,399 directly exercised
+MCP entries have scoped implementation evidence. These 3,591 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,14 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [history/budget/account-plan block](history-budget-plans-qualification.md)
+adds four actual-native cases; the complete owning block passes32/0 at both
+fixed seeds, compile/format/strict Credo and matching1495-file/binary guards.
+Fifty-two exact owners bring contracts to3591 implemented/3030 missing, zero
+verified. Nullable/empty values, local synthetic identity and single-turn budget
+observations retain explicit limits. Continue remaining reachable behavior and
+complete final-source local/hosted qualification; all broader gates remain open.
 
 The [terminal-error/managed-metadata block](managed-errors-qualification.md)
 passes49/0 at both fixed seeds, including14 new cases, with strict checks after

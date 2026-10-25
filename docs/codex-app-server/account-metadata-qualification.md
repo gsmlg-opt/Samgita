@@ -1,5 +1,10 @@
 # Native account metadata reads
 
+The later [history/budget/account-plan continuation](history-budget-plans-qualification.md)
+adds actual startup account notifications and explicit non-refreshing account
+reads for synthetic plan claims. Its separate limits and two-seed evidence
+supersede the original unit's no-notification scope for those added cases.
+
 This explicit profile qualifies bounded read behavior for `account/rateLimits/read`,
 `account/usage/read` and `account/workspaceMessages/read` against immutable Codex
 `rust-v0.163.0`. The real executable produces every app-server response; only its
