@@ -216672,27 +216672,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-config-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/config",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_start_config_effort_only: Three starts before inference compare exact config effort-low map, explicit config:null and omission against independently prescribed root-high config and catalog with no default; native responses/started notices are low/high/high. Changed summary-only snapshots retain effort, and exactly two actual provider bodies are low/high+auto with fixed instructions/unique unshared markers and actual thread/turn IDs. Five unchanged encoded start/turn frames match genuine response IDs. A/B completed legacy history asserts actual turn/content plus source-prescribed reconstructed item-1/item-2; never-submittedC requires exact native unmaterialized-history error plus metadata stub, no C inference/turn. Original/trace/history-oracle failures remain documented; all bounds/cleanup and retained input/journal bytes remain. Only this physical field's selected effort override/null/omission gains scoped evidence, not arbitrary config keys/complete precedence/errors, aliases, other history/cold restore/OS/transport/backend/external or whole configuration compatibility. Prohibited/broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/config",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "739cb0c0defcb7f0ed857b685e2d027b2b62284b06f53af782bfb441863f28b3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_config_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "config"
     },
     {

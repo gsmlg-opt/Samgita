@@ -15,6 +15,20 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [per-thread config continuation](thread-start-config-values-qualification.md)
+adds one exact request field. The final twenty-five-file **40/0 twice** matrix,
+strict/static checks, outside consumer **1/0**, three Python AST checks and
+251-source guard pass; artifacts are in
+`/tmp/samgita-v249-functional-checks/functional/`. Contracts are **4,707
+implemented / 1,855 missing / 59 blocked**, with unchanged requirements and
+zero verified. Original and diagnostic **1/1** failures remain: legacy C has
+no materialized history before input, and reconstructed item IDs differ from
+streamed UUIDs. Exact native errors, metadata/no-execution controls and
+source-prescribed item-1/item-2 correct the new test, retaining all config,
+provider, history and cleanup oracles. A wrong-OTP diagnostic is not counted
+as final evidence. No runtime/shared helper changes; prohibited/broader/hosted
+checks, A11 and the full goal remain incomplete.
+
 The [memory status reader continuation](memory-status-reader-qualification.md)
 adds three precise fields with an explicit synthetic-persisted-input limitation.
 The final twenty-four-file **39/0 twice** matrix, strict/static checks, outside

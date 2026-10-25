@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [per-thread config unit](thread-start-config-values-qualification.md) passes
+twenty-five reviewed functional files **40/0 twice**, compile/format, strict
+Credo, outside consumer **1/0**, three Python AST checks and the 251-source
+guard. One exact field brings contracts to **4,707 implemented / 1,855 missing /
+59 blocked**, with unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Native response/settings/inference independently
+distinguish the low override from root high/null/omission; original legacy
+history-oracle failures are source-corrected without weaker gates. Next apply
+the bounded loaded-search environment assertions for physical fields 6170/6171
+in the existing search GitInfo case. No parent-array/alias promotion is implied.
+Keep every prohibited/broad/hosted, full-goal, A11, external and release gate
+incomplete.
+
+## Earlier checkpoints
+
 The [memory status reader unit](memory-status-reader-qualification.md) passes
 twenty-four reviewed functional files **39/0 twice**, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and the 250-source
@@ -33,8 +48,6 @@ consolidation, production progress-writer and context success stay unverified.
 Next qualify source-backed ordinary thread/start config override/null/omission
 with independent root/per-thread settings and inference effects. Keep every
 prohibited/broad/hosted, full-goal, A11, external and release gate incomplete.
-
-## Earlier checkpoints
 
 The [diagnostic PID binding](diagnostic-process-identity-qualification.md)
 indexes one direct existing response field against the unchanged final

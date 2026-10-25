@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [per-thread configuration unit](thread-start-config-values-qualification.md)
+passes twenty-five reviewed functional files **40/0 twice**, compile/format,
+strict Credo, outside consumer **1/0**, three Python AST checks and the 251-source
+guard. One direct field brings contracts to **4,707 implemented / 1,855 missing /
+59 blocked**, with unchanged requirements and zero verified. Real start/settings/
+inference values distinguish per-thread low from root high and null/omission.
+Original empty-legacy/history-ID oracle failures and the diagnostic environment
+typo remain documented; accurate upstream assertions replace both wrong
+expectations, with no weaker gates. Prohibited/broader/hosted/full-goal/A11/
+external/release gates remain incomplete.
+
 The [memory status reader](memory-status-reader-qualification.md) passes
 twenty-four reviewed functional files **39/0 twice**, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and the 250-source guard.
