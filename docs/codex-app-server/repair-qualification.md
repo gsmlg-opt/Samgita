@@ -6,6 +6,134 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Integrated rich catalogs and custom instruction precedence
+
+Reviewed implementation units are `4895586` (queued approval expiry), `aa5f9be`
+(MCP resources/catalogs) and `611088c` (custom-base precedence). Scoped checks
+ran their combined working tree before these commits; their source hashes are
+retained in the reports. Explicit manifest binding follows those checks. The
+complete committed-source local/hosted matrices remain the next required gate.
+
+The [rich MCP catalog profile](mcp-catalog-qualification.md) and
+[default/personality differential](default-gates-qualification.md#custom-base-instructions-override-personality-stripping)
+pass the entire six-file block **37/0 at both seeds**, no exclusions. All eleven
+scoped commands pass, including compile/format, strict Credo (448 source files),
+namespace/sandbox preflights, 38 tooling regressions and inventory consistency.
+The 1,507-file and immutable executable guards match. Logs/commands are
+`/tmp/samgita-native-continuation-v58-20261025/`; terminal report SHA256
+`58108203bdffacfc5e6e8ef57238ab6b6857cfa0217ad9c789354e8c3e60d042`.
+
+The default candidate's first complete run fails 21/21 during setup because its
+temporary Unix Socket address is 108 bytes; the exact length diagnostic and all
+failures remain. Only shortening its owned TMPDIR to a 98-byte address repairs
+the harness. The unchanged full candidate passes 21/0 at each seed. There is no
+case exclusion, assertion/deadline change, product fix or database reset.
+
+Fourteen exact catalog owners gain scoped implemented evidence, retaining seven
+unobserved auth/runtime/null owners and all SDK-unreachable domains. Contracts
+are **4,463 implemented / 2,099 missing / 59 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. The new profile
+has a required explicit hosted step. Final-source local/pushed hosted matrices,
+remaining behavior, A11 and real external/backend/OS acceptance remain required;
+no release or deployment follows from these scoped passes.
+
+## Integrated resource normalization and queued approval expiry
+
+The native [resource continuation](mcp-direct-qualification.md#mixed-resource-normalization-and-explicit-error-recovery)
+and [post-ticket expiry case](native-authority-qualification.md#queued-response-expires-after-ticket-commit)
+pass all **13 scoped commands** in verified test Devenv. Four complete MCP/Apps
+files pass **15/0 twice**; the dedicated authority profile passes **4/0 twice**.
+Compile, format, strict Credo (447 source files), namespace/sandbox preflights,
+38 tooling regressions and 1,505-file/executable guards match. No existing
+assertion, timeout, cleanup, database record or authority guard is weakened.
+
+Commands/logs: `/tmp/samgita-native-continuation-v52-20261025/`. Terminal report
+SHA256 `f1aeed3fdffbb777dc139faa41c5ecb835a44137cf01e52f28ac5a92a3d92c1e`.
+Four physical present-value resource properties gain scoped implemented evidence:
+**4,449 implemented / 2,113 missing / 59 blocked contracts**, zero verified;
+requirements remain **462 implemented / 12 missing / 11 blocked**.
+Temporary launcher/journal failures and the unrelated unqualified dev formatter
+failure remain recorded in the owning resource/authority explanations. Complete
+new final-source matrices, remaining behavior, A11 and external/OS success remain
+required; no full-compatibility, release or deployment claim follows.
+
+## Terminal frozen v49 local matrix
+
+Frozen `4eed41fade9747d7b6151c8b5523f245181516e3` completes all **19 platform +
+23 package commands**, then the required completeness check. Both independent
+**1,505-file source guards match**. The combined command exits **1**, retaining
+both populated aggregate failures and incomplete evidence.
+
+```sh
+ERL_FLAGS='+S 4:4' devenv shell --no-tui -- python3 -B /tmp/samgita-repair-final-combined-v49-20261025.py
+python3 -B /tmp/samgita-collect-v49-20261025.py
+```
+
+| Local check | Terminal result |
+| --- | --- |
+| Complete driver, seeds 501432 / 987654 | **743/0 each**, no exclusions |
+| All 51 isolated native profiles, both seeds | **302/0 each**, no exclusions |
+| Native and neutral outside consumers | **1/0** native; **32/0 + 1/0 + 1/0** neutral |
+| Neutral WebSocket, seeds 455834 / 501432 / 987654 | **42/0 each**, including overflow/replay |
+| Native wire | **42/0** |
+| Both populated umbrella repeats | **230 core/0/1 excluded; 131 web/1 failure/8 excluded** |
+| Platform/API/races/native | **59 core + 11 web/0** |
+| Dedicated native authority, both seeds | **3/0 each** |
+| Populated recovery/restart, both seeds | **4 core + 1 web/0 each** |
+| Compile, formatting, strict Credo (447 source files), forced Dialyzer, legacy checks | Passed |
+| Root and all relevant independent-lock audits | Passed without exceptions |
+| Frozen assets and local production assembly | Passed; never started or published |
+| Complete compatibility evidence | Failed; zero verified entries/contracts |
+
+Both aggregate failures are the retained `github_controller_test.exs:56`
+first-page assumption: the newly registered connection need not appear on the
+UUID-sorted first page among preserved rows. No unrelated GitHub code/test,
+records, activation guard or exclusion changed. Separate recovery and fresh
+hosted success do not repair this local aggregate failure.
+
+Exact commands/logs remain under
+`/tmp/samgita-repair-final-{combined,platform,packages}-v49-20261025/`.
+Terminal report `/tmp/samgita-repair-final-v49-terminal-20261025.json`, SHA256
+`07ae5bdcce1f2b0e7d613e2fb01917b64ad3f66dee08235986998f024f2c074c`.
+The unpublished local archive is 25,748,643 bytes, SHA256
+`42b4fcb2f92d95398cc3e72afa95b190d94ee28e72c75bc3c7f46535a496c4a6`.
+The collector writes a new v49 report; the historical v38 report is unchanged.
+Later candidates require their own integrated checks and new final-source
+matrices. A11, source-unreachable emitters and real external/backend/OS success
+remain incomplete. No tag, publication, production migration or deployment.
+
+## Hosted v49 checkpoint at 4eed41f
+
+Exact pushed source `4eed41fade9747d7b6151c8b5523f245181516e3` completes
+[Foundation 40171789496](https://github.com/gsmlg-opt/Samgita/actions/runs/40171789496)
+successfully. Both hosted populated-database repeats pass **230 core + 131 web**,
+with the existing **1 core / 8 web exclusions** retained. The complete
+[conformance workflow 40171853544](https://github.com/gsmlg-opt/Samgita/actions/runs/40171853544)
+fails its required evidence gate while both execution jobs succeed:
+
+| Required execution job | Terminal result |
+| --- | --- |
+| Selected actual-binary/platform | Wire **42/0**; all four complete driver partitions **206 + 169 + 203 + 165 = 743/0** at the original deadlines; outside native consumer **1/0**; platform **59 core + 11 web/0**; authority **3/0 twice** |
+| All 51 isolated native profiles | **302/0**, zero exclusions; every required explicit step succeeds, including successful resource origins and explicit target/null scoping |
+| Full compatibility evidence | **Failure**; required entries and variants remain incomplete, with zero fully verified |
+
+The driver suite includes scripted lifecycle tests as well as actual-binary
+scenarios. Stock Codex with synthetic model/MCP/backend dependencies does not
+qualify real external credentials, every backend or OS profile. Neither this
+workflow nor foundation CI publishes or deploys anything.
+
+Terminal metadata: `/tmp/samgita-v49-hosted-terminal-20261025.json`, SHA256
+`39ac4cd8534f04715091bf2749e31c19b6807c7f560edb2c2a722be264f36322`.
+Per-job steps, actual counts and log hashes:
+`/tmp/samgita-v49-hosted-logs-20261025/report.json`, SHA256
+`896421fe3d44a9240576027c7c11a093bb96d4ee545a7696493758841e552375`.
+Contracts remain **4,445 implemented / 2,117 missing / 59 blocked**;
+requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified.
+A11, source-unreachable emitters, full field/lifecycle evidence and required
+real external/backend/OS success remain incomplete. No tag, publication,
+production migration or deployment. Later candidate sources receive no
+qualification from these earlier jobs.
+
 ## Hosted v38 checkpoint at 10c5318
 
 Exact pushed source `10c53185cd82c0c66261d79821eac85578616b30` completes

@@ -1,5 +1,35 @@
 # Codex compatibility qualification
 
+The [rich catalog](mcp-catalog-qualification.md) and
+[custom-base precedence](default-gates-qualification.md#custom-base-instructions-override-personality-stripping)
+continuation passes the complete six-file native block **37/0 twice**, strict
+checks, 38 tooling regressions and 1,507-file/binary guards. Fourteen exact rich
+catalog owners bring contracts to **4,463 implemented / 2,099 missing / 59
+blocked**, zero verified. Required final local matrices and exact-pushed hosted
+checks follow; the goal, A11, source-unreachable and external/OS gates remain
+incomplete. No publication or deployment is authorized by these scoped passes.
+
+The [mixed-resource continuation](mcp-direct-qualification.md#mixed-resource-normalization-and-explicit-error-recovery)
+passes the complete four-file native block **15/0 twice**, while the dedicated
+[queued-ticket authority profile](native-authority-qualification.md#queued-response-expires-after-ticket-commit)
+passes **4/0 twice**. Integrated compile/format, strict Credo, tooling and source/
+binary guards pass. Four exact present-value owners bring contracts to **4,449
+implemented / 2,113 missing / 59 blocked**, zero verified. Rich catalog/default
+precedence work and complete new final-source matrices continue; prior full
+matrices below do not qualify these later sources. All broader gates stay open.
+
+The [terminal hosted v49 checkpoint](repair-qualification.md#hosted-v49-checkpoint-at-4eed41f)
+validates exact pushed `4eed41f`: foundation CI and both native execution jobs
+pass, including **743 driver tests**, all **51 isolated profiles / 302 tests**,
+outside consumers, platform and repeated authority checks. The required complete
+evidence gate fails. Local populated aggregates, full compatibility, A11 and
+external/backend/OS success remain separate gates; no release or deployment.
+The [terminal frozen local matrix](repair-qualification.md#terminal-frozen-v49-local-matrix)
+also completes every command: driver 743/0 and profiles 302/0 at both seeds,
+WebSocket 42/0 at all three seeds, populated recovery/restart twice and static/
+audit/assembly checks pass. Both preserved populated GitHub-page assertions and
+the complete evidence gate fail; the combined exit remains 1.
+
 The [explicit target/null continuation](mcp-direct-qualification.md#explicit-target-and-null-apps-resources)
 qualifies model-free generic resource routing, explicit-null wire presence,
 independent target/legacy scopes, policy denials and recovery. All four complete
@@ -50,12 +80,12 @@ external/backend/OS success remain incomplete. Full final-source checks remain
 mandatory before any completion/publication claim.
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 4,383 implemented / 2,179 missing /
+11 blocked requirements** and **0 verified / 4,463 implemented / 2,099 missing /
 59 blocked field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 4,383 directly exercised
+MCP entries have scoped implementation evidence. These 4,463 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The

@@ -21,6 +21,39 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [rich catalog](mcp-catalog-qualification.md) and
+[custom-base precedence](default-gates-qualification.md#custom-base-instructions-override-personality-stripping)
+continuation passes all six owning files **37/0 twice**, root/driver compile and
+format, strict Credo (448 source files), namespace/sandbox checks, 38 tooling
+regressions and 1,507-file/binary guards. Fourteen exact physical catalog owners
+bring contracts to **4,463 implemented / 2,099 missing / 59 blocked**, zero
+verified; requirements remain 462/12/11. The preserved first default-profile
+harness fails at the Unix Socket path limit; shortening only the owned TMPDIR
+qualifies both full 21-case candidate runs without test/fixture/deadline changes.
+Commit/push logical scoped units, freeze combined sources, then run every required
+local matrix and exact-pushed hosted check. Continue remaining reachable behavior;
+A11, source-unreachable emitters and real external/backend/OS success remain
+incomplete. No release or deployment.
+
+The [mixed-resource and explicit recovery continuation](mcp-direct-qualification.md#mixed-resource-normalization-and-explicit-error-recovery)
+passes all four owning files **15/0 twice**. The [queued approval expiry case](native-authority-qualification.md#queued-response-expires-after-ticket-commit)
+passes the complete dedicated authority profile **4/0 twice**, retaining every
+prior unresolved record. Compile/format, strict Credo, 38 tooling regressions and
+the 1,505-file/binary guards pass. Four precise present-value owners bring
+contracts to **4,449 implemented / 2,113 missing / 59 blocked**, zero verified;
+requirements remain 462/12/11. Continue rich MCP catalog/error recovery and the
+source-audited custom-base/personality precedence, then freeze combined sources
+for complete local matrices and exact-pushed hosted checks. A11, source-unreachable
+emitters and real external/backend/OS success remain incomplete. No release.
+
+The [terminal frozen v49 local matrix](repair-qualification.md#terminal-frozen-v49-local-matrix)
+completes all 19 platform + 23 package commands at `4eed41f`: driver743/0 and all
+51 profiles302/0 pass twice, WebSocket42/0 passes all three seeds, recovery/restart
+passes twice, and static/audit/assets/assembly pass. Both preserved GitHub-page
+aggregate assertions and the required evidence gate fail. Exact-pushed hosted
+foundation and both execution jobs pass; complete evidence fails. These results
+do not qualify later candidates or close any broader gate.
+
 The [explicit target/null continuation](mcp-direct-qualification.md#explicit-target-and-null-apps-resources)
 passes all four complete owning files **14/0 twice** after separately preserving
 the unmaterialized-history failure and using the supported native empty-thread
