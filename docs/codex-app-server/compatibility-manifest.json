@@ -172204,90 +172204,122 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-sort-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProjectListParams.json#/definitions/ProjectSortKey/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two cases exercise exact position/recency ascending/descending order, omission/null defaults, null-last UUID tie breaks, full/page results and key/direction-bound native cursors before and after confirmed native PID replacement. Only these nine direct ProjectListParams owners gain scoped evidence; no sibling/response owner, real provider, other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/definitions/ProjectSortKey/enum/0",
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "8d784204e3edfa6723ffb89cf3a6bc3519c742254213a8d372743f29588c869c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-sort-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProjectListParams.json#/definitions/ProjectSortKey/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two cases exercise exact position/recency ascending/descending order, omission/null defaults, null-last UUID tie breaks, full/page results and key/direction-bound native cursors before and after confirmed native PID replacement. Only these nine direct ProjectListParams owners gain scoped evidence; no sibling/response owner, real provider, other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/definitions/ProjectSortKey/enum/1",
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "5f3d33f60aa3fb8febb42290a8f818424a7b86332fea09698221db67073fbb14",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-sort-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProjectListParams.json#/definitions/SortDirection/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two cases exercise exact position/recency ascending/descending order, omission/null defaults, null-last UUID tie breaks, full/page results and key/direction-bound native cursors before and after confirmed native PID replacement. Only these nine direct ProjectListParams owners gain scoped evidence; no sibling/response owner, real provider, other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/definitions/SortDirection/enum/0",
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "eabfc2ef694894ec823b4bef88b116f32ac043b3f52acf5a7560ea72876338f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-sort-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProjectListParams.json#/definitions/SortDirection/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two cases exercise exact position/recency ascending/descending order, omission/null defaults, null-last UUID tie breaks, full/page results and key/direction-bound native cursors before and after confirmed native PID replacement. Only these nine direct ProjectListParams owners gain scoped evidence; no sibling/response owner, real provider, other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/definitions/SortDirection/enum/1",
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "43cfe35802aad855961da8d867f5fee5e8a3383f64ecb11fc9b3b2bc68b55939",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -172361,71 +172393,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-sort-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProjectListParams.json#/properties/sortDirection",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two cases exercise exact position/recency ascending/descending order, omission/null defaults, null-last UUID tie breaks, full/page results and key/direction-bound native cursors before and after confirmed native PID replacement. Only these nine direct ProjectListParams owners gain scoped evidence; no sibling/response owner, real provider, other transport/platform/backend or complete lifecycle qualification."
+      ],
       "nullable": true,
       "pointer": "/properties/sortDirection",
       "required": false,
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "6d46383efbbc0583cfac7d46613d3cd4ee9588e7eab10d7194f1cd621baa40d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sortDirection"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-sort-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProjectListParams.json#/properties/sortDirection/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two cases exercise exact position/recency ascending/descending order, omission/null defaults, null-last UUID tie breaks, full/page results and key/direction-bound native cursors before and after confirmed native PID replacement. Only these nine direct ProjectListParams owners gain scoped evidence; no sibling/response owner, real provider, other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/properties/sortDirection/anyOf/0",
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "717896737b1de96f75fe158f9f977ceada63f1874ffbe7ec49cea2294a4d3f3c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-sort-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProjectListParams.json#/properties/sortDirection/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two cases exercise exact position/recency ascending/descending order, omission/null defaults, null-last UUID tie breaks, full/page results and key/direction-bound native cursors before and after confirmed native PID replacement. Only these nine direct ProjectListParams owners gain scoped evidence; no sibling/response owner, real provider, other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/properties/sortDirection/anyOf/1",
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -172464,46 +172520,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-sort-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProjectListParams.json#/properties/sortKey/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two cases exercise exact position/recency ascending/descending order, omission/null defaults, null-last UUID tie breaks, full/page results and key/direction-bound native cursors before and after confirmed native PID replacement. Only these nine direct ProjectListParams owners gain scoped evidence; no sibling/response owner, real provider, other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/properties/sortKey/anyOf/0",
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "95c5322b00ba270f2eedb3466b27b9b50a6db8305c106dbac8693fa17c73cef9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/project-sort-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProjectListParams.json#/properties/sortKey/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two cases exercise exact position/recency ascending/descending order, omission/null defaults, null-last UUID tie breaks, full/page results and key/direction-bound native cursors before and after confirmed native PID replacement. Only these nine direct ProjectListParams owners gain scoped evidence; no sibling/response owner, real provider, other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/properties/sortKey/anyOf/1",
       "schema": "v2/ProjectListParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_project_sort_matrix_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

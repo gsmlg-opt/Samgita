@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [native project sort matrix](project-sort-qualification.md) adds exact
+position/recency ordering, null/default semantics, cursor binding and confirmed
+native-process restart. The integrated three-file functional block passes
+**9/0 twice**, compile/format, strict Credo and its source guard. Nine direct
+owners bring contracts to **4,550 implemented / 2,012 missing / 59 blocked**;
+requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified
+in both. Security/permission-related tests and workflows remain unrun under the
+current user restriction; complete compatibility and all earlier gates remain due.
+
 The [turn-start settings unit](turn-start-settings-qualification.md) passes the
 two-file functional block **7/0 at both 501432/987654**, compile/format, strict
 Credo and its source guard. Four direct owners bring contracts to **4,541

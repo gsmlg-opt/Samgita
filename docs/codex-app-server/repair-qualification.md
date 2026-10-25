@@ -15,6 +15,13 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The subsequent [project sort unit](project-sort-qualification.md) passes the
+integrated three-file functional block **9/0 twice**, compile/format, strict Credo
+and 226-file guard. Nine more direct owners produce **4,550 implemented / 2,012
+missing / 59 blocked**, zero verified; requirements remain **462 implemented /
+12 missing / 11 blocked**, zero verified. Exact sort/default/null/cursor and
+native PID replacement evidence do not close broader lifecycle or hosted gates.
+
 The [turn-start settings block](turn-start-settings-qualification.md) passes its
 two reviewed functional files **7/0 twice**, format/compile, strict Credo and the
 225-file source guard. Four exact request owners gain implemented evidence:

@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [project sort/default/null unit](project-sort-qualification.md) passes its
+integrated three-file functional block **9/0 twice**, compile/format, strict Credo
+and source guard. Nine direct request owners bring contracts to **4,550
+implemented / 2,012 missing / 59 blocked**, zero verified; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. Continue with
+native thread-section appearance/update/list null/default behavior, using only
+reviewed functional files. The current restriction on security/permission tests
+and automatic CI remains; preserve all incomplete gates and no-release status.
+
 The [turn-start settings unit](turn-start-settings-qualification.md) adds scoped
 functional evidence for four direct request owners. Its integrated two-file
 block passes **7/0 twice**, compile/format, strict Credo and the source guard.
