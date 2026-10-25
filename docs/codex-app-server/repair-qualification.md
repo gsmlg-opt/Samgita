@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [appearance-field continuation](thread-section-values-qualification.md#explicit-appearance-field-continuation)
+passes eight reviewed functional files **19/0 twice**, compile/format, strict
+Credo and the 231-file guard. Two exact request-definition owners bring contracts
+to **4,590 implemented / 1,972 missing / 59 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Explicit
+outgoing color null and durable replacement have native evidence; five section
+notification owners retain missing status with bounded source findings. No
+prohibited checks, broad/hosted completion, A11 closure or release is claimed.
+
 The [thread membership continuation](thread-section-membership-qualification.md)
 passes eight reviewed functional files **19/0 twice**, compile/format, strict
 Credo and the 231-file guard. Three direct owners bring contracts to **4,588

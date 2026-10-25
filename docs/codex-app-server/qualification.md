@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [appearance-field continuation](thread-section-values-qualification.md#explicit-appearance-field-continuation)
+passes eight functional files **19/0 twice**, compile/format, strict Credo and the
+231-file source guard. Two explicitly mapped request-definition owners bring
+contracts to **4,590 implemented / 1,972 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Five
+section-notification owners remain missing with bounded pinned-source evidence;
+method results do not qualify their notifications. Current security/permission
+test restrictions and every broader gate remain; the full goal is incomplete.
+
 The [thread-section membership unit](thread-section-membership-qualification.md)
 passes all eight reviewed functional files **19/0 twice**, compile/format,
 strict Credo and its source guard. Three direct owners bring contracts to

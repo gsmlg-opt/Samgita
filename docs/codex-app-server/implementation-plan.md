@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [appearance-field continuation](thread-section-values-qualification.md#explicit-appearance-field-continuation)
+passes eight functional files **19/0 twice**, compile/format, strict Credo and the
+231-file guard. Exactly two explicitly mapped request-definition owners bring
+contracts to **4,590 implemented / 1,972 missing / 59 blocked**, zero verified;
+requirements stay **462 implemented / 12 missing / 11 blocked**, zero verified.
+The bounded source investigation leaves five section-notification owners missing;
+ordinary mutations/resume do not provide their required native emitter evidence.
+Continue local fuzzy-search session lifecycle with actual native notifications,
+exact outgoing request maps and independent filesystem results. Security/permission
+tests, related workflows, broader completion, A11 and release remain incomplete.
+
 The [thread membership unit](thread-section-membership-qualification.md) passes
 the final eight-file functional block **19/0 twice**, compile/format, strict Credo
 and the 231-file source guard. Three direct move owners bring contracts to

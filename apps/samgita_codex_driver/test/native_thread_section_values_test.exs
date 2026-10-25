@@ -137,7 +137,10 @@ defmodule SamgitaCodexDriver.NativeThreadSectionValuesTest do
       {%{}, nil},
       {%{"appearance" => %{"icon" => nil, "color" => "blue"}},
        %{"icon" => nil, "color" => "blue"}},
-      {%{"appearance" => @populated}, @populated}
+      {%{"appearance" => @populated}, @populated},
+      {%{"appearance" => %{"icon" => "star", "color" => nil}},
+       %{"icon" => "star", "color" => nil}},
+      {%{}, %{"icon" => "star", "color" => nil}}
     ]
 
     final =

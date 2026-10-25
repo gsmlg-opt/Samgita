@@ -6,12 +6,72 @@ stock immutable `rust-v0.163.0` [pin](design.md), source
 `399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215`.
 This fills an evidence gap; no production driver defect was established.
 
+## Explicit appearance-field continuation
+
+The 2026-10-26 continuation sends `appearance:{icon:"star",color:null}`
+immediately after restoring `folder/purple`. The next update omits appearance;
+both native responses and independent lists retain `star/null`. That exact final
+state also survives confirmed process replacement and paginated reads. Together
+with the retained empty, partial and explicit `icon:null` requests, each field
+has actual outgoing omitted/null/string coverage. Expected response nulls alone
+are not counted as null inputs. The update sequence now has ten cases.
+
+Exactly two shared request-definition owners, **667/668**, become implemented:
+`ClientRequest.json#/definitions/ThreadSectionAppearance/properties/{color,icon}`.
+The owning references are `ClientRequest.json#/oneOf/54` (create) and `/oneOf/55`
+(update), through their parameter appearance object alternatives. Bounded capture
+asserts the exact method and parameter map sent to the stock native executable;
+the native persisted state supplies an independent effect oracle. Other schema
+aliases and notifications do not inherit promotion. Schema identities/hashes,
+requirements and all other contract records are unchanged.
+
+All eight functional files in the [membership block](thread-section-membership-qualification.md#final-integrated-evidence)
+pass **19/0** at both seeds 501432/987654, in **45.594/36.544** command seconds.
+Format, warning-free compile, root strict Credo and the 231-file unchanged-source
+guard pass. No deadline, helper, production source or retained assertion changes.
+Exact commands/logs/source: `/tmp/samgita-v175-section-appearance-checks/functional/`.
+Results/source SHA256:
+`c903dabb51fbc0d8c6de4f7c79ee4fd6abca9d593a49f4aae5f684c5b489982c` /
+`5154b50a69609d904fb61bf4e47ad940e26f30aa4edec0841dfe77120a9da86c`.
+`/tmp/samgita-v175-section-appearance-checks/manifest-binding.json` binds the two
+original/current records to this test source and evidence. Contracts become
+**4,590 implemented / 1,972 missing / 59 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified in both.
+The current user restriction leaves security/permission checks and related
+broad/hosted workflows unrun. Full compatibility, A11 and release remain incomplete.
+
+## Section-bearing notification gap
+
+The bounded v174 source investigation retains owners **2704–2708** as missing.
+Their only schema reference is `thread/started -> ThreadStartedNotification.thread
+-> Thread.section -> ThreadSection`. Section create/update/delete and member
+moves return results without emitting a section notification. Resume/reconnect
+does not re-emit `thread/started` for an existing section member.
+
+The three ordinary pinned production emitters are
+[fresh start](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L1580),
+[fork](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_processor.rs#L5590)
+and [detached review](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/turn_processor.rs#L1469).
+Fresh builders set section to null; ordinary local fork metadata starts unassigned.
+Their notification snapshots are constructed before their responses, so a later
+move cannot refresh them. CRUD/move/read evidence is not notification evidence.
+No injected message, fabricated state or timing race substitutes for a real emitter.
+
+Thirteen relevant source files match the immutable archive in
+`/tmp/samgita-v174-section-notification-gap/source-evidence.json`; the handoff there
+records exact paths/lines and connection prerequisites. This is a bounded audit
+of ordinary local paths, not proof over all alternative backends or deployments.
+No deterministic supported producer of a non-null section at those emitters was
+established. The five owners remain missing, without an upstream-unreachable,
+blocked or implemented promotion. A future genuine producer must supply its
+pre-emission section state and actual native notification evidence.
+
 ## Values, persistence and correlation
 
 | Operation | Actual native evidence |
 | --- | --- |
 | Create | Omitted/null appearance produces null; `{}` produces `{icon:null,color:null}`; full/partial objects retain their explicit values. Names trim, generated identities remain distinct, and exact result wrappers match. |
-| Update | Eight sequential cases distinguish omission preserving the prior value, null clearing it, and objects replacing rather than merging it. Identity remains stable, names trim, and an independent control section remains unchanged after every step. |
+| Update | Sequential cases distinguish omission preserving the prior value, null clearing it, and objects replacing rather than merging it. Identity remains stable, names trim, and an independent control section remains unchanged after every step. |
 | List | Default/explicit-null cursor and limit produce the complete prescribed catalogue. Exact one/two-item pages, zero-limit normalization and every continuation/final null cursor follow native ID order. |
 | Delete | Only the selected custom identity disappears. Repeat deletion/update returns the exact native not-found error without recreating it. Empty-name validation preserves other sections. Deleting remaining custom entries leaves the native built-in Pinned section. |
 
@@ -34,7 +94,7 @@ distinguishes preserve from replace, and
 uses stable ID order. The v155 source map binds six upstream files to archive
 bytes and retains all sixteen original manifest nodes/hashes.
 
-## Integrated checks and exact owners
+## Original direct-owner checks
 
 The final four-file functional block runs at seeds 501432 and 987654:
 
