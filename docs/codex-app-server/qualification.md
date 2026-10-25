@@ -1,5 +1,13 @@
 # Codex compatibility qualification
 
+The [fuzzy session unit](fuzzy-search-session-qualification.md) passes nine reviewed
+functional files **20/0 twice**, outside-umbrella consumer **1/0**, compile/format,
+strict Credo and the 232-file guard. Nine direct owners bring contracts to
+**4,599 implemented / 1,963 missing / 59 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Actual
+query/root/clear/stop effects do not qualify fabricated replay/generation fences.
+Security/permission tests, broader/hosted gates and full compatibility stay incomplete.
+
 The [appearance-field continuation](thread-section-values-qualification.md#explicit-appearance-field-continuation)
 passes eight functional files **19/0 twice**, compile/format, strict Credo and the
 231-file source guard. Two explicitly mapped request-definition owners bring

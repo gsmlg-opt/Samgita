@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [fuzzy session continuation](fuzzy-search-session-qualification.md) passes nine
+reviewed functional files **20/0 twice**, an outside-umbrella consumer **1/0**,
+compile/format, strict Credo and the 232-file guard. Nine direct owners bring
+contracts to **4,599 implemented / 1,963 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Native query,
+root replacement, clearing and stop/control results are scoped positive evidence.
+No prohibited check, broad/hosted completion, A11 closure or release is claimed.
+
 The [appearance-field continuation](thread-section-values-qualification.md#explicit-appearance-field-continuation)
 passes eight reviewed functional files **19/0 twice**, compile/format, strict
 Credo and the 231-file guard. Two exact request-definition owners bring contracts

@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [fuzzy session unit](fuzzy-search-session-qualification.md) passes nine reviewed
+functional files **20/0 twice**, an outside-umbrella consumer **1/0**, compile/format,
+strict Credo and the 232-file guard. Nine explicitly mapped direct request and
+notification owners bring contracts to **4,599 implemented / 1,963 missing /
+59 blocked**; requirements stay **462 implemented / 12 missing / 11 blocked**,
+zero verified in both. Root replacement, clear/stop/control effects have actual
+native data evidence without fabricated query-generation or stop fences. Continue
+one-shot search values/ranking/Unicode results with exact envelopes. Security and
+permission tests, related workflows, full compatibility, A11 and release remain
+incomplete.
+
 The [appearance-field continuation](thread-section-values-qualification.md#explicit-appearance-field-continuation)
 passes eight functional files **19/0 twice**, compile/format, strict Credo and the
 231-file guard. Exactly two explicitly mapped request-definition owners bring
