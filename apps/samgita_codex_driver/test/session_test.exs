@@ -510,9 +510,8 @@ defmodule SamgitaCodexDriver.SessionTest do
         {ScriptedTransport, Keyword.put(transport_opts, :observer, self())}
       )
 
-    {:ok, pid} = Session.start_link(opts)
+    pid = start_supervised!({Session, Keyword.put(opts, :owner, self())}, id: make_ref())
     assert_receive {:transport_opened, ^pid}
-    on_exit(fn -> if Process.alive?(pid), do: GenServer.stop(pid, :normal) end)
     pid
   end
 

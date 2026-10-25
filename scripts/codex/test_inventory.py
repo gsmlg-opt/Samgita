@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -13,6 +14,34 @@ import inventory
 
 
 class InventoryTest(unittest.TestCase):
+    def test_required_driver_partitions_cover_the_complete_suite_with_bounded_deadlines(self):
+        workflow = (inventory.ROOT / ".github/workflows/codex-conformance.yml").read_text()
+        selected = workflow.split("\n  selected-conformance:\n", 1)[1].split("\n  isolated-auth:\n", 1)[0]
+        job, steps = selected.split("\n    steps:\n", 1)
+        self.assertEqual(re.findall(r"(?m)^    timeout-minutes: (.+)$", job), ["30"])
+        self.assertNotRegex(job, r"(?m)^    (?:if|continue-on-error|strategy):")
+
+        # Fail closed on a removed, duplicated, skipped or differently configured
+        # partition. The exact command also excludes file/tag filters, retries
+        # and shell suffixes that could hide a native test failure.
+        partitions = [block for block in re.split(r"(?m)^      - ", steps)
+                      if "MIX_TEST_PARTITION" in block or "--partitions" in block]
+        self.assertEqual(len(partitions), 4)
+        for index, block in enumerate(partitions, 1):
+            with self.subTest(partition=index):
+                self.assertEqual(block.splitlines()[0],
+                                 f"name: Independent driver and actual-binary scenarios (partition {index} of 4)")
+                self.assertEqual(re.findall(r"(?m)^        timeout-minutes: (.+)$", block), ["8"])
+                self.assertEqual(re.findall(r"(?m)^        working-directory: (.+)$", block),
+                                 ["apps/samgita_codex_driver"])
+                environment = re.search(r"(?ms)^        env:\n(.*?)(?=^        \S|\Z)", block)
+                self.assertIsNotNone(environment)
+                self.assertEqual(environment.group(1).splitlines(),
+                                 [f'          MIX_TEST_PARTITION: "{index}"'])
+                self.assertEqual(re.findall(r"(?m)^        run: (.+)$", block),
+                                 ["mix test --partitions 4 --seed 501432"])
+                self.assertNotRegex(block, r"(?m)^        (?:if|continue-on-error|strategy|shell):")
+
     def test_boolean_field_schema_is_preserved(self):
         rows = inventory.schema_contracts({"properties": {"opaque": True, "forbidden": False}}, None, "sample.json")
         self.assertEqual({row["wire_name"] for row in rows}, {"opaque", "forbidden"})

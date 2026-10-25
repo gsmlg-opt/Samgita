@@ -6,6 +6,46 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Frozen v36 failures and scoped cleanup repair
+
+Exact baseline `9b5298290c5b8724a2ddc9158786d80aec85e80d` ran all **19 platform
+commands**, but only **8/23 package commands** before its second full-driver
+run failed in scripted Session cleanup. First driver: **728/0**; second:
+**728/1**, `GenServer.stop/3` `noproc` in `SessionToolRetirementTest`'s
+`on_exit`. The remaining **15 package commands are unrun**, not passes.
+Both 1,495-file source guards match. Combined and complete-evidence commands
+exit **1**. The partial report is
+`/tmp/samgita-repair-final-v36-partial-terminal-20261025.json`, SHA256
+`52a93582633b5deccc321089e2165997716dc0e22b9d5dabd6820a6a24860eb8`.
+
+Platform/API/native: **59 core + 11 web/0**; authority **3/0 twice**;
+populated recovery/restart **4 core + 1 web/0 twice**. Compile, format, strict
+Credo, forced Dialyzer, audit, assets and production assembly pass. The first
+populated aggregate retains `github_controller_test.exs:56`'s first-page
+assertion failure; the second passes. Existing records, intentional unresolved
+work and activation guards are preserved; unrelated GitHub code stays untouched.
+
+On the same pushed baseline,
+[Foundation 40161524332](https://github.com/gsmlg-opt/Samgita/actions/runs/40161524332)
+succeeds. [Conformance 40161568088](https://github.com/gsmlg-opt/Samgita/actions/runs/40161568088)
+fails: selected job
+[121074052197](https://github.com/gsmlg-opt/Samgita/actions/runs/40161568088/job/121074052197)
+reaches its **eight-minute timeout** after partition 1 prints **370/0**.
+Partition 2, platform and outside-native-consumer steps do not run and receive
+no acceptance. All **49 isolated profiles / 297 tests / 0 failures / 0 exclusions**
+pass in their separate job; the complete-evidence job fails independently.
+Terminal metadata, step status and log hashes are in
+`/tmp/samgita-v36-hosted-terminal-report-20261025.json`, SHA256
+`d44275a7088943dac24dd8482a7b90501a37ee5141828a61cb49c7e4a7dda25f`.
+
+The [cleanup/partition repair](scripted-cleanup-qualification.md) records the
+deterministic race reproduction, supervised-fixture change and **44/0 twice**
+focused results. CI uses four complete required partitions at the original
+deadlines. These scoped passes do not replace the failed v36 matrix or establish
+final-source hosted success. Continue the full compatibility plan and rerun all
+required final checks. A11, legacy/external/OS acceptance and full compatibility
+remain incomplete; no tag, publication or deployment.
+
 ## Terminal frozen v27 local and hosted matrices
 
 Frozen source `0aba494a89eb02bd651ea1792d755c6cee6c452c` completed all

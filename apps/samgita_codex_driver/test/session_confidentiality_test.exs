@@ -224,16 +224,17 @@ defmodule SamgitaCodexDriver.SessionConfidentialityTest do
   defp ready do
     env = %{"OWNED_SYNTHETIC_CREDENTIAL" => @env_canary}
 
-    {:ok, pid} =
-      Session.start_link(
-        transport: {OwnedTransport, [observer: self(), env: env]},
-        request_timeout_ms: 10_000
+    pid =
+      start_supervised!(
+        {Session,
+         owner: self(),
+         transport: {OwnedTransport, [observer: self(), env: env]},
+         request_timeout_ms: 10_000},
+        id: make_ref()
       )
 
-    Process.unlink(pid)
     assert_receive {:owned_opened, ^pid, resource, ^env}, 2_000
     resource_monitor = Process.monitor(resource)
-    on_exit(fn -> if Process.alive?(pid), do: GenServer.stop(pid, :normal, 2_000) end)
 
     initialize =
       Task.async(fn ->

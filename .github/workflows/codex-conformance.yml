@@ -89,20 +89,32 @@ jobs:
           mix compile --warnings-as-errors
           mix format --check-formatted
           mix hex.audit
-      # Mix partitions the complete sorted test-file set; both halves are required.
+      # Mix partitions the complete sorted test-file set; all four parts are required.
       # Preserve the existing deadline as the native suite grows past one step.
-      - name: Independent driver and actual-binary scenarios (partition 1 of 2)
+      - name: Independent driver and actual-binary scenarios (partition 1 of 4)
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         env:
           MIX_TEST_PARTITION: "1"
-        run: mix test --partitions 2 --seed 501432
-      - name: Independent driver and actual-binary scenarios (partition 2 of 2)
+        run: mix test --partitions 4 --seed 501432
+      - name: Independent driver and actual-binary scenarios (partition 2 of 4)
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         env:
           MIX_TEST_PARTITION: "2"
-        run: mix test --partitions 2 --seed 501432
+        run: mix test --partitions 4 --seed 501432
+      - name: Independent driver and actual-binary scenarios (partition 3 of 4)
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        env:
+          MIX_TEST_PARTITION: "3"
+        run: mix test --partitions 4 --seed 501432
+      - name: Independent driver and actual-binary scenarios (partition 4 of 4)
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        env:
+          MIX_TEST_PARTITION: "4"
+        run: mix test --partitions 4 --seed 501432
       - name: Outside-umbrella actual-binary consumer
         timeout-minutes: 8
         run: python3 scripts/codex/verify_consumer.py

@@ -189,10 +189,12 @@ defmodule SamgitaCodexDriver.SessionCapacityDeadlineTest do
   end
 
   defp ready(opts \\ []) do
-    {:ok, pid} =
-      Session.start_link(Keyword.put(opts, :transport, {ScriptedTransport, observer: self()}))
+    opts =
+      opts
+      |> Keyword.put(:owner, self())
+      |> Keyword.put(:transport, {ScriptedTransport, observer: self()})
 
-    on_exit(fn -> if Process.alive?(pid), do: GenServer.stop(pid, :normal) end)
+    pid = start_supervised!({Session, opts}, id: make_ref())
     assert_receive {:transport_opened, ^pid}
     initialize(pid)
     pid

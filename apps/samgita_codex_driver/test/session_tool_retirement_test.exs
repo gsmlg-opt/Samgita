@@ -108,10 +108,32 @@ defmodule SamgitaCodexDriver.SessionToolRetirementTest do
     refute_receive {:sent, ^pid, %{"id" => "reused-native-id"}}
   end
 
-  defp ready do
-    {:ok, pid} = Session.start_link(transport: {ScriptedTransport, [observer: self()]})
+  test "supervised sessions preserve explicit ownership and close once after owner exit" do
+    for _ <- 1..3 do
+      owner = start_supervised!({Task, fn -> receive do: (:stop -> :ok) end}, id: make_ref())
+      owner_monitor = Process.monitor(owner)
+      pid = ready(owner: owner)
+      session_monitor = Process.monitor(pid)
+      assert %{owner: ^owner} = :sys.get_state(pid)
+
+      send(owner, :stop)
+      assert_receive {:DOWN, ^owner_monitor, :process, ^owner, :normal}, 2_000
+      assert_receive {:transport_closed, ^pid}, 2_000
+      assert_receive {:DOWN, ^session_monitor, :process, ^pid, :normal}, 2_000
+      refute_receive {:transport_closed, ^pid}
+      refute_receive {:transport_opened, ^pid}
+    end
+  end
+
+  defp ready(opts \\ []) do
+    opts =
+      Keyword.merge(
+        [owner: self(), transport: {ScriptedTransport, [observer: self()]}],
+        opts
+      )
+
+    pid = start_supervised!({Session, opts}, id: make_ref())
     assert_receive {:transport_opened, ^pid}
-    on_exit(fn -> if Process.alive?(pid), do: GenServer.stop(pid, :normal) end)
     initialize(pid)
     pid
   end

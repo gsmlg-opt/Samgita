@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+Frozen v36 preserves a second full-driver teardown failure and selected hosted
+partition timeout; fifteen package commands and subsequent hosted selected
+steps did not run. The [scripted cleanup/partition repair](scripted-cleanup-qualification.md)
+reproduces the race, removes competing cleanup owners, passes the four-file
+block **44/0 twice**, and retains all deadlines across four complete required
+CI partitions. Full final-source matrices and hosted qualification remain due.
+Continue the prepared native reviewer, MCP presentation/error and async-message
+cases; source-only proposals and unreachable leaves grant no verification.
+
 The [native history/correlation continuation](native-history-correlation-qualification.md)
 passes all fourteen owning files **94/0 twice**, strict checks and matching
 1,495-file/binary guards after the recorded duplicate-TOML fixture repair.
