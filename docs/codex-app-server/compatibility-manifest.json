@@ -97823,72 +97823,99 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/12",
       "schema": "ServerNotification.json",
       "schema_sha256": "6fc2b5f16f22eaa7551f64a10ec584fa7963e546f99dd6c22b75c0f3f926e02b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12/properties/action",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/action",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "8e4ea25efc83a2d61591108d558594e62af754446060a440f42783460a897650",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "action"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12/properties/action/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/action/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "b4ebfbb977dc84689572b13073a516c9e8d3cb0f6d93ea38e436289ee0b122f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -97916,127 +97943,172 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12/properties/query",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
+        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/query",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "query"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12/properties/results",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/results",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "809a5219c9767f19261590e2ea5e93f47cec9877091186964653db664f20e5db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "results"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "37968f571e32d0c9a62f1ce23bc4f7a8d91cc6b6b7c8e4588a2ada0816ee7054",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/12/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "0b6150911ddee6400401fb2c5e2447b4412d7d432c8e9b1b8763f491c7bda133",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -106143,412 +106215,565 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "0f8a332fb93c2d9adc839ea72e2739bbccf581be7c57aeec6702eae2fc2b1a84",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/0/properties/queries",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
+        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/queries",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "queries"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/0/properties/query",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
+        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/query",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "query"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
+        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": false,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "1c8cd234154259641772fff9ac6e8aff6c01143e1208d896dbd098b1169bc464",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
+        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "c98b38b7516ca9985b48db1c1f53b2270a3a1603165e960788dc5ff71f8bae1a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "f2598c923d857839188f19c3e0678a404edf7028d89f2ceb31ff4f93f5f7b6ec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/WebSearchAction/oneOf/1/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "afcd0e38c47a1d7bf08b7b96a1c2a3216869625505ba7689cd72f26e647f2a2f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/1/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "e77478206d8e5d1e187854326cfb4d88d82efd084663356107379228fa9d73a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/1/properties/url",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
+        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/1/properties/url",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "url"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "47530be7a4d33704886899cde7c77274d59d1359f66b2577af32e1d70347389b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/2/properties/pattern",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
+        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/pattern",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "pattern"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/2/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "c6b7ab83670f9268cf621dfe875492ed4250c63d7921f28ce7244dadef25f9b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/2/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "fc791d8e115a84f97174c568d68d47fd9899d8bc715a74489b9ca1b8e9def14d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/2/properties/url",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
+        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/url",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "url"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "69769edb710f4d793a2d835290797dc0c9a67707280431d7076c4f59825d715a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/3/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/WebSearchAction/oneOf/3/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "29fda13d75c96c2dec30fff96c6d57505211e523615622d74b8120edc84f3617",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/3/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/3/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "c494f200f7f18a48d81653a80ac7f0eeba86a208b72efa78571fa93662be5e19",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -190296,24 +190521,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12/properties/action/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/action/anyOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b4ebfbb977dc84689572b13073a516c9e8d3cb0f6d93ea38e436289ee0b122f3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -190411,27 +190645,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/streamed-web-search-qualification.md#additional-physical-owners"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12/properties/results",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct native notification or explicitly asserted warm/first-cold thread/items/read owner only; exact literal web item/action maps bind provider IDs, selected search/open/find values and type discriminators to real stock output, never equal-hash or reference propagation.",
+        "Results are explicitly null only; no populated WebSearchResult content or action:null. The other action is only an initial native notification placeholder; cold selective reads contain final search/open/find actions. No enclosing whole union, alias, other export/backend/OS/transport or full compatibility is qualified. State remains implemented, required broader/hosted and security/permission gates unrun."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/results",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "809a5219c9767f19261590e2ea5e93f47cec9877091186964653db664f20e5db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "results"
     },
     {
