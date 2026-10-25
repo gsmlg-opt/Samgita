@@ -45,10 +45,13 @@ defmodule SamgitaWeb.CodexRuntimeFixture do
       File.rm_rf!(root)
     end)
 
+    {native_transport, native_options} =
+      Keyword.get(options, :native_transport, {Stdio, []})
+
     {:ok, pid} =
       Session.start_link(
         transport:
-          {Stdio,
+          {native_transport,
            [
              executable: binary,
              args: ["app-server", "--listen", "stdio://"],
@@ -60,7 +63,7 @@ defmodule SamgitaWeb.CodexRuntimeFixture do
                "PATH" => fixture.bin <> ":" <> System.get_env("PATH", "/usr/bin:/bin"),
                "RUST_LOG" => "off"
              }
-           ]}
+           ] ++ native_options}
       )
 
     %{connection: connection} = :sys.get_state(pid)

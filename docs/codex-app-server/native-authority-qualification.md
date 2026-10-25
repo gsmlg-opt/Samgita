@@ -1,9 +1,10 @@
 # Real native approvals and current platform authority
 
-The latest [queued-ticket expiry case](#queued-response-expires-after-ticket-commit)
-extends the dedicated authority profile to **4/0 at both seeds**. Earlier
-three-case results remain historical evidence below. Broad platform authority
-and full compatibility acceptance remain incomplete.
+The latest [foreign-Session ticket case](#a-ticket-cannot-authorize-another-native-session)
+extends the dedicated authority profile to **5/0 at both seeds** in an isolated
+source/build layout using the retained authority database. Earlier four- and
+three-case results remain historical evidence below. Broad platform authority,
+final integrated qualification and full compatibility remain incomplete.
 
 Three new platform integration cases extend the existing two-Agent native
 journey. The owning integration module passes **4/0** at seeds `501432` and
@@ -274,3 +275,68 @@ Compile, format, strict Credo and source/binary guards pass. This qualifies loca
 queued expiry after ticket commit, not instantaneous database revocation,
 remote idempotency, every interaction or full `samgita-authorization`. That broad
 requirement, A11, external profiles and final-source matrices remain incomplete.
+
+## A ticket cannot authorize another native Session
+
+An additive fifth case starts two genuine independent owned Codex processes and
+leaves their actual command approvals pending. Both requests have typed integer
+ID0 and local driver generation1, but distinct Session instances, opaque handles,
+thread/turn IDs, ports, owners and private workspaces. A real operator decision
+prepares a response only for A. Normal dispatch commits A's one-use ticket before
+any native send; it does not authorize B.
+
+The test calls `Session.respond` on B with B's complete genuine local handle,
+the proposed response and A's ticket guards. The still-live deadline and matching
+typed ID/generation isolate the foreign instance check after local handle
+validation. Both submissions reject exact `stale_session`, with `uncertain:false`,
+empty details and no native wire. Neither ticket expiry nor an invalid foreign
+handle is used to stand in for this boundary.
+
+An opt-in test-local transport delegates every operation to real Stdio and
+records each outgoing application frame immediately before its real send. It
+retains the original Stdio connection's owner/port/completion shape, including
+the fixture's captured shutdown fallback. Exact journal bytes on both Sessions
+remain unchanged around each rejection. The fixture's ordinary transport
+default is unchanged. No synthetic Codex responses or private state mutation
+establish the result.
+
+Both genuine approvals, exact interaction timers/handles, native in-progress
+history, single provider request and empty workspace remain. A's persisted
+operation stays `in_flight` and event `reply_prepared`; B's event stays pending.
+Repeated dispatch of A's current ticket rejects `dispatch_not_repeatable`.
+Both Tasks remain `in_progress` and unaccepted; Attempts remain running with
+unresolved effects. There is no resolution, output, completion or interaction
+outcome. Checked native/provider shutdown confirms process reaping and leaves
+the durable uncertainty intact. All previously retained database records remain.
+
+The complete dedicated five-case profile passes **5/0 twice**, seeds `501432`
+and `987654`, in 17.1/17.9 seconds, against the same allowlisted
+`samgita_redesign_codex_authority_repair_test` database. Nothing is reset,
+deleted, remapped or silently resolved. Commands from the isolated complete
+source/dependency/build layout `/tmp/samgita-v66-native-candidates`:
+
+```sh
+mix test apps/samgita_web/test/samgita_web/integration/codex_runtime_authority_profile.exs --include e2e --include real_codex --warnings-as-errors --seed 501432
+mix test apps/samgita_web/test/samgita_web/integration/codex_runtime_authority_profile.exs --include e2e --include real_codex --warnings-as-errors --seed 987654
+```
+
+Compile, changed-file formatting and strict Credo (448 source files) pass there.
+Logs, result commands and source hashes are in `qualified-candidates.json`,
+SHA256 `663d18fe9f7f8326d95f8dd557ae4087106a2c592830e7cb9003ab5cf05d353f`.
+These are isolated candidate results; final integrated local and hosted checks
+remain separate and required. This qualifies one Linux/stdio cross-instance
+boundary, without instantaneous database revocation, remote deduplication,
+every interaction or full authorization/A11 acceptance. The broad manifest
+requirement stays missing. No production code, live credential, external
+repository, publication or deployment changes are made.
+
+Integrated current-checkout qualification also passes the complete five-case
+profile **5/0 twice**, seeds `501432`/`987654`, on that same retained authority
+database. The existing owning default block passes **17 core + 7 web/0 twice**;
+compile, format, strict Credo and inventory consistency pass. The executable
+fixture/profile source hashes match the candidate throughout; later manifest
+owner additions are separately checked. Exact commands/logs are in
+`/tmp/samgita-v73-integrated-authority-checks/results.json`, SHA256
+`442f8ce0f72b451984723a292e310d7ee62d5f7799e7666176bb15d4b72b3ceb`.
+This remains scoped native authority evidence, not the final full matrix or
+complete authorization/A11 acceptance.

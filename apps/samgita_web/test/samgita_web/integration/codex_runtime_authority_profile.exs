@@ -1,3 +1,34 @@
+defmodule SamgitaWeb.CodexAuthorityRecordingStdio do
+  @moduledoc false
+  @behaviour SamgitaCodexDriver.Transport
+  alias SamgitaCodexDriver.Transport.Stdio
+
+  @impl true
+  def open(opts) do
+    sent_path = Keyword.fetch!(opts, :authority_sent_path)
+    File.write!(sent_path, "")
+
+    with {:ok, connection} <- Stdio.open(Keyword.delete(opts, :authority_sent_path)) do
+      # Preserve the actual Stdio :owner/:port shape for the fixture's captured
+      # checked shutdown fallback; decorate it instead of hiding it in a wrapper.
+      {:ok, Map.put(connection, :authority_sent_path, sent_path)}
+    end
+  end
+
+  @impl true
+  def send(state, json) do
+    File.write!(state.authority_sent_path, json <> "\n", [:append])
+    Stdio.send(state, json)
+  end
+
+  @impl true
+  defdelegate handle_info(message, state), to: Stdio
+  @impl true
+  defdelegate close(state), to: Stdio
+  @impl true
+  defdelegate metadata(state), to: Stdio
+end
+
 defmodule SamgitaWeb.CodexRuntimeAuthorityProfile do
   use ExUnit.Case, async: false
   import Ecto.Query
@@ -453,6 +484,271 @@ defmodule SamgitaWeb.CodexRuntimeAuthorityProfile do
 
       assert_retained_records(retained)
     end)
+  end
+
+  test "a committed approval ticket cannot authorize another native Session with a colliding id",
+       %{database: database} do
+    Sandbox.unboxed_run(Repo, fn ->
+      database_backend!(database)
+      retained = retained_records()
+
+      journal_root =
+        Path.join(System.tmp_dir!(), "samgita-authority-instance-#{Ecto.UUID.generate()}")
+
+      File.mkdir!(journal_root)
+      on_exit(fn -> File.rm_rf!(journal_root) end)
+      sent_a = Path.join(journal_root, "native-a.jsonl")
+      sent_b = Path.join(journal_root, "native-b.jsonl")
+
+      {ctx_a, pid_a, fixture_a, event_a, recorded_a} =
+        pending_authority_fixture(
+          persistent: true,
+          native_transport:
+            {SamgitaWeb.CodexAuthorityRecordingStdio, [authority_sent_path: sent_a]}
+        )
+
+      {ctx_b, pid_b, fixture_b, event_b, _recorded_b} =
+        pending_authority_fixture(
+          persistent: true,
+          native_transport:
+            {SamgitaWeb.CodexAuthorityRecordingStdio, [authority_sent_path: sent_b]}
+        )
+
+      refute pid_a == pid_b
+      refute fixture_a.workspace == fixture_b.workspace
+      refute fixture_a.codex_home == fixture_b.codex_home
+      refute ctx_a.project["id"] == ctx_b.project["id"]
+      refute ctx_a.agent["id"] == ctx_b.agent["id"]
+      refute ctx_a.runtime["id"] == ctx_b.runtime["id"]
+      refute event_a.wire["params"]["threadId"] == event_b.wire["params"]["threadId"]
+      refute event_a.wire["params"]["turnId"] == event_b.wire["params"]["turnId"]
+      assert event_a.wire["id"] === 0
+      assert event_b.wire["id"] === 0
+      assert event_a.handle.id === event_b.handle.id
+      assert event_a.handle.generation == 1
+      assert event_b.handle.generation == 1
+      refute event_a.handle.reference == event_b.handle.reference
+
+      status_a = Session.status(pid_a)
+      status_b = Session.status(pid_b)
+      refute status_a.instance_id == status_b.instance_id
+      assert status_a.generation == 1
+      assert status_b.generation == 1
+
+      pairs = [
+        %{ctx: ctx_a, pid: pid_a, fixture: fixture_a, event: event_a, sent_path: sent_a},
+        %{ctx: ctx_b, pid: pid_b, fixture: fixture_b, event: event_b, sent_path: sent_b}
+      ]
+
+      evidence =
+        for pair <- pairs do
+          connection = :sys.get_state(pair.pid).connection
+          assert is_port(connection.port)
+          assert is_pid(connection.owner.pid)
+          assert Process.alive?(connection.owner.pid)
+          assert :atomics.get(connection.owner.completion, 1) == 0
+          assert Port.info(connection.port)
+          assert connection.authority_sent_path == pair.sent_path
+          assert File.ls!(pair.fixture.workspace) == []
+          assert_native_pending(pair.ctx, pair.pid, pair.fixture, pair.event)
+
+          Map.merge(pair, %{
+            connection: connection,
+            interaction: Map.fetch!(:sys.get_state(pair.pid).interactions, pair.event.handle.id),
+            provider_requests: ModelFixture.requests(pair.fixture),
+            workspace_entries: File.ls!(pair.fixture.workspace),
+            history: pending_instance_history(pair.pid, pair.event)
+          })
+        end
+
+      refute Enum.at(evidence, 0).connection.port == Enum.at(evidence, 1).connection.port
+
+      refute Enum.at(evidence, 0).connection.owner.pid ==
+               Enum.at(evidence, 1).connection.owner.pid
+
+      wire = %{"id" => event_a.wire["id"], "result" => %{"decision" => "accept"}}
+
+      reply =
+        command(%{
+          "expected_version" => recorded_a["version"],
+          "native" => wire
+        })
+
+      assert {:ok, operation} =
+               CodexRuntime.reply(
+                 Principal.operator(),
+                 ctx_a.project["id"],
+                 ctx_a.runtime["id"],
+                 recorded_a["id"],
+                 reply
+               )
+
+      receipt =
+        Repo.get_by!(CommandReceipt, principal: "operator", command_id: reply["command_id"])
+
+      prepared_a = snapshot(ctx_a, receipt.id)
+      assert_native_pending(ctx_a, pid_a, fixture_a, event_a)
+      assert_native_pending(ctx_b, pid_b, fixture_b, event_b)
+      assert {:ok, ticket} = dispatch(ctx_a, operation)
+      dispatched_a = snapshot(ctx_a, receipt.id)
+      assert_programmatic_ticket_delta(ctx_a, prepared_a, dispatched_a, operation, ticket)
+      before_b = authority_snapshot(ctx_b)
+      assert before_b.event.state == "pending"
+      refute Enum.any?(before_b.operations, &(&1.direction == "client_response"))
+      assert ticket["native"] == wire
+      assert ticket["instance_id"] == status_a.instance_id
+      refute ticket["instance_id"] == status_b.instance_id
+      assert ticket["driver_generation"] == event_b.handle.generation
+      assert %{"id" => event_b.handle.id, "result" => ticket["native"]["result"]} == wire
+      assert {:ok, deadline, 0} = DateTime.from_iso8601(ticket["dispatch_expires_at"])
+      deadline_ms = DateTime.to_unix(deadline, :millisecond)
+
+      guards = [
+        expected_instance_id: ticket["instance_id"],
+        expected_generation: ticket["driver_generation"],
+        dispatch_deadline_ms: deadline_ms
+      ]
+
+      for _submission <- 1..2 do
+        assert System.system_time(:millisecond) < deadline_ms
+        sent_before = Map.new(evidence, &{&1.sent_path, File.read!(&1.sent_path)})
+
+        # B's complete genuine handle passes the local handle check. Matching
+        # typed IDs/generations and a live deadline isolate A's foreign instance.
+        assert {:error,
+                %SamgitaProtocolCodex.Error{
+                  code: :stale_session,
+                  details: %{},
+                  uncertain: false,
+                  wire: nil
+                }} =
+                 Session.respond(
+                   pid_b,
+                   event_b.handle,
+                   {:ok, ticket["native"]["result"]},
+                   guards
+                 )
+
+        assert System.system_time(:millisecond) < deadline_ms
+
+        for pair <- evidence do
+          assert File.read!(pair.sent_path) == Map.fetch!(sent_before, pair.sent_path)
+        end
+
+        assert snapshot(ctx_a, receipt.id) == dispatched_a
+        assert authority_snapshot(ctx_b) == before_b
+        assert_instance_approvals_pending(evidence)
+        assert_retained_records(retained)
+      end
+
+      for _submission <- 1..2 do
+        sent_before = Map.new(evidence, &{&1.sent_path, File.read!(&1.sent_path)})
+
+        assert dispatch(ctx_a, ticket) ==
+                 {:error, Error.new(:conflict, %{reason: "dispatch_not_repeatable"})}
+
+        assert snapshot(ctx_a, receipt.id) == dispatched_a
+        assert authority_snapshot(ctx_b) == before_b
+
+        for pair <- evidence do
+          assert File.read!(pair.sent_path) == Map.fetch!(sent_before, pair.sent_path)
+        end
+
+        assert_instance_approvals_pending(evidence)
+      end
+
+      stored = Enum.find(dispatched_a.operations, &(&1.id == ticket["id"]))
+      assert stored.state == "in_flight"
+      assert stored.version == operation["version"] + 1
+      assert stored.response_payload == nil
+      assert dispatched_a.event.state == "reply_prepared"
+
+      for current <- [dispatched_a, before_b] do
+        assert current.task.state == "in_progress"
+        assert current.task.accepted_at == nil
+        assert current.attempt.state == "running"
+        refute current.attempt.effects_resolved
+      end
+
+      for pair <- evidence do
+        sent_before = File.read!(pair.sent_path)
+        monitor = Process.monitor(pair.pid)
+        assert :ok = Session.close(pair.pid)
+        assert_receive {:DOWN, ^monitor, :process, _, :normal}, 5_000
+        assert_checked_stdio_reaped(pair.connection)
+        assert File.read!(pair.sent_path) == sent_before
+        assert :ok = ModelFixture.close(pair.fixture)
+        assert_checked_stdio_reaped(pair.fixture.transport)
+        assert ModelFixture.requests(pair.fixture) == pair.provider_requests
+        assert File.ls!(pair.fixture.workspace) == pair.workspace_entries
+        assert CodexRuntime.unresolved_effects?(pair.ctx.attempt["id"])
+      end
+
+      assert snapshot(ctx_a, receipt.id) == dispatched_a
+      assert authority_snapshot(ctx_b) == before_b
+
+      assert {:ok, %{"owner" => "hub", "admission_open" => true}} =
+               Platform.status(Principal.operator())
+
+      assert_retained_records(retained)
+    end)
+  end
+
+  defp pending_instance_history(pid, event) do
+    thread_id = event.wire["params"]["threadId"]
+
+    assert {:ok, %{"result" => %{"thread" => history}}} =
+             Session.request(pid, "thread/read", %{
+               "threadId" => thread_id,
+               "includeTurns" => true
+             })
+
+    assert history["id"] == thread_id
+    assert [turn] = history["turns"]
+    assert turn["id"] == event.wire["params"]["turnId"]
+    assert turn["status"] == "inProgress"
+    history
+  end
+
+  defp assert_instance_approvals_pending(evidence) do
+    for pair <- evidence do
+      assert_pending_handle(pair.pid, pair.event, pair.interaction)
+      assert ModelFixture.requests(pair.fixture) == pair.provider_requests
+      assert length(pair.provider_requests) == 1
+      assert File.ls!(pair.fixture.workspace) == pair.workspace_entries
+      assert {:ok, events} = Session.drain(pair.pid)
+
+      refute Enum.any?(events, fn observed ->
+               observed.wire["method"] in [
+                 "serverRequest/resolved",
+                 "item/commandExecution/outputDelta",
+                 "turn/completed"
+               ] ||
+                 (observed.wire["method"] == "item/completed" &&
+                    get_in(observed.wire, ["params", "item", "type"]) == "commandExecution")
+             end)
+
+      assert_native_pending(pair.ctx, pair.pid, pair.fixture, pair.event)
+      assert pending_instance_history(pair.pid, pair.event) == pair.history
+
+      for line <- File.stream!(pair.sent_path), line != "\n" do
+        # Every retained application frame is a client request/notification.
+        # No result/error response can have crossed either native Stdio pipe.
+        assert Map.has_key?(JSON.decode!(line), "method")
+      end
+
+      assert %{phase: :ready, pending: 0, interactions: 1, uncertain: 0, gap: nil} =
+               Session.status(pair.pid)
+    end
+  end
+
+  defp assert_checked_stdio_reaped(connection) do
+    assert :atomics.get(connection.owner.completion, 1) == 1
+    assert Port.info(connection.port) == nil
+    owner_pid = connection.owner.pid
+    monitor = Process.monitor(owner_pid)
+    assert_receive {:DOWN, ^monitor, :process, ^owner_pid, reason}, 5_000
+    assert reason in [:normal, :noproc]
   end
 
   defp expire_queued_approval(pid, handle, result, guards) do
