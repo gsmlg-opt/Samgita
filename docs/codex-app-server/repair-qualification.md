@@ -6,6 +6,77 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted v80 checkpoint at 992e64e
+
+Exact pushed `992e64e7c583c26b400ad71965c4aad5ecdbc247` has terminal results:
+
+| Required hosted area | Actual result |
+| --- | --- |
+| [Foundation 40182372843](https://github.com/gsmlg-opt/Samgita/actions/runs/40182372843) | Success. Both root repeats pass **230 core + 131 web/0**, with the existing 1 core/8 web exclusions; restart/rollback, independent packages/consumers, strict checks, audits, assets and local production assembly pass. |
+| [Conformance 40182388708](https://github.com/gsmlg-opt/Samgita/actions/runs/40182388708), selected actual-binary/platform job | Success. Native wire **42/0**; four driver partitions **206/0 + 169/0 + 204/0 + 168/0 = 747/0**; outside consumer **1/0**; platform **59 core + 11 web/0**; dedicated authority profile **5/0 twice**. |
+| Same conformance run, isolated authentication/executor/metadata job | Success. All **52 explicitly required profiles, 304 tests/0 failures** execute. |
+| Same conformance run, complete evidence gate | Failure. Required missing/blocked/unverified entries still prevent full compatibility. Overall conformance is failed. |
+
+Terminal metadata is saved in `/tmp/samgita-v80-hosted-{foundation,conformance}-terminal.json`.
+The complete foundation log has SHA256
+`d8de0364b7b0e9c4628092447667faec7a03ab54dc91fcbdee6de91238a42c74`;
+selected native log
+`f51235a4b6e9ec8ada462279ab6db58b4bace8a1b750efbff1fb2a37e59f2aff`;
+all-profile log
+`223d30b9f69b429e21256d95d2aee3906650700cf77ebb22052b10323b14d254`.
+The latter two are `/tmp/samgita-v80-hosted-{selected,profiles}-sanitized.log`,
+downloaded with `gh run view --job ... --log`. Earlier zero-byte direct API
+downloads are not evidence. Hosted fresh-then-populated success does not erase
+older retained-local database failures. The separate frozen local v80 matrix
+has the terminal classification below.
+
+These checks qualify this source and the declared synthetic-dependency Linux
+profiles. They do not establish real external provider authorization, every OS,
+A11 confidentiality, upstream-unreachable emission or complete compatibility.
+No tag, release workflow, package publication, deployment or production migration
+occurs.
+
+## Terminal frozen v80 local matrix
+
+At `992e64e7c583c26b400ad71965c4aad5ecdbc247`, all **19 platform + 23 package
+commands** finish, followed by the required complete-evidence command. Both
+executable/manifest guards match **1,507 files**. The combined exit is **1**:
+two preserved-database aggregate assertions and completeness fail. No failure is
+masked and no remaining command is inferred from a focused pass.
+
+| Required local check | Actual result |
+| --- | --- |
+| Populated root, seeds `501432`/`987654` | At each seed, **230 core/0**, **131 web/1**, existing 1 core/8 web exclusions. Both failures are `GitHubControllerTest` at `github_controller_test.exs:56`: a newly created connection is not guaranteed to appear on the first page among retained older connections. Same historical assertion; no data, pagination or assertion is changed. |
+| Runtime/API/races/native | **59 core + 11 web/0**. |
+| Native authority, both seeds | **5/0 twice**, preserving all prior unresolved rows in the separate authority database. |
+| Recovery/restart, both seeds | **4 core + 1 web/0 twice**, on the retained recovery database without reset or guard bypass. |
+| Complete standalone driver, both seeds | **747/0 twice**, 770.958/776.525 seconds. |
+| All52 isolated native profiles, both seeds | **304/0 twice**. |
+| Independent consumers | Actual-binary consumer **1/0**; neutral outside consumers **32/0 + 1/0 + 1/0**. |
+| Neutral WebSocket, original failing seed `455834` plus both fixed seeds | **42/0 at each of three seeds**. Original readiness/overflow/replay assertions and bounds remain. |
+| Native wire | **42/0**, standalone compile/format/audit pass. |
+| Static/audit/assembly | Root compile/format/strict Credo/Dialyzer, namespace/native-sandbox prerequisites, 38 inventory/fetch/tool regressions, inventory consistency, retained legacy checks, all relevant package audits, assets and local production assembly pass. |
+| Complete evidence | `python3 -B scripts/codex/inventory.py --check --require-verified` executes and fails, exit1. Requirements remain **462 implemented / 12 missing / 11 blocked**, contracts **4,471 implemented / 2,091 missing / 59 blocked**, zero verified in both ledgers. |
+
+Exact commands, environment, logs and source guards are in
+`/tmp/samgita-repair-final-{platform,packages,combined}-v80-20261025/`.
+Platform result/source SHA256 are
+`ea2c29de6108625a064783a2145005ac1fc8025d7fe92cbe9069ee2a5b93c57e` /
+`5891efb5202ec6d6f15eca0c30e4403eecb7a408e3bb07765fef4a83aec5e4a7`;
+package result/source SHA256 are
+`7ab382c6c8b6c08ca372bc2e386bffcd86a1357af58e257694ec85fdfb1a6c63` /
+`42e8ac20168901baa5c57d819850202d5429fffe66b85ce1d289abde932dc339`.
+Combined result SHA256 is
+`0192457fb5bde04d42b710c2e81647d5c5ca97d7fb7e6270a0aac2afe490e706`;
+complete-evidence output SHA256 is
+`8c14de37787f2fa05e8a25dbe96cc1932f9d716f451c257ce98ba73ecbeea0cd`.
+
+This closes the execution of this frozen matrix, not the goal. The independent
+candidate continuation needs integration and new final-source local/hosted checks.
+A11, unreachable production emitters, the unresolved historical fake-listener
+diagnosis and real external/backend/OS success remain incomplete. No release,
+publication, deployment, production migration or historical-data deletion occurs.
+
 ## Integrated native startup and Session authority continuation
 
 The [native MCP startup/authentication block](mcp-lifecycle-status-qualification.md)

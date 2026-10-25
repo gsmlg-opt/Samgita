@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [terminal v80 local matrix](repair-qualification.md#terminal-frozen-v80-local-matrix)
+executes all42 commands at exact `992e64e`: driver **747/0 twice**, all52 profiles
+**304/0 twice**, authority **5/0 twice**, populated recovery/restart, outside
+consumers, three WebSocket seeds, static checks/audits/assets/assembly pass.
+Both retained GitHub first-page aggregate assertions and the complete evidence
+gate fail. [Hosted v80](repair-qualification.md#hosted-v80-checkpoint-at-992e64e)
+passes foundation and both real-native execution jobs on the same pushed commit;
+completeness fails. No full-compatibility, A11, release or production-readiness
+claim follows. Candidate native-generation, MCP and callback repairs remain
+separate until integrated and qualified against their final source.
+
 The [native startup/authentication continuation](mcp-lifecycle-status-qualification.md)
 passes all fourteen actual-binary cases **14/0 twice** after current-checkout
 integration. The [foreign-Session authority profile](native-authority-qualification.md#a-ticket-cannot-authorize-another-native-session)
@@ -7,8 +18,9 @@ passes all five cases **5/0 twice** on its retained separate database, plus the
 owning default block **17 core + 7 web/0 twice**. Compile, format, strict Credo
 and inventory consistency pass. Eight physical owners bring contracts to
 **4,471 implemented / 2,091 missing / 59 blocked**, zero verified; requirements
-remain 462/12/11. Complete final-source local/pushed hosted matrices, remaining
-reachable behavior, A11, native-unreachable and external/OS success remain due.
+remain 462/12/11. Final-source local/pushed hosted outcomes are recorded above;
+remaining reachable behavior, A11, native-unreachable and external/OS success
+remain due.
 No publication or deployment follows from these scoped results.
 
 The [terminal hosted v59 checkpoint](repair-qualification.md#hosted-v59-checkpoint-at-e52bb72)

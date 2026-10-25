@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [terminal v80 local matrix](repair-qualification.md#terminal-frozen-v80-local-matrix)
+finishes all **19 platform + 23 package commands** at `992e64e`, with matching
+1,507-file guards. Driver **747/0 twice**, all52 profiles **304/0 twice**,
+authority **5/0 twice**, recovery/restart, outside consumers, three WebSocket
+seeds and strict/audit/assembly checks pass. Both retained GitHub first-page
+aggregate assertions and completeness fail. [Hosted v80](repair-qualification.md#hosted-v80-checkpoint-at-992e64e)
+passes foundation and both actual-native execution jobs; complete evidence fails.
+Next: integrate independently qualified generation/MCP candidates and the
+reproduced transport-callback confidentiality/replacement-open repairs, then
+rerun the final-source complete local and exact-pushed hosted matrices. Preserve
+every incomplete A11/upstream-unreachable/real external/OS gate; no release.
+
 The [native startup/authentication block](mcp-lifecycle-status-qualification.md)
 passes all fourteen cases **14/0 twice** after integration. The
 [foreign-Session ticket profile](native-authority-qualification.md#a-ticket-cannot-authorize-another-native-session)
@@ -28,8 +40,7 @@ passes all five cases **5/0 twice** in the retained authority database, and the
 owning default block passes **17 core + 7 web/0 twice**. Compile/format, strict
 Credo and inventory consistency pass. Eight exact physical owners bring contracts
 to **4,471 implemented / 2,091 missing / 59 blocked**, zero verified; requirements
-remain 462/12/11. Commit the logical scoped units, freeze combined sources and
-run every required local matrix and exact-pushed hosted check. Continue remaining
+remain 462/12/11. The terminal local/hosted matrix is recorded above. Continue remaining
 reachable behavior; retain A11, upstream-unreachable and real external/backend/OS
 gates as incomplete. No release or deployment.
 
