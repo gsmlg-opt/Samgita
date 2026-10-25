@@ -21,6 +21,30 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [ordinary request-envelope mapping](request-envelope-qualification.md)
+adds ten exact physical owners: **4,850 implemented / 1,712 missing /
+59 blocked** contracts, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Native timeline/compact effects and exact
+captured turn/item-list request IDs are independently evidenced. No functional
+source changes: all274 source hashes and base committed blobs match the passing
+**38-file, 65/0 twice** final matrix, compile/format/Credo, outside consumer
+**1/0** and fourteen AST checks. It is reused without unnecessary repetition.
+Five producer files and ten nodes match the pin; unique-record patching,
+inventory and final binding pass. Strict completeness remains exit **1**.
+
+Continue canonical `v2/ThreadListParams.json` owners5689 originators and5701
+useStateDbOnly. The local server rejects nonempty originators and treats
+omitted/null/empty as unrestricted. A new ordinary profile must avoid parent,
+project and section filters: those take the relation-query path before the
+useStateDbOnly branch, so the existing child-filtered true query cannot prove
+that flag. Inspect a genuine native-only fixture and independent DB-only versus
+default query effects; do not modify/fabricate native history or count source
+inspection as behavior. Retain fixed yolo and every verification restriction.
+All prohibited/broad/hosted, full-goal, A11, legacy/unreachable, unavailable
+external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [Plan streaming continuation](plan-item-events-qualification.md#streaming-continuation)
 passes the final **38-file, 65/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, fourteen fixture ASTs and the **274-source** guard.
@@ -43,8 +67,6 @@ tested bytes match; audit the precise owner mapping and rerun inventory/static
 binding. Keep numeric RequestId alternatives, enclosing branches and referenced
 definitions outside this group. All prohibited/broad/hosted, full-goal, A11,
 unreachable/legacy, unavailable external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [native tool notification unit](tool-item-events-qualification.md) passes
 the final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside

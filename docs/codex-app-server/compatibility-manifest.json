@@ -45402,101 +45402,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#timeline"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/107/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest timeline envelope owners only: exact captured encoded thread/timeline/list method and explicit thread/page parameters, unique caller string IDs and strict native response-ID equality. Independent native rollout ordinals, real opaque continuation cursors and cold replay prove dispatch/effects with preserved history, provider journal and no extra inference.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/oneOf/107/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#timeline"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/107/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest timeline envelope owners only: exact captured encoded thread/timeline/list method and explicit thread/page parameters, unique caller string IDs and strict native response-ID equality. Independent native rollout ordinals, real opaque continuation cursors and cold replay prove dispatch/effects with preserved history, provider journal and no extra inference.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/oneOf/107/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "97c78ced221aeb4fd65982c9709a232287af045ab76ce412376a7f3f8051f5ad",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#timeline"
+      ],
       "experimental": true,
       "id": "schema:ClientRequest.json#/oneOf/107/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest timeline envelope owners only: exact captured encoded thread/timeline/list method and explicit thread/page parameters, unique caller string IDs and strict native response-ID equality. Independent native rollout ordinals, real opaque continuation cursors and cold replay prove dispatch/effects with preserved history, provider journal and no extra inference.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "pointer": "/oneOf/107/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "6519e25c910f674775cbcf635996d4baad8476e2bf4bcba1cfecfeaa2141fb85",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#timeline"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/107/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest timeline envelope owners only: exact captured encoded thread/timeline/list method and explicit thread/page parameters, unique caller string IDs and strict native response-ID equality. Independent native rollout ordinals, real opaque continuation cursors and cold replay prove dispatch/effects with preserved history, provider journal and no extra inference.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/oneOf/107/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a2f1eccfb5651a5f300921d660a480a348fc49ea432e0d3cb08d67ae86360945",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -60166,101 +60202,137 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#compaction"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/38/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest compact envelope owners only: explicit native thread/compact/start with literal threadId parameters and unique string ID receives strictly correlated empty result, then real compaction produces its second provider request, distinct turn/item lifecycle and preserved warm/first-cold selective history. This test uses direct request_native; it does not add a transport capture.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/oneOf/38/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compaction_item_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#compaction"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/38/properties/method",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest compact envelope owners only: explicit native thread/compact/start with literal threadId parameters and unique string ID receives strictly correlated empty result, then real compaction produces its second provider request, distinct turn/item lifecycle and preserved warm/first-cold selective history. This test uses direct request_native; it does not add a transport capture.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/oneOf/38/properties/method",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "3d90e79f36d7a9a7684f7c76af46eec4d8272076c50353d627414d6d36a35625",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compaction_item_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "method"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#compaction"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/oneOf/38/properties/method/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest compact envelope owners only: explicit native thread/compact/start with literal threadId parameters and unique string ID receives strictly correlated empty result, then real compaction produces its second provider request, distinct turn/item lifecycle and preserved warm/first-cold selective history. This test uses direct request_native; it does not add a transport capture.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "pointer": "/oneOf/38/properties/method/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "147bdd14926226507ff5bfcdff075596421a24a5cdeb97bd2e6ba49b93621e51",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compaction_item_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#compaction"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/38/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest compact envelope owners only: explicit native thread/compact/start with literal threadId parameters and unique string ID receives strictly correlated empty result, then real compaction produces its second provider request, distinct turn/item lifecycle and preserved warm/first-cold selective history. This test uses direct request_native; it does not add a transport capture.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/oneOf/38/properties/params",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "3181823b502b03417111269d2eb9dee287b8f0a1093d7314201b55a933b9e559",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_compaction_item_selection_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -64406,27 +64478,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#listing-ids"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/62/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest thread/turns/list string-ID field only: twelve exact encoded/captured and strictly correlated native list requests over three genuine completed turns verify literal content/order, omitted/null/explicit paging and actual continuation cursors while retaining history and exactly three provider requests.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/oneOf/62/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_turn_list_null_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -64568,27 +64649,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/request-envelope-qualification.md#listing-ids"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/oneOf/63/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual ClientRequest thread/items/list string-ID field only: nineteen exact encoded/captured and strictly correlated native list requests over three genuine completed turns verify six independently prescribed entries, paging/order, opaque cursors and anchor exclusion without altering history/config/provider bytes or empty workspace.",
+        "Only these explicit physical owners gain evidence from the already passing final-source functional matrix. Numeric RequestId alternatives, enclosing union branches, referenced definitions, aliases, other exports/OS/transports and full compatibility are not inferred. Security/permission/audit and broader/hosted gates remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/oneOf/63/properties/id",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {

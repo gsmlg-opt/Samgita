@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [ordinary request-envelope mapping](request-envelope-qualification.md)
+adds exactly ten physical owners: **4,850 implemented / 1,712 missing /
+59 blocked** contracts, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Native timeline/compact dispatch, string-ID
+correlation and encoded turn/item list requests have direct existing evidence.
+No functional source changes: all274 guarded sources still match the final
+**38-file, 65/0 twice** matrix and its committed blobs, with static checks,
+outside consumer **1/0** and fourteen AST checks. That matrix is reused, not
+rerun. Five pinned producer files and all ten physical nodes match provenance;
+unique-record patching, inventory consistency and final binding pass. Numeric
+IDs, enclosing branches and referenced definitions are not inferred. Strict
+completeness remains exit **1**; prohibited/broad/hosted, full-goal, A11,
+unresolved legacy, unavailable external/OS and release gates remain incomplete.
+No publication/deployment.
+
 The [Plan streaming continuation](plan-item-events-qualification.md#streaming-continuation)
 passes the final **38-file, 65/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, fourteen provider ASTs and the **274-source** guard.
