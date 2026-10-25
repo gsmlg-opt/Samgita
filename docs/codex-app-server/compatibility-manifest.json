@@ -202218,13 +202218,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+        "docs/codex-app-server/read-state-realtime-history-qualification.md",
+        "docs/codex-app-server/read-state-update-success-limitation.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred."
+        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred.",
+        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change."
       ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1",
       "schema": "v2/ThreadReadStateUpdateResponse.json",
@@ -202245,14 +202247,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+        "docs/codex-app-server/read-state-realtime-history-qualification.md",
+        "docs/codex-app-server/read-state-update-success-limitation.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/turnId",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred."
+        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred.",
+        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/turnId",
@@ -202275,14 +202279,16 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+        "docs/codex-app-server/read-state-realtime-history-qualification.md",
+        "docs/codex-app-server/read-state-update-success-limitation.md"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred."
+        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred.",
+        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change."
       ],
       "nullable": false,
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/type",
@@ -202304,13 +202310,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/read-state-realtime-history-qualification.md"
+        "docs/codex-app-server/read-state-realtime-history-qualification.md",
+        "docs/codex-app-server/read-state-update-success-limitation.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadReadStateUpdateResponse.json#/definitions/ThreadUnreadPosition/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred."
+        "pinned_success_producer_unreachable: Pinned success response serializes Applied state produced exclusively by Read=>None or Unread=>empty string. Terminal attention and conflict error data cannot qualify a success-response alternative. See immutable source anchors in the linked qualification; no actual-success evidence or scope exclusion is inferred.",
+        "pinned_success_producer_unreachable: In immutable rust-v0.163.0 the sole successful ThreadReadStateUpdateResponse constructor owns Applied(state), whose sole database producer assigns Read -> None or Unread -> empty string. Conversion therefore returns firstUnread null or threadStart, never the advertised turn alternative. Terminal-attention read/list/changed or conflict-error data is a different path and cannot qualify these four exact success-response owners. Source evidence only; state stays missing, no runtime verification, mock substitute, exception or target change."
       ],
       "pointer": "/definitions/ThreadUnreadPosition/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadReadStateUpdateResponse.json",

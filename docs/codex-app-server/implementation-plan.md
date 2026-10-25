@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [read-state success source proof](read-state-update-success-limitation.md)
+establishes that exact owners 5850–5853 have no successful native producer in
+the immutable pin. They stay missing; only evidence/limitations change. Seven
+complete archive matches and exact node/export checks support the conclusion;
+read/list/changed/conflict payloads cannot substitute. Executable source and
+the following functional checkpoint remain unchanged. Continue independent
+reachable ordinary behavior; the full target contract remains incomplete.
+
 The [native shell delta unit](shell-delta-identity-qualification.md) passes the
 final twenty-six-file **44/0 twice** matrix, compile/format, strict Credo,
 outside consumer **1/0**, three Python AST checks and the 252-source guard.
@@ -29,8 +37,7 @@ Two exact output-correlation fields bring contracts to **4,729 implemented /
 deltas bind independently observed thread/turn/item identities and prescribed
 output/effects; cold history preserves both commands without loading/execution
 or model work. The initial strict-Credo helper failure is repaired without
-assertion/bound changes. Continue reachable ordinary producer coverage; preserve
-the separately source-proven read-state success limitation. Prohibited/broad/
+assertion/bound changes. Continue reachable ordinary producer coverage. Prohibited/broad/
 hosted, full-goal, A11, source-unreachable, external and release gates remain.
 
 ## Earlier checkpoints

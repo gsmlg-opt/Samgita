@@ -15,6 +15,13 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [read-state success source proof](read-state-update-success-limitation.md)
+records exact upstream reasons why response owners 5850–5853 cannot be emitted
+successfully. Seven complete sources and exact nodes/exports match the pin;
+all four remain missing and no runtime test runs. Totals, executable source
+and the following 44/0 twice matrix remain unchanged. Another response or a
+mock cannot qualify these owners; the full target contract remains incomplete.
+
 The [native shell delta continuation](shell-delta-identity-qualification.md)
 passes twenty-six reviewed files **44/0 twice**, strict/static checks, outside
 consumer **1/0**, three Python AST checks and 252-source guard; artifacts are in

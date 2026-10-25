@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [pinned read-state success limitation](read-state-update-success-limitation.md)
+adds complete upstream evidence for four still-missing response owners. Its
+sole successful producer returns null/threadStart, never turn, even if the
+separate notification races with attention publication. All seven inspected
+files and exact nodes/exports match the immutable pin. No runtime test or state
+promotion occurs; totals and the final 44/0 twice executable checkpoint below
+remain unchanged. Full compatibility still requires a target-contract decision
+for this unreachable alternative and every other outstanding gate.
+
 The [native shell delta unit](shell-delta-identity-qualification.md) passes
 twenty-six reviewed files **44/0 twice**, compile/format, strict Credo, outside
 consumer **1/0**, three Python AST checks and the 252-source guard. Two exact
