@@ -2,7 +2,7 @@ defmodule Samgita.CodexRuntimeTest do
   use Samgita.DataCase, async: false
   import Samgita.DomainFixtures
   alias Samgita.{Agents, Attempts, CodexRuntime, Principal, Tasks}
-  alias Samgita.CodexRuntime.Payload
+  alias Samgita.CodexRuntime.{Driver, Payload}
 
   alias Samgita.Domain.{
     Agent,
@@ -14,6 +14,27 @@ defmodule Samgita.CodexRuntimeTest do
     Task,
     TaskAttempt
   }
+
+  defmodule StatusFailureSession do
+    @moduledoc false
+    use GenServer
+
+    def start_link(opts), do: GenServer.start_link(__MODULE__, Map.new(opts))
+
+    @impl true
+    def init(state), do: {:ok, state}
+
+    @impl true
+    def handle_call(:status, _from, %{statuses: [status | rest]} = state) do
+      send(state.observer, {:scripted_session_status, self(), status})
+      {:reply, status, %{state | statuses: rest}}
+    end
+
+    def handle_call(message, _from, state) do
+      send(state.observer, {:unexpected_native_dispatch, self(), message})
+      {:reply, {:error, SamgitaProtocolCodex.Error.new(:fixture_unexpected_call)}, state}
+    end
+  end
 
   setup do
     activate_fixture()
@@ -74,6 +95,87 @@ defmodule Samgita.CodexRuntimeTest do
       runtime: runtime,
       binding: binding
     }
+  end
+
+  test "a scripted Session status failure rejects the bridge before committing a dispatch ticket",
+       ctx do
+    assert {:ok, operation} = prepare(ctx)
+    failure = metadata_failure()
+
+    pid =
+      start_supervised!({StatusFailureSession, observer: self(), statuses: [failure, failure]})
+
+    snapshot = bridge_snapshot(ctx, operation)
+
+    for _ <- 1..2 do
+      assert {:error, %Samgita.Error{code: :ownership_lost}} =
+               Driver.execute(
+                 pid,
+                 ctx.principal,
+                 ctx.project["id"],
+                 ctx.runtime["id"],
+                 operation["id"],
+                 %{"proof" => ctx.proof, "expected_version" => operation["version"]}
+               )
+
+      assert_receive {:scripted_session_status, ^pid, ^failure}
+      assert bridge_snapshot(ctx, operation) == snapshot
+    end
+
+    refute_receive {:unexpected_native_dispatch, ^pid, _}
+    assert snapshot.operation.state == "prepared"
+    assert snapshot.task.state == "in_progress"
+    assert snapshot.attempt.state == "running"
+    assert snapshot.attempt.effects_resolved === false
+  end
+
+  test "a scripted Session status failure after ticket commit preserves durable uncertainty",
+       ctx do
+    assert {:ok, operation} = prepare(ctx)
+    failure = metadata_failure()
+
+    current = %{
+      instance_id: ctx.runtime["instance_id"],
+      generation: ctx.runtime["driver_generation"]
+    }
+
+    pid =
+      start_supervised!(
+        {StatusFailureSession, observer: self(), statuses: [current, failure, failure]}
+      )
+
+    assert {:ok, settled} =
+             Driver.execute(
+               pid,
+               ctx.principal,
+               ctx.project["id"],
+               ctx.runtime["id"],
+               operation["id"],
+               %{"proof" => ctx.proof, "expected_version" => operation["version"]}
+             )
+
+    assert_receive {:scripted_session_status, ^pid, ^current}
+    assert_receive {:scripted_session_status, ^pid, ^failure}
+    assert settled["state"] == "uncertain"
+    snapshot = bridge_snapshot(ctx, operation)
+    assert snapshot.operation.state == "uncertain"
+    assert snapshot.task.state == "in_progress"
+    assert snapshot.attempt.state == "running"
+    assert snapshot.attempt.effects_resolved === false
+
+    assert {:error, %Samgita.Error{code: :ownership_lost}} =
+             Driver.execute(
+               pid,
+               ctx.principal,
+               ctx.project["id"],
+               ctx.runtime["id"],
+               operation["id"],
+               %{"proof" => ctx.proof, "expected_version" => settled["version"]}
+             )
+
+    assert_receive {:scripted_session_status, ^pid, ^failure}
+    assert bridge_snapshot(ctx, operation) == snapshot
+    refute_receive {:unexpected_native_dispatch, ^pid, _}
   end
 
   test "binding is inert, exclusive and receipt replay still requires current runtime ownership",
@@ -737,6 +839,23 @@ defmodule Samgita.CodexRuntimeTest do
 
     assert {:error, %{code: :forbidden}} =
              CodexRuntime.get(principal, project_fixture()["id"], ctx.runtime["id"])
+  end
+
+  defp metadata_failure,
+    do:
+      {:error,
+       SamgitaProtocolCodex.Error.new(:transport_callback_failed, %{"callback" => "metadata"})}
+
+  defp bridge_snapshot(ctx, operation) do
+    %{
+      runtime: Repo.get!(NativeRuntimeBinding, ctx.runtime["id"]),
+      operation: Repo.get!(NativeRuntimeOperation, operation["id"]),
+      task: Repo.get!(Task, ctx.task["id"]),
+      attempt: Repo.get!(TaskAttempt, ctx.attempt["id"]),
+      events:
+        Repo.all(from e in DomainEvent, where: e.project_id == ^ctx.project["id"], order_by: e.id),
+      receipts: Repo.all(from r in CommandReceipt, order_by: r.id)
+    }
   end
 
   defp reconnect_same_instance(ctx) do

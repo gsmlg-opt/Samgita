@@ -159,6 +159,13 @@ the remote action ran or accepted this particular decision. A matching
 request and thread identity. It may reflect cancellation or another client's
 response, so it cannot establish which decision was accepted.
 
+The bridge treats a failed `Session.status/1` as lost current ownership. Before
+ticket issuance this rejects dispatch without a durable change. After a ticket
+has committed it records an uncertain outcome without sending or retrying the
+native operation. Status exceptions cannot be treated as a healthy connection or
+an invitation to execute again. Repeated scripted status failures test this
+interface separately from actual native-generation qualification.
+
 Thread/turn links retain native lifecycle evidence. No item, artifact, approval,
 turn completion or successful RPC automatically changes Task acceptance.
 

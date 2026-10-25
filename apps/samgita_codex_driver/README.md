@@ -60,7 +60,13 @@ Notifications/items retain their complete payloads in a bounded ordered pull
 queue. The owner receives one `:events_available` wakeup and drains the queue.
 
 `Session.status/1` exposes a non-secret process-lifetime `instance_id` and a
-connection `generation`. For fenced callers, `request_native/3`, `notify_native/3`
+connection `generation`. If the transport metadata callback raises, throws or
+exits, it returns `{:error, %SamgitaProtocolCodex.Error{code:
+:transport_callback_failed}}` and disconnects. A later status reports the actual
+disconnected or shutdown-failed state. Consumers must handle both return shapes;
+an error cannot establish current ownership or health.
+
+For fenced callers, `request_native/3`, `notify_native/3`
 and `respond/4`
 accept `:expected_instance_id`, `:expected_generation` and
 `:dispatch_deadline_ms` (absolute Unix milliseconds). The serialized Session
@@ -90,6 +96,15 @@ sequence, which is not an upstream replay cursor. Timed-out/disconnected mutatio
 remain uncertain until caller-owned reconciliation. Local request IDs do not
 create upstream idempotency. `abandon/2` only stops a local wait; use the actual
 upstream interruption operation where appropriate and reconcile its effects.
+
+A normally returned transport-open error leaves the Session disconnected and
+available for another explicit reconnect. If a replacement open callback raises,
+throws or exits, reconnect returns a sanitized `transport_callback_failed` and
+stops the Session so owner-death guardians can reap partial allocations whose
+connection handle was never returned. Pending callers receive their uncertain
+outcomes before replacement begins. Consume and persist those outcomes; the
+terminated Session's in-memory inventories are no longer queryable. Starting a
+new Session remains an explicit consumer decision after cleanup and recovery.
 
 Children use temporary supervisor restart semantics. The owner dying closes owned
 resources; reconnect, process restart and execution recovery require an explicit
@@ -231,7 +246,16 @@ remaining full-compatibility gates. Nothing here publishes a package or deploys
 a service. The separate Samgita A11 LiveView credential telemetry blocker remains.
 
 Callback-formatted Session status and error Inspect/messages redact native
-payloads. Privileged raw OTP debugging is not a safe export path: `:sys.get_state`
+payloads. External transport callback exceptions are contained at invocation:
+arbitrary reasons and argument-bearing stacks are discarded before OTP reporting.
+Only fixed callback names enter the sanitized failure. Safely returned native
+Errors retain their authorized wire; a typed raised cleanup Error retains its
+existing checked-shutdown contract. Unconfirmed close still blocks replacement.
+Callback-authored logs, malformed callback return values and unrelated process
+exceptions are outside this boundary. See the
+[qualification and limits](../../docs/codex-app-server/session-confidentiality-qualification.md).
+
+Privileged raw OTP debugging is not a safe export path: `:sys.get_state`
 exposes state, and on OTP27 enabling `:sys.log` leaves raw Debug history in the
 outer `:sys.get_status` term, outside the Session callback. Treat that access as
 trusted and keep it out of telemetry/exporters. This boundary does not establish

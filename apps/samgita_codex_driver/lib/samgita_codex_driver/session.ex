@@ -90,6 +90,14 @@ defmodule SamgitaCodexDriver.Session do
     GenServer.call(pid, {:acknowledge_interaction_outcome, handle})
   end
 
+  @doc """
+  Explicitly replace the connection without resending work.
+
+  A returned transport open error leaves the Session disconnected. A replacement
+  open callback exception returns a sanitized error and stops this Session so
+  owner-death guardians can reap resources allocated before the exception.
+  Pending mutations are reported uncertain before replacement is attempted.
+  """
   def reconnect(pid), do: GenServer.call(pid, :reconnect, :infinity)
   def close(pid), do: GenServer.call(pid, :close, :infinity)
 
@@ -107,7 +115,7 @@ defmodule SamgitaCodexDriver.Session do
 
     with :ok <- validate_options(opts),
          {transport, transport_opts} <- Keyword.fetch!(opts, :transport),
-         {:ok, connection} <- transport.open(transport_opts(opts, transport_opts)) do
+         {:ok, connection} <- open_transport(transport, transport_opts(opts, transport_opts)) do
       {:ok,
        %{
          opts: opts,
@@ -136,6 +144,7 @@ defmodule SamgitaCodexDriver.Session do
        }}
     else
       {:error, failure} -> {:stop, failure}
+      {:callback_error, failure} -> {:stop, failure}
       _ -> {:stop, Error.new(:invalid_options)}
     end
   end
@@ -217,25 +226,13 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   def handle_call(:status, _from, state) do
-    {:reply,
-     %{
-       phase: state.phase,
-       instance_id: state.instance_id,
-       generation: state.generation,
-       pending: map_size(state.pending),
-       interactions: map_size(state.interactions),
-       interaction_outcomes: map_size(state.interaction_outcomes),
-       buffered_events: state.event_count,
-       buffered_bytes: state.event_bytes,
-       uncertain: map_size(state.uncertain),
-       gap: state.gap,
-       shutdown_error: if(state.shutdown_error, do: state.shutdown_error.code),
-       transport:
-         if(state.connection,
-           do: state.transport.metadata(state.connection),
-           else: %{connected: false}
-         )
-     }, state}
+    case connection_metadata(state) do
+      {:ok, metadata} ->
+        {:reply, status(state, metadata), state}
+
+      {:error, failure} ->
+        {:reply, {:error, failure}, disconnect(state, failure.code)}
+    end
   end
 
   def handle_call(:uncertain_operations, _from, state) do
@@ -332,8 +329,8 @@ defmodule SamgitaCodexDriver.Session do
             {:noreply,
              enqueue(state, %{kind: :interaction_expired, handle: interaction.handle}, 128)}
 
-          {:error, _failure, state} ->
-            {:noreply, disconnect(state, :interaction_send_failed)}
+          {:error, failure, state} ->
+            {:noreply, disconnect(state, send_failure_reason(failure, :interaction_send_failed))}
         end
 
       _ ->
@@ -362,16 +359,19 @@ defmodule SamgitaCodexDriver.Session do
   def handle_info(_message, %{connection: nil} = state), do: {:noreply, state}
 
   def handle_info(message, state) do
-    case state.transport.handle_info(message, state.connection) do
-      {:ok, events, connection} ->
+    case transport_callback(state.transport, :handle_info, [message, state.connection]) do
+      {:ok, {:ok, events, connection}} ->
         state = %{state | connection: connection}
         {:noreply, Enum.reduce(events, state, &receive_event/2)}
 
-      {:error, failure, connection} ->
+      {:ok, {:error, failure, connection}} ->
         {:noreply, disconnect(%{state | connection: connection}, failure.code)}
 
-      :unknown ->
+      {:ok, :unknown} ->
         {:noreply, state}
+
+      {:error, failure} ->
+        {:noreply, disconnect(state, failure.code)}
     end
   end
 
@@ -384,7 +384,7 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   defp open_replacement(state) do
-    case state.transport.open(transport_opts(state.opts, state.transport_opts)) do
+    case open_transport(state.transport, transport_opts(state.opts, state.transport_opts)) do
       {:ok, connection} ->
         {:reply, :ok,
          %{
@@ -398,6 +398,11 @@ defmodule SamgitaCodexDriver.Session do
 
       {:error, failure} ->
         {:reply, {:error, failure}, state}
+
+      {:callback_error, failure} ->
+        # No connection was returned: only owner death can trigger cleanup of
+        # an unknown partial allocation. Never allow another replacement here.
+        {:stop, :normal, {:error, failure}, state}
     end
   end
 
@@ -425,8 +430,11 @@ defmodule SamgitaCodexDriver.Session do
       state = %{state | pending: Map.put(state.pending, id, pending)}
 
       case send_encoded(state, encoded) do
-        {:ok, state} -> {:noreply, state}
-        {:error, _failure, state} -> {:noreply, disconnect(state, :send_failed)}
+        {:ok, state} ->
+          {:noreply, state}
+
+        {:error, failure, state} ->
+          {:noreply, disconnect(state, send_failure_reason(failure, :send_failed))}
       end
     else
       {:error, failure} ->
@@ -496,7 +504,9 @@ defmodule SamgitaCodexDriver.Session do
 
         {:error, failure, state} ->
           failure = %{failure | uncertain: true, wire: wire}
-          {:reply, {:error, failure}, disconnect(state, :send_failed)}
+
+          {:reply, {:error, failure},
+           disconnect(state, send_failure_reason(failure, :send_failed))}
       end
     else
       {:error, failure} -> {:reply, {:error, failure}, state}
@@ -602,9 +612,10 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   defp send_encoded(state, encoded) do
-    case state.transport.send(state.connection, encoded) do
-      {:ok, connection} -> {:ok, %{state | connection: connection}}
-      {:error, failure, connection} -> {:error, failure, %{state | connection: connection}}
+    case transport_callback(state.transport, :send, [state.connection, encoded]) do
+      {:ok, {:ok, connection}} -> {:ok, %{state | connection: connection}}
+      {:ok, {:error, failure, connection}} -> {:error, failure, %{state | connection: connection}}
+      {:error, failure} -> {:error, failure, state}
     end
   end
 
@@ -696,8 +707,11 @@ defmodule SamgitaCodexDriver.Session do
 
   defp finish_success(wire, %{method: "initialize"}, state) do
     case send_wire(state, %{"method" => "initialized"}) do
-      {:ok, state} -> settle(%{state | phase: :ready}, wire["id"], {:ok, wire})
-      {:error, _failure, state} -> disconnect(state, :initialization_send_failed)
+      {:ok, state} ->
+        settle(%{state | phase: :ready}, wire["id"], {:ok, wire})
+
+      {:error, failure, state} ->
+        disconnect(state, send_failure_reason(failure, :initialization_send_failed))
     end
   end
 
@@ -798,7 +812,9 @@ defmodule SamgitaCodexDriver.Session do
 
       {:error, failure, state} ->
         failure = %{failure | uncertain: true}
-        {:reply, {:error, failure}, disconnect(state, :interaction_send_failed)}
+
+        {:reply, {:error, failure},
+         disconnect(state, send_failure_reason(failure, :interaction_send_failed))}
     end
   end
 
@@ -949,13 +965,61 @@ defmodule SamgitaCodexDriver.Session do
   end
 
   defp close_transport(state) do
-    :ok = state.transport.close(state.connection)
-    nil
-  rescue
-    failure in Error -> failure
-  catch
-    :exit, _ -> Error.new(:owned_process_shutdown_unconfirmed)
+    case transport_callback(state.transport, :close, [state.connection]) do
+      {:ok, :ok} -> nil
+      {:error, failure} -> failure
+      {:ok, _unconfirmed} -> Error.new(:owned_process_shutdown_unconfirmed)
+    end
   end
+
+  defp open_transport(transport, opts) do
+    case transport_callback(transport, :open, [opts]) do
+      {:ok, result} -> result
+      {:error, failure} -> {:callback_error, failure}
+    end
+  end
+
+  defp connection_metadata(%{connection: nil}), do: {:ok, %{connected: false}}
+
+  defp connection_metadata(state),
+    do: transport_callback(state.transport, :metadata, [state.connection])
+
+  defp status(state, metadata) do
+    %{
+      phase: state.phase,
+      instance_id: state.instance_id,
+      generation: state.generation,
+      pending: map_size(state.pending),
+      interactions: map_size(state.interactions),
+      interaction_outcomes: map_size(state.interaction_outcomes),
+      buffered_events: state.event_count,
+      buffered_bytes: state.event_bytes,
+      uncertain: map_size(state.uncertain),
+      gap: state.gap,
+      shutdown_error: if(state.shutdown_error, do: state.shutdown_error.code),
+      transport: metadata
+    }
+  end
+
+  # Catch only the external callback invocation. Arbitrary reasons and argument-
+  # bearing stacks must not escape into OTP Logger reports. Never retain either
+  # in failure details. Returned protocol Errors keep their exact authorized wire.
+  defp transport_callback(transport, callback, args) do
+    {:ok, apply(transport, callback, args)}
+  catch
+    :error, %Error{} = failure when callback == :close ->
+      # Stdio's checked owner guardian raises typed cleanup failures. Preserve
+      # that existing contract without treating an exception as successful close.
+      {:error, failure}
+
+    _kind, _reason ->
+      {:error, Error.new(:transport_callback_failed, %{"callback" => Atom.to_string(callback)})}
+  end
+
+  defp send_failure_reason(%Error{code: :transport_callback_failed}, _default),
+    do: :transport_callback_failed
+
+  defp send_failure_reason(_failure, default), do: default
 
   defp enqueue(state, event, bytes) do
     if state.event_count >= state.opts[:max_events] or

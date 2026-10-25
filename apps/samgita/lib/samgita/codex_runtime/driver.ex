@@ -50,10 +50,12 @@ defmodule Samgita.CodexRuntime.Driver do
     :exit, _ -> %{"delivery_outcome" => "uncertain"}
   end
 
-  defp same_instance?(status, binding),
+  defp same_instance?(%{instance_id: instance_id, generation: generation}, binding),
     do:
-      status.instance_id == binding["instance_id"] &&
-        status.generation == binding["driver_generation"]
+      instance_id == binding["instance_id"] &&
+        generation == binding["driver_generation"]
+
+  defp same_instance?(_, _), do: false
 
   defp send_current(session, %{"direction" => "client_request"} = ticket, wire, _opts) do
     {:ok, deadline, _} = DateTime.from_iso8601(ticket["dispatch_expires_at"])
