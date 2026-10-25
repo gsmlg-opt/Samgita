@@ -128,3 +128,81 @@ failing. Synthetic Session/codec evidence cannot satisfy native emission, and
 neither an older/modified binary nor sending a mock progress event changes this
 target's evidence. The requirement remains incomplete pending an explicit
 upstream/evidence-policy resolution; no target exclusion is assumed.
+## Successful Apps resource origins
+
+The dedicated `native_mcp_resource_origin_profile.exs` runs immutable Codex
+`rust-v0.163.0` with a private, loopback-only network namespace and synthetic
+model/Apps MCP dependencies. The fixture produces model tool calls and backend
+responses; only the official executable produces app-server frames. This is
+actual-native local qualification, not real provider-account acceptance.
+
+Two model-requested tools complete for different Apps/accounts. Subsequent
+resource reads supply each original call ID together with deliberately
+conflicting connector and target hints. Native Codex must use the successful
+origin's app/account, return the exact original `originCallId` and HTML bytes,
+and send the independently expected nested backend scope. A second native
+thread, a future/unknown call, a mismatched URI and a missing thread produce
+exact native errors without another model request, tool effect or backend read.
+Complete started/completed items, structured results, explicit metadata nulls,
+namespace isolation, idle state and owned-process reaping are also asserted.
+The [pinned processor](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/mcp_processor.rs#L548)
+defines the origin/target paths; the distinct model-free target path still needs
+its own success evidence. A conflicting target being ignored does not qualify
+target-driven selection or explicit `target: null`.
+
+### Preserved failures and repairs
+
+The first disposable run failed before native startup because the launcher
+options omitted the required absolute `CODEX_HOME`. The next run reached both
+tools but expected an omitted result `_meta`; the pinned `McpToolCallResult`
+serializer emits `None` as null, so the exact expected map now includes null.
+Safe method/path/source-line diagnostics then identified six rejected analytics
+POSTs to `/backend-api/codex/analytics-events/events`. These were real background
+requests from the native default analytics queue, not a resource-origin failure.
+Every failed run stopped before positive origin-read acceptance; its later seed
+remained unrun.
+
+After two unsuccessful Sol repair/validation rounds, bounded recovery sets only
+`analytics.enabled = false` in the isolated fixture. The supported
+[analytics option](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/config/src/config_toml.rs#L534)
+flows through configuration to
+[queue creation](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/analytics/src/client.rs#L317),
+which creates no queue for `Some(false)`. Routes, authentication, scope, bounds,
+effects, cleanup and deadlines remain asserted. Disabling analytics here does
+not qualify its enabled behavior. The disposable profile passes **1/0 twice**,
+with **71,485 guarded files unchanged**, no additions or owned processes left;
+each journal records three model requests, two tool effects, two scoped reads,
+zero fatal events and native closure. Prior r1–r3 evidence stays preserved.
+
+Initial original-checkout integration passes both complete native blocks but
+fails strict Credo on nested test assertions. Extracting the unchanged
+started/completed result assertions into two explicit helper clauses fixes the
+finding; no assertion, deadline or dependency fixture is relaxed. The complete
+three-file block (`mcp_direct`, origin profile, `native_apps`) then passes
+**13/0 at each seed 501432/987654**, zero exclusions, with warning-free compile,
+format, strict Credo, all **38 tooling regressions**, inventory consistency and
+matching **1,503-file/executable guards**. The origin profile is a required
+explicit hosted conformance step; final-source hosted success remains pending.
+
+```sh
+PATH="$PWD/.devenv/profile/bin:$PATH" ERL_FLAGS='+S 4:4' \
+  python3 -B /tmp/samgita-native-mcp-origin-v43-r2-20261025.py
+python3 -B /tmp/samgita-bind-native-mcp-origin-v43-20261025.py
+python3 -B scripts/codex/inventory.py --check
+```
+
+Recovery: `/tmp/samgita-v43-origin-astra-recovery.json`, SHA256
+`bdbbcdfbb0a6b1ae865b40a876fcc8c9760eb8b94469df8067da3581ba7d91d1`.
+Source evidence: `/tmp/samgita-v43-origin-astra-source-evidence.json`, SHA256
+`628da61ab2fd49d04b7f201d4c9992bb1160bbbf4c275ec4e97c4207fb744d1f`.
+Exact owner/node audit: `/tmp/samgita-v44-mcp-resource-request-owner-audit.json`,
+SHA256 `50e68d0744c957806e6c333e1046226d8f0c8cac4a7283e64ec2c36544c844ac`.
+Integrated binding: `/tmp/samgita-native-mcp-origin-v43-terminal-20261025.json`,
+SHA256 `1f4c3aa1603a8e22b18e636716cb8ee013e9c0a63a831d5d69b8fecbdae4627c`.
+
+Only eight physical owners become implemented: rows 4348–4352, 4354–4355 and
+4367. Explicit target-null row 4353 remains missing. Contracts become **4,442
+implemented / 2,120 missing / 59 blocked**; requirements remain **462 implemented
+/ 12 missing / 11 blocked**, with **zero verified**. Full final-source matrices,
+real external/backend/OS success, source-unreachable emitters and A11 remain
+incomplete. No tag, publication, production migration or deployment.

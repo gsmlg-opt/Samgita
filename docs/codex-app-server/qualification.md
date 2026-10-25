@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [successful Apps-origin continuation](mcp-direct-qualification.md#successful-apps-resource-origins)
+qualifies two actual successful native tool origins, original app/account scope
+despite conflicting hints, exact negative guards and owned-process cleanup.
+All three complete owning files pass 13/0 twice after preserved source-supported
+fixture/oracle/static corrections; strict checks and 1,503-file guards match.
+Eight owners bring contracts to 4,442 implemented/2,120 missing/59 blocked,
+zero verified; requirements remain 462/12/11. Target-driven selection/null,
+full final-source local/pushed hosted checks and all broader gates remain open.
+
 The [direct live activity-owner audit](native-control-activity-qualification.md#direct-live-notification-owners)
 binds fifteen physical `ServerNotification` nodes to unchanged exact native
 payload assertions and retained terminal two-seed logs. Contracts become

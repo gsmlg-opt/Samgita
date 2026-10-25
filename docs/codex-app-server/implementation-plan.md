@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [successful Apps-origin continuation](mcp-direct-qualification.md#successful-apps-resource-origins)
+passes the complete three-file native block **13/0 twice**, strict checks,
+38 tooling regressions and matching 1,503-file/executable guards. Preserved
+launch/oracle/analytics/static failures have source-supported scoped corrections;
+no route, authentication, effect, deadline or cleanup assertion is relaxed.
+Eight exact owners bring contracts to **4,442 implemented / 2,120 missing / 59
+blocked**, zero verified; requirements remain 462/12/11. A dedicated generic
+target/null success profile, remaining behavior and complete final-source
+local/pushed hosted qualification continue. All broader blocked gates remain.
+
 The [direct live activity-owner audit](native-control-activity-qualification.md#direct-live-notification-owners)
 binds fifteen exact `ServerNotification` owners to unchanged v40/v41 native
 assertions, separately from selective history. Canonical node, producer, test,
