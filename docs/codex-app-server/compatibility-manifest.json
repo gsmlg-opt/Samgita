@@ -25737,498 +25737,678 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolNamespaceTool/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "pointer": "/definitions/DynamicToolNamespaceTool/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "cc31a40a4b81efb18429162ca4343e303bfdfd7055e61fe746950a9a186b07a9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolNamespaceTool/oneOf/0/properties/deferLoading",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolNamespaceTool/oneOf/0/properties/deferLoading",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "deferLoading"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolNamespaceTool/oneOf/0/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolNamespaceTool/oneOf/0/properties/description",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolNamespaceTool/oneOf/0/properties/inputSchema",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolNamespaceTool/oneOf/0/properties/inputSchema",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "inputSchema"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolNamespaceTool/oneOf/0/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolNamespaceTool/oneOf/0/properties/name",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolNamespaceTool/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolNamespaceTool/oneOf/0/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "b89a65a6c6036ff872c061ece40f8f771785b043bc8992c39f8d1cc5a4cf7202",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolNamespaceTool/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "pointer": "/definitions/DynamicToolNamespaceTool/oneOf/0/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "db74d11a8353c9c3457026885e41ffb41c0378502d872c07db87f43aa1ee5e21",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "pointer": "/definitions/DynamicToolSpec/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "f97581f99799ecc56af8b0f4b147cc53dcefada8f4ee77e1168ebad5b0786a78",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/0/properties/deferLoading",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolSpec/oneOf/0/properties/deferLoading",
       "required": false,
       "schema": "ClientRequest.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "deferLoading"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/0/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolSpec/oneOf/0/properties/description",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/0/properties/inputSchema",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolSpec/oneOf/0/properties/inputSchema",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "inputSchema"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/0/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolSpec/oneOf/0/properties/name",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolSpec/oneOf/0/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f03bba62ee410280538c5634297658abf0c9ccc60681ccebd596d6d8082ee5a1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "pointer": "/definitions/DynamicToolSpec/oneOf/0/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "db74d11a8353c9c3457026885e41ffb41c0378502d872c07db87f43aa1ee5e21",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "pointer": "/definitions/DynamicToolSpec/oneOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "33173cb24afb3b2b5306764b424fe38da0345ebba855fcac96349e35b6871af0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/1/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolSpec/oneOf/1/properties/description",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "description"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/1/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolSpec/oneOf/1/properties/name",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/1/properties/tools",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolSpec/oneOf/1/properties/tools",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "3946b9b6ecc7934af50726483222645ec9cf02c1a3c9eb6e3858871e9b52005f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tools"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/DynamicToolSpec/oneOf/1/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "f5a3fe4c229e99deeaad04ca2c30bbb78cc6a7165bb65501349c147460dd19b5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/dynamic-tool-exposure-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/DynamicToolSpec/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Selected canonical top-level function and explicit namespace declarations in stock Linux stdio: direct functions and direct/deferred namespace children reach exact provider tool catalogs, local BM25 discovery when deferred, actual item/tool/call, explicit client result, native persisted history and first cold selective read with no additional inference.",
+        "Top-level deferLoading:true is explicitly rejected by the pinned native server before work/history creation, including a distinct cold process; it is not a successful default-namespace profile. Optional-field omission, other schemas/variants, whole method/aliases, external backends and other OS/transports are not qualified. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "pointer": "/definitions/DynamicToolSpec/oneOf/1/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "c175651b586cbc4afc4dd88c931a96ba5a1cb48b03fbeffff01482d9e7c43c9f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_dynamic_tool_exposure_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
