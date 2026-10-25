@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [timeline position continuation](timeline-position-values-qualification.md)
+adds three exact ordinal fields. The final twenty-three-file **38/0 twice**
+block, strict/static checks, outside consumer **1/0** and 248-file guard pass;
+artifacts are in `/tmp/samgita-v239-functional-checks/functional/`. Contracts
+are **4,702 implemented / 1,860 missing / 59 blocked**, with unchanged
+requirements and zero verified. The v237 lint failure stopped at **4/8**
+commands; private capture/3 retains the same body, bounds and every assertion.
+Original raw records precede all timeline requests and remain unchanged through
+pagination/cold continuation. No runtime/shared helper or prior cleanup changes.
+Prohibited/broader/hosted checks, A11 and the complete goal remain incomplete.
+
 The [fork/resume effort continuation](fork-resume-effort-values-qualification.md)
 adds four exact low/null response alternatives. The final twenty-two-file
 **37/0 twice** block, strict/static checks, outside consumer **1/0** and 247-file

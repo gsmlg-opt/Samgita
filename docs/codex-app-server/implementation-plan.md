@@ -21,6 +21,22 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [timeline position unit](timeline-position-values-qualification.md) passes
+twenty-three reviewed functional files **38/0 twice**, compile/format, strict
+Credo, outside consumer **1/0**, Python syntax and the 248-file guard. Three
+exact fields bring contracts to **4,702 implemented / 1,860 missing /
+59 blocked**, with unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Independent native durable ordinals qualify
+ordinary completed paginated item/start/end positions and cold opaque-cursor
+continuation only. The initial v237 lint failure is preserved; no gate or
+cleanup is weakened. Next implement the three source-backed memory/status
+reader owners 4411–4413 using explicitly synthetic saved inputs. Those reader
+responses cannot establish actual memory generation/consolidation or writer
+success. Keep every prohibited/broad/hosted, full-goal, A11, external and release
+gate incomplete.
+
+## Earlier checkpoints
+
 The [fork/resume effort unit](fork-resume-effort-values-qualification.md) passes
 twenty-two reviewed functional files **37/0 twice**, compile/format, strict
 Credo, outside consumer **1/0**, Python syntax and the 247-file guard. Four exact

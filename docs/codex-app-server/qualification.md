@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [timeline position unit](timeline-position-values-qualification.md) passes
+twenty-three reviewed functional files **38/0 twice**, compile/format, strict
+Credo, outside consumer **1/0**, Python syntax and the 248-file guard. Three exact
+fields bring contracts to **4,702 implemented / 1,860 missing / 59 blocked**;
+requirements stay **462 implemented / 12 missing / 11 blocked**, zero verified
+in both. Genuine raw rollout ordinals independently prescribe eight timeline
+facts and their opaque-cursor continuation through checked owned restart. The
+initial v237 lint failure remains recorded; extracting an unchanged capture
+body fixes it without weaker gates. Prohibited/broader/hosted checks and full
+compatibility/A11/external/release remain incomplete.
+
 The [fork/resume effort unit](fork-resume-effort-values-qualification.md) passes
 twenty-two reviewed functional files **37/0 twice**, compile/format, strict
 Credo, outside consumer **1/0**, Python syntax and the 247-file guard. Four exact

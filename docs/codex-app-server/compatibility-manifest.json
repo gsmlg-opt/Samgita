@@ -219741,27 +219741,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/timeline-position-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/0/properties/position",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_timeline_positions: Two ordinary completed assistant-only turns in one durable paginated thread yield eight facts independently prescribed by genuine explicit durable rollout ordinals and actual turn/item identities before any timeline request. Exact item/start/terminal position fields, bounded limit-one native opaque-cursor pagination and cold saved-cursor continuation must preserve those facts without duplicate/missing identities or new execution. Whole raw rollout/config/catalog/provider journal retention and checked owned-process replacement remain. Only these three physical owners gain scoped implementation evidence, not aliases, enclosing variants, whole method, realtime/history modes, fork lineage, interrupted/failed turns, selective inProgress, external/OS/transport/backend or full compatibility. Prohibited checks, broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/0/properties/position",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "99f0708952f29c21a861010182d5171b9a4f5d30e408f018254be26a8cc20ec4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "position"
     },
     {
@@ -220037,27 +220045,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/timeline-position-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/2/properties/position",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_timeline_positions: Two ordinary completed assistant-only turns in one durable paginated thread yield eight facts independently prescribed by genuine explicit durable rollout ordinals and actual turn/item identities before any timeline request. Exact item/start/terminal position fields, bounded limit-one native opaque-cursor pagination and cold saved-cursor continuation must preserve those facts without duplicate/missing identities or new execution. Whole raw rollout/config/catalog/provider journal retention and checked owned-process replacement remain. Only these three physical owners gain scoped implementation evidence, not aliases, enclosing variants, whole method, realtime/history modes, fork lineage, interrupted/failed turns, selective inProgress, external/OS/transport/backend or full compatibility. Prohibited checks, broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/2/properties/position",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "99f0708952f29c21a861010182d5171b9a4f5d30e408f018254be26a8cc20ec4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "position"
     },
     {
@@ -220364,27 +220380,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/timeline-position-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/3/properties/position",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_timeline_positions: Two ordinary completed assistant-only turns in one durable paginated thread yield eight facts independently prescribed by genuine explicit durable rollout ordinals and actual turn/item identities before any timeline request. Exact item/start/terminal position fields, bounded limit-one native opaque-cursor pagination and cold saved-cursor continuation must preserve those facts without duplicate/missing identities or new execution. Whole raw rollout/config/catalog/provider journal retention and checked owned-process replacement remain. Only these three physical owners gain scoped implementation evidence, not aliases, enclosing variants, whole method, realtime/history modes, fork lineage, interrupted/failed turns, selective inProgress, external/OS/transport/backend or full compatibility. Prohibited checks, broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/3/properties/position",
       "required": true,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "99f0708952f29c21a861010182d5171b9a4f5d30e408f018254be26a8cc20ec4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "position"
     },
     {
