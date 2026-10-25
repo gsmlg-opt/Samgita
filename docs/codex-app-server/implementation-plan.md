@@ -21,6 +21,29 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [omitted/null web-action continuation](streamed-web-search-qualification.md#omitted-and-null-options)
+passes the final **31-file, 57/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, eight fixture ASTs and the **261-source** guard.
+Six omitted/null groups extend four native items to sixteen, retaining every
+original lifecycle/history/first-cold/byte check, bound and one provider request.
+Ten existing physical fields gain supplemental evidence with **zero promotions**.
+Counts remain **4,793 implemented / 1,769 missing / 59 blocked** contracts and
+**462 implemented / 12 missing / 11 blocked** requirements, zero verified.
+Inventory consistency passes and strict completeness exits **1**.
+
+Continue by inspecting the standalone web.run extension's activation/executor
+prerequisites, then qualify its real action:null started notification owner
+2524 in an explicitly owned local profile if supported. The actual producer is
+ext/web-search/src/tool.rs:133–146, forwarded unchanged through extension_tools
+and v2/item.rs:1002–1005. Responses option normalization cannot substitute.
+Selective response owner 5483 still has no demonstrated current producer:
+completed standalone items supply an action, and selective history stores
+completed items. Keep that entry unqualified, preserve historical begin-source
+evidence and do not manufacture native history. All prohibited/broad/hosted,
+full-goal, A11, source-unreachable/external and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [web-item](streamed-web-search-qualification.md),
 [canonical dynamic-tool](dynamic-tool-exposure-qualification.md) and
 [archived child-source](subagent-search-provenance-qualification.md) units pass
@@ -44,8 +67,6 @@ standalone items supply a non-null action, and selective projection stores
 completed items. Historical begin conversion cannot substitute for native
 cold-selective evidence. Keep all prohibited/broad/hosted, full-goal,
 A11, source-unreachable/external and release gates incomplete.
-
-## Earlier checkpoints
 
 The [search membership unit](thread-section-membership-qualification.md#search-projection-continuation)
 passes the final twenty-eight-file **51/0 twice** matrix, compile/format, strict

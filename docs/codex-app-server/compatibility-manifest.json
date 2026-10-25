@@ -106428,15 +106428,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/streamed-web-search-qualification.md"
+        "docs/codex-app-server/streamed-web-search-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/0/properties/queries",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
-        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+        "Original four native Responses action pairs retain all prior literal/order/persistence/cold-read assertions; the same profile now contains twelve additional omitted/null input cases.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/queries",
@@ -106463,15 +106465,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/streamed-web-search-qualification.md"
+        "docs/codex-app-server/streamed-web-search-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/0/properties/query",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
-        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+        "Original four native Responses action pairs retain all prior literal/order/persistence/cold-read assertions; the same profile now contains twelve additional omitted/null input cases.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/query",
@@ -106661,15 +106665,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/streamed-web-search-qualification.md"
+        "docs/codex-app-server/streamed-web-search-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/1/properties/url",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
-        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+        "Original four native Responses action pairs retain all prior literal/order/persistence/cold-read assertions; the same profile now contains twelve additional omitted/null input cases.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/1/properties/url",
@@ -106727,15 +106733,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/streamed-web-search-qualification.md"
+        "docs/codex-app-server/streamed-web-search-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/2/properties/pattern",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
-        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+        "Original four native Responses action pairs retain all prior literal/order/persistence/cold-read assertions; the same profile now contains twelve additional omitted/null input cases.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/pattern",
@@ -106828,15 +106836,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/streamed-web-search-qualification.md"
+        "docs/codex-app-server/streamed-web-search-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/WebSearchAction/oneOf/2/properties/url",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "Selected stock Linux stdio streaming web-search items only: four provider Responses action pairs become ordered native placeholders/final items with literal display/action oracles and native identity/timestamp correlation; warm persisted history and first cold selective read retain final items with unchanged rollout/config/catalog/provider bytes.",
-        "Provider supplies synthetic search/open/find data; no actual browsing, web backend, structured results, null action, whole union/alias, other OS/transport or full compatibility is qualified. Retained security/permission and broad/hosted checks remain unrun; state is implemented, not fully verified."
+        "Original four native Responses action pairs retain all prior literal/order/persistence/cold-read assertions; the same profile now contains twelve additional omitted/null input cases.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/url",
@@ -196653,15 +196663,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-output-selection-qualification.md"
+        "docs/codex-app-server/native-output-selection-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/0/properties/queries",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Search action with exact nonnull query and ordered nonempty queries values; nullable/omitted forms are unqualified.",
-        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Search action with exact nonnull query and ordered nonempty queries values.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/queries",
@@ -196676,11 +196688,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218",
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "queries"
     },
@@ -196688,15 +196702,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-output-selection-qualification.md"
+        "docs/codex-app-server/native-output-selection-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/0/properties/query",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Search action with exact nonnull query and ordered nonempty queries values; nullable/omitted forms are unqualified.",
-        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Search action with exact nonnull query and ordered nonempty queries values.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/query",
@@ -196711,11 +196727,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218",
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "query"
     },
@@ -196886,15 +196904,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-output-selection-qualification.md"
+        "docs/codex-app-server/native-output-selection-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/1/properties/url",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: OpenPage action with exact prescribed URL; nullable/omitted URL forms are unqualified.",
-        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: OpenPage action with exact prescribed URL.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/1/properties/url",
@@ -196909,11 +196929,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218",
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "url"
     },
@@ -196952,15 +196974,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-output-selection-qualification.md"
+        "docs/codex-app-server/native-output-selection-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/2/properties/pattern",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: FindInPage action with exact prescribed URL and pattern; nullable/omitted forms are unqualified.",
-        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: FindInPage action with exact prescribed URL and pattern.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/pattern",
@@ -196975,11 +196999,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218",
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "pattern"
     },
@@ -197053,15 +197079,17 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/native-output-selection-qualification.md"
+        "docs/codex-app-server/native-output-selection-qualification.md",
+        "docs/codex-app-server/streamed-web-search-qualification.md#omitted-and-null-options"
       ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/2/properties/url",
       "implementation_module": "SamgitaProtocolCodex.Schema",
       "limitations": [
-        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: FindInPage action with exact prescribed URL and pattern; nullable/omitted forms are unqualified.",
-        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: FindInPage action with exact prescribed URL and pattern.",
+        "Supplemental Linux stdio real-native profile independently requires both omitted and explicit-null provider options to yield the prescribed explicit-null nested action fields and exact display strings, in native notifications and warm/first-cold thread/items/read. Six omitted/null groups add twelve items (sixteen total), with one inference and unchanged original bounds/cleanup.",
+        "No additional owner promotion or full verification. No actual browsing/backend, action:null, populated results, empty query-list profile, whole-method/alias or other deployment success is inferred. Required broader/hosted and security/permission gates remain unrun."
       ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/url",
@@ -197076,11 +197104,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218",
+          "apps/samgita_codex_driver/test/native_streamed_web_search_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "url"
     },

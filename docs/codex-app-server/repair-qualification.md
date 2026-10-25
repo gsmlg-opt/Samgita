@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [omitted/null web-action continuation](streamed-web-search-qualification.md#omitted-and-null-options)
+passes the final **31-file, 57/0 twice** functional matrix, strict/static checks,
+outside consumer **1/0**, eight fixture ASTs and the **261-source** guard.
+Artifacts: `/tmp/samgita-v292-functional-checks/`. Six groups add twelve genuine
+Responses items, with exact native explicit-null fields/display strings, all
+prior ordering/timestamp/history/cold/byte assertions and one inference. Ten
+already implemented owners receive supplemental records; counts do not change.
+No failed check, timeout increase or weakened assertion occurs. Inventory
+consistency passes and strict completeness exits **1**; prohibited/broader/
+hosted, A11 and full-goal gates remain incomplete.
+
 The [web-item](streamed-web-search-qualification.md),
 [dynamic-tool declaration](dynamic-tool-exposure-qualification.md) and
 [archived child-source](subagent-search-provenance-qualification.md) units pass

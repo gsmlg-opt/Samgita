@@ -20,6 +20,20 @@ def response_events(index, completed_item):
                       "queries": ["Owned fallback first", "Owned fallback second"]}),
         ("open", {"type": "open_page", "url": PAGE}),
         ("find", {"type": "find_in_page", "url": PAGE, "pattern": "Owned needle 🙂"}),
+        ("primary-queries-omitted", {"type": "search", "query": "Owned nullable primary λ"}),
+        ("primary-queries-null", {"type": "search", "query": "Owned nullable primary λ",
+                                  "queries": None}),
+        ("search-fields-omitted", {"type": "search"}),
+        ("search-fields-null", {"type": "search", "query": None, "queries": None}),
+        ("open-url-omitted", {"type": "open_page"}),
+        ("open-url-null", {"type": "open_page", "url": None}),
+        ("find-url-omitted", {"type": "find_in_page", "pattern": "Owned lone pattern 🙂"}),
+        ("find-url-null", {"type": "find_in_page", "url": None,
+                           "pattern": "Owned lone pattern 🙂"}),
+        ("find-pattern-omitted", {"type": "find_in_page", "url": PAGE}),
+        ("find-pattern-null", {"type": "find_in_page", "url": PAGE, "pattern": None}),
+        ("find-fields-omitted", {"type": "find_in_page"}),
+        ("find-fields-null", {"type": "find_in_page", "url": None, "pattern": None}),
     ]
     assistant_events = _assistant_events(index, completed_item)
     events = assistant_events[:1]

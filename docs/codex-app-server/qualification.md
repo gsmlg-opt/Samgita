@@ -1,5 +1,17 @@
 # Codex compatibility qualification
 
+The [omitted/null web-action continuation](streamed-web-search-qualification.md#omitted-and-null-options)
+passes the final **31-file, 57/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, eight fixture ASTs and the **261-source** guard.
+Six groups add twelve literal items to the original four, preserving exact
+native lifecycle/history/first-cold assertions, original bounds and one provider
+request. Ten existing physical fields gain supplemental evidence with **zero
+promotions**: counts remain **4,793 implemented / 1,769 missing / 59 blocked**
+contracts and **462 implemented / 12 missing / 11 blocked** requirements, zero
+verified. No check fails; inventory consistency passes, strict completeness
+remains exit **1**. Prohibited/broader/hosted, A11, source-unreachable/external,
+full-goal and release gates stay incomplete. No publication/deployment.
+
 The [streamed web items](streamed-web-search-qualification.md),
 [canonical dynamic declarations](dynamic-tool-exposure-qualification.md) and
 [archived child provenance](subagent-search-provenance-qualification.md) pass

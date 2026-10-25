@@ -137,6 +137,58 @@ defmodule SamgitaCodexDriver.NativeStreamedWebSearchTest do
         "type" => "findInPage",
         "url" => @page,
         "pattern" => "Owned needle 🙂"
+      }),
+      web_item("primary-queries-omitted", "Owned nullable primary λ", %{
+        "type" => "search",
+        "query" => "Owned nullable primary λ",
+        "queries" => nil
+      }),
+      web_item("primary-queries-null", "Owned nullable primary λ", %{
+        "type" => "search",
+        "query" => "Owned nullable primary λ",
+        "queries" => nil
+      }),
+      web_item("search-fields-omitted", "", %{
+        "type" => "search",
+        "query" => nil,
+        "queries" => nil
+      }),
+      web_item("search-fields-null", "", %{
+        "type" => "search",
+        "query" => nil,
+        "queries" => nil
+      }),
+      web_item("open-url-omitted", "", %{"type" => "openPage", "url" => nil}),
+      web_item("open-url-null", "", %{"type" => "openPage", "url" => nil}),
+      web_item("find-url-omitted", "'Owned lone pattern 🙂'", %{
+        "type" => "findInPage",
+        "url" => nil,
+        "pattern" => "Owned lone pattern 🙂"
+      }),
+      web_item("find-url-null", "'Owned lone pattern 🙂'", %{
+        "type" => "findInPage",
+        "url" => nil,
+        "pattern" => "Owned lone pattern 🙂"
+      }),
+      web_item("find-pattern-omitted", @page, %{
+        "type" => "findInPage",
+        "url" => @page,
+        "pattern" => nil
+      }),
+      web_item("find-pattern-null", @page, %{
+        "type" => "findInPage",
+        "url" => @page,
+        "pattern" => nil
+      }),
+      web_item("find-fields-omitted", "", %{
+        "type" => "findInPage",
+        "url" => nil,
+        "pattern" => nil
+      }),
+      web_item("find-fields-null", "", %{
+        "type" => "findInPage",
+        "url" => nil,
+        "pattern" => nil
       })
     ]
   end
