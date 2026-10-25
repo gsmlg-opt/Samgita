@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [fork/resume effort unit](fork-resume-effort-values-qualification.md) passes
+twenty-two reviewed functional files **37/0 twice**, compile/format, strict
+Credo, outside consumer **1/0**, Python syntax and the 247-file guard. Four exact
+response owners bring contracts to **4,699 implemented / 1,863 missing /
+59 blocked**, with unchanged **462 implemented / 12 missing / 11 blocked**
+requirements, zero verified in both. Actual snapshots/inference and distinct
+completed legacy histories qualify only explicit-model cold resume low/null;
+the separate omitted-model branch remains incomplete. Continue source-backed
+ordinary history/timeline positions with independent durable ordinals; do not
+reopen selective-history inProgress gaps. Keep every prohibited/broad/hosted,
+full-goal, A11, external and release gate incomplete.
+
 The [retained queue audit](retained-queue-owners-qualification.md) adds seven
 field-specific implementation bindings, bringing contracts to **4,695
 implemented / 1,867 missing / 59 blocked**, with unchanged **462 implemented /

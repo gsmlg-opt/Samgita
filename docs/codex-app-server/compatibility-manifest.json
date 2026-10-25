@@ -181891,46 +181891,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-resume-effort-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/reasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_fork_resume_effort: Two independent homes configure effort absent or low with no catalog default. Four exact encoded fork/resume/turn requests per case match genuine response IDs; real fork has distinct child/from-parent identity, then a distinct owned native process explicitly selects the model while resuming the original empty legacy parent. Each response low/null is independently observed in a summary-only applied snapshot and actual inference low/omitted effort with prescribed instructions/unique user input and native thread/turn metadata. Exactly two provider requests per home, distinct completed parent/child histories and unchanged config/catalog/whole journal are asserted. Only these four physical alternatives gain scoped evidence; no other effort enum, aliases, whole response, other history/OS/transport/backend or omitted-model resume branch is qualified. Pinned no-override resume can clear configured effort when empty metadata lacks it; that separate behavior remains incomplete. Prohibited checks, broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "pointer": "/properties/reasoningEffort/anyOf/0",
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_resume_effort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-resume-effort-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadForkResponse.json#/properties/reasoningEffort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_fork_resume_effort: Two independent homes configure effort absent or low with no catalog default. Four exact encoded fork/resume/turn requests per case match genuine response IDs; real fork has distinct child/from-parent identity, then a distinct owned native process explicitly selects the model while resuming the original empty legacy parent. Each response low/null is independently observed in a summary-only applied snapshot and actual inference low/omitted effort with prescribed instructions/unique user input and native thread/turn metadata. Exactly two provider requests per home, distinct completed parent/child histories and unchanged config/catalog/whole journal are asserted. Only these four physical alternatives gain scoped evidence; no other effort enum, aliases, whole response, other history/OS/transport/backend or omitted-model resume branch is qualified. Pinned no-override resume can clear configured effort when empty metadata lacks it; that separate behavior remains incomplete. Prohibited checks, broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "pointer": "/properties/reasoningEffort/anyOf/1",
       "schema": "v2/ThreadForkResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_resume_effort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -207939,46 +207955,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-resume-effort-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/reasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_fork_resume_effort: Two independent homes configure effort absent or low with no catalog default. Four exact encoded fork/resume/turn requests per case match genuine response IDs; real fork has distinct child/from-parent identity, then a distinct owned native process explicitly selects the model while resuming the original empty legacy parent. Each response low/null is independently observed in a summary-only applied snapshot and actual inference low/omitted effort with prescribed instructions/unique user input and native thread/turn metadata. Exactly two provider requests per home, distinct completed parent/child histories and unchanged config/catalog/whole journal are asserted. Only these four physical alternatives gain scoped evidence; no other effort enum, aliases, whole response, other history/OS/transport/backend or omitted-model resume branch is qualified. Pinned no-override resume can clear configured effort when empty metadata lacks it; that separate behavior remains incomplete. Prohibited checks, broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "pointer": "/properties/reasoningEffort/anyOf/0",
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_resume_effort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fork-resume-effort-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadResumeResponse.json#/properties/reasoningEffort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_fork_resume_effort: Two independent homes configure effort absent or low with no catalog default. Four exact encoded fork/resume/turn requests per case match genuine response IDs; real fork has distinct child/from-parent identity, then a distinct owned native process explicitly selects the model while resuming the original empty legacy parent. Each response low/null is independently observed in a summary-only applied snapshot and actual inference low/omitted effort with prescribed instructions/unique user input and native thread/turn metadata. Exactly two provider requests per home, distinct completed parent/child histories and unchanged config/catalog/whole journal are asserted. Only these four physical alternatives gain scoped evidence; no other effort enum, aliases, whole response, other history/OS/transport/backend or omitted-model resume branch is qualified. Pinned no-override resume can clear configured effort when empty metadata lacks it; that separate behavior remains incomplete. Prohibited checks, broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "pointer": "/properties/reasoningEffort/anyOf/1",
       "schema": "v2/ThreadResumeResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fork_resume_effort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

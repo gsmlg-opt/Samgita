@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [fork/resume effort continuation](fork-resume-effort-values-qualification.md)
+adds four exact low/null response alternatives. The final twenty-two-file
+**37/0 twice** block, strict/static checks, outside consumer **1/0** and 247-file
+guard pass; exact artifacts are in `/tmp/samgita-v234-functional-checks/functional/`.
+Contracts are **4,699 implemented / 1,863 missing / 59 blocked**, with unchanged
+requirements and zero verified. Pre-execution review replaces transient whole
+warm/cold parent equality with explicit empty history/stable identity/bytes;
+every effort and completion oracle remains. The omitted-model resume branch,
+prohibited/broader/hosted tests, A11 and the full goal remain incomplete. No
+runtime/shared helper or prior cleanup behavior changes.
+
 The [retained queue audit](retained-queue-owners-qualification.md) indexes seven
 precise fields using historical native **115/0 twice** and byte-identical owning
 test/provider sources. Changed current Session/TurnFixture and absent explicit

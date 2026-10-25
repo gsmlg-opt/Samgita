@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [fork/resume effort unit](fork-resume-effort-values-qualification.md) passes
+twenty-two reviewed functional files **37/0 twice**, compile/format, strict
+Credo, outside consumer **1/0**, Python syntax and the 247-file guard. Four exact
+response alternatives bring contracts to **4,699 implemented / 1,863 missing /
+59 blocked**; requirements stay **462 implemented / 12 missing / 11 blocked**,
+zero verified in both. Real response→summary snapshot→inference couples low/null
+to low/omitted provider effort. Explicit-model cold resume does not qualify the
+separate omitted-model restoration branch. Prohibited/broader/hosted gates and
+full compatibility/A11/external/release remain incomplete.
+
 The [retained queue audit](retained-queue-owners-qualification.md) maps seven
 exact fields to historical native **115/0 twice** and byte-identical owning
 test/provider sources. This is retained evidence only: current Session and
