@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [v2 interaction continuation](native-control-activity-qualification.md#interacted-and-interrupted-continuation)
+qualifies actual followup consumption and interruption of a held running child,
+independent interrupted history, and exact warm/first cold activity selections.
+Both owning files pass **2/0 twice**, strict checks and 1,501-file/binary guards.
+Two literal owners bring contracts to **4,412 implemented / 2,150 missing / 59
+blocked**, zero verified; requirements remain 462/12/11. Continue resource
+normalization and origin provenance, then complete final-source local/pushed
+hosted checks. No full-compatibility, A11 or external-profile gate is closed.
+
 The [native control/activity block](native-control-activity-qualification.md)
 passes all nine complete owning files **27/0 twice** after preserving two
 source-backed test-oracle failures. Strict checks, 38 tooling regressions and

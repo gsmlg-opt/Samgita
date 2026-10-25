@@ -1,5 +1,11 @@
 # Codex compatibility qualification
 
+The [v2 followup/interruption continuation](native-control-activity-qualification.md#interacted-and-interrupted-continuation)
+passes both complete activity files 2/0 twice with unchanged native model journal,
+independent interrupted child history and first cold selective reads. Two precise
+literals bring contracts to 4,412 implemented/2,150 missing/59 blocked, zero
+verified. Full final-source matrices and all broader blockers remain required.
+
 The [native control/activity continuation](native-control-activity-qualification.md)
 qualifies two simultaneously pending commands with independent decisions/effects,
 typed native IDs, exact server params and Started/Completed activity history.

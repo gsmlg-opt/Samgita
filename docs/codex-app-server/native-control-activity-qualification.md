@@ -1,6 +1,6 @@
 # Native independent approvals, request IDs and activity history
 
-Status: **27 precise owners implemented; full compatibility incomplete**. Target:
+Status: **29 precise owners implemented; full compatibility incomplete**. Target:
 Codex `rust-v0.163.0`, source `83086188ae0614bd882818ff1aa23f3194962012`,
 Linux executable SHA256
 `399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215`.
@@ -83,3 +83,50 @@ consumer and pushed hosted checks remain required. The retained GitHub aggregate
 failure, A11, upstream-unreachable legacy/output emitters and real
 external/backend/OS success remain incomplete. No tag, publication, production
 migration or deployment.
+
+## Interacted and Interrupted continuation
+
+The next native scenario completes the four activity-kind literals through
+`collaboration.followup_task` and `collaboration.interrupt_agent`. The pinned
+[message tool](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/multi_agents_v2/message_tool.rs#L42-L101)
+produces Interacted; the
+[interrupt tool](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/core/src/tools/handlers/multi_agents_v2/interrupt_agent.rs#L33-L112)
+produces Interrupted. The v1 `send_input` tool is not this v2 producer.
+
+An idle completed child receives a real followup. Its second captured model
+request must contain the native NEW_TASK envelope before the fixture permits
+the parent to issue interruption. That child response remains held; no synthetic
+success can win the interruption race. Native tool output must report
+`previous_status: running`, and independent child history must contain a distinct
+second turn with `status: interrupted`. An activity notification alone is not
+sufficient evidence that a running child was interrupted.
+
+The test requires all four exact activity pairs and their order before parent
+completion, generated child IDs resolved independently through management/history,
+full warm and first-content cold selective entries, seven unchanged provider
+requests, an empty workspace and reaped native processes. Both original activity
+and new interaction files pass **2/0 at both seeds 501432/987654**, zero exclusions,
+first in the isolated consumer and then after original-checkout integration.
+No behavioral repair, deadline increase or assertion removal was needed.
+
+```sh
+PATH="$PWD/.devenv/profile/bin:$PATH" ERL_FLAGS='+S 4:4' \
+  python3 -B /tmp/samgita-native-subagent-v41-20261025.py
+python3 -B /tmp/samgita-bind-native-subagent-v41-20261025.py
+python3 -B scripts/codex/inventory.py --check
+```
+
+Warnings-as-errors compilation, formatting, strict Credo, all 38 tooling
+regressions, inventory and the **1,501-file/executable guards** pass. Exact
+source/audit/consumer evidence:
+
+- `/tmp/samgita-v41-subagent-interaction-audit.json`, SHA256 `b09ed90f38441415814826b755ce5dfa0e95c6fc38a81a5918e46dbcc31d4ce9` (31 immutable source anchors; its creation-time UNRUN status is retained).
+- `/tmp/samgita-v40-candidate-consumer-20261025/evidence/v41-subagent-r1/handoff.json`, SHA256 `56ef56678578330064ff5e19b4fde14d1f93c24951ce8bde2ebe95ad2a9d8513` (later isolated native passes and shutdown evidence).
+- `/tmp/samgita-native-subagent-v41-terminal-20261025.json`, SHA256 `c36f38eb7067f628365bb993dcc8981563e9c3dd89aa78b3ceae6543a414a80a` (integrated commands, hashes and exact two owner rows).
+
+Only zero-based rows 5436/5437, `SubAgentActivityKind` enum/1 and enum/2,
+become implemented. Contracts are **4,412 implemented / 2,150 missing / 59
+blocked**; requirements remain **462 implemented / 12 missing / 11 blocked**,
+with **zero verified**. Encryption, external providers, deployment profiles,
+full aggregate/hosted qualification, A11 and source-unreachable requirements
+retain their incomplete states. No release or deployment.
