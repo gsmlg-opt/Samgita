@@ -155362,79 +155362,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/memory-status-reader-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/MemoryStatusParams.json#/properties/minConsolidatedThreads",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "synthetic_persisted_input_reader_only: Actual pinned public memory/status creates/migrates the original V2 store; a stopped-native helper then seeds only the existing singleton through fixed0-to2-to19-to20 transitions with exact prior/row count and separate readonly observations. Thirteen real status responses across six checked distinct owned native starts demonstrate positive count, missing/valid summary and explicit1/2/3/4096 threshold behavior, retained cold2/true and independently bracketed omitted/null default20 at19false/20true. Exact encoded requests match real response IDs; whole summary/config/catalog/empty provider journal remain unchanged, no inference/loaded thread. This qualifies only these three reader fields with explicitly synthetic persisted inputs, not actual stage1 generation, phase2 consolidation Agent/artifact success, production progress writer, later context use, reset, invalid-summary/out-of-range branches, aliases or whole memory subsystem. Other OS/transport/backend/external success and prohibited/broad/hosted/full compatibility/A11 remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/properties/minConsolidatedThreads",
       "required": false,
       "schema": "v2/MemoryStatusParams.json",
       "schema_sha256": "cf966d13e462b26ca58aac272b91efe42ff44bfd348e95ec280e637dd2f50686",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_status_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "minConsolidatedThreads"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/memory-status-reader-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/MemoryStatusResponse.json#/properties/v2ConsolidatedThreads",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "synthetic_persisted_input_reader_only: Actual pinned public memory/status creates/migrates the original V2 store; a stopped-native helper then seeds only the existing singleton through fixed0-to2-to19-to20 transitions with exact prior/row count and separate readonly observations. Thirteen real status responses across six checked distinct owned native starts demonstrate positive count, missing/valid summary and explicit1/2/3/4096 threshold behavior, retained cold2/true and independently bracketed omitted/null default20 at19false/20true. Exact encoded requests match real response IDs; whole summary/config/catalog/empty provider journal remain unchanged, no inference/loaded thread. This qualifies only these three reader fields with explicitly synthetic persisted inputs, not actual stage1 generation, phase2 consolidation Agent/artifact success, production progress writer, later context use, reset, invalid-summary/out-of-range branches, aliases or whole memory subsystem. Other OS/transport/backend/external success and prohibited/broad/hosted/full compatibility/A11 remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/v2ConsolidatedThreads",
       "required": true,
       "schema": "v2/MemoryStatusResponse.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_status_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "v2ConsolidatedThreads"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/memory-status-reader-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/MemoryStatusResponse.json#/properties/v2Ready",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "synthetic_persisted_input_reader_only: Actual pinned public memory/status creates/migrates the original V2 store; a stopped-native helper then seeds only the existing singleton through fixed0-to2-to19-to20 transitions with exact prior/row count and separate readonly observations. Thirteen real status responses across six checked distinct owned native starts demonstrate positive count, missing/valid summary and explicit1/2/3/4096 threshold behavior, retained cold2/true and independently bracketed omitted/null default20 at19false/20true. Exact encoded requests match real response IDs; whole summary/config/catalog/empty provider journal remain unchanged, no inference/loaded thread. This qualifies only these three reader fields with explicitly synthetic persisted inputs, not actual stage1 generation, phase2 consolidation Agent/artifact success, production progress writer, later context use, reset, invalid-summary/out-of-range branches, aliases or whole memory subsystem. Other OS/transport/backend/external success and prohibited/broad/hosted/full compatibility/A11 remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/properties/v2Ready",
       "required": true,
       "schema": "v2/MemoryStatusResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_status_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "v2Ready"
     },
     {

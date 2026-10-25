@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [memory status reader unit](memory-status-reader-qualification.md) passes
+twenty-four reviewed functional files **39/0 twice**, compile/format, strict
+Credo, outside consumer **1/0**, three Python AST checks and the 250-source
+guard. Three exact fields bring contracts to **4,706 implemented / 1,856 missing /
+59 blocked**, with unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Thirteen genuine responses across six native
+starts qualify only the reader with synthetic saved inputs, including an
+independent 19/20 omitted/null default bracket. Actual memory generation,
+consolidation, production progress-writer and context success stay unverified.
+Next qualify source-backed ordinary thread/start config override/null/omission
+with independent root/per-thread settings and inference effects. Keep every
+prohibited/broad/hosted, full-goal, A11, external and release gate incomplete.
+
+## Earlier checkpoints
+
 The [diagnostic PID binding](diagnostic-process-identity-qualification.md)
 indexes one direct existing response field against the unchanged final
 **38/0 twice** matrix and 248-source guard. Contracts become **4,703 implemented /
@@ -29,8 +44,6 @@ No new runtime test or source change is needed: independent executable hash and
 checked owned disappearance already give the returned PID meaningful effects.
 Next implement the memory/status reader unit described below, retaining its
 synthetic-input limits and all prohibited/broader/hosted/full-goal/A11 gates.
-
-## Earlier checkpoints
 
 The [timeline position unit](timeline-position-values-qualification.md) passes
 twenty-three reviewed functional files **38/0 twice**, compile/format, strict

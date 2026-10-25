@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [memory status reader](memory-status-reader-qualification.md) passes
+twenty-four reviewed functional files **39/0 twice**, compile/format, strict
+Credo, outside consumer **1/0**, three Python AST checks and the 250-source guard.
+Three direct fields bring contracts to **4,706 implemented / 1,856 missing /
+59 blocked**, with unchanged requirements and zero verified. Thirteen genuine
+status responses qualify only the reader with synthetic saved count/summary
+inputs, including independent 19/20 default/null boundaries. Actual generation,
+consolidation and writer/context success remain unverified. Prohibited/broader/
+hosted/full-goal/A11/external/release gates remain incomplete.
+
 The [diagnostic PID binding](diagnostic-process-identity-qualification.md) maps
 one existing direct field to the unchanged final **38/0 twice** matrix and
 248-source guard. Actual returned PID→immutable executable→owned disappearance

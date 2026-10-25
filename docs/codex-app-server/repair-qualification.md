@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [memory status reader continuation](memory-status-reader-qualification.md)
+adds three precise fields with an explicit synthetic-persisted-input limitation.
+The final twenty-four-file **39/0 twice** matrix, strict/static checks, outside
+consumer **1/0**, three Python AST checks and 250-source guard pass; artifacts
+are in `/tmp/samgita-v244-functional-checks/functional/`. Contracts are
+**4,706 implemented / 1,856 missing / 59 blocked**, with unchanged requirements
+and zero verified. Six checked native launches/thirteen actual responses prove
+reader/default/null outcomes; they prove no production generation/consolidation
+or progress-writer success. Review fixes a helper launch omission before any
+execution. No runtime/shared helper or prior cleanup changes; prohibited/broader/
+hosted checks, A11 and the full goal remain incomplete.
+
 The [diagnostic PID binding](diagnostic-process-identity-qualification.md)
 adds one direct response field from the unchanged final **38/0 twice** matrix
 and 248-source guard. The returned native PID identifies the hash-pinned actual
