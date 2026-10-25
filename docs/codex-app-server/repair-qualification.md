@@ -6,6 +6,77 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Terminal frozen v27 local and hosted matrices
+
+Frozen source `0aba494a89eb02bd651ea1792d755c6cee6c452c` completed all
+**19 platform + 23 package commands**, followed by mandatory completeness.
+Both independent **1,495-file source guards match**. The original combined
+command exits **1**; its platform failure and incomplete-evidence failure are
+preserved, rather than replaced by selected passing checks.
+
+```sh
+devenv shell --no-tui -- python3 -B /tmp/samgita-repair-final-combined-v27-20261025.py
+python3 -B /tmp/samgita-collect-v27-20261025.py
+```
+
+| Retained local check | Terminal result |
+| --- | --- |
+| Default driver, seeds 501432 / 987654 | 718/0 each, zero exclusions |
+| All 49 isolated native profiles, both seeds | 292/0 each, zero exclusions |
+| Native outside consumer | 1/0 against the pinned binary |
+| Neutral outside consumers | 32/0 core, 1/0 direct example, 1/0 WebSocket example |
+| Neutral WebSocket, seeds 455834 / 501432 / 987654 | 42/0 each, including overflow/replay |
+| Native wire | 42/0 |
+| Populated aggregate, seed 501432 | Core 230/0/1 excluded; web 131/1 failure/8 excluded |
+| Populated aggregate, seed 987654 | Core 230/0/1 excluded; web 131/0/8 excluded |
+| Platform/API/native block | 59 core + 11 web, zero failures |
+| Native authority, both seeds | 3/0 each on its retained dedicated database |
+| Recovery/restart, both seeds | 4 core + 1 web, zero failures each |
+| Compile, format, strict Credo, forced Dialyzer, legacy checks | Passed |
+| Root and all three independent-lock audits | Passed, no advisory exceptions |
+| Frozen web dependencies, assets and local production assembly | Passed |
+
+The first populated aggregate retains the same GitHub controller assertion at
+`github_controller_test.exs:56`: it assumes the newly registered connection
+appears on the first default page. The failed response contains existing rows;
+`GitHub.connections/2` orders by UUID and paginates. The later seed's pass does
+not repair or erase that failure. No GitHub code, test, records or pagination
+contract is changed in this compatibility scope. Neither isolated database was
+cleared, unresolved work discarded, nor activation's fail-closed guard bypassed.
+
+Logs and exact commands remain under
+`/tmp/samgita-repair-final-{combined,platform,packages}-v27-20261025/`.
+The terminal collector records every exit, test count and log SHA256 in
+`/tmp/samgita-repair-final-v27-terminal-20261025.json`, SHA256
+`33c12caa944c4bbcb2487f4df91ea2203320d6d8ed473734113bed993f362030`.
+Historical v24 and earlier outcomes remain unchanged.
+
+The exact pushed source also completed hosted qualification:
+
+| Workflow/job | Outcome |
+| --- | --- |
+| [Foundation 40155413357](https://github.com/gsmlg-opt/Samgita/actions/runs/40155413357) | Success, including both fresh-then-reused aggregate runs |
+| [Selected actual-binary/platform job](https://github.com/gsmlg-opt/Samgita/actions/runs/40155446191/job/121055764965) | Success: driver partitions 363 + 355 = 718/0, wire 42/0, outside native consumer 1/0, platform 59 + 11/0, authority 3/0 twice |
+| [All 49 isolated profiles](https://github.com/gsmlg-opt/Samgita/actions/runs/40155446191/job/121055765113) | Success: 292/0, zero exclusions |
+| [Full compatibility evidence gate](https://github.com/gsmlg-opt/Samgita/actions/runs/40155446191/job/121055765071) | Failure; conformance workflow remains failed overall |
+
+Hosted run metadata is retained in
+`/tmp/samgita-v27-hosted-terminal-20261025.json`, SHA256
+`c3b389d072965927717f99942610833b1cc66a5da772961164872373441db872`.
+Per-job logs, counts, steps and hashes are indexed by
+`/tmp/samgita-v27-hosted-logs-20261025/report.json`, SHA256
+`e819cd9512adee67157537c1d4b0c107b9ead9d5ab8483805d3283004b2a8cc8`.
+Fresh hosted database success does not close the retained local failure.
+
+The ledger remains **462 implemented / 12 missing / 11 blocked requirements**
+and **3,901 implemented / 2,720 missing contracts**, zero verified. Continue the
+source-reviewed reachable phase/history, MCP health, Guardian, plugin, trust and
+model-metadata cases, then exact request-correlation owners and the complete
+final-source matrices. These proposals are unrun and grant no promotion. A11,
+upstream-unreachable emitters, external/backend/OS success, the unexplained
+listener failure and full compatibility remain incomplete. No tag, publication,
+production migration or deployment occurs.
+
 ## Retained account/config response owners and blocker recheck
 
 The [52 response-projection owners](native-response-projections-qualification.md)

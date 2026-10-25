@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [terminal frozen v27 local/hosted checkpoint](repair-qualification.md#terminal-frozen-v27-local-and-hosted-matrices)
+completes all 19 platform + 23 package commands and matching 1,495-file guards.
+Driver 718/0 and profiles 292/0 pass twice; the first populated GitHub-page
+assertion and completeness gate fail. Exact-source hosted foundation and both
+native execution jobs pass; full evidence fails. No blocker or owner state is
+promoted. Continue the reviewed reachable phase/history, MCP health, Guardian,
+plugin, trust and model metadata cases, then request correlation and the complete
+new final-source matrices. Existing source-only proposals are not runtime proof.
+
 The [52 response-projection owners](native-response-projections-qualification.md)
 bind precise account/config outputs to unchanged v24 native assertions and the
 nominated v25 account repeat. Exact complete manifest/diff matches; no executable

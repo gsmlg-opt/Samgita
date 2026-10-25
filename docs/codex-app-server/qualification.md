@@ -19,6 +19,17 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [terminal frozen v27 matrices](repair-qualification.md#terminal-frozen-v27-local-and-hosted-matrices)
+complete all 19 platform and 23 package commands at `0aba494`, with both
+1,495-file guards matching. Driver 718/0 and all 49 profiles 292/0 pass twice;
+outside consumers, three WebSocket seeds, wire, recovery/authority repeats,
+strict checks, audits, assets and local assembly pass. The first populated
+aggregate retains the GitHub-page assertion failure; completeness also fails.
+Exact-source hosted foundation and both native execution jobs pass, while the
+complete-evidence job fails. Counts and every broader incomplete gate remain
+unchanged. Continue the reviewed native cases and request-correlation work;
+unrun proposals are not acceptance.
+
 The [retained response projections](native-response-projections-qualification.md)
 bind 52 exact account/config outputs to unchanged passing v24 assertions, plus
 the nominated v25 account repeat. All source/row/node/log preimages and the full
