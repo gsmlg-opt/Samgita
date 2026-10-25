@@ -21,15 +21,25 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native output-selection unit](native-output-selection-qualification.md)
+adds two complete actual-binary profiles, **2/0 twice** after root integration,
+with warning-free compile/format, strict Credo, all 38 tooling regressions and
+the six-file source guard. Twenty-nine exact called-result owners become
+implemented: **4,515 implemented / 2,047 missing / 59 blocked**, zero verified.
+Requirements stay **462 implemented / 12 missing / 11 blocked**, zero verified.
+Complete the separately bounded command-action candidate recovery, then freeze
+the integrated executable/manifest source for all local and exact-pushed hosted
+checks. No selected output case qualifies browsing, memory retrieval, unavailable
+legacy emitters, real external/backend/OS success, A11 or the full goal.
+
 The [frozen v107 matrix](repair-qualification.md#terminal-frozen-v107-local-and-hosted-matrices)
 is terminal on exact pushed `32576e3`: all 19 + 23 local commands run, both 774/0 driver
 and 306/0 profile repeats pass, as do recovery/restart, authority 6/0 twice,
 consumers and strict/audit/assembly checks. First retained GitHub-page aggregate
 and completeness fail. Hosted foundation and both native execution jobs pass;
-complete evidence fails. The next bounded work qualifies the source-backed native
-command-action approvals, web-search output and memory-citation candidates in an
-independent layout, integrates only successful cases, and reruns final-source
-qualification. Every blocked/unverified gate remains required; no release.
+complete evidence fails. Independent native continuations above require their
+own final-source qualification. Every blocked/unverified gate remains required;
+no release.
 
 The integrated [callback/bridge repair](session-confidentiality-qualification.md)
 passes driver59/0 and bridge17/0 twice; the

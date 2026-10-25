@@ -186592,157 +186592,211 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/MemoryCitation/properties/entries",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native parser preserves independently prescribed modern/legacy citation entries and first-seen IDs after stripping markup, including exact Unicode, trimmed paths/notes and rollout_ids precedence. Exact live/warm/first-cold selective result assertions own this canonical property only.",
+        "Synthetic non-UUID citation strings only; no memory retrieval, host memory, UUID usage accounting, null/omitted/malformed forms, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitation/properties/entries",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "67b690ba77f4d721d9e623e88079a00d66c12103e382365ad794adcfe690ed65",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_profile.exs:73-247"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "entries"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/MemoryCitation/properties/threadIds",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native parser preserves independently prescribed modern/legacy citation entries and first-seen IDs after stripping markup, including exact Unicode, trimmed paths/notes and rollout_ids precedence. Exact live/warm/first-cold selective result assertions own this canonical property only.",
+        "Synthetic non-UUID citation strings only; no memory retrieval, host memory, UUID usage accounting, null/omitted/malformed forms, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitation/properties/threadIds",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_profile.exs:73-247"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "threadIds"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/MemoryCitationEntry/properties/lineEnd",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native parser preserves independently prescribed modern/legacy citation entries and first-seen IDs after stripping markup, including exact Unicode, trimmed paths/notes and rollout_ids precedence. Exact live/warm/first-cold selective result assertions own this canonical property only.",
+        "Synthetic non-UUID citation strings only; no memory retrieval, host memory, UUID usage accounting, null/omitted/malformed forms, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitationEntry/properties/lineEnd",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_profile.exs:73-247"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "lineEnd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/MemoryCitationEntry/properties/lineStart",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native parser preserves independently prescribed modern/legacy citation entries and first-seen IDs after stripping markup, including exact Unicode, trimmed paths/notes and rollout_ids precedence. Exact live/warm/first-cold selective result assertions own this canonical property only.",
+        "Synthetic non-UUID citation strings only; no memory retrieval, host memory, UUID usage accounting, null/omitted/malformed forms, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitationEntry/properties/lineStart",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_profile.exs:73-247"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "lineStart"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/MemoryCitationEntry/properties/note",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native parser preserves independently prescribed modern/legacy citation entries and first-seen IDs after stripping markup, including exact Unicode, trimmed paths/notes and rollout_ids precedence. Exact live/warm/first-cold selective result assertions own this canonical property only.",
+        "Synthetic non-UUID citation strings only; no memory retrieval, host memory, UUID usage accounting, null/omitted/malformed forms, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitationEntry/properties/note",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_profile.exs:73-247"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "note"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/MemoryCitationEntry/properties/path",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native parser preserves independently prescribed modern/legacy citation entries and first-seen IDs after stripping markup, including exact Unicode, trimmed paths/notes and rollout_ids precedence. Exact live/warm/first-cold selective result assertions own this canonical property only.",
+        "Synthetic non-UUID citation strings only; no memory retrieval, host memory, UUID usage accounting, null/omitted/malformed forms, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/MemoryCitationEntry/properties/path",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_memory_citation_profile.exs:73-247"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "path"
     },
     {
@@ -188869,50 +188923,68 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Exact webSearch item identity, query, discriminator and nonnull action in the independently prescribed five-item set.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/12",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "6fc2b5f16f22eaa7551f64a10ec584fa7963e546f99dd6c22b75c0f3f926e02b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12/properties/action",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Exact webSearch item identity, query, discriminator and nonnull action in the independently prescribed five-item set.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/action",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "8e4ea25efc83a2d61591108d558594e62af754446060a440f42783460a897650",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "action"
     },
     {
@@ -188962,53 +189034,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12/properties/id",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Exact webSearch item identity, query, discriminator and nonnull action in the independently prescribed five-item set.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/id",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12/properties/query",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Exact webSearch item identity, query, discriminator and nonnull action in the independently prescribed five-item set.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/query",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "query"
     },
     {
@@ -189040,49 +189130,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Exact webSearch item identity, query, discriminator and nonnull action in the independently prescribed five-item set.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "37968f571e32d0c9a62f1ce23bc4f7a8d91cc6b6b7c8e4588a2ada0816ee7054",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/12/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Exact webSearch item identity, query, discriminator and nonnull action in the independently prescribed five-item set.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/12/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "0b6150911ddee6400401fb2c5e2447b4412d7d432c8e9b1b8763f491c7bda133",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -194782,412 +194890,565 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Search action with exact nonnull query and ordered nonempty queries values; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "0f8a332fb93c2d9adc839ea72e2739bbccf581be7c57aeec6702eae2fc2b1a84",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/0/properties/queries",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Search action with exact nonnull query and ordered nonempty queries values; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/queries",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "8f26457b53885f595875388a939f54e76b3d0aec86c11e6dce3cd025fac8380b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "queries"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/0/properties/query",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Search action with exact nonnull query and ordered nonempty queries values; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/query",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "query"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/0/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Search action with exact nonnull query and ordered nonempty queries values; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "1c8cd234154259641772fff9ac6e8aff6c01143e1208d896dbd098b1169bc464",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/0/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Search action with exact nonnull query and ordered nonempty queries values; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/0/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "c98b38b7516ca9985b48db1c1f53b2270a3a1603165e960788dc5ff71f8bae1a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/1",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: OpenPage action with exact prescribed URL; nullable/omitted URL forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "f2598c923d857839188f19c3e0678a404edf7028d89f2ceb31ff4f93f5f7b6ec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/1/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: OpenPage action with exact prescribed URL; nullable/omitted URL forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/WebSearchAction/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "afcd0e38c47a1d7bf08b7b96a1c2a3216869625505ba7689cd72f26e647f2a2f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/1/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: OpenPage action with exact prescribed URL; nullable/omitted URL forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/1/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e77478206d8e5d1e187854326cfb4d88d82efd084663356107379228fa9d73a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/1/properties/url",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: OpenPage action with exact prescribed URL; nullable/omitted URL forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/1/properties/url",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "url"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/2",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: FindInPage action with exact prescribed URL and pattern; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/2",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "47530be7a4d33704886899cde7c77274d59d1359f66b2577af32e1d70347389b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/2/properties/pattern",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: FindInPage action with exact prescribed URL and pattern; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/pattern",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "pattern"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/2/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: FindInPage action with exact prescribed URL and pattern; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "c6b7ab83670f9268cf621dfe875492ed4250c63d7921f28ce7244dadef25f9b0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/2/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: FindInPage action with exact prescribed URL and pattern; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "fc791d8e115a84f97174c568d68d47fd9899d8bc715a74489b9ca1b8e9def14d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/2/properties/url",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: FindInPage action with exact prescribed URL and pattern; nullable/omitted forms are unqualified.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/WebSearchAction/oneOf/2/properties/url",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "url"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/3",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Two actual Responses inputs (unknown action type and missing action) must map to the exact nonnull Other action.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/3",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "69769edb710f4d793a2d835290797dc0c9a67707280431d7076c4f59825d715a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/3/properties/type",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Two actual Responses inputs (unknown action type and missing action) must map to the exact nonnull Other action.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/WebSearchAction/oneOf/3/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "29fda13d75c96c2dec30fff96c6d57505211e523615622d74b8120edc84f3617",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-output-selection-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/WebSearchAction/oneOf/3/properties/type/enum/0",
       "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "limitations": [
+        "Actual pinned native Responses conversion and warm/first-cold thread/items/read: Two actual Responses inputs (unknown action type and missing action) must map to the exact nonnull Other action.",
+        "Fixed synthetic Responses and private Linux UDS only; no hosted browsing/search, action:null, structured results, null/omission alternatives, sibling-schema propagation, other transports/OS/backend, A11 or complete qualification."
+      ],
       "pointer": "/definitions/WebSearchAction/oneOf/3/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "c494f200f7f18a48d81653a80ac7f0eeba86a208b72efa78571fa93662be5e19",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_web_search_items_profile.exs:74-218"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {

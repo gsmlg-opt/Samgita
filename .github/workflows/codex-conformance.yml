@@ -334,6 +334,14 @@ jobs:
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
         run: mix test test/native_tool_interactions_profile.exs --seed 501432
+      - name: Required native web-search output and cold selective history
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_web_search_items_profile.exs --seed 501432
+      - name: Required native memory-citation output and cold selective history
+        timeout-minutes: 8
+        working-directory: apps/samgita_codex_driver
+        run: mix test test/native_memory_citation_profile.exs --seed 501432
       - name: Required native realtime WebSocket V2 lifecycle profile
         timeout-minutes: 8
         working-directory: apps/samgita_codex_driver
