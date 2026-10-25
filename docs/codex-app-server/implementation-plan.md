@@ -21,6 +21,27 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native reasoning-item unit](reasoning-item-events-qualification.md) passes
+the final **34-file, 60/0 twice** matrix, compile/format, strict Credo, outside
+consumer **1/0**, eleven fixture ASTs and the **267-source** unchanged-byte
+guard. Six exact owners bring contracts to **4,806 implemented / 1,756 missing /
+59 blocked**, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Actual populated/empty reasoning arrays and
+omitted/null provider-content normalization retain complete live maps and
+first-cold history with original bytes and one inference. No runtime or shared
+helper changes occur. Inventory consistency passes; strict completeness
+remains exit **1**.
+
+Continue canonical Sleep item notification owners2535–2539 through the genuine
+clock.sleep executor. Use the always_on sleep feature with system-clock and
+current-time reminders disabled, a real one-millisecond native call and exact
+result/lifecycle/history oracles. No old isolation profile is required. Keep
+selective null-action owner5483 missing until its own producer is demonstrated.
+All prohibited/broad/hosted, full-goal, A11, unresolved legacy, unavailable
+external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [standalone web executor](standalone-web-search-qualification.md) and
 [native citation events](memory-citation-events-qualification.md) pass the
 final **33-file, 59/0 twice** matrix, compile/format, strict Credo, outside
@@ -40,7 +61,7 @@ profile. Keep selective null-action owner5483 missing until its own current
 producer is demonstrated. All prohibited/broad/hosted, full-goal, A11,
 unresolved legacy, unavailable external/OS and release gates stay incomplete.
 
-## Earlier checkpoints
+### Previous executable checkpoint
 
 The [omitted/null web-action continuation](streamed-web-search-qualification.md#omitted-and-null-options)
 passes the final **31-file, 57/0 twice** matrix, compile/format, strict Credo,

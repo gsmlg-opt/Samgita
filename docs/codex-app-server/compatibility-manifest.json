@@ -100465,150 +100465,204 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-item-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/5",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: four prescribed ordinary Responses reasoning items yield complete ordered item/started and item/completed maps with literal IDs/type/summary/content arrays; mixed reasoning_text/text, empty-string content, empty arrays and omitted/null provider content are checked with native thread/turn and host-bounded timestamps.",
+        "Actual warm and first-cold selective/full history preserve the same items and original rollout/config/catalog/single-request provider bytes. Summary is supplied as required by this provider schema; this is not generic schema-default, alias, other-export, other OS/transport/backend or full compatibility qualification. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/5",
       "schema": "ServerNotification.json",
       "schema_sha256": "87eb6c7dae822e3fa42c68a5e80b5b5e69e42ea9e3f61b402553d748c921bac3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-item-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/5/properties/content",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: four prescribed ordinary Responses reasoning items yield complete ordered item/started and item/completed maps with literal IDs/type/summary/content arrays; mixed reasoning_text/text, empty-string content, empty arrays and omitted/null provider content are checked with native thread/turn and host-bounded timestamps.",
+        "Actual warm and first-cold selective/full history preserve the same items and original rollout/config/catalog/single-request provider bytes. Summary is supplied as required by this provider schema; this is not generic schema-default, alias, other-export, other OS/transport/backend or full compatibility qualification. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/5/properties/content",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "aac2a4e83d2823be6d45475fa797647d1e2a6c55cfa5a4632ae455eeacdd2e88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "content"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-item-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/5/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: four prescribed ordinary Responses reasoning items yield complete ordered item/started and item/completed maps with literal IDs/type/summary/content arrays; mixed reasoning_text/text, empty-string content, empty arrays and omitted/null provider content are checked with native thread/turn and host-bounded timestamps.",
+        "Actual warm and first-cold selective/full history preserve the same items and original rollout/config/catalog/single-request provider bytes. Summary is supplied as required by this provider schema; this is not generic schema-default, alias, other-export, other OS/transport/backend or full compatibility qualification. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/5/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-item-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/5/properties/summary",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: four prescribed ordinary Responses reasoning items yield complete ordered item/started and item/completed maps with literal IDs/type/summary/content arrays; mixed reasoning_text/text, empty-string content, empty arrays and omitted/null provider content are checked with native thread/turn and host-bounded timestamps.",
+        "Actual warm and first-cold selective/full history preserve the same items and original rollout/config/catalog/single-request provider bytes. Summary is supplied as required by this provider schema; this is not generic schema-default, alias, other-export, other OS/transport/backend or full compatibility qualification. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/5/properties/summary",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "aac2a4e83d2823be6d45475fa797647d1e2a6c55cfa5a4632ae455eeacdd2e88",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "summary"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-item-events-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/5/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: four prescribed ordinary Responses reasoning items yield complete ordered item/started and item/completed maps with literal IDs/type/summary/content arrays; mixed reasoning_text/text, empty-string content, empty arrays and omitted/null provider content are checked with native thread/turn and host-bounded timestamps.",
+        "Actual warm and first-cold selective/full history preserve the same items and original rollout/config/catalog/single-request provider bytes. Summary is supplied as required by this provider schema; this is not generic schema-default, alias, other-export, other OS/transport/backend or full compatibility qualification. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/5/properties/type",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "537c0f38bc3e277c839477b1ac89c580f2cf60bf77430ebb7977eccd2e85509e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/reasoning-item-events-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/5/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual native notification owner only: four prescribed ordinary Responses reasoning items yield complete ordered item/started and item/completed maps with literal IDs/type/summary/content arrays; mixed reasoning_text/text, empty-string content, empty arrays and omitted/null provider content are checked with native thread/turn and host-bounded timestamps.",
+        "Actual warm and first-cold selective/full history preserve the same items and original rollout/config/catalog/single-request provider bytes. Summary is supplied as required by this provider schema; this is not generic schema-default, alias, other-export, other OS/transport/backend or full compatibility qualification. State remains implemented; required broader/hosted and security/permission gates are unrun."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/5/properties/type/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "2d259dc907b8bd57071fa5cfb1ee99eb2f1f0a86e04718dce34438fe1e40fe7a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_reasoning_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

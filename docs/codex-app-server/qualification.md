@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [native reasoning-item unit](reasoning-item-events-qualification.md) passes
+the final **34-file, 60/0 twice** matrix, compile/format, strict Credo, outside
+consumer **1/0**, eleven provider ASTs and the **267-source** unchanged-byte
+guard. Six exact physical notification owners bring contracts to **4,806
+implemented / 1,756 missing / 59 blocked**, unchanged **462 implemented /
+12 missing / 11 blocked** requirements and zero verified. Four prescribed
+native reasoning items retain ordered complete maps, populated/empty arrays
+and omitted/null provider-content normalization, actual history and first-cold
+selection with original bytes and one inference. No draft failure or runtime
+change occurs. Inventory consistency passes; strict completeness exits **1**.
+Prohibited/broad/hosted, full-goal, A11, unresolved legacy, unavailable
+external/OS and release gates remain incomplete. No publication/deployment.
+
 The [standalone web executor](standalone-web-search-qualification.md) and
 [native citation events](memory-citation-events-qualification.md) pass the
 final **33-file, 59/0 twice** matrix, compile/format, strict Credo, outside
