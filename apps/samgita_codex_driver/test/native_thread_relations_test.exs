@@ -37,11 +37,13 @@ defmodule SamgitaCodexDriver.NativeThreadRelationsTest do
     pid = start(ctx)
     unrelated = complete(ctx, pid, "OWNED_RELATION_UNRELATED")
     root = TurnFixture.thread(ctx, pid, %{"historyMode" => "paginated"})
+    before_turn = System.system_time(:millisecond)
 
     turn =
       TurnFixture.start_turn(pid, root, [%{"type" => "text", "text" => "OWNED_RELATION_ROOT"}])
 
     events = TurnFixture.finish_turn(pid, root, turn)
+    after_turn = System.system_time(:millisecond)
     requests = ModelFixture.requests(ctx.fixture)
     assert length(requests) == 11
     a = spawned_id(requests, "relation-spawn-a")
@@ -50,6 +52,30 @@ defmodule SamgitaCodexDriver.NativeThreadRelationsTest do
     assert MapSet.size(MapSet.new([root, a, b, g, unrelated])) == 5
     assert_spawn_event(events, "relation-spawn-a", root, a, "OWNED_RELATION_CHILD_A")
     assert_spawn_event(events, "relation-spawn-b", root, b, "OWNED_RELATION_CHILD_B")
+
+    expected_waits =
+      for {call_id, child, message} <- [
+            {"relation-wait-a", a, "Owned relation a done"},
+            {"relation-wait-b", b, "Owned relation b done"}
+          ] do
+        wait_entry(events, root, turn, call_id, child, message, before_turn, after_turn)
+      end
+
+    # The full read is only the producer/store barrier. Wait payloads above are
+    # prescribed independently from the fixed child responses and native IDs.
+    assert [%{"id" => ^turn, "status" => "completed"}] =
+             call(pid, "thread/read", %{"threadId" => root, "includeTurns" => true})["thread"][
+               "turns"
+             ]
+
+    wait_query = %{
+      "threadId" => root,
+      "turnId" => turn,
+      "itemIds" => ["relation-wait-b", "relation-wait-a"]
+    }
+
+    assert_wait_selection(pid, wait_query, expected_waits)
+    assert ModelFixture.requests(ctx.fixture) == requests
     parents = %{a => {root, 1}, b => {root, 1}, g => {a, 2}}
     direct = %{"parentThreadId" => root}
     recursive = %{"ancestorThreadId" => root}
@@ -107,8 +133,14 @@ defmodule SamgitaCodexDriver.NativeThreadRelationsTest do
     ])
 
     baseline = durable(list(pid, recursive))
+    native_pid = call(pid, "server/diagnostics", %{})["process"]["id"]
     assert :ok = Session.close(pid)
+    refute File.exists?("/proc/#{native_pid}")
     cold = start(ctx)
+    refute call(cold, "server/diagnostics", %{})["process"]["id"] == native_pid
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    # First content operation in the distinct native process is selective.
+    assert_wait_selection(cold, wait_query, expected_waits)
     assert call(cold, "thread/loaded/list", %{})["data"] == []
     assert durable(list(cold, recursive)) == baseline
     assert_ids(list(cold, direct), [b, a])
@@ -160,6 +192,73 @@ defmodule SamgitaCodexDriver.NativeThreadRelationsTest do
     turn = TurnFixture.start_turn(pid, id, [%{"type" => "text", "text" => text}])
     TurnFixture.finish_turn(pid, id, turn)
     id
+  end
+
+  defp wait_entry(events, root, turn, call_id, child, message, before_turn, after_turn) do
+    expected = %{
+      "id" => call_id,
+      "type" => "collabAgentToolCall",
+      "tool" => "wait",
+      "status" => "completed",
+      "senderThreadId" => root,
+      "receiverThreadIds" => [child],
+      "prompt" => nil,
+      "model" => nil,
+      "reasoningEffort" => nil,
+      "agentsStates" => %{child => %{"status" => "completed", "message" => message}}
+    }
+
+    params = fn method ->
+      for event <- events,
+          event.wire["method"] == method,
+          event.wire["params"]["item"]["id"] == call_id,
+          do: event.wire["params"]
+    end
+
+    assert [started] = params.("item/started")
+    assert [completed] = params.("item/completed")
+    assert started["threadId"] == root and started["turnId"] == turn
+    started_at = Map.fetch!(started, "startedAtMs")
+    completed_at = Map.fetch!(completed, "completedAtMs")
+    assert is_integer(started_at) and is_integer(completed_at)
+    assert before_turn <= started_at and started_at <= completed_at and completed_at <= after_turn
+
+    assert completed === %{
+             "threadId" => root,
+             "turnId" => turn,
+             "item" => expected,
+             "completedAtMs" => completed_at
+           }
+
+    %{
+      "turnId" => turn,
+      "item" => expected,
+      "startedAtMs" => started_at,
+      "completedAtMs" => completed_at
+    }
+  end
+
+  defp assert_wait_selection(pid, query, expected) do
+    assert call(pid, "thread/items/read", query) === %{"data" => expected}
+
+    assert call(pid, "thread/items/read", %{
+             query
+             | "itemIds" => [
+                 "owned-absent-wait",
+                 "relation-wait-b",
+                 "relation-wait-a",
+                 "relation-wait-a"
+               ]
+           }) === %{"data" => expected}
+
+    assert call(pid, "thread/items/read", %{query | "itemIds" => ["owned-absent-wait"]}) ===
+             %{"data" => []}
+
+    assert call(pid, "thread/items/read", %{query | "turnId" => "owned-absent-turn"}) ===
+             %{"data" => []}
+
+    assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+    assert Session.uncertain_operations(pid) == []
   end
 
   defp spawned_id(requests, call_id) do

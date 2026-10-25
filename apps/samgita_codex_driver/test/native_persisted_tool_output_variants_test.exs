@@ -26,8 +26,9 @@ defmodule SamgitaCodexDriver.NativePersistedToolOutputVariantsTest do
   @standalone_name "owned_retained_content"
   @content_text "Owned retained content array λ🙂\nSecond synthetic line"
   @low_placeholder "image content omitted because detail 'low' is not supported; use 'high', 'original', or 'auto'"
+  @owned_audio "data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQIAAAAAAA=="
 
-  setup do
+  setup tags do
     binary = System.get_env("CODEX_BINARY")
 
     assert is_binary(binary) and File.regular?(binary),
@@ -64,7 +65,8 @@ defmodule SamgitaCodexDriver.NativePersistedToolOutputVariantsTest do
     ctx = %{binary: binary, root: root, fixture: fixture}
 
     TurnFixture.configure_model(ctx, %{
-      "input_modalities" => ["text", "image"],
+      "input_modalities" =>
+        if(tags[:opaque_media], do: ["text", "image", "audio"], else: ["text", "image"]),
       "use_responses_lite" => false
     })
 
@@ -74,10 +76,12 @@ defmodule SamgitaCodexDriver.NativePersistedToolOutputVariantsTest do
   for {variant, namespace_mode} <- [
         {:text_only, :explicit_null},
         {:text_and_low_image, :omitted},
-        {:text_and_high_image, :omitted}
+        {:text_and_high_image, :omitted},
+        {:opaque_media, :omitted}
       ] do
     @variant variant
     @namespace_mode namespace_mode
+    @tag opaque_media: variant == :opaque_media
     test "retained #{@variant} output with #{@namespace_mode} namespace survives first cold selection",
          ctx do
       pid = start(ctx)
@@ -114,6 +118,17 @@ defmodule SamgitaCodexDriver.NativePersistedToolOutputVariantsTest do
 
           :text_and_high_image ->
             [text, %{"type" => "input_image", "image_url" => image_url, "detail" => "high"}]
+
+          :opaque_media ->
+            [
+              text,
+              %{"type" => "input_image", "file_id" => "file-owned-retained-001"},
+              %{"type" => "input_audio", "audio_url" => @owned_audio},
+              %{
+                "type" => "encrypted_content",
+                "encrypted_content" => "SYNTHETIC_OWNED_RETAINED_CIPHERTEXT"
+              }
+            ]
         end
 
       standalone = %{

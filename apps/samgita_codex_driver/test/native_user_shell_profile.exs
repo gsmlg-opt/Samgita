@@ -168,6 +168,126 @@ defmodule SamgitaCodexDriver.NativeUserShellProfile do
     assert :ok = Session.close(pid)
   end
 
+  test "paginated shell actions and fixed failure survive first cold selective reads", ctx do
+    pid = client(ctx)
+
+    id =
+      call(pid, "thread/start", %{"cwd" => ctx.workspace, "historyMode" => "paginated"})[
+        "thread"
+      ]["id"]
+
+    File.write!(Path.join(ctx.workspace, "owned.txt"), "owned-history\n")
+    File.mkdir!(Path.join(ctx.workspace, "owned-dir"))
+    File.write!(Path.join(ctx.workspace, "owned-dir/needle.txt"), "owned-history\n")
+    account_shell = expected_account_shell(ctx)
+
+    cases = [
+      {"cat owned.txt",
+       %{
+         "type" => "read",
+         "command" => "cat owned.txt",
+         "name" => "owned.txt",
+         "path" => Path.join(ctx.workspace, "owned.txt")
+       }, "completed", 0, "owned-history\n"},
+      {"ls owned-dir",
+       %{"type" => "listFiles", "command" => "ls owned-dir", "path" => "owned-dir"}, "completed",
+       0, "needle.txt\n"},
+      {"grep -R owned-history -n owned-dir",
+       %{
+         "type" => "search",
+         "command" => "grep -R owned-history -n owned-dir",
+         "query" => "owned-history",
+         "path" => "owned-dir"
+       }, "completed", 0, "owned-dir/needle.txt:1:owned-history\n"},
+      {"false", %{"type" => "unknown", "command" => "false"}, "failed", 1, nil}
+    ]
+
+    records =
+      for {command, action, status, exit_code, output} <- cases do
+        before_ms = System.system_time(:millisecond)
+        shell = start_shell(pid, id, command)
+        {completed, events} = finish_shell(pid, shell)
+        after_ms = System.system_time(:millisecond)
+        refute Enum.any?(events, &(&1.kind == :server_request))
+        started = notification(events, "item/started", &(&1["item"]["id"] == shell.item))
+        ended = notification(events, "item/completed", &(&1["item"]["id"] == shell.item))
+        started_at = Map.fetch!(started, "startedAtMs")
+        completed_at = Map.fetch!(ended, "completedAtMs")
+        duration = Map.fetch!(completed, "durationMs")
+        assert is_integer(started_at) and is_integer(completed_at)
+        assert before_ms <= started_at and started_at <= completed_at and completed_at <= after_ms
+        assert is_integer(duration) and duration >= 0 and duration <= after_ms - before_ms
+
+        # rust-v0.163.0 uses the account shell, login=true and shlex::try_join.
+        # These fixed scripts contain no quotes; all expected payload values
+        # except generated identity/timing are prescribed before reading history.
+        display_command =
+          if command == "false",
+            do: account_shell <> " -lc false",
+            else: account_shell <> " -lc '" <> command <> "'"
+
+        expected_item = %{
+          "id" => shell.item,
+          "type" => "commandExecution",
+          "pluginId" => nil,
+          "scriptPath" => nil,
+          "command" => display_command,
+          "commandActions" => [action],
+          "cwd" => ctx.workspace,
+          "processId" => nil,
+          "source" => "userShell",
+          "status" => status,
+          "exitCode" => exit_code,
+          "aggregatedOutput" => output,
+          "durationMs" => duration
+        }
+
+        assert completed === expected_item
+
+        assert notification(events, "turn/completed", &(&1["turn"]["id"] == shell.turn))[
+                 "turn"
+               ]["status"] == "completed"
+
+        %{
+          "query" => %{"threadId" => id, "turnId" => shell.turn, "itemIds" => [shell.item]},
+          "entry" => %{
+            "turnId" => shell.turn,
+            "item" => expected_item,
+            "startedAtMs" => started_at,
+            "completedAtMs" => completed_at
+          }
+        }
+      end
+
+    assert_owned_history_files(ctx)
+    assert requests(ctx) == []
+
+    # Full read is the warm producer/store barrier, never the semantic oracle.
+    assert length(
+             call(pid, "thread/read", %{"threadId" => id, "includeTurns" => true})["thread"][
+               "turns"
+             ]
+           ) == 4
+
+    assert_shell_selection(pid, records)
+    assert_owned_history_files(ctx)
+    assert requests(ctx) == []
+    assert :ok = Session.close(pid)
+    old = state(ctx)
+    assert {:ok, _} = Stdio.send(ctx.owner, JSON.encode!(%{"restart" => true}))
+    await(fn -> ready?(ctx, old["generation"] + 1) end, "explicit paginated shell restart")
+    for os_pid <- old["native_pids"], do: refute(File.exists?("/proc/#{os_pid}"))
+    refute List.last(state(ctx)["native_pids"]) in old["native_pids"]
+    cold = client(ctx)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    # First content operation after the owned restart is selective, without resume.
+    assert_shell_selection(cold, records)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert_owned_history_files(ctx)
+    assert requests(ctx) == []
+    assert :ok = Session.close(cold)
+  end
+
   test "omitted null large zero and bounded timeouts preserve native shell semantics", ctx do
     pid = client(ctx)
     thread = thread(pid, ctx)
@@ -505,6 +625,70 @@ defmodule SamgitaCodexDriver.NativeUserShellProfile do
 
     assert length(turns) == 1
     assert_no_commands(turns)
+  end
+
+  defp expected_account_shell(ctx) do
+    # The owned fixture uses --map-root-user, so the native passwd lookup is
+    # for namespace UID 0. SHELL and the outer test user's UID are not its input.
+    assert {encoded, 0} =
+             System.cmd(ctx.python, [
+               "-c",
+               "import json,pwd; print(json.dumps(pwd.getpwuid(0).pw_shell))"
+             ])
+
+    shell = JSON.decode!(String.trim(encoded))
+
+    assert is_binary(shell) and Path.type(shell) == :absolute and File.regular?(shell),
+           "BLOCKED_ENV: independent oracle requires a regular absolute account shell"
+
+    assert Path.basename(shell) in ~w(sh bash zsh),
+           "BLOCKED_ENV: independent oracle requires a POSIX account shell"
+
+    assert Regex.match?(~r|^[A-Za-z0-9_/.+@:-]+$|, shell),
+           "BLOCKED_ENV: independent shell path requires shlex-safe characters"
+
+    shell
+  end
+
+  defp assert_owned_history_files(ctx) do
+    assert Enum.sort(File.ls!(ctx.workspace)) == ["owned-dir", "owned.txt"]
+    assert File.ls!(Path.join(ctx.workspace, "owned-dir")) == ["needle.txt"]
+    assert File.read!(Path.join(ctx.workspace, "owned.txt")) == "owned-history\n"
+    assert File.read!(Path.join(ctx.workspace, "owned-dir/needle.txt")) == "owned-history\n"
+  end
+
+  defp assert_shell_selection(pid, records) do
+    for %{"query" => query, "entry" => entry} <- records do
+      assert call(pid, "thread/items/read", query) === %{"data" => [entry]}
+      [item_id] = query["itemIds"]
+
+      assert call(pid, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-shell-item", item_id, item_id]
+             }) === %{"data" => [entry]}
+
+      assert call(pid, "thread/items/read", %{
+               query
+               | "itemIds" => ["owned-absent-shell-item"]
+             }) === %{"data" => []}
+
+      assert call(pid, "thread/items/read", %{query | "turnId" => "owned-absent-turn"}) ===
+               %{"data" => []}
+    end
+
+    assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0} = Session.status(pid)
+    assert Session.uncertain_operations(pid) == []
+    assert {:ok, remaining} = Session.drain(pid)
+    refute Enum.any?(remaining, &(&1.kind == :server_request))
+
+    refute Enum.any?(remaining, fn event ->
+             event.wire["method"] in [
+               "turn/started",
+               "turn/completed",
+               "item/started",
+               "item/completed"
+             ]
+           end)
   end
 
   defp assert_no_commands(turns),

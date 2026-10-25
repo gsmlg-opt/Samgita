@@ -143,3 +143,32 @@ local attachment handling, hooks rejecting queued input, cross-process revision
 polling, subagent authority restrictions, alternate operating systems or external
 platform integration. Passing this scope will not establish full compatibility
 or production readiness; wider qualification gates remain separate.
+
+## Pinned queue-start response reachability
+
+The later source-only physical-owner audit finds **57 still-missing** contracts
+in `v2/ThreadQueueStartResponse.json` that this pinned success producer cannot
+emit. They remain missing, with no promotion or new runtime claim:
+
+| Missing response shape | Physical owners | Pinned behavior |
+| --- | ---: | --- |
+| Non-null Turn error subtree | 50 | Success returns `error: None`; request failures produce a correlated JSON-RPC error outside this result. |
+| Summary/full items view | 4 | The initial result always has `items: []` and `itemsView: NotLoaded`. |
+| Completed/interrupted/failed status | 3 | The initial result always has status `InProgress`; later lifecycle events and history are separate messages. |
+
+The immutable [sole success constructor](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/request_processors/thread_queue_processor.rs#L186-L245)
+sets those values and null timestamps after an explicit successful submission.
+Its error branches return `Err(JSONRPCErrorError)`. A terminal event, an error
+envelope or a scripted response cannot establish a different success-result
+variant. Existing selected/head-start native cases already assert the exact
+initial snapshot, but their passing broader lifecycle observations do not
+qualify these unreachable result variants.
+
+Audit artifact:
+`/tmp/samgita-queue-start-response-owner-audit-v33-20261025.json`, SHA256
+`cf775323c3ead06f308286913651f2b13721dd305f6b88193c54d7a04c2472ac`.
+The parent checks all 72 original rows/canonical nodes/hashes, exact evidence
+preimages and unique producer symbol references. This is source reachability
+evidence; enabled-success acceptance remains unavailable at the immutable pin.
+No schema/driver alteration, mock success, upstream modification or target
+exclusion is introduced. Full compatibility remains incomplete.

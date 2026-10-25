@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native history/correlation continuation](native-history-correlation-qualification.md)
+passes all fourteen owning files **94/0 twice**, strict checks and matching
+1,495-file/binary guards after the recorded duplicate-TOML fixture repair.
+Fifty history and 53 ID owners bring contracts to **4,337 implemented / 2,284
+missing**, zero verified; requirements stay 462 implemented/12 missing/11 blocked.
+Freeze the combined source for complete local/platform/profile/consumer and
+exact-source hosted qualification. Unreachable/null variants and every broader
+incomplete gate remain required; this checkpoint does not finish the goal.
+
 The [settings/search continuation](settings-search-qualification.md) passes the
 complete six-file block **41/0 twice**, strict checks and matching source/binary
 guards after the preserved source-backed warm-environment oracle correction.
