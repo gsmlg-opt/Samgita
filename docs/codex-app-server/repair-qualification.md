@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native timeline terminal-error continuation](timeline-error-values-qualification.md)
+passes twenty-eight reviewed files **51/0 twice**, strict/static checks, outside
+consumer **1/0**, five Python AST checks and the 255-source guard; artifacts are
+in `/tmp/samgita-v285-functional-checks/`. Three exact fields/branches bring
+contracts to **4,736 implemented / 1,826 missing / 59 blocked**, unchanged
+requirements and zero verified. Raw failure and API object/null oracles,
+explicit recovery and cold history/timeline checks preserve original bounds
+and cleanup. The first **2/1** raw-text draft is corrected against pinned serde,
+without a weaker assertion/deadline. All prohibited/broader/hosted, A11 and
+full-goal gates remain incomplete.
+
 The [context-window catalog continuation](thread-event-lifecycle-qualification.md#context-window-catalog-qualification)
 passes twenty-eight reviewed files **50/0 twice**, strict/static checks, outside
 consumer **1/0**, four Python AST checks and 254-source guard; artifacts are in

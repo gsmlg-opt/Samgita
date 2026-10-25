@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [timeline terminal-error unit](timeline-error-values-qualification.md)
+passes twenty-eight reviewed files **51/0 twice**, compile/format, strict Credo,
+outside consumer **1/0**, five Python AST checks and the 255-source guard.
+Three exact object/null owners bring contracts to **4,736 implemented /
+1,826 missing / 59 blocked**, unchanged requirements and zero verified. Genuine
+native failure, explicit recovery, raw/API error distinction and cold no-load
+history/timeline equality retain original bounds and cleanup. The raw-text
+draft failure and exact source-backed correction remain recorded. All
+prohibited/broader/hosted, full-goal, A11, source-unreachable/external and release
+gates remain incomplete.
+
 The [context-window catalog unit](thread-event-lifecycle-qualification.md#context-window-catalog-qualification)
 passes twenty-eight reviewed files **50/0 twice**, compile/format, strict Credo,
 outside consumer **1/0**, four Python AST checks and the 254-source guard. One

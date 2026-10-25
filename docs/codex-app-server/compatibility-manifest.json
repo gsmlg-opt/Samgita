@@ -220571,71 +220571,98 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/timeline-error-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/3/properties/error",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Present terminal error preserves the exact native overload TurnError object and successful explicit null.",
+        "Selected ordinary paginated Linux stdio producer only: actual failed-turn raw record, explicit recovery and cold no-load history/timeline with unchanged complete rollout/provider journal. No all-error-variant, timestamp alias, whole method, external backend, other OS/transport or full compatibility promotion."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/3/properties/error",
       "required": false,
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "0173809eaad62aa3e9e0cb79a3c98144d88ebf1b06047eb485d73c28dc255a05",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs:194"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "error"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/timeline-error-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/3/properties/error/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "The object branch carries the independent fixed overload display, serverOverloaded code and explicit null details/misalignment.",
+        "Selected ordinary paginated Linux stdio producer only: actual failed-turn raw record, explicit recovery and cold no-load history/timeline with unchanged complete rollout/provider journal. No all-error-variant, timestamp alias, whole method, external backend, other OS/transport or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/3/properties/error/anyOf/0",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "c1aaa92f65bbaec529d993afd04174f79910b3e3d2a00be166ac49abdaba1745",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs:194"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/timeline-error-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadTimelineListResponse.json#/definitions/ThreadTimelineEntry/oneOf/3/properties/error/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "The successful terminal entry has an explicitly present error:null; omission fails.",
+        "Selected ordinary paginated Linux stdio producer only: actual failed-turn raw record, explicit recovery and cold no-load history/timeline with unchanged complete rollout/provider journal. No all-error-variant, timestamp alias, whole method, external backend, other OS/transport or full compatibility promotion."
+      ],
       "pointer": "/definitions/ThreadTimelineEntry/oneOf/3/properties/error/anyOf/1",
       "schema": "v2/ThreadTimelineListResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs:194"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

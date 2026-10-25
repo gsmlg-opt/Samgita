@@ -19,6 +19,15 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
   @answer "Deterministic local fixture answer"
   @markers ["Owned timeline ordinal first λ", "Owned timeline ordinal second 🙂"]
   @captured_methods ["turn/start", "thread/timeline/list"]
+  @error_script Path.expand("../../../scripts/codex/timeline_error_fixture.py", __DIR__)
+  @error_message "Selected model is at capacity. Please try a different model."
+  @terminal_error %{
+    "message" => @error_message,
+    "codexErrorInfo" => "serverOverloaded",
+    "additionalDetails" => nil,
+    "misalignment" => nil
+  }
+  @raw_error %{"message" => @error_message, "codex_error_info" => "server_overloaded"}
 
   defmodule CaptureStdio do
     @moduledoc false
@@ -64,7 +73,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
   end
 
   setup tags do
-    ctx = TurnFixture.setup(tags)
+    ctx = setup_fixture(tags)
     assert hash(File.read!(ctx.binary)) == @binary_sha
 
     TurnFixture.configure_model(ctx, %{
@@ -89,6 +98,21 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     capture = start_supervised!({Agent, fn -> [] end})
     Map.merge(ctx, %{capture: capture, inputs: inputs})
   end
+
+  defp setup_fixture(%{timeline_error: true} = tags) do
+    previous = System.get_env("CODEX_MODEL_FIXTURE_SCRIPT")
+    System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", @error_script)
+
+    try do
+      TurnFixture.setup(tags)
+    after
+      if previous,
+        do: System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", previous),
+        else: System.delete_env("CODEX_MODEL_FIXTURE_SCRIPT")
+    end
+  end
+
+  defp setup_fixture(tags), do: TurnFixture.setup(tags)
 
   test "ordinary timeline positions retain canonical rollout ordinals across pages and restart",
        ctx do
@@ -166,6 +190,117 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     assert snapshot(ctx.fixture.requests) === journal
   end
 
+  @tag timeline_error: true
+  test "failed and recovered timeline errors preserve native history across cold restart", ctx do
+    first = start(ctx)
+    first_native = native_id(ctx, first)
+
+    thread =
+      call(ctx, first, "thread/start", %{
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "cwd" => ctx.fixture.workspace,
+        "historyMode" => "paginated",
+        "ephemeral" => false
+      })["thread"]["id"]
+
+    failed = failed_turn(ctx, first, thread)
+    assert [failed_provider] = ModelFixture.requests(ctx.fixture)
+    assert_provider(failed_provider, thread, failed)
+
+    # Inspect the failed durable reader before any recovery request. A read ACK
+    # alone cannot prove that the native projection persisted its terminal error.
+    failed_saved = assert_history(ctx, first, thread, [failed])
+    path = Map.fetch!(failed_saved, "path")
+    assert String.starts_with?(Path.expand(path), Path.expand(ctx.fixture.codex_home) <> "/")
+    failed_bytes = snapshot(path)
+    failed_expected = error_positions(failed_bytes.bytes, thread, [failed])
+    query = %{"threadId" => thread, "limit" => 100}
+    failed_timeline = call(ctx, first, "thread/timeline/list", query)
+    assert_error_timeline(failed_timeline, failed_expected)
+    assert snapshot(path) === failed_bytes
+    assert ModelFixture.requests(ctx.fixture) == [failed_provider]
+
+    recovered = complete_turn(ctx, first, thread, "Owned timeline explicit recovery 🙂")
+    refute recovered.id == failed.id
+    assert [^failed_provider, recovery_provider] = ModelFixture.requests(ctx.fixture)
+    assert_provider(recovery_provider, thread, recovered)
+    rows = [failed, recovered]
+    saved = assert_history(ctx, first, thread, rows)
+    assert Map.fetch!(saved, "path") == path
+    rollout = snapshot(path)
+    expected = error_positions(rollout.bytes, thread, rows)
+    assert length(expected) == 2
+    full = call(ctx, first, "thread/timeline/list", query)
+    assert_error_timeline(full, expected)
+    journal = snapshot(ctx.fixture.requests)
+    retained = Map.merge(ctx.inputs, %{path => rollout, ctx.fixture.requests => journal})
+    assert_retained(ctx, first, retained)
+    close(first, first_native)
+
+    cold = start(ctx)
+    cold_native = native_id(ctx, cold)
+    refute cold_native == first_native
+    assert call(ctx, cold, "thread/loaded/list", %{})["data"] == []
+    cold_saved = assert_history(ctx, cold, thread, rows)
+    assert Map.fetch!(cold_saved, "path") == path
+    assert Map.fetch!(cold_saved, "turns") === Map.fetch!(saved, "turns")
+    cold_timeline = call(ctx, cold, "thread/timeline/list", query)
+    assert_error_timeline(cold_timeline, expected)
+    assert cold_timeline === full
+    assert call(ctx, cold, "thread/loaded/list", %{})["data"] == []
+    assert length(Agent.get(ctx.capture, & &1)) == 5
+    assert_retained(ctx, cold, retained)
+    close(cold, cold_native)
+    assert snapshot(path) === rollout
+    assert snapshot(ctx.fixture.requests) === journal
+  end
+
+  defp failed_turn(ctx, pid, thread) do
+    marker = "Owned timeline native overload λ"
+
+    turn =
+      call(ctx, pid, "turn/start", %{
+        "threadId" => thread,
+        "input" => [%{"type" => "text", "text" => marker}]
+      })["turn"]["id"]
+
+    assert is_binary(turn) and byte_size(turn) > 0
+    events = collect_turn(pid, thread, turn, [], deadline(20_000), "failed")
+
+    assert [
+             %{
+               "threadId" => ^thread,
+               "turnId" => ^turn,
+               "willRetry" => false,
+               "error" => @terminal_error
+             }
+           ] = event_params(events, "error")
+
+    assert [
+             %{
+               "threadId" => ^thread,
+               "turn" => %{"id" => ^turn, "status" => "failed", "error" => @terminal_error}
+             }
+           ] = event_params(events, "turn/completed")
+
+    assert [%{"threadId" => ^thread, "turnId" => ^turn, "item" => user}] =
+             event_params(events, "item/completed")
+
+    assert_user(user, marker)
+    assert is_binary(user["id"]) and byte_size(user["id"]) > 0
+    assert Session.uncertain_operations(pid) == []
+
+    %{
+      id: turn,
+      marker: marker,
+      user: user["id"],
+      assistant: nil,
+      status: "failed",
+      error: @terminal_error
+    }
+  end
+
   defp complete_turn(ctx, pid, thread, marker) do
     turn =
       call(ctx, pid, "turn/start", %{
@@ -225,15 +360,73 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
 
     for {turn, row} <- Enum.zip(turns, rows) do
       assert Map.fetch!(turn, "id") == row.id
-      assert Map.fetch!(turn, "status") == "completed"
-      assert [user, assistant] = Map.fetch!(turn, "items")
-      assert Map.fetch!(user, "id") == row.user
-      assert Map.fetch!(assistant, "id") == row.assistant
-      assert_user(user, row.marker)
-      assert %{"type" => "agentMessage", "text" => @answer} = assistant
+      assert Map.fetch!(turn, "status") == Map.get(row, :status, "completed")
+      assert Map.fetch!(turn, "error") === Map.get(row, :error)
+      assert_history_items(Map.fetch!(turn, "items"), row)
     end
 
     saved
+  end
+
+  defp assert_history_items([user], %{assistant: nil} = row) do
+    assert Map.fetch!(user, "id") == row.user
+    assert_user(user, row.marker)
+  end
+
+  defp assert_history_items([user, assistant], row) do
+    assert Map.fetch!(user, "id") == row.user
+    assert Map.fetch!(assistant, "id") == row.assistant
+    assert_user(user, row.marker)
+    assert %{"type" => "agentMessage", "text" => @answer} = assistant
+  end
+
+  defp error_positions(bytes, thread, rows) do
+    assert String.ends_with?(bytes, "\n")
+    lines = String.split(bytes, "\n", trim: true)
+    assert length(lines) <= 2048
+    records = Enum.map(lines, &JSON.decode!/1)
+
+    Enum.map(rows, fn row ->
+      user = raw_record(records, "item_completed", row.id, row.user)
+      assert user["payload"]["thread_id"] == thread
+
+      assert user["payload"]["item"]["content"] == [
+               %{"type" => "text", "text" => row.marker, "text_elements" => []}
+             ]
+
+      finished = raw_record(records, "task_complete", row.id)
+      payload = Map.fetch!(finished, "payload")
+
+      if row.assistant do
+        assistant = raw_record(records, "item_completed", row.id, row.assistant)
+        assert assistant["payload"]["thread_id"] == thread
+
+        assert assistant["payload"]["item"]["content"] == [
+                 %{"type" => "Text", "text" => @answer}
+               ]
+
+        refute Map.has_key?(payload, "error")
+      else
+        assert Map.fetch!(payload, "error") === @raw_error
+      end
+
+      {ordinal(finished), row.id, Map.get(row, :status, "completed"), Map.get(row, :error)}
+    end)
+  end
+
+  defp assert_error_timeline(response, expected) do
+    assert Map.fetch!(response, "nextCursor") === nil
+    assert Map.fetch!(response, "activeRealtimeSessionAtPageStart") === nil
+    entries = Map.fetch!(response, "data")
+    terminal = Enum.filter(entries, &(&1["type"] == "turnCompleted"))
+    assert length(terminal) == length(expected)
+
+    for {entry, {position, turn, status, error}} <- Enum.zip(terminal, expected) do
+      assert Map.fetch!(entry, "position") === position
+      assert Map.fetch!(entry, "turnId") == turn
+      assert Map.fetch!(entry, "status") == status
+      assert Map.fetch!(entry, "error") === error
+    end
   end
 
   defp raw_positions(bytes, thread, rows) do
@@ -335,7 +528,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     end
   end
 
-  defp collect_turn(pid, thread, turn, events, until) do
+  defp collect_turn(pid, thread, turn, events, until, expected_status \\ "completed") do
     assert {:ok, incoming} = Session.drain(pid)
     events = events ++ incoming
     assert length(events) <= 256, "Native timeline event buffer exceeded its count bound"
@@ -363,15 +556,21 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
           10 -> :ok
         end
 
-        collect_turn(pid, thread, turn, events, until)
+        collect_turn(pid, thread, turn, events, until, expected_status)
 
       completed ->
-        assert %{"threadId" => ^thread, "turn" => %{"id" => ^turn, "status" => "completed"}} =
+        assert %{
+                 "threadId" => ^thread,
+                 "turn" => %{"id" => ^turn, "status" => ^expected_status}
+               } =
                  completed
 
         events
     end
   end
+
+  defp event_params(events, method),
+    do: for(event <- events, event.wire["method"] == method, do: event.wire["params"])
 
   defp call(ctx, pid, method, params) do
     before = length(Agent.get(ctx.capture, & &1))

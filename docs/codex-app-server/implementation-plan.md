@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [timeline terminal-error unit](timeline-error-values-qualification.md)
+passes the final twenty-eight-file **51/0 twice** matrix, compile/format,
+strict Credo, outside consumer **1/0**, five Python AST checks and the 255-source
+guard. Three exact owners bring contracts to **4,736 implemented / 1,826 missing /
+59 blocked**, unchanged requirements and zero verified. Genuine failure/recovery,
+independent raw/API error formats and cold no-load persistence retain all
+bounds and cleanup; the source-backed raw-text draft correction remains.
+Next qualify config/read's absent reasoning-effort null owner 3554 and actual
+sessionFlags origin type/literal owners 3612/3613 in the existing desktop
+metadata journey; do not infer other source variants or provider defaults.
+Prohibited/broad/hosted, full-goal, A11, source-unreachable, external/release
+gates remain incomplete.
+
+## Earlier checkpoints
+
 The [context-window catalog unit](thread-event-lifecycle-qualification.md#context-window-catalog-qualification)
 passes the final twenty-eight-file **50/0 twice** matrix, compile/format,
 strict Credo, outside consumer **1/0**, four Python AST checks and 254-source
@@ -32,8 +47,6 @@ Next inspect genuinely failed/completed native timeline error alternatives
 6436–6438 with persisted/cold-read effects; do not infer error fields or
 schema/serde timestamp aliases from existing status/item assertions. Prohibited/
 broad/hosted, full-goal, A11, source-unreachable, external/release gates remain.
-
-## Earlier checkpoints
 
 The [actual origin-version continuation](config-override-metadata-qualification.md#origin-version-continuation)
 passes the final twenty-seven-file **47/0 twice** matrix, compile/format, strict
