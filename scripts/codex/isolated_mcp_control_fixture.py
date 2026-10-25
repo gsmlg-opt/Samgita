@@ -35,8 +35,9 @@ ACCOUNT = "isolated-auth-account"
 CLIENT = "owned-mcp-client"
 EVENT_PATH = "/api/codex/ps/mcp"
 CALLBACK_PATH = "/callback/owned-mcp"
+OAUTH_MISSING_METADATA = "/oauth/.well-known/owned-missing-authorization-server"
 PROFILES = {"status", "oauth", "events"}
-MCP_PATHS = {"/inventory/a", "/inventory/a-failed", "/inventory/a-v2",
+MCP_PATHS = {"/inventory/a", "/inventory/a-failed", "/inventory/a-held", "/inventory/a-v2",
              "/inventory/b", "/inventory/b-v2", "/oauth/mcp", EVENT_PATH}
 INVENTORY_STARTUP_ERROR = "owned-inventory-initialize-rejected"
 AUTH_METADATA = {"/.well-known/oauth-authorization-server/oauth/mcp",
@@ -44,6 +45,9 @@ AUTH_METADATA = {"/.well-known/oauth-authorization-server/oauth/mcp",
                  "/.well-known/oauth-authorization-server"}
 RESOURCE_METADATA = {"/.well-known/oauth-protected-resource/oauth/mcp",
                      "/oauth/mcp/.well-known/oauth-protected-resource"}
+APPS_RESOURCE_METADATA = {"/.well-known/oauth-protected-resource/api/codex/ps/mcp",
+                          "/api/codex/ps/mcp/.well-known/oauth-protected-resource",
+                          "/.well-known/oauth-protected-resource"}
 STARTUP_PATHS = {"/api/codex/wham/config/bundle", "/api/codex/wham/accounts/check",
                  "/api/codex/wham/settings/user"}
 
@@ -93,6 +97,14 @@ class Fixture:
         self.authorization, self.callback = None, None
         self.native, self.native_pids, self.generation = None, [], 1
         self.inventory_health = None
+        self.oauth_discovery = "valid"
+        self.initialize_held = threading.Event()
+        self.initialize_release = threading.Event()
+        self.initialize_finished = threading.Event()
+        self.apps_hold_enabled = False
+        self.apps_initialize_held = threading.Event()
+        self.apps_initialize_release = threading.Event()
+        self.apps_initialize_finished = threading.Event()
         fixture = self
 
         class Server(ThreadingHTTPServer):
@@ -120,15 +132,22 @@ class Fixture:
                 for key, value in (headers or {}).items():
                     self.send_header(key, value)
                 self.end_headers()
+                written = True
                 try:
                     self.wfile.write(body)
                 except (BrokenPipeError, ConnectionResetError):
-                    pass
+                    written = False
                 self.close_connection = True
+                return written
 
             def do_GET(self):
                 path = urlparse(self.path).path
-                if path in AUTH_METADATA:
+                if path == OAUTH_MISSING_METADATA:
+                    with fixture.lock:
+                        written = self.reply(404, {"error": "owned named issuer has no metadata"})
+                        fixture.record("named_issuer_metadata_fault", path=path, status=404,
+                                       response_written=written)
+                elif path in AUTH_METADATA:
                     fixture.record("oauth_metadata", path=path)
                     self.reply(200, {"issuer": fixture.oauth_url,
                         "authorization_endpoint": fixture.endpoint + "/oauth/authorize",
@@ -139,10 +158,21 @@ class Fixture:
                         "code_challenge_methods_supported": ["S256"],
                         "token_endpoint_auth_methods_supported": ["none"],
                         "scopes_supported": ["read:owned", "inspect:owned"]})
-                elif path in RESOURCE_METADATA:
-                    fixture.record("resource_metadata", path=path)
-                    self.reply(200, {"resource": fixture.oauth_url,
+                elif fixture.profile == "events" and path in APPS_RESOURCE_METADATA:
+                    # The pin deliberately treats loopback Apps as ordinary OAuth.
+                    # Its resource has a distinct URL from the existing OAuth peer.
+                    resource = fixture.endpoint + EVENT_PATH
+                    fixture.record("apps_resource_metadata", path=path, resource=resource)
+                    self.reply(200, {"resource": resource,
                         "authorization_servers": [fixture.oauth_url],
+                        "scopes_supported": ["read:owned", "inspect:owned"]})
+                elif path in RESOURCE_METADATA:
+                    with fixture.lock:
+                        discovery = fixture.oauth_discovery
+                    fixture.record("resource_metadata", path=path, discovery=discovery)
+                    issuer = fixture.endpoint + OAUTH_MISSING_METADATA if discovery == "missing-metadata" else fixture.oauth_url
+                    self.reply(200, {"resource": fixture.oauth_url,
+                        "authorization_servers": [issuer],
                         "scopes_supported": ["read:owned", "inspect:owned"]})
                 elif path in STARTUP_PATHS:
                     fixture.record("startup_metadata", path=path)
@@ -211,9 +241,13 @@ class Fixture:
                     inventory_bearer_verified=inventory_bearer,
                     account_verified=self.headers.get("ChatGPT-Account-ID") == ACCOUNT)
                 if path == "/oauth/mcp" and not oauth_bearer:
-                    self.reply(401, {"error": "synthetic OAuth required"}, {
-                        "WWW-Authenticate": 'Bearer resource_metadata="' + fixture.endpoint +
-                        '/.well-known/oauth-protected-resource/oauth/mcp"'})
+                    with fixture.lock:
+                        written = self.reply(401, {"error": "synthetic OAuth required"}, {
+                            "WWW-Authenticate": 'Bearer resource_metadata="' + fixture.endpoint +
+                            '/.well-known/oauth-protected-resource/oauth/mcp"'})
+                        fixture.record("oauth_unauthenticated_response", path=path, method=method,
+                            request_id=identity, status=401, challenge_present=True,
+                            response_written=written)
                     return
                 if path == EVENT_PATH:
                     # Native intentionally withholds ambient ChatGPT auth from
@@ -240,6 +274,14 @@ class Fixture:
                     self.reply(202, {})
                     return
                 if method == "initialize":
+                    with fixture.lock:
+                        hold_apps = path == EVENT_PATH and fixture.apps_hold_enabled
+                    if hold_apps:
+                        self.held_apps_initialize(message)
+                        return
+                    if path == "/inventory/a-held":
+                        self.held_initialize(message)
+                        return
                     if path == "/inventory/a-failed":
                         fixture.record("inventory_startup_rejected", path=path, request_id=identity)
                         self.reply(200, {"jsonrpc": "2.0", "id": identity,
@@ -270,6 +312,68 @@ class Fixture:
                                     "error": {"code": -32601, "message": "no execution route"}})
                     return
                 self.reply(200, {"jsonrpc": "2.0", "id": identity, "result": result})
+
+            def held_initialize(self, message):
+                # Only this dependency's real initialize response is held. Native
+                # Codex, not this fixture, produces the app-server runtime status.
+                identity = message["id"]
+                assert fixture.profile == "status" and not fixture.initialize_held.is_set()
+                fixture.initialize_held.set()
+                fixture.record("inventory_initialize_held", path="/inventory/a-held",
+                               request_id=identity)
+                try:
+                    assert fixture.initialize_release.wait(5), "owned initialize release deadline"
+                    if fixture.closing.is_set():
+                        fixture.record("inventory_initialize_abandoned", request_id=identity)
+                        return
+                    fixture.record("inventory_initialize_response_attempted", request_id=identity)
+                    result = {"protocolVersion": "2025-06-18",
+                        "capabilities": fixture.capabilities("a-held"),
+                        "serverInfo": {"name": "owned-a-held", "version": "1.0.0",
+                            "title": "Owned a-held", "description": "Synthetic inventory λ",
+                            "websiteUrl": "https://synthetic.invalid/owned"}}
+                    try:
+                        self.reply(200, {"jsonrpc": "2.0", "id": identity, "result": result},
+                                   {"Mcp-Session-Id": "owned-session-a-held"})
+                    except (BrokenPipeError, ConnectionResetError):
+                        # Cancellation can close the peer before even the response
+                        # headers are written. A successful write is not acceptance.
+                        fixture.record("inventory_initialize_peer_closed", request_id=identity)
+                finally:
+                    fixture.record("inventory_initialize_finished", request_id=identity)
+                    fixture.initialize_finished.set()
+                    self.close_connection = True
+
+            def held_apps_initialize(self, message):
+                # A new thread owns a distinct real Apps client. Only this fixed
+                # HTTP dependency response is held; no app-server frame is made.
+                identity = message["id"]
+                assert fixture.profile == "events" and fixture.apps_hold_enabled
+                assert not fixture.apps_initialize_held.is_set(), "unexpected extra Apps initialize"
+                fixture.apps_initialize_held.set()
+                fixture.record("apps_initialize_held", path=EVENT_PATH, request_id=identity)
+                try:
+                    assert fixture.apps_initialize_release.wait(5), "owned Apps initialize release deadline"
+                    if fixture.closing.is_set():
+                        fixture.record("apps_initialize_abandoned", request_id=identity)
+                        return
+                    fixture.record("apps_initialize_response_attempted", request_id=identity)
+                    result = {"protocolVersion": "2025-06-18",
+                        "capabilities": fixture.capabilities("mcp"),
+                        "serverInfo": {"name": "owned-mcp", "version": "1.0.0",
+                            "title": "Owned mcp", "description": "Synthetic inventory λ",
+                            "websiteUrl": "https://synthetic.invalid/owned"}}
+                    try:
+                        written = self.reply(200, {"jsonrpc": "2.0", "id": identity, "result": result},
+                                             {"Mcp-Session-Id": "owned-session-mcp"})
+                        fixture.record("apps_initialize_response_written", request_id=identity,
+                                       response_written=written)
+                    except (BrokenPipeError, ConnectionResetError):
+                        fixture.record("apps_initialize_peer_closed", request_id=identity)
+                finally:
+                    fixture.record("apps_initialize_finished", request_id=identity)
+                    fixture.apps_initialize_finished.set()
+                    self.close_connection = True
 
             def stream(self, message):
                 with fixture.lock:
@@ -392,7 +496,8 @@ stream_max_retries = 0
 '''
         if self.profile == "status":
             suffix = "b" if generation == 1 else "b-v2"
-            alpha = {"startup-failed": "a-failed", "healthy": "a-v2"}.get(self.inventory_health, "a")
+            alpha = {"startup-failed": "a-failed", "startup-held": "a-held",
+                     "healthy": "a-v2"}.get(self.inventory_health, "a")
             for name, path in [("alpha", alpha), ("beta", suffix)]:
                 disabled = "enabled = false\n" if name == "alpha" and self.inventory_health == "disabled" else ""
                 config += f'''[mcp_servers.{name}]
@@ -511,15 +616,55 @@ http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
             self.configure(message["generation"])
         elif operation == "inventory-health":
             assert self.profile == "status"
-            assert message["variant"] in {"startup-failed", "healthy", "disabled"}
+            assert message["variant"] in {"startup-failed", "startup-held", "healthy", "disabled"}
             self.inventory_health = message["variant"]
             self.configure(message["generation"])
             self.record("inventory_health_changed", variant=self.inventory_health,
                         generation=self.generation)
+        elif operation == "inventory-startup-state":
+            assert self.profile == "status" and self.inventory_health == "startup-held"
+            result = {"held": self.initialize_held.is_set(),
+                      "released": self.initialize_release.is_set(),
+                      "finished": self.initialize_finished.is_set()}
+        elif operation == "inventory-startup-release":
+            assert self.profile == "status" and self.inventory_health == "startup-held"
+            assert self.initialize_held.is_set() and not self.initialize_release.is_set()
+            self.record("inventory_initialize_release_requested")
+            self.initialize_release.set()
+            assert self.initialize_finished.wait(5), "owned initialize handler completion deadline"
+            result = {"held": True, "released": True, "finished": True}
+        elif operation == "apps-startup-hold":
+            assert self.profile == "events" and not self.apps_hold_enabled
+            with self.lock:
+                assert any(event["event"] == "mcp" and event.get("path") == EVENT_PATH
+                           and event.get("method") == "tools/list"
+                           for event in self.journal["events"]), "prime Apps natively before hold"
+                self.apps_hold_enabled = True
+                self.record("apps_initialize_hold_armed", path=EVENT_PATH)
+            result = {"armed": True}
+        elif operation == "apps-startup-state":
+            assert self.profile == "events" and self.apps_hold_enabled
+            result = {"armed": True, "held": self.apps_initialize_held.is_set(),
+                      "released": self.apps_initialize_release.is_set(),
+                      "finished": self.apps_initialize_finished.is_set()}
+        elif operation == "apps-startup-release":
+            assert self.profile == "events" and self.apps_hold_enabled
+            assert self.apps_initialize_held.is_set() and not self.apps_initialize_release.is_set()
+            self.record("apps_initialize_release_requested")
+            self.apps_initialize_release.set()
+            assert self.apps_initialize_finished.wait(5), "owned Apps handler completion deadline"
+            result = {"armed": True, "held": True, "released": True, "finished": True}
         elif operation == "malformed-config":
             assert self.profile == "status"
             (self.root / "codex/config.toml").write_text("[owned invalid config\n")
             self.record("config_malformed")
+        elif operation == "oauth-discovery":
+            assert self.profile == "oauth"
+            assert message["variant"] in {"valid", "missing-metadata"}
+            with self.lock:
+                self.oauth_discovery = message["variant"]
+                self.record("oauth_discovery_changed", variant=self.oauth_discovery)
+            result = {"variant": self.oauth_discovery}
         elif operation == "callback":
             assert self.profile == "oauth"
             result = self.complete_callback(message["url"], message["variant"])
@@ -577,6 +722,8 @@ http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
         if self.closed:
             return
         self.closing.set()
+        self.initialize_release.set()
+        self.apps_initialize_release.set()
         self.stop_native()
         for stream in self.streams.values():
             stream["cancelled"].set()

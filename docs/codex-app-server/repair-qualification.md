@@ -6,6 +6,35 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Integrated native startup and Session authority continuation
+
+The [native MCP startup/authentication block](mcp-lifecycle-status-qualification.md)
+adds real held-initialize cancellation, discovery failure/repair and distinct
+cached Apps startup/recovery. All fourteen cases pass **14/0 twice** on the
+current checkout, retaining exact null/cache/status/error, forbidden-route,
+deadline and process-cleanup assertions. Exact startup failed/cancelled notices
+also pass at both seeds. OAuth recovery and unchanged reload have separate
+source-supported ready publications, observed at separate public barriers.
+The first combined-notice assertion failed and remains recorded. The failed original Apps bearer oracle
+and wrong-location diagnostic are preserved and source-supported; only the
+documented owned discovery dependency is repaired.
+
+The [foreign-Session ticket boundary](native-authority-qualification.md#a-ticket-cannot-authorize-another-native-session)
+passes the entire dedicated authority profile **5/0 twice**, preserving all
+previous unresolved rows in its separate retained database. Matching typed IDs
+and generations cannot authorize another real native instance. The existing
+owning block passes **17 core + 7 web/0 twice**. Compile, formatting, strict Credo
+and inventory consistency pass. Exact scoped commands/source/log identities
+are in the linked records.
+
+Six physical MCP status and two startup-notification contracts become implemented:
+**4,471 implemented / 2,091 missing / 59 blocked**, zero verified. Requirements stay **462 implemented /
+12 missing / 11 blocked**, zero verified. Freeze the combined source for the
+complete local matrix and exact-pushed hosted checks. These scoped results do
+not supersede the historical v59 matrix below or close any full evidence,
+retained GitHub pagination, A11, upstream-unreachable or external/OS gate.
+Continue remaining reachable behavior. No release or deployment.
+
 ## Terminal frozen v59 local matrix
 
 At `e52bb724c85a4d2cd73a9adef2a6ce2f66afe4ec`, all **19 platform + 23 package

@@ -88,6 +88,7 @@ defmodule SamgitaCodexDriver.NativeMcpControlLifecycleTest do
     assert result["nextCursor"] == nil
     assert_inventory(ctx, Enum.at(result["data"], 0), "alpha", "a", nil)
     assert_inventory(ctx, Enum.at(result["data"], 1), "beta", "b", nil)
+    assert Enum.map(result["data"], &Map.fetch!(&1, "runtimeStatus")) === [nil, nil]
 
     first = call(pid, "mcpServerStatus/list", %{"limit" => 1})
     assert Enum.map(first["data"], & &1["name"]) == ["alpha"]
@@ -154,6 +155,28 @@ defmodule SamgitaCodexDriver.NativeMcpControlLifecycleTest do
   test "M3 native OAuth correlates callback completion and cold file credential reuse", ctx do
     pid = connect(ctx)
     thread = thread(ctx, pid)
+    %{instance_id: instance, generation: generation} = Session.status(pid)
+    assert_oauth_logged_out(ctx, pid, thread, "notLoggedIn")
+    assert events(ctx, "token_exchange") == []
+    assert events(ctx, "callback_sent") == []
+    refute File.exists?(Path.join(ctx.root, "codex/.credentials.json"))
+
+    failed =
+      startup_notice(
+        thread,
+        "oauth",
+        "failed",
+        "The oauth MCP server is not logged in. Run `codex mcp login oauth`."
+      )
+
+    received = collect(pid, &(failed in startup_notices(&1, thread, "oauth")))
+
+    assert startup_notices(received, thread, "oauth") === [
+             startup_notice(thread, "oauth", "starting"),
+             failed
+           ]
+
+    assert_startup_observer_ready(ctx, pid, instance, generation, received)
     login = oauth_login(pid, thread)
     url = URI.parse(login["authorizationUrl"])
     assert url.scheme == "http" and url.path == "/oauth/authorize"
@@ -181,8 +204,30 @@ defmodule SamgitaCodexDriver.NativeMcpControlLifecycleTest do
     assert exchange["accepted"] and exchange["pkce_verified"] and exchange["redirect_verified"]
     assert control(ctx, "probe-callback")["callback_open"] == false
     assert File.regular?(Path.join(ctx.root, "codex/.credentials.json"))
+
+    # OAuth completion invalidates runtimes and prewarms a fresh authenticated
+    # client. Observe its real ready notice before a separate explicit reload.
+    assert_authenticated(ctx, pid, thread)
+
+    ready = startup_notice(thread, "oauth", "ready")
+    recovered = collect(pid, &(ready in startup_notices(&1, thread, "oauth")), received)
+
+    assert startup_notices(recovered, thread, "oauth") === [
+             startup_notice(thread, "oauth", "starting"),
+             ready
+           ]
+
+    assert_startup_observer_ready(ctx, pid, instance, generation, recovered)
+    authenticated_before_reload = authenticated_initializations(ctx)
     assert call(pid, "config/mcpServer/reload", nil) == %{}
     assert_authenticated(ctx, pid, thread)
+
+    # The pin republishes ready for a reused connection, with no new starting
+    # or initialize. This is a distinct publication, not an arbitrary duplicate.
+    reused = collect(pid, &(ready in startup_notices(&1, thread, "oauth")))
+    assert startup_notices(reused, thread, "oauth") === [ready]
+    assert authenticated_initializations(ctx) == authenticated_before_reload
+    assert_startup_observer_ready(ctx, pid, instance, generation, reused)
     authenticated_before_restart = authenticated_initializations(ctx)
 
     assert :ok = Session.close(pid)
@@ -548,6 +593,383 @@ defmodule SamgitaCodexDriver.NativeMcpControlLifecycleTest do
     assert_profile(ctx, [pid])
   end
 
+  # Pinned 83086188ae0614bd882818ff1aa23f3194962012:
+  # turn_processor.rs:1625-1663 accepts empty-turn startup interrupts without a turn.
+  # session/mod.rs:5309-5316 cancels unfinished MCP startup when no turn is active.
+  # connection_manager.rs:160-164 keeps already-ready clients connected.
+  # Ordinary server status awaits initialize metadata; do not fabricate Starting.
+  test "M12 startup interrupt cancels held MCP initialization and preserves a ready sibling",
+       ctx do
+    control(ctx, "inventory-health", %{"variant" => "startup-held", "generation" => 1})
+    pid = connect(ctx)
+    thread = thread(ctx, pid)
+    %{instance_id: instance, generation: generation} = Session.status(pid)
+    held = wait(fn -> List.first(events(ctx, "inventory_initialize_held")) end)
+    assert held["path"] == "/inventory/a-held"
+
+    assert control(ctx, "inventory-startup-state") === %{
+             "held" => true,
+             "released" => false,
+             "finished" => false
+           }
+
+    beta = %{"threadId" => thread, "serverName" => "beta", "detail" => "full"}
+
+    assert %{"data" => [ready_beta], "nextCursor" => nil} =
+             call(pid, "mcpServerStatus/list", beta)
+
+    assert_inventory(ctx, ready_beta, "beta", "b", "connected")
+    assert mcp_count(ctx, "/inventory/b", "initialize") == 1
+
+    selected = %{"threadId" => thread, "serverName" => "alpha", "detail" => "toolsAndAuthOnly"}
+    cancelled = cancelled_startup_status(ctx)
+    assert interrupt_pending_startup(pid, thread, selected) === cancelled
+
+    cancellation = startup_notice(thread, "alpha", "cancelled")
+    received = collect(pid, &(cancellation in startup_notices(&1, thread, "alpha")))
+
+    assert startup_notices(received, thread, "alpha") === [
+             startup_notice(thread, "alpha", "starting"),
+             cancellation
+           ]
+
+    assert_startup_observer_ready(ctx, pid, instance, generation, received)
+
+    assert call(pid, "mcpServerStatus/list", beta) ===
+             %{"data" => [ready_beta], "nextCursor" => nil}
+
+    # This barrier attempts the original dependency response after cancellation,
+    # then waits for that handler to finish. Socket write success cannot revive it.
+    assert control(ctx, "inventory-startup-release") === %{
+             "held" => true,
+             "released" => true,
+             "finished" => true
+           }
+
+    assert [attempted] = events(ctx, "inventory_initialize_response_attempted")
+    assert [finished] = events(ctx, "inventory_initialize_finished")
+    assert attempted["request_id"] == held["request_id"]
+    assert finished["request_id"] == held["request_id"]
+    assert length(events(ctx, "inventory_initialize_release_requested")) == 1
+    assert events(ctx, "inventory_initialize_abandoned") == []
+    assert call(pid, "mcpServerStatus/list", selected) === cancelled
+
+    assert call(pid, "mcpServerStatus/list", beta) ===
+             %{"data" => [ready_beta], "nextCursor" => nil}
+
+    assert mcp_count(ctx, "/inventory/a-held", "initialize") == 1
+    assert mcp_count(ctx, "/inventory/a-held", "tools/list") == 0
+    assert mcp_count(ctx, "/inventory/b", "initialize") == 1
+    late = drain(pid)
+    refute Enum.any?(startup_notices(late, thread, "alpha"), &(&1["status"] == "ready"))
+    assert_startup_observer_ready(ctx, pid, instance, generation, late)
+
+    control(ctx, "inventory-health", %{"variant" => "healthy", "generation" => 2})
+    assert call(pid, "config/mcpServer/reload", nil) === %{}
+
+    assert %{"data" => [recovered], "nextCursor" => nil} =
+             call(pid, "mcpServerStatus/list", %{selected | "detail" => "full"})
+
+    assert_inventory(ctx, recovered, "alpha", "a-v2", "connected")
+    assert mcp_count(ctx, "/inventory/a-v2", "initialize") == 1
+    assert mcp_count(ctx, "/inventory/a-v2", "tools/list") == 1
+    assert mcp_count(ctx, "/inventory/a-held", "initialize") == 1
+    assert mcp_count(ctx, "/inventory/a-held", "tools/list") == 0
+
+    ready = startup_notice(thread, "alpha", "ready")
+    recovered_notices = collect(pid, &(ready in startup_notices(&1, thread, "alpha")))
+
+    assert startup_notices(recovered_notices, thread, "alpha") === [
+             startup_notice(thread, "alpha", "starting"),
+             ready
+           ]
+
+    assert_startup_observer_ready(ctx, pid, instance, generation, recovered_notices)
+    assert_profile(ctx, [pid])
+  end
+
+  # Pinned rmcp 4048ac40 auth.rs:2667-2692 treats a named issuer without
+  # metadata as an error; Codex mcp/auth.rs:201-242 maps that probe to Unknown.
+  # The peer serves real HTTP401/404; only pinned Codex emits status responses.
+  @tag profile: "oauth"
+  test "M13 native OAuth discovery failure reports unknown and explicit reload recovers",
+       ctx do
+    assert control(ctx, "oauth-discovery", %{"variant" => "missing-metadata"}) === %{
+             "variant" => "missing-metadata"
+           }
+
+    pid = connect(ctx)
+    thread = thread(ctx, pid)
+    %{instance_id: instance, generation: generation} = Session.status(pid)
+    assert_oauth_logged_out(ctx, pid, thread, "unknown")
+
+    control(ctx, "barrier")
+    faults = events(ctx, "named_issuer_metadata_fault")
+    assert faults != []
+
+    assert Enum.all?(faults, fn fault ->
+             fault["path"] == "/oauth/.well-known/owned-missing-authorization-server" and
+               fault["status"] == 404 and fault["response_written"] === true
+           end)
+
+    assert Enum.any?(events(ctx, "resource_metadata"), &(&1["discovery"] == "missing-metadata"))
+    assert events(ctx, "oauth_metadata") == []
+    assert events(ctx, "token_exchange") == []
+    assert events(ctx, "callback_sent") == []
+    refute File.exists?(Path.join(ctx.root, "codex/.credentials.json"))
+    assert_startup_observer_ready(ctx, pid, instance, generation)
+
+    assert control(ctx, "oauth-discovery", %{"variant" => "valid"}) === %{
+             "variant" => "valid"
+           }
+
+    assert call(pid, "config/mcpServer/reload", nil) === %{}
+    assert_oauth_logged_out(ctx, pid, thread, "notLoggedIn")
+    assert events(ctx, "named_issuer_metadata_fault") === faults
+    assert events(ctx, "token_exchange") == []
+    assert events(ctx, "callback_sent") == []
+    refute File.exists?(Path.join(ctx.root, "codex/.credentials.json"))
+    assert_startup_observer_ready(ctx, pid, instance, generation)
+    assert_profile(ctx, [pid])
+  end
+
+  # Every Session owns its own empty McpRuntime (session/session.rs:1614-1723);
+  # previous-client reuse is confined to that runtime (connection_manager.rs:492-543).
+  # Only Apps caches serverInfo; cached metadata/tools bypass pending startup
+  # (connection_manager.rs:1082-1086 and rmcp_client.rs:616-629).
+  @tag profile: "events"
+  test "M14 native cached Apps status exposes a distinct starting client and explicit recovery",
+       ctx do
+    pid = connect(ctx)
+    first = thread(ctx, pid)
+    %{instance_id: instance, generation: generation} = Session.status(pid)
+    ready = apps_status(pid, first)
+    assert_apps_status(ctx, ready, "connected")
+    metadata = events(ctx, "apps_resource_metadata")
+    assert metadata != []
+    assert Enum.all?(metadata, &(&1["resource"] == state(ctx)["endpoint"] <> "/api/codex/ps/mcp"))
+    assert events(ctx, "token_exchange") == []
+    assert events(ctx, "callback_sent") == []
+    refute File.exists?(Path.join(ctx.root, "codex/.credentials.json"))
+    cache = apps_cache(ctx, ready)
+    initializations = mcp_count(ctx, "/api/codex/ps/mcp", "initialize")
+    tool_lists = mcp_count(ctx, "/api/codex/ps/mcp", "tools/list")
+    assert initializations > 0 and tool_lists > 0
+    assert_startup_observer_ready(ctx, pid, instance, generation)
+
+    assert control(ctx, "apps-startup-hold") === %{"armed" => true}
+    second = thread(ctx, pid)
+    refute second == first
+    held = wait(fn -> List.first(events(ctx, "apps_initialize_held")) end)
+    assert held["path"] == "/api/codex/ps/mcp"
+
+    assert control(ctx, "apps-startup-state") === %{
+             "armed" => true,
+             "held" => true,
+             "released" => false,
+             "finished" => false
+           }
+
+    starting = apps_status(pid, second)
+    assert_apps_status(ctx, starting, "starting")
+    assert apps_cache(ctx, ready) === cache
+    assert apps_status(pid, first) === ready
+    assert mcp_count(ctx, "/api/codex/ps/mcp", "initialize") == initializations + 1
+    assert mcp_count(ctx, "/api/codex/ps/mcp", "tools/list") == tool_lists
+
+    assert control(ctx, "apps-startup-state") === %{
+             "armed" => true,
+             "held" => true,
+             "released" => false,
+             "finished" => false
+           }
+
+    assert events(ctx, "apps_initialize_response_attempted") == []
+    assert events(ctx, "apps_initialize_finished") == []
+    assert_startup_observer_ready(ctx, pid, instance, generation)
+
+    assert control(ctx, "apps-startup-release") === %{
+             "armed" => true,
+             "held" => true,
+             "released" => true,
+             "finished" => true
+           }
+
+    assert [attempted] = events(ctx, "apps_initialize_response_attempted")
+    assert [written] = events(ctx, "apps_initialize_response_written")
+    assert [finished] = events(ctx, "apps_initialize_finished")
+    assert attempted["request_id"] == held["request_id"]
+    assert written["request_id"] == held["request_id"]
+    assert Map.fetch!(written, "response_written") === true
+    assert finished["request_id"] == held["request_id"]
+    assert events(ctx, "apps_initialize_abandoned") == []
+    assert events(ctx, "apps_initialize_peer_closed") == []
+
+    recovered =
+      wait(fn ->
+        result = apps_status(pid, second)
+        assert %{"data" => [row]} = result
+        runtime = Map.fetch!(row, "runtimeStatus")
+        assert runtime in ["starting", "connected"]
+        if runtime == "connected", do: result
+      end)
+
+    assert recovered === ready
+    assert apps_status(pid, first) === ready
+    assert apps_cache(ctx, ready) === cache
+    assert mcp_count(ctx, "/api/codex/ps/mcp", "initialize") == initializations + 1
+    assert mcp_count(ctx, "/api/codex/ps/mcp", "tools/list") == tool_lists + 1
+    assert length(events(ctx, "apps_initialize_hold_armed")) == 1
+    assert length(events(ctx, "apps_initialize_release_requested")) == 1
+    assert length(events(ctx, "apps_initialize_held")) == 1
+    assert_startup_observer_ready(ctx, pid, instance, generation)
+    assert_profile(ctx, [pid])
+  end
+
+  defp apps_status(pid, thread),
+    do:
+      call(pid, "mcpServerStatus/list", %{
+        "threadId" => thread,
+        "serverName" => "codex_apps",
+        "detail" => "toolsAndAuthOnly"
+      })
+
+  defp assert_apps_status(ctx, result, runtime) do
+    capabilities =
+      if runtime == "connected" do
+        %{
+          "tools" => %{},
+          "resources" => %{"subscribe" => false, "listChanged" => false},
+          "extensions" => %{"owned/inventory" => %{"generation" => "mcp"}}
+        }
+      end
+
+    assert result === %{
+             "data" => [
+               %{
+                 "name" => "codex_apps",
+                 "runtimeStatus" => runtime,
+                 "pluginId" => nil,
+                 "httpOrigin" => state(ctx)["endpoint"],
+                 "serverInfo" => %{
+                   "name" => "owned-mcp",
+                   "title" => "Owned mcp",
+                   "version" => "1.0.0",
+                   "description" => "Synthetic inventory λ",
+                   "websiteUrl" => "https://synthetic.invalid/owned",
+                   "icons" => nil
+                 },
+                 "serverCapabilities" => capabilities,
+                 "tools" => %{},
+                 "toolsError" => nil,
+                 "resources" => [],
+                 "resourceTemplates" => [],
+                 "authStatus" => "notLoggedIn"
+               }
+             ],
+             "nextCursor" => nil
+           }
+  end
+
+  defp apps_cache(ctx, %{"data" => [ready]}) do
+    [tools_path] = Path.wildcard(Path.join(ctx.root, "codex/cache/codex_apps_tools/*.json"))
+
+    [info_path] =
+      Path.wildcard(Path.join(ctx.root, "codex/cache/codex_apps_server_info/*.json"))
+
+    assert Path.basename(tools_path) == Path.basename(info_path)
+    tools = File.read!(tools_path)
+    info = File.read!(info_path)
+    assert JSON.decode!(tools) === %{"schema_version" => 4, "tools" => []}
+
+    assert JSON.decode!(info) === %{
+             "schema_version" => 1,
+             "server_info" => Map.fetch!(ready, "serverInfo")
+           }
+
+    {tools, info}
+  end
+
+  defp interrupt_pending_startup(pid, thread, selected) do
+    status_id = "owned-held-startup-status"
+    interrupt_id = "owned-empty-turn-startup-interrupt"
+
+    pending =
+      Task.async(fn -> Session.request(pid, "mcpServerStatus/list", selected, id: status_id) end)
+
+    try do
+      wait(fn -> Session.status(pid).pending == 1 end)
+      assert Task.yield(pending, 0) == nil
+
+      assert {:ok, %{"id" => ^interrupt_id, "result" => acknowledgement}} =
+               Session.request(pid, "turn/interrupt", %{"threadId" => thread, "turnId" => ""},
+                 id: interrupt_id
+               )
+
+      assert acknowledgement === %{}
+      assert {:ok, %{"id" => ^status_id, "result" => result}} = Task.await(pending)
+      result
+    after
+      Task.shutdown(pending, :brutal_kill)
+    end
+  end
+
+  defp cancelled_startup_status(ctx) do
+    %{
+      "data" => [
+        %{
+          "name" => "alpha",
+          "runtimeStatus" => "cancelled",
+          "pluginId" => nil,
+          "httpOrigin" => state(ctx)["endpoint"],
+          "serverInfo" => nil,
+          "serverCapabilities" => nil,
+          "tools" => %{},
+          "toolsError" => "MCP startup cancelled",
+          "resources" => [],
+          "resourceTemplates" => [],
+          "authStatus" => "bearerToken"
+        }
+      ],
+      "nextCursor" => nil
+    }
+  end
+
+  defp startup_notice(thread, name, status, error \\ nil),
+    do: %{
+      "threadId" => thread,
+      "name" => name,
+      "status" => status,
+      "error" => error,
+      "failureReason" => nil
+    }
+
+  defp startup_notices(received, thread, name),
+    do:
+      received
+      |> notices("mcpServer/startupStatus/updated")
+      |> Enum.filter(&(&1["threadId"] == thread and &1["name"] == name))
+
+  defp assert_startup_observer_ready(ctx, pid, instance, generation, observed \\ []) do
+    refute Enum.any?(observed ++ drain(pid), fn event ->
+             String.starts_with?(event.wire["method"] || "", ["turn/", "item/"])
+           end)
+
+    assert %{
+             phase: :ready,
+             instance_id: ^instance,
+             generation: ^generation,
+             pending: 0,
+             interactions: 0,
+             uncertain: 0,
+             gap: nil
+           } = Session.status(pid)
+
+    assert Session.interaction_outcomes(pid) == []
+    assert Session.uncertain_operations(pid) == []
+    assert File.ls!(ctx.workspace) == []
+  end
+
   defp connect(ctx) do
     {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
     on_exit(fn -> if Process.alive?(pid), do: assert(:ok = Session.close(pid)) end)
@@ -598,11 +1020,85 @@ defmodule SamgitaCodexDriver.NativeMcpControlLifecycleTest do
     result
   end
 
+  defp assert_oauth_logged_out(ctx, pid, thread, auth_status) do
+    selected = %{"threadId" => thread, "serverName" => "oauth"}
+
+    assert_oauth_unavailable(
+      ctx,
+      call(pid, "mcpServerStatus/list", selected),
+      auth_status,
+      "authenticationRequired"
+    )
+
+    assert_oauth_unauthenticated_response(ctx)
+    before_threadless = length(events(ctx, "oauth_unauthenticated_response"))
+
+    assert_oauth_unavailable(
+      ctx,
+      call(pid, "mcpServerStatus/list", %{"serverName" => "oauth"}),
+      auth_status,
+      nil
+    )
+
+    wait(fn ->
+      length(events(ctx, "oauth_unauthenticated_response")) > before_threadless
+    end)
+
+    assert_oauth_unauthenticated_response(ctx)
+
+    if auth_status == "notLoggedIn" do
+      assert events(ctx, "oauth_metadata") != []
+      assert Enum.any?(events(ctx, "resource_metadata"), &(&1["discovery"] == "valid"))
+    end
+  end
+
+  defp assert_oauth_unavailable(ctx, result, auth_status, runtime_status) do
+    assert %{"data" => [row], "nextCursor" => nil} = result
+    tools_error = Map.fetch!(row, "toolsError")
+    assert is_binary(tools_error) and tools_error != ""
+    assert tools_error =~ "MCP startup failed:"
+    assert tools_error =~ "handshaking with MCP server failed:"
+    assert tools_error =~ "Auth required"
+
+    # Full equality proves nullable keys physically exist; access with [] alone
+    # would also accept missing keys. Preserve the actual native error string.
+    assert result === %{"data" => [row], "nextCursor" => nil}
+
+    assert row === %{
+             "name" => "oauth",
+             "runtimeStatus" => runtime_status,
+             "pluginId" => nil,
+             "httpOrigin" => state(ctx)["endpoint"],
+             "serverInfo" => nil,
+             "serverCapabilities" => nil,
+             "tools" => %{},
+             "toolsError" => tools_error,
+             "resources" => [],
+             "resourceTemplates" => [],
+             "authStatus" => auth_status
+           }
+  end
+
+  defp assert_oauth_unauthenticated_response(ctx) do
+    wait(fn ->
+      Enum.any?(events(ctx, "oauth_unauthenticated_response"), fn response ->
+        response["path"] == "/oauth/mcp" and response["method"] == "initialize" and
+          response["status"] == 401 and response["challenge_present"] === true and
+          response["response_written"] === true
+      end)
+    end)
+  end
+
   defp assert_authenticated(ctx, pid, thread) do
     assert %{"data" => [row], "nextCursor" => nil} =
              call(pid, "mcpServerStatus/list", %{"threadId" => thread, "serverName" => "oauth"})
 
     assert row["authStatus"] == "oAuth" and row["toolsError"] == nil
+    assert Map.fetch!(row, "runtimeStatus") === "connected"
+    assert Map.fetch!(row, "toolsError") === nil
+    assert Map.fetch!(row, "pluginId") === nil
+    assert is_map(Map.fetch!(row, "serverInfo"))
+    assert is_map(Map.fetch!(row, "serverCapabilities"))
     assert row["serverInfo"]["name"] == "owned-mcp"
     assert row["httpOrigin"] == state(ctx)["endpoint"]
 

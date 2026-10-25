@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [native startup/authentication continuation](mcp-lifecycle-status-qualification.md)
+passes all fourteen actual-binary cases **14/0 twice** after current-checkout
+integration. The [foreign-Session authority profile](native-authority-qualification.md#a-ticket-cannot-authorize-another-native-session)
+passes all five cases **5/0 twice** on its retained separate database, plus the
+owning default block **17 core + 7 web/0 twice**. Compile, format, strict Credo
+and inventory consistency pass. Eight physical owners bring contracts to
+**4,471 implemented / 2,091 missing / 59 blocked**, zero verified; requirements
+remain 462/12/11. Complete final-source local/pushed hosted matrices, remaining
+reachable behavior, A11, native-unreachable and external/OS success remain due.
+No publication or deployment follows from these scoped results.
+
 The [terminal hosted v59 checkpoint](repair-qualification.md#hosted-v59-checkpoint-at-e52bb72)
 qualifies exact pushed `e52bb72`: foundation succeeds; both native execution
 jobs succeed with **744 driver tests**, all **52 isolated profiles / 304 tests**,
@@ -90,12 +101,12 @@ external/backend/OS success remain incomplete. Full final-source checks remain
 mandatory before any completion/publication claim.
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 4,463 implemented / 2,099 missing /
+11 blocked requirements** and **0 verified / 4,471 implemented / 2,091 missing /
 59 blocked field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 4,463 directly exercised
+MCP entries have scoped implementation evidence. These 4,471 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The

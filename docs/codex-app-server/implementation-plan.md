@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native startup/authentication block](mcp-lifecycle-status-qualification.md)
+passes all fourteen cases **14/0 twice** after integration. The
+[foreign-Session ticket profile](native-authority-qualification.md#a-ticket-cannot-authorize-another-native-session)
+passes all five cases **5/0 twice** in the retained authority database, and the
+owning default block passes **17 core + 7 web/0 twice**. Compile/format, strict
+Credo and inventory consistency pass. Eight exact physical owners bring contracts
+to **4,471 implemented / 2,091 missing / 59 blocked**, zero verified; requirements
+remain 462/12/11. Commit the logical scoped units, freeze combined sources and
+run every required local matrix and exact-pushed hosted check. Continue remaining
+reachable behavior; retain A11, upstream-unreachable and real external/backend/OS
+gates as incomplete. No release or deployment.
+
 The [terminal hosted v59 checkpoint](repair-qualification.md#hosted-v59-checkpoint-at-e52bb72)
 passes foundation and both execution jobs at exact pushed `e52bb72`: driver
 **744/0**, all **52 profiles / 304 tests / 0 failures**, outside consumer,

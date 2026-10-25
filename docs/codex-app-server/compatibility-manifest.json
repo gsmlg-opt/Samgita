@@ -90166,46 +90166,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/McpServerStartupState/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M3 observes the exact native starting then failed notification for the actual oauth thread after real HTTP401, including literal login guidance and physical failureReason:null, with no stored credential/token/callback. OAuth completion prewarms a distinct authenticated startup (starting then ready); a later explicit unchanged reload separately republishes exactly ready without another authenticated initialize.",
+        "Only this exact physical ServerNotification startup literal is indexed; no alias, notStarted/reauthenticationRequired status or whole lifecycle qualification is inferred.",
+        "Stock immutable rust-v0.163.0 with owned synthetic HTTP dependencies and no model tasks in a private loopback-only namespace. Real external/backend/OS success, complete final-source local/hosted evidence and A11 remain incomplete."
+      ],
       "pointer": "/definitions/McpServerStartupState/enum/2",
       "schema": "ServerNotification.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/McpServerStartupState/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M12 observes exact native starting then cancelled for the held alpha initialize, with physical error:null/failureReason:null and actual thread ID; selected status and dependency journal agree. A late response cannot revive it; explicit repaired reload yields exact starting then ready while beta remains connected.",
+        "Only this exact physical ServerNotification startup literal is indexed; no alias, notStarted/reauthenticationRequired status or whole lifecycle qualification is inferred.",
+        "Stock immutable rust-v0.163.0 with owned synthetic HTTP dependencies and no model tasks in a private loopback-only namespace. Real external/backend/OS success, complete final-source local/hosted evidence and A11 remain incomplete."
+      ],
       "pointer": "/definitions/McpServerStartupState/enum/3",
       "schema": "ServerNotification.json",
       "schema_sha256": "c44cc71ba46cf9239726afe724b118bc2bf7385ed99493528ae3d255fee8b2fd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -148472,24 +148492,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpAuthStatus/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M13 exact selected/threadless rows after real HTTP401 and named-issuer metadata HTTP404; explicit discovery repair/reload yields notLoggedIn without credentials.",
+        "Only this exact physical ListMcpServerStatusResponse owner/value is indexed; no alias, arbitrary JSON domain, notStarted or complete authentication lifecycle is inferred.",
+        "Stock immutable rust-v0.163.0 with owned synthetic MCP dependencies inside a private loopback-only network namespace; no real external service/account/backend acceptance.",
+        "Scoped implemented behavior only; complete integrated/hosted qualification, A11, source-unreachable native emitters and required external/backend/OS success remain separate incomplete gates."
+      ],
       "pointer": "/definitions/McpAuthStatus/enum/0",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "53331ee8a3d89d5e956086b9c9ffaa709efef795a17c43bbc9666bb622947f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -148530,24 +148561,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpAuthStatus/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M3 before native OAuth login, M13 after discovery repair/reload and M14 owned loopback Apps all assert notLoggedIn; absent credential files and zero token/callback traffic independently establish logged-out setup.",
+        "Only this exact physical ListMcpServerStatusResponse owner/value is indexed; no alias, arbitrary JSON domain, notStarted or complete authentication lifecycle is inferred.",
+        "Stock immutable rust-v0.163.0 with owned synthetic MCP dependencies inside a private loopback-only network namespace; no real external service/account/backend acceptance.",
+        "Scoped implemented behavior only; complete integrated/hosted qualification, A11, source-unreachable native emitters and required external/backend/OS success remain separate incomplete gates."
+      ],
       "pointer": "/definitions/McpAuthStatus/enum/2",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "5ebc99c58357c9dff6da63d8e3abeb474943381a9a7d7589ba89ac6fa57d1d86",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -148640,24 +148682,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerConnectionStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M14 uses a distinct native thread with genuine initialize held at a barrier; cached native Apps tools/serverInfo permit an exact starting row with physical serverCapabilities:null, unchanged first-thread health and cache bytes. Release recovers through exactly one initialize/tools-list sequence.",
+        "Only this exact physical ListMcpServerStatusResponse owner/value is indexed; no alias, arbitrary JSON domain, notStarted or complete authentication lifecycle is inferred.",
+        "Stock immutable rust-v0.163.0 with owned synthetic MCP dependencies inside a private loopback-only network namespace; no real external service/account/backend acceptance.",
+        "Scoped implemented behavior only; complete integrated/hosted qualification, A11, source-unreachable native emitters and required external/backend/OS success remain separate incomplete gates."
+      ],
       "pointer": "/definitions/McpServerConnectionStatus/enum/1",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "618fc03d957c775c2901b3d4345bfcdadd5f9452615d33c803e3148492bf2db4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -148693,24 +148746,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerConnectionStatus/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M3/M13 selected loaded-thread rows require authenticationRequired after real HTTP401; physical threadless null is separate.",
+        "Only this exact physical ListMcpServerStatusResponse owner/value is indexed; no alias, arbitrary JSON domain, notStarted or complete authentication lifecycle is inferred.",
+        "Stock immutable rust-v0.163.0 with owned synthetic MCP dependencies inside a private loopback-only network namespace; no real external service/account/backend acceptance.",
+        "Scoped implemented behavior only; complete integrated/hosted qualification, A11, source-unreachable native emitters and required external/backend/OS success remain separate incomplete gates."
+      ],
       "pointer": "/definitions/McpServerConnectionStatus/enum/3",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "0c4ce260a488e77184ccccabcba7de956067ecc3af93c65c1573c98797430b9e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -148746,24 +148810,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerConnectionStatus/enum/5",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M12 public empty-turn startup interrupt cancels held alpha initialize while beta remains connected; late response completion cannot revive it; explicit reload recovers without dispatch.",
+        "Only this exact physical ListMcpServerStatusResponse owner/value is indexed; no alias, arbitrary JSON domain, notStarted or complete authentication lifecycle is inferred.",
+        "Stock immutable rust-v0.163.0 with owned synthetic MCP dependencies inside a private loopback-only network namespace; no real external service/account/backend acceptance.",
+        "Scoped implemented behavior only; complete integrated/hosted qualification, A11, source-unreachable native emitters and required external/backend/OS success remain separate incomplete gates."
+      ],
       "pointer": "/definitions/McpServerConnectionStatus/enum/5",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "c44cc71ba46cf9239726afe724b118bc2bf7385ed99493528ae3d255fee8b2fd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -149304,24 +149379,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/mcp-lifecycle-status-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ListMcpServerStatusResponse.json#/definitions/McpServerStatus/properties/runtimeStatus/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "M1 Map.fetch! and M3/M13 whole-row equality require physically present runtimeStatus:null in threadless native responses; absent-key access cannot satisfy this oracle.",
+        "Only this exact physical ListMcpServerStatusResponse owner/value is indexed; no alias, arbitrary JSON domain, notStarted or complete authentication lifecycle is inferred.",
+        "Stock immutable rust-v0.163.0 with owned synthetic MCP dependencies inside a private loopback-only network namespace; no real external service/account/backend acceptance.",
+        "Scoped implemented behavior only; complete integrated/hosted qualification, A11, source-unreachable native emitters and required external/backend/OS success remain separate incomplete gates."
+      ],
       "pointer": "/definitions/McpServerStatus/properties/runtimeStatus/anyOf/1",
       "schema": "v2/ListMcpServerStatusResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_control_lifecycle_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-socket"
+      ],
       "wire_name": "anyOf"
     },
     {
