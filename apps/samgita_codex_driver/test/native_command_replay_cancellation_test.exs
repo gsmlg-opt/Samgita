@@ -125,6 +125,8 @@ defmodule SamgitaCodexDriver.NativeCommandReplayCancellationTest do
     events = collect(pid, [], &Enum.any?(&1, fn event -> event.kind == :server_request end))
     assert [original] = Enum.filter(events, &(&1.kind == :server_request))
     assert original.wire["method"] == "item/commandExecution/requestApproval"
+    # Pinned Codex allocates server request IDs from AtomicI64 initialized at zero.
+    assert is_integer(original.wire["id"]) and original.wire["id"] >= 0
     params = original.wire["params"]
     assert params["threadId"] == thread and params["turnId"] == turn
     assert params["itemId"] == "command-replay-cancel-1"

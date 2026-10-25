@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native control/activity block](native-control-activity-qualification.md)
+passes all nine complete owning files **27/0 twice** after preserving two
+source-backed test-oracle failures. Strict checks, 38 tooling regressions and
+the 1,499-file/executable guards match. Exact independent approvals, typed IDs,
+server params and warm/first cold activity history add 27 physical owners:
+**4,410 implemented / 2,152 missing / 59 blocked**, zero verified. Requirements
+remain 462 implemented/12 missing/11 blocked. The terminal frozen v38 matrix
+completes all 19 platform + 23 package commands; driver 738/0 and profiles 300/0
+pass twice, while first populated GitHub pagination and completeness fail.
+Continue Interacted/Interrupted activity, resource normalization and remaining
+reachable behavior, then full new final-source local/pushed hosted qualification.
+All broader A11, legacy/output-emitter and real external/backend/OS gates remain.
+
 The [immutable output audit](pinned-output-blockers.md) retains all 59 newly
 classified blocked result contracts and five unresolved histories. Contracts
 are **4,383 implemented / 2,179 missing / 59 blocked**, zero verified;

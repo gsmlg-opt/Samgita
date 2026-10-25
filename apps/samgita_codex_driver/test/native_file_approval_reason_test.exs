@@ -108,6 +108,8 @@ defmodule SamgitaCodexDriver.NativeFileApprovalReasonTest do
     events = collect(pid, [], &(interactions(&1) != []))
     assert [approval] = interactions(events)
     assert approval.wire["method"] == "item/fileChange/requestApproval"
+    # Pinned Codex allocates server request IDs from AtomicI64 initialized at zero.
+    assert is_integer(approval.wire["id"]) and approval.wire["id"] >= 0
     params = approval.wire["params"]
     assert Enum.sort(Map.keys(params)) == ~w(grantRoot itemId reason startedAtMs threadId turnId)
     assert params["threadId"] == id and params["turnId"] == second

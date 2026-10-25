@@ -9853,7 +9853,8 @@
         "docs/codex-app-server/command-replay-cancellation-qualification.md",
         "docs/codex-app-server/command-approval-loss-qualification.md",
         "docs/codex-app-server/interaction-deadline-qualification.md",
-        "docs/codex-app-server/approval-cold-restart-qualification.md"
+        "docs/codex-app-server/approval-cold-restart-qualification.md",
+        "docs/codex-app-server/native-control-activity-qualification.md"
       ],
       "id": "lifecycle:approval-decisions",
       "implementation_module": "SamgitaCodexDriver.Session",
@@ -9874,7 +9875,8 @@
         "Additional actual-native command reply-loss qualification: unanswered warm callback replay, reply dropped before native receipt and actual resolved/completed notifications suppressed after forwarded reply. Exact native wire/time/ID under a new local handle, stale rejection, explicit response/recovery only, fixed private-shell argv/cwd, exactly one owned append line, stdout/exit0 and original live/durable command item/provider counts. No automatic response/turn replay; old uncertainty remains until explicit evidence-based acknowledgement. Full owning block10/0 both seeds, including original file/permission and command cancellation oracles with unchanged deadlines/guardians. This is deterministic client-transport fault injection, not observed TCP loss or a general exactly-once guarantee. Cold pending restoration, all decision/profile/OS/backend variants, unreachable legacy emitters, A11 and fully verified acceptance remain incomplete.",
         "Additional actual-native v2 command deadline: only the expiry Session configures 2000ms; all retained/control deadlines and guardians remain. Genuine native callback expires with exactly one forwarded -32000 client error, matching resolution/completed turn, stale late acceptance and failed live command with no output/exit/process/duration or physical effect/policy. Durable history contains no command because rejection precedes core ExecCommandBegin/End. Independent explicit acceptance proves exact single append/stdout/exit/argv and live/durable success. One turn, no reconnect/resume/retry, two provider calls, no pending/uncertainty; full owning block12/0 both seeds. This is not a legacy TimedOut emitter or full lifecycle/OS/backend/A11 acceptance; missing state and counts stay unchanged.",
         "Additional actual-native unanswered-approval hard restart: owned checked-live native SIGKILL/reap, persisted original input, cold read/resume projects interrupted without completion time/duration or inference/callback/effects. Fresh explicit turn reuses native numeric ID under different instance/opaque handle; repeated old handle cannot settle it. Explicit new-handle accept alone creates one exact private-shell append/stdout/exit/live command; paginated persists command and legacy omits it per native policy. Both modes2/0 at both seeds, owned cleanup and original deadlines retained. Initial shell discovery and legacy-history fixture assumptions corrected with pinned source and failures retained. Not sent-unconfirmed crash recovery, callback restoration, exactly-once guarantee, all interaction/OS/backend/transport/A11 or full lifecycle qualification; missing status unchanged.",
-        "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion."
+        "Additional actual-native granular/strict-session differential: omitted and false request_permissions produce exact empty turn grants without permission callbacks, then explicit file declines preserve an empty workspace; true requires correlated explicit permission before the exact owned patch effect. A nonempty session+strictAutoReview:true reply normalizes successfully to empty turn permissions, requires fresh same-turn and explicit later-turn file approvals, and both declines leave files absent. Exact provider counts/output, items/history, resolution/stale handles, no Guardian/policy/uncertainty and owned cleanup; complete seven-file owning block30/0 twice. Only selected Linux/stdio authority semantics; broad approval/default lifecycle, remaining variants/loss/remote/OS/services and A11 stay incomplete, with no fully verified promotion.",
+        "actual_native_independent_pending_commands: Two distinct simultaneous callbacks remain pending before any response. Declining B preserves A unchanged and all effects absent; accepting A produces only exact A bytes/stdout/exit. Independent resolutions/digests, stale handles and history are checked. This scoped concurrency behavior does not qualify every decision, deployment or A11; broad lifecycle stays missing."
       ],
       "required_behavior": "preserve every decision variant and edits; require explicit authorized handler",
       "schema_sha256": "b0c99e763de6cb504aee7aadd4177c897fe5cb9065748cf7fe5e988558d1ae5e",
@@ -9912,7 +9914,8 @@
           "apps/samgita_codex_driver/test/native_approval_loss_test.exs:423-470",
           "apps/samgita_codex_driver/test/native_approval_cold_restart_profile.exs:89-240",
           "apps/samgita_codex_driver/test/native_approval_sent_restart_profile.exs",
-          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462"
+          "apps/samgita_codex_driver/test/native_permission_lifetime_test.exs:199-462",
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs"
         ]
       },
       "transport_coverage": [
@@ -81902,46 +81905,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:RequestId.json#/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed empty/Unicode/decimal-looking strings retain exact typed native response IDs.",
+        "Client-origin request/native response correlation only. No native string server-request producer, concurrent/out-of-order family, invalid-ID cross-product, upstream deduplication, other transports/OS or complete compatibility claim.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "pointer": "/anyOf/0",
       "schema": "RequestId.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialization_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:RequestId.json#/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed zero, negative, decimal-colliding 7 and both i64 endpoints retain exact integer native response IDs beyond JavaScript precision.",
+        "Client-origin request/native response correlation only. No native string server-request producer, concurrent/out-of-order family, invalid-ID cross-product, upstream deduplication, other transports/OS or complete compatibility claim.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "pointer": "/anyOf/1",
       "schema": "RequestId.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_initialization_metadata_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -114951,27 +114974,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/definitions/ToolRequestUserInputOption/properties/description",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Incoming choice-option descriptions exactly Synthetic one and Synthetic two, independently of option labels.",
+        "Incoming native string assertion required. Copied fixture arguments or schema validity are not independent semantic evidence. Uses the direct two-option description oracle; no coverage inherited from merely sharing this test file.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ToolRequestUserInputOption/properties/description",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/isolated-uds"
+      ],
       "wire_name": "description"
     },
     {
@@ -115012,27 +115045,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/definitions/ToolRequestUserInputQuestion/properties/header",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Incoming headers exactly Choice and Detail in prescribed question order.",
+        "Incoming native string assertion required. Copied fixture arguments or schema validity are not independent semantic evidence. Only these two actual string values; no sibling property, alias or whole question/params inheritance.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ToolRequestUserInputQuestion/properties/header",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/isolated-uds"
+      ],
       "wire_name": "header"
     },
     {
@@ -115226,27 +115269,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/0/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Incoming native id is integer >=0, independently of handle, replay or resolved-event equality; method checked in the same named body.",
+        "Keep existing association checks. Do not assert exact zero or equal fixture callId: other callbacks may consume IDs. Does not prove a native string-ID arm. Native integer producer only; no string arm, i64 boundaries, exact zero/sequence or generic uniqueness proof.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/id",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_command_replay_cancellation_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/websocket-capability-token"
+      ],
       "wire_name": "id"
     },
     {
@@ -115320,27 +115373,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/0/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "assert_approval/6 is applied to both simultaneously pending commands; exact source-prescribed display and positive integer timestamp checks precede exact equality of all remaining params including singleton private-shell amendments.",
+        "Parent owns original-source integration, final matrices and manifest binding. This proposes only row3160 params evidence, not entire ServerRequest row3156 or unavailable optional/external profiles. A11 remains blocked.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/params",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "8907c509068701e52f67b53d48f32f7f8a6a8830786e4977469a94c690d83083",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_independent_command_approvals_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -115368,27 +115431,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/1/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Incoming native id is integer >=0, independently of handle, replay or resolved-event equality; method checked in the same named body.",
+        "Keep existing association checks. Do not assert exact zero or equal fixture callId: other callbacks may consume IDs. Does not prove a native string-ID arm. Native integer producer only; no string arm, i64 boundaries, exact zero/sequence or generic uniqueness proof.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/1/properties/id",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_file_approval_reason_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -115642,27 +115715,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/2/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Incoming native id is integer >=0, independently of handle, replay or resolved-event equality; method checked in the same named body.",
+        "Keep existing association checks. Do not assert exact zero or equal fixture callId: other callbacks may consume IDs. Does not prove a native string-ID arm. Native integer producer only; no string arm, i64 boundaries, exact zero/sequence or generic uniqueness proof.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/2/properties/id",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/isolated-uds"
+      ],
       "wire_name": "id"
     },
     {
@@ -115716,27 +115799,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/2/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact entire populated Plan input-multi params map with prescribed headers/questions/options/descriptions, normalized isOther=true, isSecret=false/true, isBlocking=true, explicit null autoResolutionMs and owning thread/turn/call associations.",
+        "Source normalization sets isOther true. Existing test checks isSecret false/true. This assertion subsumes the two standalone text proposals if chosen. Not applied or run. Only this Plan populated-options exact map; no Default mode, omitted/null options, arbitrary cardinalities, nested alternative or whole ServerRequest variant claim.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/2/properties/params",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "665581f5e4c041f314f090671ac5e421426d9d879d1ddcdf06fd7a24910a4be1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_tool_interactions_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/isolated-uds"
+      ],
       "wire_name": "params"
     },
     {
@@ -115764,27 +115857,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/3/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Incoming native id is integer >=0, independently of handle, replay or resolved-event equality; method checked in the same named body.",
+        "Keep existing association checks. Do not assert exact zero or equal fixture callId: other callbacks may consume IDs. Does not prove a native string-ID arm. Native integer producer only; no string arm, i64 boundaries, exact zero/sequence or generic uniqueness proof.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/3/properties/id",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_mcp_string_formats_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -115916,27 +116019,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/4/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Incoming native id is integer >=0, independently of handle, replay or resolved-event equality; method checked in the same named body.",
+        "Keep existing association checks. Do not assert exact zero or equal fixture callId: other callbacks may consume IDs. Does not prove a native string-ID arm. Native integer producer only; no string arm, i64 boundaries, exact zero/sequence or generic uniqueness proof.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/id",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_glob_effects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -116010,27 +116123,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/4/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Generated startedAtMs must exist, be integer and >0. Removing only that independently checked field leaves exactly the prescribed local params map, explicit nulls and independently constructed write/deny entries.",
+        "Thread/turn association and timestamp metadata are generated. Timestamp self-comparison alone is not an oracle: independent integer/positive check remains necessary. Selected local filesystem path/glob shape only; no remote/network/all-grant shapes or timestamp accuracy/monotonicity claim.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/4/properties/params",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "e01977b0c6638664be029148c459e65f8b9e1d5ca9d572b0876f6c5bfe351485",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_permission_glob_effects_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -116544,27 +116667,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/8/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Incoming native id is integer >=0, independently of handle, replay or resolved-event equality; method checked in the same named body.",
+        "Keep existing association checks. Do not assert exact zero or equal fixture callId: other callbacks may consume IDs. Does not prove a native string-ID arm. Native integer producer only; no string arm, i64 boundaries, exact zero/sequence or generic uniqueness proof.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/8/properties/id",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "f1fb3724bb7835add8ed79ef8a7e1acaf3c9c5761502e6ae54c85d0c7f6c82e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -116638,27 +116771,37 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:ServerRequest.json#/oneOf/8/properties/params",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prior thread/start result is a nonempty string and incoming params is exactly its one-field threadId map.",
+        "No fixed independent threadId literal exists because native generates it. Type and keyed presence are semantic constraints; equality is association only. No additional time or timeout behavior inferred. Only this emitted one-field params shape; no clock accuracy, timeouts or production external clock proof.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/oneOf/8/properties/params",
       "required": true,
       "schema": "ServerRequest.json",
       "schema_sha256": "792009d88d3b723ee07563d54b9c66faf2ec63a77632738bf753130f9b861ea6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/server_interactions_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "params"
     },
     {
@@ -186407,24 +186550,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/SubAgentActivityKind/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact kind started and four-event cardinality/order prescribe this sole enum literal.",
+        "Does not bind interacted/interrupted enum leaves. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "pointer": "/definitions/SubAgentActivityKind/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "23ebb6e6bcc93ad306333902bfbbd7c5f6e38401f2175ce3ed91d28a8d87b78e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -186473,24 +186626,34 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/SubAgentActivityKind/enum/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact kind completed and four-event cardinality/order prescribe this sole enum literal.",
+        "Does not bind interacted/interrupted enum leaves. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "pointer": "/definitions/SubAgentActivityKind/enum/3",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "dfb1f7f74a12259e3f1e30c31e2f5cbbc86c5a2092b274c84b26c296206ffc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -187489,272 +187652,382 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Both expected seven-field maps are literal, then compared strictly against incoming events and canonical selective data.",
+        "Full object shape is prescribed for Started+Completed only. This cannot certify all activity-kind values, arbitrary models/efforts, legacy record forms or encrypted messages. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/11",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "c5d67455382a63935730a6c76f8f6ab2312ac65c5d7b79d864d339b40d312f1a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/agentPath",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Fixed task activity_child independently prescribes /root/activity_child; parent-selector source metadata independently confirms path.",
+        "Only one root child path; no nested/resolution-path profile. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/agentPath",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agentPath"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/agentThreadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Separate native thread/list parent selector resolves exactly one nonempty child ID and verifies parent/path/depth; both activity maps must use it.",
+        "Generated native UUID association, independently sourced from management response. Not a fixed fixture UUID and never copied from the activity being checked. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/agentThreadId",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agentThreadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Started ID is literal owned-v39-spawn-activity. Completed ID is exact source prefix subagent-completed- plus independently read single completed child-turn ID.",
+        "Child turn component is native-generated and independently sourced from child thread/read; not obtained by stripping the observed activity ID. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/id",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/kind",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Strict expected maps bind kind to started/completed and actual typed projection maps the corresponding native kinds.",
+        "Reference use is exercised only for these two values. Enum leaves interacted/interrupted and whole-family exhaustive coverage remain incomplete. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/kind",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "9d93ea563440a093786e2ba4f025d6ccee6be5e08a66e5592ca4148deaba5462",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "kind"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Started model is literal mock-model prescribed by requested child config and independently checked provider requests; Completed model is explicit nil/null prescribed by native completion emitter None.",
+        "One synthetic model slug and completion null profile. No arbitrary real-provider model success claim. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/model",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "05b698f79b901c2c028c9030430b3a487bb35e3fd330a1e7fdcccc0d6e050e49",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/reasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Supported/requested medium is independently prescribed; Started map requires medium and Completed map requires explicit nil/null.",
+        "Union arms are exercised with medium/null only. No inheritance to other ReasoningEffort enum values. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/reasoningEffort",
       "required": false,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "6b68be40c6bd69b691c44955db3c554e6adad0d031ccf7cb85601fdbe3eeec3d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoningEffort"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/reasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Started expected medium is exact fixture/model supported/requested effort and provider capture verifies effective medium.",
+        "Only medium profile; no other nonnull effort value is established. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/reasoningEffort/anyOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/reasoningEffort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Completed expected nil is independently prescribed by native completion emitter reasoning_effort None; strict full map distinguishes absent from explicit null.",
+        "Null applies to native Completed here; no omitted legacy-field or encrypted profile evidence. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/reasoningEffort/anyOf/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Both strict full expected maps require type subAgentActivity; live four-event check prevents accepting another item family.",
+        "Exact discriminator in two selected profiles only. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/type",
       "required": true,
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "ec27118c1f1aece7bc79046519a8e1c90e04cf283e7fa067bac5aa607ae2bc40",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-control-activity-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/11/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Literal subAgentActivity is explicitly prescribed in both expected maps and strictly compared live and in selective history.",
+        "Sole enum value, no sibling physical-owner inheritance. Started/Completed only; Interacted/Interrupted remain missing. Cold process is independently reaped and selected before content loading; model-only fixture emits no app-server frames or encrypted payload.",
+        "Only this physical owner gains scoped implemented evidence from both complete nine-file native runs; no verified promotion or sibling/alias/family inheritance. Complete final-source qualification, A11, source-unreachable emitters and real external/backend/OS success remain incomplete."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/11/properties/type/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "7bc1f179b966f3722eb0a474b1d9dd076bb197517f33c755672bbdf82e02e56d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_activity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

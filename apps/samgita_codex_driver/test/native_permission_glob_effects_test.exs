@@ -79,6 +79,8 @@ defmodule SamgitaCodexDriver.NativePermissionGlobEffectsTest do
     events = collect(pid, [], &(interactions(&1) != []))
     assert [grant] = interactions(events)
     assert grant.wire["method"] == "item/permissions/requestApproval"
+    # Pinned Codex allocates server request IDs from AtomicI64 initialized at zero.
+    assert is_integer(grant.wire["id"]) and grant.wire["id"] >= 0
     params = grant.wire["params"]
     assert params["threadId"] == id
     assert params["turnId"] == turn
@@ -101,6 +103,22 @@ defmodule SamgitaCodexDriver.NativePermissionGlobEffectsTest do
     assert params["permissions"] == %{
              "network" => nil,
              "fileSystem" => %{"read" => nil, "write" => nil, "entries" => [write, deny]}
+           }
+
+    assert {:ok, started_at_ms} = Map.fetch(params, "startedAtMs")
+    assert is_integer(started_at_ms) and started_at_ms > 0
+
+    assert Map.delete(params, "startedAtMs") === %{
+             "threadId" => id,
+             "turnId" => turn,
+             "itemId" => "permission-glob-grant",
+             "environmentId" => "local",
+             "cwd" => ctx.fixture.workspace,
+             "reason" => "Owned sibling and deny-glob patch effects only",
+             "permissions" => %{
+               "network" => nil,
+               "fileSystem" => %{"read" => nil, "write" => nil, "entries" => [write, deny]}
+             }
            }
 
     assert length(ModelFixture.requests(ctx.fixture)) == 1

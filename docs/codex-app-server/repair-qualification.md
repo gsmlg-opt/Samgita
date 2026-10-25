@@ -6,6 +6,73 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Hosted v38 checkpoint at 10c5318
+
+Exact pushed source `10c53185cd82c0c66261d79821eac85578616b30` completes
+[Foundation 40164534477](https://github.com/gsmlg-opt/Samgita/actions/runs/40164534477)
+successfully. Both hosted aggregate repeats pass **230 core + 131 web**, with
+their existing **1 core / 8 web exclusions** retained. The complete
+[conformance workflow 40164574042](https://github.com/gsmlg-opt/Samgita/actions/runs/40164574042)
+fails its required evidence gate while both native execution jobs succeed:
+
+| Required execution job | Terminal result |
+| --- | --- |
+| Selected actual-binary/platform | Wire **42/0**; four complete driver partitions **193 + 216 + 180 + 149 = 738/0**, all at their original eight-minute deadlines; outside native consumer **1/0**; platform **59 core + 11 web/0**; authority **3/0 twice** |
+| All 49 isolated native profiles | **300/0**, zero exclusions; each required explicit step succeeds |
+| Full compatibility evidence | **Failure**; 485 requirements and 6,621 contracts remain mandatory, with zero fully verified |
+
+The four-way split now has terminal hosted evidence. It does not erase the v36
+timeout or stand in for completeness. The local frozen v38 matrix below is also
+terminal; hosted fresh-database success does not close its first populated
+GitHub pagination failure. Subsequent candidates were held outside the
+repository until both local source guards completed. They receive no acceptance
+from these earlier jobs.
+
+Terminal metadata: `/tmp/samgita-v38-hosted-terminal-20261025.json`, SHA256
+`4b89e11d03984b28064705b843e138d5d3e7a63334a8c16514dd8baf8fb9a87e`.
+Per-job steps, counts and log hashes:
+`/tmp/samgita-v38-hosted-logs-20261025/report.json`, SHA256
+`aa7e546fc93da12cafd86045285f51013931c3b0e263756dbb96121bb0923035`.
+Contracts remain **4,383 implemented / 2,179 missing / 59 blocked**;
+requirements remain **462 implemented / 12 missing / 11 blocked**, zero verified.
+A11, source-unreachable emitters and required real external/backend/OS success
+remain incomplete. No tag, publication, production migration or deployment.
+
+## Terminal frozen v38 local matrix
+
+All **19 platform + 23 independent-package commands** finish against unchanged
+`10c5318` source. Both 1,495-file source guards match. Complete driver repeats
+pass **738/0 twice**, and all 49 isolated native profiles pass **300/0 twice**,
+with zero exclusions. The independent native consumer passes **1/0**; neutral
+outside consumers pass **32/0 + 1/0 + 1/0**. WebSocket passes **42/0** at seeds
+455834, 501432 and 987654; native wire passes **42/0**. All retained package
+audits pass without advisory suppression.
+
+The first populated umbrella run retains
+`github_controller_test.exs:56`'s first-page assertion: **230 core/0 + 131 web/1**,
+with the existing 1/8 exclusions. The second run passes **230/0 + 131/0** with
+those same exclusions. No pagination code, fixture data or assertion changed.
+The combined matrix remains **failed**, independently of completeness exit 1.
+
+Native platform passes **59 core + 11 web/0**; independent-transaction authority
+passes **3/0 twice**. Populated recovery/restart passes **4/0 + 1/0 twice** without
+clearing the retained isolated database. Legacy isolation, warning-free compile,
+format, strict Credo, Dialyzer, audits, assets and production assembly pass.
+Local assembly is not package publication, production migration or deployment.
+
+```sh
+devenv shell --no-tui -- python3 -B /tmp/samgita-repair-final-combined-v38-20261025.py
+python3 -B /tmp/samgita-collect-v38-20261025.py
+```
+
+The collector preserves command exits, counts, log hashes and failed
+completeness. Terminal report:
+`/tmp/samgita-repair-final-v38-terminal-20261025.json`, SHA256
+`4d9a741863d5cc0cf667334f1026aadab667debe5952f8ce0468c39ba56b1009`.
+New executable changes require their own complete final-source qualification.
+The full goal, A11, unavailable native emitters and external/backend/OS success
+remain incomplete; no required gate is waived.
+
 ## Required upstream output blockers
 
 The [source-bound audit](pinned-output-blockers.md) classifies 57 queue-start

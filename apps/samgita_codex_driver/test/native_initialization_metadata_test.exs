@@ -93,6 +93,50 @@ defmodule SamgitaCodexDriver.NativeInitializationMetadataTest do
     assert :ok = Session.close(pid)
   end
 
+  test "native responses preserve distinct string and signed integer request identities", ctx do
+    pid = start(ctx)
+
+    assert {:ok, %{"result" => %{"platformOs" => "linux"}}} =
+             Session.initialize(pid, %{
+               "name" => "samgita_owned_request_ids",
+               "version" => "1.0.0"
+             })
+
+    # RequestId is an untagged String/i64 in pinned protocol rpc.rs. Keep each
+    # original value as the oracle, including JSON integers beyond JS precision.
+    ids = [0, -1, 7, "7", "", "owned-λ🙂", -9_223_372_036_854_775_808, 9_223_372_036_854_775_807]
+
+    for id <- ids do
+      assert {:ok, response} =
+               Session.request_native(pid, %{
+                 "id" => id,
+                 "method" => "thread/loaded/list",
+                 "params" => %{}
+               })
+
+      assert response === %{"id" => id, "result" => %{"data" => [], "nextCursor" => nil}}
+    end
+
+    # A settled ID remains reserved. In particular, string "7" and integer 7
+    # each settled above; neither is treated as an alias of the other.
+    for id <- [7, "7"] do
+      assert {:error, %Error{code: :invalid_or_reused_request_id, uncertain: false}} =
+               Session.request_native(pid, %{
+                 "id" => id,
+                 "method" => "thread/loaded/list",
+                 "params" => %{}
+               })
+    end
+
+    assert ModelFixture.requests(ctx.fixture) == []
+    assert Session.uncertain_operations(pid) == []
+
+    assert %{phase: :ready, pending: 0, interactions: 0, uncertain: 0, gap: nil} =
+             Session.status(pid)
+
+    assert :ok = Session.close(pid)
+  end
+
   defp assert_metadata(ctx, pid, response, name, version) do
     assert Enum.sort(Map.keys(response)) == ~w(codexHome platformFamily platformOs userAgent)
     assert Map.fetch!(response, "codexHome") == ctx.fixture.codex_home

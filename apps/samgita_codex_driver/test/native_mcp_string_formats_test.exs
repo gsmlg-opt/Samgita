@@ -75,6 +75,8 @@ defmodule SamgitaCodexDriver.NativeMcpStringFormatsTest do
       events = collect(pid, [], &(interactions(&1) != []), true)
       assert [request] = interactions(events)
       assert request.wire["method"] == "mcpServer/elicitation/request"
+      # Pinned Codex allocates server request IDs from AtomicI64 initialized at zero.
+      assert is_integer(request.wire["id"]) and request.wire["id"] >= 0
       assert request.handle.id == request.wire["id"]
 
       assert request.wire === %{

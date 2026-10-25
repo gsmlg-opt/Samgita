@@ -178,16 +178,53 @@ defmodule SamgitaCodexDriver.NativeToolInteractionsProfile do
     pid = client(ctx)
     thread = thread(pid, ctx)
     {turn, event, events} = pending(pid, thread, "input-multi")
+    assert event.wire["method"] == "item/tool/requestUserInput"
+    # Pinned Codex allocates server request IDs from AtomicI64 initialized at zero.
+    assert is_integer(event.wire["id"]) and event.wire["id"] >= 0
     params = event.wire["params"]
     assert params["isBlocking"]
     assert params["autoResolutionMs"] == nil
     assert params["itemId"] == turn.call
     assert [choice, detail] = params["questions"]
     assert choice["id"] == "choice" and detail["id"] == "detail"
+    assert Enum.map([choice, detail], & &1["header"]) == ["Choice", "Detail"]
     assert Enum.map(choice["options"], & &1["label"]) == ["One", "Two"]
+    assert Enum.map(choice["options"], & &1["description"]) == ["Synthetic one", "Synthetic two"]
     assert Enum.map(detail["options"], & &1["label"]) == ["Red", "Blue"]
     assert choice["isOther"] and detail["isOther"] and detail["isSecret"]
     refute choice["isSecret"]
+
+    assert params === %{
+             "threadId" => thread,
+             "turnId" => turn.id,
+             "itemId" => turn.call,
+             "isBlocking" => true,
+             "autoResolutionMs" => nil,
+             "questions" => [
+               %{
+                 "id" => "choice",
+                 "header" => "Choice",
+                 "question" => "Choose synthetic input",
+                 "isOther" => true,
+                 "isSecret" => false,
+                 "options" => [
+                   %{"label" => "One", "description" => "Synthetic one"},
+                   %{"label" => "Two", "description" => "Synthetic two"}
+                 ]
+               },
+               %{
+                 "id" => "detail",
+                 "header" => "Detail",
+                 "question" => "Choose a synthetic detail",
+                 "isOther" => true,
+                 "isSecret" => true,
+                 "options" => [
+                   %{"label" => "Red", "description" => "Synthetic red"},
+                   %{"label" => "Blue", "description" => "Synthetic blue"}
+                 ]
+               }
+             ]
+           }
 
     answers = %{
       "choice" => %{"answers" => ["One", "Two"]},

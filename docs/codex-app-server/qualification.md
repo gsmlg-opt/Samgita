@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [native control/activity continuation](native-control-activity-qualification.md)
+qualifies two simultaneously pending commands with independent decisions/effects,
+typed native IDs, exact server params and Started/Completed activity history.
+All nine owning files pass 27/0 at both seeds after the retained source-backed
+oracle repairs. Contracts are 4,410 implemented/2,152 missing/59 blocked;
+requirements remain 462 implemented/12 missing/11 blocked, zero verified. The
+complete [v38 local/hosted checks](repair-qualification.md) precede this source
+change; first populated GitHub pagination, completeness, A11 and real
+external/backend/OS success remain incomplete. Full final-source checks remain
+mandatory before any completion/publication claim.
+
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
 11 blocked requirements** and **0 verified / 4,383 implemented / 2,179 missing /
 59 blocked field/variant contracts**. Selected notification, Project, filesystem, process,

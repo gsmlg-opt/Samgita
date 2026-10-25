@@ -306,6 +306,10 @@ defmodule SamgitaCodexDriver.ServerInteractionsTest do
         finish(pid, turn, fn event ->
           assert event.wire["method"] == "currentTime/read"
           assert event.wire["params"]["threadId"] == thread
+          # Pinned Codex allocates server request IDs from AtomicI64 initialized at zero.
+          assert is_integer(event.wire["id"]) and event.wire["id"] >= 0
+          assert is_binary(thread) and byte_size(thread) > 0
+          assert event.wire["params"] === %{"threadId" => thread}
 
           assert :ok =
                    Session.respond(pid, event.handle, {:ok, %{"currentTimeAt" => 1_781_717_655}})
