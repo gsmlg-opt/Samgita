@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [thread-start source continuation](thread-start-source-qualification.md) passes
+twelve reviewed functional files **25/0 twice**, compile/format, strict Credo and
+the 235-file guard. Two exact request alternatives bring contracts to **4,618
+implemented / 1,944 missing / 59 blocked**; requirements stay **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Four explicit native turns,
+new/cleared provider metadata and retained histories under cold reads do not
+qualify hooks, other modes/profiles or complete lifecycle. No prohibited test,
+broad/hosted completion, A11 closure or release is claimed.
+
 The [thread-start effort continuation](thread-start-effort-qualification.md) passes
 eleven reviewed functional files **24/0 twice**, compile/format, strict Credo and
 the 234-file guard. Five exact response/notification owners bring contracts to

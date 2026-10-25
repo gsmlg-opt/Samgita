@@ -216981,46 +216981,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/sessionStartSource/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Four exact omitted/null/startup/clear start envelopes produce distinct native threads and actual started/applied-settings notices. Four explicit assistant-only turns carry independently expected provider history_initialization new/new/new/cleared with matching thread/turn IDs and isolated markers. Independently validated completed input/output histories, IDs, paths and files survive clear-source creation and confirmed native PID replacement; cold reads preserve exact four-request journal and captures without resume or another turn. Only these two physical source alternatives gain evidence; no parent/alias/historyMode/hooks/other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/properties/sessionStartSource/anyOf/0",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "18a788bbd7d4ec8bcb529c9abf15426d814ccd3a8a0ea7b6e86b487b13fe324c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-source-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/sessionStartSource/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Four exact omitted/null/startup/clear start envelopes produce distinct native threads and actual started/applied-settings notices. Four explicit assistant-only turns carry independently expected provider history_initialization new/new/new/cleared with matching thread/turn IDs and isolated markers. Independently validated completed input/output histories, IDs, paths and files survive clear-source creation and confirmed native PID replacement; cold reads preserve exact four-request journal and captures without resume or another turn. Only these two physical source alternatives gain evidence; no parent/alias/historyMode/hooks/other transport/platform/backend or complete lifecycle qualification."
+      ],
       "pointer": "/properties/sessionStartSource/anyOf/1",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_source_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

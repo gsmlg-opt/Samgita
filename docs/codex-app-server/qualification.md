@@ -1,5 +1,13 @@
 # Codex compatibility qualification
 
+The [thread-start source continuation](thread-start-source-qualification.md) passes
+twelve reviewed functional files **25/0 twice**, compile/format, strict Credo and
+the 235-file guard. Two direct request alternatives bring contracts to **4,618
+implemented / 1,944 missing / 59 blocked**; requirements remain **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Native initialization provenance,
+record retention and cold reads have scoped evidence; broader/hosted gates,
+prohibited tests and complete compatibility remain incomplete.
+
 The [thread-start effort continuation](thread-start-effort-qualification.md) passes
 eleven reviewed functional files **24/0 twice**, compile/format, strict Credo and
 the 234-file guard. Five direct response/notification owners bring contracts to
