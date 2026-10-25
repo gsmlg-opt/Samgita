@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [thread-start effort unit](thread-start-effort-qualification.md) passes eleven
+reviewed functional files **24/0 twice**, compile/format, strict Credo and the
+234-file guard. Five explicitly mapped response/notification owners bring
+contracts to **4,616 implemented / 1,946 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Actual
+independent start frames, applied settings and provider payloads qualify only
+configured null/low. Continue source-backed functional start/default/lifecycle
+values; preserve every prohibited/unrun gate and the incomplete full goal,
+A11, hosted and release status.
+
 The [one-shot fuzzy unit](fuzzy-search-query-qualification.md) passes ten reviewed
 functional files **22/0 twice**, focused **2/0**, compile/format, strict Credo and
 the 233-file guard. The first v182 block's **22/2** diagnostic setup failure is

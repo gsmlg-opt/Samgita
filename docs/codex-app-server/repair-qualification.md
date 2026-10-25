@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [thread-start effort continuation](thread-start-effort-qualification.md) passes
+eleven reviewed functional files **24/0 twice**, compile/format, strict Credo and
+the 234-file guard. Five exact response/notification owners bring contracts to
+**4,616 implemented / 1,946 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Explicit
+native null/low frames and provider effects do not qualify other enums, aliases
+or deployment profiles. No prohibited test, broad/hosted completion, A11 closure
+or release is claimed.
+
 The [one-shot fuzzy continuation](fuzzy-search-query-qualification.md) passes ten
 reviewed functional files **22/0 twice**, focused **2/0**, compile/format, strict
 Credo and the 233-file guard. Initial v182 **22/2** fails only at experimental

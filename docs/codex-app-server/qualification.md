@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [thread-start effort continuation](thread-start-effort-qualification.md) passes
+eleven reviewed functional files **24/0 twice**, compile/format, strict Credo and
+the 234-file guard. Five direct response/notification owners bring contracts to
+**4,616 implemented / 1,946 missing / 59 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Distinct
+native frames, applied settings and actual provider omission/low behavior are
+scoped evidence only. Prohibited tests and broader/hosted/full-compatibility
+gates remain incomplete.
+
 The [one-shot fuzzy continuation](fuzzy-search-query-qualification.md) passes ten
 reviewed functional files **22/0 twice**, focused **2/0**, compile/format, strict
 Credo and the 233-file guard. Its initial **22/2** diagnostic opt-in setup failure

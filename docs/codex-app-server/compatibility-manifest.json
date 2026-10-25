@@ -95558,71 +95558,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-effort-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/reasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two independent configured-null/low cases capture exact start/turn requests and matching responses, separately receive actual thread/started with explicit reasoningEffort key, await summary-only applied settings preserving effort, and observe native provider reasoning effort omitted vs low plus concise summary and completed assistant output. Only these five physical response/notification null/concrete owners gain scoped evidence. No other effort enum, parent field, alias, fork/resume/list, persistence/restart, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/reasoningEffort",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "51b0167cdd1450382f363a20ade8c6b02b6eb8939fa848069e87383f2aa20146",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_effort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoningEffort"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-effort-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/reasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two independent configured-null/low cases capture exact start/turn requests and matching responses, separately receive actual thread/started with explicit reasoningEffort key, await summary-only applied settings preserving effort, and observe native provider reasoning effort omitted vs low plus concise summary and completed assistant output. Only these five physical response/notification null/concrete owners gain scoped evidence. No other effort enum, parent field, alias, fork/resume/list, persistence/restart, other transport/platform/backend or complete behavior qualification."
+      ],
       "pointer": "/definitions/Thread/properties/reasoningEffort/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_effort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-effort-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/Thread/properties/reasoningEffort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two independent configured-null/low cases capture exact start/turn requests and matching responses, separately receive actual thread/started with explicit reasoningEffort key, await summary-only applied settings preserving effort, and observe native provider reasoning effort omitted vs low plus concise summary and completed assistant output. Only these five physical response/notification null/concrete owners gain scoped evidence. No other effort enum, parent field, alias, fork/resume/list, persistence/restart, other transport/platform/backend or complete behavior qualification."
+      ],
       "pointer": "/definitions/Thread/properties/reasoningEffort/anyOf/1",
       "schema": "ServerNotification.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_effort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -217513,46 +217537,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-effort-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadStartResponse.json#/properties/reasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two independent configured-null/low cases capture exact start/turn requests and matching responses, separately receive actual thread/started with explicit reasoningEffort key, await summary-only applied settings preserving effort, and observe native provider reasoning effort omitted vs low plus concise summary and completed assistant output. Only these five physical response/notification null/concrete owners gain scoped evidence. No other effort enum, parent field, alias, fork/resume/list, persistence/restart, other transport/platform/backend or complete behavior qualification."
+      ],
       "pointer": "/properties/reasoningEffort/anyOf/0",
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_effort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-start-effort-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadStartResponse.json#/properties/reasoningEffort/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two independent configured-null/low cases capture exact start/turn requests and matching responses, separately receive actual thread/started with explicit reasoningEffort key, await summary-only applied settings preserving effort, and observe native provider reasoning effort omitted vs low plus concise summary and completed assistant output. Only these five physical response/notification null/concrete owners gain scoped evidence. No other effort enum, parent field, alias, fork/resume/list, persistence/restart, other transport/platform/backend or complete behavior qualification."
+      ],
       "pointer": "/properties/reasoningEffort/anyOf/1",
       "schema": "v2/ThreadStartResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_effort_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
