@@ -21,6 +21,21 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [cold-search continuation](cold-search-persistence-qualification.md) passes
+the final twenty-five-file **41/0 twice** block, compile/format, strict Credo,
+outside consumer **1/0**, three Python AST checks and the 251-source guard.
+It proves persisted search values/full histories after confirmed native exit,
+without thread loading or new model work; low effort persists independently
+of environments:null. Source-corrected lazy gauge expectations retain the exact
+warm count and checked cleanup. No field state is promoted: **4,715 implemented /
+1,847 missing / 59 blocked** contracts, unchanged requirements, zero verified.
+Continue source-backed ordinary functional defaults and variant/effect coverage;
+do not infer cold null effort or new owner coverage from this additional case.
+Keep all prohibited/broad/hosted, full-goal, A11, source-unreachable and
+external/release gates incomplete.
+
+## Earlier checkpoints
+
 The [thread snapshot and diagnostics unit](thread-runtime-projections-qualification.md)
 passes the final twenty-five-file **40/0 twice** block, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and the 251-source guard.
@@ -32,8 +47,6 @@ values/branches. Yolo is fixed owned setup; original cleanup/effects remain.
 Next inspect cold native search after confirmed process exit, preserving saved
 content/metadata and zero new provider work. Keep all prohibited/broad/hosted,
 full-goal, A11, source-unreachable and external/release gates incomplete.
-
-## Earlier checkpoints
 
 The [loaded search environment unit](search-environment-values-qualification.md)
 passes the final twenty-five-file **40/0 twice** block, compile/format, strict

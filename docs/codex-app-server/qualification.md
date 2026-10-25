@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [cold-search continuation](cold-search-persistence-qualification.md) passes
+the final twenty-five-file **41/0 twice** block, compile/format, strict Credo,
+outside consumer **1/0**, three Python AST checks and the 251-source guard.
+Confirmed native restart preserves exact stored IDs/content/metadata/history
+and low effort; environments:null, empty loaded lists and unchanged two-request
+provider journal prove the scoped read-only behavior. The source-backed lazy
+gauge correction and format failure remain recorded. Two existing fields gain
+supplemental evidence with no new promotions: **4,715 implemented / 1,847 missing /
+59 blocked**, unchanged requirements and zero verified. All prohibited/broader/
+hosted, full-goal, A11, legacy/external and release gates remain incomplete.
+
 The [thread snapshot and diagnostics unit](thread-runtime-projections-qualification.md)
 passes the final twenty-five-file **40/0 twice** block, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and the 251-source guard.

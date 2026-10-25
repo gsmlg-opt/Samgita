@@ -210641,7 +210641,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/settings-search-qualification.md"
+        "docs/codex-app-server/settings-search-qualification.md",
+        "docs/codex-app-server/cold-search-persistence-qualification.md"
       ],
       "experimental": true,
       "has_default": true,
@@ -210650,7 +210651,8 @@
       "limitations": [
         "Exact method-specific search field or literal has a prescribed input/default or raw-timestamp oracle and warm/cold native assertions. Explicit null sort values preserve default created_at descending order; no read starts inference or alters saved history. Nullable metadata qualifies only the observed null branch; warm environments are the prescribed local CWD/root record, cold environments null.",
         "Only this exact physical owner is selected. No alias/child/sibling, whole method, active-turn reviewer or exec-origin success inheritance. Known created_at continuation defects remain incomplete. Bound to both passing v32-r1 six-file native runs and matching source/binary guards; complete final-source qualification remains required.",
-        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion."
+        "A11, unreachable legacy emitters, external/backend/OS success and complete compatibility remain incomplete; zero verified promotion.",
+        "actual_native_cold_search_without_loading: A new ordinary case completes two native turns, prescribes per-thread GitInfo, confirms old owned process exit, initializes a new native process with the same synthetic home, then requires exact original search IDs/snippets/preview/path/metadata and explicit environments:null/status:notLoaded. Complete loaded lists stay empty before/after search and full-history reads, histories and whole two-request provider journal/config/workspace remain unchanged, and the cold process never registers the live-thread gauge. This supplements the existing field; no new state promotion, parent/alias/remote/multiple-environment/power-loss/uncertain-mutation claim."
       ],
       "nullable": true,
       "pointer": "/definitions/Thread/properties/environments",
@@ -210665,7 +210667,8 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_search_projections_test.exs"
+          "apps/samgita_codex_driver/test/native_search_projections_test.exs",
+          "apps/samgita_codex_driver/test/native_search_git_info_values_test.exs"
         ]
       },
       "transport_coverage": [
@@ -211327,13 +211330,15 @@
     {
       "direction": "schema_variant",
       "evidence": [
-        "docs/codex-app-server/thread-runtime-projections-qualification.md"
+        "docs/codex-app-server/thread-runtime-projections-qualification.md",
+        "docs/codex-app-server/cold-search-persistence-qualification.md"
       ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/reasoningEffort/anyOf/0",
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
-        "actual_native_loaded_search_effort_nonnull: Every real hit across the existing two-thread/two-turn/four-search metadata journey must contain literal low effort independently prescribed in immutable root configuration before native startup. The pinned search processor enriches loaded rows from actual live snapshots. Only this nonnull response branch with low is evidenced, not all effort enums, null/unloaded/defaults, same-shaped aliases or full response/method."
+        "actual_native_loaded_search_effort_nonnull: Every real hit across the existing two-thread/two-turn/four-search metadata journey must contain literal low effort independently prescribed in immutable root configuration before native startup. The pinned search processor enriches loaded rows from actual live snapshots. Only this nonnull response branch with low is evidenced, not all effort enums, null/unloaded/defaults, same-shaped aliases or full response/method.",
+        "actual_native_cold_search_persisted_effort: The same two completed threads return literal low effort after confirmed owned-process restart with no loaded threads, alongside exact original content/metadata/history and byte-identical two-request provider journal. Immutable stored-row conversion preserves persisted effort; environments:null does not imply reasoningEffort:null. Both native processes retain checked executable/PID shutdown and fixed yolo setup without policy assertions. This supplements the existing nonnull branch only; no null-effort/all-enum/alias/whole-method/external/other-OS claim."
       ],
       "pointer": "/definitions/Thread/properties/reasoningEffort/anyOf/0",
       "schema": "v2/ThreadSearchResponse.json",

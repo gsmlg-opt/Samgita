@@ -120,6 +120,35 @@ defmodule SamgitaCodexDriver.NativeSearchGitInfoValuesTest do
     assert :ok = close(pid)
   end
 
+  test "cold search preserves stored values without loading threads or executing turns", ctx do
+    warm = start(ctx)
+    subject = complete(ctx, warm, "cold subject", 1)
+    control = complete(ctx, warm, "cold control", 2)
+    assert subject.id != control.id
+    saved = [subject, control]
+
+    update(ctx, warm, subject.id, @subject, @subject)
+    update(ctx, warm, control.id, @control, @control)
+    expected = %{subject.id => @subject, control.id => @control}
+    journal = File.read!(ctx.fixture.requests)
+    assert_search(ctx, warm, saved, expected)
+    assert_retained(ctx, warm, saved, expected, journal)
+    assert :ok = close(warm)
+
+    cold = start(ctx)
+    assert cold != warm
+    assert_unloaded(cold)
+    assert_search(ctx, cold, saved, expected, :unloaded)
+    assert_unloaded(cold)
+    assert_retained(ctx, cold, saved, expected, journal)
+    assert_unloaded(cold)
+
+    captures = Agent.get(ctx.capture, & &1)
+    assert Enum.count(captures, &(&1["method"] == "thread/metadata/update")) == 2
+    assert Enum.count(captures, &(&1["method"] == "thread/search")) == 2
+    assert :ok = close(cold, [])
+  end
+
   # Every expected object is independently prescribed. The nulls belong to
   # child fields of a real GitInfo object, never a null parent projection.
   defp subject_cases do
@@ -187,7 +216,7 @@ defmodule SamgitaCodexDriver.NativeSearchGitInfoValuesTest do
     assert Map.fetch!(updated, "gitInfo") === expected
   end
 
-  defp assert_search(ctx, pid, saved, expected) do
+  defp assert_search(ctx, pid, saved, expected, loaded_state \\ :loaded) do
     result = request(ctx, pid, "thread/search", %{"searchTerm" => @needle, "limit" => 10})
     assert Map.fetch!(result, "nextCursor") == nil
     rows = Map.fetch!(result, "data")
@@ -204,9 +233,18 @@ defmodule SamgitaCodexDriver.NativeSearchGitInfoValuesTest do
       assert Map.fetch!(thread, "path") == original.path
       assert Map.fetch!(thread, "historyMode") == "paginated"
       assert Map.fetch!(thread, "reasoningEffort") === "low"
-      assert [environment] = Map.fetch!(thread, "environments")
-      assert Map.fetch!(environment, "cwd") === ctx.fixture.workspace
-      assert Map.fetch!(environment, "environmentId") === "local"
+
+      case loaded_state do
+        :loaded ->
+          assert [environment] = Map.fetch!(thread, "environments")
+          assert Map.fetch!(environment, "cwd") === ctx.fixture.workspace
+          assert Map.fetch!(environment, "environmentId") === "local"
+
+        :unloaded ->
+          assert Map.fetch!(thread, "environments") === nil
+          assert Map.fetch!(thread, "status") === %{"type" => "notLoaded"}
+      end
+
       assert Map.fetch!(thread, "turns") == []
       assert Map.fetch!(thread, "gitInfo") === Map.fetch!(expected, id)
     end
@@ -319,11 +357,18 @@ defmodule SamgitaCodexDriver.NativeSearchGitInfoValuesTest do
         "thread"
       ]
 
-  defp close(pid) do
+  defp assert_unloaded(pid) do
+    assert TurnFixture.call(pid, "thread/loaded/list", %{}) === %{
+             "data" => [],
+             "nextCursor" => nil
+           }
+  end
+
+  defp close(pid, expected_gauges \\ [%{"name" => "core.threads.live", "value" => 2}]) do
     diagnostics = TurnFixture.call(pid, "server/diagnostics", %{})
 
-    assert [%{"name" => "core.threads.live", "value" => 2}] =
-             Enum.filter(Map.fetch!(diagnostics, "gauges"), &(&1["name"] == "core.threads.live"))
+    assert Enum.filter(Map.fetch!(diagnostics, "gauges"), &(&1["name"] == "core.threads.live")) ===
+             expected_gauges
 
     process = Map.fetch!(diagnostics, "process")
     assert Map.fetch!(process, "physicalFootprintBytes") === nil

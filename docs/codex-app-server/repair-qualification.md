@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [cold-search continuation](cold-search-persistence-qualification.md) passes
+the final twenty-five-file **41/0 twice** matrix, strict/static checks, outside
+consumer **1/0**, three Python AST checks and 251-source guard; artifacts are in
+`/tmp/samgita-v266-functional-checks/functional/`. Exact persisted values and
+full histories survive orderly native restart; loaded lists remain empty and
+the complete two-request provider journal remains unchanged. Low effort is
+persisted, not erased by an unloaded environment. The initial **2/1** gauge
+assumption and subsequent format-only failure remain recorded; source-corrected
+absence in the cold process preserves warm count2 and checked cleanup. Two
+existing field owners gain supplemental evidence with no new promotions or
+count changes. Prohibited/broader/hosted, A11 and the full goal remain incomplete.
+
 The [thread snapshot and diagnostics continuation](thread-runtime-projections-qualification.md)
 adds six exact field/branch bindings. The final twenty-five-file **40/0 twice**
 matrix, strict/static checks, outside consumer **1/0**, three Python AST checks
