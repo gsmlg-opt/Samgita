@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [52 response-projection owners](native-response-projections-qualification.md)
+bind precise account/config outputs to unchanged v24 native assertions and the
+nominated v25 account repeat. Exact complete manifest/diff matches; no executable
+change or verified promotion. Contracts are 3,901 implemented/2,720 missing;
+requirements remain 462 implemented/12 missing/11 blocked, zero verified.
+Freeze the combined source and run all 19 retained platform commands, all 23
+package commands and mandatory completeness, then verify final-pushed hosted
+outcomes. Continue the remaining complete compatibility plan; no checkpoint
+closes A11, unreachable emitters, external/OS success or retained aggregate failures.
+
 The [native hook-catalog case](hook-catalog-qualification.md) passes in the
 complete five-file block: 29/0 at both seeds, strict checks and matching
 1,495-file/binary guards. Six physical MCP metadata/warnings owners become

@@ -6,6 +6,36 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Retained account/config response owners and blocker recheck
+
+The [52 response-projection owners](native-response-projections-qualification.md)
+bind exact original rows/nodes to unchanged passing v24 assertions and the v25
+account repeat. Full source/log/manifest checks match; no executable change or
+verified promotion. Contracts are 3,901 implemented/2,720 missing; requirements
+remain 462 implemented/12 missing/11 blocked. Full final-source/hosted matrices
+and the complete compatibility goal remain required.
+
+The source-only final blocker audit independently rechecks all eleven blocked
+requirements, whole production Rust searches, nineteen pinned files and 41 exact
+anchors/immutable links. All 5,259 codex-rs Rust sources match the hash-verified
+archive; the parent additionally compares all 5,276 repository Rust files,
+including seventeen tools/Bazel files, with no extra paths or byte differences.
+Legacy v1 wire declarations still have no negotiated production emitter; the
+production approval path constructs v2 requests. Explicit prediction rejection,
+deprecated suppression and declaration/consumer-only notifications remain
+blocked. Scripted codec/handler tests remain separate evidence.
+
+UserVerification enroll/delete/verify request/result success still needs an
+explicitly owned, authorized macOS account with appropriate Keychain, Secure
+Enclave and biometric resources. Stock-Linux unavailable/error outcomes do not
+qualify success. The existing A11 source/pre-emission boundary remains blocked;
+no new network query, source upgrade or confidentiality acceptance is claimed.
+Artifacts are `/tmp/samgita-v27-final-blocker-source-audit-20261025.json`, SHA256
+`ac9729acdecc4a38050cc037a3bc57c8f87477cfd69118c7b542351af82969a1`, and
+`/tmp/samgita-v27-final-blocker-parent-preflight-20261025.json`, SHA256
+`4bb0c4dddde0780a90f140ae9eed51bf5dda6f5af0ba809ad574353ab057b827`.
+No blocker is cleared or replaced with mock acceptance.
+
 ## Native hook catalog continuation
 
 The [five-file owning block](hook-catalog-qualification.md) passes 29/0 at both

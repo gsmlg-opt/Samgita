@@ -118871,50 +118871,72 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/CancelLoginAccountResponse.json#/definitions/CancelLoginAccountStatus/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Two exact native {status:notFound} responses; canceled sibling is not inferred.",
+        "Two actual missing-UUID cancel results equal status notFound; malformed ID gives exact native error, persisted synthetic credential and subsequent account/read remain unchanged.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/CancelLoginAccountStatus/enum/1",
       "schema": "v2/CancelLoginAccountResponse.json",
       "schema_sha256": "08ac7d6b57a7f8c112b089dffd656182d999988d7f77848c54e74e39cf01a88f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/CancelLoginAccountResponse.json#/properties/status",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Two exact native {status:notFound} responses; canceled sibling is not inferred.",
+        "Two actual missing-UUID cancel results equal status notFound; malformed ID gives exact native error, persisted synthetic credential and subsequent account/read remain unchanged.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/status",
       "required": true,
       "schema": "v2/CancelLoginAccountResponse.json",
       "schema_sha256": "cc437eeb8925432395bdc69f7751d705d8b75e6367612f66fcce02c097a840ad",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "status"
     },
     {
@@ -123536,24 +123558,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/approval_policy/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact effective on-request approval policy after managed-layer reload; no null branch inference.",
+        "A scoped managed layer narrows requirements and actual config/read returns exact on-request approval_policy; original user config and requirements bytes remain unchanged and process stays idle.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Config/properties/approval_policy/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "51bcd333cdd527eeddd4feea1f6b867a294ce2cea3129413ecb086f211516474",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -123619,24 +123652,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/approvals_reviewer/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Strict exact positive parsed values in three named tests; only this non-null member branch, no entire referenced enum/type qualification.",
+        "Map.fetch! strict comparisons preserve reviewer user/auto_review, API/ChatGPT selection, fixed string/ordered workspace array/empty array, total/body_after_prefix compaction scope and all three sandbox values. Exact input/requirements bytes, idle driver and owned cleanup stay asserted; no browser authorization or execution claim.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Config/properties/approvals_reviewer/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "fa34df2c0d32f88ea66072290e2b108c62f88a64a91cf81b81a7a582f05d3812",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -124101,24 +124145,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/forced_chatgpt_workspace_id/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Strict exact positive parsed values in three named tests; only this non-null member branch, no entire referenced enum/type qualification.",
+        "Map.fetch! strict comparisons preserve reviewer user/auto_review, API/ChatGPT selection, fixed string/ordered workspace array/empty array, total/body_after_prefix compaction scope and all three sandbox values. Exact input/requirements bytes, idle driver and owned cleanup stay asserted; no browser authorization or execution claim.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Config/properties/forced_chatgpt_workspace_id/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "862232cedb3c960631925465b71d842a6a1884d244b7b85e7c00cd55d2e73eaa",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -124196,24 +124251,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/forced_login_method/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Strict exact positive parsed values in three named tests; only this non-null member branch, no entire referenced enum/type qualification.",
+        "Map.fetch! strict comparisons preserve reviewer user/auto_review, API/ChatGPT selection, fixed string/ordered workspace array/empty array, total/body_after_prefix compaction scope and all three sandbox values. Exact input/requirements bytes, idle driver and owned cleanup stay asserted; no browser authorization or execution claim.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Config/properties/forced_login_method/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "90a8371f2b39e618794d463cbefcd31425647f72f965720805edac176199f9da",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -124389,24 +124455,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/model_auto_compact_token_limit_scope/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Strict exact positive parsed values in three named tests; only this non-null member branch, no entire referenced enum/type qualification.",
+        "Map.fetch! strict comparisons preserve reviewer user/auto_review, API/ChatGPT selection, fixed string/ordered workspace array/empty array, total/body_after_prefix compaction scope and all three sandbox values. Exact input/requirements bytes, idle driver and owned cleanup stay asserted; no browser authorization or execution claim.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Config/properties/model_auto_compact_token_limit_scope/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "9f91ea1900d3fefd89053a483050cff0d1cac1b3382ae140edb94011a5d9b019",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -124849,24 +124926,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigReadResponse.json#/definitions/Config/properties/sandbox_mode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Strict exact positive parsed values in three named tests; only this non-null member branch, no entire referenced enum/type qualification.",
+        "Map.fetch! strict comparisons preserve reviewer user/auto_review, API/ChatGPT selection, fixed string/ordered workspace array/empty array, total/body_after_prefix compaction scope and all three sandbox values. Exact input/requirements bytes, idle driver and owned cleanup stay asserted; no browser authorization or execution claim.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Config/properties/sandbox_mode/anyOf/0",
       "schema": "v2/ConfigReadResponse.json",
       "schema_sha256": "4a92b1c9832fe129092bb070ea83363c1ffc5414a35d88f3f64cdb740517defd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_config_option_projections_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -128836,24 +128924,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/BrowserUseRequirements/properties/extension/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact non-null extension metadata, ordered duplicate headers/templates, clearing/removal/reintroduction and owned restart; no browser operation.",
+        "Actual requirements reads preserve two ordered duplicate-name headers including literal session template and Unicode. Explicit clear/removal/reintroduction and owned restart are distinct; source/config bytes, idle state and no forbidden hook markers are checked. Only extension non-null branch selected; no referenced-type or browser execution qualification.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/BrowserUseRequirements/properties/extension/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "d910457f94c9611fc0215f057de356ef93891cc38ea6bc6975c4cbde5e3b3333",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_extension_hook_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -140801,194 +140900,282 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/Account/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact account={type:apiKey} before/after owned restart.",
+        "Exact apiKey account/read metadata, durable private synthetic credential across owned restart, explicit logout absence and no inference; login helper requires native apiKey result.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Account/oneOf/0",
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "dca77d361324812b0f27b956e9c02fd2f2bc56c969ee543b581684d20476dc1f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/Account/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact account={type:apiKey} before/after owned restart.",
+        "Exact apiKey account/read metadata, durable private synthetic credential across owned restart, explicit logout absence and no inference; login helper requires native apiKey result.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/Account/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "820f3da549480bb04564c58d6bc247a5abee200bb773d4a51503ae13d1f07a45",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/Account/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact account={type:apiKey} before/after owned restart.",
+        "Exact apiKey account/read metadata, durable private synthetic credential across owned restart, explicit logout absence and no inference; login helper requires native apiKey result.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Account/oneOf/0/properties/type/enum/0",
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "55432f1573c70c75cbf3eec4cbd362f292af726c8b494df4898a738bf4841df1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/Account/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact synthetic chatgpt account map, fixed positive email and prescribed known/unknown plans.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Account/oneOf/1",
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "6cb83e16924e376af8249cfcd2c450f915c27a7fea2b0fd00d719ceb61194637",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/Account/oneOf/1/properties/email",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact synthetic chatgpt account map, fixed positive email and prescribed known/unknown plans.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/Account/oneOf/1/properties/email",
       "required": true,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "email"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/Account/oneOf/1/properties/planType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact synthetic chatgpt account map, fixed positive email and prescribed known/unknown plans.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/Account/oneOf/1/properties/planType",
       "required": true,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "565fa8b5abbd16a7d83b8368ad9a2b364902095465634efaa584b2eef01825a2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "planType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/Account/oneOf/1/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact synthetic chatgpt account map, fixed positive email and prescribed known/unknown plans.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/Account/oneOf/1/properties/type",
       "required": true,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "d1c2c45184e4891ed3cb0b510b59ec195a0b6f4bb9ee9baffa7736d79aef5aa6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/Account/oneOf/1/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact synthetic chatgpt account map, fixed positive email and prescribed known/unknown plans.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/Account/oneOf/1/properties/type/enum/0",
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "0b86bb0135de0ade6d19f29558e887a412383424701c32d0040c1227bc2ea8b9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -141089,24 +141276,35 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/AccountRoutingOverride/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive account and routing map: isolated-auth-account, https://synthetic.invalid, NO_CONSTRAINT, requiresOpenaiAuth=true. Non-null branch only; no sibling us/us_cr or whole referenced definition inference.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/definitions/AccountRoutingOverride/enum/0",
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "f398d4b257fb924a821c6d8460c6a8f8403d603ae155dd65eec827e885111827",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -141156,127 +141354,182 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/WorkspaceRouting/properties/accountRoutingOverride",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive account and routing map: isolated-auth-account, https://synthetic.invalid, NO_CONSTRAINT, requiresOpenaiAuth=true. Non-null branch only; no sibling us/us_cr or whole referenced definition inference.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/WorkspaceRouting/properties/accountRoutingOverride",
       "required": true,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "4ad51d565d525d5935bfa7aedd09f291fe2e5c1865cd0ce7729498123d6100f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "accountRoutingOverride"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/WorkspaceRouting/properties/backendOrigin",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive account and routing map: isolated-auth-account, https://synthetic.invalid, NO_CONSTRAINT, requiresOpenaiAuth=true. Non-null branch only; no sibling us/us_cr or whole referenced definition inference.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/WorkspaceRouting/properties/backendOrigin",
       "required": true,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "backendOrigin"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/definitions/WorkspaceRouting/properties/chatgptAccountId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive account and routing map: isolated-auth-account, https://synthetic.invalid, NO_CONSTRAINT, requiresOpenaiAuth=true. Non-null branch only; no sibling us/us_cr or whole referenced definition inference.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/WorkspaceRouting/properties/chatgptAccountId",
       "required": true,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "chatgptAccountId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/properties/account",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive account and routing map: isolated-auth-account, https://synthetic.invalid, NO_CONSTRAINT, requiresOpenaiAuth=true. Non-null branch only; no sibling us/us_cr or whole referenced definition inference.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/properties/account",
       "required": false,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "1fbcb62a9e227f8fd5826e9d126006304a960e565b436a5b30a4445b6d97bf3b",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "account"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountResponse.json#/properties/account/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive account and routing map: isolated-auth-account, https://synthetic.invalid, NO_CONSTRAINT, requiresOpenaiAuth=true. Non-null branch only; no sibling us/us_cr or whole referenced definition inference.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/properties/account/anyOf/0",
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "cb013120bd32cb7cfaca3d19418586dc71864fc7fda100a5c69ac937b482ffec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -141304,75 +141557,108 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/properties/requiresOpenaiAuth",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive account and routing map: isolated-auth-account, https://synthetic.invalid, NO_CONSTRAINT, requiresOpenaiAuth=true. Non-null branch only; no sibling us/us_cr or whole referenced definition inference.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/requiresOpenaiAuth",
       "required": true,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "feeb8bb50144d96d6db7bdbd4888cf1fd75788b5e045ac4d3af4dbdf72349ae5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "requiresOpenaiAuth"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/GetAccountResponse.json#/properties/workspaceRouting",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive account and routing map: isolated-auth-account, https://synthetic.invalid, NO_CONSTRAINT, requiresOpenaiAuth=true. Non-null branch only; no sibling us/us_cr or whole referenced definition inference.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/properties/workspaceRouting",
       "required": false,
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "00afcecd2d64a0d37118361fe556f213a2e5ac1df6c81a4341d1b5ef03404a87",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "workspaceRouting"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/GetAccountResponse.json#/properties/workspaceRouting/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive account and routing map: isolated-auth-account, https://synthetic.invalid, NO_CONSTRAINT, requiresOpenaiAuth=true. Non-null branch only; no sibling us/us_cr or whole referenced definition inference.",
+        "Two strict native account/read comparisons per prescribed synthetic plan: exact chatgpt type/email/plan, requiresOpenaiAuth true, exact account ID/backend origin/NO_CONSTRAINT routing. Auth digest and config bytes remain identical; allowed native methods, startup metadata paths and zero hosted-read journal are checked.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/properties/workspaceRouting/anyOf/0",
       "schema": "v2/GetAccountResponse.json",
       "schema_sha256": "ced62f8ffbadc0df6b23a69b66fa4ac87313da56054257fbb71c72b07e4183cd",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -141400,209 +141686,297 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/AccountTokenUsageDailyBucket/properties/startDate",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact nonempty dated bucket [{startDate:2026-06-14,tokens:10}].",
+        "Exact native summary123/45/67/8/9 and dated10-token bucket are independently prescribed; empty profile then malformed/HTTP cases remain distinct, with six profile reads and no thread reads.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/AccountTokenUsageDailyBucket/properties/startDate",
       "required": true,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "startDate"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/AccountTokenUsageDailyBucket/properties/tokens",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact nonempty dated bucket [{startDate:2026-06-14,tokens:10}].",
+        "Exact native summary123/45/67/8/9 and dated10-token bucket are independently prescribed; empty profile then malformed/HTTP cases remain distinct, with six profile reads and no thread reads.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/AccountTokenUsageDailyBucket/properties/tokens",
       "required": true,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "tokens"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/AccountTokenUsageSummary/properties/currentStreakDays",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed positive integer summary member; exact whole response comparison, then explicit empty profile.",
+        "Exact native summary123/45/67/8/9 and dated10-token bucket are independently prescribed; empty profile then malformed/HTTP cases remain distinct, with six profile reads and no thread reads.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/AccountTokenUsageSummary/properties/currentStreakDays",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "currentStreakDays"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/AccountTokenUsageSummary/properties/lifetimeTokens",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed positive integer summary member; exact whole response comparison, then explicit empty profile.",
+        "Exact native summary123/45/67/8/9 and dated10-token bucket are independently prescribed; empty profile then malformed/HTTP cases remain distinct, with six profile reads and no thread reads.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/AccountTokenUsageSummary/properties/lifetimeTokens",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "lifetimeTokens"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/AccountTokenUsageSummary/properties/longestRunningTurnSec",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed positive integer summary member; exact whole response comparison, then explicit empty profile.",
+        "Exact native summary123/45/67/8/9 and dated10-token bucket are independently prescribed; empty profile then malformed/HTTP cases remain distinct, with six profile reads and no thread reads.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/AccountTokenUsageSummary/properties/longestRunningTurnSec",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "longestRunningTurnSec"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/AccountTokenUsageSummary/properties/longestStreakDays",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed positive integer summary member; exact whole response comparison, then explicit empty profile.",
+        "Exact native summary123/45/67/8/9 and dated10-token bucket are independently prescribed; empty profile then malformed/HTTP cases remain distinct, with six profile reads and no thread reads.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/AccountTokenUsageSummary/properties/longestStreakDays",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "longestStreakDays"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/AccountTokenUsageSummary/properties/peakDailyTokens",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Prescribed positive integer summary member; exact whole response comparison, then explicit empty profile.",
+        "Exact native summary123/45/67/8/9 and dated10-token bucket are independently prescribed; empty profile then malformed/HTTP cases remain distinct, with six profile reads and no thread reads.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/AccountTokenUsageSummary/properties/peakDailyTokens",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "peakDailyTokens"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsage/properties/estimatedUsageCreditsMicros",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Canonical fixed thread ID,46000000 credits, one independently prescribed nonempty breakdown group.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUsage/properties/estimatedUsageCreditsMicros",
       "required": true,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "estimatedUsageCreditsMicros"
     },
     {
@@ -141634,387 +142008,552 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsage/properties/groups",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Canonical fixed thread ID,46000000 credits, one independently prescribed nonempty breakdown group.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUsage/properties/groups",
       "required": true,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "3ceeeb78701fd94f23f43c45d18fdad55f3ea7b8c46df11b9bce64d9344830ec",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "groups"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsage/properties/threadId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Canonical fixed thread ID,46000000 credits, one independently prescribed nonempty breakdown group.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUsage/properties/threadId",
       "required": true,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsageBreakdownGroup/properties/cachedInputTokens",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive breakdown: synthetic-model/high/fast,46000000 credits,80/20/100/40/140 token counts.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadUsageBreakdownGroup/properties/cachedInputTokens",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cachedInputTokens"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsageBreakdownGroup/properties/estimatedUsageCreditsMicros",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive breakdown: synthetic-model/high/fast,46000000 credits,80/20/100/40/140 token counts.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadUsageBreakdownGroup/properties/estimatedUsageCreditsMicros",
       "required": true,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "34898ef8a5c770dba146349cd373045af446128d8a7b0bce83321f0bb80bc8d2",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "estimatedUsageCreditsMicros"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsageBreakdownGroup/properties/inputTokens",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive breakdown: synthetic-model/high/fast,46000000 credits,80/20/100/40/140 token counts.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadUsageBreakdownGroup/properties/inputTokens",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "inputTokens"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsageBreakdownGroup/properties/model",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive breakdown: synthetic-model/high/fast,46000000 credits,80/20/100/40/140 token counts.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadUsageBreakdownGroup/properties/model",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "model"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsageBreakdownGroup/properties/netNewInputTokens",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive breakdown: synthetic-model/high/fast,46000000 credits,80/20/100/40/140 token counts.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadUsageBreakdownGroup/properties/netNewInputTokens",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "netNewInputTokens"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsageBreakdownGroup/properties/outputTokens",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive breakdown: synthetic-model/high/fast,46000000 credits,80/20/100/40/140 token counts.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadUsageBreakdownGroup/properties/outputTokens",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "outputTokens"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsageBreakdownGroup/properties/reasoningEffort",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive breakdown: synthetic-model/high/fast,46000000 credits,80/20/100/40/140 token counts.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadUsageBreakdownGroup/properties/reasoningEffort",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "reasoningEffort"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsageBreakdownGroup/properties/speed",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive breakdown: synthetic-model/high/fast,46000000 credits,80/20/100/40/140 token counts.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadUsageBreakdownGroup/properties/speed",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "speed"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/definitions/ThreadUsageBreakdownGroup/properties/totalTokens",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive breakdown: synthetic-model/high/fast,46000000 credits,80/20/100/40/140 token counts.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadUsageBreakdownGroup/properties/totalTokens",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "totalTokens"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/properties/dailyUsageBuckets",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive independent five-field summary and nonempty dated bucket. No additional referenced type owners selected transitively.",
+        "Exact native summary123/45/67/8/9 and dated10-token bucket are independently prescribed; empty profile then malformed/HTTP cases remain distinct, with six profile reads and no thread reads.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/properties/dailyUsageBuckets",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "23c07230a55216010ca83ddaae251e08ed578006293ae68febb00d5dcb3390c8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "dailyUsageBuckets"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/properties/summary",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact positive independent five-field summary and nonempty dated bucket. No additional referenced type owners selected transitively.",
+        "Exact native summary123/45/67/8/9 and dated10-token bucket are independently prescribed; empty profile then malformed/HTTP cases remain distinct, with six profile reads and no thread reads.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/properties/summary",
       "required": true,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "286f2dde9a26206892c627f40ebfc291c141451e957a78ced2ca9d28e0015dee",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "summary"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/properties/threadUsage",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact non-null native thread usage object; USD leaf is excluded as null-only, with no whole referenced ThreadUsage qualification.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/properties/threadUsage",
       "required": false,
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "3620df1bcd96920dc94975cb276fbc44ac2ed7c9533a7d1487236831f65a6f66",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "threadUsage"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/GetAccountTokenUsageResponse.json#/properties/threadUsage/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact non-null native thread usage object; USD leaf is excluded as null-only, with no whole referenced ThreadUsage qualification.",
+        "Uppercase input is canonicalized to a fixed thread ID. Exact native46M-credit group retains model/high/fast and80/20/100/40/140 tokens.403/404 absence differs from429/500/malformed errors; exact backend IDs/counts and zero profile reads are checked. USD remains null-only and is excluded.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/properties/threadUsage/anyOf/0",
       "schema": "v2/GetAccountTokenUsageResponse.json",
       "schema_sha256": "a5a76e3208c0ce9892d4f762b0bb244a497ac5c1b5aafebacb2fbf638879d011",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_metadata_profile.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -147607,72 +148146,105 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/LoginAccountResponse.json#/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native local login result {type:apiKey}; private durable synthetic credential and subsequent native read are asserted.",
+        "Exact apiKey account/read metadata, durable private synthetic credential across owned restart, explicit logout absence and no inference; login helper requires native apiKey result.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/oneOf/0",
       "schema": "v2/LoginAccountResponse.json",
       "schema_sha256": "def045da82d854cbfa4ed86b4f8888808cd3d0e3f4a196b3c940f79451b5e6e1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/LoginAccountResponse.json#/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native local login result {type:apiKey}; private durable synthetic credential and subsequent native read are asserted.",
+        "Exact apiKey account/read metadata, durable private synthetic credential across owned restart, explicit logout absence and no inference; login helper requires native apiKey result.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/oneOf/0/properties/type",
       "required": true,
       "schema": "v2/LoginAccountResponse.json",
       "schema_sha256": "5224affa9a647873b1c27ee56ee4952055637b8e4ffdaeac50f153a1bbf73593",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-response-projections-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/LoginAccountResponse.json#/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Exact native local login result {type:apiKey}; private durable synthetic credential and subsequent native read are asserted.",
+        "Exact apiKey account/read metadata, durable private synthetic credential across owned restart, explicit logout absence and no inference; login helper requires native apiKey result.",
+        "Only this physical response owner and explicitly observed values/branch. No equal-hash alias, unasserted nullable/enum sibling, entire referenced type, external-service success or method-family completion.",
+        "Bound to unchanged named native assertions/dependencies in the passing frozen v24 matrix and nominated v25 account repeat. No fresh whole-current-source, A11, real external/OS or full compatibility claim."
+      ],
       "pointer": "/oneOf/0/properties/type/enum/0",
       "schema": "v2/LoginAccountResponse.json",
       "schema_sha256": "55432f1573c70c75cbf3eec4cbd362f292af726c8b494df4898a738bf4841df1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_account_state_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {

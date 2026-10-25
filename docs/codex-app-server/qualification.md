@@ -1,12 +1,12 @@
 # Codex compatibility qualification
 
 Status: **incomplete**. The regenerated manifest records **0 verified / 462 implemented / 12 missing /
-11 blocked requirements** and **0 verified / 3,849 implemented / 2,772 missing
+11 blocked requirements** and **0 verified / 3,901 implemented / 2,720 missing
 field/variant contracts**. Selected notification, Project, filesystem, process,
 environment, plugin, history, configuration, goal, account, diagnostics, metadata,
 Apps catalog/installed snapshots, fuzzy search, account metadata, queues,
 commands, user-shell execution, model discovery, organization, skills, realtime and direct
-MCP entries have scoped implementation evidence. These 3,849 directly exercised
+MCP entries have scoped implementation evidence. These 3,901 directly exercised
 field/variant contracts are implemented. That status does
 not substitute for final full qualification. Selected passing
 journeys and generated schemas do not establish complete compatibility. The
@@ -18,6 +18,15 @@ WebSocket synchronization and reused-database fixture failure claims below for
 its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
+
+The [retained response projections](native-response-projections-qualification.md)
+bind 52 exact account/config outputs to unchanged passing v24 assertions, plus
+the nominated v25 account repeat. All source/row/node/log preimages and the full
+manifest diff match. Contracts become 3,901 implemented/2,720 missing, zero
+verified; requirements stay 462 implemented/12 missing/11 blocked. Unobserved
+model leaves and null-only USD evidence are excluded. Freeze this combined
+source for the complete retained-platform/package/consumer and hosted matrix;
+all broader incomplete gates remain open.
 
 The [hook-catalog continuation](hook-catalog-qualification.md) adds one native
 case; the complete five-file block passes 29/0 at both seeds, strict checks and
