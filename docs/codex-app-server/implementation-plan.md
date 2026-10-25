@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [retained native envelope index](retained-native-envelope-qualification.md)
+binds 52 explicit request-correlation and 60 notification outer-field owners to
+unchanged v27 native assertions. All dependency/node/row/excerpt/log checks match;
+no executable change or fresh full-current-source claim. Contracts are **4,125
+implemented / 2,496 missing**, zero verified; requirements remain 462 implemented/
+12 missing/11 blocked. Continue the deferred TurnFixture correlation unit and
+remaining behavior, followed by complete final-source local/hosted qualification.
+
 The [native history/health/metadata continuation](native-reachable-projections-qualification.md)
 passes its complete nine-file block **63/0 twice**, both fixed seeds, with strict
 checks and matching 1,495-file/binary guards. Four initial Credo zero-count

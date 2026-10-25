@@ -19,6 +19,14 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [retained native envelope index](retained-native-envelope-qualification.md)
+adds exact evidence for 52 correlated client and 60 notification outer-field
+owners. All original rows/nodes, unchanged dependency preimages, 153 source
+excerpts and v27 runtime bindings match. Contracts become 4,125 implemented/
+2,496 missing, zero verified; requirements remain unchanged. No new runtime or
+broader acceptance claim occurs; the shared-helper and full final-source checks
+remain next.
+
 The [native history/health/metadata block](native-reachable-projections-qualification.md)
 passes 63/0 twice with strict checks and matching source/binary guards. Its 112
 precise owners bring contracts to 4,013 implemented/2,608 missing, zero verified;
