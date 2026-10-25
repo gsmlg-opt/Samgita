@@ -145,6 +145,171 @@ defmodule SamgitaCodexDriver.NativeGuardianProfile do
     finish(ctx, pid)
   end
 
+  @tag scenario: "allow"
+  test "native allow review dispatches one fixed MCP action after release and preserves its result",
+       ctx do
+    pid = start(ctx, false)
+    {thread, turn} = turn(ctx, pid)
+    received = collect(pid, &(notice(&1, @started) != nil))
+    wait(fn -> events(ctx, "allow_reviewer_held") != [] end)
+    assert events(ctx, "mcp_action_dispatched") == []
+    assert events(ctx, "allow_parent_continuation") == []
+    assert notice(received, @completed) == nil
+    assert Enum.count(provider(ctx), &(&1["reviewer"] == true)) == 1
+    assert Enum.count(provider(ctx), &(&1["reviewer"] == false)) == 1
+
+    File.write!(Path.join(ctx.root, "allow-review.release"), "allow\n")
+    received = collect(pid, &done?(&1, thread, turn), received)
+    {_started, approved} = assert_review(received, thread, turn, "approved")
+
+    assert approved["review"] == %{
+             "status" => "approved",
+             "riskLevel" => "low",
+             "userAuthorization" => "high",
+             "rationale" => "Owned fixed in-memory action is authorized."
+           }
+
+    assert approved["decisionSource"] == "agent"
+
+    assert notice(received, "guardianWarning")["message"] ==
+             "Automatic approval review approved (risk: low, authorization: high): " <>
+               "Owned fixed in-memory action is authorized."
+
+    assert notice(received, @strict) == nil
+
+    assert [
+             %{
+               "tool" => "denied_action",
+               "arguments" => %{"message" => "owned harmless allow payload"},
+               "result_text" => "owned harmless allow result"
+             }
+           ] = events(ctx, "mcp_action_dispatched")
+
+    assert [
+             %{
+               "call_id" => @call,
+               "content" => %{"type" => "input_text", "text" => "owned harmless allow result"}
+             }
+           ] =
+             events(ctx, "allow_parent_continuation")
+
+    assert [
+             %{
+               "review_id" => review_id,
+               "thread_id" => ^thread,
+               "turn_id" => ^turn,
+               "target_item_id" => @call
+             }
+           ] = events(ctx, "allow_review_completed")
+
+    assert review_id == approved["reviewId"]
+
+    completed_index =
+      Enum.find_index(received, fn event ->
+        event.wire["method"] == "item/completed" and
+          get_in(event.wire, ["params", "item", "id"]) == @call
+      end)
+
+    approved_index = Enum.find_index(received, &(&1.wire["method"] == @completed))
+    assert is_integer(approved_index) and is_integer(completed_index)
+    assert approved_index < completed_index
+    completed = Enum.at(received, completed_index).wire["params"]["item"]
+    assert completed["type"] == "mcpToolCall" and completed["status"] == "completed"
+    assert completed["arguments"] == %{"message" => "owned harmless allow payload"}
+
+    assert completed["result"]["content"] == [
+             %{"type" => "text", "text" => "owned harmless allow result"}
+           ]
+
+    assert completed["error"] == nil
+
+    journal = journal(ctx)["events"]
+    released = Enum.find_index(journal, &(&1["event"] == "allow_reviewer_released"))
+    dispatched = Enum.find_index(journal, &(&1["event"] == "mcp_action_dispatched"))
+    continued = Enum.find_index(journal, &(&1["event"] == "allow_parent_continuation"))
+    assert is_integer(released) and is_integer(dispatched) and is_integer(continued)
+    assert released < dispatched and dispatched < continued
+    assert Enum.count(provider(ctx), &(&1["reviewer"] == true)) == 1
+    assert Enum.count(provider(ctx), &(&1["reviewer"] == false)) == 2
+    assert Enum.count(events(ctx, "mcp"), &(&1["method"] == "tools/call")) == 1
+    assert_no_interactions(received)
+    finish(ctx, pid)
+  end
+
+  @tag scenario: "deny-medium-low"
+  test "native fixed medium-risk low-authorization assessment remains denied without execution",
+       ctx do
+    pid = start(ctx, false)
+    {thread, turn} = turn(ctx, pid)
+    received = collect(pid, &done?(&1, thread, turn))
+    {_started, denied} = assert_review(received, thread, turn, "denied")
+
+    assert denied["review"] === %{
+             "status" => "denied",
+             "riskLevel" => "medium",
+             "userAuthorization" => "low",
+             "rationale" => "Owned medium-risk action remains denied."
+           }
+
+    assert denied["decisionSource"] == "agent"
+
+    assert notice(received, "guardianWarning")["message"] ==
+             "Automatic approval review denied (risk: medium, authorization: low): " <>
+               "Owned medium-risk action remains denied."
+
+    assert notice(received, @strict) == nil
+    assert Enum.count(provider(ctx), &(&1["reviewer"] == true)) == 1
+    assert Enum.count(provider(ctx), &(&1["reviewer"] == false)) == 2
+    refute Enum.any?(events(ctx, "mcp"), &(&1["method"] == "tools/call"))
+
+    refute Enum.any?(
+             events(ctx, "native_input"),
+             &(&1["method"] == "thread/approveGuardianDeniedAction")
+           )
+
+    assert events(ctx, "mcp_action_dispatched") == []
+    assert events(ctx, "allow_parent_continuation") == []
+    assert events(ctx, "forbidden_mcp") == []
+    finish(ctx, pid)
+  end
+
+  @tag scenario: "deny-critical-medium"
+  test "native fixed critical-risk medium-authorization assessment remains denied without execution",
+       ctx do
+    pid = start(ctx, false)
+    {thread, turn} = turn(ctx, pid)
+    received = collect(pid, &done?(&1, thread, turn))
+    {_started, denied} = assert_review(received, thread, turn, "denied")
+
+    assert denied["review"] === %{
+             "status" => "denied",
+             "riskLevel" => "critical",
+             "userAuthorization" => "medium",
+             "rationale" => "Owned critical-risk action remains denied."
+           }
+
+    assert denied["decisionSource"] == "agent"
+
+    assert notice(received, "guardianWarning")["message"] ==
+             "Automatic approval review denied (risk: critical, authorization: medium): " <>
+               "Owned critical-risk action remains denied."
+
+    assert notice(received, @strict) == nil
+    assert Enum.count(provider(ctx), &(&1["reviewer"] == true)) == 1
+    assert Enum.count(provider(ctx), &(&1["reviewer"] == false)) == 2
+    refute Enum.any?(events(ctx, "mcp"), &(&1["method"] == "tools/call"))
+
+    refute Enum.any?(
+             events(ctx, "native_input"),
+             &(&1["method"] == "thread/approveGuardianDeniedAction")
+           )
+
+    assert events(ctx, "mcp_action_dispatched") == []
+    assert events(ctx, "allow_parent_continuation") == []
+    assert events(ctx, "forbidden_mcp") == []
+    finish(ctx, pid)
+  end
+
   defp start(ctx, experimental) do
     {:ok, pid} =
       Session.start_link(
@@ -188,10 +353,13 @@ defmodule SamgitaCodexDriver.NativeGuardianProfile do
     thread =
       call(pid, "thread/start", %{"cwd" => Path.join(ctx.root, "workspace")})["thread"]["id"]
 
+    text =
+      if ctx.scenario == "allow", do: "synthetic:guardian:allow", else: "synthetic:guardian:deny"
+
     turn =
       call(pid, "turn/start", %{
         "threadId" => thread,
-        "input" => [%{"type" => "text", "text" => "synthetic:guardian:deny"}]
+        "input" => [%{"type" => "text", "text" => text}]
       })["turn"]["id"]
 
     {thread, turn}

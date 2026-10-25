@@ -94,6 +94,94 @@ defmodule SamgitaCodexDriver.NativeSkillsCwdConfigTest do
     close_owned(cold)
   end
 
+  test "explicit project trust enables project settings without granting skill override authority",
+       ctx do
+    root = Path.join(ctx.root, "owned-trust-project")
+    File.mkdir_p!(Path.join(root, ".git"))
+    File.write!(Path.join(root, ".git/HEAD"), @git_head)
+    File.mkdir_p!(Path.join(root, ".codex"))
+
+    project_bytes =
+      "model_reasoning_effort = \"high\"\n\n[[skills.config]]\n" <>
+        "name = \"#{@name}\"\nenabled = false\n"
+
+    File.write!(Path.join(root, ".codex/config.toml"), project_bytes)
+    user_bytes = "model_reasoning_effort = \"low\"\n" <> ctx.config_bytes
+    trust_prefix = user_bytes <> "\n[projects.#{JSON.encode!(root)}]\ntrust_level = "
+    untrusted = trust_prefix <> "\"untrusted\"\n"
+    trusted = trust_prefix <> "\"trusted\"\n"
+    File.write!(ctx.config, untrusted)
+
+    ctx =
+      Map.merge(ctx, %{
+        trust_root: root,
+        trust_project_bytes: project_bytes,
+        config_bytes: untrusted
+      })
+
+    reason =
+      "#{root} is marked as untrusted in the effective configuration. " <>
+        "To load project-local config, hooks, and exec policies, update its trust setting. " <>
+        "If that setting is managed by your organization, contact your administrator."
+
+    pid = start(ctx)
+    assert_trust_state(ctx, pid, reason, "low")
+    assert_idle(ctx, pid)
+
+    # Only this owned project's explicit trust changes. Its config and skill bytes stay fixed.
+    File.write!(ctx.config, trusted)
+    ctx = %{ctx | config_bytes: trusted}
+    assert_trust_state(ctx, pid, nil, "high")
+    assert_idle(ctx, pid)
+    process = call(pid, "server/diagnostics", %{})["process"]["id"]
+    close_owned(pid)
+
+    cold = start(ctx)
+    refute call(cold, "server/diagnostics", %{})["process"]["id"] == process
+    assert_trust_state(ctx, cold, nil, "high")
+    assert_idle(ctx, cold)
+    close_owned(cold)
+  end
+
+  defp assert_trust_state(ctx, pid, reason, effort) do
+    scoped = call(pid, "config/read", %{"cwd" => ctx.trust_root, "includeLayers" => true})
+    source = %{"type" => "project", "dotCodexFolder" => Path.join(ctx.trust_root, ".codex")}
+    assert [layer] = Enum.filter(scoped["layers"], &(&1["name"] == source))
+
+    expected = %{
+      "name" => source,
+      "version" => "sha256:3d3a95e353a1b8c768abf374b6d1d0d6fd24b355c4130d05c21642060ba48e18",
+      "config" => %{
+        "model_reasoning_effort" => "high",
+        "skills" => %{"config" => [%{"name" => @name, "enabled" => false}]}
+      }
+    }
+
+    if reason do
+      assert layer == Map.put(expected, "disabledReason", reason)
+    else
+      # Pinned ConfigLayer omits None; nullable schema does not imply a literal null on the wire.
+      assert layer == expected
+      refute Map.has_key?(layer, "disabledReason")
+    end
+
+    assert scoped["config"]["model_reasoning_effort"] == effort
+
+    expected_source =
+      if reason,
+        do: %{"type" => "user", "file" => ctx.config, "profile" => nil},
+        else: source
+
+    assert scoped["origins"]["model_reasoning_effort"]["name"] == expected_source
+
+    # Project skills.config is outside the User/SessionFlags skill-rule authority, even trusted.
+    assert_entries(ctx, pid, [ctx.trust_root], nil, false)
+    assert_entries(ctx, pid, [ctx.trust_root], nil, true)
+    assert_files(ctx, nil, @valid)
+    assert File.read!(Path.join(ctx.trust_root, ".codex/config.toml")) == ctx.trust_project_bytes
+    assert File.read!(Path.join(ctx.trust_root, ".git/HEAD")) == @git_head
+  end
+
   defp assert_entries(ctx, pid, requested, bad, force) do
     assert %{"data" => entries} =
              call(pid, "skills/list", %{"cwds" => requested, "forceReload" => force})

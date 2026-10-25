@@ -102,6 +102,34 @@ defmodule SamgitaCodexDriver.NativeModelDiscoveryProfile do
     finish(ctx, pid)
   end
 
+  test "native catalog preserves disabled and v1 multi-agent metadata without execution", ctx do
+    catalog(ctx, [
+      base("catalog-primary", 0, %{"multi_agent_version" => "disabled"}),
+      base("catalog-v1", 1, %{"multi_agent_version" => "v1"})
+    ])
+
+    sources =
+      for name <- ["config.toml", "models.json"] do
+        path = Path.join(ctx.codex, name)
+        {path, File.read!(path)}
+      end
+
+    disabled = Map.put(minimal("catalog-primary", false, true), "multiAgentVersion", "disabled")
+    v1 = Map.put(minimal("catalog-v1", false, false), "multiAgentVersion", "v1")
+    expected = %{"data" => [disabled, v1], "nextCursor" => nil}
+    pid = start(ctx, false)
+
+    for params <- [%{}, %{"includeHidden" => true}] do
+      assert call(pid, "model/list", params) == expected
+    end
+
+    assert %{phase: :ready, pending: 0, uncertain: 0} = Session.status(pid)
+    assert {:ok, events} = Session.drain(pid)
+    refute Enum.any?(events, &(&1.kind == :server_request))
+    for {path, bytes} <- sources, do: assert(File.read!(path) == bytes)
+    finish(ctx, pid)
+  end
+
   test "native pagination uses filtered offsets and preserves zero limit and end cursor behavior",
        ctx do
     pid = start(ctx)

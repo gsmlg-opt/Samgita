@@ -11,7 +11,8 @@ import isolated_user_shell_fixture as shared
 from model_fixture import ModelFixture
 
 
-SCENARIOS = ("rich", "null", "nullable-metadata", "stable")
+PHASE_SCENARIOS = {"phase-commentary": "commentary", "phase-partial-answer": "partial_answer"}
+SCENARIOS = ("rich", "null", "nullable-metadata", "stable") + tuple(PHASE_SCENARIOS)
 CANARY = "OWNED_RESPONSE_METADATA_PRIVATE_CANARY"
 USAGE = {"input_tokens": 12, "input_tokens_details": {"cached_tokens": 3, "cache_write_tokens": 2},
          "output_tokens": 7, "output_tokens_details": {"reasoning_tokens": 4}, "total_tokens": 19}
@@ -37,6 +38,8 @@ class MetadataProvider(ModelFixture):
                 "content": [{"type": "output_text", "text": "Owned metadata response."}]}
         if rich:
             item.update(status="completed", phase="final_answer")
+        elif self.scenario in PHASE_SCENARIOS:
+            item.update(status="completed", phase=PHASE_SCENARIOS[self.scenario])
         events = [{"type": "response.created", "response": {"id": identity}}]
         if rich:
             events += [metadata({
@@ -51,7 +54,7 @@ class MetadataProvider(ModelFixture):
                                                "retry_model": None})]
         elif self.scenario == "nullable-metadata":
             events += [metadata({"openai_chatgpt_moderation_metadata": None})]
-        else:
+        elif self.scenario not in PHASE_SCENARIOS:
             events += [metadata({"openai_verification_recommendation": ["unknown", 42]},
                                 safety_buffering=False),
                        {"type": "response.created", "response": {"id": identity},
@@ -63,6 +66,10 @@ class MetadataProvider(ModelFixture):
             completion["usage_metadata"] = {"amount": "0.125", "metadata": {"must_be_replaced": True}}
         elif self.scenario == "nullable-metadata":
             completion["usage_metadata"] = {"amount": None, "metadata": None}
+        if self.scenario in PHASE_SCENARIOS:
+            # Message phase classifies this item; end_turn independently closes
+            # this one sampling response without authorizing a continuation.
+            completion["end_turn"] = True
         events += [{"type": "response.output_item.done", "item": item},
                    {"type": "response.completed", "response": completion}]
         body = "".join(f"event: {event['type']}\ndata: {json.dumps(event)}\n\n"

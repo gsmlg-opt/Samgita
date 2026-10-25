@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native history/health/metadata continuation](native-reachable-projections-qualification.md)
+passes its complete nine-file block **63/0 twice**, both fixed seeds, with strict
+checks and matching 1,495-file/binary guards. Four initial Credo zero-count
+warnings and their equivalent predicate correction remain recorded. Exactly 112
+physical owners gain implemented evidence: **4,013 implemented / 2,608 missing
+contracts**, zero verified; requirements stay 462 implemented/12 missing/11
+blocked. Continue precise request correlation and remaining behavior, then the
+complete final-source local/hosted matrix. Every broader incomplete gate remains.
+
 The [terminal frozen v27 local/hosted checkpoint](repair-qualification.md#terminal-frozen-v27-local-and-hosted-matrices)
 completes all 19 platform + 23 package commands and matching 1,495-file guards.
 Driver 718/0 and profiles 292/0 pass twice; the first populated GitHub-page

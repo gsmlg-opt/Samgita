@@ -173,7 +173,7 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
     await_process_exit(cold_native)
   end
 
-  test "installed local plugin interface keeps exact rich metadata and owned assets after restart",
+  test "local plugin detail and search retain rich metadata and onboarding after restart",
        ctx do
     plugin_root = Path.join(ctx.workspace, @plugin)
     assets = Path.join(plugin_root, "assets")
@@ -189,6 +189,29 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
     screenshot = Path.join(assets, "screen.png")
     asset_paths = [composer, logo, screenshot]
     for path <- asset_paths, do: File.write!(path, png)
+
+    skill_root = Path.join(plugin_root, "skills/inspect")
+    skill_source = Path.join(skill_root, "SKILL.md")
+    skill_source_bytes = File.read!(skill_source)
+    skill_metadata = Path.join(skill_root, "agents/openai.yaml")
+    skill_assets = Path.join(skill_root, "assets")
+    File.mkdir_p!(Path.dirname(skill_metadata))
+    File.mkdir_p!(skill_assets)
+    skill_small = Path.join(skill_assets, "small.png")
+    skill_large = Path.join(skill_assets, "large.png")
+    for path <- [skill_small, skill_large], do: File.write!(path, png)
+
+    skill_yaml = """
+    interface:
+      display_name: "  Owned   plugin skill λ  "
+      short_description: "  Owned   skill interface summary  "
+      default_prompt: "  Inspect   owned plugin metadata only  "
+      brand_color: " #123ABC "
+      icon_small: "./assets/small.png"
+      icon_large: "assets/large.png"
+    """
+
+    File.write!(skill_metadata, skill_yaml)
 
     manifest_path = Path.join(plugin_root, ".codex-plugin/plugin.json")
     manifest = manifest_path |> File.read!() |> JSON.decode!()
@@ -211,6 +234,11 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
         "screenshots" => ["./assets/screen.png"]
       })
 
+    manifest =
+      Map.put(manifest, "extensions", %{
+        "com.openai" => %{"onboardingSkill" => "skills/inspect/SKILL.md"}
+      })
+
     manifest_bytes = JSON.encode!(manifest)
     File.write!(manifest_path, manifest_bytes)
     marketplace_bytes = File.read!(ctx.marketplace)
@@ -223,6 +251,15 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
       assert Enum.sort(File.ls!(assets)) == ["composer.png", "logo.png", "screen.png"]
 
       for path <- asset_paths do
+        assert File.lstat!(path).type == :regular
+        assert File.read!(path) === png
+      end
+
+      assert File.read!(skill_source) === skill_source_bytes
+      assert File.read!(skill_metadata) === skill_yaml
+      assert Enum.sort(File.ls!(skill_assets)) == ["large.png", "small.png"]
+
+      for path <- [skill_small, skill_large] do
         assert File.lstat!(path).type == :regular
         assert File.read!(path) === png
       end
@@ -286,6 +323,52 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
       "marketplaceLoadErrors" => []
     }
 
+    expected_skill = %{
+      "name" => @plugin <> ":inspect",
+      "description" => "Synthetic lifecycle inspection",
+      "shortDescription" => nil,
+      "path" => skill_source,
+      "enabled" => true,
+      "interface" => %{
+        "displayName" => "Owned plugin skill λ",
+        "shortDescription" => "Owned skill interface summary",
+        "defaultPrompt" => "Inspect owned plugin metadata only",
+        "brandColor" => "#123ABC",
+        "iconSmall" => skill_small,
+        "iconLarge" => skill_large,
+        "iconSmallUrl" => nil,
+        "iconLargeUrl" => nil
+      }
+    }
+
+    expected_detail = %{
+      "marketplaceName" => @market,
+      "marketplacePath" => ctx.marketplace,
+      "summary" => expected_summary,
+      "shareUrl" => nil,
+      "description" => "Synthetic lifecycle plugin",
+      "skills" => [expected_skill],
+      "onboardingSkill" => expected_skill,
+      "hooks" => [],
+      "apps" => [],
+      "appTemplates" => [],
+      "mcpServers" => [],
+      "scheduledTasks" => nil
+    }
+
+    # The pinned discovery projection always reports enabled=false, even for an
+    # installed active plugin. Its native query is independently asserted here.
+    expected_search = %{
+      "data" => [
+        %{
+          "plugin" => Map.put(expected_summary, "enabled", false),
+          "marketplaceName" => @market,
+          "marketplacePath" => ctx.marketplace
+        }
+      ],
+      "nextCursor" => nil
+    }
+
     assert_sources.()
     pid = start(ctx)
 
@@ -298,7 +381,8 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
 
     # Informational local metadata does not authorize or execute plugin capabilities.
     assert call(pid, "plugin/installed", %{"cwds" => [ctx.workspace]}) === expected
-    assert call(pid, "plugin/read", params(ctx))["plugin"]["summary"] === expected_summary
+    assert call(pid, "plugin/read", params(ctx)) === %{"plugin" => expected_detail}
+    assert search(pid, ctx, @plugin) === expected_search
     assert_sources.()
     assert_idle(pid)
     native = call(pid, "server/diagnostics", %{})["process"]["id"]
@@ -310,7 +394,8 @@ defmodule SamgitaCodexDriver.NativePluginLifecycleProfile do
     cold_native = call(cold, "server/diagnostics", %{})["process"]["id"]
     refute cold_native == native
     assert call(cold, "plugin/installed", %{"cwds" => [ctx.workspace]}) === expected
-    assert call(cold, "plugin/read", params(ctx))["plugin"]["summary"] === expected_summary
+    assert call(cold, "plugin/read", params(ctx)) === %{"plugin" => expected_detail}
+    assert search(cold, ctx, @plugin) === expected_search
     assert_sources.()
     assert_idle(cold)
     %{connection: cold_connection} = :sys.get_state(cold)

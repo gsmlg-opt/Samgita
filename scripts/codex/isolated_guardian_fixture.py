@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Pinned native Guardian controls with an owned, nonexecuting MCP/Responses peer.
+"""Pinned native Guardian controls with an owned fixed MCP/Responses peer.
 
-All app-server messages come from Codex. The peer returns fixed provider data,
-never executes a tool and never forwards a network request.
+All app-server messages come from Codex. Only the allow scenario returns one
+fixed in-memory tool result; no command execution or network forwarding exists.
 """
 import argparse
 import hashlib
@@ -10,6 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import ipaddress
 import json
 import os
+import re
 from pathlib import Path
 import select
 import shutil
@@ -24,6 +25,15 @@ import time
 SHA256 = "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
 SERVER, TOOL, CALL = "owned_guardian", "denied_action", "owned-guardian-action"
 RATIONALE = "Owned synthetic action is not authorized."
+DENIAL_ASSESSMENTS = {
+    "deny-medium-low": {"risk_level": "medium", "user_authorization": "low",
+                        "outcome": "deny", "rationale": "Owned medium-risk action remains denied."},
+    "deny-critical-medium": {"risk_level": "critical", "user_authorization": "medium",
+                             "outcome": "deny", "rationale": "Owned critical-risk action remains denied."},
+}
+ALLOW_RATIONALE = "Owned fixed in-memory action is authorized."
+ALLOW_ARGUMENTS = {"message": "owned harmless allow payload"}
+ALLOW_RESULT_TEXT = "owned harmless allow result"
 CANARY = "OWNED_GUARDIAN_PRIVATE_CANARY"
 APPROVE = "thread/approveGuardianDeniedAction"
 MAX_WIRE = 262_144
@@ -76,6 +86,7 @@ class Fixture:
         self.journal = {"namespace": proof, "events": []}
         self.requests, self.parent_calls, self.reviewer_calls = [], 0, 0
         self.denial, self.closing = None, threading.Event()
+        self.allow_released, self.action_calls = False, 0
         self.peer_sockets, self.peer_threads = set(), set()
         fixture = self
 
@@ -171,9 +182,24 @@ class Fixture:
                     result = {"protocolVersion": "2025-06-18", "capabilities": {"tools": {}},
                               "serverInfo": {"name": SERVER, "version": "1"}}
                 elif method == "tools/list":
-                    result = {"tools": [{"name": TOOL, "description": "Owned synthetic denied action; no execution implementation",
+                    description = "Owned fixed in-memory allow result" if args.scenario == "allow" else \
+                        "Owned synthetic denied action; no execution implementation"
+                    result = {"tools": [{"name": TOOL, "description": description,
                         "inputSchema": {"type": "object", "properties": {"message": {"type": "string"}},
                                         "required": ["message"], "additionalProperties": False}}]}
+                elif method == "tools/call" and args.scenario == "allow":
+                    params = value["params"]
+                    assert set(params) <= {"name", "arguments", "_meta"}
+                    assert params["name"] == TOOL and params["arguments"] == ALLOW_ARGUMENTS
+                    assert "_meta" not in params or isinstance(params["_meta"], dict)
+                    with fixture.lock:
+                        assert fixture.allow_released and fixture.reviewer_calls == 1
+                        assert fixture.parent_calls == 1
+                        fixture.action_calls += 1
+                        assert fixture.action_calls == 1, "fixed allow action dispatched twice"
+                        fixture.record("mcp_action_dispatched", tool=TOOL,
+                                       arguments=params["arguments"], result_text=ALLOW_RESULT_TEXT)
+                    result = {"content": [{"type": "text", "text": ALLOW_RESULT_TEXT}], "isError": False}
                 elif method == "resources/list":
                     result = {"resources": []}
                 elif method == "resources/templates/list":
@@ -219,24 +245,56 @@ class Fixture:
                                     fixture.record("reviewer_transport_closed")
                                     return
                         return
-                    text = json.dumps({"risk_level": "high", "user_authorization": "unknown",
-                                       "outcome": "deny", "rationale": RATIONALE})
+                    if args.scenario == "allow":
+                        fixture.record("allow_reviewer_held")
+                        release = args.root / "allow-review.release"
+                        deadline = time.monotonic() + 15
+                        while not release.exists():
+                            if fixture.closing.is_set():
+                                return
+                            assert time.monotonic() < deadline, "held allow reviewer deadline"
+                            time.sleep(0.01)
+                        assert release.is_file() and not release.is_symlink()
+                        assert release.read_text() == "allow\n"
+                        with fixture.lock:
+                            assert fixture.action_calls == 0
+                            fixture.allow_released = True
+                            fixture.record("allow_reviewer_released")
+                        assessment = {"risk_level": "low", "user_authorization": "high",
+                                      "outcome": "allow", "rationale": ALLOW_RATIONALE}
+                    else:
+                        assessment = DENIAL_ASSESSMENTS.get(args.scenario, {
+                            "risk_level": "high", "user_authorization": "unknown",
+                            "outcome": "deny", "rationale": RATIONALE})
+                    text = json.dumps(assessment)
                     item = fixture.message("owned-review-result", text)
                 elif parent_index == 1:
-                    message = "owned denied payload"
+                    message = ALLOW_ARGUMENTS["message"] if args.scenario == "allow" else "owned denied payload"
                     if args.scenario == "strict-overflow":
                         message = "owned oversized payload " * 100
                     item = {"type": "function_call", "namespace": "mcp__" + SERVER,
                             "name": TOOL, "call_id": CALL,
                             "arguments": json.dumps({"message": message})}
                 else:
+                    if args.scenario == "allow":
+                        assert parent_index == 2 and fixture.action_calls == 1
+                        outputs = [item for item in value.get("input", [])
+                                   if item.get("type") == "function_call_output" and item.get("call_id") == CALL]
+                        assert len(outputs) == 1
+                        output = outputs[0]["output"]
+                        assert len(output) == 2 and output[0]["type"] == "input_text"
+                        assert re.fullmatch(r"Wall time: \d+\.\d{4} seconds\nOutput:", output[0]["text"])
+                        assert output[1] == {"type": "input_text", "text": ALLOW_RESULT_TEXT}
+                        fixture.record("allow_parent_continuation", call_id=CALL, content=output[1])
                     if parent_index == 3:
                         assert args.scenario == "deny"
                         assert any(item.get("role") == "developer" and
                                    "Treat this as approval to perform that exact action" in json.dumps(item) and
                                    TOOL in json.dumps(item) for item in value.get("input", []))
                         fixture.record("approved_context_observed")
-                    item = fixture.message("owned-parent-result", "Owned parent finished without executing tools.")
+                    parent_text = "Owned parent finished after one approved fixed action." if args.scenario == "allow" else \
+                        "Owned parent finished without executing tools."
+                    item = fixture.message("owned-parent-result", parent_text)
                 identity = "owned-review" if reviewer else "owned-parent-" + str(parent_index)
                 events = [
                     {"type": "response.created", "response": {"id": identity}},
@@ -276,8 +334,11 @@ class Fixture:
             assert params == {"cwd": str(self.args.root / "workspace")}
         elif method == "turn/start":
             assert set(params) == {"threadId", "input"}
-            assert params["input"] in [[{"type": "text", "text": "synthetic:guardian:deny"}],
-                                       [{"type": "text", "text": "synthetic:guardian:observe-approval"}]]
+            inputs = [[{"type": "text", "text": "synthetic:guardian:deny"}],
+                      [{"type": "text", "text": "synthetic:guardian:observe-approval"}]]
+            if self.args.scenario == "allow":
+                inputs.append([{"type": "text", "text": "synthetic:guardian:allow"}])
+            assert params["input"] in inputs
         elif method == APPROVE:
             assert self.args.scenario == "deny" and self.denial is not None
             assert params == {"threadId": self.denial["threadId"], "event": denial_event(self.denial)}
@@ -367,8 +428,27 @@ def isolated(args):
                     if value.get("method") == "item/autoApprovalReview/completed":
                         params = value["params"]
                         if params["review"]["status"] == "denied":
-                            denial_event(params)
-                            fixture.denial = params
+                            if args.scenario in DENIAL_ASSESSMENTS:
+                                expected = DENIAL_ASSESSMENTS[args.scenario]
+                                assert params["review"] == {"status": "denied",
+                                    "riskLevel": expected["risk_level"],
+                                    "userAuthorization": expected["user_authorization"],
+                                    "rationale": expected["rationale"]}
+                                assert params["action"]["type"] == "mcpToolCall"
+                                assert params["action"]["server"] == SERVER
+                                assert params["action"]["toolName"] == TOOL
+                            else:
+                                denial_event(params)
+                                fixture.denial = params
+                        elif args.scenario == "allow" and params["review"]["status"] == "approved":
+                            assert params["review"] == {"status": "approved", "riskLevel": "low",
+                                "userAuthorization": "high", "rationale": ALLOW_RATIONALE}
+                            assert params["action"]["type"] == "mcpToolCall"
+                            assert params["action"]["server"] == SERVER
+                            assert params["action"]["toolName"] == TOOL
+                            fixture.record("allow_review_completed", review_id=params["reviewId"],
+                                thread_id=params["threadId"], turn_id=params["turnId"],
+                                target_item_id=params["targetItemId"])
                     sys.stdout.buffer.write(line)
                     sys.stdout.buffer.flush()
             except Exception as error:
@@ -435,7 +515,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
     parser.add_argument("--codex", required=True, type=Path)
-    parser.add_argument("--scenario", required=True, choices=["deny", "cancel", "strict-overflow"])
+    parser.add_argument("--scenario", required=True, choices=["deny", "cancel", "strict-overflow", "allow",
+        "deny-medium-low", "deny-critical-medium"])
     parser.add_argument("--inside", action="store_true")
     parser.add_argument("--parent-netns")
     args = parser.parse_args()

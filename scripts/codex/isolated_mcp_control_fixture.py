@@ -36,7 +36,9 @@ CLIENT = "owned-mcp-client"
 EVENT_PATH = "/api/codex/ps/mcp"
 CALLBACK_PATH = "/callback/owned-mcp"
 PROFILES = {"status", "oauth", "events"}
-MCP_PATHS = {"/inventory/a", "/inventory/b", "/inventory/b-v2", "/oauth/mcp", EVENT_PATH}
+MCP_PATHS = {"/inventory/a", "/inventory/a-failed", "/inventory/a-v2",
+             "/inventory/b", "/inventory/b-v2", "/oauth/mcp", EVENT_PATH}
+INVENTORY_STARTUP_ERROR = "owned-inventory-initialize-rejected"
 AUTH_METADATA = {"/.well-known/oauth-authorization-server/oauth/mcp",
                  "/oauth/mcp/.well-known/oauth-authorization-server",
                  "/.well-known/oauth-authorization-server"}
@@ -90,6 +92,7 @@ class Fixture:
         self.streams, self.next_stream = {}, 0
         self.authorization, self.callback = None, None
         self.native, self.native_pids, self.generation = None, [], 1
+        self.inventory_health = None
         fixture = self
 
         class Server(ThreadingHTTPServer):
@@ -237,6 +240,11 @@ class Fixture:
                     self.reply(202, {})
                     return
                 if method == "initialize":
+                    if path == "/inventory/a-failed":
+                        fixture.record("inventory_startup_rejected", path=path, request_id=identity)
+                        self.reply(200, {"jsonrpc": "2.0", "id": identity,
+                                        "error": {"code": -32603, "message": INVENTORY_STARTUP_ERROR}})
+                        return
                     label = path.rsplit("/", 1)[-1]
                     result = {"protocolVersion": "2025-06-18", "capabilities": fixture.capabilities(label),
                         "serverInfo": {"name": "owned-" + label, "version": "1.0.0",
@@ -384,10 +392,12 @@ stream_max_retries = 0
 '''
         if self.profile == "status":
             suffix = "b" if generation == 1 else "b-v2"
-            for name, path in [("alpha", "a"), ("beta", suffix)]:
+            alpha = {"startup-failed": "a-failed", "healthy": "a-v2"}.get(self.inventory_health, "a")
+            for name, path in [("alpha", alpha), ("beta", suffix)]:
+                disabled = "enabled = false\n" if name == "alpha" and self.inventory_health == "disabled" else ""
                 config += f'''[mcp_servers.{name}]
 url = "{self.endpoint}/inventory/{path}?secret=owned-query-canary"
-startup_timeout_sec = 5
+{disabled}startup_timeout_sec = 5
 http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
 '''
         elif self.profile == "oauth":
@@ -499,6 +509,13 @@ http_headers = {{ Authorization = "Bearer synthetic-owned-inventory" }}
         if operation == "config":
             assert self.profile == "status"
             self.configure(message["generation"])
+        elif operation == "inventory-health":
+            assert self.profile == "status"
+            assert message["variant"] in {"startup-failed", "healthy", "disabled"}
+            self.inventory_health = message["variant"]
+            self.configure(message["generation"])
+            self.record("inventory_health_changed", variant=self.inventory_health,
+                        generation=self.generation)
         elif operation == "malformed-config":
             assert self.profile == "status"
             (self.root / "codex/config.toml").write_text("[owned invalid config\n")

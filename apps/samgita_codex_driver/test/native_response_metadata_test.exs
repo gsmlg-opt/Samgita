@@ -108,7 +108,7 @@ defmodule SamgitaCodexDriver.NativeResponseMetadataTest do
     refute proof["default_route"]
     refute proof["ipv6_default_route"]
     assert File.read!(Path.join(root, "codex/config.toml")) =~ @canary
-    ctx
+    Map.put(ctx, :owner, owner)
   end
 
   @tag scenario: "rich"
@@ -175,6 +175,145 @@ defmodule SamgitaCodexDriver.NativeResponseMetadataTest do
     assert notifications(events, "turn/moderationMetadata") == []
     assert notifications(events, "rawResponse/completed") == []
     assert notifications(events, "rawResponseItem/completed") == []
+  end
+
+  @tag scenario: "rich"
+  test "final answer phase survives selective paginated history and owned cold restart", ctx do
+    assert_persisted_phase(ctx, "final_answer")
+  end
+
+  @tag scenario: "phase-commentary"
+  test "commentary phase survives selective paginated history and owned cold restart", ctx do
+    assert_persisted_phase(ctx, "commentary")
+  end
+
+  @tag scenario: "phase-partial-answer"
+  test "partial answer phase survives selective paginated history and owned cold restart", ctx do
+    assert_persisted_phase(ctx, "partial_answer")
+  end
+
+  defp assert_persisted_phase(ctx, expected_phase) do
+    {events, thread, turn, warm} =
+      run_with_session(ctx, true, %{"historyMode" => "paginated"})
+
+    # All public item values are prescribed by the provider fixture, independently
+    # of the history response. Raw Responses items are a separate wire contract.
+    expected_item = %{
+      "type" => "agentMessage",
+      "id" => "owned-metadata-item",
+      "text" => "Owned metadata response.",
+      "phase" => expected_phase,
+      "memoryCitation" => nil,
+      "delivery" => nil,
+      "questions" => nil
+    }
+
+    assert [completed] =
+             for(
+               params <- notifications(events, "item/completed"),
+               params["item"]["type"] == "agentMessage",
+               do: params
+             )
+
+    completed_at = Map.fetch!(completed, "completedAtMs")
+    assert is_integer(completed_at) and completed_at > 0
+
+    assert completed == %{
+             "threadId" => thread,
+             "turnId" => turn,
+             "item" => expected_item,
+             "completedAtMs" => completed_at
+           }
+
+    assert [request] = read_json(ctx, "requests.json")
+
+    # At this pin, a loaded paginated full read calls persist_thread(Standard).
+    # Its response is only the producer/store barrier, never the item oracle.
+    assert [%{"id" => ^turn, "status" => "completed"}] =
+             call(warm, "thread/read", %{"threadId" => thread, "includeTurns" => true})[
+               "thread"
+             ]["turns"]
+
+    query = %{"threadId" => thread, "turnId" => turn, "itemIds" => ["owned-metadata-item"]}
+    warm_response = call(warm, "thread/items/read", query)
+    assert %{"data" => [entry]} = warm_response
+    assert Enum.sort(Map.keys(entry)) == ~w(completedAtMs item startedAtMs turnId)
+    started_at = Map.fetch!(entry, "startedAtMs")
+    assert is_nil(started_at) or (is_integer(started_at) and started_at <= completed_at)
+
+    expected = %{
+      "data" => [
+        %{
+          "turnId" => turn,
+          "item" => expected_item,
+          "startedAtMs" => started_at,
+          "completedAtMs" => completed_at
+        }
+      ]
+    }
+
+    assert warm_response === expected
+    assert_selection(warm, query, expected)
+    assert read_json(ctx, "requests.json") === [request]
+    assert_no_history_execution(ctx, warm)
+    warm_instance = Session.status(warm).instance_id
+    assert :ok = Session.close(warm)
+
+    before_restart = read_json(ctx, "state.json")
+    assert {:ok, _} = Stdio.send(ctx.owner, JSON.encode!(%{"restart" => true}))
+
+    await(
+      fn ->
+        state = read_json(ctx, "state.json")
+        ready?(ctx) and state["generation"] == before_restart["generation"] + 1
+      end,
+      "explicit owned metadata native restart"
+    )
+
+    for os_pid <- before_restart["native_pids"],
+        do: refute(File.exists?("/proc/#{os_pid}"))
+
+    after_restart = read_json(ctx, "state.json")
+    assert length(after_restart["native_pids"]) == length(before_restart["native_pids"]) + 1
+    refute List.last(after_restart["native_pids"]) in before_restart["native_pids"]
+    assert read_json(ctx, "requests.json") === [request]
+
+    cold = client(ctx, true)
+    refute Session.status(cold).instance_id == warm_instance
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+
+    # First content read in the replacement process: no resume, full-read
+    # hydration, additional turn, or additional provider sample.
+    assert call(cold, "thread/items/read", query) === expected
+    assert_selection(cold, query, expected)
+    assert call(cold, "thread/loaded/list", %{})["data"] == []
+    assert read_json(ctx, "requests.json") === [request]
+    assert_no_history_execution(ctx, cold)
+    assert :ok = Session.close(cold)
+    assert read_json(ctx, "requests.json") === [request]
+  end
+
+  defp assert_selection(pid, query, expected) do
+    assert call(pid, "thread/items/read", %{
+             query
+             | "itemIds" => ["owned-absent-item", "owned-metadata-item", "owned-metadata-item"]
+           }) === expected
+
+    assert call(pid, "thread/items/read", %{query | "itemIds" => ["owned-absent-item"]}) ===
+             %{"data" => []}
+
+    assert call(pid, "thread/items/read", %{query | "turnId" => "owned-absent-turn"}) ===
+             %{"data" => []}
+  end
+
+  defp assert_no_history_execution(ctx, pid) do
+    methods = ~w(turn/started turn/completed item/started item/completed item/agentMessage/delta
+                 rawResponse/completed rawResponseItem/completed)
+
+    refute Enum.any?(drain(pid), &(&1.wire["method"] in methods))
+    assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+    assert Session.uncertain_operations(pid) == []
+    refute File.exists?(Path.join(ctx.root, "unexpected-inference.json"))
   end
 
   defp assert_rich(events, thread, turn, scenario) do
@@ -249,6 +388,11 @@ defmodule SamgitaCodexDriver.NativeResponseMetadataTest do
   end
 
   defp run(ctx, experimental) do
+    {events, thread, turn, _pid} = run_with_session(ctx, experimental)
+    {events, thread, turn}
+  end
+
+  defp client(ctx, experimental) do
     {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
 
     on_exit(fn ->
@@ -268,6 +412,12 @@ defmodule SamgitaCodexDriver.NativeResponseMetadataTest do
                %{"experimentalApi" => experimental}
              )
 
+    pid
+  end
+
+  defp run_with_session(ctx, experimental, thread_overrides \\ %{}) do
+    pid = client(ctx, experimental)
+
     thread_params = %{
       "cwd" => ctx.workspace,
       "model" => "mock-model",
@@ -281,6 +431,7 @@ defmodule SamgitaCodexDriver.NativeResponseMetadataTest do
         do: Map.put(thread_params, "experimentalRawEvents", true),
         else: thread_params
 
+    thread_params = Map.merge(thread_params, thread_overrides)
     thread = call(pid, "thread/start", thread_params)["thread"]["id"]
 
     startup = drain(pid)
@@ -328,7 +479,7 @@ defmodule SamgitaCodexDriver.NativeResponseMetadataTest do
              )
     end
 
-    {events, thread, turn}
+    {events, thread, turn, pid}
   end
 
   defp output_item(events) do

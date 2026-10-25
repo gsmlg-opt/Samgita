@@ -19,6 +19,13 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [native history/health/metadata block](native-reachable-projections-qualification.md)
+passes 63/0 twice with strict checks and matching source/binary guards. Its 112
+precise owners bring contracts to 4,013 implemented/2,608 missing, zero verified;
+requirements remain 462 implemented/12 missing/11 blocked. The initial four
+Credo warnings and full rerun are retained. Request correlation and complete
+final-source qualification continue; no broader blocked gate is closed.
+
 The [terminal frozen v27 matrices](repair-qualification.md#terminal-frozen-v27-local-and-hosted-matrices)
 complete all 19 platform and 23 package commands at `0aba494`, with both
 1,495-file guards matching. Driver 718/0 and all 49 profiles 292/0 pass twice;

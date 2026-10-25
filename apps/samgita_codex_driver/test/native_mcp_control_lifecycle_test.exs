@@ -449,6 +449,105 @@ defmodule SamgitaCodexDriver.NativeMcpControlLifecycleTest do
     assert events(ctx, "fixture_closed") == [closed]
   end
 
+  test "M10 failed native MCP startup remains diagnosable and explicit reload recovers", ctx do
+    control(ctx, "inventory-health", %{"variant" => "startup-failed", "generation" => 1})
+    pid = connect(ctx)
+    thread = thread(ctx, pid)
+    selected = %{"threadId" => thread, "serverName" => "alpha", "detail" => "full"}
+
+    failed =
+      wait(fn ->
+        assert %{"data" => [row], "nextCursor" => nil} =
+                 call(pid, "mcpServerStatus/list", selected)
+
+        if row["runtimeStatus"] == "failed", do: row
+      end)
+
+    assert failed["name"] == "alpha" and failed["httpOrigin"] == state(ctx)["endpoint"]
+    assert failed["serverInfo"] == nil and failed["serverCapabilities"] == nil
+    assert failed["tools"] == %{} and failed["resources"] == []
+    assert failed["resourceTemplates"] == [] and failed["authStatus"] == "bearerToken"
+    assert failed["toolsError"] =~ "MCP startup failed"
+    assert failed["toolsError"] =~ "owned-inventory-initialize-rejected"
+
+    rejected = events(ctx, "inventory_startup_rejected")
+    assert rejected != []
+    assert Enum.all?(rejected, &(&1["path"] == "/inventory/a-failed"))
+    assert mcp_count(ctx, "/inventory/a-failed", "initialize") == length(rejected)
+    assert mcp_count(ctx, "/inventory/a-failed", "tools/list") == 0
+
+    assert %{"data" => [beta]} =
+             call(pid, "mcpServerStatus/list", %{
+               "threadId" => thread,
+               "serverName" => "beta",
+               "detail" => "full"
+             })
+
+    assert_inventory(ctx, beta, "beta", "b", "connected")
+    control(ctx, "inventory-health", %{"variant" => "healthy", "generation" => 2})
+    assert call(pid, "config/mcpServer/reload", nil) == %{}
+
+    assert %{"data" => [recovered], "nextCursor" => nil} =
+             call(pid, "mcpServerStatus/list", selected)
+
+    assert_inventory(ctx, recovered, "alpha", "a-v2", "connected")
+    assert mcp_count(ctx, "/inventory/a-v2", "initialize") > 0
+    assert mcp_count(ctx, "/inventory/a-v2", "tools/list") > 0
+
+    assert :ok = Session.close(pid)
+    old_native = state(ctx)["native_pid"]
+    control(ctx, "restart")
+    assert state(ctx)["native_pid"] != old_native
+    refute File.exists?("/proc/#{old_native}")
+    cold = connect(ctx)
+    cold_thread = thread(ctx, cold)
+
+    assert %{"data" => [cold_row]} =
+             call(cold, "mcpServerStatus/list", %{
+               "threadId" => cold_thread,
+               "serverName" => "alpha",
+               "detail" => "full"
+             })
+
+    assert_inventory(ctx, cold_row, "alpha", "a-v2", "connected")
+    assert_profile(ctx, [cold])
+  end
+
+  test "M11 configured disabled native MCP never starts until explicit enable and reload", ctx do
+    control(ctx, "inventory-health", %{"variant" => "disabled", "generation" => 1})
+    pid = connect(ctx)
+    thread = thread(ctx, pid)
+    selected = %{"threadId" => thread, "serverName" => "alpha", "detail" => "full"}
+
+    assert %{"data" => [disabled], "nextCursor" => nil} =
+             call(pid, "mcpServerStatus/list", selected)
+
+    assert disabled["name"] == "alpha" and disabled["runtimeStatus"] == "disabled"
+    assert disabled["serverInfo"] == nil and disabled["serverCapabilities"] == nil
+    assert disabled["tools"] == %{} and disabled["toolsError"] == nil
+    assert disabled["resources"] == [] and disabled["resourceTemplates"] == []
+    assert mcp_count(ctx, "/inventory/a", "initialize") == 0
+    refute Enum.any?(events(ctx, "mcp"), &(&1["path"] == "/inventory/a"))
+
+    assert %{"data" => [beta]} =
+             call(pid, "mcpServerStatus/list", %{
+               "threadId" => thread,
+               "serverName" => "beta",
+               "detail" => "full"
+             })
+
+    assert_inventory(ctx, beta, "beta", "b", "connected")
+    control(ctx, "inventory-health", %{"variant" => "healthy", "generation" => 2})
+    assert call(pid, "config/mcpServer/reload", nil) == %{}
+
+    assert %{"data" => [enabled], "nextCursor" => nil} =
+             call(pid, "mcpServerStatus/list", selected)
+
+    assert_inventory(ctx, enabled, "alpha", "a-v2", "connected")
+    assert mcp_count(ctx, "/inventory/a-v2", "initialize") > 0
+    assert_profile(ctx, [pid])
+  end
+
   defp connect(ctx) do
     {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
     on_exit(fn -> if Process.alive?(pid), do: assert(:ok = Session.close(pid)) end)
