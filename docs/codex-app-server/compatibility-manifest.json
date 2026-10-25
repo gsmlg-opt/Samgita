@@ -97082,27 +97082,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-item-identity-qualification.md#user-message-identity"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/0/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical native UserMessage id only: pinned UUIDv7 format and 48-bit millisecond timestamp are independently bounded by host turn/start-to-terminal times on completed and failed ordinary turns. Exact prescribed started/completed items share identity in sequence, distinct from turn/assistant; unchanged raw canonical records, warm/first-cold history, opaque cursors, original bytes, inference counts and native cleanup remain asserted.",
+        "Only fixed-yolo ordinary Linux stdio functional evidence. Other producers, exports, transports, OS profiles, malformed values and full compatibility remain unqualified; prohibited security/permission tests and broad/hosted/release gates remain unrun, implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItem/oneOf/0/properties/id",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
@@ -101104,24 +101113,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-item-identity-qualification.md#shell-working-directory-and-source"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/6/properties/cwd/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical CommandExecution cwd reference only for genuine userShell: both native started/completed values equal the independently known fixture workspace. Actual two distinct shell turns retain exact output, on-disk single effects and complete items across warm/cold history with original config/provider counts and owned process cleanup.",
+        "Only fixed-yolo ordinary Linux stdio functional evidence. Other producers, exports, transports, OS profiles, malformed values and full compatibility remain unqualified; prohibited security/permission tests and broad/hosted/release gates remain unrun, implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/6/properties/cwd/allOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_shell_delta_identity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -101364,24 +101382,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-item-identity-qualification.md#shell-working-directory-and-source"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/6/properties/source/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct canonical CommandExecution source reference only for genuine userShell: exact literal source is asserted independently in started/completed maps and retained in complete warm/cold history. Two actual distinct shell turns preserve exact output, one effect each, independent cwd, zero inference, original bounds and owned cleanup. Agent and unified-exec source variants are not inferred.",
+        "Only fixed-yolo ordinary Linux stdio functional evidence. Other producers, exports, transports, OS profiles, malformed values and full compatibility remain unqualified; prohibited security/permission tests and broad/hosted/release gates remain unrun, implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/6/properties/source/allOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "f2c10df60f7846b8ffe419d216c8cab818267d2ec44d38377675159bc4238e4d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_shell_delta_identity_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {

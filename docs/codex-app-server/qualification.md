@@ -1,5 +1,18 @@
 # Codex compatibility qualification
 
+The [native item identity and shell-provenance unit](native-item-identity-qualification.md)
+passes the final **40-file, 75/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, seventeen fixture AST checks and the **278-source**
+guard. Three exact physical owners bring contracts to **4,856 implemented /
+1,706 missing / 59 blocked**, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Independent UUIDv7 host-time
+bounds, exact started/completed items and literal shell cwd/source retain all
+original raw-history, cursor, cold-restart, byte, inference and cleanup checks.
+No failure or repair round occurs. Six archive-matching producers, unique
+physical nodes, inventory and final binding pass; strict completeness exits
+**1**. Prohibited/broad/hosted, full-goal, A11, unresolved legacy, unavailable
+external/OS and release gates remain incomplete. No publication/deployment.
+
 The [native MCP result and local list-mode unit](native-data-modes-qualification.md)
 passes the final **40-file, 75/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**, seventeen fixture AST checks and the

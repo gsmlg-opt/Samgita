@@ -258,6 +258,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
 
   defp failed_turn(ctx, pid, thread) do
     marker = "Owned timeline native overload λ"
+    requested_at = System.system_time(:millisecond)
 
     turn =
       call(ctx, pid, "turn/start", %{
@@ -267,6 +268,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
 
     assert is_binary(turn) and byte_size(turn) > 0
     events = collect_turn(pid, thread, turn, [], deadline(20_000), "failed")
+    finished_at = System.system_time(:millisecond)
 
     assert [
              %{
@@ -289,6 +291,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
 
     assert_user(user, marker)
     assert is_binary(user["id"]) and byte_size(user["id"]) > 0
+    assert_user_identity(events, thread, turn, user, {requested_at, finished_at})
     assert Session.uncertain_operations(pid) == []
 
     %{
@@ -302,6 +305,8 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
   end
 
   defp complete_turn(ctx, pid, thread, marker) do
+    requested_at = System.system_time(:millisecond)
+
     turn =
       call(ctx, pid, "turn/start", %{
         "threadId" => thread,
@@ -310,6 +315,7 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
 
     assert is_binary(turn) and byte_size(turn) > 0
     events = collect_turn(pid, thread, turn, [], deadline(20_000))
+    finished_at = System.system_time(:millisecond)
 
     completed =
       for event <- events,
@@ -323,7 +329,35 @@ defmodule SamgitaCodexDriver.NativeTimelinePositionValuesTest do
     assert %{"type" => "agentMessage", "text" => @answer} = assistant
     assert is_binary(user["id"]) and is_binary(assistant["id"])
     refute user["id"] == assistant["id"]
+    assert_user_identity(events, thread, turn, user, {requested_at, finished_at})
     %{id: turn, marker: marker, user: user["id"], assistant: assistant["id"]}
+  end
+
+  defp assert_user_identity(events, thread, turn, user, {requested_at, finished_at}) do
+    id = Map.fetch!(user, "id")
+
+    assert Regex.match?(
+             ~r/\A[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\z/,
+             id
+           )
+
+    {created_at, ""} = id |> String.replace("-", "") |> String.slice(0, 12) |> Integer.parse(16)
+    assert requested_at <= created_at and created_at <= finished_at
+    refute id == turn
+
+    lifecycle =
+      Enum.filter(events, fn event ->
+        event.wire["method"] in ["item/started", "item/completed"] and
+          get_in(event.wire, ["params", "item", "type"]) == "userMessage"
+      end)
+
+    assert [started, completed] = lifecycle
+    assert Enum.map(lifecycle, & &1.wire["method"]) == ["item/started", "item/completed"]
+    assert started.sequence < completed.sequence
+
+    for event <- lifecycle do
+      assert %{"threadId" => ^thread, "turnId" => ^turn, "item" => ^user} = event.wire["params"]
+    end
   end
 
   defp assert_provider(provider, thread, row) do

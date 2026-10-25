@@ -102,7 +102,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
         assert length(captured) == before + 1
         assert %{"method" => "thread/shellCommand", "params" => ^params} = List.last(captured)
         events = collect(pid, [], deadline(20_000))
-        record = assert_shell(events, thread, output)
+        record = assert_shell(events, thread, output, ctx.fixture.workspace)
 
         expected_effects =
           ["alpha", "beta"]
@@ -137,7 +137,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     refute File.exists?("/proc/#{replacement}")
   end
 
-  defp assert_shell(events, thread, output) do
+  defp assert_shell(events, thread, output, cwd) do
     assert [%{"threadId" => ^thread, "turn" => %{"id" => turn}}] =
              params(events, "turn/started")
 
@@ -148,6 +148,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
 
     assert %{"id" => item, "type" => "commandExecution", "source" => "userShell"} = started
     assert is_binary(item) and item != ""
+    assert started["cwd"] === cwd
     assert started["status"] == "inProgress"
     deltas = params(events, "item/commandExecution/outputDelta")
     assert deltas != []
@@ -167,6 +168,7 @@ defmodule SamgitaCodexDriver.NativeShellDeltaIdentityTest do
     assert completed["id"] === item
     assert completed["type"] == "commandExecution"
     assert completed["source"] == "userShell"
+    assert completed["cwd"] === cwd
     assert completed["status"] == "completed"
     assert completed["exitCode"] === 0
     assert completed["aggregatedOutput"] === output

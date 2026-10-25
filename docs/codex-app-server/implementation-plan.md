@@ -21,6 +21,30 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native item identity and shell provenance](native-item-identity-qualification.md)
+pass the final **40-file, 75/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, seventeen fixture AST checks and the **278-source**
+guard. Owners2486,2606,2614 become implemented: **4,856 implemented / 1,706
+missing / 59 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Independent UUIDv7 host-time
+bounds and exact started/completed maps cover completed and failed user turns;
+literal shell cwd/source checks retain all existing cold history, cursors,
+raw bytes, effects and cleanup. No repair round occurs. Inventory and final
+binding pass; strict completeness remains exit **1**.
+
+Continue genuine raw `thread/resume.history` inputs using native-generated
+user/assistant media payloads, exact imported persistence and one followup
+inference. Upstream explicitly labels this route unstable and creates a new
+thread identity. Do not substitute fabricated history, infer explicit-null
+fields from omission, or expect internal metadata in non-OpenAI provider
+copies. Separately strengthen terminal timeline owner6440 startedAt against
+authentic task_started/task_complete timestamps before promotion. Retain fixed
+yolo and every verification restriction. All prohibited/broad/hosted,
+full-goal, A11, legacy/unreachable, unavailable external/OS and release gates
+remain incomplete.
+
+## Earlier checkpoints
+
 The [native MCP result and local list modes](native-data-modes-qualification.md)
 pass the final **40-file, 75/0 twice** functional matrix, compile/format,
 strict Credo, outside consumer **1/0**, seventeen fixture AST checks and the
@@ -44,8 +68,6 @@ separate investigation of the explicitly unstable thread/resume.history route;
 source forwarding is insufficient. Retain fixed yolo and every verification
 restriction. All prohibited/broad/hosted, full-goal, A11, legacy/unreachable,
 unavailable external/OS and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [ordinary request-envelope mapping](request-envelope-qualification.md)
 adds ten exact physical owners: **4,850 implemented / 1,712 missing /
