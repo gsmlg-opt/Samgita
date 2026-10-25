@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [context-window catalog unit](thread-event-lifecycle-qualification.md#context-window-catalog-qualification)
+passes the final twenty-eight-file **50/0 twice** matrix, compile/format,
+strict Credo, outside consumer **1/0**, four Python AST checks and 254-source
+guard. One exact canonical field brings contracts to **4,733 implemented /
+1,829 missing / 59 blocked**, unchanged requirements and zero verified. Three
+fresh native catalogs independently distinguish usable explicit/fallback/null
+windows while preserving real provider usage, identities, history and cleanup.
+Next inspect genuinely failed/completed native timeline error alternatives
+6436–6438 with persisted/cold-read effects; do not infer error fields or
+schema/serde timestamp aliases from existing status/item assertions. Prohibited/
+broad/hosted, full-goal, A11, source-unreachable, external/release gates remain.
+
+## Earlier checkpoints
+
 The [actual origin-version continuation](config-override-metadata-qualification.md#origin-version-continuation)
 passes the final twenty-seven-file **47/0 twice** matrix, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and 252-source guard.
@@ -32,8 +46,6 @@ qualify native token-usage modelContextWindow owner 2746 against independently
 prescribed catalog windows/percentage/null, preserving real usage/turn identity.
 Prohibited/broad/hosted, full-goal, A11, source-unreachable, external and release
 gates remain incomplete.
-
-## Earlier checkpoints
 
 The [configuration metadata branches](config-override-metadata-qualification.md#current-objectnull-branch-qualification)
 pass the final twenty-seven-file **47/0 twice** matrix, compile/format, strict

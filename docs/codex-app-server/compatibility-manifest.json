@@ -104713,27 +104713,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-event-lifecycle-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadTokenUsage/properties/modelContextWindow",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_catalog_usable_context_window: Three fresh owned catalogs/threads produce actual correlated token-usage notices with literal expected windows 73002 from explicit 100003, 146006 from maximum fallback 200009, both at 73 percent, and explicitly present null when both windows are omitted. Exact provider-derived 7 input/11 output/3 cached/2 reasoning last/total breakdown, saved text/input, one request and checked native cleanup remain. Provider fixture emits SSE only. Selected ordinary Linux/stdio numeric/null values; no saturation, extreme percentages, step-model, accumulated/restored/spending-only usage, alias, other backend or whole-method claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ThreadTokenUsage/properties/modelContextWindow",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "b9a3cfaac4768ba6031b3becb339a37683efd1eb4a6ec6128214bc7074bf2801",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_token_context_window_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelContextWindow"
     },
     {

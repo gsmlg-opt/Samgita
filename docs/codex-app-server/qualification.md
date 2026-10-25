@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [context-window catalog unit](thread-event-lifecycle-qualification.md#context-window-catalog-qualification)
+passes twenty-eight reviewed files **50/0 twice**, compile/format, strict Credo,
+outside consumer **1/0**, four Python AST checks and the 254-source guard. One
+canonical field brings contracts to **4,733 implemented / 1,829 missing /
+59 blocked**, unchanged requirements and zero verified. Independent catalog
+values select explicit/fallback/null native usable windows with real usage/
+identity/history oracles and checked process cleanup. Prohibited/broader/hosted,
+full-goal, A11, source-unreachable/external and release gates remain incomplete.
+
 The [actual origin-version unit](config-override-metadata-qualification.md#origin-version-continuation)
 passes twenty-seven reviewed files **47/0 twice**, compile/format, strict Credo,
 outside consumer **1/0**, three Python AST checks and the 252-source guard.

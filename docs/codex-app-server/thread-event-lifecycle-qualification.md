@@ -1,5 +1,76 @@
 # Native thread and event lifecycle qualification
 
+## Context-window catalog qualification
+
+Exact canonical owner **2746**, ServerNotification ThreadTokenUsage.
+modelContextWindow, gains selected actual-native evidence from three ordinary
+cases in native_token_context_window_test.exs. Each case owns a fresh model
+catalog, process and paginated thread under fixed yolo setup:
+
+| Prescribed catalog | Expected native notification value |
+| --- | --- |
+| context_window 100003, max_context_window 200009, effective percent 73 | 73002 |
+| context window omitted, maximum 200009, percent 73 | 146006 |
+| both windows omitted, percent 73 | explicitly present null |
+
+These literal expectations distinguish context precedence, maximum fallback
+and integer truncation. The unchanged provider-only thread_event_fixture.py
+supplies SSE with input 7, cached input 3, output 11 and reasoning output 2.
+The real pinned app-server must emit every thread/tokenUsage/updated notice,
+with the actual requested thread/turn, exact last/total breakdown including
+total 18, and the expected window using Map.fetch! so omission fails. Complete
+turn/history text, actual provider input, exactly one provider call, unchanged
+configuration/empty workspace, bounded 256-event/1 MiB collection, ready/empty
+uncertainty and checked owned native PID disappearance reinforce the result.
+
+The immutable
+[model calculation](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/protocol/src/openai_models.rs#L518)
+uses context_window.or(max_context_window) and integer multiplication/division.
+TurnContext exposes that usable window; real sampling usage records it through
+session state/history into TokenUsageInfo. The
+[handler](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server/src/bespoke_event_handling.rs#L1594)
+converts the stored info into the identified notice, and the
+[public conversion](https://github.com/openai/codex/blob/83086188ae0614bd882818ff1aa23f3194962012/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L1982)
+copies the window directly. All eight complete inspected files match the
+immutable archive; the exact canonical node, notification branch and export
+match inventory/provenance. Independent review finds no actionable issue.
+No scripted app-server frame or fixture-seeded history is used.
+
+Base commit: `f68119c`. Focused v281 passes **3/0**, seed 501432, 3.053 command
+seconds. The final twenty-eight reviewed functional files add this file to
+the [origin matrix](config-override-metadata-qualification.md#origin-version-continuation).
+Both explicit-list mix test commands with warnings as errors and seeds
+501432/987654 pass **50 tests / 0 failures**, in **83.109/83.093** command
+seconds. Scoped format, warning-free compile, strict Credo on 479 files,
+outside actual-binary consumer **1/0**, four Python fixture AST checks and
+the **254-source** guard pass. The unchanged SSE wrapper is now included in
+both AST/hash checks. All eight commands complete; no check fails in this unit.
+
+Final commands/environment/logs/hashes:
+`/tmp/samgita-v282-functional-checks/functional/`. Results/source SHA256:
+`8c21f7af32c666c447473f85e56e03a59e5f8b096818ece3f9d2641ede532ba3` /
+`351d83cd12ef7e51e5d13df3021d348a8505ba4dea3047e88e8017eddbe6284d`.
+Owning test SHA256:
+`f657695928eeb6202390dd7b5d4f230bd2456505224d244c1d67841fd66b5764`.
+The adjacent source-evidence.json SHA256 is
+`c6b6eb63acb967e7996d483e8d2187961f41ee4713a99a0747081141bf0009a3`;
+manifest-binding.json records the one original/current owner and final binding.
+Inventory --check passes; contracts become **4,733 implemented / 1,829 missing /
+59 blocked**, unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Strict completeness still exits **1**; all
+schema identities/planned tests and requirement records remain intact.
+
+Only this selected field value/null behavior is qualified. Saturation/extreme
+percentages, step-model changes, accumulated/restored/spending-only usage,
+other notifications/aliases, backends/OS/transports and the entire lifecycle
+remain unqualified. Runtime/shared-helper/dependency/platform configuration is
+unchanged. Security/permission tests, audits and broad/hosted workflows remain
+unrun; the earlier lifecycle block below retains its original source/scope.
+Full compatibility, A11, source-unreachable alternatives, external/platform
+profiles and release remain incomplete. No publication or deployment occurs.
+
+## Previous lifecycle checkpoint
+
 SELECTED NATIVE BEHAVIOR VALIDATED. The eight owned cases passed against the
 actual pinned app-server at both seeds below. This establishes the selected
 Linux stdio lifecycle behavior, not full client/driver compatibility.

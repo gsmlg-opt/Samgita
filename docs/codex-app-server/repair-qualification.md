@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [context-window catalog continuation](thread-event-lifecycle-qualification.md#context-window-catalog-qualification)
+passes twenty-eight reviewed files **50/0 twice**, strict/static checks, outside
+consumer **1/0**, four Python AST checks and 254-source guard; artifacts are in
+`/tmp/samgita-v282-functional-checks/`. One canonical field brings contracts to
+**4,733 implemented / 1,829 missing / 59 blocked**, unchanged requirements and
+zero verified. Three genuine native cases preserve exact catalog arithmetic,
+usage, thread/turn, text/input and cleanup. No check fails; prohibited/broader/
+hosted, A11 and full-goal gates remain incomplete.
+
 The [actual origin-version continuation](config-override-metadata-qualification.md#origin-version-continuation)
 passes twenty-seven reviewed files **47/0 twice**, strict/static checks, outside
 consumer **1/0**, three Python AST checks and 252-source guard; artifacts are in
