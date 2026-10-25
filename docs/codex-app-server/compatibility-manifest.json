@@ -100478,24 +100478,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plan-item-events-qualification.md#streaming-continuation"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadItem/oneOf/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual fixed-yolo Plan streaming owner only: genuine Responses added/delta/done events with split proposed_plan tags produce exactly two independently prescribed draft deltas and a distinct authoritative final plan, exact item/turn/thread identity, bounded top-level emittedAtMs and complete ordered native maps. The original done-only case remains intact.",
+        "Warm and first-cold selective/full history retain the final plan rather than draft concatenation, unchanged original bytes, one inference per case and owned shutdown. Multiple blocks, interleaving, reconnect, aliases, other exports/OS/transports and complete compatibility are not qualified; broad/hosted/security/permission gates remain unrun, implemented only."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/4",
       "schema": "ServerNotification.json",
       "schema_sha256": "7c18877a1493cd039f98366d0c64f9580985062cf3fde2db5d8e1abda162205d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plan_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -110642,24 +110651,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/plan-item-events-qualification.md#streaming-continuation"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/oneOf/34",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Direct actual fixed-yolo Plan streaming owner only: genuine Responses added/delta/done events with split proposed_plan tags produce exactly two independently prescribed draft deltas and a distinct authoritative final plan, exact item/turn/thread identity, bounded top-level emittedAtMs and complete ordered native maps. The original done-only case remains intact.",
+        "Warm and first-cold selective/full history retain the final plan rather than draft concatenation, unchanged original bytes, one inference per case and owned shutdown. Multiple blocks, interleaving, reconnect, aliases, other exports/OS/transports and complete compatibility are not qualified; broad/hosted/security/permission gates remain unrun, implemented only."
+      ],
       "pointer": "/oneOf/34",
       "schema": "ServerNotification.json",
       "schema_sha256": "760038b03e9223fde4495cc3651a2aa2381f7b4628ab7e30570c88a972b97bad",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_plan_item_events_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -159288,7 +159306,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/output-notice-qualification.md"
+        "docs/codex-app-server/output-notice-qualification.md",
+        "docs/codex-app-server/plan-item-events-qualification.md#streaming-continuation"
       ],
       "experimental": false,
       "has_default": false,
@@ -159296,7 +159315,9 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
-        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee."
+        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee.",
+        "Direct actual fixed-yolo Plan streaming owner only: genuine Responses added/delta/done events with split proposed_plan tags produce exactly two independently prescribed draft deltas and a distinct authoritative final plan, exact item/turn/thread identity, bounded top-level emittedAtMs and complete ordered native maps. The original done-only case remains intact.",
+        "Warm and first-cold selective/full history retain the final plan rather than draft concatenation, unchanged original bytes, one inference per case and owned shutdown. Multiple blocks, interleaving, reconnect, aliases, other exports/OS/transports and complete compatibility are not qualified; broad/hosted/security/permission gates remain unrun, implemented only."
       ],
       "nullable": false,
       "pointer": "/properties/delta",
@@ -159311,11 +159332,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_plan_item_events_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "delta"
     },
@@ -159323,7 +159346,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/output-notice-qualification.md"
+        "docs/codex-app-server/output-notice-qualification.md",
+        "docs/codex-app-server/plan-item-events-qualification.md#streaming-continuation"
       ],
       "experimental": false,
       "has_default": false,
@@ -159331,7 +159355,9 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
-        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee."
+        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee.",
+        "Direct actual fixed-yolo Plan streaming owner only: genuine Responses added/delta/done events with split proposed_plan tags produce exactly two independently prescribed draft deltas and a distinct authoritative final plan, exact item/turn/thread identity, bounded top-level emittedAtMs and complete ordered native maps. The original done-only case remains intact.",
+        "Warm and first-cold selective/full history retain the final plan rather than draft concatenation, unchanged original bytes, one inference per case and owned shutdown. Multiple blocks, interleaving, reconnect, aliases, other exports/OS/transports and complete compatibility are not qualified; broad/hosted/security/permission gates remain unrun, implemented only."
       ],
       "nullable": false,
       "pointer": "/properties/itemId",
@@ -159346,11 +159372,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_plan_item_events_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "itemId"
     },
@@ -159358,7 +159386,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/output-notice-qualification.md"
+        "docs/codex-app-server/output-notice-qualification.md",
+        "docs/codex-app-server/plan-item-events-qualification.md#streaming-continuation"
       ],
       "experimental": false,
       "has_default": false,
@@ -159366,7 +159395,9 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
-        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee."
+        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee.",
+        "Direct actual fixed-yolo Plan streaming owner only: genuine Responses added/delta/done events with split proposed_plan tags produce exactly two independently prescribed draft deltas and a distinct authoritative final plan, exact item/turn/thread identity, bounded top-level emittedAtMs and complete ordered native maps. The original done-only case remains intact.",
+        "Warm and first-cold selective/full history retain the final plan rather than draft concatenation, unchanged original bytes, one inference per case and owned shutdown. Multiple blocks, interleaving, reconnect, aliases, other exports/OS/transports and complete compatibility are not qualified; broad/hosted/security/permission gates remain unrun, implemented only."
       ],
       "nullable": false,
       "pointer": "/properties/threadId",
@@ -159381,11 +159412,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_plan_item_events_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "threadId"
     },
@@ -159393,7 +159426,8 @@
       "default": null,
       "direction": "schema_field",
       "evidence": [
-        "docs/codex-app-server/output-notice-qualification.md"
+        "docs/codex-app-server/output-notice-qualification.md",
+        "docs/codex-app-server/plan-item-events-qualification.md#streaming-continuation"
       ],
       "experimental": false,
       "has_default": false,
@@ -159401,7 +159435,9 @@
       "implementation_module": "SamgitaCodexDriver.Session",
       "limitations": [
         "Selected actual-native Linux Unix-socket output: synthetic provider-only SSE triggers reasoning/Plan/checklist and one fixed owned regular-file patch. Exact identities/indices/lifecycle, repeated complete diff maps and file effects asserted. Other indices, concurrent summaries, null explanation, add/delete/rename, batching, parallel/reconnect/filter/platform profiles, real services and A11 remain unqualified.",
-        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee."
+        "Nonempty native Plan-mode deltas, exact turn-derived plan item, exact Unicode contents for this fixture; corroborating authoritative completed plan. Not a universal concatenation guarantee.",
+        "Direct actual fixed-yolo Plan streaming owner only: genuine Responses added/delta/done events with split proposed_plan tags produce exactly two independently prescribed draft deltas and a distinct authoritative final plan, exact item/turn/thread identity, bounded top-level emittedAtMs and complete ordered native maps. The original done-only case remains intact.",
+        "Warm and first-cold selective/full history retain the final plan rather than draft concatenation, unchanged original bytes, one inference per case and owned shutdown. Multiple blocks, interleaving, reconnect, aliases, other exports/OS/transports and complete compatibility are not qualified; broad/hosted/security/permission gates remain unrun, implemented only."
       ],
       "nullable": false,
       "pointer": "/properties/turnId",
@@ -159416,11 +159452,13 @@
           "real-pinned-binary"
         ],
         "verified": [
-          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs"
+          "apps/samgita_codex_driver/test/native_output_notice_lifecycle_test.exs",
+          "apps/samgita_codex_driver/test/native_plan_item_events_test.exs"
         ]
       },
       "transport_coverage": [
-        "linux-x86_64-musl/unix-socket"
+        "linux-x86_64-musl/unix-socket",
+        "linux-x86_64-musl/stdio"
       ],
       "wire_name": "turnId"
     },

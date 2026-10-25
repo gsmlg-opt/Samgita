@@ -1,5 +1,19 @@
 # Codex compatibility qualification
 
+The [Plan streaming continuation](plan-item-events-qualification.md#streaming-continuation)
+passes the final **38-file, 65/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, fourteen provider ASTs and the **274-source** guard.
+Two canonical branches become implemented and four existing delta fields gain
+supplemental evidence: **4,840 implemented / 1,722 missing / 59 blocked**
+contracts, unchanged **462 implemented / 12 missing / 11 blocked** requirements
+and zero verified. Exact draft deltas differ from the authoritative final Plan;
+ordered native maps and first-cold history retain literal oracles and original
+bytes. The done-only case remains intact. Final scope checking catches and
+corrects one misplaced evidence link before commit; no functional code is
+affected. Inventory consistency passes; strict completeness exits **1**.
+Prohibited/broad/hosted, full-goal, A11, unresolved legacy, unavailable
+external/OS and release gates remain incomplete. No publication/deployment.
+
 The [native tool notification unit](tool-item-events-qualification.md) passes
 the final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside
 consumer **1/0**, thirteen provider ASTs and the **273-source** unchanged-byte

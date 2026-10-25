@@ -15,14 +15,18 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
   @moduletag :real_codex
   @moduletag timeout: 60_000
   @script Path.expand("../../../scripts/codex/plan_item_events_fixture.py", __DIR__)
+  @streamed_script Path.expand("../../../scripts/codex/streamed_plan_events_fixture.py", __DIR__)
   @binary_sha "399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215"
   @instructions "Owned Plan item fixture instructions."
   @marker "Owned proposed Plan event λ🙂"
   @plan "# Owned next plan λ🙂\n- first\n- second\n"
+  @streamed_final "# Owned final λ🙂\n- accepted source\n"
+  @streamed_deltas ["# Draft λ🙂\n", "- streamed\n"]
 
   setup tags do
     previous = System.get_env("CODEX_MODEL_FIXTURE_SCRIPT")
-    System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", @script)
+    script = if tags[:plan_profile] == :streamed, do: @streamed_script, else: @script
+    System.put_env("CODEX_MODEL_FIXTURE_SCRIPT", script)
 
     ctx =
       try do
@@ -51,15 +55,28 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     )
 
     inputs =
-      Map.new([config, Path.join(ctx.fixture.codex_home, "turn-models.json")], fn path ->
-        {path, snapshot(path)}
-      end)
+      Map.new(
+        [config, Path.join(ctx.fixture.codex_home, "turn-models.json"), @script, script],
+        fn path ->
+          {path, snapshot(path)}
+        end
+      )
 
-    Map.put(ctx, :inputs, inputs)
+    Map.merge(ctx, %{inputs: inputs, plan_profile: tags[:plan_profile]})
   end
 
   test "native proposed Plan keeps literal identity and trailing newline through first cold read",
        ctx do
+    qualify(ctx, @plan)
+  end
+
+  @tag plan_profile: :streamed
+  test "native Plan streams exact draft deltas while final text governs warm and first cold history",
+       ctx do
+    qualify(ctx, @streamed_final)
+  end
+
+  defp qualify(ctx, plan) do
     warm = start(ctx)
     warm_native = native_id(warm)
 
@@ -92,9 +109,10 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     assert is_binary(turn) and byte_size(turn) > 0
     events = collect(warm, thread, turn, [], deadline(20_000))
     after_ms = System.system_time(:millisecond)
-    expected = assert_live(events, thread, turn, before_ms, after_ms)
+    expected = assert_live(events, thread, turn, before_ms, after_ms, plan)
+    assert_deltas(ctx, events, thread, turn, before_ms, after_ms, plan)
     assert_provider(ctx, thread, turn)
-    saved = assert_history(warm, thread, turn)
+    saved = assert_history(warm, thread, turn, plan)
     path = Map.fetch!(saved, "path")
     assert String.starts_with?(Path.expand(path), Path.expand(ctx.fixture.codex_home) <> "/")
     assert File.lstat!(path).type == :regular
@@ -118,7 +136,7 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     # First content read after replacement, before resume or full history hydration.
     assert call(cold, "thread/items/read", query) === expected
     assert_selection(cold, query, expected)
-    cold_saved = assert_history(cold, thread, turn)
+    cold_saved = assert_history(cold, thread, turn, plan)
     assert Map.fetch!(cold_saved, "turns") === Map.fetch!(saved, "turns")
     assert Map.fetch!(cold_saved, "path") == path
     assert call(cold, "thread/loaded/list", %{})["data"] == []
@@ -127,9 +145,9 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     for {file, bytes} <- retained, do: assert(snapshot(file) === bytes)
   end
 
-  defp item(turn), do: %{"type" => "plan", "id" => turn <> "-plan", "text" => @plan}
+  defp item(turn, plan), do: %{"type" => "plan", "id" => turn <> "-plan", "text" => plan}
 
-  defp assert_live(events, thread, turn, before_ms, after_ms) do
+  defp assert_live(events, thread, turn, before_ms, after_ms, plan) do
     assert [begin] = plan_events(events, "item/started")
     assert [finish] = plan_events(events, "item/completed")
     began_at = Map.fetch!(begin, "startedAtMs")
@@ -147,7 +165,7 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     assert finish === %{
              "threadId" => thread,
              "turnId" => turn,
-             "item" => item(turn),
+             "item" => item(turn, plan),
              "completedAtMs" => ended_at
            }
 
@@ -166,12 +184,49 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
       "data" => [
         %{
           "turnId" => turn,
-          "item" => item(turn),
+          "item" => item(turn, plan),
           "startedAtMs" => began_at,
           "completedAtMs" => ended_at
         }
       ]
     }
+  end
+
+  defp assert_deltas(ctx, events, thread, turn, before_ms, after_ms, plan) do
+    deltas = Enum.filter(events, &(&1.wire["method"] == "item/plan/delta"))
+
+    if ctx.plan_profile == :streamed do
+      assert Enum.map(deltas, & &1.wire["params"]) ===
+               Enum.map(@streamed_deltas, fn delta ->
+                 %{
+                   "threadId" => thread,
+                   "turnId" => turn,
+                   "itemId" => turn <> "-plan",
+                   "delta" => delta
+                 }
+               end)
+
+      for event <- deltas do
+        assert event.kind == :notification
+        assert Enum.sort(Map.keys(event.wire)) == ~w(emittedAtMs method params)
+        emitted_at = Map.fetch!(event.wire, "emittedAtMs")
+        assert is_integer(emitted_at) and before_ms <= emitted_at and emitted_at <= after_ms
+      end
+
+      lifecycle =
+        for event <- events,
+            event.wire["method"] == "item/plan/delta" or
+              (event.wire["method"] in ["item/started", "item/completed"] and
+                 event.wire["params"]["item"]["type"] == "plan"),
+            do: event.wire["method"]
+
+      assert lifecycle == ["item/started", "item/plan/delta", "item/plan/delta", "item/completed"]
+      assert plan === @streamed_final
+      refute Enum.map_join(deltas, & &1.wire["params"]["delta"]) == plan
+    else
+      assert deltas == []
+      assert plan === @plan
+    end
   end
 
   defp assert_provider(ctx, thread, turn) do
@@ -190,7 +245,7 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     assert Enum.count(texts, &(&1 == @marker)) == 1
   end
 
-  defp assert_history(pid, thread, turn) do
+  defp assert_history(pid, thread, turn, plan) do
     saved = call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
     assert Map.fetch!(saved, "id") == thread
     assert Map.fetch!(saved, "historyMode") == "paginated"
@@ -198,7 +253,8 @@ defmodule SamgitaCodexDriver.NativePlanItemEventsTest do
     assert [%{"id" => ^turn, "status" => "completed", "error" => nil, "items" => rows}] =
              saved["turns"]
 
-    assert Enum.filter(rows, &(&1["type"] == "plan")) === [item(turn)]
+    assert Enum.filter(rows, &(&1["type"] == "plan")) === [item(turn, plan)]
+    refute Enum.any?(rows, &(&1["text"] == Enum.join(@streamed_deltas)))
 
     assert [%{"content" => [%{"type" => "text", "text" => @marker}]}] =
              Enum.filter(rows, &(&1["type"] == "userMessage"))

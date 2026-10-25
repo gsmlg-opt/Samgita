@@ -21,6 +21,31 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [Plan streaming continuation](plan-item-events-qualification.md#streaming-continuation)
+passes the final **38-file, 65/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, fourteen fixture ASTs and the **274-source** guard.
+Two branches and four supplementary fields bring contracts to **4,840
+implemented / 1,722 missing / 59 blocked**, unchanged **462 implemented /
+12 missing / 11 blocked** requirements and zero verified. Exact draft deltas
+and distinct final content, native identity/order/timestamps, first-cold history
+and original bytes remain. A metadata patch's misplaced evidence link is caught
+by the final owner-set assertion and corrected using unique complete records;
+all274 tested-source hashes still match. Inventory consistency passes; strict
+completeness remains exit **1**.
+
+Continue exact ordinary request-envelope owners791–794 (timeline),1269–1272
+(compact) and string-ID owners1404/1409 (turn/item listing), using direct native
+correlation/effects and the already reviewed final-source tests. Timeline and
+list tests capture exact encoded envelopes; compact's direct request_native
+path is corroborated by real compaction/inference/history, without claiming
+an added capture. No functional changes or repeat matrix are needed while all
+tested bytes match; audit the precise owner mapping and rerun inventory/static
+binding. Keep numeric RequestId alternatives, enclosing branches and referenced
+definitions outside this group. All prohibited/broad/hosted, full-goal, A11,
+unreachable/legacy, unavailable external/OS and release gates remain incomplete.
+
+## Earlier checkpoints
+
 The [native tool notification unit](tool-item-events-qualification.md) passes
 the final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside
 consumer **1/0**, thirteen fixture ASTs and the **273-source** unchanged-byte
@@ -41,8 +66,6 @@ gain supplemental evidence without recounting. Keep all previous done-only
 assertions, bounds and fixed yolo policy. Selective null-action owner5483,
 deprecated/unreachable paths and all prohibited/broad/hosted, full-goal, A11,
 unavailable external/OS and release gates remain unqualified/incomplete.
-
-## Earlier checkpoints
 
 The [native proposed-plan unit](plan-item-events-qualification.md) passes the
 final **38-file, 64/0 twice** matrix, compile/format, strict Credo, outside
