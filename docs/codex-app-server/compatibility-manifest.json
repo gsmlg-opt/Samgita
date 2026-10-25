@@ -96237,53 +96237,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-runtime-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadEnvironment/properties/cwd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_started_local_environment_children: Each of three genuine thread/started notices, correlated by actual generated thread identity before inference, contains a singleton selected environment with independently owned process cwd and literal local ID. The actual producer builds from a live snapshot. Only the two exact canonical child values are evidenced; no parent array, other notification/alias, remote/multiple environment or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadEnvironment/properties/cwd",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bd9deda450ccfe0da25b7f65060c8cdf6d7d3947726696391bef5e70a502b085",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_config_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cwd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-runtime-projections-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/ThreadEnvironment/properties/environmentId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_thread_started_local_environment_children: Each of three genuine thread/started notices, correlated by actual generated thread identity before inference, contains a singleton selected environment with independently owned process cwd and literal local ID. The actual producer builds from a live snapshot. Only the two exact canonical child values are evidenced; no parent array, other notification/alias, remote/multiple environment or full lifecycle claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadEnvironment/properties/environmentId",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_start_config_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "environmentId"
     },
     {
@@ -176616,53 +176632,69 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-runtime-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ServerDiagnosticsResponse.json#/definitions/ServerDiagnosticsGauge/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_owned_two_thread_gauge: The existing final real server/diagnostics response must contain exactly one core.threads.live gauge with literal value2 after exactly two retained native threads, without extra child/tool/unload activity. Immutable lifetime registration/snapshot/source mapping is verified. Only this name/count pair is evidenced, not enclosing objects, all gauge names/counts, unload/restart lifetimes or other platforms/transports."
+      ],
       "nullable": false,
       "pointer": "/definitions/ServerDiagnosticsGauge/properties/name",
       "required": true,
       "schema": "v2/ServerDiagnosticsResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_git_info_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-runtime-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ServerDiagnosticsResponse.json#/definitions/ServerDiagnosticsGauge/properties/value",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_owned_two_thread_gauge: The existing final real server/diagnostics response must contain exactly one core.threads.live gauge with literal value2 after exactly two retained native threads, without extra child/tool/unload activity. Immutable lifetime registration/snapshot/source mapping is verified. Only this name/count pair is evidenced, not enclosing objects, all gauge names/counts, unload/restart lifetimes or other platforms/transports."
+      ],
       "nullable": false,
       "pointer": "/definitions/ServerDiagnosticsGauge/properties/value",
       "required": true,
       "schema": "v2/ServerDiagnosticsResponse.json",
       "schema_sha256": "99f0708952f29c21a861010182d5171b9a4f5d30e408f018254be26a8cc20ec4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_git_info_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "value"
     },
     {
@@ -176702,27 +176734,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-runtime-projections-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ServerDiagnosticsResponse.json#/definitions/ServerDiagnosticsProcess/properties/physicalFootprintBytes",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_linux_explicit_null_footprint: The existing diagnostics process object must contain physicalFootprintBytes explicitly null on the genuine Linux-initialized pinned executable. The exact Linux producer returns None and public serialization preserves null. This is unavailable-measurement behavior only; no nonnull physical footprint, resident memory accounting, other platform or full process object claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ServerDiagnosticsProcess/properties/physicalFootprintBytes",
       "required": false,
       "schema": "v2/ServerDiagnosticsResponse.json",
       "schema_sha256": "8f759d27691871647f729a7988d8638fcadd6eb4c42b76dcaadb49e493060583",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_git_info_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "physicalFootprintBytes"
     },
     {
@@ -211286,24 +211326,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-runtime-projections-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/Thread/properties/reasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_loaded_search_effort_nonnull: Every real hit across the existing two-thread/two-turn/four-search metadata journey must contain literal low effort independently prescribed in immutable root configuration before native startup. The pinned search processor enriches loaded rows from actual live snapshots. Only this nonnull response branch with low is evidenced, not all effort enums, null/unloaded/defaults, same-shaped aliases or full response/method."
+      ],
       "pointer": "/definitions/Thread/properties/reasoningEffort/anyOf/0",
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_search_git_info_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

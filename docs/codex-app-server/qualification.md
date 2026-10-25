@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [thread snapshot and diagnostics unit](thread-runtime-projections-qualification.md)
+passes the final twenty-five-file **40/0 twice** block, compile/format, strict
+Credo, outside consumer **1/0**, three Python AST checks and the 251-source guard.
+Six direct fields/branches bring contracts to **4,715 implemented / 1,847 missing /
+59 blocked**, with unchanged requirements and zero verified. Actual started
+notifications preserve prescribed local environments, loaded searches preserve
+configured low effort, and native diagnostics reports two retained threads and
+the explicit Linux null footprint. Existing effects and cleanup remain; search
+uses fixed yolo setup without permission assertions. Prohibited/broader/hosted,
+full-goal, A11, legacy/external and release gates remain incomplete.
+
 The [loaded search environment unit](search-environment-values-qualification.md)
 passes the final twenty-five-file **40/0 twice** block, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and the 251-source guard.

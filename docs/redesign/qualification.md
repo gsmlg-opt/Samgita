@@ -4,6 +4,14 @@ Date: 2026-10-23. Scope: persisted management UI, complete fake-Agent journey, l
 
 The reliability repair below supersedes the original P5 aggregate failures and reused-database limitation. The original P5 commands, browser observations and totals remain prior evidence from `91567e5116cb10f702a57012485ceed812b87d21`; they are not new browser runs. A11 remains blocked. No release or deployment is certified.
 
+Current Codex work follows the user's prohibition on security and permission
+tests. The [thread snapshot/diagnostics checkpoint](../codex-app-server/thread-runtime-projections-qualification.md)
+passes 40 ordinary real-binary cases at each of two seeds, static checks and an
+outside consumer; it does not rerun the broad suites or hosted workflows below.
+Yolo is owned-fixture setup, with no permission assertions. All unrun gates,
+A11, real-provider acceptance and full compatibility remain incomplete; no
+release is authorized by these local results.
+
 The [current repair qualification](../codex-app-server/repair-qualification.md)
 updates both Plug.Crypto locks to 2.2.1, diagnoses the WebSocket control-mailbox
 race, preserves and explicitly reconciles only each recovery test's owned

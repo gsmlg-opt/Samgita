@@ -203,6 +203,7 @@ defmodule SamgitaCodexDriver.NativeSearchGitInfoValuesTest do
       assert Map.fetch!(thread, "preview") == original.text
       assert Map.fetch!(thread, "path") == original.path
       assert Map.fetch!(thread, "historyMode") == "paginated"
+      assert Map.fetch!(thread, "reasoningEffort") === "low"
       assert [environment] = Map.fetch!(thread, "environments")
       assert Map.fetch!(environment, "cwd") === ctx.fixture.workspace
       assert Map.fetch!(environment, "environmentId") === "local"
@@ -319,7 +320,14 @@ defmodule SamgitaCodexDriver.NativeSearchGitInfoValuesTest do
       ]
 
   defp close(pid) do
-    native = TurnFixture.call(pid, "server/diagnostics", %{})["process"]["id"]
+    diagnostics = TurnFixture.call(pid, "server/diagnostics", %{})
+
+    assert [%{"name" => "core.threads.live", "value" => 2}] =
+             Enum.filter(Map.fetch!(diagnostics, "gauges"), &(&1["name"] == "core.threads.live"))
+
+    process = Map.fetch!(diagnostics, "process")
+    assert Map.fetch!(process, "physicalFootprintBytes") === nil
+    native = Map.fetch!(process, "id")
     assert is_integer(native)
     assert hash(File.read!("/proc/#{native}/exe")) == @binary_sha
     assert :ok = Session.close(pid)
@@ -337,7 +345,16 @@ defmodule SamgitaCodexDriver.NativeSearchGitInfoValuesTest do
            [
              capture: ctx.capture,
              executable: ctx.binary,
-             args: NativeLaunchFixture.ordinary_args(["app-server", "--listen", "stdio://"]),
+             args:
+               NativeLaunchFixture.ordinary_args([
+                 "-c",
+                 ~s(approval_policy="never"),
+                 "-c",
+                 ~s(sandbox_mode="danger-full-access"),
+                 "app-server",
+                 "--listen",
+                 "stdio://"
+               ]),
              cwd: fixture.workspace,
              inherit_env: [],
              env: %{

@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [thread snapshot and diagnostics unit](thread-runtime-projections-qualification.md)
+passes the final twenty-five-file **40/0 twice** block, compile/format, strict
+Credo, outside consumer **1/0**, three Python AST checks and the 251-source guard.
+Six exact owners bring contracts to **4,715 implemented / 1,847 missing /
+59 blocked**, with unchanged **462 implemented / 12 missing / 11 blocked**
+requirements and zero verified. Actual notifications, loaded search snapshots
+and independently counted native diagnostics qualify only the six selected
+values/branches. Yolo is fixed owned setup; original cleanup/effects remain.
+Next inspect cold native search after confirmed process exit, preserving saved
+content/metadata and zero new provider work. Keep all prohibited/broad/hosted,
+full-goal, A11, source-unreachable and external/release gates incomplete.
+
+## Earlier checkpoints
+
 The [loaded search environment unit](search-environment-values-qualification.md)
 passes the final twenty-five-file **40/0 twice** block, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and the 251-source
@@ -33,8 +47,6 @@ effects remain. Next inspect canonical notification environment children
 until a concrete production branch and native assertions are qualified. Do not
 invent separate owners for inventory-deduplicated response aliases. Keep every
 prohibited/broad/hosted, full-goal, A11, external and release gate incomplete.
-
-## Earlier checkpoints
 
 The [per-thread config unit](thread-start-config-values-qualification.md) passes
 twenty-five reviewed functional files **40/0 twice**, compile/format, strict

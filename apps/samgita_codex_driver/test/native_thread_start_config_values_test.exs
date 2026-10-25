@@ -135,6 +135,9 @@ defmodule SamgitaCodexDriver.NativeThreadStartConfigValuesTest do
           )
 
         assert Map.fetch!(started, "thread")["reasoningEffort"] == effort
+        assert [environment] = Map.fetch!(Map.fetch!(started, "thread"), "environments")
+        assert Map.fetch!(environment, "cwd") === ctx.fixture.workspace
+        assert Map.fetch!(environment, "environmentId") === "local"
         thread
       end
 

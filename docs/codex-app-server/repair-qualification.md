@@ -15,6 +15,18 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [thread snapshot and diagnostics continuation](thread-runtime-projections-qualification.md)
+adds six exact field/branch bindings. The final twenty-five-file **40/0 twice**
+matrix, strict/static checks, outside consumer **1/0**, three Python AST checks
+and 251-source guard pass; artifacts are in
+`/tmp/samgita-v263-functional-checks/functional/`. Contracts are **4,715
+implemented / 1,847 missing / 59 blocked**, with unchanged requirements and zero
+verified. Real started notices, loaded search effort and two-thread/Linux-null
+diagnostics have independent literal/owned-fixture oracles. Search launches in
+fixed yolo mode without policy assertions. Previous requests, effects,
+deadlines and checked cleanup remain. No runtime/shared-helper changes;
+prohibited/broader/hosted checks, A11 and the full goal remain incomplete.
+
 The [loaded search environment continuation](search-environment-values-qualification.md)
 adds three assertions and two exact child-field bindings. The final
 twenty-five-file **40/0 twice** matrix, strict/static checks, outside consumer
