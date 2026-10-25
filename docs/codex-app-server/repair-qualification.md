@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [item-anchor paging continuation](item-anchor-values-qualification.md) passes
+thirteen reviewed functional files **26/0 twice**, compile/format, strict Credo
+and the 236-file guard. Twelve precise request owners bring contracts to **4,630
+implemented / 1,932 missing / 59 blocked**; requirements stay **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Independent native item frames
+and 19 exact list envelopes qualify only the documented page/anchor values.
+Retained history and the three-call model journal remain unchanged. No prohibited
+check, broad/hosted completion, A11 closure or release is claimed.
+
 The [thread-start source continuation](thread-start-source-qualification.md) passes
 twelve reviewed functional files **25/0 twice**, compile/format, strict Credo and
 the 235-file guard. Two exact request alternatives bring contracts to **4,618

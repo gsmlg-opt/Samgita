@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [item-anchor paging unit](item-anchor-values-qualification.md) passes thirteen
+reviewed functional files **26/0 twice**, compile/format, strict Credo and the
+236-file guard. Twelve exact request owners bring contracts to **4,630
+implemented / 1,932 missing / 59 blocked**; requirements stay **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Actual native item frames,
+opaque progress and selected-turn exclusive anchors preserve complete history
+and the three-call provider journal. Nonempty anchor continuation remains
+unqualified. The v198 source pass keeps unreachable success-response owners
+5850–5853 missing; next map turn-list null defaults and archive identity to a
+genuine native scenario. Preserve every prohibited/unrun gate and the incomplete
+full goal, A11, hosted and release status.
+
 The [thread-start source unit](thread-start-source-qualification.md) passes twelve
 reviewed functional files **25/0 twice**, compile/format, strict Credo and the
 235-file guard. Two precise request alternatives bring contracts to **4,618

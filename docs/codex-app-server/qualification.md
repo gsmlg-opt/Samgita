@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [item-anchor paging continuation](item-anchor-values-qualification.md) passes
+thirteen reviewed functional files **26/0 twice**, compile/format, strict Credo
+and the 236-file guard. Twelve direct request owners bring contracts to **4,630
+implemented / 1,932 missing / 59 blocked**; requirements remain **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Native page rows have independent
+item-frame oracles and exact captured cursors/anchors. Nonempty within-turn
+anchor continuation, prohibited checks and broader/hosted/full-compatibility
+gates remain incomplete.
+
 The [thread-start source continuation](thread-start-source-qualification.md) passes
 twelve reviewed functional files **25/0 twice**, compile/format, strict Credo and
 the 235-file guard. Two direct request alternatives bring contracts to **4,618

@@ -40177,142 +40177,190 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadItemsListAnchor/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItemsListAnchor/oneOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "16a405cb1c11b5a8f719ccb7301f342e48d0e522b6a541e41800f060a4b61dc5",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadItemsListAnchor/oneOf/0/properties/itemId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItemsListAnchor/oneOf/0/properties/itemId",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "itemId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadItemsListAnchor/oneOf/0/properties/type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ThreadItemsListAnchor/oneOf/0/properties/type",
       "required": true,
       "schema": "ClientRequest.json",
       "schema_sha256": "886d24040b28d06a26636a79eb6dc5e51a63e51a6334baab6da729a62ec66b63",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "type"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadItemsListAnchor/oneOf/0/properties/type/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItemsListAnchor/oneOf/0/properties/type/enum/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "5c208a0ecf0cbef6a97b6ad9d832ba79aa47df8ef09fb3ff2dc842d41a693b6a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadItemsListCursor/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItemsListCursor/anyOf/0",
       "schema": "ClientRequest.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ClientRequest.json#/definitions/ThreadItemsListCursor/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "pointer": "/definitions/ThreadItemsListCursor/anyOf/1",
       "schema": "ClientRequest.json",
       "schema_sha256": "ede0c0beae7d3894bc41401bc3edb354fc2d32e9e044c084d9f13275e8861c92",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -182658,71 +182706,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadItemsListParams.json#/properties/cursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/ThreadItemsListParams.json",
       "schema_sha256": "495996fbcaf159f8f567c2ee8121fd0e3537e1b8baa8bce44b225fc93d17090c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadItemsListParams.json#/properties/cursor/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "pointer": "/properties/cursor/anyOf/0",
       "schema": "v2/ThreadItemsListParams.json",
       "schema_sha256": "10cfa0612dace40408a092283669673ee6f4e99b618a91fd902455b0f4d4e2c3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadItemsListParams.json#/properties/cursor/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "pointer": "/properties/cursor/anyOf/1",
       "schema": "v2/ThreadItemsListParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -182762,71 +182834,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadItemsListParams.json#/properties/sortDirection",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/sortDirection",
       "required": false,
       "schema": "v2/ThreadItemsListParams.json",
       "schema_sha256": "f77f0cfaf92c7791784c073a1f3a5fba8b0ba7fd03fcdb7a480291a162e4bd41",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sortDirection"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadItemsListParams.json#/properties/sortDirection/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "pointer": "/properties/sortDirection/anyOf/0",
       "schema": "v2/ThreadItemsListParams.json",
       "schema_sha256": "717896737b1de96f75fe158f9f977ceada63f1874ffbe7ec49cea2294a4d3f3c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/item-anchor-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadItemsListParams.json#/properties/sortDirection/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three native assistant-only turns yield six independently validated item/start/completion records and times. Nineteen exact captured list requests exercise omitted/null/asc/desc first pages, real opaque cursor progress across all six rows in both directions, and selected-turn user/assistant object anchors with exclusive nonempty/empty edges. Validated public history and exact three-call provider journal remain unchanged. Only these twelve assigned definition/parameter nodes gain scoped evidence, including the assigned object alternative; no enclosing method/response unions, siblings or aliases inherit evidence. Nonempty anchor-to-string continuation inside one selected turn, foreign/malformed anchors, backwards-cursor generalization, concurrent changes and other transport/platform/backend profiles remain unqualified."
+      ],
       "pointer": "/properties/sortDirection/anyOf/1",
       "schema": "v2/ThreadItemsListParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_item_anchor_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
