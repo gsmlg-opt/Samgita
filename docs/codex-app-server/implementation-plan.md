@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [same-child lifecycle unit](collaboration-lifecycle-values-qualification.md)
+passes the final **35/0 twice** block, strict/static checks, outside consumer
+**1/0** and the 246-file guard. Seven precise owners bring contracts to
+**4,682 implemented / 1,880 missing / 59 blocked**, with unchanged requirements
+and zero verified. Three ordinary root turns separate complete/close/notFound,
+resume/loaded-state proof and followup/send/wait/close. PendingInit/Running and
+canonical inProgress stay unverified. Continue ordinary command-control and
+retained queue field mappings; no prohibited/broad/hosted or full-goal gate is
+waived, and A11/external/release remain incomplete.
+
 The [start-default unit](thread-start-default-values-qualification.md) passes
 twenty-one reviewed functional files **35/0 twice**, compile/format, strict
 Credo, outside-umbrella consumer **1/0**, Python syntax and the 246-file guard.

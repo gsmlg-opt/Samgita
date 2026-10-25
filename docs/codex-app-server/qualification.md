@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [same-child lifecycle unit](collaboration-lifecycle-values-qualification.md)
+passes the final **35/0 twice** functional block, strict/static checks,
+outside-umbrella consumer **1/0** and the 246-file guard. Seven exact owners bring
+contracts to **4,682 implemented / 1,880 missing / 59 blocked**; requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified in both.
+Three causal root turns prove closed-child notFound, actual resume before send
+and a distinct followup. PendingInit/Running and canonical inProgress remain
+unverified; no race-selected snapshot or invented history emitter is used.
+Prohibited/broader/hosted gates and full compatibility/A11 remain incomplete.
+
 The [start-default continuation](thread-start-default-values-qualification.md)
 passes the final twenty-one-file functional block **35/0 twice**, compile/format,
 strict Credo, outside-umbrella consumer **1/0**, Python syntax and the 246-file

@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [same-child lifecycle continuation](collaboration-lifecycle-values-qualification.md)
+adds seven exact owners from three causally separated native root turns.
+The final **35/0 twice** block, strict/static checks, outside consumer **1/0**
+and 246-file guard pass. Contracts are **4,682 implemented / 1,880 missing /
+59 blocked**, with unchanged requirements and zero verified. Independent loaded
+membership proves resume before send; real fixed child answers and terminal item
+maps prove effects. PendingInit/Running/inProgress stay unverified. Tightening
+new RPC bounds from inherited30s to planned5s changes no runtime or deadline to
+obtain a pass. Prohibited/broader/hosted and A11/full-goal gates remain incomplete.
+
 The [start-default continuation](thread-start-default-values-qualification.md)
 passes twenty-one functional files **35/0 twice**, compile/format, strict Credo,
 outside-umbrella consumer **1/0**, Python syntax and the 246-file guard. Four

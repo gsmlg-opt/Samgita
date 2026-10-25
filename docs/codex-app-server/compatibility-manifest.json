@@ -183991,90 +183991,122 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-lifecycle-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentStatus/enum/6",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_collaboration: Three ordinary root turns operate on one genuinely spawned child: complete/close/wait-notFound, resume with independent same-child loaded-state proof before send, then fixed followup/wait/close. Thirteen exact provider requests independently establish two child turns and prescribed answers/model/low effort. Genuine matching item lifecycle frames and terminal-only selective reads assert complete wait/close expected maps, failed/notFound closed wait and prescribed stable spawn/send/resume fields. Twelve captured public envelopes match native response IDs; bounded buffers/deadlines and whole journal/input retention remain. Only these seven physical owners gain scoped evidence; PendingInit/Running5291/5292 and canonical inProgress5307 remain unverified, with no intermediate selective query or race-selected snapshot. Other states, v2 tools, delegation/reconnect/OS/service/transport and full compatibility remain incomplete; prohibited checks and broad/hosted gates are unrun."
+      ],
       "pointer": "/definitions/CollabAgentStatus/enum/6",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "08ac7d6b57a7f8c112b089dffd656182d999988d7f77848c54e74e39cf01a88f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-lifecycle-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentTool/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_collaboration: Three ordinary root turns operate on one genuinely spawned child: complete/close/wait-notFound, resume with independent same-child loaded-state proof before send, then fixed followup/wait/close. Thirteen exact provider requests independently establish two child turns and prescribed answers/model/low effort. Genuine matching item lifecycle frames and terminal-only selective reads assert complete wait/close expected maps, failed/notFound closed wait and prescribed stable spawn/send/resume fields. Twelve captured public envelopes match native response IDs; bounded buffers/deadlines and whole journal/input retention remain. Only these seven physical owners gain scoped evidence; PendingInit/Running5291/5292 and canonical inProgress5307 remain unverified, with no intermediate selective query or race-selected snapshot. Other states, v2 tools, delegation/reconnect/OS/service/transport and full compatibility remain incomplete; prohibited checks and broad/hosted gates are unrun."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "ab52d084b5d89e25925646b3db59e02390582b68b6b02fa99c5d83a79f01463d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-lifecycle-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentTool/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_collaboration: Three ordinary root turns operate on one genuinely spawned child: complete/close/wait-notFound, resume with independent same-child loaded-state proof before send, then fixed followup/wait/close. Thirteen exact provider requests independently establish two child turns and prescribed answers/model/low effort. Genuine matching item lifecycle frames and terminal-only selective reads assert complete wait/close expected maps, failed/notFound closed wait and prescribed stable spawn/send/resume fields. Twelve captured public envelopes match native response IDs; bounded buffers/deadlines and whole journal/input retention remain. Only these seven physical owners gain scoped evidence; PendingInit/Running5291/5292 and canonical inProgress5307 remain unverified, with no intermediate selective query or race-selected snapshot. Other states, v2 tools, delegation/reconnect/OS/service/transport and full compatibility remain incomplete; prohibited checks and broad/hosted gates are unrun."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/1",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "05130e2afecae09b27486f39585ed78b3b82aaf890485b2a9862a072012ad8ae",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-lifecycle-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentTool/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_collaboration: Three ordinary root turns operate on one genuinely spawned child: complete/close/wait-notFound, resume with independent same-child loaded-state proof before send, then fixed followup/wait/close. Thirteen exact provider requests independently establish two child turns and prescribed answers/model/low effort. Genuine matching item lifecycle frames and terminal-only selective reads assert complete wait/close expected maps, failed/notFound closed wait and prescribed stable spawn/send/resume fields. Twelve captured public envelopes match native response IDs; bounded buffers/deadlines and whole journal/input retention remain. Only these seven physical owners gain scoped evidence; PendingInit/Running5291/5292 and canonical inProgress5307 remain unverified, with no intermediate selective query or race-selected snapshot. Other states, v2 tools, delegation/reconnect/OS/service/transport and full compatibility remain incomplete; prohibited checks and broad/hosted gates are unrun."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/2",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "f3a78c7b73099965c42471ed9782ed50b4e203f0eaffa7954cd546c1f759b5d1",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -184111,24 +184143,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-lifecycle-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentTool/enum/4",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_collaboration: Three ordinary root turns operate on one genuinely spawned child: complete/close/wait-notFound, resume with independent same-child loaded-state proof before send, then fixed followup/wait/close. Thirteen exact provider requests independently establish two child turns and prescribed answers/model/low effort. Genuine matching item lifecycle frames and terminal-only selective reads assert complete wait/close expected maps, failed/notFound closed wait and prescribed stable spawn/send/resume fields. Twelve captured public envelopes match native response IDs; bounded buffers/deadlines and whole journal/input retention remain. Only these seven physical owners gain scoped evidence; PendingInit/Running5291/5292 and canonical inProgress5307 remain unverified, with no intermediate selective query or race-selected snapshot. Other states, v2 tools, delegation/reconnect/OS/service/transport and full compatibility remain incomplete; prohibited checks and broad/hosted gates are unrun."
+      ],
       "pointer": "/definitions/CollabAgentTool/enum/4",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "54506a26e0f2fcb044102d56b4b6954005afea14c30e6a252b1fa7efcab92b52",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -184275,24 +184315,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-lifecycle-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/CollabAgentToolCallStatus/enum/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_collaboration: Three ordinary root turns operate on one genuinely spawned child: complete/close/wait-notFound, resume with independent same-child loaded-state proof before send, then fixed followup/wait/close. Thirteen exact provider requests independently establish two child turns and prescribed answers/model/low effort. Genuine matching item lifecycle frames and terminal-only selective reads assert complete wait/close expected maps, failed/notFound closed wait and prescribed stable spawn/send/resume fields. Twelve captured public envelopes match native response IDs; bounded buffers/deadlines and whole journal/input retention remain. Only these seven physical owners gain scoped evidence; PendingInit/Running5291/5292 and canonical inProgress5307 remain unverified, with no intermediate selective query or race-selected snapshot. Other states, v2 tools, delegation/reconnect/OS/service/transport and full compatibility remain incomplete; prohibited checks and broad/hosted gates are unrun."
+      ],
       "pointer": "/definitions/CollabAgentToolCallStatus/enum/2",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "e9c6c7eab63b97ace1ed584f168beaba80eb77c85e4aef9d014e7242bef77f8e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
@@ -189157,24 +189205,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/collaboration-lifecycle-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadItemsReadResponse.json#/definitions/ThreadItem/oneOf/10/properties/reasoningEffort/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_collaboration: Three ordinary root turns operate on one genuinely spawned child: complete/close/wait-notFound, resume with independent same-child loaded-state proof before send, then fixed followup/wait/close. Thirteen exact provider requests independently establish two child turns and prescribed answers/model/low effort. Genuine matching item lifecycle frames and terminal-only selective reads assert complete wait/close expected maps, failed/notFound closed wait and prescribed stable spawn/send/resume fields. Twelve captured public envelopes match native response IDs; bounded buffers/deadlines and whole journal/input retention remain. Only these seven physical owners gain scoped evidence; PendingInit/Running5291/5292 and canonical inProgress5307 remain unverified, with no intermediate selective query or race-selected snapshot. Other states, v2 tools, delegation/reconnect/OS/service/transport and full compatibility remain incomplete; prohibited checks and broad/hosted gates are unrun."
+      ],
       "pointer": "/definitions/ThreadItem/oneOf/10/properties/reasoningEffort/anyOf/0",
       "schema": "v2/ThreadItemsReadResponse.json",
       "schema_sha256": "65e95ddfa6f7da5e053c1d740b3e1649728ea72b21b2de927551e714f6e6663a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_collaboration_lifecycle_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
