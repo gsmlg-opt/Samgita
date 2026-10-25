@@ -19,7 +19,32 @@ HTTP_CASES = {
     "http-500-internal": (500, "owned_http_internal", "Owned HTTP internal failure.", 2),
     "http-403-forbidden": (403, "owned_http_forbidden", "Owned HTTP forbidden.", 2),
 }
-SCENARIOS = ("rate-recovered", "rate-exhausted", "overload-terminal") + tuple(HTTP_CASES)
+TERMINAL_SSE_CASES = {
+    "misalignment-terminal": {
+        "code": "misalignment_policy_violation",
+        "message": "Owned synthetic policy block.",
+        "misalignment": {
+            "error_type": "future_owned_category",
+            "detailed_explanation": "Owned synthetic explanation marker.",
+            "review_target": "RB._~:-owned-only",
+            "steer": {"message": "Owned synthetic suggestion; do not execute automatically."},
+        },
+    },
+    "context-window-terminal": {
+        "code": "context_length_exceeded",
+        "message": "Owned text deliberately differs from native context display.",
+    },
+    "cyber-blank-terminal": {
+        "code": "cyber_policy",
+        "message": " \t ",
+    },
+    "invalid-prompt-other-terminal": {
+        "code": "invalid_prompt",
+        "message": "Owned synthetic invalid prompt.",
+    },
+}
+SCENARIOS = (("rate-recovered", "rate-exhausted", "overload-terminal")
+             + tuple(HTTP_CASES) + tuple(TERMINAL_SSE_CASES))
 RATE_MESSAGE = "Owned provider rate limit."
 
 
@@ -33,9 +58,14 @@ class ProviderErrors(ModelFixture):
                    if isinstance(part, dict)
                    and part.get("text", "").startswith("synthetic:provider-error:")]
         initial_count = (HTTP_CASES[self.scenario][3] if self.scenario in HTTP_CASES else
-                         1 if self.scenario == "overload-terminal" else 2)
+                         1 if self.scenario == "overload-terminal"
+                         or self.scenario in TERMINAL_SSE_CASES else 2)
         is_initial = index <= initial_count and markers == [initial]
-        is_followup = index == initial_count + 1 and markers == [initial, followup]
+        # Context exhaustion fills the original thread's token budget. Recovery
+        # is a caller-created fresh thread; policy recovery keeps ordinary history.
+        followup_markers = ([followup] if self.scenario == "context-window-terminal"
+                            else [initial, followup])
+        is_followup = index == initial_count + 1 and markers == followup_markers
         if not (is_initial or is_followup) or handler.headers.get("Authorization") is not None:
             shared.write_json(root / "unexpected-inference.json", {
                 "index": index, "markers": markers,
@@ -73,9 +103,11 @@ class ProviderErrors(ModelFixture):
                 "output_tokens": 1, "output_tokens_details": None, "total_tokens": 2,
             }}}]
         else:
-            error = ({"code": "server_is_overloaded", "message": "Provider overload text is not the native display."}
-                     if self.scenario == "overload-terminal" else
-                     {"code": "rate_limit_exceeded", "message": RATE_MESSAGE})
+            error = TERMINAL_SSE_CASES.get(self.scenario) or (
+                {"code": "server_is_overloaded",
+                 "message": "Provider overload text is not the native display."}
+                if self.scenario == "overload-terminal" else
+                {"code": "rate_limit_exceeded", "message": RATE_MESSAGE})
             # No retry advice is supplied. The native rate-limit and overload
             # policies intentionally differ even with stream_max_retries = 1.
             events.append({"type": "response.failed", "response": {

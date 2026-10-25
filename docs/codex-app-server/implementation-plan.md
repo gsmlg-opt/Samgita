@@ -21,6 +21,14 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [terminal-error/managed-metadata block](managed-errors-qualification.md)
+adds14 actual-native cases; all49 owning cases pass at both fixed seeds.
+The PathUri oracle and numeric-separator failures remain documented; strict
+checks pass in MIX_ENV=test. Forty-seven exact owners bring contracts to3539
+implemented/3082 missing, zero verified; requirements remain462 implemented/
+12 missing/11 blocked. Continue session-budget/account/history variants and the
+complete final-source local/hosted matrix, retaining every incomplete gate.
+
 The [retained client-owner index](retained-client-owners-qualification.md) binds
 93 precise existing positive operation/history owners to the terminal v21 native
 matrix, with every source preimage checked. No executable changes or verified

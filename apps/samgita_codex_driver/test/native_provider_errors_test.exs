@@ -357,6 +357,196 @@ defmodule SamgitaCodexDriver.NativeProviderErrorsTest do
     end
   end
 
+  for {scenario, error} <- [
+        {"misalignment-terminal",
+         %{
+           "message" => "Owned synthetic policy block.",
+           "codexErrorInfo" => "misalignmentPolicyViolation",
+           "additionalDetails" => nil,
+           "misalignment" => %{
+             "errorType" => "future_owned_category",
+             "detailedExplanation" => "Owned synthetic explanation marker.",
+             "reviewTarget" => "RB._~:-owned-only",
+             "steer" => %{
+               "message" => "Owned synthetic suggestion; do not execute automatically."
+             }
+           }
+         }},
+        {"context-window-terminal",
+         %{
+           "message" =>
+             "Codex ran out of room in the model's context window. Start a new thread or clear earlier history before retrying.",
+           "codexErrorInfo" => "contextWindowExceeded",
+           "additionalDetails" => nil,
+           "misalignment" => nil
+         }},
+        {"cyber-blank-terminal",
+         %{
+           "message" => "This request has been flagged for possible cybersecurity risk.",
+           "codexErrorInfo" => "cyberPolicy",
+           "additionalDetails" => nil,
+           "misalignment" => nil
+         }},
+        {"invalid-prompt-other-terminal",
+         %{
+           "message" => "Owned synthetic invalid prompt.",
+           "codexErrorInfo" => "other",
+           "additionalDetails" => nil,
+           "misalignment" => nil
+         }}
+      ] do
+    @tag scenario: scenario
+    @terminal_sse_error error
+    test "#{scenario} fails without retry or implicit continuation and permits explicit recovery",
+         ctx do
+      {:ok, pid} = Session.start_link(transport: {UnixSocket, [socket_path: ctx.socket]})
+
+      on_exit(fn ->
+        if Process.alive?(pid) do
+          try do
+            assert :ok = Session.close(pid)
+          catch
+            :exit, {:noproc, _} -> :ok
+          end
+        end
+      end)
+
+      assert {:ok, %{"result" => %{"platformOs" => "linux"}}} =
+               Session.initialize(
+                 pid,
+                 %{"name" => "owned_terminal_sse_errors", "version" => "0.1.0"},
+                 %{"experimentalApi" => false}
+               )
+
+      thread_params = %{
+        "cwd" => ctx.workspace,
+        "model" => "mock-model",
+        "modelProvider" => "fixture",
+        "sandbox" => "read-only",
+        "approvalPolicy" => "on-request"
+      }
+
+      thread = call(pid, "thread/start", thread_params)["thread"]["id"]
+      drain(pid)
+      assert read_json(ctx, "requests.json") == []
+      marker = "synthetic:provider-error:" <> ctx.scenario
+      turn = turn(pid, thread, marker)
+      events = collect(pid, thread, turn)
+
+      assert [%{"threadId" => ^thread, "turn" => %{"id" => ^turn}}] =
+               notices(events, "turn/started")
+
+      assert [
+               %{
+                 "threadId" => thread,
+                 "turnId" => turn,
+                 "willRetry" => false,
+                 "error" => @terminal_sse_error
+               }
+             ] == notices(events, "error")
+
+      assert Enum.all?(
+               Enum.filter(events, &(&1.wire["method"] == "error")),
+               &(&1.kind == :notification)
+             )
+
+      completed = completed(events, thread, turn)
+      assert completed["turn"]["status"] == "failed"
+      assert Map.fetch!(completed["turn"], "error") == @terminal_sse_error
+
+      assert [
+               %{
+                 "threadId" => ^thread,
+                 "turnId" => ^turn,
+                 "item" => %{
+                   "type" => "userMessage",
+                   "content" => [%{"type" => "text", "text" => ^marker, "text_elements" => []}]
+                 }
+               }
+             ] = notices(events, "item/completed")
+
+      assert notices(events, "item/agentMessage/delta") == []
+      assert notices(events, "model/rerouted") == []
+      assert length(read_json(ctx, "requests.json")) == 1
+
+      # A synchronous full read flushes canonical history before observing owned
+      # rollout bytes. Public policy details are live-only at this native pin.
+      persisted =
+        call(pid, "thread/read", %{"threadId" => thread, "includeTurns" => true})["thread"]
+
+      assert Enum.any?(
+               persisted["turns"],
+               &(&1["id"] == turn and &1["status"] == "failed")
+             )
+
+      if details = @terminal_sse_error["misalignment"] do
+        path = Map.fetch!(persisted, "path")
+        assert String.starts_with?(Path.expand(path), Path.expand(ctx.root) <> "/")
+        assert File.lstat!(path).type == :regular
+        bytes = File.read!(path)
+
+        for value <- [
+              details["detailedExplanation"],
+              details["reviewTarget"],
+              details["steer"]["message"]
+            ],
+            do: refute(bytes =~ value)
+      end
+
+      # No caller continuation was submitted. In particular, the live suggested
+      # steer and opaque review target confer no authority to start another turn.
+      idle_events = drain(pid)
+      assert notices(idle_events, "turn/started") == []
+      assert notices(idle_events, "error") == []
+      assert notices(idle_events, "model/rerouted") == []
+      assert length(read_json(ctx, "requests.json")) == 1
+      assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+      assert Session.uncertain_operations(pid) == []
+
+      recovery_thread =
+        if ctx.scenario == "context-window-terminal" do
+          # Native marks the exhausted context full. A fresh caller-created
+          # thread avoids silently assuming same-thread compaction behavior.
+          fresh = call(pid, "thread/start", thread_params)["thread"]["id"]
+          refute fresh == thread
+          fresh
+        else
+          thread
+        end
+
+      next_turn = turn(pid, recovery_thread, marker <> ":explicit-next-turn")
+      refute next_turn == turn
+      next_events = collect(pid, recovery_thread, next_turn)
+      assert notices(next_events, "error") == []
+      assert notices(next_events, "model/rerouted") == []
+
+      assert [%{"threadId" => ^recovery_thread, "turn" => %{"id" => ^next_turn}}] =
+               notices(next_events, "turn/started")
+
+      next_completed = completed(next_events, recovery_thread, next_turn)
+      assert next_completed["turn"]["status"] == "completed"
+      assert Map.fetch!(next_completed["turn"], "error") == nil
+      assert_answer(next_events, recovery_thread, next_turn)
+      requests = read_json(ctx, "requests.json")
+      assert length(requests) == 2
+      assert Enum.all?(requests, &(&1["model"] == "mock-model"))
+
+      if details = @terminal_sse_error["misalignment"] do
+        for request <- requests,
+            value <- [
+              details["detailedExplanation"],
+              details["reviewTarget"],
+              details["steer"]["message"]
+            ],
+            do: refute(JSON.encode!(request) =~ value)
+      end
+
+      refute File.exists?(Path.join(ctx.root, "unexpected-inference.json"))
+      assert %{phase: :ready, interactions: 0, pending: 0, uncertain: 0} = Session.status(pid)
+      assert Session.uncertain_operations(pid) == []
+    end
+  end
+
   defp assert_answer(events, thread, turn) do
     assert Enum.count(notices(events, "item/completed"), fn p ->
              p["threadId"] == thread and p["turnId"] == turn and

@@ -6,6 +6,18 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Terminal-error and managed-metadata continuation
+
+The [complete ten-file owning block](managed-errors-qualification.md) passes
+49/0 twice at501432/987654, including14 new actual-native cases. It preserves
+the first49/2 PathUri-oracle failure and static numeric/environment failures;
+the corrected wire oracle follows pinned source, the numeric token has equal
+AST, and final test-environment compile/format/strict Credo pass. Forty-seven
+exact owners bring contracts to3539 implemented/3082 missing, zero verified;
+requirements stay462 implemented/12 missing/11 blocked. No execution runtime,
+cleanup assertion or deadline is weakened. Continue the remaining reachable
+native variants and full final-source local/hosted qualification.
+
 ## Retained client-owner continuation
 
 The [bounded index](retained-client-owners-qualification.md) binds93 existing

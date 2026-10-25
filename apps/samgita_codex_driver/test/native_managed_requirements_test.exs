@@ -252,6 +252,172 @@ defmodule SamgitaCodexDriver.NativeManagedRequirementsTest do
     close(ctx, pid)
   end
 
+  test "managed path requirements overlay exact owned paths across a cold restart", ctx do
+    paths = managed_paths(ctx)
+    pid = start(ctx)
+    assert_managed_paths(pid, paths)
+    assert_path_sources(ctx, paths)
+    assert_idle(pid)
+    close(ctx, pid)
+
+    restarted = start(ctx)
+    assert_managed_paths(restarted, paths)
+    assert_path_sources(ctx, paths)
+    assert_idle(restarted)
+    close(ctx, restarted)
+  end
+
+  test "managed paths reject writes atomically and recover from typed policy read errors", ctx do
+    paths = managed_paths(ctx)
+    pid = start(ctx)
+    baseline = assert_managed_paths(pid, paths)
+
+    edit = fn key, value ->
+      %{"keyPath" => key, "value" => value, "mergeStrategy" => "replace"}
+    end
+
+    for {_wire, key, managed, user} <- paths.fields do
+      for {method, params} <- [
+            {"config/value/write", edit.(key, user)},
+            {"config/batchWrite",
+             %{
+               "edits" => [
+                 edit.("desktop.appearanceTheme", "dark"),
+                 edit.(key, managed)
+               ]
+             }}
+          ] do
+        error = upstream_error(pid, method, params)
+        assert error["code"] == -32_600
+        assert error["data"] === %{"config_write_error_code" => "configRequirementReadonly"}
+        assert error["message"] === "`#{key}` is managed by requirements and cannot be changed"
+        assert assert_managed_paths(pid, paths) === baseline
+        refute get_in(call(pid, "config/read", %{}), ["config", "desktop", "appearanceTheme"])
+        assert_path_sources(ctx, paths)
+      end
+
+      malformed =
+        String.replace(
+          paths.requirements,
+          "#{key} = #{JSON.encode!(managed)}\n",
+          "#{key} = 17\n",
+          global: false
+        )
+
+      refute malformed === paths.requirements
+
+      try do
+        # The parent owns this synthetic source; the child mount remains read-only.
+        File.write!(ctx.requirements, malformed)
+        error = upstream_error(pid, "configRequirements/read", nil)
+        assert error["code"] == -32_603
+        assert error["message"] =~ "failed to read configuration layers:"
+        assert error["message"] =~ "failed to parse requirements layer"
+        assert error["message"] =~ "/etc/codex/requirements.toml"
+        assert error["message"] =~ key
+        assert Session.status(pid).phase == :ready
+        assert Session.status(pid).pending == 0
+        assert Session.status(pid).interactions == 0
+
+        for {path, bytes} <- paths.sources, path != ctx.requirements do
+          assert File.lstat!(path).type == :regular
+          assert File.read!(path) === bytes
+        end
+      after
+        File.write!(ctx.requirements, paths.requirements)
+      end
+
+      assert assert_managed_paths(pid, paths) === baseline
+      assert_path_sources(ctx, paths)
+      assert_idle(pid)
+    end
+
+    close(ctx, pid)
+  end
+
+  defp managed_paths(ctx) do
+    for dir <- ~w(managed-state managed-logs user-state user-logs),
+        do: File.mkdir_p!(Path.join(ctx.root, dir))
+
+    managed_catalog = Path.join(ctx.root, "managed-models.json")
+    user_catalog = Path.join(ctx.root, "user-models.json")
+
+    for {path, slug} <- [{managed_catalog, "mock-model"}, {user_catalog, "unused-user-model"}] do
+      File.write!(
+        path,
+        JSON.encode!(%{
+          "models" => [
+            %{
+              "slug" => slug,
+              "display_name" => "Synthetic path metadata only",
+              "supported_reasoning_levels" => [],
+              "shell_type" => "unified_exec",
+              "visibility" => "list",
+              "supported_in_api" => true,
+              "priority" => 1,
+              "model_messages" => %{"instructions_template" => "No execution in this profile."},
+              "support_verbosity" => false,
+              "truncation_policy" => %{"mode" => "bytes", "limit" => 10_000},
+              "experimental_supported_tools" => []
+            }
+          ]
+        })
+      )
+    end
+
+    fields = [
+      {"modelCatalogJson", "model_catalog_json", managed_catalog, user_catalog},
+      {"logDir", "log_dir", Path.join(ctx.root, "managed-logs"),
+       Path.join(ctx.root, "user-logs")},
+      {"sqliteHome", "sqlite_home", Path.join(ctx.root, "managed-state"),
+       Path.join(ctx.root, "user-state")}
+    ]
+
+    managed =
+      Enum.map_join(fields, fn {_, key, path, _} -> "#{key} = #{JSON.encode!(path)}\n" end)
+
+    user = Enum.map_join(fields, fn {_, key, _, path} -> "#{key} = #{JSON.encode!(path)}\n" end)
+    requirements = managed <> @requirements
+    File.write!(ctx.requirements, requirements)
+    File.write!(ctx.config, user <> File.read!(ctx.config))
+
+    for {_, key, _, path} <- fields,
+        do: assert(File.read!(ctx.config) =~ "#{key} = #{JSON.encode!(path)}\n")
+
+    sources =
+      for path <- [ctx.config, ctx.requirements, managed_catalog, user_catalog],
+          do: {path, File.read!(path)}
+
+    %{fields: fields, sources: sources, requirements: requirements}
+  end
+
+  defp assert_managed_paths(pid, paths) do
+    response = call(pid, "configRequirements/read", nil)
+    requirements = Map.fetch!(response, "requirements")
+    read = call(pid, "config/read", %{})
+    effective = Map.fetch!(read, "config")
+    origins = Map.fetch!(read, "origins")
+
+    for {wire, key, expected, _} <- paths.fields do
+      # Public requirements use PathUri; the effective ConfigToml retains paths.
+      # These owned ASCII absolute paths have an independently prescribed URI.
+      assert Map.fetch!(requirements, wire) === "file://" <> expected
+      assert Map.fetch!(effective, key) === expected
+      refute Map.has_key?(origins, key)
+    end
+
+    response
+  end
+
+  defp assert_path_sources(ctx, paths) do
+    for {path, bytes} <- paths.sources do
+      assert File.lstat!(path).type == :regular
+      assert File.read!(path) === bytes
+    end
+
+    refute File.exists?(Path.join(ctx.root, "codex/auth.json"))
+  end
+
   defp start(ctx),
     do: ManagedRequirementsFixture.start(ctx, "owned_managed_requirements")
 end

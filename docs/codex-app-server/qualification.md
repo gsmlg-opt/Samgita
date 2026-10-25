@@ -19,6 +19,12 @@ its tested scope. A11 remains blocked: real HTTP evidence now proves plaintext
 can enter server telemetry before application handling. Full compatibility and
 release readiness remain incomplete.
 
+The [terminal-error/managed-metadata block](managed-errors-qualification.md)
+passes49/0 at both fixed seeds, including14 new cases, with strict checks after
+the documented source-backed PathUri/numeric-oracle corrections. Forty-seven
+exact owners become implemented:3539 implemented/3082 missing contracts, zero
+verified. Full final-source local/hosted matrices and all incomplete gates remain.
+
 The [retained client-owner index](retained-client-owners-qualification.md) adds
 93 exact implemented owners from the unchanged terminal v21 native tests.
 Source preimages and the exact complete manifest diff match; inventory consistency

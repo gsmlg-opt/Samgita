@@ -1,5 +1,12 @@
 # Native provider retry and terminal turn errors
 
+The later [terminal-error continuation](managed-errors-qualification.md) adds
+four real-native SSE error cases alongside all nine retained provider cases.
+The complete ten-file block passes49/0 at both fixed seeds. Exact rich policy
+details, context exhaustion, blank-message fallback and other classification,
+failed history and caller-explicit recovery have scoped positive evidence;
+no genuine provider enforcement or whole error lifecycle is qualified.
+
 Stock Codex `rust-v0.163.0`, source
 `83086188ae0614bd882818ff1aa23f3194962012`, binary SHA256
 `399ff69c431c066e40de318fba45c2b07f45a76b19939d247ee4828fc70c4215`,

@@ -79191,24 +79191,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "2cf5b6b59f50135f55d92b682daa8965eed6ac35a578ff9ff8dd855c78417c81",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -79323,24 +79332,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/14",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/14",
       "schema": "ServerNotification.json",
       "schema_sha256": "c494f200f7f18a48d81653a80ac7f0eeba86a208b72efa78571fa93662be5e19",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -79465,46 +79483,64 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/6",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/6",
       "schema": "ServerNotification.json",
       "schema_sha256": "71c6e33b9a41e84fb083149fc92aca883d0f670f9ea459a8a395ecc4def3ab01",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/CodexErrorInfo/anyOf/0/enum/7",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/CodexErrorInfo/anyOf/0/enum/7",
       "schema": "ServerNotification.json",
       "schema_sha256": "17b80dcb3bb8ebbfb4a11ff80575c6112e5bed01bcf2ea8166b93502a6aca238",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "enum"
     },
     {
@@ -86078,127 +86114,172 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MisalignmentErrorDetails/properties/detailedExplanation",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/MisalignmentErrorDetails/properties/detailedExplanation",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "96a4d33e625ed5df6c1085aa8de6996ca8d7b2e6ff928f42715ec58834087f15",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "detailedExplanation"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MisalignmentErrorDetails/properties/errorType",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/MisalignmentErrorDetails/properties/errorType",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "125a122840fbacf628b7f0088ee6f611490f4e4f2478d423fd2d94112eeb6053",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "errorType"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MisalignmentErrorDetails/properties/reviewTarget",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/MisalignmentErrorDetails/properties/reviewTarget",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "fb3767e83a9f4006132983b127ac00a2562f3370101b35bc6e0670be3cdc58e6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "reviewTarget"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MisalignmentErrorDetails/properties/steer",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/MisalignmentErrorDetails/properties/steer",
       "required": false,
       "schema": "ServerNotification.json",
       "schema_sha256": "a486807a0fb03c31ca9b94a6cf2f6ea77662e61c3f4d7f53a84e88dc77f4726a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "steer"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/MisalignmentErrorDetails/properties/steer/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/MisalignmentErrorDetails/properties/steer/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "fa3208633b4a6cc3ca0744844d98cb370556c65e9425a76f821f138e2c42df65",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -86226,27 +86307,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:ServerNotification.json#/definitions/MisalignmentSteer/properties/message",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/MisalignmentSteer/properties/message",
       "required": true,
       "schema": "ServerNotification.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "message"
     },
     {
@@ -100032,24 +100122,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:ServerNotification.json#/definitions/TurnError/properties/misalignment/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_terminal_provider_errors: Synthetic Responses SSE classified by pinned native Codex with exact error metadata, bounded no-implicit-continuation barriers and caller-explicit recovery. Context exhaustion recovers on a fresh caller-created thread. No genuine provider policy/auth enforcement, infinite-future silence or driver mutation replay qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/TurnError/properties/misalignment/anyOf/0",
       "schema": "ServerNotification.json",
       "schema_sha256": "f0d044434e1c397e98c3954099ee36eb8ee7f31d5b7b212ceb51fbdded56af5c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_provider_errors_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/unix-websocket"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -125918,27 +126017,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseMacosRequirements/properties/bundleIds",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ComputerUseMacosRequirements/properties/bundleIds",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "12f7fb7a0457a3f3265e632fcf516f63816f642e5b89a2f6bf21731aa1f6e7e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "bundleIds"
     },
     {
@@ -126080,320 +126188,437 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/defaultAppAccess/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ComputerUseRequirements/properties/defaultAppAccess/anyOf/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/macos",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ComputerUseRequirements/properties/macos",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "2e6592e45ae619caff673900bbf3a4060af5712750d7b6a6f56157eb23c7446d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "macos"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/macos/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ComputerUseRequirements/properties/macos/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "ab2400d8e13aeb3aecbe8eb8fd966f701a91647764d1568de0e5bced2bca05f8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/macos/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ComputerUseRequirements/properties/macos/anyOf/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/windows",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ComputerUseRequirements/properties/windows",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "a4b4dceafc285dc5505c5e18eed1b7f0c531c32f50f1861ffae5081035616937",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "windows"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/windows/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ComputerUseRequirements/properties/windows/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "39cc6d4bef578c5716ac4dea02694844344ab9563c1fc5c3ee360830a0eeab79",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseRequirements/properties/windows/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ComputerUseRequirements/properties/windows/anyOf/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseWindowsExeRequirement/properties/access",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ComputerUseWindowsExeRequirement/properties/access",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "fabf8059901c005fbd1d444e9aa05eb64c0cbc66004b6f998335d60e67d817a4",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "access"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseWindowsExeRequirement/properties/binaryName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ComputerUseWindowsExeRequirement/properties/binaryName",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "binaryName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseWindowsExeRequirement/properties/productName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ComputerUseWindowsExeRequirement/properties/productName",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "productName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseWindowsExeRequirement/properties/publisherName",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ComputerUseWindowsExeRequirement/properties/publisherName",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "publisherName"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseWindowsRequirements/properties/aumids",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ComputerUseWindowsRequirements/properties/aumids",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "12f7fb7a0457a3f3265e632fcf516f63816f642e5b89a2f6bf21731aa1f6e7e7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "aumids"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ComputerUseWindowsRequirements/properties/exes",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ComputerUseWindowsRequirements/properties/exes",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "d84cc72a68f08cfce49f22a0631d62310b7a99506d7f235596ec2759c4421caf",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "exes"
     },
     {
@@ -126720,27 +126945,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/allowedPermissionProfiles",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_permission_metadata: Parsed named permission catalog/default reporting, removal/restoration/cold restart and typed validation only. Managed default is a fallback rather than an exact user overlay; raw reporting and full config validation differ. No OS sandbox, permission enforcement or execution qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/allowedPermissionProfiles",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "f76d40d07fdddea9e21baad43bc7a4f53585f308ff1c2201bcbb064fbff85c54",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_permission_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allowedPermissionProfiles"
     },
     {
@@ -127334,50 +127568,68 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/computerUse/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_computer_metadata: Linux-host parsing/reporting of restrictive macOS/Windows policy, exact nullable/empty/present structures, source preservation, cold restart and typed validation only. No macOS/Windows runtime, computer use, actual app access, persistent approval or OS permission enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/computerUse/anyOf/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_computer_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/defaultPermissions",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_permission_metadata: Parsed named permission catalog/default reporting, removal/restoration/cold restart and typed validation only. Managed default is a fallback rather than an exact user overlay; raw reporting and full config validation differ. No OS sandbox, permission enforcement or execution qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/defaultPermissions",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_permission_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "defaultPermissions"
     },
     {
@@ -127622,24 +127874,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/hooks/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ConfigRequirements/properties/hooks/anyOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "be30ac054557ab946c49b6023e9d5bbbc06c1d6ece85b9af48e2fdf9bf5532cc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -127762,53 +128023,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/logDir",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_path_metadata: Public configRequirements/read PathUri values use independently prescribed file URIs while effective ConfigToml fields retain owned raw absolute paths; source preservation, cold restart, readonly atomic writes and typed-source recovery only. No actual SQLite placement, logging, inference, environment/symlink/relative-path or OS enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/logDir",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "logDir"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/modelCatalogJson",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_path_metadata: Public configRequirements/read PathUri values use independently prescribed file URIs while effective ConfigToml fields retain owned raw absolute paths; source preservation, cold restart, readonly atomic writes and typed-source recovery only. No actual SQLite placement, logging, inference, environment/symlink/relative-path or OS enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/modelCatalogJson",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "modelCatalogJson"
     },
     {
@@ -128064,49 +128343,67 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfigRequirements/properties/sqliteHome",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_path_metadata: Public configRequirements/read PathUri values use independently prescribed file URIs while effective ConfigToml fields retain owned raw absolute paths; source preservation, cold restart, readonly atomic writes and typed-source recovery only. No actual SQLite placement, logging, inference, environment/symlink/relative-path or OS enforcement qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ConfigRequirements/properties/sqliteHome",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_requirements_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sqliteHome"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/0",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "5e70762345e12e6fb93c1337830deb44c661ad54842f6f278c3591f448942f5a",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -128379,24 +128676,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/1",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "738cda1e76537e21886d89d1e536c152b28b03b0ab9d4b97c5efe0c7ea90ad4f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -128635,24 +128941,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/2",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/2",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "1811cb32b93c49997301a456aee3c919dd2f8fc28cd84a104701c0add5c8ffa0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -128721,24 +129036,33 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ConfiguredHookHandler/oneOf/3",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "pointer": "/definitions/ConfiguredHookHandler/oneOf/3",
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "6f9149befc2c653c4956f9f52c01075b0a54dd737973ab402d1eddb02c846201",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "oneOf"
     },
     {
@@ -128948,27 +129272,36 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/Interrupt",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/Interrupt",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "ef1832a7087014736455e3d3164eccd84c6bdf4825ca357bf13b688047b26ad3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "Interrupt"
     },
     {
@@ -129008,27 +129341,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/PostCompact",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/PostCompact",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "PostCompact"
     },
     {
@@ -129068,27 +129410,36 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/PreCompact",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/PreCompact",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "PreCompact"
     },
     {
@@ -129128,209 +129479,281 @@
     {
       "default": [],
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/SessionEnd",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/SessionEnd",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "ef1832a7087014736455e3d3164eccd84c6bdf4825ca357bf13b688047b26ad3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "SessionEnd"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/SessionStart",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/SessionStart",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "SessionStart"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/Stop",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/Stop",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "Stop"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/SubagentStart",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/SubagentStart",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "SubagentStart"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/SubagentStop",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/SubagentStop",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "SubagentStop"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/UserPromptSubmit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": false,
       "pointer": "/definitions/ManagedHooksRequirements/properties/UserPromptSubmit",
       "required": true,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "961408f169814001b1ee1de2d02fa9b98c80e30c29ca61c2964ebc14584499d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "UserPromptSubmit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/managedDir",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ManagedHooksRequirements/properties/managedDir",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "managedDir"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/managed-errors-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ConfigRequirementsReadResponse.json#/definitions/ManagedHooksRequirements/properties/windowsManagedDir",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_managed_hook_metadata: Parsed named hook groups and retained command/MCP/prompt/agent metadata, removal/restoration/cold restart and typed validation only. Features remain disabled; source bytes, empty managed directories and command sentinels are checked. No trigger/handler/tool/agent execution, OS permission enforcement or workspace immutability qualification.",
+        "Exact physical owner and prescribed value profile only; no copied-schema alias, untested alternatives or full-compatibility claim."
+      ],
       "nullable": true,
       "pointer": "/definitions/ManagedHooksRequirements/properties/windowsManagedDir",
       "required": false,
       "schema": "v2/ConfigRequirementsReadResponse.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_managed_hook_shapes_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "windowsManagedDir"
     },
     {
