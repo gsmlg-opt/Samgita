@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [one-shot fuzzy continuation](fuzzy-search-query-qualification.md) passes ten
+reviewed functional files **22/0 twice**, focused **2/0**, compile/format, strict
+Credo and the 233-file guard. Its initial **22/2** diagnostic opt-in setup failure
+and one-line repair remain documented. Twelve direct owners bring contracts to
+**4,611 implemented / 1,951 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Concurrent
+cancellation and native null indices remain unqualified. Current prohibited
+tests, broader/hosted gates and full compatibility remain incomplete.
+
 The [fuzzy session unit](fuzzy-search-session-qualification.md) passes nine reviewed
 functional files **20/0 twice**, outside-umbrella consumer **1/0**, compile/format,
 strict Credo and the 232-file guard. Nine direct owners bring contracts to

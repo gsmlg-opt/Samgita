@@ -76224,305 +76224,401 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchParams.json#/properties/cancellationToken",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Sequential token reuse does not qualify concurrent in-flight cancellation or a cancellation fence. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": true,
       "pointer": "/properties/cancellationToken",
       "required": false,
       "schema": "FuzzyFileSearchParams.json",
       "schema_sha256": "cd49941f1a90808c0c692f85bc803a6dd936c9153aaac4a725cf9030c3fc9089",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cancellationToken"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchParams.json#/properties/query",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": false,
       "pointer": "/properties/query",
       "required": true,
       "schema": "FuzzyFileSearchParams.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "query"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchParams.json#/properties/roots",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": false,
       "pointer": "/properties/roots",
       "required": true,
       "schema": "FuzzyFileSearchParams.json",
       "schema_sha256": "0f732b9fceb2c6ac2e7f8eaf7c927b155f145636708eebf4774de0ab7ea52764",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "roots"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:FuzzyFileSearchResponse.json#/definitions/FuzzyFileSearchMatchType/enum/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "pointer": "/definitions/FuzzyFileSearchMatchType/enum/0",
       "schema": "FuzzyFileSearchResponse.json",
       "schema_sha256": "22e7397941c11edde5eca0826a8180ecb332150f74fee47b6a3dbc4afb08da52",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:FuzzyFileSearchResponse.json#/definitions/FuzzyFileSearchMatchType/enum/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "pointer": "/definitions/FuzzyFileSearchMatchType/enum/1",
       "schema": "FuzzyFileSearchResponse.json",
       "schema_sha256": "8a8fb4633d7170fea9f6dea4baa515874b095915258ddf44fdb48892ca31a3cc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "enum"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchResponse.json#/definitions/FuzzyFileSearchResult/properties/file_name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/FuzzyFileSearchResult/properties/file_name",
       "required": true,
       "schema": "FuzzyFileSearchResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "file_name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchResponse.json#/definitions/FuzzyFileSearchResult/properties/indices",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Native array form only: app-server enables computed indices; the schema-null form has no native success evidence here and remains unqualified. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": true,
       "pointer": "/definitions/FuzzyFileSearchResult/properties/indices",
       "required": false,
       "schema": "FuzzyFileSearchResponse.json",
       "schema_sha256": "0368a5369049b5ac1e2c7585b3b3975441f77715f5c21020916a52bb9a6b2a29",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "indices"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchResponse.json#/definitions/FuzzyFileSearchResult/properties/match_type",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/FuzzyFileSearchResult/properties/match_type",
       "required": true,
       "schema": "FuzzyFileSearchResponse.json",
       "schema_sha256": "75560289fd1a50656bb7c4a354a31f3e6df9a100a7284759244c34bdf84c829f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "match_type"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchResponse.json#/definitions/FuzzyFileSearchResult/properties/path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/FuzzyFileSearchResult/properties/path",
       "required": true,
       "schema": "FuzzyFileSearchResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "path"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchResponse.json#/definitions/FuzzyFileSearchResult/properties/root",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/FuzzyFileSearchResult/properties/root",
       "required": true,
       "schema": "FuzzyFileSearchResponse.json",
       "schema_sha256": "bf0b727f7b1c6d07c7312c6c7760fd34302744385611a86804210c77d80b0cc7",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "root"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchResponse.json#/definitions/FuzzyFileSearchResult/properties/score",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": false,
       "pointer": "/definitions/FuzzyFileSearchResult/properties/score",
       "required": true,
       "schema": "FuzzyFileSearchResponse.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "score"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/fuzzy-search-query-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:FuzzyFileSearchResponse.json#/properties/files",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two actual-native functional cases capture exact one-shot method/ID/params; omitted/null/string/sequential reused token inputs return the original upstream ranked maps (84/72/71 and exact indices), with prescribed empty-query/root/no-match results. Independent multi-root file/directory/Unicode cases assert exact cardinality, identities, basenames, character highlights and root filters. Only these twelve explicitly mapped direct parameter/result owners gain scoped implemented evidence. No alias/notification/whole-branch inheritance, concurrent cancellation, other transport/platform/backend or complete behavior qualification."
+      ],
       "nullable": false,
       "pointer": "/properties/files",
       "required": true,
       "schema": "FuzzyFileSearchResponse.json",
       "schema_sha256": "6fa2d6923bf132a710e3b1f1b47ba790baa0fbaaf0ee9e47aa3ecc3f59c745be",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fuzzy_query_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "files"
     },
     {

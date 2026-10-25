@@ -15,6 +15,16 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [one-shot fuzzy continuation](fuzzy-search-query-qualification.md) passes ten
+reviewed functional files **22/0 twice**, focused **2/0**, compile/format, strict
+Credo and the 233-file guard. Initial v182 **22/2** fails only at experimental
+process diagnostics; fixed launch opt-in passes the complete v186 block without
+weakened assertions or deadlines. Twelve direct owners bring contracts to
+**4,611 implemented / 1,951 missing / 59 blocked**; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. No native
+null-index/concurrent-cancellation, prohibited testing, full compatibility, A11
+closure, broad/hosted completion or release is claimed.
+
 The [fuzzy session continuation](fuzzy-search-session-qualification.md) passes nine
 reviewed functional files **20/0 twice**, an outside-umbrella consumer **1/0**,
 compile/format, strict Credo and the 232-file guard. Nine direct owners bring

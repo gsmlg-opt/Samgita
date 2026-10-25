@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [one-shot fuzzy unit](fuzzy-search-query-qualification.md) passes ten reviewed
+functional files **22/0 twice**, focused **2/0**, compile/format, strict Credo and
+the 233-file guard. The first v182 block's **22/2** diagnostic setup failure is
+retained; one-line experimental diagnostic opt-in resolves it without changing
+assertions or deadlines. Twelve direct owners bring contracts to **4,611
+implemented / 1,951 missing / 59 blocked**; requirements remain **462 implemented /
+12 missing / 11 blocked**, zero verified in both. Concurrent cancellation and
+native null indices remain unqualified. Continue source-backed reachable
+functional values/lifecycles; preserve all prohibited/unrun checks and full goal,
+A11, hosted and release incompleteness.
+
 The [fuzzy session unit](fuzzy-search-session-qualification.md) passes nine reviewed
 functional files **20/0 twice**, an outside-umbrella consumer **1/0**, compile/format,
 strict Credo and the 232-file guard. Nine explicitly mapped direct request and
