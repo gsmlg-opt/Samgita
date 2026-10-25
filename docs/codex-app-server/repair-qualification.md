@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [deprecated mode continuation](multi-agent-mode-values-qualification.md)
+passes seven reviewed functional files **18/0 twice**, compile/format, strict
+Credo and the 230-file guard. Six direct owners bring contracts to **4,585
+implemented / 1,977 missing / 59 blocked**, zero verified; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified. Exact pinned source
+supports ignored-field behavior only. No active delegation, prohibited testing,
+complete evidence, A11 or broader release acceptance is claimed.
+
 The [resume/catalog continuation](resume-personality-values-qualification.md)
 passes six reviewed functional files **16/0 twice**, compile/format, strict Credo
 and the 229-file guard on final v165 source. The v164 block's new string-style

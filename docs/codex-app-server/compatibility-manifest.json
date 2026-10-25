@@ -216286,71 +216286,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/multi-agent-mode-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadStartParams.json#/properties/multiAgentMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two five-case matrices preserve owning thread/start and turn/start omission/null/explicitRequestOnly/proactive/custom maps. The immutable pin explicitly deprecates/ignores these fields; actual responses, independent applied settings snapshots and provider inputs retain native no-op behavior. Only these six direct owners gain scoped evidence. This does not qualify active delegation, alias siblings, other transport/platform/backend or complete lifecycle."
+      ],
       "nullable": true,
       "pointer": "/properties/multiAgentMode",
       "required": false,
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "30922385072f2cc1f5fbd4694c177d853733aafe1f3bce2f00c00c453de3d732",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "multiAgentMode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/multi-agent-mode-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadStartParams.json#/properties/multiAgentMode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two five-case matrices preserve owning thread/start and turn/start omission/null/explicitRequestOnly/proactive/custom maps. The immutable pin explicitly deprecates/ignores these fields; actual responses, independent applied settings snapshots and provider inputs retain native no-op behavior. Only these six direct owners gain scoped evidence. This does not qualify active delegation, alias siblings, other transport/platform/backend or complete lifecycle."
+      ],
       "pointer": "/properties/multiAgentMode/anyOf/0",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "a7440efdb3c76357d6fdd9c7db6cee1bb30d03a363a078e04707538c384963a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/multi-agent-mode-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ThreadStartParams.json#/properties/multiAgentMode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two five-case matrices preserve owning thread/start and turn/start omission/null/explicitRequestOnly/proactive/custom maps. The immutable pin explicitly deprecates/ignores these fields; actual responses, independent applied settings snapshots and provider inputs retain native no-op behavior. Only these six direct owners gain scoped evidence. This does not qualify active delegation, alias siblings, other transport/platform/backend or complete lifecycle."
+      ],
       "pointer": "/properties/multiAgentMode/anyOf/1",
       "schema": "v2/ThreadStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -222210,71 +222234,95 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/multi-agent-mode-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/TurnStartParams.json#/properties/multiAgentMode",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two five-case matrices preserve owning thread/start and turn/start omission/null/explicitRequestOnly/proactive/custom maps. The immutable pin explicitly deprecates/ignores these fields; actual responses, independent applied settings snapshots and provider inputs retain native no-op behavior. Only these six direct owners gain scoped evidence. This does not qualify active delegation, alias siblings, other transport/platform/backend or complete lifecycle."
+      ],
       "nullable": true,
       "pointer": "/properties/multiAgentMode",
       "required": false,
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "76125a91d923db29df69a6cb60ee2c7e3ce395b76cf0602d9d38cdd6bdc960a3",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "multiAgentMode"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/multi-agent-mode-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnStartParams.json#/properties/multiAgentMode/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two five-case matrices preserve owning thread/start and turn/start omission/null/explicitRequestOnly/proactive/custom maps. The immutable pin explicitly deprecates/ignores these fields; actual responses, independent applied settings snapshots and provider inputs retain native no-op behavior. Only these six direct owners gain scoped evidence. This does not qualify active delegation, alias siblings, other transport/platform/backend or complete lifecycle."
+      ],
       "pointer": "/properties/multiAgentMode/anyOf/0",
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "a7440efdb3c76357d6fdd9c7db6cee1bb30d03a363a078e04707538c384963a6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/multi-agent-mode-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/TurnStartParams.json#/properties/multiAgentMode/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Two five-case matrices preserve owning thread/start and turn/start omission/null/explicitRequestOnly/proactive/custom maps. The immutable pin explicitly deprecates/ignores these fields; actual responses, independent applied settings snapshots and provider inputs retain native no-op behavior. Only these six direct owners gain scoped evidence. This does not qualify active delegation, alias siblings, other transport/platform/backend or complete lifecycle."
+      ],
       "pointer": "/properties/multiAgentMode/anyOf/1",
       "schema": "v2/TurnStartParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_multi_agent_mode_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {

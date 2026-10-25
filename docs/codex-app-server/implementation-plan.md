@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [deprecated mode unit](multi-agent-mode-values-qualification.md) passes the
+seven-file functional block **18/0 twice**, compile/format, strict Credo and
+source guard. Six direct owners bring contracts to **4,585 implemented / 1,977
+missing / 59 blocked**, zero verified; requirements remain **462 implemented /
+12 missing / 11 blocked**, zero verified. Source and actual native requests prove
+the parameters are ignored at this pin; no delegation capability is inferred.
+Next, assess native thread-section membership movement and local query filters
+with real persisted threads. Continue only permitted functional work; preserve
+the security/permission testing restriction, unrun hosted gates and no-release
+status. Full evidence, A11, legacy/external/backend/OS gates remain incomplete.
+
 The [resume personality](resume-personality-values-qualification.md) and
 [five native catalog stages](feature-stage-values-qualification.md) pass all six
 reviewed functional files **16/0 twice** plus compile/format, strict Credo and

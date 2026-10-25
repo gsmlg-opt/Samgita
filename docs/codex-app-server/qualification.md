@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [deprecated mode value unit](multi-agent-mode-values-qualification.md)
+passes all seven reviewed functional files **18/0 twice**, compile/format, strict
+Credo and its source guard. Six direct owners bring contracts to **4,585
+implemented / 1,977 missing / 59 blocked**, zero verified; requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. Pinned source and
+actual native behavior establish ignored parameters, not active delegation.
+Security/permission tests, related workflows and every broader gate stay unrun
+or incomplete; full compatibility and A11 are not closed.
+
 The [warm/cold resume](resume-personality-values-qualification.md) and
 [five-stage catalog](feature-stage-values-qualification.md) units pass the
 final six-file functional block **16/0 twice**, compile/format, strict Credo
