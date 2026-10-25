@@ -21,6 +21,16 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [frozen v107 matrix](repair-qualification.md#terminal-frozen-v107-local-and-hosted-matrices)
+is terminal on exact pushed `32576e3`: all 19 + 23 local commands run, both 774/0 driver
+and 306/0 profile repeats pass, as do recovery/restart, authority 6/0 twice,
+consumers and strict/audit/assembly checks. First retained GitHub-page aggregate
+and completeness fail. Hosted foundation and both native execution jobs pass;
+complete evidence fails. The next bounded work qualifies the source-backed native
+command-action approvals, web-search output and memory-citation candidates in an
+independent layout, integrates only successful cases, and reruns final-source
+qualification. Every blocked/unverified gate remains required; no release.
+
 The integrated [callback/bridge repair](session-confidentiality-qualification.md)
 passes driver59/0 and bridge17/0 twice; the
 [same-Session generation profile](native-authority-qualification.md#a-ticket-cannot-authorize-a-new-connection-generation)

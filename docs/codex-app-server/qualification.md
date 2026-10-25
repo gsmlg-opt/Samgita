@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [terminal v107 matrix](repair-qualification.md#terminal-frozen-v107-local-and-hosted-matrices)
+at exact pushed `32576e3` runs all 42 local commands: driver **774/0 twice**,
+all 52 profiles **306/0 twice**, populated recovery/restart, authority 6/0 twice,
+three WebSocket seeds, consumers and strict/audit/assembly checks pass. The
+first retained GitHub-page assertion and complete evidence fail. Hosted foundation
+and both native execution jobs succeed on that revision; complete evidence fails.
+This supersedes the pending full-matrix statement below for those sources only.
+The complete goal and A11 remain incomplete; independent candidates continue.
+
 Current integrated scoped checks pass **59/0 driver callback +17/0 bridge +6/0
 native authority twice**, followed by **20/0 MCP/origin twice** and **3/0 expanded
 Apps history/resume twice**. Each owning source guard, compile/format, strict

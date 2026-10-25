@@ -6,6 +6,63 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Terminal frozen v107 local and hosted matrices
+
+Exact pushed `32576e3c0d23a305622c767893d6a761fcab8888` completes all
+**19 platform + 23 independent-package commands**, followed by the required
+complete-evidence command. Both source guards match **1,508 files**. The local
+combined exit remains **1**: the first retained-database aggregate has the
+unchanged GitHub first-page assertion failure; the complete-evidence gate fails.
+
+| Required local area | Actual result |
+| --- | --- |
+| Populated root, seeds 501432/987654 | **232 core/0 twice**; **131 web/1**, then **131 web/0**, with existing 1 core/8 web exclusions. The first failure remains `github_controller_test.exs:56`: a new connection need not occur on the first page of retained connections. No database reset, record deletion, pagination or assertion change. |
+| Runtime/API/races/native | **61 core + 11 web/0**. |
+| Dedicated native authority | **6/0 twice** on the separate retained authority database. |
+| Populated recovery/restart | **4 core + 1 web/0 twice**, with the existing activation guard and durable evidence. |
+| Complete independent driver | **774/0 twice**. |
+| All 52 explicit isolated native profiles | **306/0 twice**. |
+| Outside consumers | Actual-binary **1/0**; neutral **32/0 + 1/0 + 1/0**. |
+| Neutral WebSocket | **42/0** at each of 455834/501432/987654. Original deadlines, overflow, ownership and replay assertions remain. |
+| Native wire | **42/0**, standalone compile/format/audit pass. |
+| Static, security and assembly | Root compile/format/strict Credo/forced Dialyzer; prerequisites; 38 tooling regressions; inventory/legacy checks; all retained relevant lock audits; frozen web dependencies, assets and local production assembly pass. |
+| Complete evidence | `python3 -B scripts/codex/inventory.py --check --require-verified` exits 1. Requirements **462 implemented / 12 missing / 11 blocked**; contracts **4,486 implemented / 2,076 missing / 59 blocked**; zero verified. |
+
+Exact commands, environment, logs and source guards are retained in
+`/tmp/samgita-repair-final-{platform,packages,combined}-v107-20261025/`.
+The terminal collector checks every command/log and source hash, and the local
+archive's existence and digest. Its report is
+`/tmp/samgita-repair-final-v107-terminal-20261025.json`, SHA256
+`3dcc55e9f60f2339133515e4ae2e37862a6a717fb82442c9e00a4c2f9e787250`.
+Assembly is not publication or deployment.
+
+The same pushed revision has terminal hosted results:
+
+- [Foundation 40188485208](https://github.com/gsmlg-opt/Samgita/actions/runs/40188485208)
+  succeeds, including both 232 core + 131 web repeats, restart/rollback,
+  independent packages/consumers, strict checks/audits/assets and assembly.
+- [Conformance 40188515185](https://github.com/gsmlg-opt/Samgita/actions/runs/40188515185)
+  passes both execution jobs: native wire 42/0, all four required driver
+  partitions **206 + 169 + 204 + 195 = 774/0**, outside consumer 1/0,
+  platform 61 core + 11 web/0, dedicated authority 6/0 twice, and all 52 explicit
+  native profiles 306/0. Its separate complete-evidence job fails, so the
+  workflow conclusion remains failure.
+
+Completed job metadata and downloaded logs are in
+`/tmp/samgita-v107-hosted-20261025/`. SHA256: foundation log
+`1e27575b76d0b52f67a341cde5b5f098202c42abf84ffc332bbb6fe997726cf4`,
+selected log
+`48467b91f0107d38b6855254d3121d4ade45d9e511049d3759dbb8524b1f34a1`,
+profile log
+`539490199f83949b9f2ee37e204690a9012c39250b493ee8342a4fdc23c6ccd5`.
+
+These are frozen-source results for the integrated callback, generation and
+MCP/Apps repairs below. New independent candidates still need integration and
+their own final-source qualification. A11, source-unreachable legacy emitters,
+missing behavior, real external/backend/OS success, the historical unexplained
+listener failure and full compatibility stay incomplete. No tag, publication,
+production migration or deployment occurs.
+
 ## Integrated callback, generation and MCP/Apps continuation
 
 The final callback repair contains arbitrary external transport exceptions before
