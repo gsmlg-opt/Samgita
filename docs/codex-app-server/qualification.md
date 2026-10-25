@@ -1,5 +1,13 @@
 # Codex compatibility qualification
 
+The [thread-section values unit](thread-section-values-qualification.md) passes
+the integrated four-file functional block **12/0 twice**, compile/format, strict
+Credo and its source guard. Sixteen exact parameter/result owners bring contracts
+to **4,566 implemented / 1,996 missing / 59 blocked**, zero verified; requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. These are
+actual native value/persistence results with no model work; all broader gates and
+the current security/permission testing restriction remain in force.
+
 The [native project sort matrix](project-sort-qualification.md) adds exact
 position/recency ordering, null/default semantics, cursor binding and confirmed
 native-process restart. The integrated three-file functional block passes

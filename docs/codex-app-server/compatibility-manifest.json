@@ -211841,253 +211841,333 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": true,
       "id": "schema:v2/ThreadSectionCreateParams.json#/properties/appearance",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/appearance",
       "required": false,
       "schema": "v2/ThreadSectionCreateParams.json",
       "schema_sha256": "72f9a3ec53e6d496ce644bd83cddde27d093e971a4c77ff0277d9625e112ec39",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "appearance"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadSectionCreateParams.json#/properties/appearance/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "pointer": "/properties/appearance/anyOf/0",
       "schema": "v2/ThreadSectionCreateParams.json",
       "schema_sha256": "c52f9891d0c00ac1f0f9e62f855e1b96215e8197352633dc2b19b818074993b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadSectionCreateParams.json#/properties/appearance/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "pointer": "/properties/appearance/anyOf/1",
       "schema": "v2/ThreadSectionCreateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionCreateParams.json#/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/name",
       "required": true,
       "schema": "v2/ThreadSectionCreateParams.json",
       "schema_sha256": "fe4032ad9f41f31971a15b31b834769dab78d1f471769684cfac7c5eb0d65896",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionCreateResponse.json#/properties/section",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/section",
       "required": true,
       "schema": "v2/ThreadSectionCreateResponse.json",
       "schema_sha256": "fb2c4ef3e45bebf72e4a132dfe1c7f7f0172ba7838612dd90239a71a2a6a82b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "section"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionDeleteParams.json#/properties/sectionId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/sectionId",
       "required": true,
       "schema": "v2/ThreadSectionDeleteParams.json",
       "schema_sha256": "30c11976b73445bb928c2c6669450ab38649dd7853055703801d6a4a3738e14c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sectionId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionListParams.json#/properties/cursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/cursor",
       "required": false,
       "schema": "v2/ThreadSectionListParams.json",
       "schema_sha256": "8c4f3653fe1a44eb8a01affe5e4eb2cbe3b209bfa6c0e62c2e15dfbb450d0142",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cursor"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionListParams.json#/properties/limit",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/limit",
       "required": false,
       "schema": "v2/ThreadSectionListParams.json",
       "schema_sha256": "de00f6694245ab5be57eedce9ec436740d750cedf11ab95b706f60bcb55a275e",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "limit"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionListResponse.json#/properties/data",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/data",
       "required": true,
       "schema": "v2/ThreadSectionListResponse.json",
       "schema_sha256": "2841c651b459d814e5babb651de1386ee18fdc09768d267c8f473d462b715252",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "data"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionListResponse.json#/properties/nextCursor",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/nextCursor",
       "required": false,
       "schema": "v2/ThreadSectionListResponse.json",
       "schema_sha256": "79fc6777afcd91aec0b6c89e3fd5c854a566e9378ca2787d5ec12e54affc43db",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "nextCursor"
     },
     {
@@ -212171,149 +212251,197 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionUpdateParams.json#/properties/appearance",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/appearance",
       "required": false,
       "schema": "v2/ThreadSectionUpdateParams.json",
       "schema_sha256": "83bd67a1101d9d2f5bcacb0131d87bdfda457be557361120bb3e85a35c746d98",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "appearance"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadSectionUpdateParams.json#/properties/appearance/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "pointer": "/properties/appearance/anyOf/0",
       "schema": "v2/ThreadSectionUpdateParams.json",
       "schema_sha256": "c52f9891d0c00ac1f0f9e62f855e1b96215e8197352633dc2b19b818074993b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ThreadSectionUpdateParams.json#/properties/appearance/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "pointer": "/properties/appearance/anyOf/1",
       "schema": "v2/ThreadSectionUpdateParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionUpdateParams.json#/properties/name",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/name",
       "required": true,
       "schema": "v2/ThreadSectionUpdateParams.json",
       "schema_sha256": "0f136b20f2c8ef78519176d20bf438d2f9af9cac8933215bae001964b54cd55c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "name"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionUpdateParams.json#/properties/sectionId",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/sectionId",
       "required": true,
       "schema": "v2/ThreadSectionUpdateParams.json",
       "schema_sha256": "75b45cddfe4ae2bdeb7d89c14069f30944ad28a213603755915fe2ff2c22ef8c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "sectionId"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/thread-section-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/ThreadSectionUpdateResponse.json#/properties/section",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_synthetic_backend: Three zero-provider-call cases preserve owning create/update/list/delete wire maps, omitted/null/empty/populated/partial appearance semantics, exact result wrappers and paginated durable state across confirmed native PID replacement. Only these sixteen direct parameter/result owners gain scoped evidence; section membership/move, shared aliases/definitions, other transport/platform/backend and complete lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/section",
       "required": true,
       "schema": "v2/ThreadSectionUpdateResponse.json",
       "schema_sha256": "fb2c4ef3e45bebf72e4a132dfe1c7f7f0172ba7838612dd90239a71a2a6a82b6",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_thread_section_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "section"
     },
     {

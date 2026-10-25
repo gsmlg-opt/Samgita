@@ -15,6 +15,13 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [thread-section value block](thread-section-values-qualification.md) passes
+four reviewed functional files **12/0 twice**, compile/format, strict Credo and
+the 227-file guard. Sixteen direct parameter/result owners bring contracts to
+**4,566 implemented / 1,996 missing / 59 blocked**, zero verified. Requirements
+remain **462 implemented / 12 missing / 11 blocked**, zero verified. Shared
+aliases, membership, security/permission checks and broader gates stay unqualified.
+
 The subsequent [project sort unit](project-sort-qualification.md) passes the
 integrated three-file functional block **9/0 twice**, compile/format, strict Credo
 and 226-file guard. Nine more direct owners produce **4,550 implemented / 2,012
