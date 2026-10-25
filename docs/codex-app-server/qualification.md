@@ -1,5 +1,15 @@
 # Codex compatibility qualification
 
+The [native filesystem/process unit](native-io-values-qualification.md) passes
+seventeen reviewed functional files **31/0 twice**, focused **2/0 + 1/0**,
+compile/format, strict Credo and the 240-file guard. Original **31/3**, traced
+**1/1 failure** and intermediate format failure remain evidence; pinned source
+explains the exact response-shape and musl creation-time oracle corrections.
+Twenty-three direct owners bring contracts to **4,660 implemented / 1,902 missing /
+59 blocked**; requirements stay **462 implemented / 12 missing / 11 blocked**,
+zero verified in both. Positive native birthtime, prohibited checks and
+broader/hosted/full-compatibility gates remain incomplete.
+
 The [search GitInfo continuation](search-git-info-values-qualification.md) passes
 fifteen reviewed functional files **28/0 twice**, compile/format, strict Credo
 and the 238-file guard. Four direct response owners bring contracts to **4,637

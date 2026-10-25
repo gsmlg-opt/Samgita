@@ -21,6 +21,19 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native I/O unit](native-io-values-qualification.md) passes seventeen reviewed
+functional files **31/0 twice**, focused process **2/0** and filesystem **1/0**,
+compile/format, strict Credo and the 240-file guard. The initial **31/3**, traced
+filesystem **1/1 failure** and intermediate format failure remain recorded.
+Source-backed exact cursor/null and musl birthtime oracle repairs change no
+deadlines or retained behavior assertions. Twenty-three precise owners bring
+contracts to **4,660 implemented / 1,902 missing / 59 blocked**; requirements stay
+**462 implemented / 12 missing / 11 blocked**, zero verified in both. Owner 4016
+qualifies unavailable native time only. Next implement eleven source-backed
+external connector metadata owners through actual detect/persisted-candidate
+readback, without claiming history import. Keep prohibited/unrun gates and the
+full goal/A11/hosted/release incomplete.
+
 The [search GitInfo unit](search-git-info-values-qualification.md) passes fifteen
 reviewed functional files **28/0 twice**, compile/format, strict Credo and the
 238-file guard. Four direct response owners bring contracts to **4,637

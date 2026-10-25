@@ -142220,24 +142220,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsCopyParams.json#/properties/destinationPath/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/destinationPath/allOf/0",
       "schema": "v2/FsCopyParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -142308,24 +142316,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsCopyParams.json#/properties/sourcePath/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/sourcePath/allOf/0",
       "schema": "v2/FsCopyParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -142363,24 +142379,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsCreateDirectoryParams.json#/properties/path/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/path/allOf/0",
       "schema": "v2/FsCreateDirectoryParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -142453,50 +142477,66 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsGetMetadataParams.json#/properties/path/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/path/allOf/0",
       "schema": "v2/FsGetMetadataParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "has_default": false,
       "id": "schema:v2/FsGetMetadataResponse.json#/properties/createdAtMs",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/createdAtMs",
       "required": true,
       "schema": "v2/FsGetMetadataResponse.json",
       "schema_sha256": "b3049613ef3b6c4d1799a067d8bde4ba6c5b69f2892f2d263fe13efeec7295ea",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "createdAtMs"
     },
     {
@@ -142670,24 +142710,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsReadDirectoryParams.json#/properties/path/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/path/allOf/0",
       "schema": "v2/FsReadDirectoryParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -142857,24 +142905,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsReadFileParams.json#/properties/path/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/path/allOf/0",
       "schema": "v2/FsReadFileParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -142978,24 +143034,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsRemoveParams.json#/properties/path/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/path/allOf/0",
       "schema": "v2/FsRemoveParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -143099,24 +143163,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsWatchParams.json#/properties/path/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/path/allOf/0",
       "schema": "v2/FsWatchParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -143187,24 +143259,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsWatchResponse.json#/properties/path/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/path/allOf/0",
       "schema": "v2/FsWatchResponse.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -143275,24 +143355,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/FsWriteFileParams.json#/properties/path/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twenty-five exact native filesystem envelopes/response IDs exercise owned Unicode paths through create/write/read/metadata/copy/list/watch/unwatch/remove, independent binary file and directory oracles, unchanged control, actual watched path/change event and final empty workspace. No model request occurs. Only these eleven assigned owners gain scoped evidence. The differential fixture requires positive GNU stat birthtime, but SHA-pinned Rust1.95 Linux/musl Metadata.created is unsupported and native createdAtMs must be exactly0; compiler source and syscall evidence explain the corrected original cross-producer oracle. Owner4016 qualifies only that unavailable native profile. Positive native birthtime, general filesystem/platform/backend/transport variants and aliases remain unqualified."
+      ],
       "pointer": "/properties/path/allOf/0",
       "schema": "v2/FsWriteFileParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_fs_path_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -171011,27 +171099,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProcessKillParams.json#/properties/processHandle",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/processHandle",
       "required": true,
       "schema": "v2/ProcessKillParams.json",
       "schema_sha256": "82a727faae64f03e71fffe75441543139c72a9a10151fd77def78721e7a20dcc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "processHandle"
     },
     {
@@ -171173,102 +171269,134 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": false,
       "id": "schema:v2/ProcessOutputDeltaNotification.json#/properties/stream/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "pointer": "/properties/stream/allOf/0",
       "schema": "v2/ProcessOutputDeltaNotification.json",
       "schema_sha256": "d0c835ea516885351c0e1622bf94d4b7d59e09d7ecf08d2ea9424cc384afa330",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProcessResizePtyParams.json#/definitions/ProcessTerminalSize/properties/cols",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ProcessTerminalSize/properties/cols",
       "required": true,
       "schema": "v2/ProcessResizePtyParams.json",
       "schema_sha256": "ec09e3d98b1d258b3488da72cf4f807ac9d24c2ce101333171844dcc94442aa9",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "cols"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProcessResizePtyParams.json#/definitions/ProcessTerminalSize/properties/rows",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/definitions/ProcessTerminalSize/properties/rows",
       "required": true,
       "schema": "v2/ProcessResizePtyParams.json",
       "schema_sha256": "259942c0bbca4a372de95f6c4a02aff206112d477c93c79515a65c1b0cef2724",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "rows"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProcessResizePtyParams.json#/properties/processHandle",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/processHandle",
       "required": true,
       "schema": "v2/ProcessResizePtyParams.json",
       "schema_sha256": "82a727faae64f03e71fffe75441543139c72a9a10151fd77def78721e7a20dcc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "processHandle"
     },
     {
@@ -171307,24 +171435,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProcessResizePtyParams.json#/properties/size/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "pointer": "/properties/size/allOf/0",
       "schema": "v2/ProcessResizePtyParams.json",
       "schema_sha256": "282269648dbfa9327c3e57a4d6a4c72cf66b55a2fb989bf7fb87f97506ca22d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -171404,24 +171540,32 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProcessSpawnParams.json#/properties/cwd/allOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "pointer": "/properties/cwd/allOf/0",
       "schema": "v2/ProcessSpawnParams.json",
       "schema_sha256": "85b73ba1a78c40839a9e48b1e72023c66bba5c7f1922229b01a93922acea475d",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "allOf"
     },
     {
@@ -171567,46 +171711,62 @@
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProcessSpawnParams.json#/properties/size/anyOf/0",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "pointer": "/properties/size/anyOf/0",
       "schema": "v2/ProcessSpawnParams.json",
       "schema_sha256": "282269648dbfa9327c3e57a4d6a4c72cf66b55a2fb989bf7fb87f97506ca22d0",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
       "direction": "schema_variant",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "id": "schema:v2/ProcessSpawnParams.json#/properties/size/anyOf/1",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "pointer": "/properties/size/anyOf/1",
       "schema": "v2/ProcessSpawnParams.json",
       "schema_sha256": "b7c373d0981a5441c9dd775ad89a68ba691af04e4da70eaeaacaaf54549837fb",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "anyOf"
     },
     {
@@ -171753,79 +171913,103 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProcessWriteStdinParams.json#/properties/closeStdin",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/closeStdin",
       "required": false,
       "schema": "v2/ProcessWriteStdinParams.json",
       "schema_sha256": "ac9ebafa8741b4319214ac13d6588771f0c3bb22b826859466aafb778e06e172",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "closeStdin"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProcessWriteStdinParams.json#/properties/deltaBase64",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "nullable": true,
       "pointer": "/properties/deltaBase64",
       "required": false,
       "schema": "v2/ProcessWriteStdinParams.json",
       "schema_sha256": "dc76df6744c7b9b7def1079988cb3de2da2a7dc4b35376a32d9721ef750a363c",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "deltaBase64"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/native-io-values-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ProcessWriteStdinParams.json#/properties/processHandle",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "actual_native_local_functional: Twelve exact native process envelopes/response IDs across two cases spawn real owned Python pipe/PTY children. Independently prescribed cwd, explicit/null24x80 PTY size, selected40x120 resize with unchanged live PTY control, binary merged PTY output/exit7, selected kill with child disappearance and surviving pipe, binary drain-before-EOF plus explicit null close qualify these twelve physical owners. Actual stdout/stderr streams, terminal events and owned cleanup are checked; no model request or loaded thread occurs. Ordinary5s I/O, event/byte/capture bounds and recorded-child pidfd cleanup remain. Original loaded-list expected-shape failure is corrected to exact data:[],nextCursor:null from pinned source. Omitted close payload, reconnect/concurrent ownership, other OS/backend/transport profiles, aliases and full lifecycle remain unqualified."
+      ],
       "nullable": false,
       "pointer": "/properties/processHandle",
       "required": true,
       "schema": "v2/ProcessWriteStdinParams.json",
       "schema_sha256": "82a727faae64f03e71fffe75441543139c72a9a10151fd77def78721e7a20dcc",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_process_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "processHandle"
     },
     {
