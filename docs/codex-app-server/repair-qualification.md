@@ -15,6 +15,15 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [resume/catalog continuation](resume-personality-values-qualification.md)
+passes six reviewed functional files **16/0 twice**, compile/format, strict Credo
+and the 229-file guard on final v165 source. The v164 block's new string-style
+lint failure is retained; the equivalent sigil correction changes no config bytes,
+assertions or deadlines. Thirteen direct owners bring contracts to **4,579
+implemented / 1,983 missing / 59 blocked**, zero verified. Requirements remain
+**462 implemented / 12 missing / 11 blocked**, zero verified. No prohibited test,
+broad/hosted completion, full-compatibility, A11 or release claim follows.
+
 The [thread-section value block](thread-section-values-qualification.md) passes
 four reviewed functional files **12/0 twice**, compile/format, strict Credo and
 the 227-file guard. Sixteen direct parameter/result owners bring contracts to

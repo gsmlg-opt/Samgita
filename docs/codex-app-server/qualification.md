@@ -1,5 +1,14 @@
 # Codex compatibility qualification
 
+The [warm/cold resume](resume-personality-values-qualification.md) and
+[five-stage catalog](feature-stage-values-qualification.md) units pass the
+final six-file functional block **16/0 twice**, compile/format, strict Credo
+and source guard. Thirteen exact owners bring contracts to **4,579 implemented /
+1,983 missing / 59 blocked**, zero verified; requirements remain **462 implemented /
+12 missing / 11 blocked**, zero verified. The initial quote-style lint failure is
+retained. Security/permission tests, broad/hosted gates, full compatibility and
+A11 stay incomplete; no release, publication or deployment occurs.
+
 The [thread-section values unit](thread-section-values-qualification.md) passes
 the integrated four-file functional block **12/0 twice**, compile/format, strict
 Credo and its source guard. Sixteen exact parameter/result owners bring contracts

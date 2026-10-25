@@ -21,6 +21,18 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [resume personality](resume-personality-values-qualification.md) and
+[five native catalog stages](feature-stage-values-qualification.md) pass all six
+reviewed functional files **16/0 twice** plus compile/format, strict Credo and
+the source guard. Thirteen direct owners bring contracts to **4,579 implemented /
+1,983 missing / 59 blocked**, zero verified; requirements remain **462 implemented /
+12 missing / 11 blocked**, zero verified. Initial v164 native runs pass but its
+quote-style lint fails; the equivalent literal correction passes the complete
+v165 final block. Continue remaining permitted functional variants, next assessing
+multi-Agent mode or other local thread defaults without security/permission
+coverage. Retain the current testing restriction, unrun hosted gates and no-release
+status. All twelve missing broad requirements remain incomplete.
+
 The [thread-section value unit](thread-section-values-qualification.md) passes
 the integrated four-file functional block **12/0 twice**, compile/format, strict
 Credo and the source guard. Sixteen direct parameter/result owners bring contracts
