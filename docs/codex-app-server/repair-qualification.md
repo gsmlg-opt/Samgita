@@ -15,6 +15,17 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [native shell delta continuation](shell-delta-identity-qualification.md)
+passes twenty-six reviewed files **44/0 twice**, strict/static checks, outside
+consumer **1/0**, three Python AST checks and 252-source guard; artifacts are in
+`/tmp/samgita-v275-functional-checks/`. Two exact fields bring contracts to
+**4,729 implemented / 1,833 missing / 59 blocked**, unchanged requirements and
+zero verified. Actual native printf output correlates independent thread/turn/
+item identities, exact effects and cold persisted history without model work.
+The strict-Credo nesting failure is reproduced and corrected by helper extraction;
+no native test fails and no assertion/bound changes. No runtime/shared-helper
+changes. Prohibited/broader/hosted, A11 and the full goal remain incomplete.
+
 The [native project creation/change continuation](project-create-change-qualification.md)
 passes the final twenty-five-file **43/0 twice** matrix, strict/static checks,
 outside consumer **1/0**, three Python AST checks and 251-source guard; artifacts

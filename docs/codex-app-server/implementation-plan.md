@@ -21,6 +21,20 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [native shell delta unit](shell-delta-identity-qualification.md) passes the
+final twenty-six-file **44/0 twice** matrix, compile/format, strict Credo,
+outside consumer **1/0**, three Python AST checks and the 252-source guard.
+Two exact output-correlation fields bring contracts to **4,729 implemented /
+1,833 missing / 59 blocked**, unchanged requirements and zero verified. Genuine
+deltas bind independently observed thread/turn/item identities and prescribed
+output/effects; cold history preserves both commands without loading/execution
+or model work. The initial strict-Credo helper failure is repaired without
+assertion/bound changes. Continue reachable ordinary producer coverage; preserve
+the separately source-proven read-state success limitation. Prohibited/broad/
+hosted, full-goal, A11, source-unreachable, external and release gates remain.
+
+## Earlier checkpoints
+
 The [native project creation/change unit](project-create-change-qualification.md)
 passes the final twenty-five-file **43/0 twice** matrix, compile/format, strict
 Credo, outside consumer **1/0**, three Python AST checks and the 251-source guard.
@@ -32,8 +46,6 @@ only the documented selected profiles. No runtime/shared-helper changes.
 Continue reachable ordinary method/field behavior; nearby Project aliases are
 already indexed and must not be counted again. Prohibited/broad/hosted,
 full-goal, A11, source-unreachable, external and release gates remain incomplete.
-
-## Earlier checkpoints
 
 The [cold-search continuation](cold-search-persistence-qualification.md) passes
 the final twenty-five-file **41/0 twice** block, compile/format, strict Credo,

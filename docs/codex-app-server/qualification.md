@@ -1,5 +1,16 @@
 # Codex compatibility qualification
 
+The [native shell delta unit](shell-delta-identity-qualification.md) passes
+twenty-six reviewed files **44/0 twice**, compile/format, strict Credo, outside
+consumer **1/0**, three Python AST checks and the 252-source guard. Two exact
+fields bring contracts to **4,729 implemented / 1,833 missing / 59 blocked**,
+unchanged requirements and zero verified. Native output IDs independently match
+requested thread/started turn/item, prescribed output and effect rows; cold
+history never repeats either command or starts model work. The capture-helper
+Credo failure remains recorded and is corrected with unchanged assertions/bounds.
+All prohibited/broader/hosted, full-goal, A11, legacy/external and release gates
+remain incomplete.
+
 The [native project creation/change unit](project-create-change-qualification.md)
 passes twenty-five reviewed files **43/0 twice**, compile/format, strict Credo,
 outside consumer **1/0**, three Python AST checks and the 251-source guard.
