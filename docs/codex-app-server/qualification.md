@@ -1,5 +1,13 @@
 # Codex compatibility qualification
 
+The [diagnostic PID binding](diagnostic-process-identity-qualification.md) maps
+one existing direct field to the unchanged final **38/0 twice** matrix and
+248-source guard. Actual returned PID→immutable executable→owned disappearance
+checks qualify only that ID. Contracts become **4,703 implemented / 1,859 missing /
+59 blocked**, with unchanged requirements and zero verified. This documentation-only
+binding adds no test execution; prohibited/broader/hosted/full-goal gates remain
+incomplete.
+
 The [timeline position unit](timeline-position-values-qualification.md) passes
 twenty-three reviewed functional files **38/0 twice**, compile/format, strict
 Credo, outside consumer **1/0**, Python syntax and the 248-file guard. Three exact

@@ -21,6 +21,17 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [diagnostic PID binding](diagnostic-process-identity-qualification.md)
+indexes one direct existing response field against the unchanged final
+**38/0 twice** matrix and 248-source guard. Contracts become **4,703 implemented /
+1,859 missing / 59 blocked**, with unchanged requirements and zero verified.
+No new runtime test or source change is needed: independent executable hash and
+checked owned disappearance already give the returned PID meaningful effects.
+Next implement the memory/status reader unit described below, retaining its
+synthetic-input limits and all prohibited/broader/hosted/full-goal/A11 gates.
+
+## Earlier checkpoints
+
 The [timeline position unit](timeline-position-values-qualification.md) passes
 twenty-three reviewed functional files **38/0 twice**, compile/format, strict
 Credo, outside consumer **1/0**, Python syntax and the 248-file guard. Three
@@ -34,8 +45,6 @@ reader owners 4411–4413 using explicitly synthetic saved inputs. Those reader
 responses cannot establish actual memory generation/consolidation or writer
 success. Keep every prohibited/broad/hosted, full-goal, A11, external and release
 gate incomplete.
-
-## Earlier checkpoints
 
 The [fork/resume effort unit](fork-resume-effort-values-qualification.md) passes
 twenty-two reviewed functional files **37/0 twice**, compile/format, strict

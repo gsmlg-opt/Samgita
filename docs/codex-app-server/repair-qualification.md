@@ -15,6 +15,14 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [diagnostic PID binding](diagnostic-process-identity-qualification.md)
+adds one direct response field from the unchanged final **38/0 twice** matrix
+and 248-source guard. The returned native PID identifies the hash-pinned actual
+executable, changes across restart and disappears on checked owned shutdown.
+Contracts are **4,703 implemented / 1,859 missing / 59 blocked**, with unchanged
+requirements and zero verified. No new runtime or prohibited check runs for
+this documentation-only mapping; broader/hosted/full-goal/A11 gates remain open.
+
 The [timeline position continuation](timeline-position-values-qualification.md)
 adds three exact ordinal fields. The final twenty-three-file **38/0 twice**
 block, strict/static checks, outside consumer **1/0** and 248-file guard pass;

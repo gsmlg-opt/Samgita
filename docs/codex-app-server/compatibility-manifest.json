@@ -176644,27 +176644,35 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/diagnostic-process-identity-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ServerDiagnosticsResponse.json#/definitions/ServerDiagnosticsProcess/properties/id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "current_native_diagnostic_process_identity: Existing final v239 functional38/0 at both seeds binds unchanged owning timeline test and 248-source guard. The actual server/diagnostics process.id is an integer used to hash /proc/<id>/exe against the immutable Codex executable; a checked cold launch has a distinct ID and each corresponding owned PID disappears after close. Four complete producer sources archive-match and the exact export/node hashes match. Only this direct physical ID field gains scoped implementation evidence, not diagnostics container/gauges/memory/whole response/method/aliases or other OS/remote process/platform/transport. No additional runtime test is run for this documentation-only binding. Prohibited checks, broad/hosted/full compatibility and A11 remain incomplete."
+      ],
       "nullable": false,
       "pointer": "/definitions/ServerDiagnosticsProcess/properties/id",
       "required": true,
       "schema": "v2/ServerDiagnosticsResponse.json",
       "schema_sha256": "58a534d425864d3834ed49ee6093e45c4d143caad100e1e88e82cd63e680c20f",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_timeline_position_values_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "id"
     },
     {
