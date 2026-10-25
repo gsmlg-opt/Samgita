@@ -21,6 +21,15 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [52 retained request owners](native-request-owners-continuation.md) bind
+precise command/background/search/import envelopes to unchanged passing v24
+native assertions and dependencies. Full manifest/diff matches; no executable
+change or verified promotion. Contracts are 3,843 implemented/2,778 missing;
+requirements remain 462 implemented/12 missing/11 blocked, zero verified.
+Continue reachable hooks catalog behavior, then freeze the final source for
+the complete retained-platform/package/consumer and hosted matrix. All broader
+gates and retained unrelated aggregate failures remain incomplete.
+
 The [live status/search block](thread-status-projection-qualification.md) adds
 two actual-native cases and ten exact physical owners. The complete seven-file
 block passes 49/0 at both fixed seeds, compile/format/strict Credo and matching

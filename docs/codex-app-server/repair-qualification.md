@@ -6,6 +6,16 @@ starting from `3c54d748871313bd69858ff05d0fd2c606019e6a`. It supplements the
 Local checks, hosted checks, full compatibility and confidentiality acceptance
 remain separate gates. No production data, credentials or services are changed.
 
+## Retained command, search and import request owners
+
+The [52-owner evidence continuation](native-request-owners-continuation.md)
+checks exact original rows/nodes, unchanged native assertions/dependencies and
+terminal v24 native repeats. The expected complete manifest/diff matches; no
+code, fixture, timeout, cleanup or authority changes occur. Contracts are
+3,843 implemented/2,778 missing, zero verified; requirements remain
+462 implemented/12 missing/11 blocked. This is scoped retained evidence, not
+fresh final-source qualification; all broader incomplete gates remain required.
+
 ## Native live status and search continuation
 
 The [seven-file owning block](thread-status-projection-qualification.md) passes
