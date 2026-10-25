@@ -1,5 +1,20 @@
 # Codex compatibility qualification
 
+The [streamed web items](streamed-web-search-qualification.md),
+[canonical dynamic declarations](dynamic-tool-exposure-qualification.md) and
+[archived child provenance](subagent-search-provenance-qualification.md) pass
+the final **31-file, 57/0 twice** functional matrix, compile/format, strict
+Credo, outside consumer **1/0**, eight fixture ASTs and the **261-source** guard.
+Exactly **52** direct physical owners become implemented: **4,793 implemented /
+1,769 missing / 59 blocked** contracts, unchanged **462 implemented / 12 missing /
+11 blocked** requirements and zero verified. Native placeholders/final actions,
+real local tool discovery/client dispatch, explicit top-deferred rejection,
+active empty-preview exclusion, archive byte preservation and first-cold reads
+retain independent oracles. Draft failures and their source-backed corrections
+are preserved. Inventory --check passes; strict completeness still exits **1**.
+All prohibited/broader/hosted, full-goal, A11, source-unreachable/external and
+release gates remain incomplete. No publication/deployment.
+
 The [search membership continuation](thread-section-membership-qualification.md#search-projection-continuation)
 passes the final twenty-eight-file **51/0 twice** matrix, compile/format, strict
 Credo, outside consumer **1/0**, five Python AST checks and 255-source guard.

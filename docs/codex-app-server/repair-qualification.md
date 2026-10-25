@@ -15,6 +15,22 @@ tests and gates stay intact and incomplete. Pushes use `[skip ci]` to avoid the
 automatic foundation suite; no conformance workflow is dispatched. This records
 an unrun gate, not a passing gate or a new release policy.
 
+The [web-item](streamed-web-search-qualification.md),
+[dynamic-tool declaration](dynamic-tool-exposure-qualification.md) and
+[archived child-source](subagent-search-provenance-qualification.md) units pass
+the final **31-file, 57/0 twice** functional matrix, strict/static checks,
+outside consumer **1/0**, eight fixture ASTs and the **261-source** guard.
+Commands/logs/source bindings: `/tmp/samgita-v291-functional-checks/functional/`.
+Exactly **52** direct owners bring contracts to **4,793 implemented / 1,769
+missing / 59 blocked**, unchanged requirements and zero verified. Source-backed
+draft failures remain recorded: complete provider message shape, unsupported
+top-level defer, read/startup notices, child/root completion routing, required
+descriptive-role metadata, active empty-preview discovery and global outer-parent
+projection. The final profile preserves real native paths, four child-provider
+requests and full history bytes through explicit archival and cold search.
+Inventory consistency passes; strict completeness remains exit **1**. No required
+gate is weakened; prohibited/broader/hosted, A11 and full-goal gates remain open.
+
 The [search membership continuation](thread-section-membership-qualification.md#search-projection-continuation)
 passes the final twenty-eight-file **51/0 twice** matrix, strict/static checks,
 outside consumer **1/0**, five Python AST checks and 255-source guard; artifacts

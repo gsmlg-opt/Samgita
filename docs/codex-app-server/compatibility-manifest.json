@@ -210742,53 +210742,71 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_nickname",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine MAv2 root spawns and completes one child with source-prescribed singleton nickname, task path, descriptive label, depth1 and parent ID. Exact child provenance is independently resolved via relation listing/history; genuine archive then archived:true warm and first-cold content searches preserve those fields and complete histories/provider bytes without another inference.",
+        "Pinned active global discovery excludes an empty-preview child; this profile explicitly requires active search empty and does not claim active success. Archived global search outer parentThreadId is null while nested source parent ID remains intact. Only the five exact nested provenance fields, local Linux stdio and four provider requests are qualified; no aliases/enclosing union/other variants/backends/OS/transports or full-compatibility promotion. Required broader/hosted and security/permission checks remain unrun; implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_nickname",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "67f0689e1c8ccd3216aeecbb51d53b4c1317267308d341e1b8af082aae3310af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agent_nickname"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine MAv2 root spawns and completes one child with source-prescribed singleton nickname, task path, descriptive label, depth1 and parent ID. Exact child provenance is independently resolved via relation listing/history; genuine archive then archived:true warm and first-cold content searches preserve those fields and complete histories/provider bytes without another inference.",
+        "Pinned active global discovery excludes an empty-preview child; this profile explicitly requires active search empty and does not claim active success. Archived global search outer parentThreadId is null while nested source parent ID remains intact. Only the five exact nested provenance fields, local Linux stdio and four provider requests are qualified; no aliases/enclosing union/other variants/backends/OS/transports or full-compatibility promotion. Required broader/hosted and security/permission checks remain unrun; implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_path",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "bf16a21a4a406f1e2fc39c43c21f4f48ce3ad57ed144ddab1d867050c3972d47",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agent_path"
     },
     {
@@ -210838,79 +210856,106 @@
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "has_default": true,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_role",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine MAv2 root spawns and completes one child with source-prescribed singleton nickname, task path, descriptive label, depth1 and parent ID. Exact child provenance is independently resolved via relation listing/history; genuine archive then archived:true warm and first-cold content searches preserve those fields and complete histories/provider bytes without another inference.",
+        "Pinned active global discovery excludes an empty-preview child; this profile explicitly requires active search empty and does not claim active success. Archived global search outer parentThreadId is null while nested source parent ID remains intact. Only the five exact nested provenance fields, local Linux stdio and four provider requests are qualified; no aliases/enclosing union/other variants/backends/OS/transports or full-compatibility promotion. Required broader/hosted and security/permission checks remain unrun; implemented only."
+      ],
       "nullable": true,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/agent_role",
       "required": false,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "67f0689e1c8ccd3216aeecbb51d53b4c1317267308d341e1b8af082aae3310af",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "agent_role"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/depth",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine MAv2 root spawns and completes one child with source-prescribed singleton nickname, task path, descriptive label, depth1 and parent ID. Exact child provenance is independently resolved via relation listing/history; genuine archive then archived:true warm and first-cold content searches preserve those fields and complete histories/provider bytes without another inference.",
+        "Pinned active global discovery excludes an empty-preview child; this profile explicitly requires active search empty and does not claim active success. Archived global search outer parentThreadId is null while nested source parent ID remains intact. Only the five exact nested provenance fields, local Linux stdio and four provider requests are qualified; no aliases/enclosing union/other variants/backends/OS/transports or full-compatibility promotion. Required broader/hosted and security/permission checks remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/depth",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "47085548d16f4f9691d4e236f5b406942fd4c028ed6d749a409881235bd051e8",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "depth"
     },
     {
       "default": null,
       "direction": "schema_field",
-      "evidence": [],
+      "evidence": [
+        "docs/codex-app-server/subagent-search-provenance-qualification.md"
+      ],
       "experimental": true,
       "has_default": false,
       "id": "schema:v2/ThreadSearchResponse.json#/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/parent_thread_id",
-      "implementation_module": "SamgitaProtocolCodex.Schema",
-      "limitations": [],
+      "implementation_module": "SamgitaCodexDriver.Session",
+      "limitations": [
+        "Genuine MAv2 root spawns and completes one child with source-prescribed singleton nickname, task path, descriptive label, depth1 and parent ID. Exact child provenance is independently resolved via relation listing/history; genuine archive then archived:true warm and first-cold content searches preserve those fields and complete histories/provider bytes without another inference.",
+        "Pinned active global discovery excludes an empty-preview child; this profile explicitly requires active search empty and does not claim active success. Archived global search outer parentThreadId is null while nested source parent ID remains intact. Only the five exact nested provenance fields, local Linux stdio and four provider requests are qualified; no aliases/enclosing union/other variants/backends/OS/transports or full-compatibility promotion. Required broader/hosted and security/permission checks remain unrun; implemented only."
+      ],
       "nullable": false,
       "pointer": "/definitions/SubAgentSource/oneOf/1/properties/thread_spawn/properties/parent_thread_id",
       "required": true,
       "schema": "v2/ThreadSearchResponse.json",
       "schema_sha256": "058aa6b620d3d27a8fdad20420f0333d0467e32d6c189d86534c1993b5ce1dba",
-      "state": "missing",
+      "state": "implemented",
       "tests": {
         "planned": [
           "schema-contract",
           "deterministic-fault",
           "real-pinned-binary"
         ],
-        "verified": []
+        "verified": [
+          "apps/samgita_codex_driver/test/native_subagent_search_provenance_test.exs"
+        ]
       },
-      "transport_coverage": [],
+      "transport_coverage": [
+        "linux-x86_64-musl/stdio"
+      ],
       "wire_name": "parent_thread_id"
     },
     {

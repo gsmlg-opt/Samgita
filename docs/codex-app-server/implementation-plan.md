@@ -21,6 +21,32 @@ one owner. Existing reliability fixes and historical records are preserved.
 
 ## Current checkpoint
 
+The [web-item](streamed-web-search-qualification.md),
+[canonical dynamic-tool](dynamic-tool-exposure-qualification.md) and
+[archived child-source](subagent-search-provenance-qualification.md) units pass
+the final **31-file, 57/0 twice** matrix, compile/format, strict Credo, outside
+consumer **1/0**, eight fixture ASTs and the **261-source** unchanged-byte guard.
+Exactly **52** direct physical owners bring contracts to **4,793 implemented /
+1,769 missing / 59 blocked**, unchanged **462 implemented / 12 missing / 11
+blocked** requirements and zero verified. Actual provider streams, local BM25,
+client tool results, explicit top-deferred rejection and child archival/cold
+search preserve prescribed effects/history without another inference. Active
+empty-preview discovery is explicitly excluded by native behavior; it is not a
+successful active-search profile. All draft failures and source-backed repairs
+remain visible. Inventory consistency passes and strict completeness exits **1**.
+Continue reachable ordinary behavior: qualify omitted/null web-action options
+through real Responses events; these supplement existing fields without new
+owner promotions. Separately qualify action:null notification owner 2524 through
+the genuine standalone web.run extension start at ext/web-search/src/tool.rs:
+133–146. Responses conversion to other cannot qualify that producer. Selective
+response owner 5483 still has no demonstrated current producer: completed
+standalone items supply a non-null action, and selective projection stores
+completed items. Historical begin conversion cannot substitute for native
+cold-selective evidence. Keep all prohibited/broad/hosted, full-goal,
+A11, source-unreachable/external and release gates incomplete.
+
+## Earlier checkpoints
+
 The [search membership unit](thread-section-membership-qualification.md#search-projection-continuation)
 passes the final twenty-eight-file **51/0 twice** matrix, compile/format, strict
 Credo, outside consumer **1/0**, five AST checks and the 255-source guard,
@@ -33,8 +59,6 @@ streamed item/turn behavior. A held child cannot establish persisted inProgress
 items; do not repeat that rejected candidate without an actual producer. Keep
 all prohibited/broad/hosted, full-goal, A11, source-unreachable and external/
 release gates incomplete.
-
-## Earlier checkpoints
 
 The [config default/origin unit](config-override-metadata-qualification.md#default-and-origin-discriminators)
 passes its complete owning file **3/0 twice**, compile/format, strict Credo and
